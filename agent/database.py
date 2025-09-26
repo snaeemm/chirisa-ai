@@ -45,26 +45,6 @@ def init_database():
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_score ON reports(composite_score)")
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_created ON reports(created_at)")
 
-    # Create domain_scores table for individual domain analysis storage
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS domain_scores (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            report_id INTEGER NOT NULL,
-            location TEXT NOT NULL,
-            domain_name TEXT NOT NULL,
-            score REAL,
-            summary TEXT,
-            key_findings TEXT,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            FOREIGN KEY (report_id) REFERENCES reports (id) ON DELETE CASCADE
-        )
-    """)
-
-    # Create indexes for domain_scores table
-    cursor.execute("CREATE INDEX IF NOT EXISTS idx_domain_location ON domain_scores(location)")
-    cursor.execute("CREATE INDEX IF NOT EXISTS idx_domain_name ON domain_scores(domain_name)")
-    cursor.execute("CREATE INDEX IF NOT EXISTS idx_domain_score ON domain_scores(score)")
-    cursor.execute("CREATE INDEX IF NOT EXISTS idx_domain_report_id ON domain_scores(report_id)")
 
     # Create top_scores_cache table for lightning-fast overall score retrieval
     cursor.execute("""
@@ -640,7 +620,6 @@ def delete_tool(location: Optional[str] = None, report_id: Optional[int] = None,
             # Delete all reports - count reports first
             cursor.execute("SELECT COUNT(*) FROM reports")
             deleted_count = cursor.fetchone()[0]
-            cursor.execute("DELETE FROM domain_scores")
             cursor.execute("DELETE FROM reports")
             message = f"Deleted all reports ({deleted_count} reports removed)"
 
@@ -650,7 +629,6 @@ def delete_tool(location: Optional[str] = None, report_id: Optional[int] = None,
             row = cursor.fetchone()
             if row:
                 location_name = row[0]
-                cursor.execute("DELETE FROM domain_scores WHERE report_id = ?", (report_id,))
                 cursor.execute("DELETE FROM reports WHERE id = ?", (report_id,))
                 deleted_count = 1
                 message = f"Report #{report_id} for {location_name} deleted successfully"
@@ -662,7 +640,6 @@ def delete_tool(location: Optional[str] = None, report_id: Optional[int] = None,
             # Delete all reports for location - count first
             cursor.execute("SELECT COUNT(*) FROM reports WHERE location = ?", (location,))
             deleted_count = cursor.fetchone()[0]
-            cursor.execute("DELETE FROM domain_scores WHERE location = ?", (location,))
             cursor.execute("DELETE FROM reports WHERE location = ?", (location,))
             message = f"Deleted {deleted_count} reports for {location}" if deleted_count > 0 else f"No reports found for {location}"
 
