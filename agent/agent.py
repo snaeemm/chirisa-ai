@@ -1,22 +1,18 @@
 # agent.py - Data Center Site Analysis Orchestrator
 # Follow https://google.github.io/adk-docs/get-started/quickstart/ to learn the setup
 
-import os
 import re
+import streamlit as st
 from google.adk.agents import LlmAgent, ParallelAgent
 from google.adk.tools import FunctionTool, AgentTool
-from google.adk.runners import Runner
 import googlemaps
-from dotenv import load_dotenv
 
-from .models import LocationContext, AgentInput
+from .models import LocationContext
 # Database functions are now handled by fast wrapper functions
 from .database import (
     list_saved_reports, get_report_by_id, search_reports, get_top_reports,
     get_database_stats, delete_report
 )
-
-load_dotenv()
 
 from .power_agent import power_agent
 from .network_agent import network_agent
@@ -28,7 +24,6 @@ from .hyperscaler_agent import hyperscaler_agent
 # Synthesis agent
 from .synthesis_agents import datacenter_report_tool
 from .database_agent import database_agent
-from google.adk.sessions import VertexAiSessionService
 
 
 # Configure output keys for each agent
@@ -40,16 +35,18 @@ esg_agent.output_key = "esg_result"
 regulatory_agent.output_key = "regulatory_result"
 hyperscaler_agent.output_key = "hyperscaler_result"
 
-# Configuration - API Keys from environment
-GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
-GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+# Configuration - API Keys from Streamlit secrets
+GOOGLE_MAPS_API_KEY = st.secrets.get('GOOGLE_MAPS_API_KEY')
+GEMINI_API_KEY = st.secrets.get('GEMINI_API_KEY')
+GEMINI_MODEL = st.secrets.get('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Validate required environment variables
 if not GOOGLE_MAPS_API_KEY:
-    raise ValueError("GOOGLE_MAPS_API_KEY environment variable is required")
+    st.error("GOOGLE_MAPS_API_KEY secret is required. Please configure it in Streamlit secrets.")
+    st.stop()
 if not GEMINI_API_KEY:
-    raise ValueError("GEMINI_API_KEY environment variable is required")
+    st.error("GEMINI_API_KEY secret is required. Please configure it in Streamlit secrets.")
+    st.stop()
 
 # Google Maps client for location resolution
 gmaps = googlemaps.Client(key=GOOGLE_MAPS_API_KEY)
@@ -259,20 +256,47 @@ root_agent = LlmAgent(
     description="Professional datacenter site analysis orchestrator with intelligent location selection and comprehensive technical analysis"
 )
 
-# --- 5. ADK Runner Setup ---
-def main():
-    """Main function to run the ADK agent"""
-    runner = Runner(
-        agent=root_agent,
-        app_name="data-center-analyzer"
-    )
+# --- 5. Streamlit UI Setup ---
+def run_datacenter_app_ui():
+    """Main function to run the Streamlit interface"""
+    st.title("🏢 Data Center Site Analyzer")
+    st.markdown("### Professional datacenter site analysis with intelligent location selection")
 
-    print("🏢 Data Center Site Analyzer - Starting ADK interface...")
-    print("🌐 Web UI and API will be available shortly...")
-    runner.run()
+    # Initialize session state for chat
+    if "messages" not in st.session_state:
+        st.session_state.messages = []
+
+    # Display chat messages from history
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.markdown(message["content"])
+
+    # User input
+    if prompt := st.chat_input("Ask about datacenter locations, analysis, or search our database..."):
+        # Add user message to chat history
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        with st.chat_message("user"):
+            st.markdown(prompt)
+
+        # Get response from root_agent using VertexAiSessionService
+        with st.chat_message("assistant"):
+            with st.spinner("Analyzing..."):
+                try:
+                    from google.adk.sessions import VertexAiSessionService
+                    session = VertexAiSessionService(agent=root_agent)
+                    response = session.send_message(prompt)
+                    st.markdown(response)
+
+                    # Add assistant response to chat history
+                    st.session_state.messages.append({"role": "assistant", "content": response})
+
+                except Exception as e:
+                    error_msg = f"Sorry, I encountered an error: {str(e)}"
+                    st.error(error_msg)
+                    st.session_state.messages.append({"role": "assistant", "content": error_msg})
 
 if __name__ == "__main__":
-    main()
+    run_datacenter_app_ui()
 
 # Make root_agent available for import
 __all__ = ['root_agent', 'maps_tool']
