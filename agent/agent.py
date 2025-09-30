@@ -3,8 +3,8 @@
 
 import re
 import streamlit as st
-from google.adk.agents import LlmAgent, ParallelAgent
-from google.adk.tools import FunctionTool, AgentTool
+from google_adk.agents import LlmAgent, ParallelAgent
+from google_adk.tools import FunctionTool, AgentTool
 import googlemaps
 
 from .models import LocationContext
@@ -282,7 +282,7 @@ def run_datacenter_app_ui():
         with st.chat_message("assistant"):
             with st.spinner("Analyzing..."):
                 try:
-                    from google.adk.sessions import VertexAiSessionService
+                    from google_adk.sessions import VertexAiSessionService
                     session = VertexAiSessionService(agent=root_agent)
                     response = session.send_message(prompt)
                     st.markdown(response)
