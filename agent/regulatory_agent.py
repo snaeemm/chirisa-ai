@@ -1,10 +1,11 @@
 # regulatory_agent.py - Regulatory Compliance Analysis Agent
+import os
 from google.adk.agents import LlmAgent
 from .models import AgentInput
 from .domain_models import RegulatoryComplianceOutput
 
 # Configuration
-GEMINI_MODEL = "gemini-2.5-flash"
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Create the Regulatory Compliance Agent
 regulatory_agent = LlmAgent(

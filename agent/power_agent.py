@@ -1,10 +1,11 @@
 # power_agent.py - Power Infrastructure Analysis Agent
+import os
 from google.adk.agents import LlmAgent
 from .models import AgentInput
 from .domain_models import PowerInfrastructureOutput
 
 # Configuration
-GEMINI_MODEL = "gemini-2.5-flash"
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Create the Power Infrastructure Agent with comprehensive enhanced prompt
 power_agent = LlmAgent(

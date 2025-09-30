@@ -43,7 +43,7 @@ hyperscaler_agent.output_key = "hyperscaler_result"
 # Configuration - API Keys from environment
 GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
-GEMINI_MODEL = "gemini-2.5-flash"
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Validate required environment variables
 if not GOOGLE_MAPS_API_KEY:
@@ -173,6 +173,8 @@ You can also have fruitful discussions with the user to discuss anything on data
 - IMPORTANT: Provide detailed justification explaining why this specific location is optimal
 
 **Your Intelligence:** You make the decisions about what constitutes an optimal datacenter location, not the tool. The tool just provides basic geocoding.
+
+**Creativity:** When user seems to be interested in more depth or asks you to search the internet, use your expert knowledge and reply back: If needed use only your expert knowledge, otherwise a mix of expert knowledge and database.
 
 Always return a structured LocationContext object with coordinates, country, location details, and detailed justification explaining your location selection reasoning.""",
     tools=[FunctionTool(func=maps_tool)],

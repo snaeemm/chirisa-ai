@@ -1,5 +1,6 @@
 # synthesis_agents.py - Synthesis and Report Orchestration
 
+import os
 import asyncio
 from google.adk.tools import FunctionTool
 from .models import ReportSchema, LocationContext, AgentOutput
@@ -11,7 +12,7 @@ from .domain_models import (
 from .utility import save_report_schema, generate_pdf_report
 
 # Configuration
-GEMINI_MODEL = "gemini-2.5-flash"
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # --------------------------------------------------------------------------------
 # Simplified Response Handling - Agents now output structured JSON directly
@@ -287,7 +288,7 @@ class PowerInfrastructureAgentWrapper:
     def __init__(self, adk_agent):
         self.adk_agent = adk_agent
         self.name = "Power Infrastructure Agent"
-
+        self.model = os.getenv('GEMINI_MODEL')
     async def analyze_power_infrastructure(self, lat, lng, country, context=None):
         """Match old agent signature exactly"""
         try:
@@ -305,7 +306,7 @@ class PowerInfrastructureAgentWrapper:
                 raise Exception("GEMINI_API_KEY not found")
 
             genai.configure(api_key=api_key)
-            model = genai.GenerativeModel(self.adk_agent.model)
+            model = genai.GenerativeModel(self.model)
 
             response = await asyncio.to_thread(model.generate_content, prompt)
 
@@ -357,7 +358,7 @@ class NetworkConnectivityAgentWrapper:
     def __init__(self, adk_agent):
         self.adk_agent = adk_agent
         self.name = "Network Connectivity Agent"
-
+        self.model = os.getenv('GEMINI_MODEL')
     async def analyze_network_connectivity(self, lat, lng, country, context=None):
         """Match old agent signature exactly"""
         try:
@@ -368,7 +369,7 @@ class NetworkConnectivityAgentWrapper:
             if not api_key:
                 raise Exception("GEMINI_API_KEY not found")
             genai.configure(api_key=api_key)
-            model = genai.GenerativeModel(self.adk_agent.model)
+            model = genai.GenerativeModel(self.model)
             response = await asyncio.to_thread(model.generate_content, prompt)
 
             # Parse JSON response from agent into NetworkConnectivityOutput
@@ -418,6 +419,7 @@ class ClimateSuitabilityAgentWrapper:
     def __init__(self, adk_agent):
         self.adk_agent = adk_agent
         self.name = "Climate Suitability Agent"
+        self.model = os.getenv('GEMINI_MODEL')
 
     async def analyze_climate_suitability(self, lat, lng, country, context=None):
         """Match old agent signature exactly"""
@@ -429,7 +431,7 @@ class ClimateSuitabilityAgentWrapper:
             if not api_key:
                 raise Exception("GEMINI_API_KEY not found")
             genai.configure(api_key=api_key)
-            model = genai.GenerativeModel(self.adk_agent.model)
+            model = genai.GenerativeModel(self.model)
             response = await asyncio.to_thread(model.generate_content, prompt)
 
             # Parse JSON response from agent into ClimateAnalysisOutput
@@ -477,6 +479,7 @@ class OperationalRiskAgentWrapper:
     def __init__(self, adk_agent):
         self.adk_agent = adk_agent
         self.name = "Operational Risk Agent"
+        self.model = os.getenv('GEMINI_MODEL')
 
     async def analyze_operational_risk(self, lat, lng, country, context=None):
         """Match old agent signature exactly"""
@@ -488,7 +491,7 @@ class OperationalRiskAgentWrapper:
             if not api_key:
                 raise Exception("GEMINI_API_KEY not found")
             genai.configure(api_key=api_key)
-            model = genai.GenerativeModel(self.adk_agent.model)
+            model = genai.GenerativeModel(self.model)
             response = await asyncio.to_thread(model.generate_content, prompt)
 
             # Parse JSON response from agent into OperationalRiskOutput
@@ -535,6 +538,7 @@ class SustainabilityESGAgentWrapper:
     def __init__(self, adk_agent):
         self.adk_agent = adk_agent
         self.name = "Sustainability ESG Agent"
+        self.model = os.getenv('GEMINI_MODEL')
 
     async def analyze_sustainability_esg(self, lat, lng, country, context=None):
         """Match old agent signature exactly"""
@@ -546,7 +550,7 @@ class SustainabilityESGAgentWrapper:
             if not api_key:
                 raise Exception("GEMINI_API_KEY not found")
             genai.configure(api_key=api_key)
-            model = genai.GenerativeModel(self.adk_agent.model)
+            model = genai.GenerativeModel(self.model)
             response = await asyncio.to_thread(model.generate_content, prompt)
 
             # Parse JSON response from agent into ESGSustainabilityOutput
@@ -593,6 +597,7 @@ class RegulatoryComplianceAgentWrapper:
     def __init__(self, adk_agent):
         self.adk_agent = adk_agent
         self.name = "Regulatory Compliance Agent"
+        self.model = os.getenv('GEMINI_MODEL')
 
     async def analyze_regulatory_compliance(self, lat, lng, country, context=None):
         """Match old agent signature exactly"""
@@ -604,7 +609,7 @@ class RegulatoryComplianceAgentWrapper:
             if not api_key:
                 raise Exception("GEMINI_API_KEY not found")
             genai.configure(api_key=api_key)
-            model = genai.GenerativeModel(self.adk_agent.model)
+            model = genai.GenerativeModel(self.model)
             response = await asyncio.to_thread(model.generate_content, prompt)
 
             # Parse JSON response from agent into RegulatoryComplianceOutput
@@ -651,6 +656,7 @@ class HyperscalerAttractivenessAgentWrapper:
     def __init__(self, adk_agent):
         self.adk_agent = adk_agent
         self.name = "Hyperscaler Attractiveness Agent"
+        self.model = os.getenv('GEMINI_MODEL')
 
     async def analyze_hyperscaler_attractiveness(self, lat, lng, country, context=None):
         """Match old agent signature exactly"""
@@ -662,7 +668,7 @@ class HyperscalerAttractivenessAgentWrapper:
             if not api_key:
                 raise Exception("GEMINI_API_KEY not found")
             genai.configure(api_key=api_key)
-            model = genai.GenerativeModel(self.adk_agent.model)
+            model = genai.GenerativeModel(self.model)
             response = await asyncio.to_thread(model.generate_content, prompt)
 
             # Parse JSON response from agent into HyperscalerAttractivenessOutput

@@ -1,10 +1,11 @@
 # network_agent.py - Network Connectivity Analysis Agent
+import os
 from google.adk.agents import LlmAgent
 from .models import AgentInput
 from .domain_models import NetworkConnectivityOutput
 
 # Configuration
-GEMINI_MODEL = "gemini-2.5-flash"
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Create the Network Connectivity Agent
 network_agent = LlmAgent(

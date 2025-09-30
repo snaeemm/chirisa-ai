@@ -1,4 +1,4 @@
-#!/home/shahzeb/projects/data-center-agentic/agent/venv/bin/python3.12
+#!/tmp/recover_agent/agent/venv/bin/python3
 # -*- coding: utf-8 -*-
 # Copyright 2025 Google LLC
 #

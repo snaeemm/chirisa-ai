@@ -1,5 +1,6 @@
 # database.py - SQLite Database Operations for Data Center Analysis Reports
 
+import os
 import sqlite3
 import json
 from typing import Dict, Any, Optional, List
@@ -17,8 +18,8 @@ class ReportSchema(BaseModel):
     overall_suitability: OverallSuitability
     # Add other fields as needed for your full report structure
     
-# Database configuration - path relative to agent running directory
-DATABASE_FILE = "agent/reports.db"
+# Database configuration - path from environment variable
+DATABASE_FILE = os.getenv('DATABASE_PATH', 'agent/reports.db')
 
 def init_database():
     """Initialize SQLite database with optimized schema and FTS5"""

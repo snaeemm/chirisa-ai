@@ -1,4 +1,5 @@
 # utility.py - Report Generation and File Management Tools
+import os
 import json
 import re
 from datetime import datetime
@@ -154,8 +155,8 @@ def format_table_cell_content(content: str, max_width_chars: int = 25) -> str:
     return "\n".join(lines)
 
 
-# Report directory path - using pathlib for proper handling of spaces
-REPORTS_DIR = Path("/mnt/c/Users/Shahzeb/Granite Media/Granite MENA - Operations/2. Practices/AI/Colm's DC Site Checker/Reports").resolve()
+# Report directory path - using pathlib and environment variable
+REPORTS_DIR = Path(os.getenv('REPORTS_OUTPUT_DIR', './Reports')).resolve()
 
 # ================================================================================================
 # DYNAMIC PHASE 1 DEPLOYMENT PLAN GENERATOR

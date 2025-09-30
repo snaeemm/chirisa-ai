@@ -1,4 +1,5 @@
 # insights_agent.py - Cross-Domain Intelligence and Synthesis Agent
+import os
 from google.adk.agents import LlmAgent
 from .models import (
     LocationContext, DomainSummary, InsightsInput, InsightsOutput
@@ -6,7 +7,7 @@ from .models import (
 from typing import Any
 
 # Configuration
-GEMINI_MODEL = "gemini-2.5-flash"
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Create the Cross-Domain Insights Agent
 insights_agent = LlmAgent(

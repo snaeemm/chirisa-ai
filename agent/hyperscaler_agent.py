@@ -5,7 +5,7 @@ from google.adk.agents import LlmAgent
 from .models import LocationContext
 
 # Configuration
-GEMINI_MODEL = "gemini-2.5-flash"
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Hyperscaler Attractiveness Analysis Agent
 hyperscaler_agent = LlmAgent(

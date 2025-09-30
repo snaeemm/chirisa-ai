@@ -1,10 +1,11 @@
 # esg_agent.py - ESG & Sustainability Analysis Agent
+import os
 from google.adk.agents import LlmAgent
 from .models import AgentInput
 from .domain_models import ESGSustainabilityOutput
 
 # Configuration
-GEMINI_MODEL = "gemini-2.5-flash"
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Create the ESG & Sustainability Agent
 esg_agent = LlmAgent(

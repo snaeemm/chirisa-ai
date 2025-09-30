@@ -1,5 +1,6 @@
 # database_agent.py - Smart Database Intelligence Agent
 
+import os
 import time
 from typing import Dict, Any, List, Optional
 from google.adk.agents import LlmAgent
@@ -15,8 +16,8 @@ from .database import (
     get_reports_tool, delete_tool
 )
 
-# Database configuration is handled by database.py 
-GEMINI_MODEL = "gemini-2.5-flash"
+# Database configuration is handled by database.py
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Create function tools - streamlined and combined
 intelligent_json_parser_tool = FunctionTool(func=intelligent_json_parser)

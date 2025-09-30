@@ -1,10 +1,11 @@
 # climate_agent.py - Climate Suitability Analysis Agent
+import os
 from google.adk.agents import LlmAgent
 from .models import AgentInput
 from .domain_models import ClimateAnalysisOutput
 
 # Configuration
-GEMINI_MODEL = "gemini-2.5-flash"
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Create the Climate Suitability Agent
 climate_agent = LlmAgent(

@@ -1,0 +1,1934 @@
+{
+  "location": "Grenada",
+  "coordinates": {
+    "lat": 12.1165,
+    "lng": -61.67899999999999
+  },
+  "country": "Grenada",
+  "analysis_date": "2025-09-30",
+  "overall_suitability": {
+    "composite_score": 2.9714285714285715,
+    "rating": "Moderate",
+    "recommendation": "Location rated as Moderate for datacenter deployment"
+  },
+  "domain_analysis": {
+    "power_infrastructure": {
+      "score": 1.9,
+      "key_findings": [
+        "Grenada's current power infrastructure is fundamentally inadequate for a hyperscale data center (100MW+) due to insufficient generation capacity and transmission capabilities.",
+        "Electricity costs are extremely high and volatile, primarily driven by imported fossil fuels, rendering the location uncompetitive for energy-intensive operations.",
+        "Sustainability goals are challenging to meet given the fossil-fuel-dominated generation mix and lack of large-scale renewable PPA options."
+      ],
+      "summary": "The power infrastructure in Grenada presents significant, likely insurmountable, challenges for hyperscale data center viability. The island's total generation capacity is less than typical hyperscale requirements, electricity costs are exceptionally high and volatile, and the generation mix is heavily reliant on fossil fuels. Achieving hyperscale reliability, capacity, cost-effectiveness, and sustainability would necessitate building entirely new, dedicated power generation and transmission infrastructure, rendering the project bespoke, capital-intensive, and long-term. Grenada is not a viable location for a conventional hyperscale data center dependent on existing grid infrastructure."
+    },
+    "network_connectivity": {
+      "score": 3.4,
+      "key_findings": [
+        "Grenada's network infrastructure offers reasonable domestic coverage and last-mile options for its size, but true geographic fiber redundancy outside of St. George's is limited.",
+        "Multiple subsea cables provide crucial international redundancy, though total aggregate capacity and number of landing points are modest for true hyperscale demands.",
+        "International connectivity relies heavily on transit via Miami, leading to higher latencies to major global markets and the absence of direct global IXP peering."
+      ],
+      "summary": "Grenada offers a foundational network infrastructure with essential subsea cable diversity and a localized peering exchange, suitable for regional or niche data center deployments. However, for a true hyperscale data center, the location faces significant challenges including limited overall international bandwidth capacity, higher latency to global markets, elevated bandwidth costs, and an infrastructure not yet fully geared for the demanding requirements of AI/ML workloads. While showing potential, substantial further investment and strategic development would be needed to meet hyperscale viability on a global scale."
+    },
+    "climate_environmental": {
+      "score": 2.8,
+      "key_findings": [
+        "The tropical climate of Grenada presents significant challenges for data center cooling, severely limiting free cooling opportunities and necessitating robust mechanical cooling systems, leading to higher operational costs and PUE.",
+        "High natural hazard risks, particularly from hurricanes/tropical storms, require substantial investment in hardened infrastructure, specialized engineering, and comprehensive disaster preparedness plans to ensure resilience.",
+        "While seismic risk is moderate and manageable with proper design, the persistent high temperatures and humidity remain the most critical environmental challenge impacting operational efficiency and TCO."
+      ],
+      "summary": "Grenada offers a consistent tropical marine climate, but its persistently high temperatures and humidity pose significant challenges for data center cooling, virtually eliminating free cooling potential and driving higher operational PUE. The location faces substantial risks from hurricanes, requiring hardened structural design and robust disaster recovery strategies. Moderate seismic activity is manageable with appropriate engineering. Future climate change projections further exacerbate cooling demands and natural hazard risks. While stable politically and offering potential for renewable energy integration, the site's climate profile necessitates substantial upfront and operational investments to achieve hyperscale viability and resilience."
+    },
+    "operational_risk": {
+      "score": 3.6,
+      "key_findings": [
+        "Grenada offers a highly stable geopolitical environment, making it attractive from a national security perspective for critical infrastructure investment.",
+        "The primary operational risks stem from the country's vulnerability to natural disasters (hurricanes), necessitating significant private investment in infrastructure resilience (power, local fiber) and robust disaster recovery planning.",
+        "A limited specialized labor market for hyperscale data center operations will require a strategic approach to talent acquisition, including expatriate staffing or substantial local training programs."
+      ],
+      "summary": "Grenada presents a mixed operational risk profile for a hyperscale data center. Its strong geopolitical stability and low direct security threats are significant advantages. However, considerable challenges exist regarding critical infrastructure resilience against natural disasters and the availability of specialized labor. While basic emergency services are present, specialized capabilities are limited. Therefore, a successful deployment would necessitate substantial private investment in resilient infrastructure, comprehensive disaster recovery planning, and a robust talent development strategy to mitigate these inherent vulnerabilities."
+    },
+    "esg_sustainability": {
+      "score": 3.2,
+      "key_findings": [
+        "High carbon footprint: The reliance on fossil fuels for the national grid presents a significant challenge for achieving low-carbon operations, necessitating substantial on-site renewable energy investment and strategic grid engagement.",
+        "Policy ambition vs. market maturity: Grenada has strong climate commitments and developing environmental regulations, but the immaturity of the corporate renewable PPA market and lack of domestic carbon pricing create both compliance simplicity and operational procurement hurdles.",
+        "Community integration crucial: Strong emphasis on local hiring, workforce development, and proactive community engagement will be vital for social license to operate and long-term stability, mitigating potential public opposition."
+      ],
+      "summary": "The proposed hyperscale data center in Grenada faces significant environmental challenges, primarily a high-carbon national grid and a nascent renewable energy market. However, the country's strong climate commitments, developing environmental regulations, and robust data privacy laws offer a stable governance environment. Success will hinge on substantial investment in on-site renewable energy, proactive community engagement, and adoption of international ESG best practices beyond current local mandates."
+    },
+    "regulatory_compliance": {
+      "score": 3.7,
+      "key_findings": [
+        "Grenada's recent Data Protection Act provides a foundational privacy framework, aligning with international standards, which is favorable for data handling.",
+        "Strong government intent to attract FDI, through GIDC, offers significant negotiable incentives including tax concessions and import duty exemptions for capital equipment.",
+        "Permitting processes, particularly EIA and zoning, require proactive engagement and can be lengthy, necessitating early and sustained government relations strategies."
+      ],
+      "summary": "Grenada presents a moderately favorable, yet navigable, regulatory landscape for hyperscale data center viability. Key advantages include a developing data protection framework and robust government investment incentives. Challenges primarily revolve around potentially longer permitting timelines and the need for proactive engagement with regulatory bodies to streamline processes. Strategic government relations are paramount for successful market entry and operational efficiency."
+    },
+    "hyperscaler_attractiveness": {
+      "score": 2.2,
+      "key_findings": [
+        "Grenada's primary appeal lies in its geopolitical stability and existing submarine cable connectivity, positioning it as a potential regional edge or latency-sensitive workload destination.",
+        "Significant infrastructure investments, particularly in power and local fiber, are mandatory for any hyperscale deployment, along with robust government incentives to offset market limitations.",
+        "The limited local enterprise and talent markets necessitate a strategy focused on serving broader regional demand or niche requirements like data sovereignty for government/regulated industries."
+      ],
+      "summary": "Grenada presents a unique, albeit challenging, proposition for hyperscale data center viability. Its key strengths are geopolitical stability, existing submarine cable landing points (SCF, ECFS), and alignment with US Eastern Time, offering a potential strategic hub for the Southern Caribbean. However, the market is characterized by a nascent cloud ecosystem, extremely limited local enterprise demand, and an underdeveloped technical labor market. Significant infrastructure constraints, particularly power grid capacity (island total 30-40 MW), pose major hurdles for hyperscale scalability. Hyperscalers currently serve the region from distant hubs, indicating a lack of pressing local demand for a full region. To be viable, a data center in Grenada would require substantial government incentives, a focus on serving the broader regional market or specific data sovereignty needs, and significant investment in local infrastructure and talent development. The overall attractiveness score of 2.2 reflects the high barriers to entry despite some strategic advantages."
+    }
+  },
+  "detailed_analysis": {
+    "power_infrastructure": "The power infrastructure in Grenada presents significant, likely insurmountable, challenges for hyperscale data center viability. The island's total generation capacity is less than typical hyperscale requirements, electricity costs are exceptionally high and volatile, and the generation mix is heavily reliant on fossil fuels. Achieving hyperscale reliability, capacity, cost-effectiveness, and sustainability would necessitate building entirely new, dedicated power generation and transmission infrastructure, rendering the project bespoke, capital-intensive, and long-term. Grenada is not a viable location for a conventional hyperscale data center dependent on existing grid infrastructure.",
+    "network_connectivity": "Grenada offers a foundational network infrastructure with essential subsea cable diversity and a localized peering exchange, suitable for regional or niche data center deployments. However, for a true hyperscale data center, the location faces significant challenges including limited overall international bandwidth capacity, higher latency to global markets, elevated bandwidth costs, and an infrastructure not yet fully geared for the demanding requirements of AI/ML workloads. While showing potential, substantial further investment and strategic development would be needed to meet hyperscale viability on a global scale.",
+    "climate_environmental": "Grenada offers a consistent tropical marine climate, but its persistently high temperatures and humidity pose significant challenges for data center cooling, virtually eliminating free cooling potential and driving higher operational PUE. The location faces substantial risks from hurricanes, requiring hardened structural design and robust disaster recovery strategies. Moderate seismic activity is manageable with appropriate engineering. Future climate change projections further exacerbate cooling demands and natural hazard risks. While stable politically and offering potential for renewable energy integration, the site's climate profile necessitates substantial upfront and operational investments to achieve hyperscale viability and resilience.",
+    "operational_risk": "Grenada presents a mixed operational risk profile for a hyperscale data center. Its strong geopolitical stability and low direct security threats are significant advantages. However, considerable challenges exist regarding critical infrastructure resilience against natural disasters and the availability of specialized labor. While basic emergency services are present, specialized capabilities are limited. Therefore, a successful deployment would necessitate substantial private investment in resilient infrastructure, comprehensive disaster recovery planning, and a robust talent development strategy to mitigate these inherent vulnerabilities.",
+    "esg_sustainability": "The proposed hyperscale data center in Grenada faces significant environmental challenges, primarily a high-carbon national grid and a nascent renewable energy market. However, the country's strong climate commitments, developing environmental regulations, and robust data privacy laws offer a stable governance environment. Success will hinge on substantial investment in on-site renewable energy, proactive community engagement, and adoption of international ESG best practices beyond current local mandates.",
+    "regulatory_compliance": "Grenada presents a moderately favorable, yet navigable, regulatory landscape for hyperscale data center viability. Key advantages include a developing data protection framework and robust government investment incentives. Challenges primarily revolve around potentially longer permitting timelines and the need for proactive engagement with regulatory bodies to streamline processes. Strategic government relations are paramount for successful market entry and operational efficiency.",
+    "hyperscaler_attractiveness": "Grenada presents a unique, albeit challenging, proposition for hyperscale data center viability. Its key strengths are geopolitical stability, existing submarine cable landing points (SCF, ECFS), and alignment with US Eastern Time, offering a potential strategic hub for the Southern Caribbean. However, the market is characterized by a nascent cloud ecosystem, extremely limited local enterprise demand, and an underdeveloped technical labor market. Significant infrastructure constraints, particularly power grid capacity (island total 30-40 MW), pose major hurdles for hyperscale scalability. Hyperscalers currently serve the region from distant hubs, indicating a lack of pressing local demand for a full region. To be viable, a data center in Grenada would require substantial government incentives, a focus on serving the broader regional market or specific data sovereignty needs, and significant investment in local infrastructure and talent development. The overall attractiveness score of 2.2 reflects the high barriers to entry despite some strategic advantages."
+  },
+  "structured_analysis": {
+    "power_infrastructure": {
+      "overall_score": 1.9,
+      "grid_reliability": {
+        "name": "Grid Reliability & Resiliency",
+        "content": "Grenada's grid is operated by Grenada Electricity Services Ltd. (GRENLEC). As a small island grid, it faces inherent challenges in reliability compared to continental systems, particularly susceptibility to severe weather events (hurricanes). While GRENLEC strives for operational stability, specific publicly available SAIDI/SAIFI metrics for Grenada are not consistently benchmarked against global standards. Based on typical small island nation grids, reliability is moderate, with occasional significant outages during hurricane seasons. Grid stability concerning frequency and voltage is managed by GRENLEC's generation fleet, primarily diesel, but lacks the sophisticated ancillary services of larger grids. Grid modernization efforts are ongoing, focusing on integrating renewables and improving distribution, but hyperscale-grade resiliency infrastructure (like dedicated multiple 380kV+ feeds) is absent.",
+        "sub_score": 2.5,
+        "metrics": {
+          "numerical_values": {
+            "saidi_minutes": 550,
+            "saifi_interruptions": 7,
+            "grid_uptime": 99.89
+          },
+          "percentages": {
+            "renewable_penetration": 15.0,
+            "grid_modernization": 25.0
+          },
+          "ranges": {
+            "voltage_regulation": {
+              "min": -7.0,
+              "max": 7.0
+            },
+            "frequency_tolerance": {
+              "min": -0.5,
+              "max": 0.5
+            }
+          },
+          "units": {
+            "saidi_minutes": "minutes/year",
+            "saifi_interruptions": "interruptions/year",
+            "grid_uptime": "%",
+            "voltage_regulation": "%",
+            "frequency_tolerance": "Hz"
+          }
+        },
+        "key_points": [
+          "Moderate grid reliability susceptible to weather events",
+          "Limited public reliability metrics available",
+          "Lack of hyperscale-grade redundancy and stability infrastructure"
+        ],
+        "tables": []
+      },
+      "power_capacity": {
+        "name": "Power Capacity & Scalability",
+        "content": "GRENLEC's total installed generating capacity is approximately 50-60 MW, with peak demand around 35-40 MW. A hyperscale data center requiring 100 MW+ is not viable with the current grid infrastructure, as it would exceed the island's entire generation capacity. There are no high-voltage transmission lines (e.g., 220kV, 380kV, 500kV) or substations with spare capacity suitable for multi-megawatt hyperscale loads. Any such project would necessitate the construction of dedicated, new baseload generation capacity and associated transmission infrastructure, which would be a bespoke, long-term, and high-cost endeavor. Grid capacity forecasts are focused on meeting organic island demand growth and renewable integration, not supporting an additional 100MW+ load.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "available_capacity": 0,
+            "transmission_voltage": 66,
+            "substation_distance": 5
+          },
+          "percentages": {
+            "capacity_utilization": 80.0
+          },
+          "ranges": {},
+          "units": {
+            "available_capacity": "MW",
+            "transmission_voltage": "kV",
+            "substation_distance": "km"
+          }
+        },
+        "key_points": [
+          "Hyperscale capacity (100MW+) is not available",
+          "Total island generation capacity is less than typical hyperscale needs",
+          "Requires entirely new generation and transmission infrastructure"
+        ],
+        "tables": []
+      },
+      "generation_mix": null,
+      "connection_process": {
+        "name": "Connection Process & Regulatory Framework",
+        "content": "The grid interconnection process for large-scale projects in Grenada would be managed by GRENLEC and the Public Utilities Regulatory Commission (PURC). There is no established 'fast-track' process or specific framework for a hyperscale data center of 100MW+, as such projects are unprecedented for the island. Typical timelines for significant new connections would be protracted, likely requiring 36-48 months or more, involving extensive technical studies and bespoke agreements. Standardized grid connection fees for a project of this magnitude are not defined; costs would be determined on a case-by-case basis and would include substantial grid reinforcement/expansion. GRENLEC, while experienced with the local grid, lacks specific track record with hyperscale data center projects, necessitating significant engagement and education.",
+        "sub_score": 2.0,
+        "metrics": {
+          "numerical_values": {
+            "interconnection_timeline_months": 42,
+            "connection_fee_per_mw": 150000
+          },
+          "percentages": {
+            "fast_track_eligibility": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "interconnection_timeline_months": "months",
+            "connection_fee_per_mw": "USD/MW"
+          }
+        },
+        "key_points": [
+          "Protracted interconnection timelines due to project scale",
+          "No established framework or fast-track for hyperscale projects",
+          "High, bespoke connection costs for grid upgrades"
+        ],
+        "tables": []
+      },
+      "electricity_costs": {
+        "name": "Electricity Costs & Market Dynamics",
+        "content": "Industrial electricity rates in Grenada are significantly higher than competitive data center markets globally, primarily due to the reliance on imported fossil fuels and the small scale of the grid. Rates typically range from USD 0.25-0.35/kWh, including various charges and fuel pass-through mechanisms. Pricing structures may include time-of-use tariffs but are dominated by the energy charge and fuel surcharges, leading to volatility tied directly to global oil prices. There are limited hedging options or sophisticated contract structures available for long-term price stability for multi-megawatt loads. Compared to major data center hubs like Northern Virginia (~$0.05/kWh) or even Singapore (~$0.15/kWh), Grenada is not cost-competitive for energy-intensive operations. A 100MW+ facility would likely require a custom power generation solution and direct agreements.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "industrial_rate": 0.3,
+            "demand_charge": 8.0
+          },
+          "percentages": {
+            "cost_competitiveness": 5.0
+          },
+          "ranges": {},
+          "units": {
+            "industrial_rate": "USD/kWh",
+            "demand_charge": "USD/kW-month"
+          }
+        },
+        "key_points": [
+          "Very high industrial electricity rates",
+          "High price volatility due to fossil fuel dependence",
+          "Extremely uncompetitive compared to global data center markets"
+        ],
+        "tables": []
+      },
+      "cost_model": {
+        "name": "Cost Model & Financial Projections",
+        "content": "20-year electricity cost projections for Grenada are subject to high uncertainty due to volatile global fuel prices, which are the primary driver of generation costs. Cost escalation factors are closely tied to oil price trends and any future carbon pricing mechanisms would further increase costs. Regional market forecasts and regulatory changes are primarily focused on maintaining grid stability and integrating modest amounts of renewables, not on large-scale price reductions for industrial users. The total cost of ownership for power would include extremely high connection fees (effectively, the cost of building a dedicated power plant) and ongoing tariffs. Sensitivity analysis would show extreme vulnerability to fuel cost variations, making long-term financial planning for hyperscale power challenging.",
+        "sub_score": 1.5,
+        "metrics": {
+          "numerical_values": {
+            "projected_escalation": 4.5,
+            "lcoe_20_year": 0.35
+          },
+          "percentages": {
+            "cost_certainty": 20.0
+          },
+          "ranges": {
+            "price_scenario": {
+              "min": 0.25,
+              "max": 0.45
+            }
+          },
+          "units": {
+            "projected_escalation": "%/year",
+            "lcoe_20_year": "USD/kWh"
+          }
+        },
+        "key_points": [
+          "High uncertainty in long-term cost projections",
+          "Significant exposure to volatile global fuel prices",
+          "Lack of established mechanisms for long-term price stability"
+        ],
+        "tables": []
+      },
+      "industrial_heritage": {
+        "name": "Industrial Heritage & Infrastructure",
+        "content": "Grenada lacks a heavy industrial heritage that would provide readily available, large-scale electrical infrastructure suitable for hyperscale data centers. The island's economy is predominantly tourism and agriculture-based. There are unlikely to be decommissioned industrial facilities with existing substations or transmission corridors that can support 100MW+ loads. Industrial zoning might exist for smaller light industries but may not automatically confer regulatory advantages for an energy-intensive hyperscale data center. While there is a general skilled workforce for electrical systems, highly specialized skills for hyperscale data center electrical infrastructure (e.g., 220kV+ switchgear, large-scale battery energy storage systems, complex grid interconnection for independent power producers) would likely be limited. Transportation infrastructure is adequate for general cargo but would require specialized planning for very large transformers or heavy equipment.",
+        "sub_score": 2.0,
+        "metrics": {
+          "numerical_values": {
+            "industrial_sites_within_10km": 1,
+            "substation_reuse_potential": 0
+          },
+          "percentages": {
+            "industrial_zoning": 40.0,
+            "skilled_workforce": 30.0
+          },
+          "ranges": {},
+          "units": {
+            "industrial_sites_within_10km": "count",
+            "substation_reuse_potential": "count"
+          }
+        },
+        "key_points": [
+          "Limited heavy industrial heritage or existing hyperscale-ready infrastructure",
+          "Lack of suitable substations or transmission corridors for reuse",
+          "Specialized hyperscale electrical workforce likely requires import"
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Analysis for 'hyperscale' assumes a target load of 100MW or more.",
+        "Specific SAIDI/SAIFI data for Grenada is not publicly available; metrics are estimated based on typical characteristics of small island grids and reliance on fossil fuel generation.",
+        "Electricity cost estimates are derived from publicly available GRENLEC tariff information and regional island utility benchmarks.",
+        "Grid capacity estimates are based on publicly known GRENLEC installed capacity and general grid operational characteristics.",
+        "Regulatory processes and timelines are inferred from typical practices in smaller, developing island nations without precedent for hyperscale projects."
+      ],
+      "key_insights": [
+        "Grenada's current power infrastructure is fundamentally inadequate for a hyperscale data center (100MW+) due to insufficient generation capacity and transmission capabilities.",
+        "Electricity costs are extremely high and volatile, primarily driven by imported fossil fuels, rendering the location uncompetitive for energy-intensive operations.",
+        "Sustainability goals are challenging to meet given the fossil-fuel-dominated generation mix and lack of large-scale renewable PPA options.",
+        "The absence of established regulatory frameworks and utility experience for such large projects would lead to significant delays and bespoke, costly solutions.",
+        "Any hyperscale data center project would effectively need to be self-sufficient in power generation, requiring a dedicated power plant (likely renewable) and associated infrastructure development."
+      ],
+      "executive_summary": "The power infrastructure in Grenada presents significant, likely insurmountable, challenges for hyperscale data center viability. The island's total generation capacity is less than typical hyperscale requirements, electricity costs are exceptionally high and volatile, and the generation mix is heavily reliant on fossil fuels. Achieving hyperscale reliability, capacity, cost-effectiveness, and sustainability would necessitate building entirely new, dedicated power generation and transmission infrastructure, rendering the project bespoke, capital-intensive, and long-term. Grenada is not a viable location for a conventional hyperscale data center dependent on existing grid infrastructure.",
+      "data_gaps": [
+        "Detailed, publicly available SAIDI/SAIFI and power quality metrics for the Grenadian grid.",
+        "Official grid interconnection cost and timeline studies specifically for 100MW+ loads.",
+        "Specific available capacity at potential substation sites in the vicinity of the coordinates.",
+        "Long-term energy market forecasts and detailed tariff structures for custom large loads.",
+        "Specific data on utility disaster recovery plans and historical outage causes."
+      ],
+      "third_party_verification": [
+        "Engage GRENLEC for a comprehensive grid impact study and feasibility assessment for a 100MW+ connection.",
+        "Consult an independent electrical engineering firm experienced in island grids and microgrids for a detailed power infrastructure site survey and alternative generation assessment.",
+        "Obtain independent cost estimates for dedicated generation assets (e.g., large-scale solar + battery storage, or new thermal plant) required to meet demand.",
+        "Legal and regulatory counsel to navigate the Public Utilities Regulatory Commission (PURC) and environmental permitting processes."
+      ],
+      "phase_1_recommendations": {
+        "target_capacity": "Re-evaluate target capacity to a much smaller scale (e.g., <5 MW) or consider a fully off-grid solution.",
+        "grid_connection": "Initiate preliminary discussions with GRENLEC regarding capacity constraints and potential dedicated generation integration options.",
+        "power_strategy": "If hyperscale is mandatory, pivot to a strategy of developing a dedicated, independent power generation facility (e.g., large-scale renewable with storage) with minimal reliance on the public grid."
+      }
+    },
+    "network_connectivity": {
+      "overall_score": 3.4,
+      "fiber_infrastructure": {
+        "name": "Fiber Infrastructure & Metropolitan Networks",
+        "content": "Grenada possesses a reasonably developed fiber optic network for its size, primarily driven by incumbent operators Flow (Liberty Latin America) and Digicel. Urban areas, particularly St. George's, benefit from extensive FTTH deployment and metro fiber rings, offering good last-mile connectivity and redundancy within the capital. Inter-parish connectivity is established but less dense than the main urban centers. National backbone capacity relies on DWDM technology, connecting key population centers.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "fiber_density_km": 600,
+            "ftth_coverage": 70,
+            "man_ring_capacity_gbps": 100
+          },
+          "percentages": {
+            "urban_fiber_penetration": 90.0,
+            "redundant_paths_metro": 60.0
+          },
+          "ranges": {},
+          "units": {
+            "fiber_density_km": "km",
+            "ftth_coverage": "%",
+            "man_ring_capacity_gbps": "Gbps"
+          }
+        },
+        "key_points": [
+          "~600km national fiber infrastructure.",
+          "70% FTTH coverage in key urban areas.",
+          "Metro fiber rings in St. George's with up to 100Gbps capacity.",
+          "Reasonable last-mile options but limited true geographic redundancy."
+        ],
+        "tables": []
+      },
+      "subsea_cables": {
+        "name": "Subsea Cable Infrastructure",
+        "content": "Grenada is connected by multiple submarine cable systems, providing a degree of diversity. The primary systems include the Eastern Caribbean Fiber System (ECFS/EC-LINK) and Southern Caribbean Fiber (SCF). These cables land near St. George's, offering diverse routes for international traffic. While multiple cables provide redundancy against single points of failure, their aggregate capacity, while sufficient for current national demand, is modest compared to major global hubs. Further diversity could be achieved via onward connectivity from Trinidad & Tobago.",
+        "sub_score": 3.7,
+        "metrics": {
+          "numerical_values": {
+            "landing_points": 1,
+            "total_capacity_tbps": 8,
+            "cable_systems": 2
+          },
+          "percentages": {
+            "redundancy_level": 70.0,
+            "operator_diversity": 100.0
+          },
+          "ranges": {},
+          "units": {
+            "landing_points": "site",
+            "total_capacity_tbps": "Tbps",
+            "cable_systems": "systems"
+          }
+        },
+        "key_points": [
+          "Connected by EC-LINK and Southern Caribbean Fiber systems.",
+          "Aggregate capacity estimated at ~8 Tbps to the island.",
+          "Multiple cable systems provide route diversity, reducing outage risk.",
+          "Single major landing point near St. George's is a point of concern for physical security."
+        ],
+        "tables": []
+      },
+      "international_connectivity": {
+        "name": "International Connectivity & Global Peering",
+        "content": "International connectivity from Grenada primarily routes through major hubs like Miami, Florida, for onward access to North America, Europe, and global markets. While the existing subsea cables provide the physical links, direct peering with major global IXPs like AMS-IX or DE-CIX is not available. International peering relationships are established indirectly via Tier-1 carriers in Miami. Global bandwidth availability is sufficient for current national demand but would require significant upgrades for hyperscale requirements, relying on the capacity of the connecting regional submarine cables.",
+        "sub_score": 3.2,
+        "metrics": {
+          "numerical_values": {
+            "international_bandwidth_tbps": 0.5,
+            "global_ixp_connections": 0,
+            "tier1_providers": 2
+          },
+          "percentages": {
+            "asia_pacific_connectivity": 20.0,
+            "europe_connectivity": 50.0,
+            "north_america_connectivity": 90.0
+          },
+          "ranges": {},
+          "units": {
+            "international_bandwidth_tbps": "Tbps",
+            "global_ixp_connections": "count",
+            "tier1_providers": "count"
+          }
+        },
+        "key_points": [
+          "Primary international gateway via Miami, Florida.",
+          "Limited direct global peering; reliance on Tier-1 transit providers.",
+          "Estimated total international bandwidth capacity of ~500 Gbps.",
+          "Latency to distant markets is inherent due to geographical location."
+        ],
+        "tables": []
+      },
+      "domestic_peering": {
+        "name": "Domestic Peering & Carrier Landscape",
+        "content": "The domestic carrier landscape in Grenada is dominated by two major players: Flow and Digicel, providing a duopoly that offers some level of competition but limits true diversity. Grenada hosts an active Internet Exchange Point (GRN-IXP), established by the National Telecommunications Regulatory Commission (NTRC). This IXP facilitates local traffic exchange between ISPs, content providers, and government entities, improving domestic latency and keeping local traffic local. However, the overall traffic volume remains small compared to regional hubs.",
+        "sub_score": 3.6,
+        "metrics": {
+          "numerical_values": {
+            "domestic_carriers": 2,
+            "ixp_participants": 5,
+            "peak_traffic_gbps": 0.5
+          },
+          "percentages": {
+            "market_competition": 50.0,
+            "carrier_diversity": 50.0
+          },
+          "ranges": {},
+          "units": {
+            "domestic_carriers": "count",
+            "ixp_participants": "count",
+            "peak_traffic_gbps": "Gbps"
+          }
+        },
+        "key_points": [
+          "Duopoly with Flow and Digicel as dominant carriers.",
+          "Active GRN-IXP facilitates local traffic exchange.",
+          "Limited carrier diversity can impact redundancy and pricing.",
+          "Domestic IXP peak traffic is relatively low (~500 Mbps)."
+        ],
+        "tables": []
+      },
+      "latency_performance": {
+        "name": "Latency Performance & CDN Presence",
+        "content": "Latency from Grenada is acceptable for regional traffic but higher for global markets due to geographical distance and reliance on intermediate transit hubs. Round-trip time (RTT) to Miami is typically 40-60ms, extending to 60-80ms for NYC, and 100-120ms for London. Network quality is generally stable, with low packet loss. While major cloud regions are not present, several Content Delivery Network (CDN) providers (e.g., Cloudflare, Akamai) have PoPs in the wider Caribbean, with some having cache nodes or direct presence within Grenada, improving local content delivery.",
+        "sub_score": 3.3,
+        "metrics": {
+          "numerical_values": {
+            "latency_miami_ms": 50,
+            "latency_nyc_ms": 70,
+            "latency_london_ms": 110,
+            "packet_loss": 0.05
+          },
+          "percentages": {
+            "network_availability": 99.9,
+            "cdn_coverage": 70.0
+          },
+          "ranges": {},
+          "units": {
+            "latency_miami_ms": "ms",
+            "latency_nyc_ms": "ms",
+            "latency_london_ms": "ms",
+            "packet_loss": "%"
+          }
+        },
+        "key_points": [
+          "RTT to Miami ~50ms, NYC ~70ms, London ~110ms.",
+          "Network quality is good for local and regional traffic.",
+          "Some CDN PoPs are present or regionally accessible.",
+          "No major cloud provider regions or zones locally."
+        ],
+        "tables": []
+      },
+      "bandwidth_costs": {
+        "name": "Bandwidth Costs & Commercial Terms",
+        "content": "Bandwidth pricing in Grenada and the wider Caribbean tends to be higher than in major continental interconnection hubs like Miami or Ashburn, primarily due to lower volume demand and the cost of submarine cable capacity. While competitive domestically between Flow and Digicel, international IP transit costs for 10Gbps circuits are typically in the hundreds to low thousands of USD per Mbps per month range, higher than global averages. Volume discounts are available for larger commitments, but dark fiber options for long-haul routes are limited. Scalability for hyperscale volumes would be possible but at a premium.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "domestic_10g_cost_usd_month": 1500,
+            "international_10g_cost_usd_month": 4000,
+            "dark_fiber_cost_usd_km_month": 500
+          },
+          "percentages": {
+            "cost_competitiveness": 40.0,
+            "volume_discounts_max": 20.0
+          },
+          "ranges": {},
+          "units": {
+            "domestic_10g_cost_usd_month": "USD/month",
+            "international_10g_cost_usd_month": "USD/month",
+            "dark_fiber_cost_usd_km_month": "USD/km/month"
+          }
+        },
+        "key_points": [
+          "Higher bandwidth costs compared to major global hubs.",
+          "Estimated 10Gbps international IP transit around $4,000 USD/month.",
+          "Limited volume discounts for hyperscale requirements.",
+          "Dark fiber availability is scarce beyond metro areas."
+        ],
+        "tables": []
+      },
+      "future_proofing": {
+        "name": "Future-Proofing & Infrastructure Investment",
+        "content": "Grenada, as part of the Eastern Caribbean, is actively pursuing digital transformation initiatives with government support, including the rollout of 5G by both Flow and Digicel. However, network readiness for highly demanding AI/ML workloads is still nascent; significant upgrades to international backhaul capacity and domestic infrastructure would be required. While there are ongoing investments in broadband expansion and 5G, these are primarily aimed at serving the general populace and enterprise rather than specifically hyperscale data centers. Future capacity expansion plans exist, but precise details on dedicated hyperscale-level investments are not prominent.",
+        "sub_score": 3.2,
+        "metrics": {
+          "numerical_values": {
+            "planned_investments_usd": 50000000,
+            "5g_coverage": 40,
+            "edge_pops": 5
+          },
+          "percentages": {
+            "ai_ready_infrastructure": 20.0,
+            "capacity_growth_projection": 50.0
+          },
+          "ranges": {},
+          "units": {
+            "planned_investments_usd": "USD",
+            "5g_coverage": "%",
+            "edge_pops": "count"
+          }
+        },
+        "key_points": [
+          "Ongoing 5G rollout by major carriers.",
+          "Government support for digital transformation initiatives.",
+          "Limited specific investments targeting hyperscale data center needs.",
+          "Current infrastructure not optimized for high-density AI/ML workloads."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Exact fiber kilometer counts and specific MAN topologies for Grenada are not publicly available and have been estimated based on island size and typical Caribbean telecom development.",
+        "Subsea cable capacities represent the segment allocated to Grenada, not the total cable capacity.",
+        "Bandwidth pricing is an estimation based on regional averages and market dynamics for similar island nations, actual pricing varies with negotiation and volume.",
+        "Latency measurements are typical averages and can vary based on network load and specific routing paths.",
+        "The analysis assumes a 'hyperscale' requirement for connectivity, which significantly elevates baseline expectations for a small island nation."
+      ],
+      "key_insights": [
+        "Grenada's network infrastructure offers reasonable domestic coverage and last-mile options for its size, but true geographic fiber redundancy outside of St. George's is limited.",
+        "Multiple subsea cables provide crucial international redundancy, though total aggregate capacity and number of landing points are modest for true hyperscale demands.",
+        "International connectivity relies heavily on transit via Miami, leading to higher latencies to major global markets and the absence of direct global IXP peering.",
+        "Bandwidth costs are significantly higher than major global peering hubs, presenting a challenge for cost-sensitive hyperscale operations.",
+        "While there's commitment to digital development, specific infrastructure investments and future-proofing for hyperscale AI/ML workloads are not yet a primary focus."
+      ],
+      "executive_summary": "Grenada offers a foundational network infrastructure with essential subsea cable diversity and a localized peering exchange, suitable for regional or niche data center deployments. However, for a true hyperscale data center, the location faces significant challenges including limited overall international bandwidth capacity, higher latency to global markets, elevated bandwidth costs, and an infrastructure not yet fully geared for the demanding requirements of AI/ML workloads. While showing potential, substantial further investment and strategic development would be needed to meet hyperscale viability on a global scale.",
+      "data_gaps": [
+        "Detailed, publicly audited fiber route maps and redundancy levels for the national backbone and metro networks.",
+        "Specific port-level capacities and utilization rates of submarine cable landing stations in Grenada.",
+        "Granular, real-time latency and packet loss metrics to diverse global destinations from multiple vantage points within Grenada.",
+        "Current average and peak traffic volumes at the GRN-IXP and specific peering agreements.",
+        "Official, published wholesale bandwidth pricing lists for 10Gbps+ international IP transit from multiple carriers."
+      ],
+      "third_party_verification": [
+        "Independent network engineering firm to conduct a comprehensive site survey, including fiber audits and route diversity verification for proposed data center locations.",
+        "Direct engagement with Flow, Digicel, and other potential providers for capacity commitments, SLA, and dark fiber availability.",
+        "Specialized network performance testing agency to benchmark latency, jitter, and packet loss to key target markets.",
+        "Consultation with the NTRC (National Telecommunications Regulatory Commission) for regulatory insights, IXP participation, and future infrastructure plans."
+      ],
+      "phase_1_recommendations": {
+        "connectivity_target": "Secure at least two geographically diverse 10Gbps international IP transit circuits from different carriers, ideally utilizing distinct subsea cable systems.",
+        "peering_strategy": "Establish direct peering with GRN-IXP for domestic traffic. Investigate private network interconnects (PNIs) with major regional content providers and carriers in Miami.",
+        "redundancy": "Implement N+1 fiber route redundancy from the data center site to at least two different points of presence (PoPs) for local and national connectivity, and ensure diverse pathing to each international cable landing station."
+      }
+    },
+    "climate_environmental": {
+      "overall_score": 2.8,
+      "temperature_humidity": {
+        "name": "Temperature & Humidity Analysis",
+        "content": "Grenada experiences a tropical marine climate with consistently high temperatures and humidity year-round. Annual average temperatures hover between 26-29C (79-84F), with minimal diurnal or seasonal variation. Relative humidity typically ranges from 75% to 85%, and dew point temperatures are frequently above 20C (68F), often reaching 24-26C (75-79F). These conditions present significant challenges for direct free cooling opportunities, as the climate rarely falls within ASHRAE recommended economizer operating envelopes (e.g., A1/A2 classes). Sustained high temperatures and humidity increase the heat stress on IT equipment, demanding robust mechanical cooling and dehumidification systems for optimal performance and efficiency.",
+        "sub_score": 1.5,
+        "metrics": {
+          "numerical_values": {
+            "avg_temp_winter": 26,
+            "avg_temp_summer": 29,
+            "free_cooling_hours": 0,
+            "humidity_avg": 80
+          },
+          "percentages": {
+            "optimal_cooling_time": 0.0
+          },
+          "ranges": {
+            "temperature_range": {
+              "min": 23.0,
+              "max": 32.0
+            },
+            "humidity_range": {
+              "min": 70.0,
+              "max": 90.0
+            },
+            "dew_point_range": {
+              "min": 20.0,
+              "max": 26.0
+            }
+          },
+          "units": {
+            "avg_temp_winter": "C",
+            "avg_temp_summer": "C",
+            "free_cooling_hours": "hours/year",
+            "humidity_avg": "%",
+            "optimal_cooling_time": "% of year",
+            "temperature_range": "C",
+            "humidity_range": "%",
+            "dew_point_range": "C"
+          }
+        },
+        "key_points": [
+          "Consistently high temperatures and humidity year-round.",
+          "Dew points frequently exceed 20C (68F), making direct free cooling unviable.",
+          "Requires robust mechanical cooling and dehumidification systems.",
+          "Limited diurnal or seasonal temperature variation."
+        ],
+        "tables": []
+      },
+      "cooling_strategy": {
+        "name": "Cooling Strategy & PUE Analysis",
+        "content": "Given the hot and humid climate, the primary cooling strategy must rely heavily on mechanical refrigeration. Air-cooled chiller plants or direct expansion (DX) systems with robust dehumidification capabilities are essential. Due to the high ambient temperatures, the coefficient of performance (COP) for chillers will be lower, requiring more energy. Hybrid systems utilizing some form of indirect evaporative cooling might offer marginal gains if a suitable, consistent water source is available, but direct air-side economization is not feasible. HVAC redundancy of N+N or 2N is crucial for resilience against equipment failure and high load conditions. The constant high mechanical cooling load will result in a higher estimated Power Usage Effectiveness (PUE) compared to data centers in temperate climates.",
+        "sub_score": 2.0,
+        "metrics": {
+          "numerical_values": {
+            "estimated_pue": 1.45,
+            "hvac_redundancy": 2,
+            "cooling_energy_kwh": 1400
+          },
+          "percentages": {
+            "mechanical_cooling": 95.0,
+            "free_cooling": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "estimated_pue": "ratio",
+            "hvac_redundancy": "N+N",
+            "cooling_energy_kwh": "kWh/m/year",
+            "mechanical_cooling": "% of total cooling",
+            "free_cooling": "% of total cooling"
+          }
+        },
+        "key_points": [
+          "Dominant reliance on mechanical cooling due to climate.",
+          "Estimated PUE likely in the 1.45-1.60 range.",
+          "N+N or 2N HVAC redundancy is critical.",
+          "Dehumidification represents a significant part of the cooling load."
+        ],
+        "tables": []
+      },
+      "free_cooling": {
+        "name": "Free Cooling Potential",
+        "content": "The free cooling potential for a data center in Grenada is extremely limited. With average temperatures consistently above ASHRAE economizer thresholds (e.g., 18C/65F for air-side economizers) and high dew point temperatures, direct air-side free cooling is practically non-existent. Water-side economization would also be challenged by warm ambient conditions impacting cooling tower efficiency or requiring significantly colder water sources (e.g., deep sea water cooling) which are not generally viable for inland sites. Consequently, there are negligible annual free cooling hours available, leading to minimal, if any, cost savings from reduced mechanical cooling, and no significant PUE improvement from conventional free cooling methods.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "annual_free_cooling": 0,
+            "cost_savings": 0,
+            "pue_improvement": 0.0
+          },
+          "percentages": {
+            "winter_free_cooling": 0.0,
+            "spring_fall_free_cooling": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "annual_free_cooling": "hours",
+            "cost_savings": "USD/year",
+            "pue_improvement": "reduction"
+          }
+        },
+        "key_points": [
+          "Virtually no direct air-side free cooling opportunities.",
+          "No significant cost savings from free cooling.",
+          "PUE improvement from free cooling is negligible."
+        ],
+        "tables": []
+      },
+      "seismic_geological": {
+        "name": "Seismic & Geological Assessment",
+        "content": "Grenada is situated in the Lesser Antilles volcanic arc, a tectonically active region. The island experiences moderate seismic activity associated with the subduction of the Atlantic plate beneath the Caribbean plate, and potential activity from local fault lines and the active Kick 'em Jenny submarine volcano located north of the island. While not as seismically active as some other Caribbean islands, historical records indicate the potential for moderate earthquakes (e.g., magnitudes 5.0-6.5). Site-specific geological studies are crucial to assess soil bearing capacity, liquefaction potential, and landslide risk, particularly in hilly areas. Building codes, such as those derived from regional Caribbean Uniform Building Code (CUBiC) or adapted international standards (e.g., IBC seismic provisions), must be rigorously applied to ensure structures can withstand anticipated seismic loads. This will involve specialized foundation design and structural reinforcement, adding to construction costs.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "seismic_zone": 3,
+            "peak_ground_acceleration": 0.2,
+            "historical_earthquakes": 3
+          },
+          "percentages": {
+            "geological_stability": 75.0
+          },
+          "ranges": {
+            "earthquake_magnitude": {
+              "min": 5.0,
+              "max": 6.5
+            }
+          },
+          "units": {
+            "seismic_zone": "zone (UBC equivalent)",
+            "peak_ground_acceleration": "g",
+            "historical_earthquakes": "count/50 years in region",
+            "geological_stability": "% of suitable land",
+            "earthquake_magnitude": "Mw"
+          }
+        },
+        "key_points": [
+          "Moderate seismic risk due to volcanic arc activity.",
+          "Requires thorough geotechnical investigation for soil stability.",
+          "Building codes necessitate robust seismic design.",
+          "Active submarine volcano Kick 'em Jenny nearby."
+        ],
+        "tables": []
+      },
+      "hydrological_flood": {
+        "name": "Hydrological & Flood Risk",
+        "content": "Grenada receives significant annual rainfall, averaging 1500-2000mm, with a distinct wet season from June to December. This leads to potential risks of flash flooding in low-lying areas, riverine flooding, and landslides on steep slopes. Coastal locations are highly vulnerable to storm surge from tropical storms and hurricanes. For a data center, site selection at an adequate elevation (e.g., >20 meters above sea level) and outside identified 100-year and 500-year flood plains is paramount. Proper drainage and stormwater management systems are critical to mitigate localized flooding. Water availability for fire suppression and potential cooling systems is generally good due to ample rainfall and surface water sources, but requires local assessment of water rights and supply reliability.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "annual_precipitation": 1700,
+            "elevation_masl": 50,
+            "flood_return_period": 500
+          },
+          "percentages": {
+            "flood_zone_x": 90.0,
+            "coastal_vulnerability": 30.0
+          },
+          "ranges": {},
+          "units": {
+            "annual_precipitation": "mm",
+            "elevation_masl": "m",
+            "flood_return_period": "years",
+            "flood_zone_x": "% of land outside 100-year flood zone",
+            "coastal_vulnerability": "% of coastline vulnerable to storm surge"
+          }
+        },
+        "key_points": [
+          "Significant annual rainfall with flood potential in low areas.",
+          "Coastal sites highly vulnerable to storm surge.",
+          "Site selection at high elevation is critical for flood risk mitigation.",
+          "Generally good water availability from rainfall and surface sources."
+        ],
+        "tables": []
+      },
+      "wind_storm": {
+        "name": "Wind & Storm Analysis",
+        "content": "Grenada lies within the Atlantic hurricane belt, making it susceptible to tropical storms and hurricanes, particularly during the season from June to November. While it is located on the southern edge of the main hurricane track, the island has experienced direct hits, such as Hurricane Ivan (Category 3/4) in 2004, which caused widespread devastation with wind gusts exceeding 220 km/h (137 mph). Structural design for a data center must adhere to stringent hurricane-resistant building codes, capable of withstanding extreme wind loads (e.g., 250 km/h / 155 mph ultimate design wind speed). Comprehensive storm preparedness plans, including robust power generation, fuel storage, and emergency response, are essential for business continuity. Insurance premiums will reflect the high wind and storm risk.",
+        "sub_score": 2.0,
+        "metrics": {
+          "numerical_values": {
+            "avg_wind_speed": 15,
+            "max_wind_speed": 220,
+            "storm_frequency": 0.5
+          },
+          "percentages": {
+            "wind_load_factor": 150.0
+          },
+          "ranges": {},
+          "units": {
+            "avg_wind_speed": "km/h",
+            "max_wind_speed": "km/h",
+            "storm_frequency": "tropical storms/year (near miss/direct)",
+            "wind_load_factor": "% increase over standard"
+          }
+        },
+        "key_points": [
+          "High risk of tropical storms and hurricanes.",
+          "Requires stringent hurricane-resistant structural design.",
+          "Comprehensive storm preparedness is mandatory.",
+          "High wind loads necessitate specialized building materials and construction."
+        ],
+        "tables": []
+      },
+      "climate_extremes": {
+        "name": "Climate Extremes & Future Projections",
+        "content": "Climate change projections for Grenada indicate increasing average temperatures, changes in rainfall patterns (more intense rainfall events, but also longer dry spells), and rising sea levels. The frequency and intensity of extreme heat days are expected to increase, further challenging cooling systems. While wildfire risk remains low due to high humidity and vegetation, prolonged dry spells could elevate localized risk. Water stress could become a concern during extended droughts, impacting non-potable water supply for cooling or operations. Sea level rise poses a significant long-term threat to coastal infrastructure and could exacerbate storm surge impacts. Adaptation strategies, including resilient infrastructure design, water conservation, and elevation of critical systems, are vital for long-term viability and regulatory compliance with sustainability goals.",
+        "sub_score": 2.5,
+        "metrics": {
+          "numerical_values": {
+            "heat_wave_days": 15,
+            "cold_snap_days": 0,
+            "wildfire_risk": 1,
+            "water_stress": 3
+          },
+          "percentages": {
+            "drought_frequency": 25.0,
+            "climate_change_impact": 40.0
+          },
+          "ranges": {},
+          "units": {
+            "heat_wave_days": "days/year (>32C)",
+            "cold_snap_days": "days/year (<18C)",
+            "wildfire_risk": "risk level (1-5)",
+            "water_stress": "stress level (1-5)",
+            "drought_frequency": "% likelihood per decade",
+            "climate_change_impact": "% increase in hazard severity"
+          }
+        },
+        "key_points": [
+          "Increasing average temperatures and extreme heat events.",
+          "Changes in rainfall patterns: more intense rains, longer dry spells.",
+          "Significant long-term risk from sea level rise and intensified hurricanes.",
+          "Water stress potential during future droughts."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Climate data based on typical Grenada meteorological records over the last 30 years from public databases and regional climate models.",
+        "Site analysis assumes a strategically selected inland location with adequate elevation (e.g., >50m ASL) to mitigate immediate coastal flood/storm surge risks.",
+        "Free cooling calculations assume ASHRAE A1/A2 guidelines for data center operational envelopes.",
+        "PUE estimation is based on a hyperscale facility design utilizing current best practices for mechanical cooling in tropical environments."
+      ],
+      "key_insights": [
+        "The tropical climate of Grenada presents significant challenges for data center cooling, severely limiting free cooling opportunities and necessitating robust mechanical cooling systems, leading to higher operational costs and PUE.",
+        "High natural hazard risks, particularly from hurricanes/tropical storms, require substantial investment in hardened infrastructure, specialized engineering, and comprehensive disaster preparedness plans to ensure resilience.",
+        "While seismic risk is moderate and manageable with proper design, the persistent high temperatures and humidity remain the most critical environmental challenge impacting operational efficiency and TCO.",
+        "Long-term climate change projections indicate increasing extreme heat, altered rainfall patterns, and sea level rise, which must be factored into site selection and infrastructure design for future resilience and sustainability."
+      ],
+      "executive_summary": "Grenada offers a consistent tropical marine climate, but its persistently high temperatures and humidity pose significant challenges for data center cooling, virtually eliminating free cooling potential and driving higher operational PUE. The location faces substantial risks from hurricanes, requiring hardened structural design and robust disaster recovery strategies. Moderate seismic activity is manageable with appropriate engineering. Future climate change projections further exacerbate cooling demands and natural hazard risks. While stable politically and offering potential for renewable energy integration, the site's climate profile necessitates substantial upfront and operational investments to achieve hyperscale viability and resilience.",
+      "data_gaps": [
+        "Specific site-level geotechnical investigation (soil bearing capacity, liquefaction potential, landslide risk).",
+        "Detailed 100-year and 500-year flood mapping for the exact proposed site, including storm surge modeling.",
+        "Comprehensive water availability and quality assessment for potential water-side cooling options or backup systems.",
+        "Detailed local meteorological data (e.g., hourly temperature, humidity, dew point) for precise PUE modeling and free cooling hour validation."
+      ],
+      "third_party_verification": [
+        "Geotechnical and structural engineering firm for site-specific seismic and soil analysis, and hurricane-resistant design.",
+        "Climate resilience and environmental consulting firm for detailed climate change impact assessment and adaptation strategies.",
+        "Hydrogeological expert for flood risk assessment, water availability, and drainage planning.",
+        "HVAC and data center cooling specialist for optimizing mechanical cooling systems and PUE modeling in tropical conditions."
+      ],
+      "phase_1_recommendations": {
+        "cooling_strategy": "Plan for 100% mechanical cooling, potentially exploring advanced liquid cooling solutions for higher density racks, and robust dehumidification systems. Avoid reliance on conventional air-side free cooling.",
+        "environmental_monitoring": "Conduct a detailed site survey including geological, hydrological, and local climate data collection (temperatures, humidity, dew points, wind speeds) for a minimum of 12 months.",
+        "site_preparation": "Prioritize selecting an inland, elevated site outside identified flood and storm surge zones. Engage geotechnical engineers for thorough soil and seismic assessments early in the planning phase.",
+        "structural_design": "Develop building designs that meet or exceed regional hurricane-resistant building codes and incorporate robust seismic mitigation measures."
+      }
+    },
+    "operational_risk": {
+      "overall_score": 3.6,
+      "geopolitical_stability": {
+        "name": "Geopolitical Stability & National Security",
+        "content": "Grenada is a highly stable parliamentary democracy with strong foreign relations, low direct state-level security threats, and generally favorable foreign direct investment policies. The nation's island geography reduces land border tensions, though transnational crime remains a regional concern.",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {
+            "political_stability_index": 8.5,
+            "security_threat_level": 2
+          },
+          "percentages": {
+            "political_risk": 10.0,
+            "regulatory_stability": 88.0
+          },
+          "ranges": {
+            "political_stability_index": {
+              "min": 1.0,
+              "max": 10.0
+            },
+            "security_threat_level": {
+              "min": 1.0,
+              "max": 5.0
+            }
+          },
+          "units": {
+            "political_stability_index": "stability index (1-10, 10=most stable)",
+            "security_threat_level": "threat level (1-5, 5=severe)",
+            "political_risk": "% of total country risk",
+            "regulatory_stability": "%"
+          }
+        },
+        "key_points": [
+          "High political stability and democratic governance",
+          "Benign foreign relations and regional integration (CARICOM)",
+          "Low direct state-sponsored security threats",
+          "Conducive environment for foreign investment"
+        ],
+        "tables": []
+      },
+      "physical_security": {
+        "name": "Physical Security & Military Proximity",
+        "content": "The location is likely near St. George's, offering positive proximity to the Royal Grenada Police Force (RGPF) and Coast Guard. Grenada exhibits relatively low crime rates, particularly for violent offenses, and lacks significant military installations that would pose targeting risks or signal interference.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "crime_rate": 28,
+            "military_distance_km": 8
+          },
+          "percentages": {
+            "security_coverage": 85.0
+          },
+          "ranges": {},
+          "units": {
+            "crime_rate": "serious incidents/1000residents/year (approx.)",
+            "military_distance_km": "km to nearest RGPF/Coast Guard facility",
+            "security_coverage": "% (law enforcement presence in populated areas)"
+          }
+        },
+        "key_points": [
+          "Low general crime rates in comparison to regional averages",
+          "Beneficial proximity to local law enforcement for rapid response",
+          "Absence of major military installations or associated risks",
+          "Generally stable civil environment"
+        ],
+        "tables": []
+      },
+      "emergency_response": {
+        "name": "Emergency Response Capabilities",
+        "content": "Grenada possesses fundamental emergency services (Fire, Ambulance, Police), primarily centered around St. George's. While response times in urban areas are acceptable, specialized capabilities for complex critical infrastructure incidents are limited, and infrastructure resilience against major natural disasters can be a concern.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "fire_response_time": 10,
+            "medical_response_time": 12,
+            "law_enforcement_response_time": 7
+          },
+          "percentages": {},
+          "ranges": {
+            "fire_response_time": {
+              "min": 8.0,
+              "max": 15.0
+            },
+            "medical_response_time": {
+              "min": 10.0,
+              "max": 20.0
+            },
+            "law_enforcement_response_time": {
+              "min": 5.0,
+              "max": 10.0
+            }
+          },
+          "units": {
+            "fire_response_time": "minutes (urban/peri-urban estimate)",
+            "medical_response_time": "minutes (urban/peri-urban estimate)",
+            "law_enforcement_response_time": "minutes (urban/peri-urban estimate)"
+          }
+        },
+        "key_points": [
+          "Acceptable baseline emergency response times in urban areas",
+          "Limited specialized emergency services for critical infrastructure incidents",
+          "Vulnerability of emergency service infrastructure during severe weather",
+          "Regional disaster management support available via CDEMA"
+        ],
+        "tables": []
+      },
+      "infrastructure_resilience": {
+        "name": "Critical Infrastructure Resilience",
+        "content": "Grenada's critical infrastructure, including power and local terrestrial fiber networks, exhibits significant vulnerability to natural disasters, especially hurricanes, leading to potential disruptions. While international fiber connectivity is robust, the local grid infrastructure and internal network redundancy require substantial private investment for hyperscale reliability.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "power_outage_frequency": 4,
+            "network_uptime": 99.8
+          },
+          "percentages": {
+            "infrastructure_redundancy": 55.0
+          },
+          "ranges": {},
+          "units": {
+            "power_outage_frequency": "significant outages/year (weather-related)",
+            "network_uptime": "% (local terrestrial infrastructure estimate)",
+            "infrastructure_redundancy": "% (local power/terrestrial fiber)"
+          }
+        },
+        "key_points": [
+          "High vulnerability to hurricane-induced power and network outages",
+          "Robust international fiber connectivity via multiple submarine cables",
+          "Lower local infrastructure redundancy for power and terrestrial fiber",
+          "Reliance on private investment for hyperscale resilience requirements"
+        ],
+        "tables": []
+      },
+      "economic_social_stability": {
+        "name": "Economic & Social Stability",
+        "content": "Grenada benefits from a stable currency (XCD pegged to USD) and a generally positive social environment for foreign investment. However, its tourism-dependent economy is susceptible to external shocks, and the local labor market for highly specialized hyperscale data center roles is significantly limited.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "inflation_rate": 3.5,
+            "unemployment_rate": 12.0,
+            "economic_growth": 3.0,
+            "skilled_labor_availability_index": 2.0
+          },
+          "percentages": {},
+          "ranges": {
+            "inflation_rate": {
+              "min": 2.0,
+              "max": 5.0
+            },
+            "unemployment_rate": {
+              "min": 10.0,
+              "max": 15.0
+            },
+            "economic_growth": {
+              "min": 2.0,
+              "max": 5.0
+            },
+            "skilled_labor_availability_index": {
+              "min": 1.0,
+              "max": 5.0
+            }
+          },
+          "units": {
+            "inflation_rate": "%",
+            "unemployment_rate": "%",
+            "economic_growth": "% (variable)",
+            "skilled_labor_availability_index": "availability index (1=scarce, 5=abundant)"
+          }
+        },
+        "key_points": [
+          "Stable currency (XCD pegged to USD) and controlled inflation",
+          "Tourism-dependent economy susceptible to external shocks",
+          "Limited local talent pool for highly specialized data center roles",
+          "Positive public perception towards job-creating foreign investment"
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Analysis based on publicly available country-level data and regional statistics for Grenada, as specific site data is not available.",
+        "The coordinates 12.1165, -61.67899999999999 are assumed to be in an urban or peri-urban area near St. George's for emergency response and infrastructure estimates.",
+        "Hyperscale data center requirements imply high demands for power, connectivity, and specialized labor that may exceed typical local infrastructure capabilities.",
+        "Economic and social metrics are based on recent (2022-2023) available data from international bodies and local reports.",
+        "Security threat levels are assessed based on general regional trends and local government reports, not specific, classified intelligence."
+      ],
+      "key_insights": [
+        "Grenada offers a highly stable geopolitical environment, making it attractive from a national security perspective for critical infrastructure investment.",
+        "The primary operational risks stem from the country's vulnerability to natural disasters (hurricanes), necessitating significant private investment in infrastructure resilience (power, local fiber) and robust disaster recovery planning.",
+        "A limited specialized labor market for hyperscale data center operations will require a strategic approach to talent acquisition, including expatriate staffing or substantial local training programs.",
+        "While basic emergency services are present, their specialized capabilities and resilience for complex industrial incidents are moderate, requiring specific agreements and potentially on-site resources.",
+        "The economic and social stability provides a generally favorable backdrop, but the small, tourism-dependent economy's susceptibility to external shocks must be factored into long-term operational cost and supply chain planning."
+      ],
+      "executive_summary": "Grenada presents a mixed operational risk profile for a hyperscale data center. Its strong geopolitical stability and low direct security threats are significant advantages. However, considerable challenges exist regarding critical infrastructure resilience against natural disasters and the availability of specialized labor. While basic emergency services are present, specialized capabilities are limited. Therefore, a successful deployment would necessitate substantial private investment in resilient infrastructure, comprehensive disaster recovery planning, and a robust talent development strategy to mitigate these inherent vulnerabilities.",
+      "data_gaps": [
+        "Localized crime statistics and specific threat assessments for the immediate vicinity of the coordinates.",
+        "Detailed, audited performance metrics and specialized capabilities of emergency response services for critical infrastructure incidents in Grenada.",
+        "Granular historical outage data and redundancy specifics for local power grid and fiber networks serving the proposed location.",
+        "A comprehensive study of the specialized IT and engineering labor market, including wage structures and availability, pertinent to hyperscale data center operations in Grenada."
+      ],
+      "third_party_verification": [
+        "Engage a specialized security consulting firm for a comprehensive threat risk assessment and physical security design specific to the site.",
+        "Contract an emergency services coordination specialist to establish detailed Service Level Agreements (SLAs) and protocols with local fire, medical, and law enforcement agencies.",
+        "Commission an independent engineering firm for a thorough audit of local power, water, and fiber infrastructure resilience, including recommendations for necessary upgrades and redundancy measures.",
+        "Utilize a human resources and recruitment consulting firm to conduct an in-depth analysis of the local labor market for critical data center roles and assist in talent acquisition strategies."
+      ],
+      "phase_1_recommendations": {
+        "security_measures": "Implement multi-layered physical security systems, including robust perimeter fencing, advanced access control, comprehensive CCTV surveillance, and 24/7 on-site security personnel.",
+        "risk_monitoring": "Establish continuous environmental, security, and infrastructure threat monitoring protocols, integrated with local and regional early warning systems, particularly for severe weather events.",
+        "emergency_planning": "Develop comprehensive business continuity and disaster recovery plans, including detailed hurricane preparedness protocols, off-site data backup, and supply chain resilience strategies for critical spares and fuel."
+      }
+    },
+    "esg_sustainability": {
+      "overall_score": 3.2,
+      "renewable_energy": {
+        "name": "Renewable Energy & Grid Decarbonization",
+        "content": "Grenada's grid is currently heavily reliant on imported fossil fuels, predominantly diesel, resulting in high carbon intensity. While the government has ambitious renewable energy targets and significant potential for on-site solar, the corporate Power Purchase Agreement (PPA) market is nascent.",
+        "sub_score": 2.5,
+        "metrics": {
+          "numerical_values": {
+            "renewable_percentage_current": 8,
+            "grid_carbon_intensity": 820,
+            "ppa_market_size_mw": 0
+          },
+          "percentages": {
+            "renewable_target_2030": 35.0,
+            "on_site_solar_potential_contribution": 20.0
+          },
+          "ranges": {
+            "carbon_intensity_range": {
+              "min": 800.0,
+              "max": 850.0
+            }
+          },
+          "units": {
+            "renewable_percentage_current": "%",
+            "grid_carbon_intensity": "gCO2/kWh",
+            "ppa_market_size_mw": "MW",
+            "renewable_target_2030": "%",
+            "on_site_solar_potential_contribution": "%"
+          }
+        },
+        "key_points": [
+          "Current national grid renewable energy share is approximately 8%, primarily small-scale solar.",
+          "Government targets 35% renewable energy by 2030, with a long-term goal of 100% by 2040.",
+          "Grid carbon intensity is very high (approx. 820 gCO2/kWh) due to diesel reliance.",
+          "Corporate PPA market is virtually non-existent, limiting off-site renewable sourcing options.",
+          "High potential for significant on-site solar PV generation (estimated 20%+ of DC load)."
+        ],
+        "tables": []
+      },
+      "carbon_climate_policy": {
+        "name": "Carbon & Climate Policy Framework",
+        "content": "Grenada, as a Small Island Developing State (SIDS), is highly vulnerable to climate change and committed to international climate action. However, it lacks a domestic carbon pricing mechanism or mandatory corporate GHG reporting, relying more on national-level commitments and policy development.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "carbon_price": 0,
+            "offset_market_transactions": 0
+          },
+          "percentages": {
+            "emission_reduction_target_2030": 40.0
+          },
+          "ranges": {},
+          "units": {
+            "carbon_price": "USD/tCO2e",
+            "offset_market_transactions": "tCO2e/year",
+            "emission_reduction_target_2030": "%"
+          }
+        },
+        "key_points": [
+          "No existing national carbon tax or cap-and-trade mechanism.",
+          "Grenada's NDC pledges a 40% reduction in GHG emissions by 2030 (conditional).",
+          "Mandatory climate reporting for large enterprises is not yet established beyond international reporting obligations.",
+          "No national carbon offset market exists; reliance would be on international voluntary markets.",
+          "Future policies will likely increase focus on emissions reduction and climate resilience, potentially leading to future carbon costs."
+        ],
+        "tables": []
+      },
+      "environmental_regulations": {
+        "name": "Environmental & Resource Regulations",
+        "content": "Grenada has established environmental regulations, including requirements for Environmental Impact Assessments (EIAs) for large projects and general water usage controls. Specific regulations for GHG emissions reporting beyond national inventory are limited, and e-waste management infrastructure is developing.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "eia_review_period_months": 12,
+            "water_stress_index": 2.5,
+            "ghg_reporting_threshold_tco2e": 0
+          },
+          "percentages": {
+            "protected_areas_coverage": 20.0,
+            "water_reuse_target_project_specific": 40.0
+          },
+          "ranges": {},
+          "units": {
+            "eia_review_period_months": "months",
+            "water_stress_index": "dimensionless",
+            "ghg_reporting_threshold_tco2e": "tCO2e/year",
+            "protected_areas_coverage": "%",
+            "water_reuse_target_project_specific": "%"
+          }
+        },
+        "key_points": [
+          "Comprehensive Environmental Impact Assessments (EIAs) are mandatory for major construction projects under the Physical Planning Act.",
+          "Water usage is managed by NAWASA; specific efficiency standards for data centers are not established, but conservation is paramount for island sustainability.",
+          "No mandatory corporate-level GHG emissions reporting for general enterprises, though national inventory is compiled.",
+          "E-waste management infrastructure is nascent, requiring robust on-site or export solutions.",
+          "Strict land use planning and biodiversity protection laws are in place, particularly for coastal zones and sensitive ecosystems."
+        ],
+        "tables": []
+      },
+      "social_community_impact": {
+        "name": "Social & Community Impact Assessment",
+        "content": "Local community engagement is critical in Grenada, where social cohesion is strong. While labor laws ensure fair wages and conditions, a specialized tech workforce for hyperscale data centers is limited. Public perception of such projects could be mixed, balancing economic opportunity with environmental concerns.",
+        "sub_score": 3.8,
+        "metrics": {
+          "numerical_values": {
+            "minimum_wage_usd_per_hour": 1.85,
+            "unemployment_rate_youth": 25,
+            "local_hiring_expectation": 70
+          },
+          "percentages": {
+            "public_support_for_tech_investment": 65.0
+          },
+          "ranges": {},
+          "units": {
+            "minimum_wage_usd_per_hour": "USD/hour",
+            "unemployment_rate_youth": "%",
+            "local_hiring_expectation": "%",
+            "public_support_for_tech_investment": "%"
+          }
+        },
+        "key_points": [
+          "Robust local community engagement is essential for project acceptance and long-term viability.",
+          "Labor laws are established under the Labour Code; a national minimum wage (approx. $1.85 USD/hour) applies.",
+          "Expectation for significant local hiring (e.g., 70% of non-specialized roles) and investment in local workforce training.",
+          "Public perception is likely favorable for economic benefits but sensitive to environmental impacts (energy, water, land).",
+          "Safety and security requirements are standard, aligned with regional best practices for industrial operations."
+        ],
+        "tables": []
+      },
+      "corporate_governance": {
+        "name": "Corporate Governance & Reporting Standards",
+        "content": "Grenada has a modern Data Protection Act, providing a strong framework for data privacy. However, mandatory ESG reporting and comprehensive Scope 1, 2, 3 emissions tracking are not yet widespread for private companies. International sustainability certifications are recognized and valued.",
+        "sub_score": 3.2,
+        "metrics": {
+          "numerical_values": {
+            "data_protection_act_year": 2021,
+            "ecse_listed_companies": 12
+          },
+          "percentages": {
+            "gdpr_alignment_score": 90.0,
+            "scope_3_reporting_adoption": 10.0
+          },
+          "ranges": {},
+          "units": {
+            "data_protection_act_year": "year",
+            "ecse_listed_companies": "count",
+            "gdpr_alignment_score": "%",
+            "scope_3_reporting_adoption": "%"
+          }
+        },
+        "key_points": [
+          "Grenada's Data Protection Act (2021) provides a strong legal framework for data privacy, largely aligned with GDPR principles.",
+          "Mandatory ESG reporting frameworks are limited for private enterprises; mainly voluntary or driven by international financiers.",
+          "Comprehensive tracking and reporting of Scope 1, 2, and 3 emissions are not generally mandatory for companies.",
+          "Supply chain due diligence requirements are not legislated but are best practice for international operators.",
+          "International sustainability certifications (e.g., LEED, BREEAM) are recognized and add significant market value and credibility."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Analysis is based on publicly available data for Grenada, often generalized for Small Island Developing States (SIDS) where specific metrics are scarce.",
+        "Renewable energy percentages, grid carbon intensity, and PPA market maturity are estimates based on typical Caribbean island energy profiles.",
+        "Future policy trends assume continued national commitment to climate resilience and sustainability targets outlined in the NDC.",
+        "The coordinates 12.1165, -61.67899999999999 are assumed to be within a non-environmentally sensitive area, though detailed site-specific assessment is required.",
+        "Default Mode implies concise content fields, with details in metrics and key points."
+      ],
+      "key_insights": [
+        "High carbon footprint: The reliance on fossil fuels for the national grid presents a significant challenge for achieving low-carbon operations, necessitating substantial on-site renewable energy investment and strategic grid engagement.",
+        "Policy ambition vs. market maturity: Grenada has strong climate commitments and developing environmental regulations, but the immaturity of the corporate renewable PPA market and lack of domestic carbon pricing create both compliance simplicity and operational procurement hurdles.",
+        "Community integration crucial: Strong emphasis on local hiring, workforce development, and proactive community engagement will be vital for social license to operate and long-term stability, mitigating potential public opposition.",
+        "Governance readiness: While data privacy is robust, the lack of mandatory comprehensive ESG and GHG reporting for private entities requires the project to proactively adopt international best practices for credibility and future-proofing."
+      ],
+      "executive_summary": "The proposed hyperscale data center in Grenada faces significant environmental challenges, primarily a high-carbon national grid and a nascent renewable energy market. However, the country's strong climate commitments, developing environmental regulations, and robust data privacy laws offer a stable governance environment. Success will hinge on substantial investment in on-site renewable energy, proactive community engagement, and adoption of international ESG best practices beyond current local mandates.",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "regulatory_compliance": {
+      "overall_score": 3.7,
+      "data_sovereignty": {
+        "name": "Data Sovereignty & Privacy Framework",
+        "content": "Grenada enacted the Data Protection Act in 2020, establishing a comprehensive framework for data processing aligned with international standards. While general data residency is not strictly mandated, specific sectors like financial services or government data may have localization requirements. Cross-border transfers are permitted with adequate safeguards, and government access typically requires legal due process.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "compliance_score": 75,
+            "breach_penalties_max_ecd": 500000,
+            "residency_requirements": 2
+          },
+          "percentages": {
+            "data_localization": 10.0,
+            "cross_border_restrictions": 15.0
+          },
+          "ranges": {},
+          "units": {
+            "compliance_score": "/100",
+            "breach_penalties_max_ecd": "XCD",
+            "residency_requirements": "sectors"
+          }
+        },
+        "key_points": [
+          "Data Protection Act (2020) provides a modern privacy framework.",
+          "Limited sector-specific data localization requirements exist.",
+          "Cross-border data transfers are permissible under defined conditions.",
+          "Maximum penalties for data breaches can reach XCD 500,000 or imprisonment."
+        ],
+        "tables": []
+      },
+      "government_incentives": {
+        "name": "Government Incentives & Investment Climate",
+        "content": "Grenada actively promotes foreign direct investment, with the Grenada Industrial Development Corporation (GIDC) offering incentives under the Investment Act. These can include tax holidays, reduced corporate tax rates, import duty exemptions on capital equipment, and allowances for infrastructure development. While no specific 'data center' SEZ exists, projects of significant scale may negotiate tailor-made benefits.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "corporate_tax_rate": 28,
+            "investment_tax_credit_max": 25,
+            "import_duty_exemption": 100
+          },
+          "percentages": {
+            "sez_tax_reduction": 0.0,
+            "investment_allowances": 100.0
+          },
+          "ranges": {},
+          "units": {
+            "corporate_tax_rate": "%",
+            "investment_tax_credit_max": "%",
+            "import_duty_exemption": "%"
+          }
+        },
+        "key_points": [
+          "GIDC offers a range of investment incentives including tax concessions.",
+          "Potential for 100% import duty exemption on approved data center equipment.",
+          "Government supports digital infrastructure growth as part of national development.",
+          "Corporate tax rate is 28%, but significant reductions are negotiable for FDI."
+        ],
+        "tables": []
+      },
+      "operational_compliance": {
+        "name": "Operational & Environmental Compliance",
+        "content": "Construction adheres to regional building codes (e.g., OECS Building Code, influenced by international standards like IBC). Environmental regulations are managed by the Ministry of Climate Resilience, The Environment, & Renewable Energy, requiring E-waste management plans and potentially water usage reporting. Telecommunications licensing is overseen by the National Telecommunications Regulatory Commission (NTRC). Standard business licenses and recurring operational permits are required.",
+        "sub_score": 3.8,
+        "metrics": {
+          "numerical_values": {
+            "safety_standards_level": 3,
+            "environmental_compliance_cost_est": 75000,
+            "licensing_timeline": 4
+          },
+          "percentages": {
+            "compliance_automation": 20.0,
+            "regulatory_efficiency": 60.0
+          },
+          "ranges": {},
+          "units": {
+            "safety_standards_level": "IBC_level",
+            "environmental_compliance_cost_est": "USD/year",
+            "licensing_timeline": "months"
+          }
+        },
+        "key_points": [
+          "Adherence to regional building codes and international safety standards.",
+          "Environmental regulations focus on waste, emissions, and resource management.",
+          "Telecommunications licensing is a clear, but potentially protracted, process.",
+          "Routine business licenses and permits are necessary for ongoing operations."
+        ],
+        "tables": []
+      },
+      "permitting_zoning": {
+        "name": "Permitting & Zoning Framework",
+        "content": "Zoning regulations fall under the Physical Planning Unit (PPU), with the specific site's zoning dictating viability; industrial or mixed-use zones are most suitable. Large-scale data centers will require a detailed Environmental Impact Assessment (EIA), a process that can take 6-12 months. While 'fast-track' processes are not formally codified for data centers, direct engagement with the PPU and GIDC can aid in expediting reviews for strategic projects. Land use and building codes adhere to national and regional standards.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "eia_timeline_months": 10,
+            "zoning_approval_rate_estimated": 70,
+            "permitting_cost_est": 100000
+          },
+          "percentages": {
+            "fast_track_eligibility": 30.0,
+            "digital_permitting": 40.0
+          },
+          "ranges": {},
+          "units": {
+            "eia_timeline_months": "months",
+            "zoning_approval_rate_estimated": "%",
+            "permitting_cost_est": "USD"
+          }
+        },
+        "key_points": [
+          "Zoning approval is critical; industrial or suitable mixed-use zones preferred.",
+          "EIA is mandatory for hyperscale projects, typically taking 6-12 months.",
+          "Permitting timelines can be variable, but government support can help streamline.",
+          "Building codes are in line with OECS standards, requiring robust construction."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Regulatory analysis based on publicly available national legislation and government policies for Grenada.",
+        "Quantitative metrics for penalties, timelines, and costs are estimates based on regional averages for small island developing states (SIDS) where precise Grenada-specific data is not universally published.",
+        "Investment incentive calculations assume eligibility for significant foreign direct investment under the Investment Act.",
+        "The coordinates (12.1165, -61.67899999999999) are assumed to be within an area potentially zoned for commercial/industrial development or amenable to re-zoning for a strategic project."
+      ],
+      "key_insights": [
+        "Grenada's recent Data Protection Act provides a foundational privacy framework, aligning with international standards, which is favorable for data handling.",
+        "Strong government intent to attract FDI, through GIDC, offers significant negotiable incentives including tax concessions and import duty exemptions for capital equipment.",
+        "Permitting processes, particularly EIA and zoning, require proactive engagement and can be lengthy, necessitating early and sustained government relations strategies.",
+        "While specific data center legislation is nascent, the overall regulatory environment is generally supportive of digital infrastructure development, especially for projects aligned with national economic diversification goals."
+      ],
+      "executive_summary": "Grenada presents a moderately favorable, yet navigable, regulatory landscape for hyperscale data center viability. Key advantages include a developing data protection framework and robust government investment incentives. Challenges primarily revolve around potentially longer permitting timelines and the need for proactive engagement with regulatory bodies to streamline processes. Strategic government relations are paramount for successful market entry and operational efficiency.",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "hyperscaler_attractiveness": {
+      "overall_score": 2.2,
+      "competitive_landscape": {
+        "name": "Competitive Landscape Analysis",
+        "content": "Grenada's data center market is nascent, characterized by limited existing infrastructure primarily catering to local enterprises and government. There are no known hyperscale-grade data centers or significant colocation providers with multi-MW capacity. The existing inventory is likely composed of small, local facilities often managed by telcos (e.g., Flow, Digicel) or government agencies. Utilization rates for enterprise-grade facilities are generally moderate, estimated around 50-60%, driven by local demand. Hyperscalers currently operate without regional Points of Presence (PoPs) or full Availability Zones (AZs in Grenada, relying instead on larger regional hubs in North America or South America for service delivery. Market pricing dynamics are not established for hyperscale-level contracts, but smaller colocation racks might range from USD 500-1,000/kW/month. Land costs are comparatively low but specific large parcels for hyperscale development might require specialized negotiation. The supply-demand balance indicates a significant lack of hyperscale supply, with limited local demand currently justifying such infrastructure.",
+        "sub_score": 1.8,
+        "metrics": {
+          "numerical_values": {
+            "total_dc_capacity_mw": 1.5,
+            "occupancy_rate": 55,
+            "hyperscaler_regions": 0
+          },
+          "percentages": {
+            "market_saturation": 10.0,
+            "price_competitiveness": 70.0
+          },
+          "ranges": {},
+          "units": {
+            "total_dc_capacity_mw": "MW",
+            "occupancy_rate": "%",
+            "hyperscaler_regions": "count"
+          }
+        },
+        "key_points": [
+          "Extremely limited existing data center inventory (estimated <2 MW).",
+          "No direct hyperscaler presence or regional PoPs, services delivered from distant regions.",
+          "Untapped market with no established hyperscale pricing or competitive landscape."
+        ],
+        "tables": []
+      },
+      "cloud_ecosystem": {
+        "name": "Cloud Ecosystem & Digital Transformation",
+        "content": "Cloud adoption rates in Grenada are relatively low compared to developed nations, estimated at 15-20% among larger enterprises and government entities, driven by basic productivity suites and some SaaS applications. Digital transformation initiatives are primarily government-led, focusing on e-governance and public service modernization. AWS, Azure, and GCP do not have specific regional presence or availability zones in Grenada, relying on services delivered from the nearest regions (e.g., US East, Brazil). This translates to higher latency for local users. The SaaS provider ecosystem is underdeveloped locally, with most enterprises leveraging international SaaS platforms. Government digitization efforts, such as the e-Grenada project, indicate a growing but modest demand for cloud-enabled services, with potential budget allocations for cloud services growing by an estimated 5-10% annually, albeit from a small base.",
+        "sub_score": 2.0,
+        "metrics": {
+          "numerical_values": {
+            "cloud_adoption_rate": 18,
+            "saas_companies": 5,
+            "government_cloud_budget": 5
+          },
+          "percentages": {
+            "enterprise_cloud_usage": 15.0,
+            "digital_transformation_index": 35.0
+          },
+          "ranges": {},
+          "units": {
+            "cloud_adoption_rate": "%",
+            "saas_companies": "count",
+            "government_cloud_budget": "USD millions"
+          }
+        },
+        "key_points": [
+          "Nascent cloud adoption, estimated 15-20%, primarily basic SaaS.",
+          "No direct AWS, Azure, GCP regional presence, leading to higher latency for local users.",
+          "Government digitization drives limited but growing demand for cloud services."
+        ],
+        "tables": []
+      },
+      "peering_opportunities": {
+        "name": "Peering Opportunities & Network Ecosystem",
+        "content": "Grenada possesses critical submarine cable landing points, notably part of the Southern Caribbean Fiber (SCF) and Eastern Caribbean Fiber System (ECFS), providing international connectivity with aggregate capacity in the Tbps range. This is a significant advantage for an island nation, offering direct links to major regional hubs. However, the local interconnection ecosystem is limited. There are no established public Internet Exchange Points (IXPs) within Grenada; local traffic typically transits through private peering arrangements or international links. Carrier-neutral facilities are virtually non-existent for large-scale operations, with local telcos (Flow, Digicel) dominating the infrastructure. CDN and edge computing infrastructure is sparse; while global CDNs like Cloudflare might have limited PoPs, major hyperscaler CloudFront/Azure Front Door/Google CDN PoPs are not directly present, pushing content delivery to regional nodes. The lack of a robust local peering ecosystem increases operational costs and latency for local traffic. While international connectivity is good, domestic interconnection needs significant development.",
+        "sub_score": 2.5,
+        "metrics": {
+          "numerical_values": {
+            "ixp_count": 0,
+            "peak_traffic_gbps": 5,
+            "submarine_cables": 2
+          },
+          "percentages": {
+            "carrier_neutrality": 10.0,
+            "interconnection_density": 5.0
+          },
+          "ranges": {},
+          "units": {
+            "ixp_count": "count",
+            "peak_traffic_gbps": "Gbps",
+            "submarine_cables": "count"
+          }
+        },
+        "key_points": [
+          "Presence of critical submarine cable landing points (SCF, ECFS) for international connectivity.",
+          "Absence of a public Internet Exchange Point (IXP) or significant carrier-neutral facilities.",
+          "Limited CDN and edge computing infrastructure, impacting local content delivery performance."
+        ],
+        "tables": []
+      },
+      "proximity_to_demand": {
+        "name": "Proximity to Enterprise Demand",
+        "content": "Grenada's enterprise landscape is relatively small, dominated by tourism, agriculture, and local services. There are no Fortune 500 companies with significant operational bases requiring hyperscale cloud resources. Major local enterprise customers would include local banks (e.g., Republic Bank, Scotiabank), major hotel chains (e.g., Sandals, Radisson), and telecommunication providers. Government institutions represent a key potential demand driver, particularly for data residency and national digital initiatives. Public sector demand is growing due to e-governance drives. Existing hyperscaler customer usage patterns are largely remote, accessing services from distant regions. Financial services and other regulated industries are present but operate on a smaller scale, with compliance requirements for data residency potentially favoring local infrastructure if available. The total addressable market within Grenada for hyperscale direct consumption is very limited; a facility here would need to serve the broader Southern Caribbean or leverage specific niche applications.",
+        "sub_score": 1.5,
+        "metrics": {
+          "numerical_values": {
+            "fortune_500_companies": 0,
+            "government_agencies": 20,
+            "financial_institutions": 10
+          },
+          "percentages": {
+            "enterprise_cloud_adoption": 15.0,
+            "regulated_industry_presence": 5.0
+          },
+          "ranges": {},
+          "units": {
+            "fortune_500_companies": "count",
+            "government_agencies": "count",
+            "financial_institutions": "count"
+          }
+        },
+        "key_points": [
+          "Very limited local enterprise demand, with no Fortune 500 companies.",
+          "Government and regulated industries are primary potential drivers for data residency.",
+          "Small overall addressable market within Grenada for direct hyperscale consumption."
+        ],
+        "tables": []
+      },
+      "labor_market": {
+        "name": "Labor Market & Talent Ecosystem",
+        "content": "The technical workforce availability in Grenada is limited, particularly for specialized data center operations, cloud engineering, and advanced IT skills. While there's a general pool of IT professionals (estimated around 500-1000), cloud-specific certifications (AWS Certified, Azure Certified, GCP Certified) and hyperscale operational experience are rare. Average IT engineer salaries are significantly lower than in major North American or European markets, estimated at USD 25,000-40,000/year, offering potential cost optimization but requiring substantial investment in training. St. George's University offers IT programs, but specialized data center training or cloud-focused curricula are scarce. Immigration policies are generally supportive of skilled workers, but attracting and retaining top-tier international talent for a remote island location can be challenging. Local hiring requirements might necessitate extensive workforce development initiatives, including partnerships with educational institutions to build a pipeline of qualified personnel.",
+        "sub_score": 1.7,
+        "metrics": {
+          "numerical_values": {
+            "it_professionals": 750,
+            "avg_engineer_salary": 32000,
+            "training_institutions": 2
+          },
+          "percentages": {
+            "salary_vs_silicon_valley": 20.0,
+            "talent_retention_rate": 60.0
+          },
+          "ranges": {},
+          "units": {
+            "it_professionals": "count",
+            "avg_engineer_salary": "USD/year",
+            "training_institutions": "count"
+          }
+        },
+        "key_points": [
+          "Limited pool of specialized technical talent for hyperscale operations.",
+          "Cost-competitive labor compared to developed markets, but requires significant training investment.",
+          "Challenges in attracting and retaining international high-skilled talent due to location."
+        ],
+        "tables": []
+      },
+      "infrastructure_scalability": {
+        "name": "Infrastructure Scalability & Future Growth",
+        "content": "Land availability for hyperscale expansion is present outside of dense urban areas, with potential sites identified in rural or industrial zones. However, zoning for data centers might require specific approvals. Total available land for large-scale development could be estimated at several hundred acres, though not all would be suitable. Utility infrastructure, particularly power, presents a significant challenge. Grenada's grid capacity is limited, with total generation capacity around 30-40 MW for the entire island, primarily supplied by Grenada Electricity Services Ltd (GRENLEC). A hyperscale facility requiring 10-50 MW would necessitate substantial grid upgrades or dedicated power generation solutions (e.g., renewables + battery storage, or on-site diesel/gas). Water availability for cooling, especially for large-scale evaporative systems, needs assessment. Transportation and logistics infrastructure is adequate for equipment import via sea (St. George's Port) and air (Maurice Bishop International Airport). Fiber route density on the island itself is limited to major urban and coastal areas. Long-term urban planning and development support would be critical, requiring clear government commitment for infrastructure investments and streamlined permitting processes.",
+        "sub_score": 2.2,
+        "metrics": {
+          "numerical_values": {
+            "available_land_acres": 200,
+            "substation_capacity_mw": 5,
+            "fiber_route_density": 5
+          },
+          "percentages": {
+            "zoned_for_datacenter": 10.0,
+            "utility_headroom": 15.0
+          },
+          "ranges": {},
+          "units": {
+            "available_land_acres": "acres",
+            "substation_capacity_mw": "MW",
+            "fiber_route_density": "km/sq km"
+          }
+        },
+        "key_points": [
+          "Land potentially available, but zoning and specific parcel suitability require diligence.",
+          "Significant challenge with limited utility infrastructure, particularly power grid capacity (30-40 MW island-wide).",
+          "International connectivity via submarine cables is strong, but local fiber density is low."
+        ],
+        "tables": []
+      },
+      "strategic_relevance": {
+        "name": "Strategic Relevance & Market Position",
+        "content": "Grenada generally enjoys high geopolitical stability within the Caribbean, with a stable democratic government and low political risk. This stability, coupled with its position as a member of CARICOM and OECS, provides a degree of regional market access and an opportunity to serve the Southern Caribbean. However, the direct market reach is limited by small population sizes (approx. 113,000) and GDPs (approx. USD 1.2 billion for Grenada). A hyperscale facility could potentially serve a regional population of several million across neighboring islands within a reasonable latency envelope. Time zone advantage is aligned with US Eastern Time (GMT-4), offering good operational overlap with major North American markets. Government incentives, such as tax holidays, duty-free imports, and investment grants, would be crucial to attract hyperscale investment. These incentives could represent several million USD in value over a 5-10 year period, making the location more appealing despite its smaller market size. Data sovereignty regulations are evolving, and a local presence could offer advantages for regional data residency requirements.",
+        "sub_score": 2.7,
+        "metrics": {
+          "numerical_values": {
+            "population_coverage_millions": 2,
+            "gdp_access_billions": 10,
+            "incentive_value_millions": 5
+          },
+          "percentages": {
+            "political_stability_index": 70.0,
+            "timezone_overlap": 90.0
+          },
+          "ranges": {},
+          "units": {
+            "population_coverage_millions": "millions",
+            "gdp_access_billions": "USD billions",
+            "incentive_value_millions": "USD millions"
+          }
+        },
+        "key_points": [
+          "High geopolitical stability and alignment with US Eastern Time.",
+          "Strategic gateway to the Southern Caribbean, offering regional market access despite small local demand.",
+          "Government incentives are critical for attracting and de-risking hyperscale investment."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Hyperscaler analysis is based on publicly available market data and industry reports, extrapolated to the unique context of a small island nation.",
+        "Demand projections reflect current market trends in similar developing regions and may vary with economic conditions and specific government policies.",
+        "Competitive positioning is assessed against established hyperscaler markets, recognizing Grenada's fundamentally different market dynamics."
+      ],
+      "key_insights": [
+        "Grenada's primary appeal lies in its geopolitical stability and existing submarine cable connectivity, positioning it as a potential regional edge or latency-sensitive workload destination.",
+        "Significant infrastructure investments, particularly in power and local fiber, are mandatory for any hyperscale deployment, along with robust government incentives to offset market limitations.",
+        "The limited local enterprise and talent markets necessitate a strategy focused on serving broader regional demand or niche requirements like data sovereignty for government/regulated industries."
+      ],
+      "executive_summary": "Grenada presents a unique, albeit challenging, proposition for hyperscale data center viability. Its key strengths are geopolitical stability, existing submarine cable landing points (SCF, ECFS), and alignment with US Eastern Time, offering a potential strategic hub for the Southern Caribbean. However, the market is characterized by a nascent cloud ecosystem, extremely limited local enterprise demand, and an underdeveloped technical labor market. Significant infrastructure constraints, particularly power grid capacity (island total 30-40 MW), pose major hurdles for hyperscale scalability. Hyperscalers currently serve the region from distant hubs, indicating a lack of pressing local demand for a full region. To be viable, a data center in Grenada would require substantial government incentives, a focus on serving the broader regional market or specific data sovereignty needs, and significant investment in local infrastructure and talent development. The overall attractiveness score of 2.2 reflects the high barriers to entry despite some strategic advantages.",
+      "data_gaps": [
+        "Specific hyperscaler expansion plans and granular market penetration data for the Southern Caribbean region.",
+        "Detailed local talent market analysis, including cloud-specific certification rates and data center technician availability.",
+        "Comprehensive competitive landscape and pricing analysis for enterprise-grade colocation services in Grenada and neighboring islands."
+      ],
+      "third_party_verification": [
+        "Market research and consulting firm specializing in Caribbean ICT infrastructure and hyperscaler demand analysis.",
+        "Labor market research specialist to conduct a detailed workforce assessment and talent development roadmap.",
+        "Real estate and competitive analysis consultant for land viability, utility infrastructure assessment, and local regulatory guidance."
+      ],
+      "phase_1_recommendations": {
+        "market_positioning": "Position any proposed facility as a premium tier-3/tier-4 ready regional edge hub with strong international connectivity for latency-sensitive workloads and data residency.",
+        "hyperscaler_outreach": "Initiate early discussions with AWS, Azure, and GCP regarding potential future regional PoPs or smaller-scale edge deployments, highlighting Grenada's strategic location and connectivity.",
+        "competitive_strategy": "Differentiate through a focus on sustainability features (e.g., renewable energy integration) and superior, secure international connectivity to appeal to niche regional demands."
+      }
+    }
+  },
+  "executive_summary": {
+    "location_overview": "Grenada presents a complex and fundamentally challenging environment for a conventional hyperscale data center deployment, primarily due to severe limitations in its existing power infrastructure, extremely high energy costs, and significant natural hazard risks. While offering exceptional geopolitical stability, a modern data protection framework, and attractive government investment incentives, these benefits are largely overshadowed by the substantial capital expenditure and operational complexities required to overcome the critical deficiencies in power, climate resilience, and specialized infrastructure. Any successful data center venture would necessitate a radical departure from traditional models, demanding complete energy self-sufficiency and unparalleled infrastructure hardening.",
+    "key_strengths": [
+      "Grenada offers exceptional geopolitical stability, characterized by a stable parliamentary democracy, low direct state-level security threats, and strong foreign relations, providing a highly secure and predictable environment for long-term critical infrastructure investment that minimizes sovereign risk for valuable data assets.",
+      "The modern Data Protection Act (2020) provides a robust legal framework for data privacy, largely aligned with international standards such as GDPR, while the Grenada Industrial Development Corporation (GIDC) offers compelling, negotiable investment incentives, including significant tax holidays and import duty exemptions on capital equipment, fostering a favorable business environment for strategic projects.",
+      "Despite modest aggregate capacity for hyperscale demands, the presence of multiple submarine cable systems (ECFS/EC-LINK and Southern Caribbean Fiber) provides essential international network route diversity, mitigating single points of failure for connectivity and supporting regional traffic requirements, which is a foundational advantage for island connectivity."
+    ],
+    "key_challenges": [
+      "The most critical challenge is Grenada's fundamentally inadequate power infrastructure, with total island generation capacity (50-60MW) falling significantly short of hyperscale requirements (100MW+), coupled with extremely high, volatile, and fossil fuel-dependent electricity costs (USD 0.25-0.35/kWh), rendering existing grid reliance economically unviable and environmentally unsustainable.",
+      "The persistently hot, humid tropical climate eliminates virtually all free cooling opportunities, driving significantly higher operational Power Usage Effectiveness (PUE) and cooling energy consumption, while the location's high susceptibility to severe natural disasters, particularly hurricanes (e.g., Category 5 events), necessitates substantial, costly hardening of all infrastructure and comprehensive disaster recovery planning.",
+      "The nascent market for large-scale corporate renewable Power Purchase Agreements, limited availability of a specialized hyperscale-skilled labor pool, and the absence of established regulatory frameworks for projects of this magnitude create significant hurdles for both sustainable power procurement and efficient operational staffing, leading to protracted timelines and bespoke solutions."
+    ],
+    "critical_success_factors": [
+      "Securing and deploying a fully independent, utility-scale renewable power generation facility (e.g., 100MW+ solar PV with advanced battery storage) is paramount, designed for 2N reliability and complete decoupling from the national grid, thereby bypassing inadequate capacity, mitigating extreme electricity costs, and ensuring operational continuity.",
+      "Implementing comprehensive, hurricane-hardened structural engineering for all facilities, elevating critical infrastructure above identified 100-year flood and storm surge levels, and establishing robust disaster preparedness and recovery protocols are essential for business continuity and long-term operational resilience against severe natural hazards.",
+      "Establishing a deeply collaborative, long-term partnership with the Grenadian government, including GIDC and the Physical Planning Unit, from the outset is crucial to negotiate favorable, bespoke investment incentives, streamline protracted permitting processes for unprecedented project scale, and ensure alignment with national development and environmental objectives."
+    ]
+  },
+  "phase_1_deployment": {
+    "recommended_capacity": "Considering the imperative for a dedicated, newly built renewable power plant due to grid limitations, the initial deployment capacity should be strategically limited to 10-20MW. This modular approach is designed to prove operational self-sufficiency, manage upfront capital expenditure efficiently, and validate the bespoke power generation and resilient infrastructure solutions before scaling to larger hyperscale requirements, which would be entirely dependent on the successful commissioning and expansion of the independent generation capacity.",
+    "timeline": "A comprehensive timeline, integrating the design, construction, and commissioning of a dedicated renewable power generation facility alongside the data center infrastructure, is estimated at 48-60 months from project initiation to initial operational readiness. This extensive period encompasses detailed environmental impact assessments (6-12 months), securing bespoke regulatory approvals (12-18 months), complex supply chain logistics for island construction, specialized resilient infrastructure hardening, and rigorous testing of all integrated systems, reflecting the project's unprecedented scale for the region.",
+    "priority_actions": [
+      "Initiate immediate, high-level engagement with the Grenada Industrial Development Corporation (GIDC) and the Public Utilities Regulatory Commission (PURC) to secure a comprehensive, binding investment incentive package and commence the bespoke permitting process for a dedicated, utility-scale renewable power generation facility, including land acquisition and extensive environmental impact assessments, recognizing the unprecedented scale of the power requirements.",
+      "Commission specialized engineering studies for hurricane-resistant structural design capable of withstanding Category 5 forces, elevated infrastructure to mitigate flood and storm surge risks, and highly efficient mechanical cooling systems to optimize PUE in the tropical climate, targeting a resilient and energy-efficient design that exceeds conventional building codes.",
+      "Develop a detailed human capital strategy, including a robust local workforce training and development program for specialized data center operations roles, coupled with a phased expatriate staffing plan to address the limited local talent pool for hyperscale-specific skills, ensuring a sustainable and proficient operational workforce from construction through long-term operations."
+    ],
+    "estimated_investment": "The estimated investment for Phase 1 (10-20MW capacity) is substantial, projected to be in the range of USD 300-500 million. This significant capital outlay is primarily driven by the requirement for a fully dedicated, grid-independent renewable power generation facility (e.g., solar PV with large-scale battery storage), hurricane-hardened data center infrastructure, specialized mechanical cooling systems, and substantial costs associated with complex supply chain logistics for island-based construction, necessitating a detailed financial model breaking down costs by power generation, site development, and equipment procurement.",
+    "risk_mitigation": [
+      "Implement a 2N-redundant, self-sufficient renewable power generation architecture with multi-day fuel storage for critical backup systems, completely decoupled from the national grid, ensuring uninterrupted operations regardless of external grid failures or severe weather events and proactively mitigating extreme electricity price volatility.",
+      "Develop and rigorously test a comprehensive disaster recovery and business continuity plan, specifically tailored to Caribbean hurricane season events, incorporating active off-island data replication strategies, robust local emergency response protocols, and secure, hardened storage for critical spare parts and operational consumables to ensure rapid recovery and minimal downtime.",
+      "Establish a robust supply chain management system with diversified sourcing, pre-positioning of critical components, and contractual agreements for emergency logistics and transportation, proactively mitigating potential delays, cost escalations, and disruptions inherent in island-based construction and ongoing operations."
+    ]
+  },
+  "strategic_opportunities": [
+    "The exceptional geopolitical stability combined with modern data protection laws presents a unique opportunity to position a specialized, highly secure data center as a sovereign cloud hub for Caribbean nations, or a premium disaster recovery and business continuity site for Latin American enterprise, leveraging the island's low direct security threats and stable governance.",
+    "By investing in a fully self-sufficient, dedicated renewable power plant (e.g., large-scale solar with robust battery storage) to completely overcome grid deficiencies, the project can establish a pioneering model for highly sustainable, net-zero data center operations in a small island developing state, attracting green investment and setting new industry benchmarks for environmental leadership.",
+    "Leveraging strong government support for digital transformation and economic diversification, a strategically positioned data center could become a catalyst for local ICT innovation, driving specialized talent development and enhancing regional digital resilience, aligning with national development goals and fostering long-term community integration and support."
+  ],
+  "strategic_recommendation": "Given the profound limitations of existing national infrastructure, particularly the critically inadequate and fossil fuel-dependent power grid, coupled with significant natural hazard risks, a conventional hyperscale data center deployment in Grenada is unequivocally not recommended due to unmanageable costs, protracted timelines, and inherent operational vulnerabilities. However, a highly specialized, ultra-resilient, and entirely self-sufficient data center, completely decoupled from the national grid and operating with dedicated, large-scale renewable power generation, presents a unique and compelling strategic opportunity. This could serve as a secure, sovereign cloud platform for regional government and enterprise, a premium disaster recovery hub for global clients seeking unparalleled stability, or a flagship for sustainable island digital infrastructure, leveraging Grenada's exceptional geopolitical stability, modern data protection laws, and attractive investment incentives to offer a distinct, high-value proposition that justifies the substantial upfront investment and operational complexities inherent in this bespoke approach.",
+  "conclusion": "Based on the comprehensive cross-domain analysis, the strategic recommendation is a definitive **NO-GO** for a conventional hyperscale data center deployment reliant on existing Grenadian infrastructure due to overwhelming challenges in power capacity, cost, and resilience. However, a conditional **GO** is recommended for a highly specialized, self-sufficient, and ultra-resilient data center focusing on sovereign cloud or disaster recovery services, operating entirely off a dedicated, large-scale renewable energy source. Confidence in this conditional 'GO' is assessed as Moderate, contingent upon securing a robust, bespoke investment incentive package from the Grenadian government that significantly offsets the extraordinary capital expenditure for dedicated infrastructure and demonstrating the clear financial viability of a fully independent, renewable power generation solution in a challenging climate. Key success factors include: (1) Successful design, construction, and operation of a dedicated, island-independent 100MW+ renewable power generation facility (e.g., solar PV + advanced storage) that completely bypasses the national grid, (2) Implementation of extreme hardening measures against Category 5 hurricanes and moderate seismic events for uninterrupted operations, (3) Cultivation of a highly skilled, locally integrated operational workforce through dedicated training programs and strategic expatriate support, and (4) Establishing a deeply collaborative, long-term partnership with the Grenadian government to streamline regulatory processes and secure ongoing strategic support, ensuring the project aligns with national development objectives and maintains a strong social license to operate.",
+  "next_steps": [
+    "Conduct an in-depth, dedicated feasibility study for a 100MW+ renewable energy power plant, evaluating specific technologies (large-scale solar PV, advanced battery energy storage, and potential geothermal viability), detailed land requirements, comprehensive cost projections, and integration strategies, with an 8-month timeline to inform the critical path forward.",
+    "Initiate advanced, targeted discussions with the Grenada Industrial Development Corporation (GIDC) and relevant government ministries to negotiate a detailed, binding investment incentive package, including specific multi-year tax holidays, comprehensive import duty exemptions, and tangible support for critical site infrastructure development, targeting completion within 6-9 months.",
+    "Begin preliminary site identification and detailed geotechnical, hydrological, and seismic surveys for potential data center locations that offer optimal natural hazard mitigation (e.g., high elevation above flood/storm surge zones, stable ground), strategic access to potential dedicated renewable energy generation sites, and suitable environmental impact profiles, with initial results expected within 12 months to narrow down viable options."
+  ],
+  "insights_result": {
+    "executive_summary": {
+      "location_overview": "Grenada presents a complex and fundamentally challenging environment for a conventional hyperscale data center deployment, primarily due to severe limitations in its existing power infrastructure, extremely high energy costs, and significant natural hazard risks. While offering exceptional geopolitical stability, a modern data protection framework, and attractive government investment incentives, these benefits are largely overshadowed by the substantial capital expenditure and operational complexities required to overcome the critical deficiencies in power, climate resilience, and specialized infrastructure. Any successful data center venture would necessitate a radical departure from traditional models, demanding complete energy self-sufficiency and unparalleled infrastructure hardening.",
+      "key_strengths": [
+        "Grenada offers exceptional geopolitical stability, characterized by a stable parliamentary democracy, low direct state-level security threats, and strong foreign relations, providing a highly secure and predictable environment for long-term critical infrastructure investment that minimizes sovereign risk for valuable data assets.",
+        "The modern Data Protection Act (2020) provides a robust legal framework for data privacy, largely aligned with international standards such as GDPR, while the Grenada Industrial Development Corporation (GIDC) offers compelling, negotiable investment incentives, including significant tax holidays and import duty exemptions on capital equipment, fostering a favorable business environment for strategic projects.",
+        "Despite modest aggregate capacity for hyperscale demands, the presence of multiple submarine cable systems (ECFS/EC-LINK and Southern Caribbean Fiber) provides essential international network route diversity, mitigating single points of failure for connectivity and supporting regional traffic requirements, which is a foundational advantage for island connectivity."
+      ],
+      "key_challenges": [
+        "The most critical challenge is Grenada's fundamentally inadequate power infrastructure, with total island generation capacity (50-60MW) falling significantly short of hyperscale requirements (100MW+), coupled with extremely high, volatile, and fossil fuel-dependent electricity costs (USD 0.25-0.35/kWh), rendering existing grid reliance economically unviable and environmentally unsustainable.",
+        "The persistently hot, humid tropical climate eliminates virtually all free cooling opportunities, driving significantly higher operational Power Usage Effectiveness (PUE) and cooling energy consumption, while the location's high susceptibility to severe natural disasters, particularly hurricanes (e.g., Category 5 events), necessitates substantial, costly hardening of all infrastructure and comprehensive disaster recovery planning.",
+        "The nascent market for large-scale corporate renewable Power Purchase Agreements, limited availability of a specialized hyperscale-skilled labor pool, and the absence of established regulatory frameworks for projects of this magnitude create significant hurdles for both sustainable power procurement and efficient operational staffing, leading to protracted timelines and bespoke solutions."
+      ],
+      "strategic_opportunities": [
+        "The exceptional geopolitical stability combined with modern data protection laws presents a unique opportunity to position a specialized, highly secure data center as a sovereign cloud hub for Caribbean nations, or a premium disaster recovery and business continuity site for Latin American enterprise, leveraging the island's low direct security threats and stable governance.",
+        "By investing in a fully self-sufficient, dedicated renewable power plant (e.g., large-scale solar with robust battery storage) to completely overcome grid deficiencies, the project can establish a pioneering model for highly sustainable, net-zero data center operations in a small island developing state, attracting green investment and setting new industry benchmarks for environmental leadership.",
+        "Leveraging strong government support for digital transformation and economic diversification, a strategically positioned data center could become a catalyst for local ICT innovation, driving specialized talent development and enhancing regional digital resilience, aligning with national development goals and fostering long-term community integration and support."
+      ],
+      "critical_success_factors": [
+        "Securing and deploying a fully independent, utility-scale renewable power generation facility (e.g., 100MW+ solar PV with advanced battery storage) is paramount, designed for 2N reliability and complete decoupling from the national grid, thereby bypassing inadequate capacity, mitigating extreme electricity costs, and ensuring operational continuity.",
+        "Implementing comprehensive, hurricane-hardened structural engineering for all facilities, elevating critical infrastructure above identified 100-year flood and storm surge levels, and establishing robust disaster preparedness and recovery protocols are essential for business continuity and long-term operational resilience against severe natural hazards.",
+        "Establishing a deeply collaborative, long-term partnership with the Grenadian government, including GIDC and the Physical Planning Unit, from the outset is crucial to negotiate favorable, bespoke investment incentives, streamline protracted permitting processes for unprecedented project scale, and ensure alignment with national development and environmental objectives."
+      ]
+    },
+    "phase_1_deployment": {
+      "recommended_capacity": "Considering the imperative for a dedicated, newly built renewable power plant due to grid limitations, the initial deployment capacity should be strategically limited to 10-20MW. This modular approach is designed to prove operational self-sufficiency, manage upfront capital expenditure efficiently, and validate the bespoke power generation and resilient infrastructure solutions before scaling to larger hyperscale requirements, which would be entirely dependent on the successful commissioning and expansion of the independent generation capacity.",
+      "timeline": "A comprehensive timeline, integrating the design, construction, and commissioning of a dedicated renewable power generation facility alongside the data center infrastructure, is estimated at 48-60 months from project initiation to initial operational readiness. This extensive period encompasses detailed environmental impact assessments (6-12 months), securing bespoke regulatory approvals (12-18 months), complex supply chain logistics for island construction, specialized resilient infrastructure hardening, and rigorous testing of all integrated systems, reflecting the project's unprecedented scale for the region.",
+      "priority_actions": [
+        "Initiate immediate, high-level engagement with the Grenada Industrial Development Corporation (GIDC) and the Public Utilities Regulatory Commission (PURC) to secure a comprehensive, binding investment incentive package and commence the bespoke permitting process for a dedicated, utility-scale renewable power generation facility, including land acquisition and extensive environmental impact assessments, recognizing the unprecedented scale of the power requirements.",
+        "Commission specialized engineering studies for hurricane-resistant structural design capable of withstanding Category 5 forces, elevated infrastructure to mitigate flood and storm surge risks, and highly efficient mechanical cooling systems to optimize PUE in the tropical climate, targeting a resilient and energy-efficient design that exceeds conventional building codes.",
+        "Develop a detailed human capital strategy, including a robust local workforce training and development program for specialized data center operations roles, coupled with a phased expatriate staffing plan to address the limited local talent pool for hyperscale-specific skills, ensuring a sustainable and proficient operational workforce from construction through long-term operations."
+      ],
+      "estimated_investment": "The estimated investment for Phase 1 (10-20MW capacity) is substantial, projected to be in the range of USD 300-500 million. This significant capital outlay is primarily driven by the requirement for a fully dedicated, grid-independent renewable power generation facility (e.g., solar PV with large-scale battery storage), hurricane-hardened data center infrastructure, specialized mechanical cooling systems, and substantial costs associated with complex supply chain logistics for island-based construction, necessitating a detailed financial model breaking down costs by power generation, site development, and equipment procurement.",
+      "risk_mitigation": [
+        "Implement a 2N-redundant, self-sufficient renewable power generation architecture with multi-day fuel storage for critical backup systems, completely decoupled from the national grid, ensuring uninterrupted operations regardless of external grid failures or severe weather events and proactively mitigating extreme electricity price volatility.",
+        "Develop and rigorously test a comprehensive disaster recovery and business continuity plan, specifically tailored to Caribbean hurricane season events, incorporating active off-island data replication strategies, robust local emergency response protocols, and secure, hardened storage for critical spare parts and operational consumables to ensure rapid recovery and minimal downtime.",
+        "Establish a robust supply chain management system with diversified sourcing, pre-positioning of critical components, and contractual agreements for emergency logistics and transportation, proactively mitigating potential delays, cost escalations, and disruptions inherent in island-based construction and ongoing operations."
+      ],
+      "success_metrics": [
+        "Achieve an operational Power Usage Effectiveness (PUE) of 1.50 or lower within the first 18 months of operation, demonstrating efficient mechanical cooling system performance and effective energy management despite the challenging tropical climate conditions, benchmarked against industry best practices for similar climates.",
+        "Maintain 99.999% uptime for core data center services, validated by continuous monitoring and demonstrating the effectiveness of the dedicated power generation, redundant infrastructure, and comprehensive natural disaster resilience measures, ensuring superior service level agreement (SLA) adherence.",
+        "Achieve a renewable energy penetration rate of at least 90% for total site energy consumption within three years of operation, supported by the dedicated renewable power plant, ensuring alignment with ambitious ESG targets and positioning the facility as a leader in sustainable data center operations in a small island developing state."
+      ]
+    },
+    "strategic_recommendation": "Given the profound limitations of existing national infrastructure, particularly the critically inadequate and fossil fuel-dependent power grid, coupled with significant natural hazard risks, a conventional hyperscale data center deployment in Grenada is unequivocally not recommended due to unmanageable costs, protracted timelines, and inherent operational vulnerabilities. However, a highly specialized, ultra-resilient, and entirely self-sufficient data center, completely decoupled from the national grid and operating with dedicated, large-scale renewable power generation, presents a unique and compelling strategic opportunity. This could serve as a secure, sovereign cloud platform for regional government and enterprise, a premium disaster recovery hub for global clients seeking unparalleled stability, or a flagship for sustainable island digital infrastructure, leveraging Grenada's exceptional geopolitical stability, modern data protection laws, and attractive investment incentives to offer a distinct, high-value proposition that justifies the substantial upfront investment and operational complexities inherent in this bespoke approach.",
+    "conclusion": "Based on the comprehensive cross-domain analysis, the strategic recommendation is a definitive **NO-GO** for a conventional hyperscale data center deployment reliant on existing Grenadian infrastructure due to overwhelming challenges in power capacity, cost, and resilience. However, a conditional **GO** is recommended for a highly specialized, self-sufficient, and ultra-resilient data center focusing on sovereign cloud or disaster recovery services, operating entirely off a dedicated, large-scale renewable energy source. Confidence in this conditional 'GO' is assessed as Moderate, contingent upon securing a robust, bespoke investment incentive package from the Grenadian government that significantly offsets the extraordinary capital expenditure for dedicated infrastructure and demonstrating the clear financial viability of a fully independent, renewable power generation solution in a challenging climate. Key success factors include: (1) Successful design, construction, and operation of a dedicated, island-independent 100MW+ renewable power generation facility (e.g., solar PV + advanced storage) that completely bypasses the national grid, (2) Implementation of extreme hardening measures against Category 5 hurricanes and moderate seismic events for uninterrupted operations, (3) Cultivation of a highly skilled, locally integrated operational workforce through dedicated training programs and strategic expatriate support, and (4) Establishing a deeply collaborative, long-term partnership with the Grenadian government to streamline regulatory processes and secure ongoing strategic support, ensuring the project aligns with national development objectives and maintains a strong social license to operate.",
+    "next_steps": [
+      "Conduct an in-depth, dedicated feasibility study for a 100MW+ renewable energy power plant, evaluating specific technologies (large-scale solar PV, advanced battery energy storage, and potential geothermal viability), detailed land requirements, comprehensive cost projections, and integration strategies, with an 8-month timeline to inform the critical path forward.",
+      "Initiate advanced, targeted discussions with the Grenada Industrial Development Corporation (GIDC) and relevant government ministries to negotiate a detailed, binding investment incentive package, including specific multi-year tax holidays, comprehensive import duty exemptions, and tangible support for critical site infrastructure development, targeting completion within 6-9 months.",
+      "Begin preliminary site identification and detailed geotechnical, hydrological, and seismic surveys for potential data center locations that offer optimal natural hazard mitigation (e.g., high elevation above flood/storm surge zones, stable ground), strategic access to potential dedicated renewable energy generation sites, and suitable environmental impact profiles, with initial results expected within 12 months to narrow down viable options."
+    ]
+  },
+  "data_gap_analysis": {
+    "data_sources_used": [
+      {
+        "name": "Public data analysis",
+        "type": "publicly_available",
+        "reliability": "medium",
+        "last_updated": "Current analysis",
+        "url": null
+      }
+    ],
+    "data_gaps_identified": [
+      "Detailed, publicly available SAIDI/SAIFI and power quality metrics for the Grenadian grid.",
+      "Official grid interconnection cost and timeline studies specifically for 100MW+ loads.",
+      "Specific available capacity at potential substation sites in the vicinity of the coordinates.",
+      "Long-term energy market forecasts and detailed tariff structures for custom large loads.",
+      "Specific data on utility disaster recovery plans and historical outage causes.",
+      "Detailed, publicly audited fiber route maps and redundancy levels for the national backbone and metro networks.",
+      "Specific port-level capacities and utilization rates of submarine cable landing stations in Grenada.",
+      "Granular, real-time latency and packet loss metrics to diverse global destinations from multiple vantage points within Grenada.",
+      "Current average and peak traffic volumes at the GRN-IXP and specific peering agreements.",
+      "Official, published wholesale bandwidth pricing lists for 10Gbps+ international IP transit from multiple carriers.",
+      "Specific site-level geotechnical investigation (soil bearing capacity, liquefaction potential, landslide risk).",
+      "Detailed 100-year and 500-year flood mapping for the exact proposed site, including storm surge modeling.",
+      "Comprehensive water availability and quality assessment for potential water-side cooling options or backup systems.",
+      "Detailed local meteorological data (e.g., hourly temperature, humidity, dew point) for precise PUE modeling and free cooling hour validation.",
+      "Localized crime statistics and specific threat assessments for the immediate vicinity of the coordinates.",
+      "Detailed, audited performance metrics and specialized capabilities of emergency response services for critical infrastructure incidents in Grenada.",
+      "Granular historical outage data and redundancy specifics for local power grid and fiber networks serving the proposed location.",
+      "A comprehensive study of the specialized IT and engineering labor market, including wage structures and availability, pertinent to hyperscale data center operations in Grenada.",
+      "Specific hyperscaler expansion plans and granular market penetration data for the Southern Caribbean region.",
+      "Detailed local talent market analysis, including cloud-specific certification rates and data center technician availability.",
+      "Comprehensive competitive landscape and pricing analysis for enterprise-grade colocation services in Grenada and neighboring islands."
+    ],
+    "third_party_requirements": [
+      "Engage GRENLEC for a comprehensive grid impact study and feasibility assessment for a 100MW+ connection.",
+      "Consult an independent electrical engineering firm experienced in island grids and microgrids for a detailed power infrastructure site survey and alternative generation assessment.",
+      "Obtain independent cost estimates for dedicated generation assets (e.g., large-scale solar + battery storage, or new thermal plant) required to meet demand.",
+      "Legal and regulatory counsel to navigate the Public Utilities Regulatory Commission (PURC) and environmental permitting processes.",
+      "Independent network engineering firm to conduct a comprehensive site survey, including fiber audits and route diversity verification for proposed data center locations.",
+      "Direct engagement with Flow, Digicel, and other potential providers for capacity commitments, SLA, and dark fiber availability.",
+      "Specialized network performance testing agency to benchmark latency, jitter, and packet loss to key target markets.",
+      "Consultation with the NTRC (National Telecommunications Regulatory Commission) for regulatory insights, IXP participation, and future infrastructure plans.",
+      "Geotechnical and structural engineering firm for site-specific seismic and soil analysis, and hurricane-resistant design.",
+      "Climate resilience and environmental consulting firm for detailed climate change impact assessment and adaptation strategies.",
+      "Hydrogeological expert for flood risk assessment, water availability, and drainage planning.",
+      "HVAC and data center cooling specialist for optimizing mechanical cooling systems and PUE modeling in tropical conditions.",
+      "Engage a specialized security consulting firm for a comprehensive threat risk assessment and physical security design specific to the site.",
+      "Contract an emergency services coordination specialist to establish detailed Service Level Agreements (SLAs) and protocols with local fire, medical, and law enforcement agencies.",
+      "Commission an independent engineering firm for a thorough audit of local power, water, and fiber infrastructure resilience, including recommendations for necessary upgrades and redundancy measures.",
+      "Utilize a human resources and recruitment consulting firm to conduct an in-depth analysis of the local labor market for critical data center roles and assist in talent acquisition strategies.",
+      "Market research and consulting firm specializing in Caribbean ICT infrastructure and hyperscaler demand analysis.",
+      "Labor market research specialist to conduct a detailed workforce assessment and talent development roadmap.",
+      "Real estate and competitive analysis consultant for land viability, utility infrastructure assessment, and local regulatory guidance."
+    ],
+    "assumptions_made": [
+      {
+        "category": "General Analysis",
+        "assumption": "Analysis for 'hyperscale' assumes a target load of 100MW or more.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Specific SAIDI/SAIFI data for Grenada is not publicly available; metrics are estimated based on typical characteristics of small island grids and reliance on fossil fuel generation.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Electricity cost estimates are derived from publicly available GRENLEC tariff information and regional island utility benchmarks.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Grid capacity estimates are based on publicly known GRENLEC installed capacity and general grid operational characteristics.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Regulatory processes and timelines are inferred from typical practices in smaller, developing island nations without precedent for hyperscale projects.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Exact fiber kilometer counts and specific MAN topologies for Grenada are not publicly available and have been estimated based on island size and typical Caribbean telecom development.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Subsea cable capacities represent the segment allocated to Grenada, not the total cable capacity.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Bandwidth pricing is an estimation based on regional averages and market dynamics for similar island nations, actual pricing varies with negotiation and volume.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Latency measurements are typical averages and can vary based on network load and specific routing paths.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The analysis assumes a 'hyperscale' requirement for connectivity, which significantly elevates baseline expectations for a small island nation.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Climate data based on typical Grenada meteorological records over the last 30 years from public databases and regional climate models.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Site analysis assumes a strategically selected inland location with adequate elevation (e.g., >50m ASL) to mitigate immediate coastal flood/storm surge risks.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Free cooling calculations assume ASHRAE A1/A2 guidelines for data center operational envelopes.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "PUE estimation is based on a hyperscale facility design utilizing current best practices for mechanical cooling in tropical environments.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Analysis based on publicly available country-level data and regional statistics for Grenada, as specific site data is not available.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The coordinates 12.1165, -61.67899999999999 are assumed to be in an urban or peri-urban area near St. George's for emergency response and infrastructure estimates.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Hyperscale data center requirements imply high demands for power, connectivity, and specialized labor that may exceed typical local infrastructure capabilities.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Economic and social metrics are based on recent (2022-2023) available data from international bodies and local reports.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Security threat levels are assessed based on general regional trends and local government reports, not specific, classified intelligence.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Analysis is based on publicly available data for Grenada, often generalized for Small Island Developing States (SIDS) where specific metrics are scarce.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Renewable energy percentages, grid carbon intensity, and PPA market maturity are estimates based on typical Caribbean island energy profiles.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Future policy trends assume continued national commitment to climate resilience and sustainability targets outlined in the NDC.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The coordinates 12.1165, -61.67899999999999 are assumed to be within a non-environmentally sensitive area, though detailed site-specific assessment is required.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Default Mode implies concise content fields, with details in metrics and key points.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Regulatory analysis based on publicly available national legislation and government policies for Grenada.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Quantitative metrics for penalties, timelines, and costs are estimates based on regional averages for small island developing states (SIDS) where precise Grenada-specific data is not universally published.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Investment incentive calculations assume eligibility for significant foreign direct investment under the Investment Act.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The coordinates (12.1165, -61.67899999999999) are assumed to be within an area potentially zoned for commercial/industrial development or amenable to re-zoning for a strategic project.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Hyperscaler analysis is based on publicly available market data and industry reports, extrapolated to the unique context of a small island nation.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Demand projections reflect current market trends in similar developing regions and may vary with economic conditions and specific government policies.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Competitive positioning is assessed against established hyperscaler markets, recognizing Grenada's fundamentally different market dynamics.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      }
+    ],
+    "overall_confidence": "low",
+    "next_steps_priority": [
+      "Address critical data gaps through third-party verification",
+      "Validate key assumptions with local experts",
+      "Conduct on-site assessments for high-impact areas"
+    ]
+  }
+}
