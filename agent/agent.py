@@ -3,7 +3,7 @@
 
 import re
 import streamlit as st
-from google_adk.agents import LlmAgent, ParallelAgent
+from google_adk.agent import LlmAgent, ParallelAgent
 from google_adk.tools import FunctionTool, AgentTool
 import googlemaps
 
