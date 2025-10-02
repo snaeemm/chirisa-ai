@@ -104,7 +104,7 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
 
                 # Create columns for session button and delete button
                 if len(st.session_state.sessions) > 1:  # Only show delete if more than 1 session
-                    col1, col2 = st.columns([4, 1])
+                    col1, col2 = st.columns([6, 1])
                 else:
                     col1 = st.columns(1)[0]
                     col2 = None
@@ -237,7 +237,7 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                             st.markdown(f"<small>{flag} {country} • {score_emoji} {score:.1f}</small>", unsafe_allow_html=True)
                     else:
                         # Compact report card with delete button
-                        col1, col2 = st.columns([5, 1])
+                        col1, col2 = st.columns([6, 1])
 
                         with col1:
                             if st.button(
