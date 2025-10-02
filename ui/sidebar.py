@@ -12,24 +12,6 @@ from services.session_service import create_new_session, delete_session_from_ui
 # Add the parent directory to the path so we can import our modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Remove padding and background from delete buttons
-st.markdown("""
-<style>
-    /* 1. Target secondary buttons in the sidebar (for delete buttons) and make them compact */
-    section[data-testid="stSidebar"] button[kind="secondary"] {
-        padding: 4px !important;
-        min-width: unset !important;
-        background-color: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-    }
-
-    /* 2. Style on hover to indicate it's still clickable */
-    section[data-testid="stSidebar"] button[kind="secondary"]:hover {
-        background-color: rgba(150, 150, 150, 0.2) !important;
-    }
-</style>
-""", unsafe_allow_html=True)
 
 try:
     from agent.database import _get_report_summary_rows, delete_report
@@ -153,9 +135,10 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                 if col2 and len(st.session_state.sessions) > 1:
                     with col2:
                         if st.button(
-                            "🗑️",
+                            "Delete",
                             key=f"delete_{session_id}",
-                            help="Delete session",
+                            use_container_width=True,
+                            type="secondary",
                         ):
                             # Confirm deletion
                             if f"confirm_delete_{session_id}" not in st.session_state:
@@ -251,9 +234,10 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                                 st.switch_page("pages/Reports.py")
                         with col2:
                             if st.button(
-                                "🗑️",
+                                "Delete",
                                 key=f"delete_current_report_{report_id}",
-                                help="Delete report",
+                                use_container_width=True,
+                                type="secondary",
                             ):
                                 if f"confirm_delete_report_{report_id}" not in st.session_state:
                                     st.session_state[f"confirm_delete_report_{report_id}"] = True
@@ -296,9 +280,10 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
 
                         with col2:
                             if st.button(
-                                "🗑️",
+                                "Delete",
                                 key=f"delete_report_{report_id}",
-                                help="Delete report",
+                                use_container_width=True,
+                                type="secondary",
                             ):
                                 if f"confirm_delete_report_{report_id}" not in st.session_state:
                                     st.session_state[f"confirm_delete_report_{report_id}"] = True
