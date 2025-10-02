@@ -9,6 +9,17 @@ from google.adk.sessions import DatabaseSessionService
 from config.settings import SESSION_CONTAINER_HEIGHT, TITLE_MAX_LENGTH
 from services.session_service import create_new_session, delete_session_from_ui
 
+# CSS for centering delete buttons
+st.markdown("""
+<style>
+    div[data-testid="column"]:has(button[kind="secondary"]) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 # Add the parent directory to the path so we can import our modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -221,14 +232,41 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
 
                     # All reports as buttons with different styling for current
                     if is_current:
-                        if st.button(
-                            f"📍 {title}",
-                            key=f"current_report_{report_id}",
-                            use_container_width=True,
-                            type="primary",
-                        ):
-                            # Already current, no action needed but keep as clickable
-                            pass
+                        col1, col2 = st.columns([0.85, 0.15])
+                        with col1:
+                            if st.button(
+                                f"📍 {title}",
+                                key=f"current_report_{report_id}",
+                                use_container_width=True,
+                                type="primary",
+                            ):
+                                st.switch_page("pages/Reports.py")
+                        with col2:
+                            if st.button(
+                                "🗑",
+                                key=f"delete_current_report_{report_id}",
+                                help="Delete report",
+                            ):
+                                if f"confirm_delete_report_{report_id}" not in st.session_state:
+                                    st.session_state[f"confirm_delete_report_{report_id}"] = True
+                                    st.rerun()
+                                else:
+                                    if delete_report:
+                                        result = delete_report(report_id)
+                                        if result.get("status") == "success":
+                                            if st.session_state.selected_report_id == report_id:
+                                                st.session_state.selected_report_id = None
+                                            if f"confirm_delete_report_{report_id}" in st.session_state:
+                                                del st.session_state[f"confirm_delete_report_{report_id}"]
+                                            load_reports_list.clear()
+                                            st.rerun()
+                                        else:
+                                            st.error(f"Failed to delete: {result.get('message')}")
+                        if f"confirm_delete_report_{report_id}" in st.session_state:
+                            st.warning(f"⚠️ Delete '{title}'? Click 🗑 again to confirm.")
+                            if st.button("Cancel", key=f"cancel_delete_report_{report_id}"):
+                                del st.session_state[f"confirm_delete_report_{report_id}"]
+                                st.rerun()
                         # Combine metadata in one line for better spacing
                         if analysis_date:
                             st.markdown(f"<small>{flag} {country} • {score_emoji} {score:.1f} • 📅 {analysis_date}</small>", unsafe_allow_html=True)
