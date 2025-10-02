@@ -15,10 +15,18 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # Add CSS to force center alignment of buttons in small columns
 st.markdown("""
 <style>
-    /* Force delete buttons to center */
-    div[data-testid="column"] > div > div > div > button {
-        margin-left: auto !important;
-        margin-right: auto !important;
+    /* Force all buttons in columns to be perfectly centered */
+    div[data-testid="column"] {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    div[data-testid="column"] > div {
+        width: 100% !important;
+    }
+    div[data-testid="column"] button {
+        display: block !important;
+        margin: 0 auto !important;
     }
 </style>
 """, unsafe_allow_html=True)
