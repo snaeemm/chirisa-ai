@@ -12,6 +12,17 @@ from services.session_service import create_new_session, delete_session_from_ui
 # Add the parent directory to the path so we can import our modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# Add CSS to force center alignment of buttons in small columns
+st.markdown("""
+<style>
+    /* Force delete buttons to center */
+    div[data-testid="column"] > div > div > div > button {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+</style>
+""", unsafe_allow_html=True)
+
 try:
     from agent.database import _get_report_summary_rows, delete_report
 except ImportError as e:
