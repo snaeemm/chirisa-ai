@@ -12,17 +12,6 @@ from services.session_service import create_new_session, delete_session_from_ui
 # Add the parent directory to the path so we can import our modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Center delete buttons in narrow columns
-st.markdown("""
-<style>
-    /* Make button wrapper use flexbox for perfect centering */
-    section[data-testid="stSidebar"] [data-testid="column"] > div > div > div {
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-    }
-</style>
-""", unsafe_allow_html=True)
 
 try:
     from agent.database import _get_report_summary_rows, delete_report
@@ -116,9 +105,10 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
 
                 # Create columns for session button and delete button
                 if len(st.session_state.sessions) > 1:  # Only show delete if more than 1 session
-                    col1, col2 = st.columns([0.85, 0.15])
+                    col1, col_spacer, col2 = st.columns([0.78, 0.07, 0.15])
                 else:
                     col1 = st.columns(1)[0]
+                    col_spacer = None
                     col2 = None
 
                 # Session button
@@ -144,12 +134,13 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
 
                 # Delete button (only show if more than 1 session exists)
                 if col2 and len(st.session_state.sessions) > 1:
+                    with col_spacer:
+                        st.write("")
                     with col2:
                         if st.button(
                             "🗑️",
                             key=f"delete_{session_id}",
                             help="Delete session",
-                            use_container_width=True,
                         ):
                             # Confirm deletion
                             if f"confirm_delete_{session_id}" not in st.session_state:
@@ -234,7 +225,7 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
 
                     # All reports as buttons with different styling for current
                     if is_current:
-                        col1, col2 = st.columns([0.85, 0.15])
+                        col1, col_spacer, col2 = st.columns([0.78, 0.07, 0.15])
                         with col1:
                             if st.button(
                                 f"📍 {title}",
@@ -243,12 +234,13 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                                 type="primary",
                             ):
                                 st.switch_page("pages/Reports.py")
+                        with col_spacer:
+                            st.write("")
                         with col2:
                             if st.button(
                                 "🗑️",
                                 key=f"delete_current_report_{report_id}",
                                 help="Delete report",
-                                use_container_width=True,
                             ):
                                 if f"confirm_delete_report_{report_id}" not in st.session_state:
                                     st.session_state[f"confirm_delete_report_{report_id}"] = True
@@ -277,7 +269,7 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                             st.markdown(f"<small>{flag} {country} • {score_emoji} {score:.1f}</small>", unsafe_allow_html=True)
                     else:
                         # Compact report card with delete button
-                        col1, col2 = st.columns([0.85, 0.15])
+                        col1, col_spacer, col2 = st.columns([0.78, 0.07, 0.15])
 
                         with col1:
                             if st.button(
@@ -289,12 +281,13 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                                 st.session_state.selected_report_id = report_id
                                 st.switch_page("pages/Reports.py")
 
+                        with col_spacer:
+                            st.write("")
                         with col2:
                             if st.button(
                                 "🗑️",
                                 key=f"delete_report_{report_id}",
                                 help="Delete report",
-                                use_container_width=True,
                             ):
                                 if f"confirm_delete_report_{report_id}" not in st.session_state:
                                     st.session_state[f"confirm_delete_report_{report_id}"] = True
