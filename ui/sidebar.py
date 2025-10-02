@@ -15,11 +15,11 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 # Center delete buttons in narrow columns
 st.markdown("""
 <style>
-    /* Center buttons in narrow columns by adding padding */
-    section[data-testid="stSidebar"] button[kind="secondary"] {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        text-align: center !important;
+    /* Make button wrapper use flexbox for perfect centering */
+    section[data-testid="stSidebar"] [data-testid="column"] > div > div > div {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
     }
 </style>
 """, unsafe_allow_html=True)
