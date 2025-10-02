@@ -12,11 +12,15 @@ from services.session_service import create_new_session, delete_session_from_ui
 # Add the parent directory to the path so we can import our modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Set minimum sidebar width to prevent delete button misalignment
+# Center all buttons inside columns
 st.markdown("""
 <style>
-    [data-testid="stSidebar"] {
-        min-width: 300px !important;
+    /* Center all buttons inside columns */
+    div[data-testid="stVerticalBlock"] > div > div > button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -143,7 +147,7 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                 if col2 and len(st.session_state.sessions) > 1:
                     with col2:
                         if st.button(
-                            "🗑",
+                            "🗑️",
                             key=f"delete_{session_id}",
                             help="Delete session",
                             use_container_width=True,
@@ -242,7 +246,7 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                                 st.switch_page("pages/Reports.py")
                         with col2:
                             if st.button(
-                                "🗑",
+                                "🗑️",
                                 key=f"delete_current_report_{report_id}",
                                 help="Delete report",
                                 use_container_width=True,
@@ -288,7 +292,7 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
 
                         with col2:
                             if st.button(
-                                "🗑",
+                                "🗑️",
                                 key=f"delete_report_{report_id}",
                                 help="Delete report",
                                 use_container_width=True,
