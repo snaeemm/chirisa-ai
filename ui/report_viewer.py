@@ -318,51 +318,45 @@ def render_report_viewer(report_id: int):
         st.markdown("**📊 Domain Scores**")
 
         # Use streamlit columns for clean rendering
-        num_domains = len(domain_analysis)
+        domains_list = list(domain_analysis.items())
+        num_domains = len(domains_list)
+
         if num_domains > 0:
-            # Create columns (max 4 per row)
-            cols_per_row = min(num_domains, 4)
-            cols = st.columns(cols_per_row)
+            # Process domains in rows of 4
+            for row_start in range(0, num_domains, 4):
+                row_domains = domains_list[row_start:row_start + 4]
+                cols = st.columns(4)
 
-            for i, (domain_name, domain_data) in enumerate(domain_analysis.items()):
-                col_idx = i % cols_per_row
+                for col_idx, (domain_name, domain_data) in enumerate(row_domains):
+                    with cols[col_idx]:
+                        try:
+                            if isinstance(domain_data, dict):
+                                score = domain_data.get("score", 0)
 
-                with cols[col_idx]:
-                    try:
-                        if isinstance(domain_data, dict):
-                            score = domain_data.get("score", 0)
+                                if isinstance(score, (int, float)):
+                                    domain_display_name = domain_name.replace('_', ' ').title()
 
-                            if isinstance(score, (int, float)):
-                                domain_display_name = domain_name.replace('_', ' ').title()
+                                    # Color based on score
+                                    if score >= 4.0:
+                                        color = "🟢"
+                                    elif score >= 3.0:
+                                        color = "🔵"
+                                    elif score >= 2.0:
+                                        color = "🟡"
+                                    else:
+                                        color = "🔴"
 
-                                # Color based on score
-                                if score >= 4.0:
-                                    color = "🟢"
-                                elif score >= 3.0:
-                                    color = "🔵"
-                                elif score >= 2.0:
-                                    color = "🟡"
+                                    st.metric(
+                                        label=f"{color} {domain_display_name}",
+                                        value=f"{score:.1f}/5.0"
+                                    )
                                 else:
-                                    color = "🔴"
-
-                                # Clean metric display
-                                st.metric(
-                                    label=f"{color} {domain_display_name}",
-                                    value=f"{score:.1f}/5.0"
-                                )
-                            else:
-                                st.metric(
-                                    label=domain_name.replace('_', ' ').title(),
-                                    value="N/A"
-                                )
-
-                    except Exception:
-                        # Skip problematic domains silently
-                        continue
-
-                # Start new row after 4 columns
-                if (i + 1) % 4 == 0 and i + 1 < num_domains:
-                    cols = st.columns(min(num_domains - (i + 1), 4))
+                                    st.metric(
+                                        label=domain_name.replace('_', ' ').title(),
+                                        value="N/A"
+                                    )
+                        except Exception:
+                            continue
 
     st.divider()
 
