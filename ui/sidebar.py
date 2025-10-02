@@ -118,8 +118,7 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                             use_container_width=True,
                             type="primary",
                         ):
-                            # Already current, no action needed but keep as clickable
-                            pass
+                            st.switch_page("Assistant.py")
                     else:
                         if st.button(
                             title,
@@ -238,7 +237,7 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                             st.markdown(f"<small>{flag} {country} • {score_emoji} {score:.1f}</small>", unsafe_allow_html=True)
                     else:
                         # Compact report card with delete button
-                        col1, col2 = st.columns([4, 1])
+                        col1, col2 = st.columns([5, 1])
 
                         with col1:
                             if st.button(
@@ -252,7 +251,7 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
 
                         with col2:
                             if st.button(
-                                "🗑️",
+                                "🗑",
                                 key=f"delete_report_{report_id}",
                                 help="Delete report",
                                 use_container_width=True,
