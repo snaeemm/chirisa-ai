@@ -1,0 +1,18 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# ADK SQLite session database
+shaz_sessions.db
+*.db
+
+# Environment and secrets
+.env
+.streamlit/secrets.toml
