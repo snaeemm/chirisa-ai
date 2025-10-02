@@ -12,15 +12,14 @@ from services.session_service import create_new_session, delete_session_from_ui
 # Add the parent directory to the path so we can import our modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Center all buttons inside columns
+# Center delete buttons in narrow columns
 st.markdown("""
 <style>
-    /* Center all buttons inside columns */
-    div[data-testid="stVerticalBlock"] > div > div > button {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
+    /* Center buttons in narrow columns by adding padding */
+    section[data-testid="stSidebar"] button[kind="secondary"] {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        text-align: center !important;
     }
 </style>
 """, unsafe_allow_html=True)
