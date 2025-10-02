@@ -9,17 +9,6 @@ from google.adk.sessions import DatabaseSessionService
 from config.settings import SESSION_CONTAINER_HEIGHT, TITLE_MAX_LENGTH
 from services.session_service import create_new_session, delete_session_from_ui
 
-# CSS for centering delete buttons
-st.markdown("""
-<style>
-    div[data-testid="column"]:has(button[kind="secondary"]) {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-</style>
-""", unsafe_allow_html=True)
-
 # Add the parent directory to the path so we can import our modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -148,6 +137,7 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                             "🗑",
                             key=f"delete_{session_id}",
                             help="Delete session",
+                            use_container_width=True,
                         ):
                             # Confirm deletion
                             if f"confirm_delete_{session_id}" not in st.session_state:
@@ -246,6 +236,7 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                                 "🗑",
                                 key=f"delete_current_report_{report_id}",
                                 help="Delete report",
+                                use_container_width=True,
                             ):
                                 if f"confirm_delete_report_{report_id}" not in st.session_state:
                                     st.session_state[f"confirm_delete_report_{report_id}"] = True
@@ -291,6 +282,7 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                                 "🗑",
                                 key=f"delete_report_{report_id}",
                                 help="Delete report",
+                                use_container_width=True,
                             ):
                                 if f"confirm_delete_report_{report_id}" not in st.session_state:
                                     st.session_state[f"confirm_delete_report_{report_id}"] = True
