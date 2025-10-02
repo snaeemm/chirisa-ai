@@ -12,21 +12,11 @@ from services.session_service import create_new_session, delete_session_from_ui
 # Add the parent directory to the path so we can import our modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Add CSS to force center alignment of buttons in small columns
+# Set minimum sidebar width to prevent delete button misalignment
 st.markdown("""
 <style>
-    /* Force all buttons in columns to be perfectly centered */
-    div[data-testid="column"] {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-    }
-    div[data-testid="column"] > div {
-        width: 100% !important;
-    }
-    div[data-testid="column"] button {
-        display: block !important;
-        margin: 0 auto !important;
+    [data-testid="stSidebar"] {
+        min-width: 300px !important;
     }
 </style>
 """, unsafe_allow_html=True)
