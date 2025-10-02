@@ -12,12 +12,21 @@ from services.session_service import create_new_session, delete_session_from_ui
 # Add the parent directory to the path so we can import our modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Remove padding from delete buttons to make them compact icons
+# Remove padding and background from delete buttons
 st.markdown("""
 <style>
+    /* 1. Target secondary buttons in the sidebar (for delete buttons) and make them compact */
     section[data-testid="stSidebar"] button[kind="secondary"] {
         padding: 4px !important;
         min-width: unset !important;
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* 2. Style on hover to indicate it's still clickable */
+    section[data-testid="stSidebar"] button[kind="secondary"]:hover {
+        background-color: rgba(150, 150, 150, 0.2) !important;
     }
 </style>
 """, unsafe_allow_html=True)
