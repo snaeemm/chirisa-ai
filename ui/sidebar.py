@@ -19,7 +19,7 @@ except ImportError as e:
     _get_report_summary_rows = None
 
 
-@st.cache_data(ttl=300)  # Cache for 5 minutes
+@st.cache_data(ttl=30)  # Cache for 30 seconds
 def load_reports_list() -> List[Dict[str, Any]]:
     """Load list of all reports from database"""
     if not _get_report_summary_rows:
@@ -47,24 +47,19 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
     Args:
         session_service: The DatabaseSessionService instance
     """
-    # Initialize session state for reports and collapsed views
     if "selected_report_id" not in st.session_state:
         st.session_state.selected_report_id = None
-    if "view_mode" not in st.session_state:
-        st.session_state.view_mode = "chat"  # "chat" or "report"
     if "show_reports" not in st.session_state:
         st.session_state.show_reports = False
     if "show_sessions" not in st.session_state:
-        st.session_state.show_sessions = False  # Start collapsed
+        st.session_state.show_sessions = False
 
-    # New chat button at the top
     if st.button("➕ New Chat", use_container_width=True, type="primary"):
         new_session_id = create_new_session(session_service)
         st.session_state.current_session_id = new_session_id
-        st.session_state.view_mode = "chat"
         st.session_state.selected_report_id = None
-        st.session_state.show_reports = False  # Close reports when starting new chat
-        st.rerun()
+        st.session_state.show_reports = False
+        st.switch_page("Assistant.py")
 
     # Sessions toggle button
     sessions_button_text = "💬 Show Chat Sessions" if not st.session_state.show_sessions else "💬 Hide Chat Sessions"
@@ -83,7 +78,7 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
         with sessions_container:
             for session_id in sorted(st.session_state.sessions.keys(), reverse=True):
                 session_data = st.session_state.sessions[session_id]
-                is_current = session_id == st.session_state.current_session_id and st.session_state.view_mode == "chat"
+                is_current = session_id == st.session_state.current_session_id
 
                 # Generate title from first user message or use "New Chat"
                 messages = session_data.get("messages", [])
@@ -132,9 +127,8 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                             type="secondary",
                         ):
                             st.session_state.current_session_id = session_id
-                            st.session_state.view_mode = "chat"
                             st.session_state.selected_report_id = None
-                            st.rerun()
+                            st.switch_page("Assistant.py")
 
                 # Delete button (only show if more than 1 session exists)
                 if col2 and len(st.session_state.sessions) > 1:
@@ -166,10 +160,11 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
 
     st.divider()
 
-    # Reports toggle button
     reports_button_text = "📊 View Reports" if not st.session_state.show_reports else "📊 Hide Reports"
     if st.button(reports_button_text, use_container_width=True, type="secondary"):
         st.session_state.show_reports = not st.session_state.show_reports
+        if st.session_state.show_reports:
+            load_reports_list.clear()
         st.rerun()
 
     # Show reports section only if toggled on
@@ -207,7 +202,7 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                     report_id = report.get("id")
                     analysis_date = report.get("created_at", "")
 
-                    is_current = report_id == st.session_state.selected_report_id and st.session_state.view_mode == "report"
+                    is_current = report_id == st.session_state.selected_report_id
 
                     # Create compact title for sidebar
                     title = location
@@ -249,8 +244,7 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                             type="secondary",
                         ):
                             st.session_state.selected_report_id = report_id
-                            st.session_state.view_mode = "report"
-                            st.rerun()
+                            st.switch_page("pages/Reports.py")
 
                         # Show metadata below button in one compact line
                         if analysis_date:
