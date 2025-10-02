@@ -142,17 +142,17 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                             "🗑️",
                             key=f"delete_{session_id}",
                         ):
-                        # Confirm deletion
-                        if f"confirm_delete_{session_id}" not in st.session_state:
-                            st.session_state[f"confirm_delete_{session_id}"] = True
-                            st.rerun()
-                        else:
-                            # Perform deletion
-                            if delete_session_from_ui(session_service, session_id):
-                                # Clean up confirmation state
-                                if f"confirm_delete_{session_id}" in st.session_state:
-                                    del st.session_state[f"confirm_delete_{session_id}"]
+                            # Confirm deletion
+                            if f"confirm_delete_{session_id}" not in st.session_state:
+                                st.session_state[f"confirm_delete_{session_id}"] = True
                                 st.rerun()
+                            else:
+                                # Perform deletion
+                                if delete_session_from_ui(session_service, session_id):
+                                    # Clean up confirmation state
+                                    if f"confirm_delete_{session_id}" in st.session_state:
+                                        del st.session_state[f"confirm_delete_{session_id}"]
+                                    st.rerun()
 
                 # Show confirmation message if deletion was requested
                 if f"confirm_delete_{session_id}" in st.session_state:
@@ -240,21 +240,21 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                                 "🗑️",
                                 key=f"delete_current_report_{report_id}",
                             ):
-                            if f"confirm_delete_report_{report_id}" not in st.session_state:
-                                st.session_state[f"confirm_delete_report_{report_id}"] = True
-                                st.rerun()
-                            else:
-                                if delete_report:
-                                    result = delete_report(report_id)
-                                    if result.get("status") == "success":
-                                        if st.session_state.selected_report_id == report_id:
-                                            st.session_state.selected_report_id = None
-                                        if f"confirm_delete_report_{report_id}" in st.session_state:
-                                            del st.session_state[f"confirm_delete_report_{report_id}"]
-                                        load_reports_list.clear()
-                                        st.rerun()
-                                    else:
-                                        st.error(f"Failed to delete: {result.get('message')}")
+                                if f"confirm_delete_report_{report_id}" not in st.session_state:
+                                    st.session_state[f"confirm_delete_report_{report_id}"] = True
+                                    st.rerun()
+                                else:
+                                    if delete_report:
+                                        result = delete_report(report_id)
+                                        if result.get("status") == "success":
+                                            if st.session_state.selected_report_id == report_id:
+                                                st.session_state.selected_report_id = None
+                                            if f"confirm_delete_report_{report_id}" in st.session_state:
+                                                del st.session_state[f"confirm_delete_report_{report_id}"]
+                                            load_reports_list.clear()
+                                            st.rerun()
+                                        else:
+                                            st.error(f"Failed to delete: {result.get('message')}")
 
                         if f"confirm_delete_report_{report_id}" in st.session_state:
                             st.warning(f"⚠️ Delete '{title}'? Click 🗑️ again to confirm.")
@@ -284,21 +284,21 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                                 "🗑️",
                                 key=f"delete_report_{report_id}",
                             ):
-                            if f"confirm_delete_report_{report_id}" not in st.session_state:
-                                st.session_state[f"confirm_delete_report_{report_id}"] = True
-                                st.rerun()
-                            else:
-                                if delete_report:
-                                    result = delete_report(report_id)
-                                    if result.get("status") == "success":
-                                        if st.session_state.selected_report_id == report_id:
-                                            st.session_state.selected_report_id = None
-                                        if f"confirm_delete_report_{report_id}" in st.session_state:
-                                            del st.session_state[f"confirm_delete_report_{report_id}"]
-                                        load_reports_list.clear()
-                                        st.rerun()
-                                    else:
-                                        st.error(f"Failed to delete: {result.get('message')}")
+                                if f"confirm_delete_report_{report_id}" not in st.session_state:
+                                    st.session_state[f"confirm_delete_report_{report_id}"] = True
+                                    st.rerun()
+                                else:
+                                    if delete_report:
+                                        result = delete_report(report_id)
+                                        if result.get("status") == "success":
+                                            if st.session_state.selected_report_id == report_id:
+                                                st.session_state.selected_report_id = None
+                                            if f"confirm_delete_report_{report_id}" in st.session_state:
+                                                del st.session_state[f"confirm_delete_report_{report_id}"]
+                                            load_reports_list.clear()
+                                            st.rerun()
+                                        else:
+                                            st.error(f"Failed to delete: {result.get('message')}")
 
                         # Show confirmation message if deletion was requested
                         if f"confirm_delete_report_{report_id}" in st.session_state:
