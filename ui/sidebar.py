@@ -12,6 +12,15 @@ from services.session_service import create_new_session, delete_session_from_ui
 # Add the parent directory to the path so we can import our modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+# Make delete buttons smaller and compact
+st.markdown("""
+<style>
+    section[data-testid="stSidebar"] button[kind="secondary"] {
+        font-size: 0.7rem !important;
+        padding: 2px 4px !important;
+    }
+</style>
+""", unsafe_allow_html=True)
 
 try:
     from agent.database import _get_report_summary_rows, delete_report
