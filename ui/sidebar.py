@@ -12,12 +12,14 @@ from services.session_service import create_new_session, delete_session_from_ui
 # Add the parent directory to the path so we can import our modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Make delete buttons smaller and compact
+# Make delete buttons small and compact
 st.markdown("""
 <style>
-    section[data-testid="stSidebar"] button[kind="secondary"] {
-        font-size: 0.7rem !important;
-        padding: 2px 4px !important;
+    /* Small delete button styling */
+    section[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"] button:contains("🗑️") {
+        font-size: 0.8rem !important;
+        padding: 4px 8px !important;
+        width: auto !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -132,13 +134,14 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                         st.session_state.selected_report_id = None
                         st.switch_page("Assistant.py")
 
-                # Small delete button below (only show if more than 1 session exists)
+                # Small delete button on the left (only show if more than 1 session exists)
                 if len(st.session_state.sessions) > 1:
-                    if st.button(
-                        "🗑️ Delete",
-                        key=f"delete_{session_id}",
-                        use_container_width=True,
-                    ):
+                    col1, col2 = st.columns([0.15, 0.85])
+                    with col1:
+                        if st.button(
+                            "🗑️",
+                            key=f"delete_{session_id}",
+                        ):
                         # Confirm deletion
                         if f"confirm_delete_{session_id}" not in st.session_state:
                             st.session_state[f"confirm_delete_{session_id}"] = True
@@ -230,12 +233,13 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                         ):
                             st.switch_page("pages/Reports.py")
 
-                        # Small delete button below
-                        if st.button(
-                            "🗑️ Delete",
-                            key=f"delete_current_report_{report_id}",
-                            use_container_width=True,
-                        ):
+                        # Small delete button on the left
+                        col1, col2 = st.columns([0.15, 0.85])
+                        with col1:
+                            if st.button(
+                                "🗑️",
+                                key=f"delete_current_report_{report_id}",
+                            ):
                             if f"confirm_delete_report_{report_id}" not in st.session_state:
                                 st.session_state[f"confirm_delete_report_{report_id}"] = True
                                 st.rerun()
@@ -273,12 +277,13 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                             st.session_state.selected_report_id = report_id
                             st.switch_page("pages/Reports.py")
 
-                        # Small delete button below
-                        if st.button(
-                            "🗑️ Delete",
-                            key=f"delete_report_{report_id}",
-                            use_container_width=True,
-                        ):
+                        # Small delete button on the left
+                        col1, col2 = st.columns([0.15, 0.85])
+                        with col1:
+                            if st.button(
+                                "🗑️",
+                                key=f"delete_report_{report_id}",
+                            ):
                             if f"confirm_delete_report_{report_id}" not in st.session_state:
                                 st.session_state[f"confirm_delete_report_{report_id}"] = True
                                 st.rerun()
