@@ -13,10 +13,11 @@ from services.session_service import create_new_session, delete_session_from_ui
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 try:
-    from agent.database import _get_report_summary_rows
+    from agent.database import _get_report_summary_rows, delete_report
 except ImportError as e:
     st.error(f"Error importing database functions: {e}")
     _get_report_summary_rows = None
+    delete_report = None
 
 
 @st.cache_data(ttl=30)  # Cache for 30 seconds
@@ -236,15 +237,48 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                         else:
                             st.markdown(f"<small>{flag} {country} • {score_emoji} {score:.1f}</small>", unsafe_allow_html=True)
                     else:
-                        # Compact report card
-                        if st.button(
-                            f"{title}",
-                            key=f"report_{report_id}",
-                            use_container_width=True,
-                            type="secondary",
-                        ):
-                            st.session_state.selected_report_id = report_id
-                            st.switch_page("pages/Reports.py")
+                        # Compact report card with delete button
+                        col1, col2 = st.columns([4, 1])
+
+                        with col1:
+                            if st.button(
+                                f"{title}",
+                                key=f"report_{report_id}",
+                                use_container_width=True,
+                                type="secondary",
+                            ):
+                                st.session_state.selected_report_id = report_id
+                                st.switch_page("pages/Reports.py")
+
+                        with col2:
+                            if st.button(
+                                "🗑️",
+                                key=f"delete_report_{report_id}",
+                                help="Delete report",
+                                use_container_width=True,
+                            ):
+                                if f"confirm_delete_report_{report_id}" not in st.session_state:
+                                    st.session_state[f"confirm_delete_report_{report_id}"] = True
+                                    st.rerun()
+                                else:
+                                    if delete_report:
+                                        result = delete_report(report_id)
+                                        if result.get("status") == "success":
+                                            if st.session_state.selected_report_id == report_id:
+                                                st.session_state.selected_report_id = None
+                                            if f"confirm_delete_report_{report_id}" in st.session_state:
+                                                del st.session_state[f"confirm_delete_report_{report_id}"]
+                                            load_reports_list.clear()
+                                            st.rerun()
+                                        else:
+                                            st.error(f"Failed to delete: {result.get('message')}")
+
+                        # Show confirmation message if deletion was requested
+                        if f"confirm_delete_report_{report_id}" in st.session_state:
+                            st.warning(f"⚠️ Delete '{title}'? Click 🗑️ again to confirm.")
+                            if st.button("Cancel", key=f"cancel_delete_report_{report_id}"):
+                                del st.session_state[f"confirm_delete_report_{report_id}"]
+                                st.rerun()
 
                         # Show metadata below button in one compact line
                         if analysis_date:
