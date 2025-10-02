@@ -8,16 +8,24 @@ from services.agent_service import init_agent
 from services.session_service import initialize_sessions
 from ui.sidebar import render_sidebar
 from ui.report_viewer import render_report_viewer
+from utils.auth import check_authentication, show_login_form, logout
 
 load_dotenv()
 
 st.set_page_config(**PAGE_CONFIG)  # type: ignore[arg-type]
+
+if not check_authentication():
+    show_login_form()
+    st.stop()
 
 runner, session_service = init_agent()
 initialize_sessions(session_service)
 
 with st.sidebar:
     render_sidebar(session_service)
+    st.markdown("---")
+    if st.button("🚪 Logout", use_container_width=True, key="logout_reports"):
+        logout()
 
 if st.session_state.get("selected_report_id"):
     # Title with delete button in top right

@@ -1,4 +1,4 @@
-"""Main entry point for the Shahz AI Assistant application."""
+"""Main entry point for the Chirisa AI Assistant application."""
 
 import streamlit as st
 from dotenv import load_dotenv
@@ -9,16 +9,24 @@ from services.session_service import initialize_sessions
 from ui.chat_display import render_chat_history
 from ui.chat_input import handle_chat_input, check_response_status
 from ui.sidebar import render_sidebar
+from utils.auth import check_authentication, show_login_form, logout
 
 load_dotenv()
 
 st.set_page_config(**PAGE_CONFIG)  # type: ignore[arg-type]
+
+if not check_authentication():
+    show_login_form()
+    st.stop()
 
 runner, session_service = init_agent()
 initialize_sessions(session_service)
 
 with st.sidebar:
     render_sidebar(session_service)
+    st.markdown("---")
+    if st.button("🚪 Logout", use_container_width=True):
+        logout()
 
 current_session = st.session_state.sessions[st.session_state.current_session_id]
 

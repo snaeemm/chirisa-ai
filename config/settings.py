@@ -4,6 +4,10 @@
 APP_NAME = "shaz"
 DEFAULT_USER_ID = "default_user"
 
+# Authentication settings
+AUTH_USERNAME = "Admin"
+AUTH_PASSWORD = "professional_granite_123!"
+
 # Model settings
 DEFAULT_MODEL = "gemini-2.0-flash-exp"
 TITLE_GENERATION_MODEL = "gemini-2.0-flash-exp"
