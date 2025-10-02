@@ -104,7 +104,7 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
 
                 # Create columns for session button and delete button
                 if len(st.session_state.sessions) > 1:  # Only show delete if more than 1 session
-                    col1, col2 = st.columns([6, 1])
+                    col1, col2 = st.columns([0.85, 0.15])
                 else:
                     col1 = st.columns(1)[0]
                     col2 = None
@@ -134,10 +134,9 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                 if col2 and len(st.session_state.sessions) > 1:
                     with col2:
                         if st.button(
-                            "🗑️",
+                            "🗑",
                             key=f"delete_{session_id}",
                             help="Delete session",
-                            use_container_width=True,
                         ):
                             # Confirm deletion
                             if f"confirm_delete_{session_id}" not in st.session_state:
@@ -237,7 +236,7 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                             st.markdown(f"<small>{flag} {country} • {score_emoji} {score:.1f}</small>", unsafe_allow_html=True)
                     else:
                         # Compact report card with delete button
-                        col1, col2 = st.columns([6, 1])
+                        col1, col2 = st.columns([0.85, 0.15])
 
                         with col1:
                             if st.button(
@@ -254,7 +253,6 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                                 "🗑",
                                 key=f"delete_report_{report_id}",
                                 help="Delete report",
-                                use_container_width=True,
                             ):
                                 if f"confirm_delete_report_{report_id}" not in st.session_state:
                                     st.session_state[f"confirm_delete_report_{report_id}"] = True
