@@ -20,6 +20,33 @@ with st.sidebar:
     render_sidebar(session_service)
 
 if st.session_state.get("selected_report_id"):
+    # Title with delete button in top right
+    col1, col2 = st.columns([0.9, 0.1])
+    with col1:
+        st.title("📊 Report Details")
+    with col2:
+        if st.button("🗑️", key="delete_current_report", help="Delete this report"):
+            if "confirm_delete_report" not in st.session_state:
+                st.session_state.confirm_delete_report = True
+                st.rerun()
+            else:
+                from agent.database import delete_report
+                from ui.sidebar import load_reports_list
+                result = delete_report(st.session_state.selected_report_id)
+                if result.get("status") == "success":
+                    del st.session_state.confirm_delete_report
+                    st.session_state.selected_report_id = None
+                    load_reports_list.clear()
+                    st.rerun()
+                else:
+                    st.error(f"Failed to delete: {result.get('message')}")
+
+    if st.session_state.get("confirm_delete_report"):
+        st.warning("⚠️ Delete this report? Click 🗑️ again to confirm.")
+        if st.button("Cancel", key="cancel_delete_report"):
+            del st.session_state.confirm_delete_report
+            st.rerun()
+
     render_report_viewer(st.session_state.selected_report_id)
 else:
     st.info("📊 Select a report from the sidebar to view details.")

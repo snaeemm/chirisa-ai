@@ -12,17 +12,6 @@ from services.session_service import create_new_session, delete_session_from_ui
 # Add the parent directory to the path so we can import our modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Make delete buttons small and compact
-st.markdown("""
-<style>
-    /* Small delete button styling */
-    section[data-testid="stSidebar"] div[data-testid="stHorizontalBlock"] button:contains("🗑️") {
-        font-size: 0.8rem !important;
-        padding: 4px 8px !important;
-        width: auto !important;
-    }
-</style>
-""", unsafe_allow_html=True)
 
 try:
     from agent.database import _get_report_summary_rows, delete_report
@@ -134,33 +123,6 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                         st.session_state.selected_report_id = None
                         st.switch_page("Assistant.py")
 
-                # Small delete button on the left (only show if more than 1 session exists)
-                if len(st.session_state.sessions) > 1:
-                    col1, col2 = st.columns([0.15, 0.85])
-                    with col1:
-                        if st.button(
-                            "🗑️",
-                            key=f"delete_{session_id}",
-                        ):
-                            # Confirm deletion
-                            if f"confirm_delete_{session_id}" not in st.session_state:
-                                st.session_state[f"confirm_delete_{session_id}"] = True
-                                st.rerun()
-                            else:
-                                # Perform deletion
-                                if delete_session_from_ui(session_service, session_id):
-                                    # Clean up confirmation state
-                                    if f"confirm_delete_{session_id}" in st.session_state:
-                                        del st.session_state[f"confirm_delete_{session_id}"]
-                                    st.rerun()
-
-                # Show confirmation message if deletion was requested
-                if f"confirm_delete_{session_id}" in st.session_state:
-                    st.warning(f"⚠️ Delete '{title[:20]}...'? Click delete again to confirm.")
-                    if st.button("Cancel", key=f"cancel_delete_{session_id}"):
-                        del st.session_state[f"confirm_delete_{session_id}"]
-                        st.rerun()
-
     st.divider()
 
     reports_button_text = "📊 View Reports" if not st.session_state.show_reports else "📊 Hide Reports"
@@ -232,36 +194,6 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                             type="primary",
                         ):
                             st.switch_page("pages/Reports.py")
-
-                        # Small delete button on the left
-                        col1, col2 = st.columns([0.15, 0.85])
-                        with col1:
-                            if st.button(
-                                "🗑️",
-                                key=f"delete_current_report_{report_id}",
-                            ):
-                                if f"confirm_delete_report_{report_id}" not in st.session_state:
-                                    st.session_state[f"confirm_delete_report_{report_id}"] = True
-                                    st.rerun()
-                                else:
-                                    if delete_report:
-                                        result = delete_report(report_id)
-                                        if result.get("status") == "success":
-                                            if st.session_state.selected_report_id == report_id:
-                                                st.session_state.selected_report_id = None
-                                            if f"confirm_delete_report_{report_id}" in st.session_state:
-                                                del st.session_state[f"confirm_delete_report_{report_id}"]
-                                            load_reports_list.clear()
-                                            st.rerun()
-                                        else:
-                                            st.error(f"Failed to delete: {result.get('message')}")
-
-                        if f"confirm_delete_report_{report_id}" in st.session_state:
-                            st.warning(f"⚠️ Delete '{title}'? Click 🗑️ again to confirm.")
-                            if st.button("Cancel", key=f"cancel_delete_report_{report_id}"):
-                                del st.session_state[f"confirm_delete_report_{report_id}"]
-                                st.rerun()
-
                         # Combine metadata in one line for better spacing
                         if analysis_date:
                             st.markdown(f"<small>{flag} {country} • {score_emoji} {score:.1f} • 📅 {analysis_date}</small>", unsafe_allow_html=True)
@@ -276,36 +208,6 @@ def render_sidebar(session_service: DatabaseSessionService) -> None:
                         ):
                             st.session_state.selected_report_id = report_id
                             st.switch_page("pages/Reports.py")
-
-                        # Small delete button on the left
-                        col1, col2 = st.columns([0.15, 0.85])
-                        with col1:
-                            if st.button(
-                                "🗑️",
-                                key=f"delete_report_{report_id}",
-                            ):
-                                if f"confirm_delete_report_{report_id}" not in st.session_state:
-                                    st.session_state[f"confirm_delete_report_{report_id}"] = True
-                                    st.rerun()
-                                else:
-                                    if delete_report:
-                                        result = delete_report(report_id)
-                                        if result.get("status") == "success":
-                                            if st.session_state.selected_report_id == report_id:
-                                                st.session_state.selected_report_id = None
-                                            if f"confirm_delete_report_{report_id}" in st.session_state:
-                                                del st.session_state[f"confirm_delete_report_{report_id}"]
-                                            load_reports_list.clear()
-                                            st.rerun()
-                                        else:
-                                            st.error(f"Failed to delete: {result.get('message')}")
-
-                        # Show confirmation message if deletion was requested
-                        if f"confirm_delete_report_{report_id}" in st.session_state:
-                            st.warning(f"⚠️ Delete '{title}'? Click 🗑️ again to confirm.")
-                            if st.button("Cancel", key=f"cancel_delete_report_{report_id}"):
-                                del st.session_state[f"confirm_delete_report_{report_id}"]
-                                st.rerun()
 
                         # Show metadata below button in one compact line
                         if analysis_date:

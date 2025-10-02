@@ -28,7 +28,31 @@ if response_status and response_status["status"] == "processing":
     elapsed = int(time.time() - response_status["start_time"])
     st.info(f"🔄 Agent is working on your request... ({elapsed}s elapsed)")
 
-st.title("💬 Assistant")
+# Title with delete button in top right
+col1, col2 = st.columns([0.9, 0.1])
+with col1:
+    st.title("💬 Assistant")
+with col2:
+    if len(st.session_state.sessions) > 1:
+        if st.button("🗑️", key="delete_current_chat", help="Delete this chat"):
+            if "confirm_delete_chat" not in st.session_state:
+                st.session_state.confirm_delete_chat = True
+                st.rerun()
+            else:
+                from services.session_service import delete_session_from_ui
+                if delete_session_from_ui(session_service, st.session_state.current_session_id):
+                    del st.session_state.confirm_delete_chat
+                    # Switch to another session
+                    remaining_sessions = [sid for sid in st.session_state.sessions.keys() if sid != st.session_state.current_session_id]
+                    if remaining_sessions:
+                        st.session_state.current_session_id = remaining_sessions[0]
+                    st.rerun()
+
+if st.session_state.get("confirm_delete_chat"):
+    st.warning("⚠️ Delete this chat? Click 🗑️ again to confirm.")
+    if st.button("Cancel", key="cancel_delete_chat"):
+        del st.session_state.confirm_delete_chat
+        st.rerun()
 
 render_chat_history(current_session["messages"])
 
