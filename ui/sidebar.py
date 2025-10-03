@@ -119,40 +119,47 @@ def render_sidebar_for_assistant(session_service: DatabaseSessionService) -> Non
                 else:
                     full_title = "New Chat"
 
-                # Use ticker for titles longer than 25 chars
+                # Create ticker HTML if title is long
                 if len(full_title) > 25:
-                    title_display = f"<div class='session-ticker'><span class='session-ticker-text'>{full_title} &nbsp;&nbsp;&nbsp; {full_title}</span></div>"
+                    title_html = f"<div class='session-ticker'><span class='session-ticker-text'>{full_title} &nbsp;&nbsp;&nbsp; {full_title}</span></div>"
                 else:
-                    title_display = full_title
+                    title_html = full_title
 
                 if is_current:
+                    # Show current session as styled card (not clickable)
                     st.markdown(
                         f"""
-                        <div style='padding: 0.5rem; margin: 0.25rem 0; border-radius: 0.5rem;
-                             background-color: rgba(255, 75, 75, 0.1); border-left: 3px solid #ff4b4b;'>
-                            📍 {title_display}
+                        <div style='padding: 0.75rem; margin: 0.25rem 0; border-radius: 0.5rem;
+                             background: linear-gradient(90deg, #ff4b4b 0%, #ff6b6b 100%); color: white;
+                             font-weight: 500; border: none;'>
+                            📍 {title_html}
                         </div>
                         """,
                         unsafe_allow_html=True
                     )
                 else:
-                    if st.button(
-                        "Select",
+                    # Create clickable button-styled card
+                    button_clicked = st.button(
+                        "​",  # Zero-width space as placeholder
                         key=f"session_{session_id}",
                         use_container_width=True,
-                        type="secondary",
-                    ):
-                        st.session_state.current_session_id = session_id
-                        st.rerun()
+                        type="secondary"
+                    )
 
+                    # Overlay the ticker HTML on top
                     st.markdown(
                         f"""
-                        <div style='font-size: 0.9rem; margin-top: -0.75rem; margin-bottom: 0.5rem;'>
-                            {title_display}
+                        <div style='margin-top: -3.2rem; padding: 0.75rem; pointer-events: none;
+                             font-size: 0.95rem;'>
+                            {title_html}
                         </div>
                         """,
                         unsafe_allow_html=True
                     )
+
+                    if button_clicked:
+                        st.session_state.current_session_id = session_id
+                        st.rerun()
 
     st.markdown("---")
 
