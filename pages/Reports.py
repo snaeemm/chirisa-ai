@@ -22,10 +22,8 @@ runner, session_service = init_agent()
 initialize_sessions(session_service)
 
 with st.sidebar:
-    render_sidebar(session_service)
-    st.markdown("---")
-    if st.button("🚪 Logout", use_container_width=True, key="logout_reports"):
-        logout()
+    from ui.sidebar import render_sidebar_for_reports
+    render_sidebar_for_reports(session_service)
 
 if st.session_state.get("selected_report_id"):
     # Title with delete button in top right
@@ -57,4 +55,6 @@ if st.session_state.get("selected_report_id"):
 
     render_report_viewer(st.session_state.selected_report_id)
 else:
-    st.info("📊 Select a report from the sidebar to view details.")
+    st.title("📊 Reports")
+    st.markdown("---")
+    st.info("👈 Select a report from the sidebar to view its detailed analysis.")
