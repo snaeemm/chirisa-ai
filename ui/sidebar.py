@@ -184,11 +184,6 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
         unsafe_allow_html=True
     )
 
-    if st.button("➕ New Chat", use_container_width=True, type="primary"):
-        new_session_id = create_new_session(session_service)
-        st.session_state.current_session_id = new_session_id
-        st.switch_page("Assistant.py")
-
     st.markdown("---")
     st.markdown("### 📊 Reports")
 
@@ -236,8 +231,7 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
 
                 coords_display = f"({lat:.2f}, {lng:.2f})" if lat and lng else "No coords"
 
-                short_loc = location[:18] + "..." if len(location) > 18 else location
-                button_text = f"{score_emoji} {short_loc}\n{flag} {country} • {score:.1f} • {coords_display}"
+                button_text = f"{score_emoji} {flag} {country}\n📍 {coords_display} • {score:.1f}"
 
                 if is_current:
                     st.button(
@@ -257,11 +251,20 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
                         st.session_state.selected_report_id = report_id
                         st.rerun()
 
-                if len(location) > 18:
+                if len(location) > 25:
                     st.markdown(
                         f"""
                         <div class='ticker-container' style='font-size: 0.7rem; margin-top: -0.75rem; margin-bottom: 0.75rem;'>
-                            <span class='ticker-text'>{location}</span>
+                            <span class='ticker-text'>{location} &nbsp;&nbsp;&nbsp; {location}</span>
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+                    )
+                else:
+                    st.markdown(
+                        f"""
+                        <div style='font-size: 0.7rem; color: #666; margin-top: -0.75rem; margin-bottom: 0.75rem; text-align: center;'>
+                            {location}
                         </div>
                         """,
                         unsafe_allow_html=True

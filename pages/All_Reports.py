@@ -49,7 +49,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.title("🗺️ All Reports - Global Overview")
+st.title("🗺️ Overview")
 st.markdown("---")
 
 try:
@@ -82,7 +82,43 @@ try:
 
         with col3:
             top_location = max(reports, key=lambda x: x.get("composite_score", 0))
-            st.metric("Top Location", top_location.get("location", "N/A")[:20], delta=f"{top_location.get('composite_score', 0):.1f}")
+            top_loc_full = top_location.get("location", "N/A")
+            top_country = top_location.get("country", "Unknown")
+
+            country_flags = {
+                "Australia": "🇦🇺", "Saudi Arabia": "🇸🇦", "United Arab Emirates": "🇦🇪",
+                "UAE": "🇦🇪", "Canada": "🇨🇦", "France": "🇫🇷", "Grenada": "🇬🇩",
+                "Malaysia": "🇲🇾", "United States": "🇺🇸", "USA": "🇺🇸",
+                "Singapore": "🇸🇬", "Germany": "🇩🇪", "United Kingdom": "🇬🇧", "UK": "🇬🇧",
+                "Japan": "🇯🇵", "South Korea": "🇰🇷", "India": "🇮🇳", "China": "🇨🇳"
+            }
+            top_flag = country_flags.get(top_country, "🌍")
+
+            top_report_details = get_report_by_id(top_location["id"])
+            top_coords_display = "N/A"
+            if top_report_details.get("status") == "success":
+                raw_data = top_report_details["data"].get("raw_data")
+                if isinstance(raw_data, str):
+                    raw_data = json.loads(raw_data)
+                coords = raw_data.get("coordinates", {})
+                top_lat = coords.get("lat")
+                top_lng = coords.get("lng")
+                if top_lat and top_lng:
+                    top_coords_display = f"{top_lat:.2f}, {top_lng:.2f}"
+
+            st.metric("Top Location", f"{top_flag} {top_country} • {top_coords_display}", delta=f"{top_location.get('composite_score', 0):.1f}")
+
+            if len(top_loc_full) > 30:
+                st.markdown(
+                    f"""
+                    <div class='location-ticker' style='margin-top: -0.5rem;'>
+                        <span class='location-ticker-text' style='font-size: 0.75rem; color: #666;'>{top_loc_full} &nbsp;&nbsp;&nbsp; {top_loc_full}</span>
+                    </div>
+                    """,
+                    unsafe_allow_html=True
+                )
+            else:
+                st.markdown(f"<div style='font-size: 0.75rem; color: #666; margin-top: -0.5rem;'>{top_loc_full}</div>", unsafe_allow_html=True)
 
         with col4:
             countries = len(set(r.get("country") for r in reports))
@@ -298,19 +334,3 @@ try:
 except Exception as e:
     st.error(f"Error loading data: {str(e)}")
 
-st.markdown("---")
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    if st.button("💬 Go to Assistant", use_container_width=True, type="primary"):
-        st.switch_page("Assistant.py")
-
-with col2:
-    if st.button("📊 View Individual Reports", use_container_width=True, type="secondary"):
-        st.switch_page("pages/Reports.py")
-
-with col3:
-    if st.button("🚪 Logout", use_container_width=True):
-        from utils.auth import logout
-        logout()
