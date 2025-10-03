@@ -127,11 +127,6 @@ def render_sidebar_for_assistant(session_service: DatabaseSessionService) -> Non
 
     st.markdown("---")
 
-    if st.button("🗺️ All Reports Map", use_container_width=True, type="secondary"):
-        st.switch_page("pages/All_Reports.py")
-
-    st.markdown("---")
-
     if st.button("🚪 Logout", use_container_width=True, key="logout_assistant"):
         from utils.auth import logout
         logout()
@@ -241,28 +236,20 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
 
                 coords_display = f"({lat:.2f}, {lng:.2f})" if lat and lng else "No coords"
 
+                short_loc = location[:18] + "..." if len(location) > 18 else location
+                button_text = f"{score_emoji} {short_loc}\n{flag} {country} • {score:.1f} • {coords_display}"
+
                 if is_current:
-                    st.markdown(
-                        f"""
-                        <div style='padding: 0.5rem; background-color: rgba(255, 75, 75, 0.1); border-left: 3px solid #ff4b4b; border-radius: 0.375rem; margin-bottom: 0.5rem;'>
-                            <div style='display: flex; align-items: center; justify-content: space-between;'>
-                                <div style='font-weight: 600; font-size: 0.9rem; flex: 1; overflow: hidden;'>
-                                    <div class='ticker-container'>
-                                        <span class='ticker-text'>📍 {location}</span>
-                                    </div>
-                                </div>
-                                <div style='font-size: 1.2rem; margin-left: 0.5rem;'>{score_emoji}</div>
-                            </div>
-                            <div style='font-size: 0.7rem; color: #666; margin-top: 0.25rem;'>
-                                {flag} {country} • {score:.1f}<br/>{coords_display}
-                            </div>
-                        </div>
-                        """,
-                        unsafe_allow_html=True
+                    st.button(
+                        button_text,
+                        key=f"current_report_{report_id}",
+                        use_container_width=True,
+                        type="primary",
+                        disabled=True
                     )
                 else:
                     if st.button(
-                        f"{score_emoji} {location[:22]}..." if len(location) > 22 else f"{score_emoji} {location}",
+                        button_text,
                         key=f"report_{report_id}",
                         use_container_width=True,
                         type="secondary",
@@ -270,22 +257,15 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
                         st.session_state.selected_report_id = report_id
                         st.rerun()
 
+                if len(location) > 18:
                     st.markdown(
                         f"""
-                        <div class='ticker-container' style='font-size: 0.7rem; margin-top: -0.75rem; margin-bottom: 0.25rem;'>
+                        <div class='ticker-container' style='font-size: 0.7rem; margin-top: -0.75rem; margin-bottom: 0.75rem;'>
                             <span class='ticker-text'>{location}</span>
-                        </div>
-                        <div style='font-size: 0.7rem; color: #666; margin-bottom: 0.75rem;'>
-                            {flag} {country} • {score:.1f}<br/>{coords_display}
                         </div>
                         """,
                         unsafe_allow_html=True
                     )
-
-    st.markdown("---")
-
-    if st.button("🗺️ All Reports Map", use_container_width=True, type="secondary", key="map_from_reports"):
-        st.switch_page("pages/All_Reports.py")
 
     st.markdown("---")
 

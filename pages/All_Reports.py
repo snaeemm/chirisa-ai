@@ -240,6 +240,18 @@ try:
                         flag = country_flags.get(country, "🌍")
 
                         with col:
+                            report_details = get_report_by_id(report["id"])
+                            lat, lng = None, None
+                            if report_details.get("status") == "success":
+                                raw_data = report_details["data"].get("raw_data")
+                                if isinstance(raw_data, str):
+                                    raw_data = json.loads(raw_data)
+                                coords = raw_data.get("coordinates", {})
+                                lat = coords.get("lat")
+                                lng = coords.get("lng")
+
+                            coords_display = f"({lat:.2f}, {lng:.2f})" if lat and lng else "Coordinates N/A"
+
                             if len(location) > 40:
                                 location_html = f"<div class='location-ticker'><span class='location-ticker-text'>{location} &nbsp;&nbsp;&nbsp; {location}</span></div>"
                             else:
@@ -249,7 +261,7 @@ try:
                                 f"""
                                 <div style='padding: 1rem; background-color: rgba(240, 242, 246, 0.5);
                                      border-radius: 0.5rem; border: 2px solid rgba(49, 51, 63, 0.1);
-                                     margin-bottom: 1rem; min-height: 200px;'>
+                                     margin-bottom: 1rem; min-height: 220px;'>
                                     <div style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;'>
                                         <span style='font-size: 1.5rem; font-weight: bold; color: #666;'>#{idx}</span>
                                         <span style='font-size: 2rem;'>{score_emoji}</span>
@@ -260,7 +272,10 @@ try:
                                     <div style='font-size: 0.9rem; color: #666; margin-bottom: 0.5rem;'>
                                         {flag} {country}
                                     </div>
-                                    <div style='font-size: 1.5rem; font-weight: bold; color: #ff4b4b; margin: 0.75rem 0;'>
+                                    <div style='font-size: 0.8rem; color: #888; margin-bottom: 0.5rem;'>
+                                        📍 {coords_display}
+                                    </div>
+                                    <div style='font-size: 1.5rem; font-weight: bold; color: #ff4b4b; margin: 0.5rem 0;'>
                                         {score:.2f}
                                     </div>
                                     <div style='font-size: 0.85rem; color: #888;'>
