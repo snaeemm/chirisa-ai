@@ -44,6 +44,9 @@ st.markdown(
     .location-ticker:hover .location-ticker-text {
         animation-play-state: paused;
     }
+    [data-testid="stMetricValue"] {
+        font-size: 1.2rem;
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -289,7 +292,7 @@ try:
 
                             coords_display = f"({lat:.2f}, {lng:.2f})" if lat and lng else "Coordinates N/A"
 
-                            if len(location) > 40:
+                            if len(location) > 25:
                                 location_html = f"<div class='location-ticker'><span class='location-ticker-text'>{location} &nbsp;&nbsp;&nbsp; {location}</span></div>"
                             else:
                                 location_html = location
