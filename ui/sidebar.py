@@ -68,6 +68,22 @@ def render_sidebar_for_assistant(session_service: DatabaseSessionService) -> Non
             background-color: rgba(255, 75, 75, 0.1);
             border-left: 3px solid #ff4b4b;
         }
+        .session-ticker {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+        }
+        .session-ticker-text {
+            display: inline-block;
+            animation: session-scroll 8s linear infinite;
+        }
+        @keyframes session-scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .session-ticker:hover .session-ticker-text {
+            animation-play-state: paused;
+        }
         </style>
         """,
         unsafe_allow_html=True
@@ -99,13 +115,11 @@ def render_sidebar_for_assistant(session_service: DatabaseSessionService) -> Non
 
                 if first_user_msg:
                     content = first_user_msg["content"]
-                    title = (
-                        content[:TITLE_MAX_LENGTH] + "..."
-                        if len(content) > TITLE_MAX_LENGTH
-                        else content
-                    )
+                    title = content if len(content) <= 25 else content[:25] + "..."
+                    full_title = content
                 else:
                     title = "New Chat"
+                    full_title = "New Chat"
 
                 if is_current:
                     st.button(
@@ -124,6 +138,17 @@ def render_sidebar_for_assistant(session_service: DatabaseSessionService) -> Non
                     ):
                         st.session_state.current_session_id = session_id
                         st.rerun()
+
+                # Add ticker for long titles
+                if len(full_title) > 25:
+                    st.markdown(
+                        f"""
+                        <div class='session-ticker' style='font-size: 0.7rem; color: #666; margin-top: -0.75rem; margin-bottom: 0.5rem;'>
+                            <span class='session-ticker-text'>{full_title} &nbsp;&nbsp;&nbsp; {full_title}</span>
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+                    )
 
     st.markdown("---")
 
