@@ -11,7 +11,7 @@ AUTH_PASSWORD = "professional_granite_123!"
 # Multi-user authentication
 USERS = {
     "Admin": "professional_granite_123!",
-    "Colm": "chirisa123",
+    "Colm": "CaliforniaT_V8!",
     "Omar": "chirisa123"
 }
 

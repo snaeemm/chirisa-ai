@@ -112,7 +112,7 @@ with col1:
 
 with col2:
     if st.button("📊 View Reports", use_container_width=True, type="secondary"):
-        st.switch_page("pages/Reports.py")
+        st.switch_page("pages/3_Reports.py")
 
 with col3:
     if st.button("🚪 Logout", use_container_width=True):

@@ -381,7 +381,7 @@ try:
                             )
                             if st.button("📊 View Details", key=f"view_{report['id']}", use_container_width=True, type="secondary"):
                                 st.session_state.selected_report_id = report["id"]
-                                st.switch_page("pages/Reports.py")
+                                st.switch_page("pages/3_Reports.py")
 
         else:
             st.warning("⚠️ No location coordinates available for mapping. Reports may need to include coordinate data.")
