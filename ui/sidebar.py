@@ -291,8 +291,8 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
                 else:
                     coords_display = "No coords"
 
-                # Put country on second line for consistent alignment
-                button_text = f"{score_emoji} {coords_display} • {score:.1f}\n{flag} {country}"
+                # Use only flag on second line for perfect alignment (country in ticker)
+                button_text = f"{score_emoji} {coords_display} • {score:.1f}\n{flag}"
 
                 if is_current:
                     st.button(
