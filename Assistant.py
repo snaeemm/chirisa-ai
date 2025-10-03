@@ -32,7 +32,7 @@ if not st.session_state.sessions:
 
 current_session = st.session_state.sessions.get(st.session_state.current_session_id)
 if not current_session:
-    st.warning("⚠️ Session not found. Please select a session from the sidebar or create a new one.")
+    st.info("👈 Please select a session from the sidebar or create a new one.")
     st.stop()
 
 response_status = check_response_status(st.session_state.current_session_id)
