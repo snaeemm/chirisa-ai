@@ -115,23 +115,29 @@ def render_sidebar_for_assistant(session_service: DatabaseSessionService) -> Non
 
                 if first_user_msg:
                     content = first_user_msg["content"]
-                    title = content if len(content) <= 25 else content[:25] + "..."
                     full_title = content
                 else:
-                    title = "New Chat"
                     full_title = "New Chat"
 
+                # Use ticker for titles longer than 25 chars
+                if len(full_title) > 25:
+                    title_display = f"<div class='session-ticker'><span class='session-ticker-text'>{full_title} &nbsp;&nbsp;&nbsp; {full_title}</span></div>"
+                else:
+                    title_display = full_title
+
                 if is_current:
-                    st.button(
-                        f"📍 {title}",
-                        key=f"current_session_{session_id}",
-                        use_container_width=True,
-                        type="primary",
-                        disabled=True
+                    st.markdown(
+                        f"""
+                        <div style='padding: 0.5rem; margin: 0.25rem 0; border-radius: 0.5rem;
+                             background-color: rgba(255, 75, 75, 0.1); border-left: 3px solid #ff4b4b;'>
+                            📍 {title_display}
+                        </div>
+                        """,
+                        unsafe_allow_html=True
                     )
                 else:
                     if st.button(
-                        title,
+                        "Select",
                         key=f"session_{session_id}",
                         use_container_width=True,
                         type="secondary",
@@ -139,12 +145,10 @@ def render_sidebar_for_assistant(session_service: DatabaseSessionService) -> Non
                         st.session_state.current_session_id = session_id
                         st.rerun()
 
-                # Add ticker for long titles
-                if len(full_title) > 25:
                     st.markdown(
                         f"""
-                        <div class='session-ticker' style='font-size: 0.7rem; color: #666; margin-top: -0.75rem; margin-bottom: 0.5rem;'>
-                            <span class='session-ticker-text'>{full_title} &nbsp;&nbsp;&nbsp; {full_title}</span>
+                        <div style='font-size: 0.9rem; margin-top: -0.75rem; margin-bottom: 0.5rem;'>
+                            {title_display}
                         </div>
                         """,
                         unsafe_allow_html=True
