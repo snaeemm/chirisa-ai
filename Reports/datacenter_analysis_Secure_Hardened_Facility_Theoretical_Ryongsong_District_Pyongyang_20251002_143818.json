@@ -1,0 +1,1816 @@
+{
+  "location": "Secure, Hardened Facility (Theoretical), Ryongsong District, Pyongyang",
+  "coordinates": {
+    "lat": 39.0737987,
+    "lng": 125.8197642
+  },
+  "country": "North Korea",
+  "analysis_date": "2025-10-02",
+  "overall_suitability": {
+    "composite_score": 1.542857142857143,
+    "rating": "Poor",
+    "recommendation": "Location rated as Poor for datacenter deployment"
+  },
+  "domain_analysis": {
+    "power_infrastructure": {
+      "score": 1.3,
+      "key_findings": [
+        "The power infrastructure is fundamentally unsuitable for hyperscale data center viability due to extreme reliability constraints (estimated sub-90% uptime).",
+        "Scaling to multi-megawatt capacity (100MW+) is physically impossible without severe diversion of critical national generation capacity.",
+        "The lack of a regulatory framework, market mechanism, and the presence of international sanctions render commercial and financial risk unmanageable."
+      ],
+      "summary": "The location in North Korea exhibits non-existent viability for hyperscale data center operations based on global power infrastructure benchmarks. The grid suffers from extreme unreliability, chronic capacity deficits, political control over allocation, and insurmountable regulatory barriers due to international sanctions. The estimated TCO is prohibitive due to political and supply risk, resulting in a low overall infrastructure score (1.3/5.0)."
+    },
+    "network_connectivity": {
+      "score": 1.1,
+      "key_findings": [
+        "The location presents an untenable environment for a commercial hyperscale data center due to total state control (KPTC monopoly).",
+        "Connectivity is characterized by extreme SPOF risk, relying solely on two terrestrial border crossings (China primary, Russia secondary).",
+        "Zero carrier diversity, non-existent competitive peering, and absence of major CDN/Cloud provider infrastructure result in guaranteed high latency and severe performance bottlenecks."
+      ],
+      "summary": "Network connectivity viability for a hyperscale data center at this location is critically low (Score 1.1/5.0). The infrastructure is defined by a complete state monopoly (KPTC), zero competitive peering, minimal international bandwidth capacity, and severe latency issues due to mandatory multi-hop transit routing. The lack of subsea cables and reliance on restricted terrestrial links through politically sensitive borders create unacceptable redundancy risks and commercial constraints."
+    },
+    "climate_environmental": {
+      "score": 3.9,
+      "key_findings": [
+        "The location offers substantial operational efficiency with approximately 4,500 hours of viable free cooling annually, leading to a competitive PUE target of 1.25.",
+        "Cooling strategy must be hybrid, relying on indirect economizers to mitigate high summer humidity and potential winter air quality variations.",
+        "Geological risks (settlement, liquefaction) are moderate due to river valley proximity, necessitating detailed pre-construction geotechnical investigations."
+      ],
+      "summary": "The site in Pyongyang presents favorable climate conditions for hyperscale data center operations, primarily due to cold winters and long shoulder seasons offering significant free cooling potential. A hybrid cooling strategy is essential to manage hot, humid summers efficiently, allowing for an estimated PUE of 1.25. Risks related to hydrology and seismicity are moderate and manageable through rigorous geotechnical investigation, elevated construction, and adherence to seismic building codes."
+    },
+    "operational_risk": {
+      "score": 1.1,
+      "key_findings": [
+        "Viability is zero: Operational risk is compounded by international sanctions, making supply chain logistics (parts, fuel) and maintenance impossible.",
+        "The primary security and operational threat is the host government, which mandates total data access and control, negating standard enterprise security and compliance protocols.",
+        "The chronic instability of the national power grid renders the location fundamentally unsuitable for any mission-critical infrastructure requiring high uptime (Tier III+)."
+      ],
+      "summary": "The proposed location in North Korea presents an unmitigated, extreme operational risk profile. Systemic infrastructure failure, coupled with mandatory state control over security and data, renders standard commercial hyperscale data center viability impossible. The extreme geopolitical risk (sanctions, regional conflict potential) prohibits the necessary investment and continuous logistical support. The overall operational stability score is critically low (1.1/5.0)."
+    },
+    "esg_sustainability": {
+      "score": 1.2,
+      "key_findings": [
+        "The governance environment poses an insurmountable barrier due to international sanctions (UN/US/EU) and extreme geopolitical risk.",
+        "Lack of a verifiable renewable energy market and high reliance on high-carbon baseload render grid decarbonization targets unachievable by global hyperscale standards.",
+        "Compliance with core ESG principles (labor rights, supply chain transparency, financial governance) is impossible under the current regime, resulting in maximum social and governance risk."
+      ],
+      "summary": "The viability of a hyperscale data center in Pyongyang is assessed as critically low (Score 1.2) from an ESG and sustainability perspective. The location presents prohibitive governance and sanctions risks, coupled with an opaque regulatory environment, high carbon intensity, and zero capability for verifiable compliance with international labor and corporate governance standards. This site is commercially and ethically non-viable for any globally operating technology firm requiring robust ESG adherence."
+    },
+    "regulatory_compliance": {
+      "score": 1.1,
+      "key_findings": [
+        "The regulatory environment of North Korea presents non-viable conditions for commercial hyperscale data center operations due to complete absence of rule of law and transparent administration.",
+        "International sanctions (UN, US, EU) prohibit the necessary financial transactions and import of dual-use technology required for building and maintaining a modern data center.",
+        "Data Sovereignty risk is absolute, with mandatory state access to all stored data, posing catastrophic risks to client data integrity and global compliance."
+      ],
+      "summary": "The regulatory compliance analysis confirms that a hyperscale data center project in Pyongyang, DPRK, is commercially, legally, and operationally non-viable. The environment is characterized by extreme political risk, debilitating international sanctions, mandatory state surveillance, and a total lack of predictable permitting or legal recourse for foreign entities. Viability score is critically low."
+    },
+    "hyperscaler_attractiveness": {
+      "score": 1.1,
+      "key_findings": [
+        "Pyongyang, North Korea, represents an investment location with absolute zero viability for major hyperscalers due to extreme geopolitical risk and comprehensive sanctions.",
+        "The complete absence of a commercial internet ecosystem, combined with state control over infrastructure, eliminates any demand justification.",
+        "Investment would violate current international trade and sanctions laws, posing unacceptable legal and reputational risks."
+      ],
+      "summary": "This location is fundamentally non-viable for hyperscale data center development. Comprehensive international sanctions, severe political instability, and the complete lack of a commercial cloud ecosystem mean that legal and commercial viability is zero. All major hyperscalers (AWS, Azure, GCP) are strictly prohibited from operating or investing here. The analysis yields an extremely low overall score of 1.1, indicating no potential for development under current geopolitical conditions."
+    }
+  },
+  "detailed_analysis": {
+    "power_infrastructure": "The location in North Korea exhibits non-existent viability for hyperscale data center operations based on global power infrastructure benchmarks. The grid suffers from extreme unreliability, chronic capacity deficits, political control over allocation, and insurmountable regulatory barriers due to international sanctions. The estimated TCO is prohibitive due to political and supply risk, resulting in a low overall infrastructure score (1.3/5.0).",
+    "network_connectivity": "Network connectivity viability for a hyperscale data center at this location is critically low (Score 1.1/5.0). The infrastructure is defined by a complete state monopoly (KPTC), zero competitive peering, minimal international bandwidth capacity, and severe latency issues due to mandatory multi-hop transit routing. The lack of subsea cables and reliance on restricted terrestrial links through politically sensitive borders create unacceptable redundancy risks and commercial constraints.",
+    "climate_environmental": "The site in Pyongyang presents favorable climate conditions for hyperscale data center operations, primarily due to cold winters and long shoulder seasons offering significant free cooling potential. A hybrid cooling strategy is essential to manage hot, humid summers efficiently, allowing for an estimated PUE of 1.25. Risks related to hydrology and seismicity are moderate and manageable through rigorous geotechnical investigation, elevated construction, and adherence to seismic building codes.",
+    "operational_risk": "The proposed location in North Korea presents an unmitigated, extreme operational risk profile. Systemic infrastructure failure, coupled with mandatory state control over security and data, renders standard commercial hyperscale data center viability impossible. The extreme geopolitical risk (sanctions, regional conflict potential) prohibits the necessary investment and continuous logistical support. The overall operational stability score is critically low (1.1/5.0).",
+    "esg_sustainability": "The viability of a hyperscale data center in Pyongyang is assessed as critically low (Score 1.2) from an ESG and sustainability perspective. The location presents prohibitive governance and sanctions risks, coupled with an opaque regulatory environment, high carbon intensity, and zero capability for verifiable compliance with international labor and corporate governance standards. This site is commercially and ethically non-viable for any globally operating technology firm requiring robust ESG adherence.",
+    "regulatory_compliance": "The regulatory compliance analysis confirms that a hyperscale data center project in Pyongyang, DPRK, is commercially, legally, and operationally non-viable. The environment is characterized by extreme political risk, debilitating international sanctions, mandatory state surveillance, and a total lack of predictable permitting or legal recourse for foreign entities. Viability score is critically low.",
+    "hyperscaler_attractiveness": "This location is fundamentally non-viable for hyperscale data center development. Comprehensive international sanctions, severe political instability, and the complete lack of a commercial cloud ecosystem mean that legal and commercial viability is zero. All major hyperscalers (AWS, Azure, GCP) are strictly prohibited from operating or investing here. The analysis yields an extremely low overall score of 1.1, indicating no potential for development under current geopolitical conditions."
+  },
+  "structured_analysis": {
+    "power_infrastructure": {
+      "overall_score": 1.3,
+      "grid_reliability": {
+        "name": "Grid Reliability & Resiliency",
+        "content": "The North Korean power grid, operated primarily by the State Committee of Power Industry (SCPI), is severely capacity constrained and suffers from chronic reliability issues driven by aging infrastructure, maintenance deficits, and acute fuel shortages. Reliability outside high-priority government zones is extremely low, making it wholly incompatible with hyperscale data center requirements (typically requiring 5x9s uptime). Frequency stability (nominally 60Hz) is known to be poor, and voltage regulation is inconsistent across the system due to inadequate control infrastructure and system integration. Utility-level disaster recovery and modernization initiatives are minimal and largely unsuccessful in addressing core capacity shortfalls.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "saidi_minutes": 15000,
+            "saifi_interruptions": 30.0,
+            "grid_uptime": 88.5
+          },
+          "percentages": {
+            "renewable_penetration": 1.0,
+            "grid_modernization": 5.0
+          },
+          "ranges": {
+            "voltage_regulation": {
+              "min": -20.0,
+              "max": 20.0
+            }
+          },
+          "units": {
+            "saidi_minutes": "minutes/year (estimated rationing/outage)",
+            "saifi_interruptions": "interruptions/year (estimated)",
+            "grid_uptime": "% (estimated operational uptime in non-priority zones)"
+          }
+        },
+        "key_points": [
+          "Extremely poor grid reliability and frequent rationing",
+          "Severe frequency and voltage instability issues",
+          "Lack of modern grid infrastructure and resilience investments"
+        ],
+        "tables": []
+      },
+      "power_capacity": {
+        "name": "Power Capacity & Scalability",
+        "content": "The DPRK faces a systemic energy deficit. While nominal installed capacity is estimated around 7 GW, effective operational capacity often falls below 3 GW due to maintenance issues, seasonal hydro variations, and fuel shortages. Providing multi-megawatt capacity (100MW+) for a hyperscale campus is currently impossible without diverting a major portion of the national or regional grid supply, a decision that would be subject to supreme political approval. There is zero readily available spare capacity at high-voltage transmission levels (e.g., 220kV or 110kV lines near Pyongyang) for commercial loads of this magnitude. Grid capacity forecasts do not support large-scale commercial load growth.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "available_capacity": 0,
+            "transmission_voltage": 220,
+            "substation_distance": 5.0
+          },
+          "percentages": {
+            "capacity_utilization": 99.0
+          },
+          "ranges": {},
+          "units": {
+            "available_capacity": "MW (effectively zero for commercial use)",
+            "transmission_voltage": "kV",
+            "substation_distance": "km"
+          }
+        },
+        "key_points": [
+          "Zero spare capacity for hyperscale loads",
+          "Acute national energy deficit constrains all development",
+          "Scaling to 100MW+ is politically and physically unfeasible"
+        ],
+        "tables": []
+      },
+      "generation_mix": {
+        "name": "Power Generation Mix & Sustainability",
+        "content": "The current power generation mix is dominated by unreliable, heavily seasonal Hydroelectric power (approx. 50-60%) and outdated Thermal power (Coal/Oil, approx. 40-50%). There is negligible capacity from modern utility-scale renewables. Baseload stability is extremely poor due to reliance on intermittent river flow for hydro and inconsistent fuel supply for thermal plants. Grid carbon intensity is very high due to the use of inefficient, low-quality coal. Renewable Power Purchase Agreements (PPAs) or green tariff programs do not exist in this highly centralized, non-market environment. This mix fails global sustainability and carbon reduction goals.",
+        "sub_score": 1.5,
+        "metrics": {
+          "numerical_values": {
+            "carbon_intensity": 950,
+            "baseload_capacity_factor": 55
+          },
+          "percentages": {
+            "hydro": 55.0,
+            "thermal_coal": 40.0,
+            "renewables": 1.0,
+            "other": 4.0
+          },
+          "ranges": {},
+          "units": {
+            "carbon_intensity": "gCO2/kWh (estimated for inefficient thermal fleet)",
+            "baseload_capacity_factor": "% (estimated unreliable average)"
+          }
+        },
+        "key_points": [
+          "High reliance on seasonal and unreliable hydro power",
+          "Extreme grid carbon intensity due to inefficient coal",
+          "No viable path for sourcing renewable energy (PPAs)"
+        ],
+        "tables": []
+      },
+      "connection_process": {
+        "name": "Connection Process & Regulatory Framework",
+        "content": "The grid interconnection process for large loads is opaque, non-standardized, and entirely dependent on central political decision-making (via the State Committee of Power Industry, SCPI, and higher political authorities). Standard interconnection timelines, fees, and engineering requirements typical of market economies do not apply. Sanctions prevent foreign entities from engaging in critical infrastructure development, rendering any 'process' theoretical. There is no track record of local utility support or fast-track processes for foreign commercial data center projects.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "interconnection_timeline_months": 999,
+            "connection_fee_per_mw": 0
+          },
+          "percentages": {
+            "fast_track_eligibility": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "interconnection_timeline_months": "months (politically dependent)",
+            "connection_fee_per_mw": "USD/MW (irrelevant; allocation based on fiat)"
+          }
+        },
+        "key_points": [
+          "Interconnection is politically determined, not regulatory",
+          "No standardized process or predictable timelines",
+          "International sanctions block essential development and financing"
+        ],
+        "tables": []
+      },
+      "electricity_costs": {
+        "name": "Electricity Costs & Market Dynamics",
+        "content": "Market dynamics are nonexistent. Electricity allocation and pricing are centrally controlled and subsidized, not determined by cost recovery or competitive wholesale markets. Verifiable industrial electricity rates (USD/kWh) are unavailable. Any pricing structure would be subject to political fiat and non-transparent agreements. Hedging options, time-of-use tariffs, and long-term cost predictability are absent, making financial modeling impossible and cost competitiveness analysis irrelevant against global benchmarks like Northern Virginia or Singapore.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "industrial_rate": 0.0,
+            "demand_charge": 0.0
+          },
+          "percentages": {
+            "cost_competitiveness": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "industrial_rate": "USD/kWh (non-market rate)",
+            "demand_charge": "USD/kW-month (non-market rate)"
+          }
+        },
+        "key_points": [
+          "No competitive market or verifiable industrial rates",
+          "Pricing determined by political allocation and fiat",
+          "Zero ability to hedge or secure long-term price stability"
+        ],
+        "tables": []
+      },
+      "cost_model": {
+        "name": "Cost Model & Financial Projections",
+        "content": "Due to the lack of transparent pricing, market data, and high political and sanctions risk, standard 20-year electricity cost projections are impossible to generate reliably. Cost escalation is driven by political decisions, not fuel price trends or infrastructure investment recovery. The Total Cost of Ownership (TCO) is dominated by the risk premium associated with political instability and sanctions enforcement, making the location non-viable for long-term commercial investment.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "projected_escalation": 999.0,
+            "lcoe_20_year": 9.99
+          },
+          "percentages": {
+            "cost_certainty": 0.0
+          },
+          "ranges": {
+            "price_scenario": {
+              "min": 0.0,
+              "max": 999.0
+            }
+          },
+          "units": {
+            "projected_escalation": "%/year (political risk)",
+            "lcoe_20_year": "USD/kWh (not quantifiable)"
+          }
+        },
+        "key_points": [
+          "Financial projections are invalid due to extreme political uncertainty",
+          "Zero cost certainty over long duration contracts",
+          "High inherent risk premium makes TCO prohibitive"
+        ],
+        "tables": []
+      },
+      "industrial_heritage": {
+        "name": "Industrial Heritage & Infrastructure",
+        "content": "The coordinates are near Pyongyang, which contains some established, albeit dated, industrial zones (e.g., related to metallurgy or historical manufacturing). While this means general industrial zoning exists, existing electrical infrastructure is typically decades old and unsuitable for the power quality and density requirements of a modern hyperscale data center. Repurposing existing substations would require complete, costly modernization. A skilled workforce for high-voltage systems exists, but expertise in modern data center electrical architecture is lacking. Transportation infrastructure is rudimentary compared to global standards.",
+        "sub_score": 2.0,
+        "metrics": {
+          "numerical_values": {
+            "industrial_sites_within_10km": 3,
+            "substation_reuse_potential": 1
+          },
+          "percentages": {
+            "industrial_zoning": 60.0,
+            "skilled_workforce": 40.0
+          },
+          "ranges": {},
+          "units": {
+            "industrial_sites_within_10km": "count",
+            "substation_reuse_potential": "count (requiring full overhaul)"
+          }
+        },
+        "key_points": [
+          "Existing infrastructure is low quality and requires full modernization",
+          "Basic industrial zoning present but insufficient development advantages",
+          "Skilled workforce requires significant retraining for modern DC standards"
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Analysis is based on publicly available general knowledge and intelligence regarding the DPRKs severely constrained and unreliable power sector.",
+        "Quantitative metrics (SAIDI, SAIFI, available MW, pricing) are estimates based on reported chronic shortages and system failures, as official verifiable data does not exist.",
+        "All commercial data center development assumes successful navigation and neutralization of all international sanctions, which is currently unfeasible.",
+        "The 60Hz frequency standard is maintained, though stability is assumed to be volatile."
+      ],
+      "key_insights": [
+        "The power infrastructure is fundamentally unsuitable for hyperscale data center viability due to extreme reliability constraints (estimated sub-90% uptime).",
+        "Scaling to multi-megawatt capacity (100MW+) is physically impossible without severe diversion of critical national generation capacity.",
+        "The lack of a regulatory framework, market mechanism, and the presence of international sanctions render commercial and financial risk unmanageable.",
+        "The primary viability challenge is political access and chronic systemic energy deficits, not engineering complexity."
+      ],
+      "executive_summary": "The location in North Korea exhibits non-existent viability for hyperscale data center operations based on global power infrastructure benchmarks. The grid suffers from extreme unreliability, chronic capacity deficits, political control over allocation, and insurmountable regulatory barriers due to international sanctions. The estimated TCO is prohibitive due to political and supply risk, resulting in a low overall infrastructure score (1.3/5.0).",
+      "data_gaps": [
+        "Local utility capacity confirmation for multi-MW loads (precise MW availability)",
+        "Grid interconnection cost and timeline verification (actual regulatory framework)",
+        "Quantitative power quality and reliability assessment (measured frequency and voltage deviation)",
+        "Existence of any contractual mechanism for long-term power pricing or PPAs"
+      ],
+      "third_party_verification": [
+        "Geopolitical risk consultancy specializing in DPRK (for sanctions compliance and political viability)",
+        "International electrical engineering firm for hypothetical grid capacity assessment (assuming political access)",
+        "Utility provider (SCPI) engagement necessary for connection analysis (highly unlikely to be available)"
+      ],
+      "phase_1_recommendations": {
+        "target_capacity": "0 MW (Project shelved due to insurmountable infrastructure and political risk)",
+        "grid_connection": "Establish necessary diplomatic and political approvals prior to any technical assessment",
+        "power_strategy": "Plan for 100% self-generation (diesel/gas/renewable microgrid), as grid reliability cannot support even minimum enterprise standards"
+      }
+    },
+    "network_connectivity": {
+      "overall_score": 1.1,
+      "fiber_infrastructure": {
+        "name": "Fiber Infrastructure & Metropolitan Networks",
+        "content": "Domestic fiber optic networks are deployed and operated entirely by the state (Korea Post and Telecommunications - KPTC), primarily serving government, military, and the internal intranet (Kwangmyong). Fiber density is extremely low for commercial hyperscale applications. Last-mile connectivity options and redundancy for external commercial use are non-existent, and metropolitan area networks (MAN) within Pyongyang are strictly controlled with no publicly verifiable ring topologies for open access.",
+        "sub_score": 1.5,
+        "metrics": {
+          "numerical_values": {
+            "fiber_density_km": 5000,
+            "ftth_coverage": 0,
+            "man_ring_capacity": 1
+          },
+          "percentages": {
+            "urban_fiber_penetration": 5.0,
+            "redundant_paths": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "fiber_density_km": "km (approximate state network)",
+            "ftth_coverage": "% (public)",
+            "man_ring_capacity": "Gbps (minimal public capacity)"
+          }
+        },
+        "key_points": [
+          "Network infrastructure is entirely state-owned (KPTC).",
+          "Zero commercial fiber density or FTTH availability.",
+          "No open-access MAN redundancy suitable for hyperscale demands."
+        ],
+        "tables": []
+      },
+      "subsea_cables": {
+        "name": "Subsea Cable Infrastructure",
+        "content": "The location lacks any subsea cable landing points, relying entirely on terrestrial fiber optic crossings. This creates a critical single point of failure (SPOF) risk, as all international transit must pass through neighboring countries (primarily China and secondarily Russia). There is zero diversity in cable type or routing independent of state-controlled terrestrial borders.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "landing_points": 0,
+            "total_capacity": 0,
+            "cable_systems": 0
+          },
+          "percentages": {
+            "redundancy_level": 0.0,
+            "operator_diversity": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "landing_points": "points",
+            "total_capacity": "Tbps",
+            "cable_systems": "systems"
+          }
+        },
+        "key_points": [
+          "Complete reliance on high-risk terrestrial links.",
+          "Zero subsea cable landing points or capacity.",
+          "Extreme SPOF vulnerability due to geopolitical routing constraints."
+        ],
+        "tables": []
+      },
+      "international_connectivity": {
+        "name": "International Connectivity & Global Peering",
+        "content": "International connectivity is severely constrained, bottlenecked by highly limited terrestrial fiber routes. The primary transit route is via China (operated by carriers like China Unicom/China Telecom), with a secondary, low-capacity route via Russia (Rostelecom). Total available public international bandwidth is estimated to be extremely low (likely < 5 Gbps for the entire country). There are no connections to major global IXPs, making direct international peering impossible.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "international_bandwidth_tbps": 0.005,
+            "global_ixp_connections": 0,
+            "tier1_providers": 0
+          },
+          "percentages": {
+            "asia_pacific_connectivity": 95.0,
+            "europe_connectivity": 5.0,
+            "north_america_connectivity": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "international_bandwidth_tbps": "Tbps (approximate public capacity)",
+            "global_ixp_connections": "count",
+            "tier1_providers": "count"
+          }
+        },
+        "key_points": [
+          "Minimal total international bandwidth (< 5 Gbps estimated public capacity).",
+          "Zero direct connection to global Tier-1 providers or IXPs.",
+          "Transit entirely reliant on China and Russia state-affiliated carriers."
+        ],
+        "tables": []
+      },
+      "domestic_peering": {
+        "name": "Domestic Peering & Carrier Landscape",
+        "content": "The domestic telecommunications sector is a complete monopoly held by KPTC. There is no competitive carrier landscape, and thus no open market for connectivity or carrier diversity required for hyperscale operations. There are no public Internet Exchange Points (IXPs); all domestic traffic is managed within the state-controlled network (Kwangmyong) or funneled through the single state gateway for international transit.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "domestic_carriers": 1,
+            "ixp_participants": 0,
+            "peak_traffic_gbps": 0
+          },
+          "percentages": {
+            "market_competition": 0.0,
+            "carrier_diversity": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "domestic_carriers": "count (effective)",
+            "ixp_participants": "count",
+            "peak_traffic_gbps": "Gbps (public exchange)"
+          }
+        },
+        "key_points": [
+          "Total KPTC monopoly; zero carrier diversity.",
+          "No open peering relationships or domestic IXPs.",
+          "Market competition is non-existent, severely hindering scalability."
+        ],
+        "tables": []
+      },
+      "latency_performance": {
+        "name": "Latency Performance & CDN Presence",
+        "content": "Latency performance is poor due to the reliance on terrestrial links routed through neighboring countries before reaching major internet hubs. Given the transit dependency on mainland China, Round Trip Time (RTT) to global markets will be high and highly variable. There is zero known presence of major hyperscale cloud providers (AWS, Google Cloud, Azure) or commercial Content Delivery Networks (CDNs) within the country.",
+        "sub_score": 1.5,
+        "metrics": {
+          "numerical_values": {
+            "latency_tokyo_ms": 150,
+            "latency_singapore_ms": 220,
+            "latency_sydney_ms": 300,
+            "packet_loss": 5.0
+          },
+          "percentages": {
+            "network_availability": 99.0,
+            "cdn_coverage": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "latency_tokyo_ms": "ms (estimated via transit)",
+            "latency_singapore_ms": "ms (estimated via transit)",
+            "latency_sydney_ms": "ms (estimated via transit)",
+            "packet_loss": "% (estimated due to congestion/filtering)"
+          }
+        },
+        "key_points": [
+          "High, unpredictable latency due to multi-hop transit routing.",
+          "Zero commercial CDN or cloud provider PoPs available.",
+          "Network performance metrics (packet loss) are expected to be poor due to filtering and low capacity."
+        ],
+        "tables": []
+      },
+      "bandwidth_costs": {
+        "name": "Bandwidth Costs & Commercial Terms",
+        "content": "Commercial bandwidth pricing is irrelevant as open IP transit is not sold on the domestic market. For any entity permitted to utilize the infrastructure, costs would be dictated by KPTC's state-controlled monopoly, resulting in prohibitive pricing driven by political risk and guaranteed profit margins. Scalability is fundamentally constrained by the physical limit of the international border crossing links; dedicated dark fiber options are not commercially available.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "domestic_10g_cost": 50000,
+            "international_10g_cost": 150000,
+            "dark_fiber_cost": 0
+          },
+          "percentages": {
+            "cost_competitiveness": 0.0,
+            "volume_discounts": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "domestic_10g_cost": "USD/month (estimated minimum negotiated)",
+            "international_10g_cost": "USD/month (estimated minimum negotiated)",
+            "dark_fiber_cost": "commercial availability"
+          }
+        },
+        "key_points": [
+          "Bandwidth pricing is exorbitant and non-commercial due to monopoly.",
+          "Zero cost competitiveness compared to global markets.",
+          "Scalability is impossible due to capacity limits and lack of commercial dark fiber."
+        ],
+        "tables": []
+      },
+      "future_proofing": {
+        "name": "Future-Proofing & Infrastructure Investment",
+        "content": "Future investment is entirely directed toward reinforcing state control, security, and the internal network (Kwangmyong). There are no publicly verifiable plans or commitments for expanding commercial international bandwidth or investing in infrastructure specifically designed to support AI/ML workloads, high-density compute, or public edge computing initiatives. The focus remains on strategic isolation rather than commercial connectivity.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "planned_investments_usd": 0,
+            "5g_coverage": 0,
+            "edge_pops": 0
+          },
+          "percentages": {
+            "ai_ready_infrastructure": 0.0,
+            "capacity_growth_projection": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "planned_investments_usd": "USD (commercial focus)",
+            "5g_coverage": "% (public commercial)",
+            "edge_pops": "count (public commercial)"
+          }
+        },
+        "key_points": [
+          "No known public investment in commercial connectivity expansion.",
+          "Zero readiness for open AI/ML or high-density workloads.",
+          "Infrastructure development is purely state-driven and isolation-focused."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "The analysis assumes a theoretical hyperscale data center requiring open international IP transit, competition, and peering.",
+        "All quantitative data (capacity, costs, latency) are estimates based on external reports regarding North Korea's extremely restrictive network environment, as specific commercial metrics are state secrets.",
+        "The network is entirely state-controlled (KPTC), meaning commercial contractual viability and operational freedom are effectively zero."
+      ],
+      "key_insights": [
+        "The location presents an untenable environment for a commercial hyperscale data center due to total state control (KPTC monopoly).",
+        "Connectivity is characterized by extreme SPOF risk, relying solely on two terrestrial border crossings (China primary, Russia secondary).",
+        "Zero carrier diversity, non-existent competitive peering, and absence of major CDN/Cloud provider infrastructure result in guaranteed high latency and severe performance bottlenecks.",
+        "Bandwidth capacity is severely constrained (< 5 Gbps estimated public total), and commercial scalability is fundamentally impossible.",
+        "Political risk and regulatory limitations override any minor technical infrastructure that may exist."
+      ],
+      "executive_summary": "Network connectivity viability for a hyperscale data center at this location is critically low (Score 1.1/5.0). The infrastructure is defined by a complete state monopoly (KPTC), zero competitive peering, minimal international bandwidth capacity, and severe latency issues due to mandatory multi-hop transit routing. The lack of subsea cables and reliance on restricted terrestrial links through politically sensitive borders create unacceptable redundancy risks and commercial constraints.",
+      "data_gaps": [
+        "Detailed public capacity metrics for the China-DPRK and Russia-DPRK border crossings.",
+        "Specific technical details on KPTC's domestic DWDM backbone capacity and fiber routing within Pyongyang.",
+        "Actual latency and jitter performance metrics derived from large-scale, sustained commercial traffic."
+      ],
+      "third_party_verification": [
+        "Geopolitical risk consultancy specializing in telecommunications security for restrictive regimes.",
+        "Physical security and fiber route audit along terrestrial borders (highly restricted).",
+        "Satellite communications feasibility assessment as a high-cost, high-latency alternative for true connectivity diversity."
+      ],
+      "phase_1_recommendations": {
+        "connectivity_target": "Secure highly resilient, politically sanctioned 10Gbps+ terrestrial connections (if politically feasible).",
+        "peering_strategy": "Negotiate direct transit agreements exclusively with authorized state carriers (KPTC and approved upstream providers).",
+        "redundancy": "Establish connectivity through both Chinese and Russian terrestrial routes to mitigate single-border failure risk."
+      }
+    },
+    "climate_environmental": {
+      "overall_score": 3.9,
+      "temperature_humidity": {
+        "name": "Temperature & Humidity Analysis",
+        "content": "Pyongyang experiences a humid continental climate (Dwa) with four distinct seasons. Winters are cold and dry, providing significant opportunities for free cooling. Summers are hot and characterized by the East Asian monsoon, resulting in high heat and humidity that necessitates mechanical cooling. The large diurnal and seasonal temperature variation is favorable for managing heat rejection efficiently during non-peak seasons.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "avg_temp_winter": -6,
+            "avg_temp_summer": 25,
+            "free_cooling_hours": 4500,
+            "humidity_avg": 68
+          },
+          "percentages": {
+            "high_humidity_months": 35.0
+          },
+          "ranges": {
+            "temperature_range": {
+              "min": -20.0,
+              "max": 35.0
+            }
+          },
+          "units": {
+            "avg_temp_winter": "C",
+            "avg_temp_summer": "C",
+            "free_cooling_hours": "hours/year",
+            "humidity_avg": "%"
+          }
+        },
+        "key_points": [
+          "Significant cold season allows for prolonged free cooling use.",
+          "ASHRAE W4/W5 compliance is straightforward for most of the year.",
+          "High summer humidity (75%+ RH) requires dehumidification or specialized cooling approaches."
+        ],
+        "tables": []
+      },
+      "cooling_strategy": {
+        "name": "Cooling Strategy & PUE Analysis",
+        "content": "A hybrid cooling strategy is highly recommended, relying on indirect evaporative/air-side economization for maximum free cooling utilization during the 4,500+ hours available (October to April). Mechanical DX or chiller systems must be sized to handle the peak summer heat and high wet-bulb temperatures (up to 25C). Target PUE remains competitive due to the duration of free cooling availability.",
+        "sub_score": 4.1,
+        "metrics": {
+          "numerical_values": {
+            "estimated_pue": 1.25,
+            "hvac_redundancy": 2,
+            "design_wet_bulb": 25
+          },
+          "percentages": {
+            "mechanical_cooling_runtime": 50.0,
+            "free_cooling_utilization": 50.0
+          },
+          "ranges": {},
+          "units": {
+            "estimated_pue": "ratio",
+            "hvac_redundancy": "N+N",
+            "design_wet_bulb": "C"
+          }
+        },
+        "key_points": [
+          "Achievable PUE of 1.25 with robust economizer implementation.",
+          "Hybrid cooling optimizes year-round performance.",
+          "High wet-bulb temperature design required for summer efficiency."
+        ],
+        "tables": []
+      },
+      "free_cooling": {
+        "name": "Free Cooling Potential",
+        "content": "The location benefits from approximately 4,500 hours annually where the outside air temperature is below the typical 18C threshold for direct free air cooling, or suitable for highly efficient indirect cooling. Direct air-side economizers must be utilized with caution due to seasonal high humidity and potential air quality issues, favoring indirect air or water-side economization. This long free-cooling window offers substantial operational cost savings.",
+        "sub_score": 4.2,
+        "metrics": {
+          "numerical_values": {
+            "annual_free_cooling": 4500,
+            "cost_savings": 350000,
+            "pue_improvement": 0.18
+          },
+          "percentages": {
+            "winter_free_cooling": 95.0,
+            "spring_fall_free_cooling": 60.0
+          },
+          "ranges": {},
+          "units": {
+            "annual_free_cooling": "hours",
+            "cost_savings": "USD/MW/year",
+            "pue_improvement": "reduction from non-economized baseline"
+          }
+        },
+        "key_points": [
+          "4,500+ hours of effective free cooling availability.",
+          "Indirect free cooling recommended to manage humidity and particulate intake.",
+          "Significant PUE benefit resulting in low operational energy expenditure."
+        ],
+        "tables": []
+      },
+      "seismic_geological": {
+        "name": "Seismic & Geological Assessment",
+        "content": "Pyongyang lies in a region of moderate historical seismic activity, typically classified in global seismic hazard models as Zone 2 or 3 (depending on regional modeling standards). Peak Ground Acceleration (PGA) estimations range from 0.15g to 0.20g for a 475-year return period. The Taedong River valley location suggests site-specific geotechnical surveys are critical to assess soil bearing capacity and mitigate potential risks associated with alluvial deposits, such as settlement or liquefaction.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "seismic_zone": 3,
+            "peak_ground_acceleration": 0.18,
+            "historical_earthquakes": 4
+          },
+          "percentages": {
+            "liquefaction_potential": 25.0
+          },
+          "ranges": {
+            "earthquake_magnitude": {
+              "min": 4.5,
+              "max": 6.0
+            }
+          },
+          "units": {
+            "seismic_zone": "zone (IBC equivalent)",
+            "peak_ground_acceleration": "g",
+            "historical_earthquakes": "count/century (M>4.5)"
+          }
+        },
+        "key_points": [
+          "Moderate seismic design requirements are necessary.",
+          "Detailed geotechnical survey is mandatory due to river valley location.",
+          "Standard building codes must incorporate earthquake resilience provisions."
+        ],
+        "tables": []
+      },
+      "hydrological_flood": {
+        "name": "Hydrological & Flood Risk",
+        "content": "The location receives substantial annual precipitation, primarily during the summer monsoon season (July-August). Sites located near the Taedong River require strict adherence to elevated construction standards above the 500-year flood plain. Provided the site is appropriately elevated (minimum 1.5m above estimated flood levels) and robust drainage infrastructure is implemented to manage high-intensity, short-duration monsoonal rainfall, the flood risk can be managed effectively. Water availability for cooling and fire suppression is generally abundant.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "annual_precipitation": 950,
+            "elevation_masl": 50,
+            "flood_return_period": 500
+          },
+          "percentages": {
+            "monsoon_precipitation": 60.0
+          },
+          "ranges": {},
+          "units": {
+            "annual_precipitation": "mm",
+            "elevation_masl": "m",
+            "flood_return_period": "years"
+          }
+        },
+        "key_points": [
+          "Primary flood risk is from local, intense monsoonal rainfall, not coastal surge.",
+          "Mandatory elevation and perimeter protection required.",
+          "Water source is abundant for essential DC operations."
+        ],
+        "tables": []
+      },
+      "wind_storm": {
+        "name": "Wind & Storm Analysis",
+        "content": "The region is generally protected from the most intense Pacific typhoons but is subject to occasional severe weather remnants and intense mid-latitude summer storms. Structural design must meet standards for high wind loads, typically up to 110-120 kph. Ice and snow loading during winter must also be factored into roof and structure design, but average sustained wind speeds are moderate, favoring outdoor cooling equipment placement.",
+        "sub_score": 3.9,
+        "metrics": {
+          "numerical_values": {
+            "avg_wind_speed": 10,
+            "max_wind_speed": 110,
+            "storm_frequency": 3
+          },
+          "percentages": {
+            "wind_load_factor": 120.0
+          },
+          "ranges": {},
+          "units": {
+            "avg_wind_speed": "km/h",
+            "max_wind_speed": "km/h",
+            "storm_frequency": "severe weather events/year"
+          }
+        },
+        "key_points": [
+          "Moderate wind conditions suitable for standard construction.",
+          "Structural design must account for occasional severe storm gusts.",
+          "Winter snow loading is a design consideration."
+        ],
+        "tables": []
+      },
+      "climate_extremes": {
+        "name": "Climate Extremes & Future Risk",
+        "content": "Future climate projections indicate increasing average temperatures and higher frequency of extreme heat events (days exceeding 35C). This will reduce the number of future free cooling hours and stress mechanical cooling systems. Monsoonal rainfall intensity is also projected to increase, amplifying localized flood risks. Adaptation strategies must focus on enhancing mechanical cooling resilience (designing for higher dry/wet-bulb temperatures) and ensuring long-term drainage capacity.",
+        "sub_score": 3.8,
+        "metrics": {
+          "numerical_values": {
+            "heat_wave_days": 10,
+            "cold_snap_days": 15,
+            "wildfire_risk": 2,
+            "water_stress": 2
+          },
+          "percentages": {
+            "drought_frequency": 10.0,
+            "climate_change_impact": 30.0
+          },
+          "ranges": {},
+          "units": {
+            "heat_wave_days": "days/year (>30C)",
+            "cold_snap_days": "days/year (<-10C)",
+            "wildfire_risk": "risk level (1-5)",
+            "water_stress": "stress level (1-5)"
+          }
+        },
+        "key_points": [
+          "Climate change will moderately reduce future free cooling benefits.",
+          "Need to design mechanical systems for higher future peak temperatures.",
+          "Generally low risk for wildfires and long-term water scarcity."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Climate analysis utilizes 30-year historical weather averages sourced from regional meteorological data due to the scarcity of specific local reports.",
+        "Free cooling calculations assume ASHRAE TC 9.9 guidelines for W4/W5 operational envelopes (max 27C dry-bulb, 80% RH).",
+        "Seismic risk evaluation is based on generalized East Asian tectonic models and adjacent country hazard maps.",
+        "Specific site elevation is assumed to be above the calculated 500-year flood plain of the Taedong River."
+      ],
+      "key_insights": [
+        "The location offers substantial operational efficiency with approximately 4,500 hours of viable free cooling annually, leading to a competitive PUE target of 1.25.",
+        "Cooling strategy must be hybrid, relying on indirect economizers to mitigate high summer humidity and potential winter air quality variations.",
+        "Geological risks (settlement, liquefaction) are moderate due to river valley proximity, necessitating detailed pre-construction geotechnical investigations.",
+        "Natural disaster risks (flood, wind) are manageable through standard civil engineering practices, including site elevation and robust drainage design.",
+        "Future climate trends show increased heat and intense rainfall, requiring design margins for mechanical cooling capacity and stormwater management."
+      ],
+      "executive_summary": "The site in Pyongyang presents favorable climate conditions for hyperscale data center operations, primarily due to cold winters and long shoulder seasons offering significant free cooling potential. A hybrid cooling strategy is essential to manage hot, humid summers efficiently, allowing for an estimated PUE of 1.25. Risks related to hydrology and seismicity are moderate and manageable through rigorous geotechnical investigation, elevated construction, and adherence to seismic building codes.",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "operational_risk": {
+      "overall_score": 1.1,
+      "geopolitical_stability": {
+        "name": "Geopolitical Stability & National Security",
+        "content": "The Democratic People's Republic of Korea (DPRK) presents the highest geopolitical risk globally. The regime operates under severe, comprehensive international sanctions (UNSC, US, EU) that prohibit the importation of critical IT and energy infrastructure components required for hyperscale operations. The location is near the heavily militarized border with South Korea, maintaining high regional tension. Data sovereignty is absolute; the state mandates total access and control over all installed hardware and data, making data protection and operational autonomy impossible for foreign entities. State-sponsored groups (e.g., Lazarus Group) are a known vector for cyber espionage and attacks, indicating that the hosting environment is intrinsically linked to state operations and monitoring.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "political_stability_index": 1.0,
+            "security_threat_level": 5
+          },
+          "percentages": {
+            "political_risk": 95.0,
+            "regulatory_stability": 5.0
+          },
+          "ranges": {
+            "political_stability_index": {
+              "min": 1.0,
+              "max": 10.0
+            },
+            "security_threat_level": {
+              "min": 1.0,
+              "max": 5.0
+            }
+          },
+          "units": {
+            "political_stability_index": "stability index (1=low)",
+            "security_threat_level": "threat level (5=severe)"
+          }
+        },
+        "key_points": [
+          "Extreme risk due to international sanctions and state control",
+          "Zero operational autonomy or data privacy assurance",
+          "High regional conflict potential and targeting risk"
+        ],
+        "tables": []
+      },
+      "physical_security": {
+        "name": "Physical Security & Military Proximity",
+        "content": "Pyongyang is the military and governmental center of the DPRK, meaning the specific site (39.07, 125.81) is highly likely to be within close proximity (<10 km) of key military command structures or high-security government facilities. This proximity significantly increases the strategic targeting risk during any potential conflict. While traditional violent crime is negligible due to pervasive state surveillance, the operational security risk stems from mandated state surveillance, mandatory embedding of military or security personnel, and loss of control over facility access protocols.",
+        "sub_score": 1.5,
+        "metrics": {
+          "numerical_values": {
+            "crime_rate": 0.1,
+            "military_distance_km": 10
+          },
+          "percentages": {
+            "security_coverage": 100.0
+          },
+          "ranges": {},
+          "units": {
+            "crime_rate": "incidents/1000residents/year",
+            "military_distance_km": "km"
+          }
+        },
+        "key_points": [
+          "Inherent strategic targeting risk due to military proximity",
+          "Security control is entirely state-mandated and managed",
+          "Total lack of control over access and operational monitoring"
+        ],
+        "tables": []
+      },
+      "emergency_response": {
+        "name": "Emergency Response Capabilities",
+        "content": "Emergency response capabilities are severely constrained by chronic resource scarcity and the impact of sanctions on modern equipment availability (e.g., specialized HAZMAT, advanced firefighting foam). While response times in Pyongyang for state-priority assets may be moderate, general response benchmarks for non-critical (or non-state-priority) infrastructure are unreliable and slow. Specialized capabilities required for large-scale data center incidents (e.g., inert gas suppression management, complex electrical fire response) are virtually non-existent in the local municipal services.",
+        "sub_score": 1.2,
+        "metrics": {
+          "numerical_values": {
+            "fire_response_time": 25,
+            "medical_response_time": 30
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "fire_response_time": "minutes (estimated non-priority)",
+            "medical_response_time": "minutes (estimated non-priority)"
+          }
+        },
+        "key_points": [
+          "Severe resource scarcity impacting equipment and training",
+          "Lack of specialized critical infrastructure response capabilities",
+          "Response priority biased heavily towards state assets"
+        ],
+        "tables": []
+      },
+      "infrastructure_resilience": {
+        "name": "Critical Infrastructure Resilience",
+        "content": "Power stability is the most critical infrastructure failure point. DPRK suffers from chronic, systemic electricity shortages, making a stable supply for hyperscale operations impossible without building a dedicated, independent power generation plant (which is infeasible under sanctions). The national grid is fragile, highly decentralized, and prone to unscheduled, widespread outages lasting hours or days. Fiber networks are extremely limited, entirely state-controlled, and lack regional redundancy. Transportation routes are poor for high-volume logistics and emergency delivery due to fuel scarcity and poor road quality outside central Pyongyang.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "power_outage_frequency": 50,
+            "network_uptime": 85.0
+          },
+          "percentages": {
+            "infrastructure_redundancy": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "power_outage_frequency": "major outages/year (estimated)",
+            "network_uptime": "% (systemic grid instability)"
+          }
+        },
+        "key_points": [
+          "Non-viable power grid for hyperscale demands",
+          "Supply chain for parts and fuel severely compromised by sanctions",
+          "Zero network redundancy outside state-mandated links"
+        ],
+        "tables": []
+      },
+      "economic_social_stability": {
+        "name": "Economic & Social Stability",
+        "content": "The economic environment is extremely volatile, defined by international isolation and sanctions. Foreign currency operations are nearly impossible or subject to extreme state control. Inflation is difficult to track but chronically high for consumer goods. Crucially, the operational supply chain for technical components (servers, storage, cooling systems, specialized lubricants, backup batteries, diesel fuel) is entirely blocked by sanctions, rendering long-term maintenance impossible. While the labor force is large, skilled technicians specialized in hyperscale data center operations are virtually non-existent, requiring extensive, sanctioned foreign investment in training.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "inflation_rate": 50,
+            "unemployment_rate": 0
+          },
+          "percentages": {
+            "economic_growth": -2.0
+          },
+          "ranges": {},
+          "units": {
+            "inflation_rate": "% (estimated black market rate)",
+            "unemployment_rate": "% (state-mandated employment)",
+            "economic_growth": "% (estimated GDP change)"
+          }
+        },
+        "key_points": [
+          "Economic non-viability due to crippling international sanctions",
+          "Non-existent supply chain for critical operational components",
+          "Severe scarcity of skilled, technical IT infrastructure labor"
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Analysis assumes the data center adheres to international operating standards (Tier III/IV) and requires consistent, reliable power and network connectivity.",
+        "Specific local crime and emergency response metrics are based on conservative expert estimates due to data secrecy, reflecting pervasive resource scarcity.",
+        "The operational risk is based on the perspective of a foreign entity seeking autonomous operation, which is fundamentally incompatible with the host nation's political structure."
+      ],
+      "key_insights": [
+        "Viability is zero: Operational risk is compounded by international sanctions, making supply chain logistics (parts, fuel) and maintenance impossible.",
+        "The primary security and operational threat is the host government, which mandates total data access and control, negating standard enterprise security and compliance protocols.",
+        "The chronic instability of the national power grid renders the location fundamentally unsuitable for any mission-critical infrastructure requiring high uptime (Tier III+).",
+        "Any potential deployment would operate strictly under geopolitical/strategic mandates, not commercial viability, requiring extreme deviation from global DC best practices."
+      ],
+      "executive_summary": "The proposed location in North Korea presents an unmitigated, extreme operational risk profile. Systemic infrastructure failure, coupled with mandatory state control over security and data, renders standard commercial hyperscale data center viability impossible. The extreme geopolitical risk (sanctions, regional conflict potential) prohibits the necessary investment and continuous logistical support. The overall operational stability score is critically low (1.1/5.0).",
+      "data_gaps": [
+        "Specific, quantifiable metrics for urban fire and medical response times within Pyongyang for non-state assets.",
+        "Detailed load capacity and failure history of the regional electrical grid serving the coordinates.",
+        "Official statistics on skilled labor availability for advanced data center management and maintenance."
+      ],
+      "third_party_verification": [
+        "Sanctions compliance legal firm specializing in OFAC and UNSC regulations.",
+        "Geopolitical intelligence firm focused on DPRK military and conflict escalation scenarios.",
+        "Supply chain risk consultants specializing in infrastructure logistics within sanctioned environments."
+      ],
+      "phase_1_recommendations": {
+        "security_measures": "Cease all feasibility studies; direct investment in critical infrastructure within the DPRK violates international sanctions and presents unacceptable legal, political, and physical risk.",
+        "risk_monitoring": "Monitor regional political and military escalation indices continuously (DEMCON levels) as this location represents a primary target risk.",
+        "emergency_planning": "Focus on exit strategy and personnel evacuation protocols, as standard operational BCP/DR plans are irrelevant given the host-nation environment."
+      }
+    },
+    "esg_sustainability": {
+      "overall_score": 1.2,
+      "renewable_energy": {
+        "name": "Renewable Energy & Grid Decarbonization",
+        "content": "The grid relies heavily on state-owned hydroelectric capacity, which is geographically significant but often suffers from reliability issues and aging infrastructure. Reliable baseload often necessitates high-carbon thermal generation (coal). The concept of a corporate renewable PPA market or green tariff is non-existent, requiring the operator to negotiate directly with the state energy authorities.",
+        "sub_score": 1.5,
+        "metrics": {
+          "numerical_values": {
+            "renewable_percentage": 40,
+            "grid_carbon_intensity": 850,
+            "ppa_market_size": 0
+          },
+          "percentages": {
+            "renewable_target_2030": 55.0,
+            "ppa_market_growth": 0.0
+          },
+          "ranges": {
+            "carbon_intensity_range": {
+              "min": 700.0,
+              "max": 1000.0
+            }
+          },
+          "units": {
+            "renewable_percentage": "% (capacity)",
+            "grid_carbon_intensity": "gCO2/kWh",
+            "ppa_market_size": "MW"
+          }
+        },
+        "key_points": [
+          "No corporate PPA market or verifiable renewable energy tracking system.",
+          "High reliance on state-controlled, unreliable hydro and high-carbon thermal generation.",
+          "Extremely high estimated grid carbon intensity due to inefficient infrastructure."
+        ],
+        "tables": []
+      },
+      "carbon_climate_policy": {
+        "name": "Carbon & Climate Policy Framework",
+        "content": "North Korea submits Nationally Determined Contributions (NDCs) under the Paris Agreement, focusing on mitigation through forest management and energy efficiency, but lacks internal, market-based mechanisms. There is no carbon tax, emissions trading scheme, or standardized international carbon pricing mechanism in effect, posing high risk due to non-alignment with global carbon transition standards.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "carbon_price": 0,
+            "carbon_tax_trajectory": 0,
+            "offset_market_size": 0
+          },
+          "percentages": {
+            "mandatory_reporting": 0.0,
+            "voluntary_disclosure": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "carbon_price": "USD/tCO2e",
+            "carbon_tax_trajectory": "USD/year",
+            "offset_market_size": "MtCO2e/year"
+          }
+        },
+        "key_points": [
+          "Zero carbon pricing mechanisms or cap-and-trade systems.",
+          "No mandatory climate reporting or disclosure frameworks compliant with international norms.",
+          "Future climate policy trends are dictated entirely by opaque state planning."
+        ],
+        "tables": []
+      },
+      "environmental_regulations": {
+        "name": "Environmental & Resource Regulations",
+        "content": "While environmental protection laws exist on paper, their application is dictated by central state economic planning rather than independent oversight. Environmental Impact Assessments (EIAs) are government-managed and lack public transparency or external verification. Water usage and e-waste management standards are unknown and non-compliant with circular economy best practices.",
+        "sub_score": 1.5,
+        "metrics": {
+          "numerical_values": {
+            "eia_timeline_months": 12,
+            "water_efficiency_target": 0,
+            "ghg_reporting_threshold": 0
+          },
+          "percentages": {
+            "eia_approval_rate": 100.0,
+            "resource_efficiency": 20.0
+          },
+          "ranges": {},
+          "units": {
+            "eia_timeline_months": "months (state-internal)",
+            "water_efficiency_target": "% reduction (none set)",
+            "ghg_reporting_threshold": "tCO2e/year (none public)"
+          }
+        },
+        "key_points": [
+          "EIA process is state-internal and non-transparent, focused on state compliance.",
+          "No verifiable water usage regulations or efficiency standards for data centers.",
+          "E-waste and circularity laws are underdeveloped and not audited externally."
+        ],
+        "tables": []
+      },
+      "social_community_impact": {
+        "name": "Social & Community Impact Assessment",
+        "content": "Labor is managed and supplied by the state; independent labor rights, fair wage standards (by international definition), and independent unionization are non-existent. Any project must navigate severe human rights and forced labor risks, making compliance with modern ethical sourcing standards nearly impossible. Public perception is uniformly positive by mandate, masking true social risks.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "local_hiring_requirement": 100,
+            "minimum_wage": 0,
+            "safety_standards": 1
+          },
+          "percentages": {
+            "community_support": 100.0,
+            "skilled_workforce": 70.0
+          },
+          "ranges": {},
+          "units": {
+            "local_hiring_requirement": "% (state-supplied)",
+            "minimum_wage": "USD/hour (non-existent/state controlled)",
+            "safety_standards": "Internal State Code (1-5 scale)"
+          }
+        },
+        "key_points": [
+          "Extreme risk of non-compliance with international labor standards (e.g., ILO).",
+          "Sourcing labor directly exposes the operation to significant human rights sanctions risk.",
+          "No verifiable mechanism for independent community engagement or conflict resolution."
+        ],
+        "tables": []
+      },
+      "corporate_governance": {
+        "name": "Corporate Governance & Reporting Standards",
+        "content": "Governance risk is the highest factor due to extreme geopolitical tension and sanctions. There are no mandatory or voluntary frameworks for ESG reporting (e.g., TCFD, CSRD, GRI) for international enterprises. Supply chain due diligence is fundamentally impossible due to the closed nature of the economy and sanctions regimes (UN, US, EU, ROK), making operational transparency zero.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "esg_reporting_companies": 0,
+            "scope3_coverage": 0,
+            "certification_premium": 0
+          },
+          "percentages": {
+            "mandatory_disclosure": 0.0,
+            "supply_chain_coverage": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "esg_reporting_companies": "count",
+            "scope3_coverage": "%",
+            "certification_premium": "%"
+          }
+        },
+        "key_points": [
+          "Zero compliance capability with international anti-corruption and governance standards.",
+          "Fundamental conflict with US/UN/EU sanctions on technology and financial transfers.",
+          "No independent audit mechanism or data privacy framework suitable for global operations."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Analysis is based on publicly available geopolitical risk assessments and estimations of DPRK infrastructure performance, as verifiable data is non-existent.",
+        "Operational feasibility assumes an exemption or circumvention of international sanctions (a highly unlikely scenario).",
+        "Grid metrics (renewable % and carbon intensity) are estimations based on historical reports of hydro capacity and coal dependence.",
+        "All local labor, environmental, and governance standards are assumed to be state-controlled and lack independent oversight."
+      ],
+      "key_insights": [
+        "The governance environment poses an insurmountable barrier due to international sanctions (UN/US/EU) and extreme geopolitical risk.",
+        "Lack of a verifiable renewable energy market and high reliance on high-carbon baseload render grid decarbonization targets unachievable by global hyperscale standards.",
+        "Compliance with core ESG principles (labor rights, supply chain transparency, financial governance) is impossible under the current regime, resulting in maximum social and governance risk.",
+        "The project fails baseline due diligence screens for international investment due to total absence of transparency and regulatory alignment."
+      ],
+      "executive_summary": "The viability of a hyperscale data center in Pyongyang is assessed as critically low (Score 1.2) from an ESG and sustainability perspective. The location presents prohibitive governance and sanctions risks, coupled with an opaque regulatory environment, high carbon intensity, and zero capability for verifiable compliance with international labor and corporate governance standards. This site is commercially and ethically non-viable for any globally operating technology firm requiring robust ESG adherence.",
+      "data_gaps": [
+        "Verifiable grid operational data (carbon intensity, reliability factors).",
+        "Absence of independent legal frameworks for corporate PPA and green sourcing.",
+        "Zero public information on specific environmental regulations (Water Use Effectiveness, EIA requirements) for data center operations.",
+        "Non-existence of independent labor audits or verifiable human rights compliance data."
+      ],
+      "third_party_verification": [
+        "Sanctions and export control specialist for legal viability assessment (Critical).",
+        "Geopolitical risk and compliance consultant.",
+        "N/A (No credible independent ESG consulting firm can operate or verify data locally)."
+      ],
+      "phase_1_recommendations": {
+        "sustainability_target": "Project should be discontinued due to fundamental compliance failure.",
+        "esg_compliance": "Perform immediate, comprehensive sanctions compliance audit.",
+        "community_engagement": "Focus on exiting preliminary discussions to mitigate reputation and financial risk."
+      }
+    },
+    "regulatory_compliance": {
+      "overall_score": 1.1,
+      "data_sovereignty": {
+        "name": "Data Sovereignty & Privacy Framework",
+        "content": "North Korea (DPRK) operates under complete state control, where the concepts of data privacy and independent data sovereignty for foreign entities are non-existent. All data generated or stored within the country is implicitly owned and subject to mandatory access by state security agencies (e.g., Ministry of State Security). There is no independent data protection law equivalent to global standards. Cross-border transfer is highly restricted or prohibited, dictated entirely by the government's national security considerations and the control of the limited national network (KPTC). Any foreign-owned infrastructure would be mandated to localize 100% of data and provide real-time access to the state.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "compliance_score": 5,
+            "breach_penalties": 0,
+            "residency_requirements": 100
+          },
+          "percentages": {
+            "data_localization": 100.0,
+            "cross_border_restrictions": 99.0
+          },
+          "ranges": {},
+          "units": {
+            "compliance_score": "/100 (Extremely Low)",
+            "breach_penalties": "Irrelevant (State Seizure Risk)",
+            "residency_requirements": "% localization mandate"
+          }
+        },
+        "key_points": [
+          "Zero independent data protection or privacy framework.",
+          "Mandatory and non-negotiable real-time government data access.",
+          "Absolute 100% data localization required.",
+          "Extreme risk of data expropriation or misuse by state agencies."
+        ],
+        "tables": []
+      },
+      "government_incentives": {
+        "name": "Government Incentives & Investment Climate",
+        "content": "The investment climate is defined by extreme political risk and crippling international sanctions (e.g., UN Security Council Resolutions, U.S. and EU sanctions), which prohibit most foreign financial and technology transactions involving the DPRK, rendering specific incentives irrelevant. While the country theoretically offers investment zones (e.g., Rason SEZ) with purported corporate tax rates around 14%, these are functionally inaccessible for hyperscale technology infrastructure due to sanctions targeting dual-use technology and financial transfers. No credible or functional investment promotion incentives, tax holidays, or import duty exemptions exist for foreign data center operators capable of mitigating sanctions risk or operationalizing at scale.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "corporate_tax_rate": 25,
+            "investment_tax_credit": 0,
+            "import_duty_exemption": 0
+          },
+          "percentages": {
+            "sez_tax_reduction": 0.0,
+            "r_and_d_incentives": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "corporate_tax_rate": "% (Standard Rate, if applied)",
+            "investment_tax_credit": "% (Non-Existent)",
+            "import_duty_exemption": "% (Irrelevant due to Sanctions)"
+          }
+        },
+        "key_points": [
+          "International sanctions make technology import and financing impossible.",
+          "No credible financial incentives or tax relief programs available for foreign tech infrastructure.",
+          "Extreme risk of asset seizure and punitive international regulatory action (secondary sanctions)."
+        ],
+        "tables": []
+      },
+      "operational_compliance": {
+        "name": "Operational & Environmental Compliance",
+        "content": "Operational compliance is severely hampered by a state-controlled utility and telecommunications sector, compounded by sanctions blocking necessary imports (generators, specialized cooling equipment, high-end servers). Telecommunications licensing is entirely controlled by the state-owned Korea Posts and Telecommunications Corporation (KPTC); independent operation is impossible. While DPRK has basic environmental statutes, regulatory enforcement lacks transparency. The main operational challenge is arbitrary intervention, unreliable power supply (which is strictly controlled and prioritized by the state), and non-existent supply chain security for specialized maintenance parts, making standard ISO/ANSI compliance non-achievable.",
+        "sub_score": 1.3,
+        "metrics": {
+          "numerical_values": {
+            "safety_standards_level": 1,
+            "environmental_compliance_cost": 50000,
+            "licensing_timeline": 999
+          },
+          "percentages": {
+            "compliance_automation": 0.0,
+            "regulatory_efficiency": 10.0
+          },
+          "ranges": {},
+          "units": {
+            "safety_standards_level": "Unverified Standards",
+            "environmental_compliance_cost": "USD (Nominal cost)",
+            "licensing_timeline": "days (Political Approval Dependent)"
+          }
+        },
+        "key_points": [
+          "Utilities (power, telecom) are monopolized and highly unreliable for continuous hyperscale operation.",
+          "Telecommunications licensing requires mandatory KPTC partnership and control.",
+          "International sanctions preclude access to necessary IT and cooling equipment.",
+          "Arbitrary regulatory enforcement and lack of independent legal recourse."
+        ],
+        "tables": []
+      },
+      "permitting_zoning": {
+        "name": "Permitting & Zoning Framework",
+        "content": "Zoning approval for a large-scale foreign infrastructure project in Pyongyang is a highly politicized process requiring direct, high-level KWP approval, bypassing transparent municipal zoning boards. Standard Environmental Impact Assessment (EIA) requirements are secondary to political directives, and the process timeline is unpredictable and potentially infinite without top-level sanction. There are no standardized, expedited 'fast-track' processes; all permitting is subject to discretionary political fiat, introducing extreme legal and financial risk. Land tenure for foreign entities is tenuous, typically restricted to long-term leases (50 years maximum), and subject to arbitrary cancellation or expropriation.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "eia_timeline_months": 0,
+            "zoning_approval_rate": 0,
+            "permitting_cost": 500000
+          },
+          "percentages": {
+            "fast_track_eligibility": 0.0,
+            "digital_permitting": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "eia_timeline_months": "months (Politically Driven)",
+            "zoning_approval_rate": "% (for Unsanctioned Projects)",
+            "permitting_cost": "USD (Bribe/Political Fee Estimate)"
+          }
+        },
+        "key_points": [
+          "Permitting is entirely dependent on opaque, high-level political approval.",
+          "No transparent zoning or EIA processes for foreign critical infrastructure.",
+          "Extreme risk of land use cancellation and lack of property rights protection."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "The analysis assumes a hypothetical foreign hyperscale operator attempting independent market entry.",
+        "Regulatory viability is assessed against international standards of rule of law, which are largely absent in the DPRK.",
+        "Investment climate metrics are severely reduced due to the overriding impact of international sanctions (UNSCRs 1718, 1874, 2094, 2270, 2375, etc.) and political risk.",
+        "Operational data and compliance costs reflect the extreme opacity and state-control inherent in the DPRK system."
+      ],
+      "key_insights": [
+        "The regulatory environment of North Korea presents non-viable conditions for commercial hyperscale data center operations due to complete absence of rule of law and transparent administration.",
+        "International sanctions (UN, US, EU) prohibit the necessary financial transactions and import of dual-use technology required for building and maintaining a modern data center.",
+        "Data Sovereignty risk is absolute, with mandatory state access to all stored data, posing catastrophic risks to client data integrity and global compliance.",
+        "State control over power supply and telecommunications infrastructure makes securing reliable, independent operational capability impossible."
+      ],
+      "executive_summary": "The regulatory compliance analysis confirms that a hyperscale data center project in Pyongyang, DPRK, is commercially, legally, and operationally non-viable. The environment is characterized by extreme political risk, debilitating international sanctions, mandatory state surveillance, and a total lack of predictable permitting or legal recourse for foreign entities. Viability score is critically low.",
+      "data_gaps": [
+        "Specific local land-use classifications and building codes in the immediate Pyongyang area.",
+        "Detailed enforcement mechanisms and fines for non-compliance with domestic environmental laws.",
+        "Official documentation outlining procedures for foreign labor employment and related regulatory compliance requirements."
+      ],
+      "third_party_verification": [
+        "Expert geopolitical risk and sanctions compliance counsel (required immediately to assess feasibility of any transaction).",
+        "International trade and export control specialists.",
+        "Specialized investigative firms focused on DPRK market dynamics (highly restricted scope)."
+      ],
+      "phase_1_recommendations": {
+        "permitting_strategy": "Do not proceed with standard permitting. Project viability requires securing extremely high-level political sanction before any administrative action.",
+        "compliance_framework": "Establish a comprehensive sanctions compliance monitoring system; all transactions require vetting against OFAC and UNSCR lists.",
+        "government_relations": "Focus exclusively on securing high-level political approvals; administrative regulatory compliance is secondary and arbitrary."
+      }
+    },
+    "hyperscaler_attractiveness": {
+      "overall_score": 1.1,
+      "competitive_landscape": {
+        "name": "Competitive Landscape Analysis",
+        "content": "The location operates outside the global commercial data center market due to comprehensive international sanctions and state control over IT infrastructure. There is zero known existing colocation inventory available to global hyperscalers, and pricing dynamics are irrelevant as commercial operations are prohibited.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "total_dc_capacity_mw": 0,
+            "occupancy_rate": 0,
+            "hyperscaler_regions": 0
+          },
+          "percentages": {
+            "market_saturation": 0.0,
+            "price_competitiveness": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "total_dc_capacity_mw": "MW",
+            "occupancy_rate": "%",
+            "hyperscaler_regions": "count"
+          }
+        },
+        "key_points": [
+          "Zero competitive commercial data center market exists.",
+          "International sanctions prohibit investment and operation by Western hyperscalers.",
+          "Cost competitiveness is irrelevant given the lack of market mechanism."
+        ],
+        "tables": []
+      },
+      "cloud_ecosystem": {
+        "name": "Cloud Ecosystem & Digital Transformation",
+        "content": "Cloud adoption by global standards is non-existent, limited primarily to a closed, state-controlled intranet (Kwangmyong). There is no measurable enterprise adoption of public cloud platforms (AWS, Azure, GCP), and the SaaS provider ecosystem is entirely absent in the commercial sense.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "cloud_adoption_rate": 0,
+            "saas_companies": 0,
+            "government_cloud_budget": 0
+          },
+          "percentages": {
+            "enterprise_cloud_usage": 0.0,
+            "digital_transformation_index": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "cloud_adoption_rate": "%",
+            "saas_companies": "count",
+            "government_cloud_budget": "USD millions"
+          }
+        },
+        "key_points": [
+          "Public cloud adoption rates are zero due to infrastructure restrictions.",
+          "AWS, Azure, and GCP have no regional presence or edge locations.",
+          "The digital transformation environment is defined by state control and isolation."
+        ],
+        "tables": []
+      },
+      "peering_opportunities": {
+        "name": "Peering Opportunities & Network Ecosystem",
+        "content": "Peering opportunities are severely limited, reliant on highly restricted and monitored border connectivity, primarily through China and Russia. There are no commercial Internet Exchange Points (IXPs), carrier-neutral facilities, or major global CDN infrastructure deployments, resulting in near-zero interconnection density for international traffic.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "ixp_count": 0,
+            "peak_traffic_gbps": 1,
+            "submarine_cables": 0
+          },
+          "percentages": {
+            "carrier_neutrality": 0.0,
+            "interconnection_density": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "ixp_count": "count",
+            "peak_traffic_gbps": "Gbps",
+            "submarine_cables": "count"
+          }
+        },
+        "key_points": [
+          "No commercial IXPs or carrier-neutral facilities available.",
+          "International connectivity is extremely limited and highly controlled.",
+          "Latency to major Asian hubs is high due to lack of direct fiber routes."
+        ],
+        "tables": []
+      },
+      "proximity_to_demand": {
+        "name": "Proximity to Enterprise Demand",
+        "content": "There is no accessible demand from multinational corporations or global enterprises requiring hyperscale cloud services, as all international commercial activity is severely limited or prohibited. Demand is entirely state-directed and operates on non-standardized internal infrastructure, negating the value of proximity to Pyongyang.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "fortune_500_companies": 0,
+            "government_agencies": 1,
+            "financial_institutions": 0
+          },
+          "percentages": {
+            "enterprise_cloud_adoption": 0.0,
+            "regulated_industry_presence": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "fortune_500_companies": "count",
+            "government_agencies": "count",
+            "financial_institutions": "count"
+          }
+        },
+        "key_points": [
+          "Zero accessible enterprise demand for public cloud services.",
+          "Financial and regulated sectors operate under isolation, prohibiting global cloud integration.",
+          "Hyperscale investment cannot be justified by local demand indicators."
+        ],
+        "tables": []
+      },
+      "labor_market": {
+        "name": "Labor Market & Talent Ecosystem",
+        "content": "While the local population has a high level of technical literacy, the workforce lacks access to modern hyperscale operational methodologies, global cloud training, and Western software stacks, rendering the talent pool commercially unusable for global hyperscaler operations. Security and trust concerns are paramount.",
+        "sub_score": 1.5,
+        "metrics": {
+          "numerical_values": {
+            "it_professionals": 20000,
+            "avg_engineer_salary": 500,
+            "training_institutions": 2
+          },
+          "percentages": {
+            "salary_vs_silicon_valley": 1.0,
+            "talent_retention_rate": 99.0
+          },
+          "ranges": {},
+          "units": {
+            "it_professionals": "count",
+            "avg_engineer_salary": "USD/year",
+            "training_institutions": "count"
+          }
+        },
+        "key_points": [
+          "Availability of qualified cloud-standard data center technicians is extremely low.",
+          "Salary costs are low, but the security and training costs outweigh any benefit.",
+          "Security risks associated with local hiring are unacceptable for major hyperscalers."
+        ],
+        "tables": []
+      },
+      "infrastructure_scalability": {
+        "name": "Infrastructure Scalability & Future Growth",
+        "content": "Land may be physically available near Pyongyang, but reliable, redundant power infrastructure suitable for hyperscale loads (100MW+) is highly questionable and subject to state instability and prioritization. Transportation logistics for equipment are severely hindered by international sanctions, making expansion exceptionally difficult.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "available_land_acres": 50,
+            "substation_capacity_mw": 50,
+            "fiber_route_density": 0.1
+          },
+          "percentages": {
+            "zoned_for_datacenter": 0.0,
+            "utility_headroom": 5.0
+          },
+          "ranges": {},
+          "units": {
+            "available_land_acres": "acres",
+            "substation_capacity_mw": "MW",
+            "fiber_route_density": "km/sq km"
+          }
+        },
+        "key_points": [
+          "Reliable, scalable power generation is a significant technical and political obstacle.",
+          "Logistics chains are compromised by sanctions, preventing reliable equipment delivery.",
+          "Fiber infrastructure is minimal, controlled by the state, and lacks redundancy."
+        ],
+        "tables": []
+      },
+      "strategic_relevance": {
+        "name": "Strategic Relevance & Market Position",
+        "content": "The location carries the highest possible geopolitical risk and is subject to comprehensive international sanctions, making any commercial investment prohibitive and illegal for US-based hyperscalers. There are zero government incentives for foreign capital, and the market provides no strategic access points or time zone advantages for serving other high-growth regions.",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "population_coverage_millions": 0,
+            "gdp_access_billions": 0,
+            "incentive_value_millions": 0
+          },
+          "percentages": {
+            "political_stability_index": 1.0,
+            "timezone_overlap": 0.0
+          },
+          "ranges": {},
+          "units": {
+            "population_coverage_millions": "millions",
+            "gdp_access_billions": "USD billions",
+            "incentive_value_millions": "USD millions"
+          }
+        },
+        "key_points": [
+          "Geopolitical risk and international sanctions render the location commercially unviable.",
+          "No governmental incentives or policy support exist for global cloud providers.",
+          "Zero strategic value for regional market access or serving international customers."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Hyperscaler analysis assumes adherence to global sanction regimes (UN, US, EU).",
+        "Quantitative metrics are based on the absence of commercial markets, using approximate zero values.",
+        "The analysis strictly focuses on viability for global, commercially-driven hyperscale cloud infrastructure."
+      ],
+      "key_insights": [
+        "Pyongyang, North Korea, represents an investment location with absolute zero viability for major hyperscalers due to extreme geopolitical risk and comprehensive sanctions.",
+        "The complete absence of a commercial internet ecosystem, combined with state control over infrastructure, eliminates any demand justification.",
+        "Investment would violate current international trade and sanctions laws, posing unacceptable legal and reputational risks."
+      ],
+      "executive_summary": "This location is fundamentally non-viable for hyperscale data center development. Comprehensive international sanctions, severe political instability, and the complete lack of a commercial cloud ecosystem mean that legal and commercial viability is zero. All major hyperscalers (AWS, Azure, GCP) are strictly prohibited from operating or investing here. The analysis yields an extremely low overall score of 1.1, indicating no potential for development under current geopolitical conditions.",
+      "data_gaps": [
+        "Precise power availability and reliability data for large-scale industrial loads.",
+        "Granular detail on internal fiber routing and state-controlled interconnection points.",
+        "Specific local labor costs and security profiles for technical personnel."
+      ],
+      "third_party_verification": [
+        "International Sanctions Compliance Attorneys for legal risk assessment",
+        "Geopolitical Risk Consultants specializing in East Asia security",
+        "Global Trade and Logistics Experts for supply chain feasibility assessment"
+      ],
+      "phase_1_recommendations": {
+        "market_positioning": "Zero market positioning is possible under current conditions; strict avoidance is mandatory.",
+        "hyperscaler_outreach": "No outreach permitted or recommended.",
+        "competitive_strategy": "Maintain strict compliance with sanctions; treat location as inaccessible high-risk territory."
+      }
+    }
+  },
+  "executive_summary": {
+    "location_overview": "The comprehensive business-focused synthesis reveals a critical dichotomy: while the location offers substantial technical advantages regarding climate efficiency (PUE 1.25 achievable), the foundational infrastructure domainsPower, Network, Risk, ESG, and Regulatorypresent systemic, unmitigated constraints that render commercial hyperscale viability non-existent; the entire project hinges on bypassing severe international sanctions and navigating a totalitarian regulatory regime where operational autonomy is zero.",
+    "key_strengths": [
+      "The exceptional climate profile (4,500+ annual free cooling hours, Climate Score 3.9) significantly mitigates the critical financial impact of the inherently high operational energy costs that would result from relying on the unreliable, high-carbon grid, offering a theoretical 20-30% reduction in annual electricity expenditure compared to hot-climate peers.",
+      "If the facility were for strategic, non-commercial purposes only, the physical security requirements (Risk analysis) align perfectly with the location's geopolitical context (Ryongsong District), allowing for rapid physical hardening and leveraging existing state surveillance and control mechanisms, which removes the need for costly private security measures typical in commercial markets.",
+      "The ability to achieve a PUE of 1.25 (Climate analysis) provides a highly favorable Green House Gas (GHG) metric per compute unit, but this green benefit is immediately negated by the high carbon intensity of the baseload grid generation (ESG analysis), meaning the PUE advantage cannot translate into a verifiable sustainability competitive edge in international markets."
+    ],
+    "key_challenges": [
+      "The power infrastructure's chronic unreliability (Power Score 1.3) combined with the absolute prohibition on critical equipment imports due to sanctions (Regulatory/Risk Scores 1.1) creates an impossible operational scenario, guaranteeing sub-Tier III uptime performance and rendering routine maintenance (supply chain for diesel, batteries, and specialized IT parts) non-viable for long-term mission-critical operations.",
+      "The construction timeline is critically constrained by the opaque political permitting process (Regulatory analysis) and the complete inability to secure financing or procure dual-use technology (Sanctions/ESG analysis), meaning the Critical Path requires high-level political fiat for every step, extending project delivery indefinitely and increasing asset seizure risk without standard legal recourse.",
+      "The Network constraint of minimal international bandwidth (<5 Gbps) and lack of peering (Network Score 1.1) fundamentally restricts the viable workload types to extremely localized, low-latency, or highly compressed strategic government data processing, immediately eliminating any capacity for modern cloud, AI/ML training, or high-volume enterprise workloads, thereby limiting the maximum viable technical scale to non-hyperscale dimensions."
+    ],
+    "critical_success_factors": [
+      "Success requires a sovereign-level guarantee of dedicated, priority 5x9s power allocation, sourced from a specific, reliable generation asset, completely bypassing the unstable national grid, combined with the successful negotiation of a sanctions-exempt import pathway for all operational components (diesel, servers, maintenance parts).",
+      "The project must secure an executive political decree that overrides standard regulatory processes (Permitting/Zoning) and guarantees uninterrupted access to the necessary skilled labor (Risk/ESG) without triggering international human rights sanctions, measurable by securing all necessary construction permits within a fixed 12-month period.",
+      "Achieving operational viability necessitates the physical construction of a fully independent satellite uplink ground station (Network insight) capable of bypassing the terrestrial KPTC monopoly and providing dedicated, secure strategic communication channels, monitored by a service-level agreement that is enforceable at the highest political level."
+    ]
+  },
+  "phase_1_deployment": {
+    "recommended_capacity": "A purely theoretical capacity of 1-3 Megawatts (MW) is recommended, constrained by the necessity to rely entirely on on-site, dedicated diesel generation for redundancy due to the grid's chronic sub-90% reliability (Power analysis), ensuring that the load remains small enough to be sustained independently for prolonged periods without diverting critical national infrastructure or violating the systemic capacity deficit.",
+    "timeline": "The timeline for initial operation is unpredictable, estimated at 48 to 60 months (Phase 1 Build) due to critical delays stemming from sanctions-related logistical bottlenecks (importation of specialized equipment - Risk/Regulatory) and the non-standard, politically driven permitting process, requiring approximately 18 months solely dedicated to political approvals and sanctions navigation before physical construction can commence.",
+    "priority_actions": [
+      "Immediately establish a dedicated, high-level political steering committee with guaranteed authority to override standard bureaucratic processes and fast-track the importation of all generator sets and cooling equipment (Regulatory/Power), with success measured by securing an official Import Exemption Certificate (IEC) within six months.",
+      "Prioritize the detailed geotechnical investigation (Climate/Risk analysis) and architectural design utilizing the hybrid cooling methodology to achieve the targeted 1.25 PUE, allocating specialized engineering resources immediately to optimize the subterranean build for cold weather operation and seismic resilience.",
+      "Initiate negotiations with the State Committee of Power Industry (SCPI) for a guaranteed, priority feed (even if unreliable), while simultaneously securing high-volume, long-term contracts for sanctioned diesel fuel reserves sufficient to run the 3MW facility entirely off-grid for at least 90 consecutive days, with the contract structure approved by political leadership to ensure adherence."
+    ],
+    "estimated_investment": "Estimated investment for Phase 1 (1-3MW) is disproportionately high at $150 Million to $200 Million USD, dominated by the extreme cost premium associated with securing sanctions-compliant/risk-mitigated supply chains (Risk/Regulatory), the mandatory subterranean hardened construction (Security requirement), and the necessary investment in dedicated, long-duration independent power generation infrastructure (Power constraint).",
+    "risk_mitigation": [
+      "To counter catastrophic supply chain failure (Sanctions/Risk), maintain a minimum of 24 months of critical spare parts inventory (batteries, server components, cooling lubricants) on-site or in a politically secure, non-sanctioned staging area outside the DPRK, ready for immediate, high-risk importation.",
+      "Given the mandatory state monitoring (Risk/Regulatory), all hosted data must be encrypted using state-approved but operationally segregated algorithms, and physical access controls must be jointly managed, acknowledging that the host nation retains ultimate operational veto authority and real-time surveillance capability.",
+      "Implement a complete reliance on closed-circuit, satellite-based communication for all strategic external operational data transfers, bypassing the highly restricted and monitored KPTC terrestrial network, ensuring minimal reliance on the primary Single Point of Failure risk identified in the Network analysis."
+    ]
+  },
+  "strategic_opportunities": [
+    "The only viable strategic deployment is a closed-loop national defense or government-only compute facility, leveraging the total absence of data sovereignty (Regulatory) and extreme state control (Risk) to ensure absolute isolation from global networks, positioning it as the ultimate highly secured, air-gapped processing node for state internal affairs.",
+    "The inherent high-risk profile, coupled with mandatory state access to all data, provides a unique and compelling value proposition for specific, highly restricted state clients needing to demonstrate complete internal data localization and unobservable operation by foreign adversaries, transforming regulatory risk into a state security feature.",
+    "Should sanctions ever be lifted, the exceptional climate profile could enable rapid, highly efficient, and low-PUE expansion, but this would require immediate, massive investment in decarbonizing the regional power grid and building dedicated fiber connections that bypass the current KPTC monopoly, demanding a multi-decade stabilization effort preceding any commercial investment."
+  ],
+  "strategic_recommendation": "The site is fundamentally non-viable for any commercial hyperscale or enterprise data center operation due to the compounding effect of the critical risks identified across the Regulatory, Risk, Power, and Network domains; the single technical advantage of low Power Usage Effectiveness (Climate) is entirely negated by the impossibility of securing a stable power source (Power), importing necessary technology (Sanctions/Risk), and achieving data sovereignty compliance (Regulatory/ESG). Investment in this location would trigger immediate regulatory and financial penalties globally (secondary sanctions) and guarantee catastrophic operational failure due to insurmountable logistical and infrastructural constraints, confirming that this location is only suitable for a limited, specialized, state-sponsored deployment that operates outside all international commercial norms.",
+  "conclusion": "The strategic recommendation is a definitive NO-GO for any investment aligned with standard global commercial or enterprise data center objectives. The confidence level in this assessment is High (95% certainty), given the absolute barriers imposed by international sanctions and the chronic, systemic infrastructure deficits (Power/Network). Success factors, should the project proceed under a non-commercial, strategic mandate, require the immediate establishment of a sovereign-backed, sanctions-exempt supply chain and the pre-negotiation of a dedicated, reliable energy source (either isolated generation or guaranteed priority grid access) that entirely eliminates the reliance on the unstable national infrastructure, making the project a political feasibility challenge rather than an engineering challenge.",
+  "next_steps": [
+    "Officially terminate all commercial pre-feasibility studies and resource allocations for this location immediately, redirecting focus to alternative, compliant geographies where operational autonomy and supply chain security are achievable, recognizing that further analysis on climate efficiency is irrelevant given the governance constraints.",
+    "Initiate high-level strategic communication with relevant government and international regulatory bodies (if applicable to the client's strategic goals) to confirm the specific boundaries and limitations imposed by sanctions on any IT infrastructure deployment, ensuring complete understanding of potential legal liabilities before any further engagement.",
+    "For any internal project sponsor advocating for a strategic, non-commercial application, mandate a detailed, zero-infrastructure deployment plan focusing entirely on securing dedicated, secure satellite uplink bandwidth (Network constraint) and a fully autonomous, micro-scale power generation solution, minimizing infrastructure footprint and geopolitical exposure."
+  ],
+  "insights_result": {
+    "executive_summary": {
+      "location_overview": "The comprehensive business-focused synthesis reveals a critical dichotomy: while the location offers substantial technical advantages regarding climate efficiency (PUE 1.25 achievable), the foundational infrastructure domainsPower, Network, Risk, ESG, and Regulatorypresent systemic, unmitigated constraints that render commercial hyperscale viability non-existent; the entire project hinges on bypassing severe international sanctions and navigating a totalitarian regulatory regime where operational autonomy is zero.",
+      "key_strengths": [
+        "The exceptional climate profile (4,500+ annual free cooling hours, Climate Score 3.9) significantly mitigates the critical financial impact of the inherently high operational energy costs that would result from relying on the unreliable, high-carbon grid, offering a theoretical 20-30% reduction in annual electricity expenditure compared to hot-climate peers.",
+        "If the facility were for strategic, non-commercial purposes only, the physical security requirements (Risk analysis) align perfectly with the location's geopolitical context (Ryongsong District), allowing for rapid physical hardening and leveraging existing state surveillance and control mechanisms, which removes the need for costly private security measures typical in commercial markets.",
+        "The ability to achieve a PUE of 1.25 (Climate analysis) provides a highly favorable Green House Gas (GHG) metric per compute unit, but this green benefit is immediately negated by the high carbon intensity of the baseload grid generation (ESG analysis), meaning the PUE advantage cannot translate into a verifiable sustainability competitive edge in international markets."
+      ],
+      "key_challenges": [
+        "The power infrastructure's chronic unreliability (Power Score 1.3) combined with the absolute prohibition on critical equipment imports due to sanctions (Regulatory/Risk Scores 1.1) creates an impossible operational scenario, guaranteeing sub-Tier III uptime performance and rendering routine maintenance (supply chain for diesel, batteries, and specialized IT parts) non-viable for long-term mission-critical operations.",
+        "The construction timeline is critically constrained by the opaque political permitting process (Regulatory analysis) and the complete inability to secure financing or procure dual-use technology (Sanctions/ESG analysis), meaning the Critical Path requires high-level political fiat for every step, extending project delivery indefinitely and increasing asset seizure risk without standard legal recourse.",
+        "The Network constraint of minimal international bandwidth (<5 Gbps) and lack of peering (Network Score 1.1) fundamentally restricts the viable workload types to extremely localized, low-latency, or highly compressed strategic government data processing, immediately eliminating any capacity for modern cloud, AI/ML training, or high-volume enterprise workloads, thereby limiting the maximum viable technical scale to non-hyperscale dimensions."
+      ],
+      "strategic_opportunities": [
+        "The only viable strategic deployment is a closed-loop national defense or government-only compute facility, leveraging the total absence of data sovereignty (Regulatory) and extreme state control (Risk) to ensure absolute isolation from global networks, positioning it as the ultimate highly secured, air-gapped processing node for state internal affairs.",
+        "The inherent high-risk profile, coupled with mandatory state access to all data, provides a unique and compelling value proposition for specific, highly restricted state clients needing to demonstrate complete internal data localization and unobservable operation by foreign adversaries, transforming regulatory risk into a state security feature.",
+        "Should sanctions ever be lifted, the exceptional climate profile could enable rapid, highly efficient, and low-PUE expansion, but this would require immediate, massive investment in decarbonizing the regional power grid and building dedicated fiber connections that bypass the current KPTC monopoly, demanding a multi-decade stabilization effort preceding any commercial investment."
+      ],
+      "critical_success_factors": [
+        "Success requires a sovereign-level guarantee of dedicated, priority 5x9s power allocation, sourced from a specific, reliable generation asset, completely bypassing the unstable national grid, combined with the successful negotiation of a sanctions-exempt import pathway for all operational components (diesel, servers, maintenance parts).",
+        "The project must secure an executive political decree that overrides standard regulatory processes (Permitting/Zoning) and guarantees uninterrupted access to the necessary skilled labor (Risk/ESG) without triggering international human rights sanctions, measurable by securing all necessary construction permits within a fixed 12-month period.",
+        "Achieving operational viability necessitates the physical construction of a fully independent satellite uplink ground station (Network insight) capable of bypassing the terrestrial KPTC monopoly and providing dedicated, secure strategic communication channels, monitored by a service-level agreement that is enforceable at the highest political level."
+      ]
+    },
+    "phase_1_deployment": {
+      "recommended_capacity": "A purely theoretical capacity of 1-3 Megawatts (MW) is recommended, constrained by the necessity to rely entirely on on-site, dedicated diesel generation for redundancy due to the grid's chronic sub-90% reliability (Power analysis), ensuring that the load remains small enough to be sustained independently for prolonged periods without diverting critical national infrastructure or violating the systemic capacity deficit.",
+      "timeline": "The timeline for initial operation is unpredictable, estimated at 48 to 60 months (Phase 1 Build) due to critical delays stemming from sanctions-related logistical bottlenecks (importation of specialized equipment - Risk/Regulatory) and the non-standard, politically driven permitting process, requiring approximately 18 months solely dedicated to political approvals and sanctions navigation before physical construction can commence.",
+      "priority_actions": [
+        "Immediately establish a dedicated, high-level political steering committee with guaranteed authority to override standard bureaucratic processes and fast-track the importation of all generator sets and cooling equipment (Regulatory/Power), with success measured by securing an official Import Exemption Certificate (IEC) within six months.",
+        "Prioritize the detailed geotechnical investigation (Climate/Risk analysis) and architectural design utilizing the hybrid cooling methodology to achieve the targeted 1.25 PUE, allocating specialized engineering resources immediately to optimize the subterranean build for cold weather operation and seismic resilience.",
+        "Initiate negotiations with the State Committee of Power Industry (SCPI) for a guaranteed, priority feed (even if unreliable), while simultaneously securing high-volume, long-term contracts for sanctioned diesel fuel reserves sufficient to run the 3MW facility entirely off-grid for at least 90 consecutive days, with the contract structure approved by political leadership to ensure adherence."
+      ],
+      "estimated_investment": "Estimated investment for Phase 1 (1-3MW) is disproportionately high at $150 Million to $200 Million USD, dominated by the extreme cost premium associated with securing sanctions-compliant/risk-mitigated supply chains (Risk/Regulatory), the mandatory subterranean hardened construction (Security requirement), and the necessary investment in dedicated, long-duration independent power generation infrastructure (Power constraint).",
+      "risk_mitigation": [
+        "To counter catastrophic supply chain failure (Sanctions/Risk), maintain a minimum of 24 months of critical spare parts inventory (batteries, server components, cooling lubricants) on-site or in a politically secure, non-sanctioned staging area outside the DPRK, ready for immediate, high-risk importation.",
+        "Given the mandatory state monitoring (Risk/Regulatory), all hosted data must be encrypted using state-approved but operationally segregated algorithms, and physical access controls must be jointly managed, acknowledging that the host nation retains ultimate operational veto authority and real-time surveillance capability.",
+        "Implement a complete reliance on closed-circuit, satellite-based communication for all strategic external operational data transfers, bypassing the highly restricted and monitored KPTC terrestrial network, ensuring minimal reliance on the primary Single Point of Failure risk identified in the Network analysis."
+      ],
+      "success_metrics": [
+        "Achieve and sustain a rolling 12-month Power Usage Effectiveness average below 1.30 (Climate efficiency leveraged), verifiable through internal monitoring protocols, despite the volatility of the grid connection.",
+        "Maintain 100% compliance with all mandated government operational access and data localization requirements, ensuring the project avoids political intervention or arbitrary asset expropriation for the first three years of operation.",
+        "Successfully demonstrate continuous self-sufficiency by maintaining Tier III operational uptime (target 99.982%) exclusively through utilizing on-site redundancy systems, compensating for the systemic unreliability of the external power grid."
+      ]
+    },
+    "strategic_recommendation": "The site is fundamentally non-viable for any commercial hyperscale or enterprise data center operation due to the compounding effect of the critical risks identified across the Regulatory, Risk, Power, and Network domains; the single technical advantage of low Power Usage Effectiveness (Climate) is entirely negated by the impossibility of securing a stable power source (Power), importing necessary technology (Sanctions/Risk), and achieving data sovereignty compliance (Regulatory/ESG). Investment in this location would trigger immediate regulatory and financial penalties globally (secondary sanctions) and guarantee catastrophic operational failure due to insurmountable logistical and infrastructural constraints, confirming that this location is only suitable for a limited, specialized, state-sponsored deployment that operates outside all international commercial norms.",
+    "conclusion": "The strategic recommendation is a definitive NO-GO for any investment aligned with standard global commercial or enterprise data center objectives. The confidence level in this assessment is High (95% certainty), given the absolute barriers imposed by international sanctions and the chronic, systemic infrastructure deficits (Power/Network). Success factors, should the project proceed under a non-commercial, strategic mandate, require the immediate establishment of a sovereign-backed, sanctions-exempt supply chain and the pre-negotiation of a dedicated, reliable energy source (either isolated generation or guaranteed priority grid access) that entirely eliminates the reliance on the unstable national infrastructure, making the project a political feasibility challenge rather than an engineering challenge.",
+    "next_steps": [
+      "Officially terminate all commercial pre-feasibility studies and resource allocations for this location immediately, redirecting focus to alternative, compliant geographies where operational autonomy and supply chain security are achievable, recognizing that further analysis on climate efficiency is irrelevant given the governance constraints.",
+      "Initiate high-level strategic communication with relevant government and international regulatory bodies (if applicable to the client's strategic goals) to confirm the specific boundaries and limitations imposed by sanctions on any IT infrastructure deployment, ensuring complete understanding of potential legal liabilities before any further engagement.",
+      "For any internal project sponsor advocating for a strategic, non-commercial application, mandate a detailed, zero-infrastructure deployment plan focusing entirely on securing dedicated, secure satellite uplink bandwidth (Network constraint) and a fully autonomous, micro-scale power generation solution, minimizing infrastructure footprint and geopolitical exposure."
+    ]
+  },
+  "data_gap_analysis": {
+    "data_sources_used": [
+      {
+        "name": "Public data analysis",
+        "type": "publicly_available",
+        "reliability": "medium",
+        "last_updated": "Current analysis",
+        "url": null
+      }
+    ],
+    "data_gaps_identified": [
+      "Local utility capacity confirmation for multi-MW loads (precise MW availability)",
+      "Grid interconnection cost and timeline verification (actual regulatory framework)",
+      "Quantitative power quality and reliability assessment (measured frequency and voltage deviation)",
+      "Existence of any contractual mechanism for long-term power pricing or PPAs",
+      "Detailed public capacity metrics for the China-DPRK and Russia-DPRK border crossings.",
+      "Specific technical details on KPTC's domestic DWDM backbone capacity and fiber routing within Pyongyang.",
+      "Actual latency and jitter performance metrics derived from large-scale, sustained commercial traffic.",
+      "Specific, quantifiable metrics for urban fire and medical response times within Pyongyang for non-state assets.",
+      "Detailed load capacity and failure history of the regional electrical grid serving the coordinates.",
+      "Official statistics on skilled labor availability for advanced data center management and maintenance.",
+      "Verifiable grid operational data (carbon intensity, reliability factors).",
+      "Absence of independent legal frameworks for corporate PPA and green sourcing.",
+      "Zero public information on specific environmental regulations (Water Use Effectiveness, EIA requirements) for data center operations.",
+      "Non-existence of independent labor audits or verifiable human rights compliance data.",
+      "Specific local land-use classifications and building codes in the immediate Pyongyang area.",
+      "Detailed enforcement mechanisms and fines for non-compliance with domestic environmental laws.",
+      "Official documentation outlining procedures for foreign labor employment and related regulatory compliance requirements.",
+      "Precise power availability and reliability data for large-scale industrial loads.",
+      "Granular detail on internal fiber routing and state-controlled interconnection points.",
+      "Specific local labor costs and security profiles for technical personnel."
+    ],
+    "third_party_requirements": [
+      "Geopolitical risk consultancy specializing in DPRK (for sanctions compliance and political viability)",
+      "International electrical engineering firm for hypothetical grid capacity assessment (assuming political access)",
+      "Utility provider (SCPI) engagement necessary for connection analysis (highly unlikely to be available)",
+      "Geopolitical risk consultancy specializing in telecommunications security for restrictive regimes.",
+      "Physical security and fiber route audit along terrestrial borders (highly restricted).",
+      "Satellite communications feasibility assessment as a high-cost, high-latency alternative for true connectivity diversity.",
+      "Sanctions compliance legal firm specializing in OFAC and UNSC regulations.",
+      "Geopolitical intelligence firm focused on DPRK military and conflict escalation scenarios.",
+      "Supply chain risk consultants specializing in infrastructure logistics within sanctioned environments.",
+      "Sanctions and export control specialist for legal viability assessment (Critical).",
+      "Geopolitical risk and compliance consultant.",
+      "N/A (No credible independent ESG consulting firm can operate or verify data locally).",
+      "Expert geopolitical risk and sanctions compliance counsel (required immediately to assess feasibility of any transaction).",
+      "International trade and export control specialists.",
+      "Specialized investigative firms focused on DPRK market dynamics (highly restricted scope).",
+      "International Sanctions Compliance Attorneys for legal risk assessment",
+      "Geopolitical Risk Consultants specializing in East Asia security",
+      "Global Trade and Logistics Experts for supply chain feasibility assessment"
+    ],
+    "assumptions_made": [
+      {
+        "category": "General Analysis",
+        "assumption": "Analysis is based on publicly available general knowledge and intelligence regarding the DPRKs severely constrained and unreliable power sector.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Quantitative metrics (SAIDI, SAIFI, available MW, pricing) are estimates based on reported chronic shortages and system failures, as official verifiable data does not exist.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "All commercial data center development assumes successful navigation and neutralization of all international sanctions, which is currently unfeasible.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The 60Hz frequency standard is maintained, though stability is assumed to be volatile.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The analysis assumes a theoretical hyperscale data center requiring open international IP transit, competition, and peering.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "All quantitative data (capacity, costs, latency) are estimates based on external reports regarding North Korea's extremely restrictive network environment, as specific commercial metrics are state secrets.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The network is entirely state-controlled (KPTC), meaning commercial contractual viability and operational freedom are effectively zero.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Climate analysis utilizes 30-year historical weather averages sourced from regional meteorological data due to the scarcity of specific local reports.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Free cooling calculations assume ASHRAE TC 9.9 guidelines for W4/W5 operational envelopes (max 27C dry-bulb, 80% RH).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Seismic risk evaluation is based on generalized East Asian tectonic models and adjacent country hazard maps.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Specific site elevation is assumed to be above the calculated 500-year flood plain of the Taedong River.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Analysis assumes the data center adheres to international operating standards (Tier III/IV) and requires consistent, reliable power and network connectivity.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Specific local crime and emergency response metrics are based on conservative expert estimates due to data secrecy, reflecting pervasive resource scarcity.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The operational risk is based on the perspective of a foreign entity seeking autonomous operation, which is fundamentally incompatible with the host nation's political structure.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Analysis is based on publicly available geopolitical risk assessments and estimations of DPRK infrastructure performance, as verifiable data is non-existent.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Operational feasibility assumes an exemption or circumvention of international sanctions (a highly unlikely scenario).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Grid metrics (renewable % and carbon intensity) are estimations based on historical reports of hydro capacity and coal dependence.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "All local labor, environmental, and governance standards are assumed to be state-controlled and lack independent oversight.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The analysis assumes a hypothetical foreign hyperscale operator attempting independent market entry.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Regulatory viability is assessed against international standards of rule of law, which are largely absent in the DPRK.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Investment climate metrics are severely reduced due to the overriding impact of international sanctions (UNSCRs 1718, 1874, 2094, 2270, 2375, etc.) and political risk.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Operational data and compliance costs reflect the extreme opacity and state-control inherent in the DPRK system.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Hyperscaler analysis assumes adherence to global sanction regimes (UN, US, EU).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Quantitative metrics are based on the absence of commercial markets, using approximate zero values.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The analysis strictly focuses on viability for global, commercially-driven hyperscale cloud infrastructure.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      }
+    ],
+    "overall_confidence": "low",
+    "next_steps_priority": [
+      "Address critical data gaps through third-party verification",
+      "Validate key assumptions with local experts",
+      "Conduct on-site assessments for high-impact areas"
+    ]
+  }
+}

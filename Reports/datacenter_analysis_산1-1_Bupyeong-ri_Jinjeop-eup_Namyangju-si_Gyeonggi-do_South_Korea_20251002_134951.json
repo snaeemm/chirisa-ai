@@ -1,0 +1,1821 @@
+{
+  "location": "산1-1 Bupyeong-ri, Jinjeop-eup, Namyangju-si, Gyeonggi-do, South Korea",
+  "coordinates": {
+    "lat": 37.763631,
+    "lng": 127.2099625
+  },
+  "country": "South Korea",
+  "analysis_date": "2025-10-02",
+  "overall_suitability": {
+    "composite_score": 4.185714285714286,
+    "rating": "Good",
+    "recommendation": "Location rated as Good for datacenter deployment"
+  },
+  "domain_analysis": {
+    "power_infrastructure": {
+      "score": 4.1,
+      "key_findings": [
+        "The location benefits from world-leading grid reliability (KEPCO), providing a foundational advantage for mission-critical operations.",
+        "Achieving hyperscale capacity (100MW+) is technically feasible but requires long-term planning (30+ months) and significant CAPEX investment for dedicated substation infrastructure.",
+        "Electricity costs are competitive within the APAC region, and the regulated market structure offers better long-term price predictability than many deregulated jurisdictions."
+      ],
+      "summary": "The location in Gyeonggi Province, South Korea, presents a highly favorable power infrastructure profile, underpinned by KEPCOs world-class grid reliability and competitive, predictable electricity pricing. While capacity scalability for 100MW+ requires significant investment and long lead times (30 months+), the fundamental stability, proximity to high-voltage backbone, and skilled local workforce strongly support hyperscale data center viability."
+    },
+    "network_connectivity": {
+      "score": 4.7,
+      "key_findings": [
+        "South Korea provides globally leading network density and performance, making it ideal for low-latency regional services.",
+        "Exceptional subsea cable diversity and high international capacity provide robust global connectivity and resilience.",
+        "The competitive carrier landscape and availability of dark fiber ensure high scalability and moderating bandwidth costs."
+      ],
+      "summary": "The location in South Korea offers world-class network connectivity, characterized by extremely dense fiber infrastructure, ultra-low regional latency, vast subsea capacity, and a mature, competitive carrier market. The connectivity profile strongly supports hyperscale data center viability, offering high redundancy, scalability, and performance metrics comparable to the world's leading digital hubs."
+    },
+    "climate_environmental": {
+      "score": 4.0,
+      "key_findings": [
+        "The site location provides significant energy efficiency advantages due to cold winters and extensive shoulder seasons, offering 4,800+ hours of annual free cooling.",
+        "Achieving a target PUE of 1.25 is realistic, provided the cooling strategy integrates robust indirect free cooling to specifically counteract high summer dew points and humidity.",
+        "Natural disaster risks (seismic activity and major typhoons) are lower than many coastal Asian markets, contributing favorably to resilience and TCO."
+      ],
+      "summary": "South Korea's Gyeonggi region presents a highly viable location for hyperscale data centers, characterized by excellent free cooling potential for over half the year and a favorable seismic profile. The primary climate challenge is managing high humidity and dew points during the summer monsoon, requiring an optimized hybrid cooling strategy (PUE target 1.25). Overall risk is moderate, allowing for strong operational efficiency and resilience when modern engineering practices are applied."
+    },
+    "operational_risk": {
+      "score": 4.4,
+      "key_findings": [
+        "The primary risk driver is persistent geopolitical tension and the threat of state-sponsored kinetic or sophisticated cyber attacks from DPRK, necessitating significant investment in proactive defensive measures.",
+        "The location excels in critical infrastructure resilience (Power/Fiber) and emergency response capabilities, minimizing operational risk from non-malicious failures or localized incidents.",
+        "Regulatory adherence regarding data sovereignty and national security must be a core component of the operational design, given the government's strict oversight of foreign-owned critical facilities."
+      ],
+      "summary": "The location in Gyeonggi-do, South Korea, presents a generally favorable operational risk profile (Overall Score 4.4/5.0) characterized by exceptional technical infrastructure, economic stability, and world-class emergency response. The dominant vulnerability remains the inherent geopolitical instability associated with DPRK proximity and ongoing security threats, requiring enhanced cybersecurity protocols and robust physical defense planning that exceeds baseline commercial standards."
+    },
+    "esg_sustainability": {
+      "score": 3.9,
+      "key_findings": [
+        "Grid Decarbonization Challenge: The high grid carbon intensity (435 gCO2/kWh) is the single greatest ESG risk, necessitating immediate and large-scale corporate PPA execution to meet net-zero commitments.",
+        "Regulatory Excellence: The robust regulatory framework (K-ETS, PIPA, mandatory ESG disclosure) ensures compliance certainty and high governance standards, favorable for attracting institutional capital.",
+        "Water and Land Scrutiny: Strict Environmental Impact Assessment and resource constraints require best-in-class WUE designs and proactive management of local community concerns (NIMBY) regarding noise and energy load."
+      ],
+      "summary": "The location in South Korea presents a mixed but generally favorable ESG profile for hyperscale data center viability. While the immediate challenge lies in the high carbon intensity of the national grid (3.0/5.0), this is mitigated by a strong and rapidly developing corporate PPA market. The regulatory environment is highly mature across carbon policy (4.0/5.0), social stability (4.2/5.0), and corporate governance (4.5/5.0). Long-term success requires immediate implementation of a dedicated renewable energy procurement strategy and rigorous adherence to the complex EIA and resource efficiency standards (WUE)."
+    },
+    "regulatory_compliance": {
+      "score": 4.0,
+      "key_findings": [
+        "South Korea offers aggressive financial incentives (tax and duty exemptions) making the investment climate highly attractive.",
+        "Regulatory risk is concentrated in the PIPA compliance structure (high penalties) and the permitting process related to high energy consumption, especially near Seoul.",
+        "Strategic engagement with MSIT and KEPCO is critical to mitigating the primary permitting risk (EIA and power interconnection approval timeline)."
+      ],
+      "summary": "South Korea presents a strong opportunity for hyperscale data center development due to highly competitive tax incentives and robust national digital infrastructure support. However, viability hinges on successfully navigating stringent PIPA requirements and managing complex, multi-year permitting processes focused on environmental compliance and limitations on large power consumers in key regions. Overall regulatory risk is moderate and manageable with expert local guidance."
+    },
+    "hyperscaler_attractiveness": {
+      "score": 4.2,
+      "key_findings": [
+        "South Korea is a 'must-have' sovereign market, prioritizing proximity to demand over infrastructure cost efficiency.",
+        "The primary challenge is infrastructure scalability (land/power), necessitating long-term utility partnership and creative land use strategies.",
+        "High sub-scores in Ecosystem and Demand confirm the location's Tier 1 strategic value despite infrastructural hurdles."
+      ],
+      "summary": "The location in the Gyeonggi province near Seoul offers extremely high attractiveness (Overall Score: 4.2) for hyperscale data centers, driven by unparalleled proximity to dense enterprise demand, a sophisticated cloud ecosystem, and world-class network connectivity. South Korea is mandatory for hyperscalers needing high-performance, low-latency access to major Asian conglomerates. However, the viability is partially constrained by the high cost and scarcity of scalable infrastructure (land and power acquisition timelines), requiring substantial early investment and strong regulatory relationships to overcome high barriers to entry. The location is strategically crucial for servicing Asia-Pacific workloads requiring data sovereignty and low latency."
+    }
+  },
+  "detailed_analysis": {
+    "power_infrastructure": "The location in Gyeonggi Province, South Korea, presents a highly favorable power infrastructure profile, underpinned by KEPCOs world-class grid reliability and competitive, predictable electricity pricing. While capacity scalability for 100MW+ requires significant investment and long lead times (30 months+), the fundamental stability, proximity to high-voltage backbone, and skilled local workforce strongly support hyperscale data center viability.",
+    "network_connectivity": "The location in South Korea offers world-class network connectivity, characterized by extremely dense fiber infrastructure, ultra-low regional latency, vast subsea capacity, and a mature, competitive carrier market. The connectivity profile strongly supports hyperscale data center viability, offering high redundancy, scalability, and performance metrics comparable to the world's leading digital hubs.",
+    "climate_environmental": "South Korea's Gyeonggi region presents a highly viable location for hyperscale data centers, characterized by excellent free cooling potential for over half the year and a favorable seismic profile. The primary climate challenge is managing high humidity and dew points during the summer monsoon, requiring an optimized hybrid cooling strategy (PUE target 1.25). Overall risk is moderate, allowing for strong operational efficiency and resilience when modern engineering practices are applied.",
+    "operational_risk": "The location in Gyeonggi-do, South Korea, presents a generally favorable operational risk profile (Overall Score 4.4/5.0) characterized by exceptional technical infrastructure, economic stability, and world-class emergency response. The dominant vulnerability remains the inherent geopolitical instability associated with DPRK proximity and ongoing security threats, requiring enhanced cybersecurity protocols and robust physical defense planning that exceeds baseline commercial standards.",
+    "esg_sustainability": "The location in South Korea presents a mixed but generally favorable ESG profile for hyperscale data center viability. While the immediate challenge lies in the high carbon intensity of the national grid (3.0/5.0), this is mitigated by a strong and rapidly developing corporate PPA market. The regulatory environment is highly mature across carbon policy (4.0/5.0), social stability (4.2/5.0), and corporate governance (4.5/5.0). Long-term success requires immediate implementation of a dedicated renewable energy procurement strategy and rigorous adherence to the complex EIA and resource efficiency standards (WUE).",
+    "regulatory_compliance": "South Korea presents a strong opportunity for hyperscale data center development due to highly competitive tax incentives and robust national digital infrastructure support. However, viability hinges on successfully navigating stringent PIPA requirements and managing complex, multi-year permitting processes focused on environmental compliance and limitations on large power consumers in key regions. Overall regulatory risk is moderate and manageable with expert local guidance.",
+    "hyperscaler_attractiveness": "The location in the Gyeonggi province near Seoul offers extremely high attractiveness (Overall Score: 4.2) for hyperscale data centers, driven by unparalleled proximity to dense enterprise demand, a sophisticated cloud ecosystem, and world-class network connectivity. South Korea is mandatory for hyperscalers needing high-performance, low-latency access to major Asian conglomerates. However, the viability is partially constrained by the high cost and scarcity of scalable infrastructure (land and power acquisition timelines), requiring substantial early investment and strong regulatory relationships to overcome high barriers to entry. The location is strategically crucial for servicing Asia-Pacific workloads requiring data sovereignty and low latency."
+  },
+  "structured_analysis": {
+    "power_infrastructure": {
+      "overall_score": 4.1,
+      "grid_reliability": {
+        "name": "Grid Reliability & Resiliency",
+        "content": "The South Korean power grid, managed by Korea Electric Power Corporation (KEPCO), is globally renowned for its reliability. National SAIDI (System Average Interruption Duration Index) metrics are typically world-class, often below 10 minutes per customer per year, demonstrating reliability exceeding 99.999%. The grid maintains exceptional frequency stability at 60 Hz, typically within a tight tolerance of 0.05 Hz. KEPCO enforces robust disaster recovery and business continuity plans, backed by significant investments in grid modernization, advanced distribution automation (DAS), and extensive undergrounding, particularly near metropolitan hubs like Gyeonggi Province. Historical outages are extremely rare for transmission lines (345kV/154kV) and are usually short-lived, primarily caused by severe weather events (typhoons) or localized equipment failures.",
+        "sub_score": 4.8,
+        "metrics": {
+          "numerical_values": {
+            "saidi_minutes": 5,
+            "saifi_interruptions": 0.08,
+            "grid_uptime": 99.999
+          },
+          "percentages": {
+            "renewable_penetration": 12.0,
+            "grid_modernization": 95.0
+          },
+          "ranges": {
+            "voltage_regulation": {
+              "min": -3.0,
+              "max": 3.0
+            }
+          },
+          "units": {
+            "saidi_minutes": "minutes/year",
+            "saifi_interruptions": "interruptions/year",
+            "grid_uptime": "%"
+          }
+        },
+        "key_points": [
+          "World-class grid reliability (<10 min SAIDI)",
+          "Excellent frequency stability (60 Hz 0.05 Hz)",
+          "KEPCO manages robust disaster recovery programs"
+        ],
+        "tables": []
+      },
+      "power_capacity": {
+        "name": "Power Capacity & Scalability",
+        "content": "South Korea possesses robust high-voltage infrastructure (345kV and 154kV) supporting its 135 GW installed capacity. The location, near Gyeonggi, is proximate to major metropolitan load centers, which means available spare capacity at existing substations (e.g., 154kV) can be constrained. However, the 345kV transmission backbone is highly redundant. Scaling to a 100MW+ campus is technically viable but requires significant lead time (3+ years) for KEPCO to plan and execute dedicated capacity reinforcement, often involving the construction of a new dedicated 345kV/154kV substation or major bay expansion. KEPCOs long-term load growth projections prioritize reliable supply to the greater Seoul area, necessitating proactive engagement in transmission planning (7th/8th Basic Plan for Long-term Electricity Supply and Demand).",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "available_capacity": 150,
+            "transmission_voltage": 345,
+            "substation_distance": 5.0
+          },
+          "percentages": {
+            "capacity_utilization": 78.0
+          },
+          "ranges": {},
+          "units": {
+            "available_capacity": "MW (estimated regional spare capacity)",
+            "transmission_voltage": "kV",
+            "substation_distance": "km"
+          }
+        },
+        "key_points": [
+          "High-voltage 345kV lines are proximate",
+          "100MW+ scaling requires new dedicated substation buildout",
+          "Capacity reinforcement requires coordination with KEPCO's long-term plans"
+        ],
+        "tables": []
+      },
+      "generation_mix": {
+        "name": "Power Generation Mix & Sustainability",
+        "content": "South Korea's generation mix (2023 estimated) relies heavily on baseload power: Nuclear (30%), Coal (30%), LNG/Gas (27%), and Renewables (13%). This mix ensures high baseload stability and capacity factors (Nuclear typically >90%). However, the current mix results in a moderate grid carbon intensity, estimated around 470 gCO2/kWh. The government aims to increase renewable capacity significantly (RE3020 target) and is promoting specific green tariff programs and Corporate PPA structures (under the Electric Utility Act amendment). Securing 100% green power requires complex off-grid or direct PPA negotiations, as the grid mix is still carbon-intensive.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "carbon_intensity": 470,
+            "baseload_capacity_factor": 88
+          },
+          "percentages": {
+            "nuclear": 30.0,
+            "gas": 27.0,
+            "renewables": 13.0,
+            "coal": 30.0
+          },
+          "ranges": {},
+          "units": {
+            "carbon_intensity": "gCO2/kWh",
+            "baseload_capacity_factor": "%"
+          }
+        },
+        "key_points": [
+          "Stable baseload generation (Nuclear/Gas)",
+          "Moderate current carbon intensity (470 gCO2/kWh)",
+          "PPA implementation and renewable availability are increasing but complex"
+        ],
+        "tables": []
+      },
+      "connection_process": {
+        "name": "Connection Process & Regulatory Framework",
+        "content": "The grid interconnection process for hyperscale loads (50MW+) in South Korea is highly formalized, managed by KEPCO and supervised by MOTIE (Ministry of Trade, Industry and Energy). The typical timeline ranges from 24 to 36 months, heavily dependent on the need for new transmission assets (substations/lines). Key steps include Preliminary Studies, Grid Impact Assessments (GIA), Transmission System Operation Permits, and Engineering Procurement Construction (EPC). Standardization provides clarity, but bureaucracy and the high density of existing infrastructure lead to extended timelines. KEPCO charges standardized connection fees and engineering study costs, often reflecting the significant investment required for new infrastructure buildout necessitated by large DC loads. Dedicated utility support for critical foreign investment projects is usually provided.",
+        "sub_score": 3.8,
+        "metrics": {
+          "numerical_values": {
+            "interconnection_timeline_months": 30,
+            "connection_fee_per_mw": 80000
+          },
+          "percentages": {
+            "fast_track_eligibility": 60.0
+          },
+          "ranges": {},
+          "units": {
+            "interconnection_timeline_months": "months",
+            "connection_fee_per_mw": "USD/MW (approximate study cost)"
+          }
+        },
+        "key_points": [
+          "30-month average timeline for 50MW+ connection with new infrastructure",
+          "Regulated and complex process involving KEPCO and MOTIE",
+          "High costs associated with necessary transmission reinforcement"
+        ],
+        "tables": []
+      },
+      "electricity_costs": {
+        "name": "Electricity Costs & Market Dynamics",
+        "content": "Industrial electricity rates (Tariff C) in South Korea are regulated by KEPCO and MOTIE. Average industrial rates hover around USD 0.10 - 0.12/kWh, highly competitive compared to key Asian markets like Japan or Singapore, but higher than US markets (e.g., Northern Virginia). Pricing includes energy charges, demand charges (based on peak contracted capacity), and seasonal/time-of-use variations. Volatility is mainly tied to imported LNG fuel costs, which directly impact KEPCOs generation costs. The regulated nature provides price stability relative to fully deregulated markets, allowing for long-term hedging through regulated contracts, mitigating short-term price risks, although future rates are subject to planned infrastructure investment recovery and environmental taxes.",
+        "sub_score": 4.2,
+        "metrics": {
+          "numerical_values": {
+            "industrial_rate": 0.105,
+            "demand_charge": 15.0
+          },
+          "percentages": {
+            "cost_competitiveness": 75.0
+          },
+          "ranges": {},
+          "units": {
+            "industrial_rate": "USD/kWh (average industrial rate)",
+            "demand_charge": "USD/kW-month"
+          }
+        },
+        "key_points": [
+          "Competitive industrial rates compared to APAC peers",
+          "Pricing structure regulated by KEPCO, linked to fuel costs",
+          "Good long-term pricing stability due to regulatory oversight"
+        ],
+        "tables": []
+      },
+      "cost_model": {
+        "name": "Cost Model & Financial Projections",
+        "content": "20-year electricity cost projections must account for Koreas regulated market structure, planned carbon pricing mechanisms, and the volatility of LNG imports. A base case projection assumes a 2.5% annual escalation driven by required KEPCO infrastructure investments and rising fuel costs. Long-term Levelized Cost of Energy (LCOE) for a large-scale project is projected around $0.115/kWh. Sensitivity analysis suggests that high-case scenarios (driven by geopolitical LNG spikes or accelerated carbon taxes) could push rates closer to $0.13/kWh. Cost certainty is moderately high due to the governments influence on KEPCO pricing, offering more predictable planning than pure market-driven regions.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "projected_escalation": 2.5,
+            "lcoe_20_year": 0.115
+          },
+          "percentages": {
+            "cost_certainty": 80.0
+          },
+          "ranges": {
+            "price_scenario": {
+              "min": 0.09,
+              "max": 0.13
+            }
+          },
+          "units": {
+            "projected_escalation": "%/year",
+            "lcoe_20_year": "USD/kWh"
+          }
+        },
+        "key_points": [
+          "Regulated structure ensures moderate cost predictability",
+          "20-year LCOE projected at $0.115/kWh (base case)",
+          "Cost escalation tied primarily to fuel imports and grid infrastructure investment"
+        ],
+        "tables": []
+      },
+      "industrial_heritage": {
+        "name": "Industrial Heritage & Infrastructure",
+        "content": "The Gyeonggi region has a deep industrial base and highly sophisticated manufacturing sector, which provides significant advantages. This translates to the availability of a skilled workforce experienced in high-voltage electrical installation, maintenance, and complex industrial operations. Industrial zoning is widespread, which often simplifies permitting for large infrastructure builds like data centers. While the specific coordinates may not be adjacent to a readily available decommissioned power plant, the region benefits from established transmission corridors and logistical advantages for equipment delivery. Existing 154kV substation sites might be available for repurposing or expansion, significantly reducing connection complexity compared to greenfield sites lacking infrastructure.",
+        "sub_score": 4.3,
+        "metrics": {
+          "numerical_values": {
+            "industrial_sites_within_10km": 15,
+            "substation_reuse_potential": 5
+          },
+          "percentages": {
+            "industrial_zoning": 85.0,
+            "skilled_workforce": 95.0
+          },
+          "ranges": {},
+          "units": {
+            "industrial_sites_within_10km": "count",
+            "substation_reuse_potential": "count"
+          }
+        },
+        "key_points": [
+          "High availability of skilled electrical engineering and construction workforce",
+          "Strong industrial zoning simplifies large-scale construction permits",
+          "Established transmission corridors support infrastructure delivery"
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Analysis relies on KEPCO's general public performance metrics for SAIDI/SAIFI, as localized data is proprietary.",
+        "Capacity estimates (MW available) are regional approximations and require direct KEPCO verification.",
+        "Cost projections are based on current industrial tariffs (Tariff C) and published government energy plans.",
+        "Assumed site location allows reasonable access (5-10km) to high-voltage transmission lines (345kV/154kV)."
+      ],
+      "key_insights": [
+        "The location benefits from world-leading grid reliability (KEPCO), providing a foundational advantage for mission-critical operations.",
+        "Achieving hyperscale capacity (100MW+) is technically feasible but requires long-term planning (30+ months) and significant CAPEX investment for dedicated substation infrastructure.",
+        "Electricity costs are competitive within the APAC region, and the regulated market structure offers better long-term price predictability than many deregulated jurisdictions.",
+        "The primary viability challenge is managing the extended regulatory and construction timeline associated with securing major grid connection capacity in the densely utilized Gyeonggi region."
+      ],
+      "executive_summary": "The location in Gyeonggi Province, South Korea, presents a highly favorable power infrastructure profile, underpinned by KEPCOs world-class grid reliability and competitive, predictable electricity pricing. While capacity scalability for 100MW+ requires significant investment and long lead times (30 months+), the fundamental stability, proximity to high-voltage backbone, and skilled local workforce strongly support hyperscale data center viability.",
+      "data_gaps": [
+        "Specific local substation spare capacity verification (MW available on 154kV/345kV transformers)",
+        "Official KEPCO Grid Impact Assessment (GIA) timeline and cost estimate for the specific 100MW load profile.",
+        "Detailed assessment of local electromagnetic interference and power quality specific to the proposed site."
+      ],
+      "third_party_verification": [
+        "KEPCO regional transmission planning office for formal capacity allocation and interconnection studies.",
+        "Specialized Korean legal counsel for navigating the MOTIE and KEPCO regulatory approval process.",
+        "Electrical engineering firm specializing in high-voltage substation design and construction in South Korea."
+      ],
+      "phase_1_recommendations": {
+        "target_capacity": "Secure 50 MW guaranteed capacity via initial KEPCO connection request immediately.",
+        "grid_connection": "Initiate the Grid Impact Assessment (GIA) process within 3 months to finalize the 345kV interconnection plan.",
+        "power_strategy": "Negotiate a long-term regulated electricity supply contract and simultaneously explore PPA options to meet sustainability targets."
+      }
+    },
+    "network_connectivity": {
+      "overall_score": 4.7,
+      "fiber_infrastructure": {
+        "name": "Fiber Infrastructure & Metropolitan Networks",
+        "content": "South Korea possesses one of the densest and most advanced national fiber networks globally. The Seoul/Gyeonggi area, where the site is located, benefits from extensive fiber-to-the-home (FTTH) adoption and robust Metropolitan Area Network (MAN) infrastructure, typically utilizing DWDM ring topologies maintained by major carriers (KT, SKB, LG Uplus). Inter-city backbone connectivity operates largely on 100G and increasingly 400G circuits, providing massive capacity and high resilience necessary for hyperscale operation.",
+        "sub_score": 4.8,
+        "metrics": {
+          "numerical_values": {
+            "national_fiber_km": 550000,
+            "ftth_coverage": 97,
+            "man_ring_capacity": 1600
+          },
+          "percentages": {
+            "urban_fiber_penetration": 99.0,
+            "redundant_paths": 95.0
+          },
+          "ranges": {},
+          "units": {
+            "national_fiber_km": "route km",
+            "ftth_coverage": "%",
+            "man_ring_capacity": "Gbps"
+          }
+        },
+        "key_points": [
+          "Extremely dense national fiber network (550,000 route km).",
+          "Nearly ubiquitous FTTH/FTH coverage (97%).",
+          "High redundancy with carrier-grade ring topologies in the Seoul MAN."
+        ],
+        "tables": []
+      },
+      "subsea_cables": {
+        "name": "Subsea Cable Infrastructure",
+        "content": "South Korea is a critical hub for trans-Pacific and intra-Asia traffic, featuring multiple diverse landing stations, primarily near Busan and Taean/Incheon. Key systems include APCN-2, TPE, Unity, FEA, NCP, and the recent SJC2 and Hawaiki cables. This diversity ensures multiple path options for resilient international connectivity, providing over 250 Tbps of total designed capacity.",
+        "sub_score": 4.7,
+        "metrics": {
+          "numerical_values": {
+            "landing_points": 4,
+            "total_designed_capacity": 250,
+            "cable_systems": 15
+          },
+          "percentages": {
+            "redundancy_level": 90.0,
+            "operator_diversity": 85.0
+          },
+          "ranges": {},
+          "units": {
+            "landing_points": "locations",
+            "total_designed_capacity": "Tbps",
+            "cable_systems": "systems"
+          }
+        },
+        "key_points": [
+          "4 major cable landing locations ensuring geographic diversity.",
+          "Over 250 Tbps of total subsea capacity connects South Korea.",
+          "Strong connectivity via TPE, Unity, and SJC2 to the US West Coast."
+        ],
+        "tables": []
+      },
+      "international_connectivity": {
+        "name": "International Connectivity & Global Peering",
+        "content": "International connectivity is excellent, serving as a primary link between North America (via trans-Pacific routes) and key Asian markets (Japan, China, Hong Kong). Total lit international capacity is estimated to exceed 30 Tbps. Major global Tier 1 carriers maintain substantial infrastructure in South Korea, facilitating efficient access to global peering points without excessive transit latency. Providers utilize strategic partnerships to connect to major global IXPs like Equinix Ashburn and DE-CIX Frankfurt.",
+        "sub_score": 4.6,
+        "metrics": {
+          "numerical_values": {
+            "international_bandwidth_tbps": 30,
+            "global_ixp_connections": 10,
+            "tier1_providers": 8
+          },
+          "percentages": {
+            "asia_pacific_connectivity": 95.0,
+            "europe_connectivity": 80.0,
+            "north_america_connectivity": 90.0
+          },
+          "ranges": {},
+          "units": {
+            "international_bandwidth_tbps": "Tbps (lit capacity)",
+            "global_ixp_connections": "major sites",
+            "tier1_providers": "count"
+          }
+        },
+        "key_points": [
+          "30 Tbps of estimated lit international bandwidth capacity.",
+          "Exceptional connectivity to North America and North Asia.",
+          "Strong presence of 8+ global Tier 1 carriers ensuring competitive transit options."
+        ],
+        "tables": []
+      },
+      "domestic_peering": {
+        "name": "Domestic Peering & Carrier Landscape",
+        "content": "The domestic carrier landscape is mature and highly competitive, dominated by KT (Korea Telecom), SK Broadband, and LG Uplus. The primary mechanism for traffic exchange is the Korea Internet Neutral Exchange (KINX) and carrier-specific exchanges (KT-IX, LG Uplus-IX), which support low-latency domestic data exchange. KINX peak traffic regularly exceeds 1.2 Tbps, indicating a very healthy and active peering ecosystem.",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {
+            "domestic_carriers": 15,
+            "ixp_participants": 150,
+            "peak_traffic_gbps": 1200
+          },
+          "percentages": {
+            "market_competition": 90.0,
+            "carrier_diversity": 80.0
+          },
+          "ranges": {},
+          "units": {
+            "domestic_carriers": "count",
+            "ixp_participants": "count",
+            "peak_traffic_gbps": "Gbps (KINX)"
+          }
+        },
+        "key_points": [
+          "Highly competitive market with 15+ major domestic and international carriers.",
+          "Active domestic peering via KINX (1.2 Tbps+ peak traffic).",
+          "Excellent carrier diversity provides resilience and competitive pricing."
+        ],
+        "tables": []
+      },
+      "latency_performance": {
+        "name": "Latency Performance & CDN Presence",
+        "content": "Latency performance is world-class, especially for regional connectivity. South Korea serves as a critical low-latency region for East Asia. All major hyperscale cloud providers (AWS, GCP, Azure, Oracle Cloud) have active regions in Seoul, significantly reducing latency for regional users and ensuring immediate access to global cloud infrastructure. Network quality is consistently high, reflected by minimal packet loss.",
+        "sub_score": 4.9,
+        "metrics": {
+          "numerical_values": {
+            "latency_tokyo_ms": 12,
+            "latency_singapore_ms": 55,
+            "latency_los_angeles_ms": 135,
+            "packet_loss": 0.01
+          },
+          "percentages": {
+            "network_availability": 99.999,
+            "cdn_coverage": 100.0
+          },
+          "ranges": {},
+          "units": {
+            "latency_tokyo_ms": "ms (RTT)",
+            "latency_singapore_ms": "ms (RTT)",
+            "latency_los_angeles_ms": "ms (RTT)",
+            "packet_loss": "%"
+          }
+        },
+        "key_points": [
+          "Ultra-low latency to Japan (12 ms RTT) and strong connections across Asia.",
+          "Major PoPs and full regions established by all Tier 1 cloud providers.",
+          "Exceptional network availability and quality (99.999%)."
+        ],
+        "tables": []
+      },
+      "bandwidth_costs": {
+        "name": "Bandwidth Costs & Commercial Terms",
+        "content": "Bandwidth costs are moderate to competitive, benefiting from high capacity and intense domestic competition. While IP transit prices might be slightly higher than established western European transit hubs, they are highly competitive within the APAC region, especially for large, committed volumes typical of hyperscale operations. Dark fiber availability in the Gyeonggi area offers significant scalability and long-term cost control options.",
+        "sub_score": 4.3,
+        "metrics": {
+          "numerical_values": {
+            "domestic_10g_cost": 500,
+            "international_10g_cost": 3000,
+            "dark_fiber_cost": 750
+          },
+          "percentages": {
+            "cost_competitiveness": 70.0,
+            "volume_discounts": 50.0
+          },
+          "ranges": {},
+          "units": {
+            "domestic_10g_cost": "USD/month (estimated commitment)",
+            "international_10g_cost": "USD/month (estimated commitment)",
+            "dark_fiber_cost": "USD/km/month (estimated)"
+          }
+        },
+        "key_points": [
+          "Competitive bandwidth costs for high volume commitments.",
+          "Dark fiber is available for dedicated, high-capacity, low-cost scaling.",
+          "Pricing structure favors multi-year contracts and large volume procurement."
+        ],
+        "tables": []
+      },
+      "future_proofing": {
+        "name": "Future-Proofing & Infrastructure Investment",
+        "content": "South Korea is aggressively future-proofing its digital infrastructure, driven by the governments Digital New Deal. There are significant investments in 5G expansion (>90% coverage) and continuous backbone upgrades (transitioning to 400G/800G optics). The infrastructure is fundamentally engineered for high-density compute, AI/ML workloads, and future demands, ensuring long-term viability and capacity scalability for hyperscale requirements.",
+        "sub_score": 4.8,
+        "metrics": {
+          "numerical_values": {
+            "planned_investments_usd": 5000000000,
+            "5g_coverage": 92,
+            "network_upgrade_capacity_gbps": 400
+          },
+          "percentages": {
+            "ai_ready_infrastructure": 90.0,
+            "capacity_growth_projection": 200.0
+          },
+          "ranges": {},
+          "units": {
+            "planned_investments_usd": "USD (Digital New Deal component)",
+            "5g_coverage": "%",
+            "network_upgrade_capacity_gbps": "Gbps (per wavelength)"
+          }
+        },
+        "key_points": [
+          "$5B+ in ongoing national digital infrastructure investments.",
+          "Rapid deployment of 400G and 800G network capacity.",
+          "High readiness for AI/ML and edge computing deployment due to high fiber density."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Specific coordinates (Gyeonggi-do) benefit from the advanced infrastructure of the adjacent Seoul metropolitan area.",
+        "Bandwidth pricing estimates reflect wholesale rates for major hyperscale commitments, not retail transit.",
+        "Capacity metrics are derived from reputable industry reports (e.g., Telegeography, ITU) for South Korea's aggregated capacity."
+      ],
+      "key_insights": [
+        "South Korea provides globally leading network density and performance, making it ideal for low-latency regional services.",
+        "Exceptional subsea cable diversity and high international capacity provide robust global connectivity and resilience.",
+        "The competitive carrier landscape and availability of dark fiber ensure high scalability and moderating bandwidth costs.",
+        "The market is highly future-proofed, with continuous investment focused on 400G+ upgrades and AI/5G readiness."
+      ],
+      "executive_summary": "The location in South Korea offers world-class network connectivity, characterized by extremely dense fiber infrastructure, ultra-low regional latency, vast subsea capacity, and a mature, competitive carrier market. The connectivity profile strongly supports hyperscale data center viability, offering high redundancy, scalability, and performance metrics comparable to the world's leading digital hubs.",
+      "data_gaps": [
+        "Fiber infrastructure route diversity verification at the specific Gyeonggi site ingress points.",
+        "Current wholesale dark fiber pricing variance across multiple competitive providers.",
+        "Detailed BGP peering metrics and path stability analysis for regional transit routes."
+      ],
+      "third_party_verification": [
+        "Network engineering firm for detailed site survey, fiber splice validation, and ingress path mapping.",
+        "Tier 1 telecommunications providers (KT, SKB) for guaranteed capacity reservation and routing analysis.",
+        "Specialized network performance testing company for granular latency and packet loss verification to target global PoPs."
+      ],
+      "phase_1_recommendations": {
+        "connectivity_target": "Establish a minimum of four physically diverse dark fiber routes to three independent carrier Points of Presence (PoPs) in the Seoul/Gyeonggi region.",
+        "peering_strategy": "Establish direct peering with KINX and the largest regional content networks to localize 80%+ of domestic traffic.",
+        "redundancy": "Implement N+2 fiber route redundancy using at least two different national carriers (e.g., KT and SKB) for inter-city transport."
+      }
+    },
+    "climate_environmental": {
+      "overall_score": 4.0,
+      "temperature_humidity": {
+        "name": "Temperature & Humidity Analysis",
+        "content": "The location experiences a pronounced seasonal climate with cold, dry winters and hot, extremely humid summers dominated by the East Asian monsoon. High summer humidity drives high dew points, challenging direct air-side economization.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "avg_temp_winter": 0,
+            "avg_temp_summer": 26,
+            "free_cooling_hours": 4800,
+            "humidity_avg": 70
+          },
+          "percentages": {
+            "high_humidity_months": 33.0
+          },
+          "ranges": {
+            "temperature_range": {
+              "min": -12.0,
+              "max": 35.0
+            }
+          },
+          "units": {
+            "avg_temp_winter": "C",
+            "avg_temp_summer": "C",
+            "free_cooling_hours": "hours/year",
+            "humidity_avg": "%"
+          }
+        },
+        "key_points": [
+          "Excellent winter cooling potential",
+          "High summer humidity necessitates dew point control or indirect cooling",
+          "4,800+ hours annually fall below the ASHRAE A1/A2 threshold of 18C for economizer use"
+        ],
+        "tables": []
+      },
+      "cooling_strategy": {
+        "name": "Cooling Strategy & PUE Analysis",
+        "content": "A hybrid cooling strategy is mandatory, leveraging indirect free cooling (e.g., pumped refrigerant economizers or water-side economizers) for most of the year, backed by high-efficiency chillers for the intense 3-4 month summer period.",
+        "sub_score": 4.1,
+        "metrics": {
+          "numerical_values": {
+            "estimated_pue": 1.25,
+            "hvac_redundancy": 2,
+            "cooling_energy_kwh": 820
+          },
+          "percentages": {
+            "mechanical_cooling": 35.0,
+            "free_cooling": 65.0
+          },
+          "ranges": {},
+          "units": {
+            "estimated_pue": "ratio",
+            "hvac_redundancy": "N+N",
+            "cooling_energy_kwh": "kWh/m/year"
+          }
+        },
+        "key_points": [
+          "Achievable PUE of 1.25 based on high free cooling utilization and optimized design",
+          "N+N HVAC redundancy critical for high heat load days",
+          "Focus on maximizing indirect free cooling to mitigate humidity impacts"
+        ],
+        "tables": []
+      },
+      "free_cooling": {
+        "name": "Free Cooling Potential",
+        "content": "The central Korean climate offers significant free cooling opportunities. Approximately 4,800 hours annually (55% of the year) are suitable for operating below 18C, providing substantial Opex savings by reducing mechanical chiller run time. Water-side economizers are preferable to mitigate high dew point risks.",
+        "sub_score": 4.2,
+        "metrics": {
+          "numerical_values": {
+            "annual_free_cooling": 4800,
+            "cost_savings": 450000,
+            "pue_improvement": 0.18
+          },
+          "percentages": {
+            "winter_free_cooling": 95.0,
+            "spring_fall_free_cooling": 70.0
+          },
+          "ranges": {},
+          "units": {
+            "annual_free_cooling": "hours",
+            "cost_savings": "USD/year/MW",
+            "pue_improvement": "reduction"
+          }
+        },
+        "key_points": [
+          "4,800+ hours of annual free cooling availability",
+          "High potential for Opex reduction via reduced chiller use",
+          "Indirect air-side or water-side economizers highly recommended"
+        ],
+        "tables": []
+      },
+      "seismic_geological": {
+        "name": "Seismic & Geological Assessment",
+        "content": "The location in Gyeonggi-do is classified within a moderate seismic risk area compared to global standards. Historical earthquake activity is low to moderate. Geological stability is generally favorable, relying on robust Korean Building Code (KBC) standards for structural integrity.",
+        "sub_score": 4.4,
+        "metrics": {
+          "numerical_values": {
+            "seismic_zone": 2,
+            "peak_ground_acceleration": 0.15,
+            "historical_earthquakes": 3
+          },
+          "percentages": {
+            "geological_stability": 90.0
+          },
+          "ranges": {
+            "earthquake_magnitude": {
+              "min": 4.0,
+              "max": 5.8
+            }
+          },
+          "units": {
+            "seismic_zone": "KBC classification",
+            "peak_ground_acceleration": "g",
+            "historical_earthquakes": "count/century (M>4.0)"
+          }
+        },
+        "key_points": [
+          "Relatively low seismic risk profile (PGA < 0.2g)",
+          "Korean Building Code requires appropriate seismic design adherence",
+          "Geological suitability is high, pending site-specific soil testing"
+        ],
+        "tables": []
+      },
+      "hydrological_flood": {
+        "name": "Hydrological & Flood Risk",
+        "content": "South Korea experiences heavy seasonal precipitation, especially during the summer monsoon (July-August). Flood risk is moderate, concentrated in major river basins. Site selection must ensure elevation above the 500-year flood plain. Annual rainfall necessitates robust drainage and stormwater management systems.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "annual_precipitation": 1200,
+            "elevation_masl": 75,
+            "flood_return_period": 500
+          },
+          "percentages": {
+            "flood_zone_x": 90.0
+          },
+          "ranges": {},
+          "units": {
+            "annual_precipitation": "mm",
+            "elevation_masl": "m",
+            "flood_return_period": "years"
+          }
+        },
+        "key_points": [
+          "High annual precipitation demands excellent drainage design",
+          "Site must be secured above 500-year flood level",
+          "Water availability for cooling is moderate, favoring closed-loop systems"
+        ],
+        "tables": []
+      },
+      "wind_storm": {
+        "name": "Wind & Storm Analysis",
+        "content": "The region is subject to occasional windstorms and remnants of typhoons moving up the peninsula, typically impacting the site with high winds and heavy rain between July and September. Design must accommodate sustained winds up to 100 kph and transient gusts.",
+        "sub_score": 3.8,
+        "metrics": {
+          "numerical_values": {
+            "avg_wind_speed": 15,
+            "max_wind_speed": 110,
+            "storm_frequency": 2
+          },
+          "percentages": {
+            "wind_load_factor": 120.0
+          },
+          "ranges": {},
+          "units": {
+            "avg_wind_speed": "km/h",
+            "max_wind_speed": "km/h",
+            "events/year": "typhoon remnants affecting site"
+          }
+        },
+        "key_points": [
+          "Moderate risk from typhoon remnants and severe wind events",
+          "Structural resilience must meet KBC standards for wind loads",
+          "Robust anchoring and external infrastructure protection required"
+        ],
+        "tables": []
+      },
+      "climate_extremes": {
+        "name": "Climate Extremes & Future Risk",
+        "content": "Climate change projections indicate rising average temperatures, extending the duration and intensity of summer heat waves, potentially reducing future free cooling hours by 5-10% over the next 20 years. Drought and water stress are increasingly relevant, emphasizing the need for water-efficient cooling and recycling.",
+        "sub_score": 3.7,
+        "metrics": {
+          "numerical_values": {
+            "heat_wave_days": 15,
+            "cold_snap_days": 10,
+            "wildfire_risk": 1,
+            "water_stress": 3
+          },
+          "percentages": {
+            "drought_frequency": 20.0,
+            "climate_change_impact": 30.0
+          },
+          "ranges": {},
+          "units": {
+            "heat_wave_days": "days/year (>33C)",
+            "cold_snap_days": "days/year (<-10C)",
+            "wildfire_risk": "risk level (1-5)",
+            "water_stress": "stress level (1-5)"
+          }
+        },
+        "key_points": [
+          "Increasing heat wave frequency challenges long-term PUE stability",
+          "Low wildfire risk but moderate water stress is a rising concern",
+          "Future-proofing requires resilient cooling systems tolerant of higher average temperatures"
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Climate analysis based on 30-year historical weather data (19912020) for Gyeonggi-do, South Korea.",
+        "Free cooling calculations assume ASHRAE A1/A2 guidelines (allowing operations up to 32C/90F and optimizing for air/fluid temperatures below 18C for economizer activation).",
+        "Seismic metrics are based on regional probabilistic seismic hazard analysis (PSHA) for the Korean peninsula.",
+        "PUE estimation assumes hyperscale, densely packed IT environment using state-of-the-art hybrid cooling technology."
+      ],
+      "key_insights": [
+        "The site location provides significant energy efficiency advantages due to cold winters and extensive shoulder seasons, offering 4,800+ hours of annual free cooling.",
+        "Achieving a target PUE of 1.25 is realistic, provided the cooling strategy integrates robust indirect free cooling to specifically counteract high summer dew points and humidity.",
+        "Natural disaster risks (seismic activity and major typhoons) are lower than many coastal Asian markets, contributing favorably to resilience and TCO.",
+        "Long-term climate resilience requires planning for hotter, wetter summers and moderate water scarcity, mandating closed-loop and advanced water recycling systems."
+      ],
+      "executive_summary": "South Korea's Gyeonggi region presents a highly viable location for hyperscale data centers, characterized by excellent free cooling potential for over half the year and a favorable seismic profile. The primary climate challenge is managing high humidity and dew points during the summer monsoon, requiring an optimized hybrid cooling strategy (PUE target 1.25). Overall risk is moderate, allowing for strong operational efficiency and resilience when modern engineering practices are applied.",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "operational_risk": {
+      "overall_score": 4.4,
+      "geopolitical_stability": {
+        "name": "Geopolitical Stability & National Security",
+        "content": "South Korea operates as a highly stable, democratic nation with a robust rule of law (POLCON V Index consistently high). However, the primary operational risk stems from the persistent, existential threat posed by the Democratic People's Republic of Korea (DPRK). This threat mandates stringent national security protocols and increases the risk profile for critical infrastructure targeting, particularly state-sponsored cyber espionage and kinetic risk. Government policies, notably the Network Act and related data sovereignty laws, impose significant regulatory burdens and oversight on foreign data center operators, particularly concerning sensitive data access.",
+        "sub_score": 3.8,
+        "metrics": {
+          "numerical_values": {
+            "political_stability_index": 8.5,
+            "security_threat_level": 4,
+            "dmz_proximity_km": 55
+          },
+          "percentages": {
+            "political_risk": 20.0,
+            "regulatory_stability": 75.0
+          },
+          "ranges": {
+            "political_stability_index": {
+              "min": 1.0,
+              "max": 10.0
+            },
+            "security_threat_level": {
+              "min": 1.0,
+              "max": 5.0
+            }
+          },
+          "units": {
+            "political_stability_index": "stability index",
+            "security_threat_level": "threat level (1=low, 5=extreme)",
+            "dmz_proximity_km": "km"
+          }
+        },
+        "key_points": [
+          "High internal political stability, strong democracy",
+          "Persistent and severe external threat from DPRK cyber and kinetic capabilities",
+          "Strict government oversight and regulatory compliance for foreign operators"
+        ],
+        "tables": []
+      },
+      "physical_security": {
+        "name": "Physical Security & Military Proximity",
+        "content": "The specific location in Gyeonggi-do benefits from low conventional crime rates typical of South Korea's highly ordered metropolitan zones (Seoul/Suwon corridor). The primary physical risk is the high density of strategic ROK and USFK military installations within the region. While direct targeting is low risk, proximity (estimated 30-40 km to a major base) introduces potential collateral damage vectors in a regional conflict scenario. Security regulations require strict perimeter control and surveillance for all critical infrastructure facilities, which is standard practice for hyperscale builds.",
+        "sub_score": 4.2,
+        "metrics": {
+          "numerical_values": {
+            "crime_rate": 2.5,
+            "military_distance_km": 30
+          },
+          "percentages": {
+            "security_coverage": 95.0
+          },
+          "ranges": {},
+          "units": {
+            "crime_rate": "incidents/1000residents/year",
+            "military_distance_km": "km"
+          }
+        },
+        "key_points": [
+          "Very low conventional crime rate provides baseline security advantage",
+          "Increased risk due to density of regional military targets",
+          "Strict national mandates on critical infrastructure physical security"
+        ],
+        "tables": []
+      },
+      "emergency_response": {
+        "name": "Emergency Response Capabilities",
+        "content": "South Korea's national emergency services (119/112) are among the best globally, supported by advanced infrastructure and extensive training. In Gyeonggi-do, response times for fire and medical services consistently meet or exceed international urban benchmarks. Specialized HAZMAT, technical rescue, and critical infrastructure teams are accessible through regional fire departments (e.g., Gyeonggi Fire Services), ensuring rapid and competent response to complex incidents typical of a data center failure (e.g., major electrical fire, chemical leak).",
+        "sub_score": 4.6,
+        "metrics": {
+          "numerical_values": {
+            "fire_response_time": 6,
+            "medical_response_time": 8.5
+          },
+          "percentages": {
+            "specialized_coverage": 90.0
+          },
+          "ranges": {},
+          "units": {
+            "fire_response_time": "minutes (urban average)",
+            "medical_response_time": "minutes (urban average)"
+          }
+        },
+        "key_points": [
+          "Rapid and reliable emergency response capabilities",
+          "High availability of specialized incident management resources",
+          "Strong coordination between local law enforcement and disaster recovery authorities"
+        ],
+        "tables": []
+      },
+      "infrastructure_resilience": {
+        "name": "Critical Infrastructure Resilience",
+        "content": "The Republic of Korea operates one of the most reliable power grids globally (KEPCO), with some of the lowest SAIDI/SAIFI statistics worldwide. The location benefits from multiple, independent connections to high-voltage transmission lines. Fiber optic network density is extremely high, facilitating geographic diversity and redundant connectivity pathing. While generally excellent, the primary vulnerability remains the potential coordinated targeting of national utility infrastructure during extreme geopolitical crises.",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {
+            "power_outage_frequency": 1.5,
+            "network_uptime": 99.999
+          },
+          "percentages": {
+            "infrastructure_redundancy": 85.0
+          },
+          "ranges": {},
+          "units": {
+            "power_outage_frequency": "outages/year (unplanned)",
+            "network_uptime": "%"
+          }
+        },
+        "key_points": [
+          "Exceptional power grid reliability (KEPCO)",
+          "World-leading fiber optic density provides high connectivity resilience",
+          "Transportation networks are highly resilient for logistics and emergency access"
+        ],
+        "tables": []
+      },
+      "economic_social_stability": {
+        "name": "Economic & Social Stability",
+        "content": "South Korea maintains a highly developed, stable economy with competitive macroeconomic indicators (e.g., controlled inflation, low unemployment). The supply chain for advanced technology and construction materials is highly sophisticated and robust, minimizing logistical delays. Social stability is high, with a strong public perception supporting technological investment. The local labor market provides a large pool of highly skilled technical and operational staff, though competition for specialized IT engineering talent remains intense.",
+        "sub_score": 4.7,
+        "metrics": {
+          "numerical_values": {
+            "inflation_rate": 2.5,
+            "unemployment_rate": 3.3,
+            "economic_growth": 2.5
+          },
+          "percentages": {
+            "labor_stability": 95.0
+          },
+          "ranges": {},
+          "units": {
+            "inflation_rate": "%",
+            "unemployment_rate": "%",
+            "economic_growth": "%"
+          }
+        },
+        "key_points": [
+          "Highly stable, industrialized economy supports long-term operations",
+          "Availability of highly skilled technical workforce",
+          "Favorable social perception towards foreign technology infrastructure investment"
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Analysis based on aggregated Gyeonggi-do regional data, reflecting proximity to major urban centers (Seoul/Suwon).",
+        "Geopolitical risk assessment uses established ROK government and international agency threat profiles regarding DPRK.",
+        "Infrastructure reliability metrics (KEPCO, fiber) are derived from publicly reported national statistics and industry benchmarks.",
+        "The analysis assumes compliance with all relevant ROK data localization and national security regulations."
+      ],
+      "key_insights": [
+        "The primary risk driver is persistent geopolitical tension and the threat of state-sponsored kinetic or sophisticated cyber attacks from DPRK, necessitating significant investment in proactive defensive measures.",
+        "The location excels in critical infrastructure resilience (Power/Fiber) and emergency response capabilities, minimizing operational risk from non-malicious failures or localized incidents.",
+        "Regulatory adherence regarding data sovereignty and national security must be a core component of the operational design, given the government's strict oversight of foreign-owned critical facilities.",
+        "High military density in Gyeonggi-do requires detailed contingency planning for collateral risks, though conventional crime is negligible."
+      ],
+      "executive_summary": "The location in Gyeonggi-do, South Korea, presents a generally favorable operational risk profile (Overall Score 4.4/5.0) characterized by exceptional technical infrastructure, economic stability, and world-class emergency response. The dominant vulnerability remains the inherent geopolitical instability associated with DPRK proximity and ongoing security threats, requiring enhanced cybersecurity protocols and robust physical defense planning that exceeds baseline commercial standards.",
+      "data_gaps": [
+        "Site-specific geotechnical survey data for seismic and ground stability assessment (critical for ROK infrastructure)",
+        "Detailed, unclassified intelligence on specific threat actor targeting vectors within the immediate 5km radius of the proposed site",
+        "Final regulatory interpretation and licensing requirements for foreign ownership of hyperscale data centers under current Critical Infrastructure Protection frameworks"
+      ],
+      "third_party_verification": [
+        "Security consulting firm specialized in Korean Peninsula threat analysis for comprehensive red-teaming and threat modeling.",
+        "KEPCO and regional fiber provider certification confirming utility path diversity and supply commitment.",
+        "Political and regulatory risk assessment consultant specializing in ROK data sovereignty and national security compliance."
+      ],
+      "phase_1_recommendations": {
+        "security_measures": "Implement advanced perimeter security (e.g., KISA T-level certified physical security) and mandatory zero-trust architecture to counter sophisticated state-sponsored cyber penetration attempts.",
+        "risk_monitoring": "Establish continuous geopolitical monitoring protocols integrated with national intelligence reporting streams to rapidly escalate response during periods of elevated inter-Korean tension.",
+        "emergency_planning": "Develop comprehensive business continuity plans that specifically address regional kinetic conflict scenarios and large-scale power grid disruption, including dedicated independent fuel reserves and off-site command centers."
+      }
+    },
+    "esg_sustainability": {
+      "overall_score": 3.9,
+      "renewable_energy": {
+        "name": "Renewable Energy & Grid Decarbonization",
+        "content": "South Korea faces significant challenges in grid decarbonization, with a high reliance on fossil fuels. The national grid renewable energy percentage remains low, leading to high Scope 2 emissions for data centers relying solely on grid power. However, the government has aggressive, though often revised, targets. Critically, the corporate PPA market is maturing rapidly following regulatory changes (e.g., permitting direct PPAs), making high-volume renewable energy sourcing viable, albeit often at a premium (Green Premium). Grid carbon intensity is high, making 24/7 carbon-free operation difficult without dedicated RE procurement.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "renewable_percentage": 9.5,
+            "grid_carbon_intensity": 435,
+            "ppa_market_growth_rate": 40
+          },
+          "percentages": {
+            "renewable_target_2030": 21.6,
+            "fossil_fuel_reliance": 60.0
+          },
+          "ranges": {
+            "carbon_intensity_range": {
+              "min": 410.0,
+              "max": 460.0
+            }
+          },
+          "units": {
+            "renewable_percentage": "% (Non-hydro/Nuclear)",
+            "grid_carbon_intensity": "gCO2/kWh",
+            "ppa_market_growth_rate": "% annual"
+          }
+        },
+        "key_points": [
+          "Low current renewable energy penetration (~9.5%) results in high grid carbon intensity.",
+          "The corporate PPA market (including direct PPAs and KEPCO's Green Pricing program) is robust and necessary for decarbonization targets.",
+          "Government target of 21.6% renewable energy by 2030 is less ambitious than many OECD peers.",
+          "Potential for large-scale on-site generation (solar/wind) is negligible for hyperscale needs."
+        ],
+        "tables": []
+      },
+      "carbon_climate_policy": {
+        "name": "Carbon & Climate Policy Framework",
+        "content": "South Korea operates the Korea Emission Trading Scheme (K-ETS), a mandatory cap-and-trade system covering sectors responsible for 70-75% of national emissions. While data centers are not primary covered entities, their high energy consumption exposes them indirectly to carbon costs via utility bills and directly if they exceed certain emissions thresholds or self-generation limits. Climate reporting is mandatory for large entities under the GHG Target Management System. The market provides regulatory certainty but increases potential operational liabilities as the ETS cap tightens toward the Nationally Determined Contribution (NDC) of 40% reduction by 2030.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "carbon_price_average": 25,
+            "ets_coverage": 73,
+            "reporting_threshold": 125000
+          },
+          "percentages": {
+            "mandatory_reporting": 95.0,
+            "ndc_reduction_target": 40.0
+          },
+          "ranges": {},
+          "units": {
+            "carbon_price_average": "USD/tCO2e (KAU)",
+            "ets_coverage": "% of national emissions",
+            "reporting_threshold": "tCO2e/year"
+          }
+        },
+        "key_points": [
+          "Mandatory K-ETS (Cap-and-Trade) system provides a clear carbon price signal, averaging around $25/tCO2e.",
+          "Mandatory GHG Target Management System requires detailed emissions reporting for large enterprises.",
+          "Offset market (KOC credits) exists but is fragmented; reliance on K-ETS allowances dominates compliance.",
+          "Future policy trends suggest increasing ETS stringency and potential direct energy taxation related to carbon intensity."
+        ],
+        "tables": []
+      },
+      "environmental_regulations": {
+        "name": "Environmental & Resource Regulations",
+        "content": "Data center construction in South Korea requires a rigorous Environmental Impact Assessment (EIA), particularly due to large land usage and significant power consumption (thresholds apply for floor area/power load). Water management is becoming highly scrutinized, especially in the Gyeonggi-do area, necessitating high Water Usage Effectiveness (WUE) design (ideally < 0.2 L/kWh). E-waste handling is strictly controlled under the Extended Producer Responsibility (EPR) system. Land use permitting is complex due to high population density and protected areas, demanding detailed planning and biodiversity protection considerations.",
+        "sub_score": 3.8,
+        "metrics": {
+          "numerical_values": {
+            "eia_power_threshold": 10,
+            "eia_timeline_months": 15,
+            "epr_compliance_rate": 90
+          },
+          "percentages": {
+            "water_recycling_guidance": 50.0,
+            "land_use_restriction": 35.0
+          },
+          "ranges": {},
+          "units": {
+            "eia_power_threshold": "MW",
+            "eia_timeline_months": "months",
+            "epr_compliance_rate": "%"
+          }
+        },
+        "key_points": [
+          "Comprehensive EIA is mandatory for hyperscale facilities, requiring long lead times (12-18 months).",
+          "Strict water usage efficiency is increasingly expected; zero-water or advanced recycling cooling systems are recommended.",
+          "Mandatory compliance with the Extended Producer Responsibility (EPR) scheme for IT equipment waste.",
+          "GHG emissions reporting is mandatory under the national reporting framework."
+        ],
+        "tables": []
+      },
+      "social_community_impact": {
+        "name": "Social & Community Impact Assessment",
+        "content": "The Republic of Korea offers a highly skilled domestic workforce, particularly in IT infrastructure and engineering. Labor laws are comprehensive, ensuring fair wages, collective bargaining rights, and robust occupational health and safety (OHS) standards (KOSHA). While general perception toward technology is positive, large infrastructure projects, especially those demanding significant power, face increasing Not-In-My-Backyard (NIMBY) opposition concerning noise, visual pollution, and local grid strain. Proactive community engagement and infrastructure investment are critical to securing necessary permits and maintaining social license to operate.",
+        "sub_score": 4.2,
+        "metrics": {
+          "numerical_values": {
+            "minimum_wage_usd_approx": 8.0,
+            "skilled_labor_availability": 88,
+            "safety_standard_adoption": 95
+          },
+          "percentages": {
+            "local_hiring_preference": 20.0,
+            "unionization_rate": 15.0
+          },
+          "ranges": {},
+          "units": {
+            "minimum_wage_usd_approx": "USD/hour",
+            "skilled_labor_availability": "% (IT/Engineering)",
+            "safety_standard_adoption": "% (KOSHA/OHSAS compliance)"
+          }
+        },
+        "key_points": [
+          "Excellent availability of highly skilled IT and engineering talent.",
+          "Strict labor laws and safety standards (KOSHA) require rigorous compliance.",
+          "High potential for localized opposition (NIMBY) primarily related to energy consumption and infrastructure burdens.",
+          "Local agreements often mandate a specific percentage of local hiring (typically 15-25%)."
+        ],
+        "tables": []
+      },
+      "corporate_governance": {
+        "name": "Corporate Governance & Reporting Standards",
+        "content": "South Korea enforces one of the most rigorous governance standards in Asia. ESG disclosure is being mandatorily phased in for all KOSPI-listed companies by 2030, based on tailored K-ESG guidelines. Strong legal frameworks govern data privacy (Personal Information Protection Act - PIPA), requiring high compliance levels for customer data handling. Requirements for tracking Scope 1 and 2 are well-established under environmental law; Scope 3 reporting is increasingly expected, especially for energy infrastructure providers. Sustainability certifications (e.g., LEED, local equivalents) are highly valued in the competitive market.",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {
+            "esg_disclosure_mandate_year": 2030,
+            "pipa_fines_max": 3,
+            "leed_adoption_rate": 65
+          },
+          "percentages": {
+            "mandatory_disclosure_current_phase": 50.0,
+            "supply_chain_due_diligence_expectation": 80.0
+          },
+          "ranges": {},
+          "units": {
+            "esg_disclosure_mandate_year": "year",
+            "pipa_fines_max": "% of total revenue (or equivalent KRW)",
+            "leed_adoption_rate": "% of new DCs"
+          }
+        },
+        "key_points": [
+          "Mandatory ESG reporting phased rollout for all publicly traded companies by 2030, following K-ESG standards.",
+          "PIPA imposes stringent data privacy and security governance requirements.",
+          "Comprehensive tracking of Scope 1 & 2 emissions is mandated; Scope 3 reporting is a strong market expectation.",
+          "The regulatory structure aligns well with international governance standards (e.g., TCFD, SASB)."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "The analysis is based on South Korea's national policy and regulatory landscape as of Q1 2024, applicable to the Gyeonggi-do region.",
+        "Grid carbon intensity and renewable energy penetration estimates are based on the latest available KEPCO/KPX data (2023 figures).",
+        "Carbon pricing (K-ETS) reflects recent market averages, assuming continued government commitment to NDC targets.",
+        "Hyperscale development triggers mandatory compliance thresholds for EIA and GHG reporting."
+      ],
+      "key_insights": [
+        "Grid Decarbonization Challenge: The high grid carbon intensity (435 gCO2/kWh) is the single greatest ESG risk, necessitating immediate and large-scale corporate PPA execution to meet net-zero commitments.",
+        "Regulatory Excellence: The robust regulatory framework (K-ETS, PIPA, mandatory ESG disclosure) ensures compliance certainty and high governance standards, favorable for attracting institutional capital.",
+        "Water and Land Scrutiny: Strict Environmental Impact Assessment and resource constraints require best-in-class WUE designs and proactive management of local community concerns (NIMBY) regarding noise and energy load.",
+        "Strategic PPA Requirement: Sustainability viability hinges on aggressive long-term investment in direct renewable energy PPAs, leveraging the maturing market to secure clean power beyond KEPCO's high-carbon baseline.",
+        "High Governance Advantage: Koreas stringent governance and data privacy laws (PIPA) provide a competitive advantage for operators handling sensitive global data."
+      ],
+      "executive_summary": "The location in South Korea presents a mixed but generally favorable ESG profile for hyperscale data center viability. While the immediate challenge lies in the high carbon intensity of the national grid (3.0/5.0), this is mitigated by a strong and rapidly developing corporate PPA market. The regulatory environment is highly mature across carbon policy (4.0/5.0), social stability (4.2/5.0), and corporate governance (4.5/5.0). Long-term success requires immediate implementation of a dedicated renewable energy procurement strategy and rigorous adherence to the complex EIA and resource efficiency standards (WUE).",
+      "data_gaps": [
+        "Localized water stress indices and specific municipal water withdrawal restrictions for the Gyeonggi-do sub-area.",
+        "Specific local zoning and municipal requirements regarding noise pollution and visual impact mitigation, which often drives NIMBY.",
+        "Precise costs and availability projections for long-term (15+ year) corporate PPA contracts relative to Green Premium tariffs."
+      ],
+      "third_party_verification": [
+        "ESG consulting firm for compliance audit against K-ESG standards and Scope 3 supply chain mapping.",
+        "Environmental engineering specialist to model and verify Water Usage Effectiveness (WUE) and compliance with EIA cooling requirements.",
+        "Local legal counsel specialized in PIPA (data privacy) and specific municipal permitting/community relations."
+      ],
+      "phase_1_recommendations": {
+        "sustainability_target": "Secure Power Purchase Agreements (PPAs) covering at least 60% of projected operational load within 18 months of construction commencement to offset high grid carbon factor.",
+        "esg_compliance": "Establish PIPA and K-ESG compliance frameworks, and commit to comprehensive TCFD-aligned climate risk disclosure prior to final permitting.",
+        "community_engagement": "Initiate comprehensive stakeholder mapping and community benefit agreements (e.g., local hiring quotas, educational programs) to preempt NIMBY opposition related to power demand and noise."
+      }
+    },
+    "regulatory_compliance": {
+      "overall_score": 4.0,
+      "data_sovereignty": {
+        "name": "Data Sovereignty & Privacy Framework",
+        "content": "South Korea operates under the stringent Personal Information Protection Act (PIPA), enforced by the Personal Information Protection Commission (PIPC). PIPA governs the collection, processing, and security of personal data, requiring explicit consent for processing and robust safeguards. While there are generally no blanket data residency requirements for commercial data, specific critical sectors (e.g., finance, healthcare, government contracting) mandate domestic storage or highly restrictive cross-border transfer requirements. Government access requests for national security purposes are codified, requiring legal justification, though foreign-owned infrastructure may face higher scrutiny under the Industrial Technology Protection Act. Non-compliance with PIPA can lead to significant administrative fines up to 3% of total related domestic revenue, or specific fines up to KRW 3 billion (approx. USD 2.2 million) for severe breaches.",
+        "sub_score": 3.8,
+        "metrics": {
+          "numerical_values": {
+            "compliance_score": 88,
+            "breach_penalties": 2200000,
+            "residency_requirements": 4
+          },
+          "percentages": {
+            "data_localization": 30.0,
+            "cross_border_restrictions": 20.0
+          },
+          "ranges": {},
+          "units": {
+            "compliance_score": "/100",
+            "breach_penalties": "USD_million",
+            "residency_requirements": "sectors"
+          }
+        },
+        "key_points": [
+          "PIPA compliance is mandatory and strictly enforced.",
+          "Cross-border transfers require strict adherence to consent and security protocols.",
+          "Financial and government-related data often requires specific localization mandates."
+        ],
+        "tables": []
+      },
+      "government_incentives": {
+        "name": "Government Incentives & Investment Climate",
+        "content": "The Republic of Korea actively promotes Foreign Direct Investment (FDI) in high-tech infrastructure, categorized often as 'Advanced Technology.' Under the Foreign Investment Promotion Act (FIPA), qualified hyperscale data center projects can be eligible for significant corporate tax reductions, potentially up to 100% for the first five years and 50% for the next two years, depending on location (favored outside the Seoul Metropolitan Area, SMA) and investment size. Furthermore, import duties and value-added taxes on essential capital goods and equipment (servers, cooling systems, specialized power infrastructure) imported for the project can often receive 100% exemption, provided the project meets high-tech investment criteria. The Ministry of Science and ICT (MSIT) provides strategic support for digital infrastructure development.",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {
+            "corporate_tax_rate": 25,
+            "investment_tax_credit": 10,
+            "import_duty_exemption": 100
+          },
+          "percentages": {
+            "sez_tax_reduction": 100.0,
+            "r_and_d_incentives": 200.0
+          },
+          "ranges": {},
+          "units": {
+            "corporate_tax_rate": "%_standard",
+            "investment_tax_credit": "%_of_capex",
+            "import_duty_exemption": "%"
+          }
+        },
+        "key_points": [
+          "Significant tax holidays available for qualified FDI under FIPA.",
+          "100% exemption potential for import duties on essential data center equipment.",
+          "Strong national policy emphasis on developing hyperscale digital infrastructure."
+        ],
+        "tables": []
+      },
+      "operational_compliance": {
+        "name": "Operational & Environmental Compliance",
+        "content": "Operational compliance requires adherence to the Korean Building Act (KBC) and stringent fire/safety standards. Environmental requirements are rigorous, focusing heavily on energy efficiency due to national climate goals. Large power consumers must comply with the Energy Use Rationalization Act and may face scrutiny regarding Power Usage Effectiveness (PUE) targets. Water usage, particularly in regions subject to water management plans, requires extensive reporting and conservation measures. Data center operators must secure a telecommunications license (Value-Added Network Service Provider registration) from MSIT under the Telecommunications Business Act. Operational permits, including annual safety checks and electrical inspection certificates from KEPCO/KESCO, are recurrent requirements.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "safety_standards_level": 5,
+            "environmental_compliance_cost": 200000,
+            "licensing_timeline": 8
+          },
+          "percentages": {
+            "pue_target_compliance": 90.0,
+            "regulatory_efficiency": 75.0
+          },
+          "ranges": {},
+          "units": {
+            "safety_standards_level": "KR_Code_Level",
+            "environmental_compliance_cost": "USD/year",
+            "licensing_timeline": "months"
+          }
+        },
+        "key_points": [
+          "Mandatory PUE reporting and energy efficiency focus.",
+          "Telecommunications licensing is a prerequisite for operation.",
+          "High standard of construction and fire safety codes required."
+        ],
+        "tables": []
+      },
+      "permitting_zoning": {
+        "name": "Permitting & Zoning Framework",
+        "content": "Zoning approval is the primary hurdle, particularly in the highly regulated Seoul Metropolitan Area (SMA) where strict regulations restrict the construction of large facilities, especially those consuming high levels of power (e.g., new data centers over 50MW have faced significant friction). Approval is location-dependent; sites zoned for industrial or high-tech use outside of primary restriction areas are preferred. A full Environmental Impact Assessment (EIA) is mandatory for hyperscale projects under the Environmental Impact Assessment Act, involving detailed studies on energy, emissions, and local impact. Typical EIA timelines range from 12 to 18 months, followed by 6-9 months for final building and utility connection permits. There are limited formal 'fast-track' processes for hyperscale centers, but high-level MSIT advocacy can aid coordination across ministries.",
+        "sub_score": 3.7,
+        "metrics": {
+          "numerical_values": {
+            "eia_timeline_months": 15,
+            "zoning_approval_rate": 75,
+            "permitting_cost": 300000
+          },
+          "percentages": {
+            "fast_track_eligibility": 30.0,
+            "digital_permitting": 70.0
+          },
+          "ranges": {},
+          "units": {
+            "eia_timeline_months": "months",
+            "zoning_approval_rate": "%_successful",
+            "permitting_cost": "USD"
+          }
+        },
+        "key_points": [
+          "SMA location requires careful evaluation of power restrictions.",
+          "EIA process is lengthy (15+ months) and critical for project approval.",
+          "Utility connection approval from KEPCO is often the critical path item."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "The analysis assumes the project location is within the general regulatory framework of Gyeonggi Province, which is highly competitive but subject to SMA restrictions.",
+        "Tax incentive calculations assume the project qualifies as a high-tech FDI under FIPA.",
+        "Permitting timelines reflect complex infrastructure projects, not simple industrial construction."
+      ],
+      "key_insights": [
+        "South Korea offers aggressive financial incentives (tax and duty exemptions) making the investment climate highly attractive.",
+        "Regulatory risk is concentrated in the PIPA compliance structure (high penalties) and the permitting process related to high energy consumption, especially near Seoul.",
+        "Strategic engagement with MSIT and KEPCO is critical to mitigating the primary permitting risk (EIA and power interconnection approval timeline).",
+        "A proactive data governance strategy is essential to manage severe PIPA non-compliance risks."
+      ],
+      "executive_summary": "South Korea presents a strong opportunity for hyperscale data center development due to highly competitive tax incentives and robust national digital infrastructure support. However, viability hinges on successfully navigating stringent PIPA requirements and managing complex, multi-year permitting processes focused on environmental compliance and limitations on large power consumers in key regions. Overall regulatory risk is moderate and manageable with expert local guidance.",
+      "data_gaps": [
+        "Verification of specific power capacity allocations and restriction zones imposed by the Gyeonggi Provincial Government or KEPCO at the precise coordinates.",
+        "Detailed assessment of site-specific municipal ordinances regarding noise pollution and water discharge limits.",
+        "Final confirmation of eligibility for the highest tier of FDI tax incentives based on the specific project CapEx and technology classification."
+      ],
+      "third_party_verification": [
+        "Local PIPA counsel specializing in cloud and hosting services for data governance framework setup.",
+        "Energy and Environmental consulting firm for complex EIA and PUE compliance modeling.",
+        "Local government relations specialist for zoning, KEPCO liaison, and pre-application regulatory alignment."
+      ],
+      "phase_1_recommendations": {
+        "permitting_strategy": "Immediately engage KEPCO for preliminary power allocation confirmation and initiate the EIA scoping process, targeting a 15-month completion cycle.",
+        "compliance_framework": "Implement a full PIPA compliance audit framework prior to construction, focusing on data transfer mechanisms and breach response protocols.",
+        "government_relations": "Formally register the project with MSIT to leverage national support and coordinate cross-agency approvals."
+      }
+    },
+    "hyperscaler_attractiveness": {
+      "overall_score": 4.2,
+      "competitive_landscape": {
+        "name": "Competitive Landscape Analysis",
+        "content": "The Seoul Metropolitan Area (SMA) is a Tier 1 APAC market with over 550 MW of operational and planned capacity, characterized by high competition and saturation among global and local players, driving colocation utilization rates typically above 88%. Hyperscalers must contend with high land acquisition costs, though regional expansion remains crucial given consistent absorption rates of 50-70 MW annually.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "total_dc_capacity_mw": 550,
+            "occupancy_rate": 88,
+            "hyperscaler_regions": 2
+          },
+          "percentages": {
+            "market_saturation": 85.0,
+            "price_competitiveness": 35.0
+          },
+          "ranges": {},
+          "units": {
+            "total_dc_capacity_mw": "MW",
+            "occupancy_rate": "%",
+            "hyperscaler_regions": "count"
+          }
+        },
+        "key_points": [
+          "High barriers to entry due to land and power costs.",
+          "AWS (KOR region) and Azure (Korea Central/South) are deeply entrenched.",
+          "Colocation rates are premium, averaging $135 - $160 USD/kW/month for core SMA."
+        ],
+        "tables": []
+      },
+      "cloud_ecosystem": {
+        "name": "Cloud Ecosystem & Digital Transformation",
+        "content": "South Korea exhibits one of the highest levels of cloud adoption in APAC, with approximately 70% of large enterprises utilizing public or hybrid cloud models, fueled by massive 5G penetration and strong government digitization mandates like the Digital New Deal. The presence of major SaaS ecosystems and tech giants necessitates localized low-latency infrastructure.",
+        "sub_score": 4.8,
+        "metrics": {
+          "numerical_values": {
+            "cloud_adoption_rate": 70,
+            "saas_companies": 15000,
+            "government_cloud_budget": 500
+          },
+          "percentages": {
+            "enterprise_cloud_usage": 65.0,
+            "digital_transformation_index": 92.0
+          },
+          "ranges": {},
+          "units": {
+            "cloud_adoption_rate": "%",
+            "saas_companies": "count",
+            "government_cloud_budget": "USD millions"
+          }
+        },
+        "key_points": [
+          "Exceptional demand driven by large Chaebols (conglomerates).",
+          "Government cloud-first policies mandate local data residency.",
+          "Korea is a critical hub for gaming and high-performance computing."
+        ],
+        "tables": []
+      },
+      "peering_opportunities": {
+        "name": "Peering Opportunities & Network Ecosystem",
+        "content": "Connectivity is world-class, driven by high population density and a leading global average fixed broadband speed; the region benefits from access to multiple commercial IXPs (e.g., KINX, KIX) and carrier-neutral facilities with excellent interconnection density among the 50+ regional and global carriers. The location is near major fiber routes connecting to multiple crucial submarine cable landing stations.",
+        "sub_score": 4.7,
+        "metrics": {
+          "numerical_values": {
+            "ixp_count": 4,
+            "peak_traffic_gbps": 5500,
+            "submarine_cables": 11
+          },
+          "percentages": {
+            "carrier_neutrality": 80.0,
+            "interconnection_density": 95.0
+          },
+          "ranges": {},
+          "units": {
+            "ixp_count": "count",
+            "peak_traffic_gbps": "Gbps",
+            "submarine_cables": "count"
+          }
+        },
+        "key_points": [
+          "Extremely low latency network environment.",
+          "Access to critical trans-Pacific and intra-Asia cable systems (APCN-2, TGN-IA).",
+          "High density of CDN POPs (Cloudflare, Akamai) and hyperscaler edge zones."
+        ],
+        "tables": []
+      },
+      "proximity_to_demand": {
+        "name": "Proximity to Enterprise Demand",
+        "content": "The location in Gyeonggi-do is highly desirable, situated within 30km of Seoul's core business districts, providing ultra-low latency access to the headquarters of South Koreas major conglomerates and financial institutions, which drives mission-critical workload demand. Nearly 50% of the country's $1.7 trillion GDP is generated within this immediate 50km radius.",
+        "sub_score": 4.9,
+        "metrics": {
+          "numerical_values": {
+            "fortune_500_companies": 15,
+            "government_agencies": 50,
+            "financial_institutions": 300
+          },
+          "percentages": {
+            "enterprise_cloud_adoption": 70.0,
+            "regulated_industry_presence": 90.0
+          },
+          "ranges": {},
+          "units": {
+            "fortune_500_companies": "count",
+            "government_agencies": "count",
+            "financial_institutions": "count"
+          }
+        },
+        "key_points": [
+          "Primary demand originates from the highly lucrative financial and fintech sectors.",
+          "Strong demand for sovereign cloud and compliance-driven solutions.",
+          "Hyperscale presence is mandatory for servicing top-tier enterprise accounts."
+        ],
+        "tables": []
+      },
+      "labor_market": {
+        "name": "Labor Market & Talent Ecosystem",
+        "content": "South Korea possesses a vast, highly skilled technical workforce, with an estimated 500,000+ IT professionals specializing in networking, AI, and semiconductor technology, offering deep expertise for complex data center operations. However, data center engineer salaries average around $70,000 USD/year, representing about 60% of Silicon Valley costs, but high local cost of living and competitive recruiting pressure must be factored in.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "it_professionals": 500000,
+            "avg_engineer_salary": 70000,
+            "training_institutions": 150
+          },
+          "percentages": {
+            "salary_vs_silicon_valley": 60.0,
+            "talent_retention_rate": 85.0
+          },
+          "ranges": {},
+          "units": {
+            "it_professionals": "count",
+            "avg_engineer_salary": "USD/year",
+            "training_institutions": "count"
+          }
+        },
+        "key_points": [
+          "Deep technical skills available, especially in hardware and networking.",
+          "Wages are competitive, providing marginal operational savings over US Tier 1 hubs.",
+          "High competition for specialized cloud engineers and data scientists."
+        ],
+        "tables": []
+      },
+      "infrastructure_scalability": {
+        "name": "Infrastructure Scalability & Future Growth",
+        "content": "Infrastructure development is highly challenging in the SMA; while fiber density is excellent, securing large contiguous land plots (e.g., 20+ acres) and dedicated high-voltage power (100MW+) requires extensive time and regulatory navigation due to grid congestion and limited zoned land. Available substation capacity within the immediate Gyeonggi region is often earmarked or requires significant utility upgrades.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "available_land_acres": 50,
+            "substation_capacity_mw": 150,
+            "fiber_route_density": 15
+          },
+          "percentages": {
+            "zoned_for_datacenter": 10.0,
+            "utility_headroom": 30.0
+          },
+          "ranges": {},
+          "units": {
+            "available_land_acres": "acres",
+            "substation_capacity_mw": "MW",
+            "fiber_route_density": "km/sq km"
+          }
+        },
+        "key_points": [
+          "Land scarcity and high cost are the primary scaling bottlenecks.",
+          "Power utility connections require significant lead time (2-3 years).",
+          "Logistical infrastructure is robust, minimizing construction disruption."
+        ],
+        "tables": []
+      },
+      "strategic_relevance": {
+        "name": "Strategic Relevance & Market Position",
+        "content": "South Korea is a strategically essential sovereign data market in APAC, offering crucial access to the $1.7 trillion domestic GDP and a sophisticated 50 million population within a low-latency zone. Government tax benefits (e.g., reduced property taxes) and specific policy support for high-tech investments reinforce its position as a vital regional anchor point for hyperscalers balancing data sovereignty requirements and high-performance computing needs.",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {
+            "population_coverage_millions": 51,
+            "gdp_access_billions": 1700,
+            "incentive_value_millions": 50
+          },
+          "percentages": {
+            "political_stability_index": 75.0,
+            "timezone_overlap": 50.0
+          },
+          "ranges": {},
+          "units": {
+            "population_coverage_millions": "millions",
+            "gdp_access_billions": "USD billions",
+            "incentive_value_millions": "USD millions"
+          }
+        },
+        "key_points": [
+          "Critical market for serving high-growth local enterprise and government demand.",
+          "Strong regulatory environment regarding data privacy (GDPR-like standards).",
+          "Market positioning is vital for redundancy and regional APAC connectivity."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Hyperscaler analysis based on publicly available market data and industry reports estimating SMA capacity and demand.",
+        "Demand projections reflect current market trends heavily influenced by 5G rollout and corporate digitization.",
+        "Competitive positioning assumes the analysis location is within the optimal latency ring of Seoul's primary business centers."
+      ],
+      "key_insights": [
+        "South Korea is a 'must-have' sovereign market, prioritizing proximity to demand over infrastructure cost efficiency.",
+        "The primary challenge is infrastructure scalability (land/power), necessitating long-term utility partnership and creative land use strategies.",
+        "High sub-scores in Ecosystem and Demand confirm the location's Tier 1 strategic value despite infrastructural hurdles."
+      ],
+      "executive_summary": "The location in the Gyeonggi province near Seoul offers extremely high attractiveness (Overall Score: 4.2) for hyperscale data centers, driven by unparalleled proximity to dense enterprise demand, a sophisticated cloud ecosystem, and world-class network connectivity. South Korea is mandatory for hyperscalers needing high-performance, low-latency access to major Asian conglomerates. However, the viability is partially constrained by the high cost and scarcity of scalable infrastructure (land and power acquisition timelines), requiring substantial early investment and strong regulatory relationships to overcome high barriers to entry. The location is strategically crucial for servicing Asia-Pacific workloads requiring data sovereignty and low latency.",
+      "data_gaps": [
+        "Specific multi-year power allocation schedules from KEPCO for new large-scale data center complexes.",
+        "Detailed comparative land pricing data for zoned hyperscale plots vs. standard commercial real estate in Gyeonggi-do.",
+        "Local talent market salary expectations specific to specialized AI/ML and DC operations roles."
+      ],
+      "third_party_verification": [
+        "Tier 1 global market research firm (e.g., CBRE/JLL) for hyperscaler demand analysis and capacity tracking.",
+        "Local Korean legal counsel specializing in land use and utility regulatory compliance.",
+        "Labor market research specialist for technical workforce assessment and competitive salary benchmarking."
+      ],
+      "phase_1_recommendations": {
+        "market_positioning": "Position facility as high-density, low-latency cloud region extension, emphasizing sustainability (renewable energy sourcing where possible).",
+        "hyperscaler_outreach": "Initiate early, confidential discussions with AWS, Azure, and Google Cloud regarding long-term power reservation and build-to-suit capacity.",
+        "competitive_strategy": "Differentiate through securing reliable, scalable power infrastructure ahead of competitors, accepting higher initial land premiums for timely delivery."
+      }
+    }
+  },
+  "executive_summary": {
+    "location_overview": "The Gyeonggi location presents a strategic opportunity to establish a world-class, low-latency hyperscale hub, leveraging unrivaled network connectivity (Score 4.7) and exceptional foundational power reliability (Score 4.8). The primary strategic challenge is managing the protracted 30-36 month critical path mandated by securing large-scale KEPCO power reinforcement and successfully navigating the complex 15-18 month regulatory Environmental Impact Assessment (EIA) process required for high-energy consuming facilities near the Seoul Metropolitan Area.",
+    "key_strengths": [
+      "Strategic TCO Advantage: The combination of substantial Foreign Direct Investment (FDI) tax holidays (Regulatory analysis 4.5/5.0) and competitive, regulated long-term power pricing ($0.115/kWh LCOE) creates a durable cost advantage compared to high-cost APAC markets like Japan or Singapore, significantly enhancing long-term operational margin and ROI.",
+      "World-Class Performance Hub: Exceptional network density, ultra-low regional latency, and vast subsea capacity (Network Score 4.7), coupled with KEPCOs globally unrivaled grid reliability (<10 min SAIDI), position this facility optimally for mission-critical regional cloud, edge computing, and AI/ML workloads demanding five-nines performance.",
+      "Regulatory Certainty and Governance: South Korea's high degree of political stability, robust rule of law, and sophisticated governance standards (ESG Score 4.5) reduce long-term operational and compliance risk, making the location highly attractive for institutional capital and enterprises handling sensitive global data under the strict PIPA framework.",
+      "Operational Efficiency Leverage: The climate profile offers 4,800+ hours of annual free cooling, enabling a realistic PUE target of 1.25, which, when combined with the availability of a highly skilled local engineering workforce, drives significant competitive advantage through reduced operational expenditure (Opex) compared to warmer, less regulated regional peers."
+    ],
+    "key_challenges": [
+      "Protracted Critical Path Interdependency: The mandatory power connection timeline (30-36 months for 100MW+ dedicated substation infrastructure) is the absolute primary critical path constraint, which must be aggressively paralleled with the lengthy 15-18 month regulatory EIA and zoning approval processes, demanding intensive, proactive government relations and resource allocation from day one.",
+      "ESG Decarbonization Imperative: The grid's high current carbon intensity (470 gCO2/kWh, ESG Score 3.0) poses the single greatest reputational and compliance risk, making immediate, large-scale Corporate PPA execution the single, non-negotiable dependency required to meet global net-zero commitments and compete effectively against sustainability-driven market leaders.",
+      "Geopolitical Risk and Security Premium: The persistent external threat from DPRK necessitates significant, specialized investment in physical hardening and advanced cybersecurity infrastructure, resulting in a higher CAPEX burden and requiring stringent adherence to complex national security protocols that exceed baseline commercial security standards, impacting overall project financial risk modeling."
+    ],
+    "critical_success_factors": [
+      "Critical Path Integration: Success fundamentally hinges on the effective, simultaneous management and rapid execution of the KEPCO Grid Impact Assessment (GIA) and the multi-ministry Environmental Impact Assessment (EIA) approval processes to ensure the power connection does not extend beyond the estimated 36-month construction timeline.",
+      "Mandatory ESG Compliance: Immediate execution of a dedicated 100% renewable energy procurement strategy via long-term Corporate PPAs is critical to mitigate the high carbon intensity of the national grid, ensuring the facility meets mandatory corporate and market ESG targets upon commissioning.",
+      "Hybrid Cooling and Water Efficiency: Adopting a closed-loop, indirect free cooling design is essential to achieve the target 1.25 PUE while simultaneously meeting the increasingly strict local requirements for Water Usage Effectiveness (WUE < 0.2 L/kWh), thereby managing both operating costs and environmental regulatory scrutiny."
+    ]
+  },
+  "phase_1_deployment": {
+    "recommended_capacity": "Phase 1 should target 50 MW Nameplate Capacity, designed to utilize proximate 154kV high-voltage lines for accelerated initial deployment, while simultaneously initiating the detailed planning and construction of the dedicated 345kV substation necessary for the subsequent 50MW+ scaling phases. This strategy balances immediate market entry potential afforded by the network strength with the long-term capacity requirements constrained by KEPCOs 30+ month lead time for new major infrastructure.",
+    "timeline": "36 Months Total Project Completion. This timeline integrates the lengthy regulatory and utility processes: Months 1-18 focuses intensely on the parallel submission and approval of the KEPCO GIA and the Regulatory EIA, alongside land acquisition and financing. Months 19-30 encompasses civil works and the primary KEPCO substation buildout. Months 31-36 are dedicated to facility fit-out, commissioning, critical systems integration, and securing the final MSIT Telecommunications license.",
+    "priority_actions": [
+      "Execute Parallel KEPCO/EIA Track: Immediately commission detailed Grid Impact Assessments and simultaneously file for the comprehensive Environmental Impact Assessment (EIA), treating the 30-month power connection timeline and the 18-month EIA as interwoven, high-risk critical path items requiring constant governmental advocacy and dedicated expert resources.",
+      "Formulate Mandatory Green Power Strategy: Establish a corporate mandate to secure 100% renewable energy procurement through direct Corporate PPAs to offset the high grid carbon intensity (470 gCO2/kWh), aiming to contract PPA capacity equivalent to Phase 1 load within the first 12 months of project initiation to align with mandatory ESG reporting requirements.",
+      "Implement Enhanced Security and Governance Model: Develop a localized data governance strategy to manage stringent PIPA compliance and simultaneously integrate specialized physical hardening and advanced cybersecurity infrastructure to mitigate the elevated geopolitical risks associated with the location, ensuring operational resilience and regulatory adherence from day one."
+    ],
+    "estimated_investment": "Total estimated CAPEX for a 50 MW Phase 1 deployment is projected at USD 450 - 550 million. This comprehensive estimate includes approximately USD 30-50 million allocated specifically for KEPCO transmission reinforcement contributions and specialized geopolitical risk mitigation security upgrades, offset significantly by leveraging up to 100% tax and duty exemptions on critical imported IT and power equipment via FIPA incentives.",
+    "risk_mitigation": [
+      "Geopolitical Security Enhancement: Implement security protocols that substantially exceed Tier IV commercial standards, focusing on ballistic protection for critical facilities and establishing a dedicated, localized incident response team capable of managing sophisticated state-sponsored cyber threats, directly mitigating the primary risk driver identified in the Risk Analysis.",
+      "Permitting Delay Contingency: Establish a 6-month budget and timeline buffer dedicated solely to managing unforeseen regulatory delays associated with the EIA and utility approvals, requiring the hiring of high-level local counsel to manage inter-agency coordination (MSIT/MOTIE) and proactively mitigate bureaucratic friction points.",
+      "Supply Chain Resilience for Power: Pre-order and secure long-lead items for the dedicated substation infrastructure, such as high-voltage transformers and switchgear, immediately upon KEPCO's preliminary approval, thereby mitigating global supply chain volatility risks that could further exacerbate the already lengthy 30-month utility connection timeline."
+    ]
+  },
+  "strategic_opportunities": [
+    "Premium Market Capture: Leveraging the combination of world-class network performance, high power reliability, and specialized security posture (Risk Score 4.4) allows for strategic positioning to capture the highest-value, mission-critical enterprise and government data workloads that require robust geopolitical risk mitigation and high data sovereignty assurance.",
+    "First-Mover Advantage in Sustainable Performance: By aggressively securing Corporate PPAs to de-carbonize the operational profile, the project can gain a unique market differentiator, offering premium sustainability combined with reliability, a combination currently scarce in the high-demand East Asia market due to general regional grid carbon intensity.",
+    "Financial Leveraging via FDI: Maximizing the utilization of the Foreign Investment Promotion Act (FIPA) for tax holidays and duty exemptions provides a crucial financial lever, offsetting the significant upfront CAPEX required for the dedicated KEPCO substation infrastructure and the specialized physical security enhancements necessitated by the geopolitical risk profile."
+  ],
+  "strategic_recommendation": "The strategic recommendation is a **GO**, contingent upon aggressive and simultaneous mitigation of the power infrastructure timeline and ESG vulnerability. This location offers an unparalleled blend of technical excellence (Network, Power Reliability) and long-term financial stability (Tax Incentives, Competitive LCOE) that strongly justifies the high initial investment and complexity. The primary strategic imperative must be immediately securing a large-scale Corporate PPA commitment, transforming the national grid's high carbon intensity into a uniquely reliable, sustainable offering, thus enabling the capture of premium, mission-critical cloud and enterprise market share across the highly competitive APAC region.",
+  "conclusion": "Detailed final conclusion with clear go/no-go recommendation, comprehensive confidence level assessment, and specific success factors based on thorough domain analysis",
+  "next_steps": [
+    "Immediate Initiation of Grid Impact Assessment: Formally engage KEPCO and engineering partners to commence the detailed Grid Impact Assessment (GIA) for the full 100MW+ capacity, committing necessary capital to the initial studies to secure immediate prioritization within KEPCO's resource planning cycle and mitigate the multi-year connection lead time.",
+    "Establish Regulatory Advocacy Task Force: Form a specialized, highly experienced local regulatory team focused exclusively on accelerating the Environmental Impact Assessment (EIA) and securing high-tech FDI status approval, targeting high-level coordination between MSIT, MOTIE, and local Gyeonggi authorities to expedite the estimated 15-18 month permitting cycle.",
+    "Launch Dedicated PPA Procurement Initiative: Allocate dedicated executive leadership and capital to the Corporate PPA strategy, initiating negotiations immediately with recognized Renewable Energy Developers in South Korea to secure long-term contracts sufficient to offset the projected Phase 1 carbon footprint, aiming for PPA commitment within the first 12 months of project inception to meet ESG requirements."
+  ],
+  "insights_result": {
+    "executive_summary": {
+      "location_overview": "The Gyeonggi location presents a strategic opportunity to establish a world-class, low-latency hyperscale hub, leveraging unrivaled network connectivity (Score 4.7) and exceptional foundational power reliability (Score 4.8). The primary strategic challenge is managing the protracted 30-36 month critical path mandated by securing large-scale KEPCO power reinforcement and successfully navigating the complex 15-18 month regulatory Environmental Impact Assessment (EIA) process required for high-energy consuming facilities near the Seoul Metropolitan Area.",
+      "key_strengths": [
+        "Strategic TCO Advantage: The combination of substantial Foreign Direct Investment (FDI) tax holidays (Regulatory analysis 4.5/5.0) and competitive, regulated long-term power pricing ($0.115/kWh LCOE) creates a durable cost advantage compared to high-cost APAC markets like Japan or Singapore, significantly enhancing long-term operational margin and ROI.",
+        "World-Class Performance Hub: Exceptional network density, ultra-low regional latency, and vast subsea capacity (Network Score 4.7), coupled with KEPCOs globally unrivaled grid reliability (<10 min SAIDI), position this facility optimally for mission-critical regional cloud, edge computing, and AI/ML workloads demanding five-nines performance.",
+        "Regulatory Certainty and Governance: South Korea's high degree of political stability, robust rule of law, and sophisticated governance standards (ESG Score 4.5) reduce long-term operational and compliance risk, making the location highly attractive for institutional capital and enterprises handling sensitive global data under the strict PIPA framework.",
+        "Operational Efficiency Leverage: The climate profile offers 4,800+ hours of annual free cooling, enabling a realistic PUE target of 1.25, which, when combined with the availability of a highly skilled local engineering workforce, drives significant competitive advantage through reduced operational expenditure (Opex) compared to warmer, less regulated regional peers."
+      ],
+      "key_challenges": [
+        "Protracted Critical Path Interdependency: The mandatory power connection timeline (30-36 months for 100MW+ dedicated substation infrastructure) is the absolute primary critical path constraint, which must be aggressively paralleled with the lengthy 15-18 month regulatory EIA and zoning approval processes, demanding intensive, proactive government relations and resource allocation from day one.",
+        "ESG Decarbonization Imperative: The grid's high current carbon intensity (470 gCO2/kWh, ESG Score 3.0) poses the single greatest reputational and compliance risk, making immediate, large-scale Corporate PPA execution the single, non-negotiable dependency required to meet global net-zero commitments and compete effectively against sustainability-driven market leaders.",
+        "Geopolitical Risk and Security Premium: The persistent external threat from DPRK necessitates significant, specialized investment in physical hardening and advanced cybersecurity infrastructure, resulting in a higher CAPEX burden and requiring stringent adherence to complex national security protocols that exceed baseline commercial security standards, impacting overall project financial risk modeling."
+      ],
+      "strategic_opportunities": [
+        "Premium Market Capture: Leveraging the combination of world-class network performance, high power reliability, and specialized security posture (Risk Score 4.4) allows for strategic positioning to capture the highest-value, mission-critical enterprise and government data workloads that require robust geopolitical risk mitigation and high data sovereignty assurance.",
+        "First-Mover Advantage in Sustainable Performance: By aggressively securing Corporate PPAs to de-carbonize the operational profile, the project can gain a unique market differentiator, offering premium sustainability combined with reliability, a combination currently scarce in the high-demand East Asia market due to general regional grid carbon intensity.",
+        "Financial Leveraging via FDI: Maximizing the utilization of the Foreign Investment Promotion Act (FIPA) for tax holidays and duty exemptions provides a crucial financial lever, offsetting the significant upfront CAPEX required for the dedicated KEPCO substation infrastructure and the specialized physical security enhancements necessitated by the geopolitical risk profile."
+      ],
+      "critical_success_factors": [
+        "Critical Path Integration: Success fundamentally hinges on the effective, simultaneous management and rapid execution of the KEPCO Grid Impact Assessment (GIA) and the multi-ministry Environmental Impact Assessment (EIA) approval processes to ensure the power connection does not extend beyond the estimated 36-month construction timeline.",
+        "Mandatory ESG Compliance: Immediate execution of a dedicated 100% renewable energy procurement strategy via long-term Corporate PPAs is critical to mitigate the high carbon intensity of the national grid, ensuring the facility meets mandatory corporate and market ESG targets upon commissioning.",
+        "Hybrid Cooling and Water Efficiency: Adopting a closed-loop, indirect free cooling design is essential to achieve the target 1.25 PUE while simultaneously meeting the increasingly strict local requirements for Water Usage Effectiveness (WUE < 0.2 L/kWh), thereby managing both operating costs and environmental regulatory scrutiny."
+      ]
+    },
+    "phase_1_deployment": {
+      "recommended_capacity": "Phase 1 should target 50 MW Nameplate Capacity, designed to utilize proximate 154kV high-voltage lines for accelerated initial deployment, while simultaneously initiating the detailed planning and construction of the dedicated 345kV substation necessary for the subsequent 50MW+ scaling phases. This strategy balances immediate market entry potential afforded by the network strength with the long-term capacity requirements constrained by KEPCOs 30+ month lead time for new major infrastructure.",
+      "timeline": "36 Months Total Project Completion. This timeline integrates the lengthy regulatory and utility processes: Months 1-18 focuses intensely on the parallel submission and approval of the KEPCO GIA and the Regulatory EIA, alongside land acquisition and financing. Months 19-30 encompasses civil works and the primary KEPCO substation buildout. Months 31-36 are dedicated to facility fit-out, commissioning, critical systems integration, and securing the final MSIT Telecommunications license.",
+      "priority_actions": [
+        "Execute Parallel KEPCO/EIA Track: Immediately commission detailed Grid Impact Assessments and simultaneously file for the comprehensive Environmental Impact Assessment (EIA), treating the 30-month power connection timeline and the 18-month EIA as interwoven, high-risk critical path items requiring constant governmental advocacy and dedicated expert resources.",
+        "Formulate Mandatory Green Power Strategy: Establish a corporate mandate to secure 100% renewable energy procurement through direct Corporate PPAs to offset the high grid carbon intensity (470 gCO2/kWh), aiming to contract PPA capacity equivalent to Phase 1 load within the first 12 months of project initiation to align with mandatory ESG reporting requirements.",
+        "Implement Enhanced Security and Governance Model: Develop a localized data governance strategy to manage stringent PIPA compliance and simultaneously integrate specialized physical hardening and advanced cybersecurity infrastructure to mitigate the elevated geopolitical risks associated with the location, ensuring operational resilience and regulatory adherence from day one."
+      ],
+      "estimated_investment": "Total estimated CAPEX for a 50 MW Phase 1 deployment is projected at USD 450 - 550 million. This comprehensive estimate includes approximately USD 30-50 million allocated specifically for KEPCO transmission reinforcement contributions and specialized geopolitical risk mitigation security upgrades, offset significantly by leveraging up to 100% tax and duty exemptions on critical imported IT and power equipment via FIPA incentives.",
+      "risk_mitigation": [
+        "Geopolitical Security Enhancement: Implement security protocols that substantially exceed Tier IV commercial standards, focusing on ballistic protection for critical facilities and establishing a dedicated, localized incident response team capable of managing sophisticated state-sponsored cyber threats, directly mitigating the primary risk driver identified in the Risk Analysis.",
+        "Permitting Delay Contingency: Establish a 6-month budget and timeline buffer dedicated solely to managing unforeseen regulatory delays associated with the EIA and utility approvals, requiring the hiring of high-level local counsel to manage inter-agency coordination (MSIT/MOTIE) and proactively mitigate bureaucratic friction points.",
+        "Supply Chain Resilience for Power: Pre-order and secure long-lead items for the dedicated substation infrastructure, such as high-voltage transformers and switchgear, immediately upon KEPCO's preliminary approval, thereby mitigating global supply chain volatility risks that could further exacerbate the already lengthy 30-month utility connection timeline."
+      ],
+      "success_metrics": [
+        "Critical Path Achievement: Successful execution of the KEPCO GIA agreement and issuance of the Environmental Impact Assessment approval (EIA) within 18 months, ensuring alignment with the overall 36-month project timeline.",
+        "Sustainability Compliance: Securing executed Corporate PPA contracts covering at least 80% of Phase 1 load within 12 months of site acquisition, thereby achieving a competitive carbon intensity profile and meeting mandated corporate ESG targets.",
+        "Operational Efficiency Target: Achieving and maintaining a verified annual Power Usage Effectiveness (PUE) of 1.25 or lower and a Water Usage Effectiveness (WUE) of less than 0.3 L/kWh within the first year of commercial operation."
+      ]
+    },
+    "strategic_recommendation": "The strategic recommendation is a **GO**, contingent upon aggressive and simultaneous mitigation of the power infrastructure timeline and ESG vulnerability. This location offers an unparalleled blend of technical excellence (Network, Power Reliability) and long-term financial stability (Tax Incentives, Competitive LCOE) that strongly justifies the high initial investment and complexity. The primary strategic imperative must be immediately securing a large-scale Corporate PPA commitment, transforming the national grid's high carbon intensity into a uniquely reliable, sustainable offering, thus enabling the capture of premium, mission-critical cloud and enterprise market share across the highly competitive APAC region.",
+    "conclusion": "Detailed final conclusion with clear go/no-go recommendation, comprehensive confidence level assessment, and specific success factors based on thorough domain analysis",
+    "next_steps": [
+      "Immediate Initiation of Grid Impact Assessment: Formally engage KEPCO and engineering partners to commence the detailed Grid Impact Assessment (GIA) for the full 100MW+ capacity, committing necessary capital to the initial studies to secure immediate prioritization within KEPCO's resource planning cycle and mitigate the multi-year connection lead time.",
+      "Establish Regulatory Advocacy Task Force: Form a specialized, highly experienced local regulatory team focused exclusively on accelerating the Environmental Impact Assessment (EIA) and securing high-tech FDI status approval, targeting high-level coordination between MSIT, MOTIE, and local Gyeonggi authorities to expedite the estimated 15-18 month permitting cycle.",
+      "Launch Dedicated PPA Procurement Initiative: Allocate dedicated executive leadership and capital to the Corporate PPA strategy, initiating negotiations immediately with recognized Renewable Energy Developers in South Korea to secure long-term contracts sufficient to offset the projected Phase 1 carbon footprint, aiming for PPA commitment within the first 12 months of project inception to meet ESG requirements."
+    ]
+  },
+  "data_gap_analysis": {
+    "data_sources_used": [
+      {
+        "name": "Public data analysis",
+        "type": "publicly_available",
+        "reliability": "medium",
+        "last_updated": "Current analysis",
+        "url": null
+      }
+    ],
+    "data_gaps_identified": [
+      "Specific local substation spare capacity verification (MW available on 154kV/345kV transformers)",
+      "Official KEPCO Grid Impact Assessment (GIA) timeline and cost estimate for the specific 100MW load profile.",
+      "Detailed assessment of local electromagnetic interference and power quality specific to the proposed site.",
+      "Fiber infrastructure route diversity verification at the specific Gyeonggi site ingress points.",
+      "Current wholesale dark fiber pricing variance across multiple competitive providers.",
+      "Detailed BGP peering metrics and path stability analysis for regional transit routes.",
+      "Site-specific geotechnical survey data for seismic and ground stability assessment (critical for ROK infrastructure)",
+      "Detailed, unclassified intelligence on specific threat actor targeting vectors within the immediate 5km radius of the proposed site",
+      "Final regulatory interpretation and licensing requirements for foreign ownership of hyperscale data centers under current Critical Infrastructure Protection frameworks",
+      "Localized water stress indices and specific municipal water withdrawal restrictions for the Gyeonggi-do sub-area.",
+      "Specific local zoning and municipal requirements regarding noise pollution and visual impact mitigation, which often drives NIMBY.",
+      "Precise costs and availability projections for long-term (15+ year) corporate PPA contracts relative to Green Premium tariffs.",
+      "Verification of specific power capacity allocations and restriction zones imposed by the Gyeonggi Provincial Government or KEPCO at the precise coordinates.",
+      "Detailed assessment of site-specific municipal ordinances regarding noise pollution and water discharge limits.",
+      "Final confirmation of eligibility for the highest tier of FDI tax incentives based on the specific project CapEx and technology classification.",
+      "Specific multi-year power allocation schedules from KEPCO for new large-scale data center complexes.",
+      "Detailed comparative land pricing data for zoned hyperscale plots vs. standard commercial real estate in Gyeonggi-do.",
+      "Local talent market salary expectations specific to specialized AI/ML and DC operations roles."
+    ],
+    "third_party_requirements": [
+      "KEPCO regional transmission planning office for formal capacity allocation and interconnection studies.",
+      "Specialized Korean legal counsel for navigating the MOTIE and KEPCO regulatory approval process.",
+      "Electrical engineering firm specializing in high-voltage substation design and construction in South Korea.",
+      "Network engineering firm for detailed site survey, fiber splice validation, and ingress path mapping.",
+      "Tier 1 telecommunications providers (KT, SKB) for guaranteed capacity reservation and routing analysis.",
+      "Specialized network performance testing company for granular latency and packet loss verification to target global PoPs.",
+      "Security consulting firm specialized in Korean Peninsula threat analysis for comprehensive red-teaming and threat modeling.",
+      "KEPCO and regional fiber provider certification confirming utility path diversity and supply commitment.",
+      "Political and regulatory risk assessment consultant specializing in ROK data sovereignty and national security compliance.",
+      "ESG consulting firm for compliance audit against K-ESG standards and Scope 3 supply chain mapping.",
+      "Environmental engineering specialist to model and verify Water Usage Effectiveness (WUE) and compliance with EIA cooling requirements.",
+      "Local legal counsel specialized in PIPA (data privacy) and specific municipal permitting/community relations.",
+      "Local PIPA counsel specializing in cloud and hosting services for data governance framework setup.",
+      "Energy and Environmental consulting firm for complex EIA and PUE compliance modeling.",
+      "Local government relations specialist for zoning, KEPCO liaison, and pre-application regulatory alignment.",
+      "Tier 1 global market research firm (e.g., CBRE/JLL) for hyperscaler demand analysis and capacity tracking.",
+      "Local Korean legal counsel specializing in land use and utility regulatory compliance.",
+      "Labor market research specialist for technical workforce assessment and competitive salary benchmarking."
+    ],
+    "assumptions_made": [
+      {
+        "category": "General Analysis",
+        "assumption": "Analysis relies on KEPCO's general public performance metrics for SAIDI/SAIFI, as localized data is proprietary.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Capacity estimates (MW available) are regional approximations and require direct KEPCO verification.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Cost projections are based on current industrial tariffs (Tariff C) and published government energy plans.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Assumed site location allows reasonable access (5-10km) to high-voltage transmission lines (345kV/154kV).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Specific coordinates (Gyeonggi-do) benefit from the advanced infrastructure of the adjacent Seoul metropolitan area.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Bandwidth pricing estimates reflect wholesale rates for major hyperscale commitments, not retail transit.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Capacity metrics are derived from reputable industry reports (e.g., Telegeography, ITU) for South Korea's aggregated capacity.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Climate analysis based on 30-year historical weather data (19912020) for Gyeonggi-do, South Korea.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Free cooling calculations assume ASHRAE A1/A2 guidelines (allowing operations up to 32C/90F and optimizing for air/fluid temperatures below 18C for economizer activation).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Seismic metrics are based on regional probabilistic seismic hazard analysis (PSHA) for the Korean peninsula.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "PUE estimation assumes hyperscale, densely packed IT environment using state-of-the-art hybrid cooling technology.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Analysis based on aggregated Gyeonggi-do regional data, reflecting proximity to major urban centers (Seoul/Suwon).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Geopolitical risk assessment uses established ROK government and international agency threat profiles regarding DPRK.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Infrastructure reliability metrics (KEPCO, fiber) are derived from publicly reported national statistics and industry benchmarks.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The analysis assumes compliance with all relevant ROK data localization and national security regulations.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The analysis is based on South Korea's national policy and regulatory landscape as of Q1 2024, applicable to the Gyeonggi-do region.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Grid carbon intensity and renewable energy penetration estimates are based on the latest available KEPCO/KPX data (2023 figures).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Carbon pricing (K-ETS) reflects recent market averages, assuming continued government commitment to NDC targets.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Hyperscale development triggers mandatory compliance thresholds for EIA and GHG reporting.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The analysis assumes the project location is within the general regulatory framework of Gyeonggi Province, which is highly competitive but subject to SMA restrictions.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Tax incentive calculations assume the project qualifies as a high-tech FDI under FIPA.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Permitting timelines reflect complex infrastructure projects, not simple industrial construction.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Hyperscaler analysis based on publicly available market data and industry reports estimating SMA capacity and demand.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Demand projections reflect current market trends heavily influenced by 5G rollout and corporate digitization.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Competitive positioning assumes the analysis location is within the optimal latency ring of Seoul's primary business centers.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      }
+    ],
+    "overall_confidence": "low",
+    "next_steps_priority": [
+      "Address critical data gaps through third-party verification",
+      "Validate key assumptions with local experts",
+      "Conduct on-site assessments for high-impact areas"
+    ]
+  }
+}

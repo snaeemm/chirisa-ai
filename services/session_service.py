@@ -63,7 +63,7 @@ def load_sessions_from_database(
     try:
         from utils.auth import get_current_user
         username = get_current_user()
-        user_id = username if username else DEFAULT_USER_ID
+        user_id = DEFAULT_USER_ID if username == "Admin" else (username if username else DEFAULT_USER_ID)
 
         # List all sessions for this user
         sessions_response = asyncio.run(retry_session_operation(
@@ -211,7 +211,7 @@ def delete_session_from_ui(session_service: DatabaseSessionService, session_id: 
     try:
         from utils.auth import get_current_user
         username = get_current_user()
-        user_id = username if username else DEFAULT_USER_ID
+        user_id = DEFAULT_USER_ID if username == "Admin" else (username if username else DEFAULT_USER_ID)
 
         # Delete from ADK database
         asyncio.run(retry_session_operation(

@@ -240,15 +240,10 @@ try:
                         flag = country_flags.get(country, "🌍")
 
                         with col:
-                            location_display = location
                             if len(location) > 40:
-                                location_display = f"""
-                                <div class='location-ticker'>
-                                    <span class='location-ticker-text'>{location} &nbsp;&nbsp;&nbsp; {location}</span>
-                                </div>
-                                """
+                                location_html = f"<div class='location-ticker'><span class='location-ticker-text'>{location} &nbsp;&nbsp;&nbsp; {location}</span></div>"
                             else:
-                                location_display = location
+                                location_html = location
 
                             st.markdown(
                                 f"""
@@ -260,7 +255,7 @@ try:
                                         <span style='font-size: 2rem;'>{score_emoji}</span>
                                     </div>
                                     <div style='font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem; min-height: 2.6rem;'>
-                                        {location_display}
+                                        {location_html}
                                     </div>
                                     <div style='font-size: 0.9rem; color: #666; margin-bottom: 0.5rem;'>
                                         {flag} {country}

@@ -22,17 +22,29 @@ except ImportError as e:
 
 @st.cache_data(ttl=30)
 def load_reports_list() -> List[Dict[str, Any]]:
-    """Load list of all reports from database"""
+    """Load list of all reports from database with coordinates"""
     if not _get_report_summary_rows:
         return []
 
     try:
+        from agent.database import get_report_by_id
+        import json
+
         result = _get_report_summary_rows(order_clause="created_at DESC", limit=50)
         if result.get("status") == "success":
             reports = result.get("data", [])
             for report in reports:
                 if "created_at" in report and hasattr(report["created_at"], "strftime"):
                     report["created_at"] = report["created_at"].strftime("%Y-%m-%d %H:%M")
+
+                report_details = get_report_by_id(report["id"])
+                if report_details.get("status") == "success":
+                    raw_data = report_details["data"].get("raw_data")
+                    if isinstance(raw_data, str):
+                        raw_data = json.loads(raw_data)
+                    coords = raw_data.get("coordinates", {})
+                    report["lat"] = coords.get("lat")
+                    report["lng"] = coords.get("lng")
             return reports
         return []
     except Exception as e:
@@ -208,9 +220,9 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
                 location = report.get("location", "Unknown")
                 country = report.get("country", "Unknown")
                 score = report.get("composite_score", 0)
-                rating = report.get("rating", "Unknown")
                 report_id = report.get("id")
-                analysis_date = report.get("created_at", "")
+                lat = report.get("lat")
+                lng = report.get("lng")
 
                 is_current = report_id == st.session_state.selected_report_id
 
@@ -221,37 +233,36 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
                     "UAE": "🇦🇪", "Canada": "🇨🇦", "France": "🇫🇷", "Grenada": "🇬🇩",
                     "Malaysia": "🇲🇾", "United States": "🇺🇸", "USA": "🇺🇸",
                     "Singapore": "🇸🇬", "Germany": "🇩🇪", "United Kingdom": "🇬🇧", "UK": "🇬🇧",
-                    "Japan": "🇯🇵", "South Korea": "🇰🇷", "India": "🇮🇳", "China": "🇨🇳"
+                    "Japan": "🇯🇵", "South Korea": "🇰🇷", "Korea": "🇰🇷", "India": "🇮🇳", "China": "🇨🇳",
+                    "Netherlands": "🇳🇱", "Belgium": "🇧🇪", "Switzerland": "🇨🇭", "Sweden": "🇸🇪",
+                    "Norway": "🇳🇴", "Denmark": "🇩🇰", "Finland": "🇫🇮", "Ireland": "🇮🇪"
                 }
                 flag = country_flags.get(country, "🌍")
 
-                is_long = len(location) > 25
-                ticker_class = "ticker-text" if is_long else ""
+                coords_display = f"({lat:.2f}, {lng:.2f})" if lat and lng else "No coords"
 
                 if is_current:
                     st.markdown(
                         f"""
                         <div style='padding: 0.5rem; background-color: rgba(255, 75, 75, 0.1); border-left: 3px solid #ff4b4b; border-radius: 0.375rem; margin-bottom: 0.5rem;'>
                             <div style='display: flex; align-items: center; justify-content: space-between;'>
-                                <div style='font-weight: 600; font-size: 0.9rem; flex: 1; overflow: hidden; white-space: nowrap;'>
+                                <div style='font-weight: 600; font-size: 0.9rem; flex: 1; overflow: hidden;'>
                                     <div class='ticker-container'>
-                                        <span class='{ticker_class}'>📍 {location}</span>
+                                        <span class='ticker-text'>📍 {location}</span>
                                     </div>
                                 </div>
                                 <div style='font-size: 1.2rem; margin-left: 0.5rem;'>{score_emoji}</div>
                             </div>
-                            <div style='font-size: 0.75rem; color: #666; margin-top: 0.25rem;'>
-                                {flag} {country} • {score:.1f} • {analysis_date}
+                            <div style='font-size: 0.7rem; color: #666; margin-top: 0.25rem;'>
+                                {flag} {country} • {score:.1f}<br/>{coords_display}
                             </div>
                         </div>
                         """,
                         unsafe_allow_html=True
                     )
                 else:
-                    display_name = f"{score_emoji} {location}" if not is_long else f"{score_emoji} {location[:25]}..."
-
                     if st.button(
-                        display_name,
+                        f"{score_emoji} {location[:22]}..." if len(location) > 22 else f"{score_emoji} {location}",
                         key=f"report_{report_id}",
                         use_container_width=True,
                         type="secondary",
@@ -259,18 +270,15 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
                         st.session_state.selected_report_id = report_id
                         st.rerun()
 
-                    if is_long:
-                        st.markdown(
-                            f"""
-                            <div class='ticker-container' style='font-size: 0.7rem; margin-top: -0.75rem; margin-bottom: 0.5rem;'>
-                                <span class='ticker-text' style='font-size: 0.7rem;'>{location}</span>
-                            </div>
-                            """,
-                            unsafe_allow_html=True
-                        )
-
                     st.markdown(
-                        f"<div style='font-size: 0.75rem; color: #666; margin-top: -0.5rem; margin-bottom: 0.75rem;'>{flag} {country} • {score:.1f} • {analysis_date}</div>",
+                        f"""
+                        <div class='ticker-container' style='font-size: 0.7rem; margin-top: -0.75rem; margin-bottom: 0.25rem;'>
+                            <span class='ticker-text'>{location}</span>
+                        </div>
+                        <div style='font-size: 0.7rem; color: #666; margin-bottom: 0.75rem;'>
+                            {flag} {country} • {score:.1f}<br/>{coords_display}
+                        </div>
+                        """,
                         unsafe_allow_html=True
                     )
 
@@ -287,23 +295,7 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
 
 
 def render_minimal_sidebar() -> None:
-    """Render minimal sidebar with just navigation and logout for Help/All Reports pages."""
-
-    st.markdown("### 🧭 Navigation")
-
-    if st.button("💬 Assistant", use_container_width=True, type="secondary"):
-        st.switch_page("Assistant.py")
-
-    if st.button("📊 Reports", use_container_width=True, type="secondary"):
-        st.switch_page("pages/Reports.py")
-
-    if st.button("🗺️ All Reports Map", use_container_width=True, type="secondary"):
-        st.switch_page("pages/All_Reports.py")
-
-    if st.button("📖 Help", use_container_width=True, type="secondary"):
-        st.switch_page("pages/Help.py")
-
-    st.markdown("---")
+    """Render minimal sidebar with just logout button."""
 
     if st.button("🚪 Logout", use_container_width=True):
         from utils.auth import logout
