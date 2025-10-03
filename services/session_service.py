@@ -186,15 +186,8 @@ def initialize_sessions(session_service: DatabaseSessionService) -> None:
         st.session_state.sessions = loaded_sessions
         st.session_state.sessions_loaded = True
 
-        # Set current session to most recent or create new one
-        if loaded_sessions:
-            # Get most recent session
-            most_recent_id = sorted(loaded_sessions.keys(), reverse=True)[0]
-            st.session_state.current_session_id = most_recent_id
-        else:
-            # No existing sessions, create first one
-            first_session_id = create_new_session(session_service)
-            st.session_state.current_session_id = first_session_id
+        # Don't auto-select session - let user choose from sidebar
+        st.session_state.current_session_id = None
 
 
 def delete_session_from_ui(session_service: DatabaseSessionService, session_id: str) -> bool:
