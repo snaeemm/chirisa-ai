@@ -140,7 +140,7 @@ def create_new_session(session_service: DatabaseSessionService) -> str:
     """
     from utils.auth import get_current_user
     username = get_current_user()
-    user_id = username if username else DEFAULT_USER_ID
+    user_id = DEFAULT_USER_ID if username == "Admin" else (username if username else DEFAULT_USER_ID)
     new_session_id = f"session_{datetime.now(UTC).strftime('%Y%m%d_%H%M%S')}"
 
     # Add to session state
@@ -170,12 +170,11 @@ def initialize_sessions(session_service: DatabaseSessionService) -> None:
     """
     from utils.auth import get_current_user
     username = get_current_user()
-    user_id = username if username else DEFAULT_USER_ID
+    user_id = DEFAULT_USER_ID if username == "Admin" else (username if username else DEFAULT_USER_ID)
 
     # Initialize user_id in session state
-    if "user_id" not in st.session_state:
-        st.session_state.user_id = user_id
-    elif st.session_state.user_id != user_id:
+    current_user_id = st.session_state.get("user_id")
+    if current_user_id != user_id:
         st.session_state.user_id = user_id
         if "sessions_loaded" in st.session_state:
             del st.session_state.sessions_loaded

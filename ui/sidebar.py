@@ -155,6 +155,23 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
             color: #666;
             line-height: 1.4;
         }
+        .ticker-container {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+        }
+        .ticker-text {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 12s linear infinite;
+        }
+        @keyframes ticker {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+        .ticker-text:hover {
+            animation-play-state: paused;
+        }
         </style>
         """,
         unsafe_allow_html=True
@@ -197,46 +214,65 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
 
                 is_current = report_id == st.session_state.selected_report_id
 
-                display_title = location if len(location) <= 25 else location[:22] + "..."
-
                 score_emoji = "🟢" if score >= 4.0 else "🟡" if score >= 3.0 else "🟠" if score >= 2.0 else "🔴"
 
                 country_flags = {
                     "Australia": "🇦🇺", "Saudi Arabia": "🇸🇦", "United Arab Emirates": "🇦🇪",
                     "UAE": "🇦🇪", "Canada": "🇨🇦", "France": "🇫🇷", "Grenada": "🇬🇩",
-                    "Malaysia": "🇲🇾", "United States": "🇺🇸", "USA": "🇺🇸"
+                    "Malaysia": "🇲🇾", "United States": "🇺🇸", "USA": "🇺🇸",
+                    "Singapore": "🇸🇬", "Germany": "🇩🇪", "United Kingdom": "🇬🇧", "UK": "🇬🇧",
+                    "Japan": "🇯🇵", "South Korea": "🇰🇷", "India": "🇮🇳", "China": "🇨🇳"
                 }
                 flag = country_flags.get(country, "🌍")
 
-                col1, col2 = st.columns([0.85, 0.15])
+                is_long = len(location) > 25
+                ticker_class = "ticker-text" if is_long else ""
 
-                with col1:
-                    if is_current:
-                        st.button(
-                            f"📍 {display_title}",
-                            key=f"current_report_{report_id}",
-                            use_container_width=True,
-                            type="primary",
-                            disabled=True
+                if is_current:
+                    st.markdown(
+                        f"""
+                        <div style='padding: 0.5rem; background-color: rgba(255, 75, 75, 0.1); border-left: 3px solid #ff4b4b; border-radius: 0.375rem; margin-bottom: 0.5rem;'>
+                            <div style='display: flex; align-items: center; justify-content: space-between;'>
+                                <div style='font-weight: 600; font-size: 0.9rem; flex: 1; overflow: hidden; white-space: nowrap;'>
+                                    <div class='ticker-container'>
+                                        <span class='{ticker_class}'>📍 {location}</span>
+                                    </div>
+                                </div>
+                                <div style='font-size: 1.2rem; margin-left: 0.5rem;'>{score_emoji}</div>
+                            </div>
+                            <div style='font-size: 0.75rem; color: #666; margin-top: 0.25rem;'>
+                                {flag} {country} • {score:.1f} • {analysis_date}
+                            </div>
+                        </div>
+                        """,
+                        unsafe_allow_html=True
+                    )
+                else:
+                    display_name = f"{score_emoji} {location}" if not is_long else f"{score_emoji} {location[:25]}..."
+
+                    if st.button(
+                        display_name,
+                        key=f"report_{report_id}",
+                        use_container_width=True,
+                        type="secondary",
+                    ):
+                        st.session_state.selected_report_id = report_id
+                        st.rerun()
+
+                    if is_long:
+                        st.markdown(
+                            f"""
+                            <div class='ticker-container' style='font-size: 0.7rem; margin-top: -0.75rem; margin-bottom: 0.5rem;'>
+                                <span class='ticker-text' style='font-size: 0.7rem;'>{location}</span>
+                            </div>
+                            """,
+                            unsafe_allow_html=True
                         )
-                    else:
-                        if st.button(
-                            display_title,
-                            key=f"report_{report_id}",
-                            use_container_width=True,
-                            type="secondary",
-                        ):
-                            st.session_state.selected_report_id = report_id
-                            st.rerun()
 
-                with col2:
-                    st.markdown(f"<div style='text-align: center; font-size: 1.2rem; margin-top: 0.25rem;'>{score_emoji}</div>", unsafe_allow_html=True)
-
-                st.markdown(
-                    f"<div class='report-meta'>{flag} {country} • Score: {score:.1f}<br/>📅 {analysis_date}</div>",
-                    unsafe_allow_html=True
-                )
-                st.markdown("<div style='margin-bottom: 0.5rem;'></div>", unsafe_allow_html=True)
+                    st.markdown(
+                        f"<div style='font-size: 0.75rem; color: #666; margin-top: -0.5rem; margin-bottom: 0.75rem;'>{flag} {country} • {score:.1f} • {analysis_date}</div>",
+                        unsafe_allow_html=True
+                    )
 
     st.markdown("---")
 
@@ -246,6 +282,30 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
     st.markdown("---")
 
     if st.button("🚪 Logout", use_container_width=True, key="logout_reports"):
+        from utils.auth import logout
+        logout()
+
+
+def render_minimal_sidebar() -> None:
+    """Render minimal sidebar with just navigation and logout for Help/All Reports pages."""
+
+    st.markdown("### 🧭 Navigation")
+
+    if st.button("💬 Assistant", use_container_width=True, type="secondary"):
+        st.switch_page("Assistant.py")
+
+    if st.button("📊 Reports", use_container_width=True, type="secondary"):
+        st.switch_page("pages/Reports.py")
+
+    if st.button("🗺️ All Reports Map", use_container_width=True, type="secondary"):
+        st.switch_page("pages/All_Reports.py")
+
+    if st.button("📖 Help", use_container_width=True, type="secondary"):
+        st.switch_page("pages/Help.py")
+
+    st.markdown("---")
+
+    if st.button("🚪 Logout", use_container_width=True):
         from utils.auth import logout
         logout()
 

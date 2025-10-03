@@ -20,8 +20,8 @@ runner, session_service = init_agent()
 initialize_sessions(session_service)
 
 with st.sidebar:
-    from ui.sidebar import render_sidebar_for_assistant
-    render_sidebar_for_assistant(session_service)
+    from ui.sidebar import render_minimal_sidebar
+    render_minimal_sidebar()
 
 st.title("📖 Help & User Guide")
 st.markdown("---")

@@ -22,8 +22,32 @@ runner, session_service = init_agent()
 initialize_sessions(session_service)
 
 with st.sidebar:
-    from ui.sidebar import render_sidebar_for_assistant
-    render_sidebar_for_assistant(session_service)
+    from ui.sidebar import render_minimal_sidebar
+    render_minimal_sidebar()
+
+st.markdown(
+    """
+    <style>
+    .location-ticker {
+        overflow: hidden;
+        white-space: nowrap;
+        width: 100%;
+    }
+    .location-ticker-text {
+        display: inline-block;
+        animation: scroll-location 10s linear infinite;
+    }
+    @keyframes scroll-location {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+    .location-ticker:hover .location-ticker-text {
+        animation-play-state: paused;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
 st.title("🗺️ All Reports - Global Overview")
 st.markdown("---")
@@ -189,34 +213,71 @@ try:
 
             sorted_reports = sorted(reports, key=lambda x: x.get("composite_score", 0), reverse=True)
 
-            for idx, report in enumerate(sorted_reports, 1):
-                score = report.get("composite_score", 0)
-                score_emoji = "🟢" if score >= 4.0 else "🟡" if score >= 3.0 else "🟠" if score >= 2.0 else "🔴"
+            cols_per_row = 3
+            for i in range(0, len(sorted_reports), cols_per_row):
+                cols = st.columns(cols_per_row)
 
-                country_flags = {
-                    "Australia": "🇦🇺", "Saudi Arabia": "🇸🇦", "United Arab Emirates": "🇦🇪",
-                    "UAE": "🇦🇪", "Canada": "🇨🇦", "France": "🇫🇷", "Grenada": "🇬🇩",
-                    "Malaysia": "🇲🇾", "United States": "🇺🇸", "USA": "🇺🇸",
-                    "Singapore": "🇸🇬", "Germany": "🇩🇪", "United Kingdom": "🇬🇧", "UK": "🇬🇧",
-                    "Japan": "🇯🇵", "South Korea": "🇰🇷", "India": "🇮🇳"
-                }
-                flag = country_flags.get(report.get("country", ""), "🌍")
+                for col_idx, col in enumerate(cols):
+                    if i + col_idx < len(sorted_reports):
+                        report = sorted_reports[i + col_idx]
+                        idx = i + col_idx + 1
 
-                with st.expander(f"#{idx} {score_emoji} {report.get('location', 'Unknown')} - {flag} {report.get('country', 'Unknown')} (Score: {score:.1f})"):
-                    col1, col2, col3 = st.columns(3)
+                        score = report.get("composite_score", 0)
+                        location = report.get("location", "Unknown")
+                        country = report.get("country", "Unknown")
+                        rating = report.get("rating", "Unknown")
+                        created = report.get("created_at", "N/A")
 
-                    with col1:
-                        st.markdown(f"**Score:** {score:.2f}")
-                        st.markdown(f"**Rating:** {report.get('rating', 'Unknown')}")
+                        score_emoji = "🟢" if score >= 4.0 else "🟡" if score >= 3.0 else "🟠" if score >= 2.0 else "🔴"
 
-                    with col2:
-                        st.markdown(f"**Country:** {report.get('country', 'Unknown')}")
-                        st.markdown(f"**Analyzed:** {report.get('created_at', 'N/A')}")
+                        country_flags = {
+                            "Australia": "🇦🇺", "Saudi Arabia": "🇸🇦", "United Arab Emirates": "🇦🇪",
+                            "UAE": "🇦🇪", "Canada": "🇨🇦", "France": "🇫🇷", "Grenada": "🇬🇩",
+                            "Malaysia": "🇲🇾", "United States": "🇺🇸", "USA": "🇺🇸",
+                            "Singapore": "🇸🇬", "Germany": "🇩🇪", "United Kingdom": "🇬🇧", "UK": "🇬🇧",
+                            "Japan": "🇯🇵", "South Korea": "🇰🇷", "India": "🇮🇳", "China": "🇨🇳"
+                        }
+                        flag = country_flags.get(country, "🌍")
 
-                    with col3:
-                        if st.button("📊 View Full Report", key=f"view_{report['id']}"):
-                            st.session_state.selected_report_id = report["id"]
-                            st.switch_page("pages/Reports.py")
+                        with col:
+                            location_display = location
+                            if len(location) > 40:
+                                location_display = f"""
+                                <div class='location-ticker'>
+                                    <span class='location-ticker-text'>{location} &nbsp;&nbsp;&nbsp; {location}</span>
+                                </div>
+                                """
+                            else:
+                                location_display = location
+
+                            st.markdown(
+                                f"""
+                                <div style='padding: 1rem; background-color: rgba(240, 242, 246, 0.5);
+                                     border-radius: 0.5rem; border: 2px solid rgba(49, 51, 63, 0.1);
+                                     margin-bottom: 1rem; min-height: 200px;'>
+                                    <div style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;'>
+                                        <span style='font-size: 1.5rem; font-weight: bold; color: #666;'>#{idx}</span>
+                                        <span style='font-size: 2rem;'>{score_emoji}</span>
+                                    </div>
+                                    <div style='font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem; min-height: 2.6rem;'>
+                                        {location_display}
+                                    </div>
+                                    <div style='font-size: 0.9rem; color: #666; margin-bottom: 0.5rem;'>
+                                        {flag} {country}
+                                    </div>
+                                    <div style='font-size: 1.5rem; font-weight: bold; color: #ff4b4b; margin: 0.75rem 0;'>
+                                        {score:.2f}
+                                    </div>
+                                    <div style='font-size: 0.85rem; color: #888;'>
+                                        {rating} • {created}
+                                    </div>
+                                </div>
+                                """,
+                                unsafe_allow_html=True
+                            )
+                            if st.button("📊 View Details", key=f"view_{report['id']}", use_container_width=True, type="secondary"):
+                                st.session_state.selected_report_id = report["id"]
+                                st.switch_page("pages/Reports.py")
 
         else:
             st.warning("⚠️ No location coordinates available for mapping. Reports may need to include coordinate data.")
