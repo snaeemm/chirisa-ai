@@ -285,9 +285,12 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
                 # Use fixed-width formatting for consistent alignment
                 if lat and lng:
                     # Use 1dp for long coords (>99 or <-99), 2dp for others
+                    # Pad with leading zero/space for single-digit coords
                     lat_decimals = 1 if abs(lat) >= 100 else 2
                     lng_decimals = 1 if abs(lng) >= 100 else 2
-                    coords_display = f"{lat:.{lat_decimals}f}, {lng:.{lng_decimals}f}"
+                    lat_width = 5 if abs(lat) >= 100 else 6  # e.g., "123.4" or " 03.28"
+                    lng_width = 5 if abs(lng) >= 100 else 6
+                    coords_display = f"{lat:{lat_width}.{lat_decimals}f}, {lng:{lng_width}.{lng_decimals}f}"
                 else:
                     coords_display = "No coords"
 
