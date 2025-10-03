@@ -84,6 +84,22 @@ def render_sidebar_for_assistant(session_service: DatabaseSessionService) -> Non
         .session-ticker:hover .session-ticker-text {
             animation-play-state: paused;
         }
+        /* Make button text scroll on hover */
+        button[data-testid="baseButton-secondary"] p,
+        button[data-testid="baseButton-primary"] p {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            transition: transform 0.3s ease;
+        }
+        button[data-testid="baseButton-secondary"]:hover p,
+        button[data-testid="baseButton-primary"]:hover p {
+            animation: button-scroll 3s linear infinite;
+        }
+        @keyframes button-scroll {
+            0%, 10% { transform: translateX(0); }
+            90%, 100% { transform: translateX(calc(-100% + 100px)); }
+        }
         </style>
         """,
         unsafe_allow_html=True
@@ -119,23 +135,10 @@ def render_sidebar_for_assistant(session_service: DatabaseSessionService) -> Non
                 else:
                     full_title = "New Chat"
 
-                # Show ticker ABOVE button for long titles
-                if len(full_title) > 25:
-                    st.markdown(
-                        f"""
-                        <div class='session-ticker' style='margin-bottom: 0.25rem;'>
-                            <span class='session-ticker-text' style='font-size: 0.85rem; color: #666;'>{full_title} &nbsp;&nbsp;&nbsp; {full_title}</span>
-                        </div>
-                        """,
-                        unsafe_allow_html=True
-                    )
-
-                # Regular button with truncated or full text
-                button_label = full_title[:25] + "..." if len(full_title) > 25 else full_title
-
+                # Button with full text - will scroll on hover via CSS
                 if is_current:
                     st.button(
-                        f"📍 {button_label}",
+                        f"📍 {full_title}",
                         key=f"current_session_{session_id}",
                         use_container_width=True,
                         type="primary",
@@ -143,7 +146,7 @@ def render_sidebar_for_assistant(session_service: DatabaseSessionService) -> Non
                     )
                 else:
                     if st.button(
-                        button_label,
+                        full_title,
                         key=f"session_{session_id}",
                         use_container_width=True,
                         type="secondary",
