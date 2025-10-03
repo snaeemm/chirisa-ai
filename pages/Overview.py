@@ -106,19 +106,20 @@ try:
                 if top_lat and top_lng:
                     top_coords_display = f"{top_lat:.2f}, {top_lng:.2f}"
 
-            st.metric("Top Location", f"{top_flag} {top_country} • {top_coords_display}", delta=f"{top_location.get('composite_score', 0):.1f}")
+            st.metric("Top Location", f"📍 {top_coords_display}", delta=f"{top_location.get('composite_score', 0):.1f}")
 
-            if len(top_loc_full) > 30:
+            ticker_content = f"{top_flag} {top_country} • {top_loc_full}"
+            if len(ticker_content) > 35:
                 st.markdown(
                     f"""
                     <div class='location-ticker' style='margin-top: -0.5rem;'>
-                        <span class='location-ticker-text' style='font-size: 0.75rem; color: #666;'>{top_loc_full} &nbsp;&nbsp;&nbsp; {top_loc_full}</span>
+                        <span class='location-ticker-text' style='font-size: 0.75rem; color: #666;'>{ticker_content} &nbsp;&nbsp;&nbsp; {ticker_content}</span>
                     </div>
                     """,
                     unsafe_allow_html=True
                 )
             else:
-                st.markdown(f"<div style='font-size: 0.75rem; color: #666; margin-top: -0.5rem;'>{top_loc_full}</div>", unsafe_allow_html=True)
+                st.markdown(f"<div style='font-size: 0.75rem; color: #666; margin-top: -0.5rem; text-align: center;'>{ticker_content}</div>", unsafe_allow_html=True)
 
         with col4:
             countries = len(set(r.get("country") for r in reports))

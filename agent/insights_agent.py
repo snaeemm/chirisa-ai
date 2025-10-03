@@ -241,7 +241,7 @@ def prepare_insights_input(location_context: LocationContext, composite_score: f
         )
 
     return InsightsInput(
-        location_context=location_context,
+        location_context=location_context.model_dump() if hasattr(location_context, 'model_dump') else location_context,
         composite_score=composite_score,
         power_analysis=extract_domain_summary(power_result),
         network_analysis=extract_domain_summary(network_result),

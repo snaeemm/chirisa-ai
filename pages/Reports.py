@@ -26,7 +26,6 @@ with st.sidebar:
     render_sidebar_for_reports(session_service)
 
 if st.session_state.get("selected_report_id"):
-    # Title with delete button in top right
     col1, col2 = st.columns([0.9, 0.1])
     with col1:
         st.title("📊 Report Details")
@@ -55,6 +54,4 @@ if st.session_state.get("selected_report_id"):
 
     render_report_viewer(st.session_state.selected_report_id)
 else:
-    st.title("📊 Reports")
-    st.markdown("---")
-    st.info("👈 Select a report from the sidebar to view its detailed analysis.")
+    st.info("👈 Select a report from the sidebar to view detailed analysis")
