@@ -282,7 +282,14 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
                 }
                 flag = country_flags.get(country, "🌍")
 
-                coords_display = f"{lat:.2f}, {lng:.2f}" if lat and lng else "No coords"
+                # Use fixed-width formatting for consistent alignment
+                if lat and lng:
+                    # Use 1dp for long coords (>99 or <-99), 2dp for others
+                    lat_decimals = 1 if abs(lat) >= 100 else 2
+                    lng_decimals = 1 if abs(lng) >= 100 else 2
+                    coords_display = f"{lat:.{lat_decimals}f}, {lng:.{lng_decimals}f}"
+                else:
+                    coords_display = "No coords"
 
                 # Put country on second line for consistent alignment
                 button_text = f"{score_emoji} {coords_display} • {score:.1f}\n{flag} {country}"
