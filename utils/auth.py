@@ -13,6 +13,15 @@ def check_authentication() -> bool:
     return st.session_state.get("authenticated", False)
 
 
+def get_current_user() -> str:
+    """Get the current authenticated username.
+
+    Returns:
+        str: Username of authenticated user, or empty string if not authenticated
+    """
+    return st.session_state.get("username", "")
+
+
 def show_login_form():
     """Display login form and handle authentication."""
     st.markdown(
@@ -36,8 +45,10 @@ def show_login_form():
             submit = st.form_submit_button("Login", use_container_width=True)
 
             if submit:
-                if username == AUTH_USERNAME and password == AUTH_PASSWORD:
+                from config.settings import USERS
+                if username in USERS and USERS[username] == password:
                     st.session_state.authenticated = True
+                    st.session_state.username = username
                     st.rerun()
                 else:
                     st.error("Invalid username or password")
@@ -46,4 +57,10 @@ def show_login_form():
 def logout():
     """Clear authentication state and logout user."""
     st.session_state.authenticated = False
+    if "username" in st.session_state:
+        del st.session_state.username
+    if "sessions_loaded" in st.session_state:
+        del st.session_state.sessions_loaded
+    if "sessions" in st.session_state:
+        del st.session_state.sessions
     st.rerun()

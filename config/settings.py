@@ -4,13 +4,20 @@
 APP_NAME = "shaz"
 DEFAULT_USER_ID = "default_user"
 
-# Authentication settings
+# Authentication settings (legacy - kept for backwards compatibility)
 AUTH_USERNAME = "Admin"
 AUTH_PASSWORD = "professional_granite_123!"
 
+# Multi-user authentication
+USERS = {
+    "Admin": "professional_granite_123!",
+    "Colm": "chirisa123",
+    "Omar": "chirisa123"
+}
+
 # Model settings
-DEFAULT_MODEL = "gemini-2.0-flash-exp"
-TITLE_GENERATION_MODEL = "gemini-2.0-flash-exp"
+DEFAULT_MODEL = "gemini-2.5-flash-preview-09-2025"
+TITLE_GENERATION_MODEL = "gemini-2.5-flash-preview-09-2025"
 TITLE_MAX_TOKENS = 20
 TITLE_TEMPERATURE = 0.7
 

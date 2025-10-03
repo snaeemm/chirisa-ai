@@ -23,12 +23,17 @@ runner, session_service = init_agent()
 initialize_sessions(session_service)
 
 with st.sidebar:
-    render_sidebar(session_service)
-    st.markdown("---")
-    if st.button("🚪 Logout", use_container_width=True):
-        logout()
+    from ui.sidebar import render_sidebar_for_assistant
+    render_sidebar_for_assistant(session_service)
 
-current_session = st.session_state.sessions[st.session_state.current_session_id]
+if not st.session_state.sessions:
+    st.info("👋 Welcome! Click 'New Chat' in the sidebar to start a conversation.")
+    st.stop()
+
+current_session = st.session_state.sessions.get(st.session_state.current_session_id)
+if not current_session:
+    st.warning("⚠️ Session not found. Please select a session from the sidebar or create a new one.")
+    st.stop()
 
 response_status = check_response_status(st.session_state.current_session_id)
 if response_status and response_status["status"] == "processing":

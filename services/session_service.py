@@ -61,7 +61,9 @@ def load_sessions_from_database(
         Dictionary mapping session_id to session data
     """
     try:
-        user_id = st.session_state.get("user_id", DEFAULT_USER_ID)
+        from utils.auth import get_current_user
+        username = get_current_user()
+        user_id = username if username else DEFAULT_USER_ID
 
         # List all sessions for this user
         sessions_response = asyncio.run(retry_session_operation(
@@ -136,7 +138,9 @@ def create_new_session(session_service: DatabaseSessionService) -> str:
     Returns:
         The new session ID
     """
-    user_id = st.session_state.get("user_id", DEFAULT_USER_ID)
+    from utils.auth import get_current_user
+    username = get_current_user()
+    user_id = username if username else DEFAULT_USER_ID
     new_session_id = f"session_{datetime.now(UTC).strftime('%Y%m%d_%H%M%S')}"
 
     # Add to session state
@@ -164,9 +168,17 @@ def initialize_sessions(session_service: DatabaseSessionService) -> None:
     Args:
         session_service: The DatabaseSessionService instance
     """
-    # Initialize user_id
+    from utils.auth import get_current_user
+    username = get_current_user()
+    user_id = username if username else DEFAULT_USER_ID
+
+    # Initialize user_id in session state
     if "user_id" not in st.session_state:
-        st.session_state.user_id = DEFAULT_USER_ID
+        st.session_state.user_id = user_id
+    elif st.session_state.user_id != user_id:
+        st.session_state.user_id = user_id
+        if "sessions_loaded" in st.session_state:
+            del st.session_state.sessions_loaded
 
     # Load sessions from database on first run
     if "sessions_loaded" not in st.session_state:
@@ -198,7 +210,9 @@ def delete_session_from_ui(session_service: DatabaseSessionService, session_id: 
         bool: True if deletion was successful, False otherwise
     """
     try:
-        user_id = st.session_state.get("user_id", DEFAULT_USER_ID)
+        from utils.auth import get_current_user
+        username = get_current_user()
+        user_id = username if username else DEFAULT_USER_ID
 
         # Delete from ADK database
         asyncio.run(retry_session_operation(
