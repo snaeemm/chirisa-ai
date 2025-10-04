@@ -12,7 +12,9 @@ AUTH_PASSWORD = "professional_granite_123!"
 USERS = {
     "Admin": "professional_granite_123!",
     "Colm": "CaliforniaT_V8!",
-    "Omar": "chirisa123"
+    "Omar": "chirisa123",
+    "Max": "chirisa123",
+    "Tristan": "chirisa123"
 }
 
 # Model settings
