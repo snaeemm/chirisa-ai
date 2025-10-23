@@ -153,6 +153,27 @@ def init_database():
 
     cursor.execute("CREATE INDEX IF NOT EXISTS idx_custom_message_session ON custom_messages(session_id, timestamp)")
 
+    # Create uploaded_files table for file upload tracking
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS uploaded_files (
+            id SERIAL PRIMARY KEY,
+            session_id TEXT NOT NULL,
+            user_id TEXT,
+            filename TEXT NOT NULL,
+            file_type TEXT,
+            document_type TEXT,
+            text_content TEXT,
+            file_size_bytes INTEGER,
+            gemini_file_uri TEXT,
+            uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (session_id) REFERENCES custom_sessions(session_id) ON DELETE CASCADE
+        )
+    """)
+
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_uploaded_files_session ON uploaded_files(session_id)")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_uploaded_files_user ON uploaded_files(user_id)")
+    cursor.execute("CREATE INDEX IF NOT EXISTS idx_uploaded_files_date ON uploaded_files(uploaded_at DESC)")
+
     conn.commit()
     conn.close()
     print(f"✅ PostgreSQL database initialized successfully")

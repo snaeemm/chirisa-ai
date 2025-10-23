@@ -155,6 +155,41 @@ def render_sidebar_for_assistant(session_service: DatabaseSessionService) -> Non
                         st.rerun()
 
     st.markdown("---")
+    st.markdown("### 📎 Uploaded Files")
+
+    if "processed_files" in st.session_state and st.session_state.processed_files:
+        files_info = st.session_state.processed_files
+        st.markdown(f"**{len(files_info)} file(s) uploaded**")
+
+        for i, file_data in enumerate(files_info):
+            col1, col2 = st.columns([3, 1])
+            with col1:
+                file_type_icon = {
+                    ".pdf": "📕",
+                    ".docx": "📗",
+                    ".xlsx": "📊",
+                    ".pptx": "📈",
+                    ".txt": "📄",
+                    ".png": "🖼️",
+                    ".jpg": "🖼️",
+                    ".jpeg": "🖼️"
+                }
+                ext = next(
+                    (ext for ext in file_type_icon.keys() if file_data["filename"].endswith(ext)),
+                    "📄"
+                )
+                icon = file_type_icon.get(ext, "📄")
+                st.caption(f"{icon} {file_data['filename']}")
+
+        if st.button("🗑️ Clear All Files", use_container_width=True, key="sidebar_clear_files"):
+            # Clear from session state (Gemini files already cleaned up during extraction)
+            st.session_state.processed_files = []
+            st.success("Files cleared!")
+            st.rerun()
+    else:
+        st.info("No files uploaded yet")
+
+    st.markdown("---")
 
     if st.button("🚪 Logout", use_container_width=True, key="logout_assistant"):
         from utils.auth import logout

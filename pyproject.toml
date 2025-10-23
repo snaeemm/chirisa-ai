@@ -10,6 +10,7 @@ dependencies = [
     "googlemaps>=4.10.0",
     "psycopg2-binary>=2.9.10",
     "pydeck>=0.9.1",
+    "python-docx>=1.2.0",
     "reportlab>=4.4.4",
     "streamlit>=1.50.0",
     "weasyprint>=66.0",

@@ -2,6 +2,7 @@
 
 import os
 import asyncio
+from dotenv import load_dotenv
 from google.adk.tools import FunctionTool
 from .models import ReportSchema, LocationContext, AgentOutput
 from .database import save_report_to_database
@@ -10,6 +11,9 @@ from .domain_models import (
     ESGSustainabilityOutput, OperationalRiskOutput, RegulatoryComplianceOutput
 )
 from .utility import save_report_schema
+
+# Load environment variables from .env file
+load_dotenv(override=True)
 
 # Configuration
 GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')

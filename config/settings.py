@@ -31,6 +31,12 @@ DATABASE_URL = "postgresql://neondb_owner:npg_oBalGu5gF4Ij@ep-lingering-hall-a8s
 SESSION_CONTAINER_HEIGHT = 600
 TITLE_MAX_LENGTH = 30
 
+# File upload settings
+FILE_UPLOAD_MAX_SIZE_MB = 15
+SUPPORTED_FILE_EXTENSIONS = ['.pdf', '.docx', '.xlsx', '.pptx', '.txt', '.doc', '.xls', '.ppt', '.png', '.jpg', '.jpeg']
+FILE_UPLOAD_TEMP_DIR = "/tmp/shaz_uploads"
+FILE_CLEANUP_INTERVAL_HOURS = 24
+
 # Streamlit page config
 PAGE_CONFIG = {
     "page_title": "Ask Shahz",

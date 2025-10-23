@@ -10,6 +10,8 @@ from typing import TYPE_CHECKING, Any
 import streamlit as st
 from google.genai import types
 
+from services.document_service import extract_document_text
+
 if TYPE_CHECKING:
     from google.adk.runners import Runner
 
@@ -19,7 +21,31 @@ SessionDict = dict[str, Any]
 _ongoing_responses: dict[str, dict] = {}
 
 
-def start_background_response(session_id: str, user_id: str, prompt_text: str, runner: Runner) -> None:
+def process_uploaded_files(uploaded_files: list) -> list[dict]:
+    """
+    Process uploaded files and extract text content.
+
+    Args:
+        uploaded_files: List of Streamlit UploadedFile objects
+
+    Returns:
+        List of dictionaries with file metadata and extracted text
+    """
+    processed_files = []
+
+    for uploaded_file in uploaded_files:
+        result = extract_document_text(file_object=uploaded_file)
+
+        if result['status'] == 'success':
+            st.success(f"✅ {result['filename']}")
+            processed_files.append(result)
+        else:
+            st.error(f"❌ Failed: {result['error']}")
+
+    return processed_files
+
+
+def start_background_response(session_id: str, user_id: str, prompt_text: str, runner: Runner, uploaded_files: list[dict] | None = None) -> None:
     """Start agent response processing in background thread."""
     async def process_response():
         try:
@@ -33,10 +59,16 @@ def start_background_response(session_id: str, user_id: str, prompt_text: str, r
             }
             _ongoing_responses[session_id] = response_data
 
-            # Create message content
-            content = types.Content(
-                role="user", parts=[types.Part(text=prompt_text)]
-            )
+            # Create message content with optional file context
+            parts = [types.Part(text=prompt_text)]
+
+            # Add extracted text from uploaded files as context
+            if uploaded_files:
+                for file_data in uploaded_files:
+                    file_context = f"[Document: {file_data['filename']}]\n{file_data['text']}"
+                    parts.append(types.Part(text=file_context))
+
+            content = types.Content(role="user", parts=parts)
 
             # Process agent response
             async for event in runner.run_async(
@@ -197,6 +229,59 @@ def handle_chat_input(current_session: SessionDict, runner: Runner) -> None:
             st.error(f"❌ Error processing request: {response_status['error']}")
             cleanup_completed_response(session_id)
 
+    # File upload section
+    st.divider()
+
+    # Initialize file uploader counter if not exists (used to reset the uploader)
+    if "file_uploader_key" not in st.session_state:
+        st.session_state.file_uploader_key = 0
+
+    uploaded_files = st.file_uploader(
+        "📎 Upload documents (PDF, DOCX, images, etc.)",
+        type=["pdf", "docx", "txt", "xlsx", "pptx", "png", "jpg", "jpeg"],
+        accept_multiple_files=True,
+        key=f"file_uploader_{st.session_state.file_uploader_key}"
+    )
+
+    # Process uploaded files
+    if uploaded_files:
+        if "processed_files" not in st.session_state:
+            st.session_state.processed_files = []
+
+        # Check if new files were added
+        current_filenames = {f["filename"] for f in st.session_state.processed_files}
+        new_files = [f for f in uploaded_files if f.name not in current_filenames]
+
+        if new_files:
+            processed = process_uploaded_files(new_files)
+            st.session_state.processed_files.extend(processed)
+
+        # Display uploaded files summary
+        if st.session_state.processed_files:
+            with st.expander("📄 Uploaded Files", expanded=True):
+                for file_data in st.session_state.processed_files:
+                    col1, col2 = st.columns([4, 1])
+                    with col1:
+                        file_icon = "📄"
+                        if file_data["filename"].endswith((".png", ".jpg", ".jpeg")):
+                            file_icon = "🖼️"
+                        elif file_data["filename"].endswith(".pdf"):
+                            file_icon = "📕"
+                        elif file_data["filename"].endswith(".docx"):
+                            file_icon = "📗"
+
+                        st.markdown(f"{file_icon} **{file_data['filename']}**")
+                        st.caption(f"Type: {file_data.get('document_type', 'Unknown')} | "
+                                 f"Size: {len(file_data['text'])} chars")
+
+                    with col2:
+                        if st.button("✕", key=f"remove_{file_data['filename']}", use_container_width=True):
+                            # Remove from session state (Gemini file already cleaned up during extraction)
+                            st.session_state.processed_files.remove(file_data)
+                            st.rerun()
+
+    st.divider()
+
     # Handle new chat input
     if prompt := st.chat_input("What would you like to know?"):
         # Extract text from prompt (handles both string and ChatInputValue)
@@ -209,13 +294,22 @@ def handle_chat_input(current_session: SessionDict, runner: Runner) -> None:
         with st.chat_message("user"):
             st.markdown(prompt_text)
 
+        # Get processed files if any
+        processed_files = st.session_state.get("processed_files", [])
+
         # Start background processing
         start_background_response(
             session_id=session_id,
             user_id=st.session_state.user_id,
             prompt_text=prompt_text,
-            runner=runner
+            runner=runner,
+            uploaded_files=processed_files if processed_files else None
         )
+
+        # Clear uploaded files after message is sent
+        st.session_state.processed_files = []
+        # Reset file uploader widget by changing its key
+        st.session_state.file_uploader_key += 1
 
         # Show immediate feedback and refresh
         st.info("🚀 Processing your request... (continues in background)")
