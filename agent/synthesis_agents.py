@@ -121,32 +121,67 @@ def extract_grounding_sources(response) -> list:
                 print(f"🔍 DEBUG: grounding_chunks type: {type(chunks) if chunks is not None else 'None'}")
                 print(f"🔍 DEBUG: grounding_chunks length: {len(chunks) if chunks else 0}")
 
-                if hasattr(grounding_metadata, 'grounding_chunks') and grounding_metadata.grounding_chunks:
+                # Try grounding_supports first (newer API structure)
+                if hasattr(grounding_metadata, 'grounding_supports') and grounding_metadata.grounding_supports:
+                    supports = grounding_metadata.grounding_supports
+                    print(f"🔍 DEBUG: Processing {len(supports)} grounding_supports")
+                    for i, support in enumerate(supports):
+                        print(f"🔍 DEBUG: Support {i} attributes: {dir(support)}")
+
+                        # Try to extract from segment or grounding_chunk_indices
+                        if hasattr(support, 'segment'):
+                            segment = support.segment
+                            print(f"🔍 DEBUG: Support {i} has segment: {segment}")
+
+                        if hasattr(support, 'grounding_chunk_indices') and support.grounding_chunk_indices:
+                            chunk_indices = support.grounding_chunk_indices
+                            print(f"🔍 DEBUG: Support {i} has chunk_indices: {chunk_indices}")
+
+                            # Now look up those chunks from grounding_chunks
+                            if hasattr(grounding_metadata, 'grounding_chunks') and grounding_metadata.grounding_chunks:
+                                for idx in chunk_indices:
+                                    if idx < len(grounding_metadata.grounding_chunks):
+                                        chunk = grounding_metadata.grounding_chunks[idx]
+                                        print(f"🔍 DEBUG: Chunk {idx} attributes: {dir(chunk)}")
+
+                                        if hasattr(chunk, 'web') and chunk.web:
+                                            url = chunk.web.uri if hasattr(chunk.web, 'uri') and chunk.web.uri else ""
+                                            title = chunk.web.title if hasattr(chunk.web, 'title') and chunk.web.title else "Web Source"
+
+                                            source = {
+                                                "url": str(url) if url else "",
+                                                "title": str(title) if title else "Web Source",
+                                                "date": "",
+                                                "snippet": ""
+                                            }
+                                            if source["url"]:
+                                                grounding_sources.append(source)
+                                                print(f"✅ Added source from support: {source['title'][:50]}...")
+
+                # Also try direct grounding_chunks (older API structure)
+                elif hasattr(grounding_metadata, 'grounding_chunks') and grounding_metadata.grounding_chunks:
                     print(f"🔍 DEBUG: Number of grounding chunks: {len(grounding_metadata.grounding_chunks)}")
                     for i, chunk in enumerate(grounding_metadata.grounding_chunks):
                         print(f"🔍 DEBUG: Chunk {i}: has web attr = {hasattr(chunk, 'web')}")
                         if hasattr(chunk, 'web') and chunk.web:
-                            # Ensure all fields are strings, never None
                             url = chunk.web.uri if hasattr(chunk.web, 'uri') and chunk.web.uri else ""
                             title = chunk.web.title if hasattr(chunk.web, 'title') and chunk.web.title else "Web Source"
 
                             source = {
                                 "url": str(url) if url else "",
                                 "title": str(title) if title else "Web Source",
-                                "date": "",  # Not typically provided by search grounding
-                                "snippet": ""  # Not typically provided directly
+                                "date": "",
+                                "snippet": ""
                             }
-                            if source["url"]:  # Only add if we have a URL
+                            if source["url"]:
                                 grounding_sources.append(source)
-                                print(f"✅ Added source: {source['title'][:50]}...")
+                                print(f"✅ Added source from chunk: {source['title'][:50]}...")
                 else:
-                    print(f"⚠️ No grounding_chunks in metadata (empty or None)")
+                    print(f"⚠️ No grounding_chunks or grounding_supports in metadata")
 
-                    # Check for alternative grounding fields
+                    # Debug: show what we have
                     if hasattr(grounding_metadata, 'search_entry_point'):
                         print(f"🔍 DEBUG: Found search_entry_point: {grounding_metadata.search_entry_point}")
-                    if hasattr(grounding_metadata, 'grounding_supports'):
-                        print(f"🔍 DEBUG: Found grounding_supports: {grounding_metadata.grounding_supports}")
                     if hasattr(grounding_metadata, 'web_search_queries'):
                         print(f"🔍 DEBUG: Found web_search_queries: {grounding_metadata.web_search_queries}")
             else:
