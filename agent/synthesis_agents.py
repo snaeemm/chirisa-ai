@@ -492,7 +492,7 @@ class PowerInfrastructureAgentWrapper:
             # Note: context parameter kept for compatibility but not used
 
             # Use the ADK agent's instruction as the prompt base (like old code)
-            prompt = f"{self.adk_agent.instruction}\n\nAnalyze power infrastructure for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
+            prompt = f"{self.adk_agent.instruction}\n\nAnalyze power infrastructure for data center at {lat}, {lng} in {country}.\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis. Search for electricity costs, grid capacity, utility information, renewable energy availability, and infrastructure data for this specific location.**\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
 
             # Use Google GenAI client with Search grounding
             try:
@@ -610,7 +610,7 @@ class NetworkConnectivityAgentWrapper:
     async def analyze_network_connectivity(self, lat, lng, country, context=None):
         """Match old agent signature exactly"""
         try:
-            prompt = f"{self.adk_agent.instruction}\n\nAnalyze network connectivity for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
+            prompt = f"{self.adk_agent.instruction}\n\nAnalyze network connectivity for data center at {lat}, {lng} in {country}.\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis. Search for fiber infrastructure, internet exchange points, carrier presence, latency data, and network connectivity information for this specific location.**\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
             # Use Google GenAI client with Search grounding
             try:
                 from google.genai import Client, types
@@ -722,7 +722,7 @@ class ClimateSuitabilityAgentWrapper:
     async def analyze_climate_suitability(self, lat, lng, country, context=None):
         """Match old agent signature exactly"""
         try:
-            prompt = f"{self.adk_agent.instruction}\n\nAnalyze climate suitability for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
+            prompt = f"{self.adk_agent.instruction}\n\nAnalyze climate suitability for data center at {lat}, {lng} in {country}.\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis. Search for temperature data, humidity levels, natural disaster risks, cooling requirements, water availability, and climate information for this specific location.**\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
             # Use Google GenAI client with Search grounding
             try:
                 from google.genai import Client, types
@@ -825,7 +825,7 @@ class OperationalRiskAgentWrapper:
     async def analyze_operational_risk(self, lat, lng, country, context=None):
         """Match old agent signature exactly"""
         try:
-            prompt = f"{self.adk_agent.instruction}\n\nAnalyze operational risk for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
+            prompt = f"{self.adk_agent.instruction}\n\nAnalyze operational risk for data center at {lat}, {lng} in {country}.\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis. Search for seismic risk, flood risk, political stability, security incidents, infrastructure reliability, and operational risk data for this specific location.**\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
             # Use Google GenAI client with Search grounding
             try:
                 from google.genai import Client, types
@@ -927,7 +927,7 @@ class SustainabilityESGAgentWrapper:
     async def analyze_sustainability_esg(self, lat, lng, country, context=None):
         """Match old agent signature exactly"""
         try:
-            prompt = f"{self.adk_agent.instruction}\n\nAnalyze sustainability ESG for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
+            prompt = f"{self.adk_agent.instruction}\n\nAnalyze sustainability ESG for data center at {lat}, {lng} in {country}.\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis. Search for renewable energy adoption, carbon emission policies, environmental regulations, community impact, labor practices, and ESG performance data for this specific location.**\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
             # Use Google GenAI client with Search grounding
             try:
                 from google.genai import Client, types
@@ -1029,7 +1029,7 @@ class RegulatoryComplianceAgentWrapper:
     async def analyze_regulatory_compliance(self, lat, lng, country, context=None):
         """Match old agent signature exactly"""
         try:
-            prompt = f"{self.adk_agent.instruction}\n\nAnalyze regulatory compliance for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
+            prompt = f"{self.adk_agent.instruction}\n\nAnalyze regulatory compliance for data center at {lat}, {lng} in {country}.\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis. Search for data protection laws, data residency requirements, industry regulations, compliance frameworks, licensing requirements, and regulatory information for this specific location.**\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
             # Use Google GenAI client with Search grounding
             try:
                 from google.genai import Client, types
@@ -1140,7 +1140,7 @@ class HyperscalerAttractivenessAgentWrapper:
     async def analyze_hyperscaler_attractiveness(self, lat, lng, country, context=None):
         """Match old agent signature exactly"""
         try:
-            prompt = f"{self.adk_agent.instruction}\n\nAnalyze hyperscaler attractiveness for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
+            prompt = f"{self.adk_agent.instruction}\n\nAnalyze hyperscaler attractiveness for data center at {lat}, {lng} in {country}.\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis. Search for hyperscaler presence, competitive landscape, cloud ecosystem, peering opportunities, labor market, and market intelligence for this specific location.**\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
             # Use Google GenAI client with Search grounding
             try:
                 from google.genai import Client, types
