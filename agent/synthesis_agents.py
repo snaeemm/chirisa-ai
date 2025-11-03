@@ -101,12 +101,23 @@ def extract_grounding_sources(response) -> list:
     """Extract grounding sources (web search results) from Gemini API response"""
     grounding_sources = []
     try:
+        print(f"🔍 DEBUG: Extracting grounding sources...")
+        print(f"🔍 DEBUG: Response type: {type(response)}")
+        print(f"🔍 DEBUG: Has candidates: {hasattr(response, 'candidates')}")
+
         if hasattr(response, 'candidates') and response.candidates:
             candidate = response.candidates[0]
+            print(f"🔍 DEBUG: Has grounding_metadata: {hasattr(candidate, 'grounding_metadata')}")
+
             if hasattr(candidate, 'grounding_metadata') and candidate.grounding_metadata:
                 grounding_metadata = candidate.grounding_metadata
+                print(f"🔍 DEBUG: Grounding metadata type: {type(grounding_metadata)}")
+                print(f"🔍 DEBUG: Has grounding_chunks: {hasattr(grounding_metadata, 'grounding_chunks')}")
+
                 if hasattr(grounding_metadata, 'grounding_chunks') and grounding_metadata.grounding_chunks:
-                    for chunk in grounding_metadata.grounding_chunks:
+                    print(f"🔍 DEBUG: Number of grounding chunks: {len(grounding_metadata.grounding_chunks)}")
+                    for i, chunk in enumerate(grounding_metadata.grounding_chunks):
+                        print(f"🔍 DEBUG: Chunk {i}: has web attr = {hasattr(chunk, 'web')}")
                         if hasattr(chunk, 'web') and chunk.web:
                             # Ensure all fields are strings, never None
                             url = chunk.web.uri if hasattr(chunk.web, 'uri') and chunk.web.uri else ""
@@ -120,9 +131,20 @@ def extract_grounding_sources(response) -> list:
                             }
                             if source["url"]:  # Only add if we have a URL
                                 grounding_sources.append(source)
-    except Exception as e:
-        print(f"⚠️ Could not extract grounding metadata: {e}")
+                                print(f"✅ Added source: {source['title'][:50]}...")
+                else:
+                    print(f"⚠️ No grounding_chunks in metadata")
+            else:
+                print(f"⚠️ No grounding_metadata in candidate")
+        else:
+            print(f"⚠️ No candidates in response")
 
+    except Exception as e:
+        print(f"❌ ERROR extracting grounding metadata: {e}")
+        import traceback
+        print(f"📄 Traceback: {traceback.format_exc()}")
+
+    print(f"✅ Extracted {len(grounding_sources)} grounding sources total")
     return grounding_sources
 
 def sanitize_sources(sources: list) -> list:
@@ -423,8 +445,14 @@ class PowerInfrastructureAgentWrapper:
             prompt = f"{self.adk_agent.instruction}\n\nAnalyze power infrastructure for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
 
             # Use Google GenAI client with Search grounding
-            from google.genai import Client, types
-            from google.genai.types import Tool, GoogleSearch
+            try:
+                from google.genai import Client, types
+                from google.genai.types import Tool, GoogleSearch
+            except ImportError as import_error:
+                print(f"❌ CRITICAL: google-genai package not installed!")
+                print(f"❌ Error: {import_error}")
+                print(f"❌ Install with: uv add google-genai or pip install google-genai")
+                raise Exception("google-genai package required for Google Search grounding. Please install: google-genai>=0.3.0") from import_error
             import os
 
             api_key = os.getenv('GEMINI_API_KEY')
@@ -529,8 +557,14 @@ class NetworkConnectivityAgentWrapper:
         try:
             prompt = f"{self.adk_agent.instruction}\n\nAnalyze network connectivity for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
             # Use Google GenAI client with Search grounding
-            from google.genai import Client, types
-            from google.genai.types import Tool, GoogleSearch
+            try:
+                from google.genai import Client, types
+                from google.genai.types import Tool, GoogleSearch
+            except ImportError as import_error:
+                print(f"❌ CRITICAL: google-genai package not installed!")
+                print(f"❌ Error: {import_error}")
+                print(f"❌ Install with: uv add google-genai or pip install google-genai")
+                raise Exception("google-genai package required for Google Search grounding. Please install: google-genai>=0.3.0") from import_error
             import os
 
             api_key = os.getenv('GEMINI_API_KEY')
@@ -635,8 +669,14 @@ class ClimateSuitabilityAgentWrapper:
         try:
             prompt = f"{self.adk_agent.instruction}\n\nAnalyze climate suitability for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
             # Use Google GenAI client with Search grounding
-            from google.genai import Client, types
-            from google.genai.types import Tool, GoogleSearch
+            try:
+                from google.genai import Client, types
+                from google.genai.types import Tool, GoogleSearch
+            except ImportError as import_error:
+                print(f"❌ CRITICAL: google-genai package not installed!")
+                print(f"❌ Error: {import_error}")
+                print(f"❌ Install with: uv add google-genai or pip install google-genai")
+                raise Exception("google-genai package required for Google Search grounding. Please install: google-genai>=0.3.0") from import_error
             import os
 
             api_key = os.getenv('GEMINI_API_KEY')
@@ -732,8 +772,14 @@ class OperationalRiskAgentWrapper:
         try:
             prompt = f"{self.adk_agent.instruction}\n\nAnalyze operational risk for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
             # Use Google GenAI client with Search grounding
-            from google.genai import Client, types
-            from google.genai.types import Tool, GoogleSearch
+            try:
+                from google.genai import Client, types
+                from google.genai.types import Tool, GoogleSearch
+            except ImportError as import_error:
+                print(f"❌ CRITICAL: google-genai package not installed!")
+                print(f"❌ Error: {import_error}")
+                print(f"❌ Install with: uv add google-genai or pip install google-genai")
+                raise Exception("google-genai package required for Google Search grounding. Please install: google-genai>=0.3.0") from import_error
             import os
 
             api_key = os.getenv('GEMINI_API_KEY')
@@ -828,8 +874,14 @@ class SustainabilityESGAgentWrapper:
         try:
             prompt = f"{self.adk_agent.instruction}\n\nAnalyze sustainability ESG for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
             # Use Google GenAI client with Search grounding
-            from google.genai import Client, types
-            from google.genai.types import Tool, GoogleSearch
+            try:
+                from google.genai import Client, types
+                from google.genai.types import Tool, GoogleSearch
+            except ImportError as import_error:
+                print(f"❌ CRITICAL: google-genai package not installed!")
+                print(f"❌ Error: {import_error}")
+                print(f"❌ Install with: uv add google-genai or pip install google-genai")
+                raise Exception("google-genai package required for Google Search grounding. Please install: google-genai>=0.3.0") from import_error
             import os
 
             api_key = os.getenv('GEMINI_API_KEY')
@@ -924,8 +976,14 @@ class RegulatoryComplianceAgentWrapper:
         try:
             prompt = f"{self.adk_agent.instruction}\n\nAnalyze regulatory compliance for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
             # Use Google GenAI client with Search grounding
-            from google.genai import Client, types
-            from google.genai.types import Tool, GoogleSearch
+            try:
+                from google.genai import Client, types
+                from google.genai.types import Tool, GoogleSearch
+            except ImportError as import_error:
+                print(f"❌ CRITICAL: google-genai package not installed!")
+                print(f"❌ Error: {import_error}")
+                print(f"❌ Install with: uv add google-genai or pip install google-genai")
+                raise Exception("google-genai package required for Google Search grounding. Please install: google-genai>=0.3.0") from import_error
             import os
 
             api_key = os.getenv('GEMINI_API_KEY')
@@ -1029,8 +1087,14 @@ class HyperscalerAttractivenessAgentWrapper:
         try:
             prompt = f"{self.adk_agent.instruction}\n\nAnalyze hyperscaler attractiveness for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
             # Use Google GenAI client with Search grounding
-            from google.genai import Client, types
-            from google.genai.types import Tool, GoogleSearch
+            try:
+                from google.genai import Client, types
+                from google.genai.types import Tool, GoogleSearch
+            except ImportError as import_error:
+                print(f"❌ CRITICAL: google-genai package not installed!")
+                print(f"❌ Error: {import_error}")
+                print(f"❌ Install with: uv add google-genai or pip install google-genai")
+                raise Exception("google-genai package required for Google Search grounding. Please install: google-genai>=0.3.0") from import_error
             import os
 
             api_key = os.getenv('GEMINI_API_KEY')
