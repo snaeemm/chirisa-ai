@@ -17,6 +17,7 @@ load_dotenv(dotenv_path=env_path)
 try:
     import psycopg2
     from psycopg2.extras import RealDictCursor
+    from psycopg2.extensions import connection as Connection
     PSYCOPG2_AVAILABLE = True
 except ImportError:
     PSYCOPG2_AVAILABLE = False
@@ -49,7 +50,7 @@ if not PSYCOPG2_AVAILABLE:
 # Always use PostgreSQL
 USE_POSTGRES = True
 
-def get_db_connection():
+def get_db_connection() -> Connection:
     """Get PostgreSQL database connection with automatic retry logic"""
     max_retries = 3
     retry_delays = [0.5, 1.0, 2.0]  # Progressive delays in seconds
@@ -240,7 +241,20 @@ def save_report_to_database(report_object: ReportSchema) -> Dict[str, Any]:
         rating = report_object.overall_suitability.rating
 
         # Handle raw_data for PostgreSQL (JSONB)
-        raw_data = json.dumps(report_object.model_dump())
+        report_dump = report_object.model_dump()
+
+        # DEBUG: Check sources before saving
+        total_sources = 0
+        if 'structured_analysis' in report_dump:
+            for domain_name, domain_data in report_dump['structured_analysis'].items():
+                if isinstance(domain_data, dict) and 'sources' in domain_data:
+                    sources_count = len(domain_data.get('sources', []))
+                    total_sources += sources_count
+                    if sources_count > 0:
+                        print(f"🔍 DB SAVE DEBUG: {domain_name} has {sources_count} sources")
+        print(f"🔍 DB SAVE DEBUG: Total sources being saved: {total_sources}")
+
+        raw_data = json.dumps(report_dump)
 
         # Upsert logic to handle both new and existing locations
         cursor.execute(f"SELECT id FROM reports WHERE location = {ph}", (location,))
