@@ -113,6 +113,13 @@ def extract_grounding_sources(response) -> list:
                 grounding_metadata = candidate.grounding_metadata
                 print(f"🔍 DEBUG: Grounding metadata type: {type(grounding_metadata)}")
                 print(f"🔍 DEBUG: Has grounding_chunks: {hasattr(grounding_metadata, 'grounding_chunks')}")
+                print(f"🔍 DEBUG: Grounding metadata attributes: {dir(grounding_metadata)}")
+
+                # Check if grounding_chunks exists and has items
+                chunks = getattr(grounding_metadata, 'grounding_chunks', None)
+                print(f"🔍 DEBUG: grounding_chunks value: {chunks}")
+                print(f"🔍 DEBUG: grounding_chunks type: {type(chunks) if chunks is not None else 'None'}")
+                print(f"🔍 DEBUG: grounding_chunks length: {len(chunks) if chunks else 0}")
 
                 if hasattr(grounding_metadata, 'grounding_chunks') and grounding_metadata.grounding_chunks:
                     print(f"🔍 DEBUG: Number of grounding chunks: {len(grounding_metadata.grounding_chunks)}")
@@ -133,7 +140,15 @@ def extract_grounding_sources(response) -> list:
                                 grounding_sources.append(source)
                                 print(f"✅ Added source: {source['title'][:50]}...")
                 else:
-                    print(f"⚠️ No grounding_chunks in metadata")
+                    print(f"⚠️ No grounding_chunks in metadata (empty or None)")
+
+                    # Check for alternative grounding fields
+                    if hasattr(grounding_metadata, 'search_entry_point'):
+                        print(f"🔍 DEBUG: Found search_entry_point: {grounding_metadata.search_entry_point}")
+                    if hasattr(grounding_metadata, 'grounding_supports'):
+                        print(f"🔍 DEBUG: Found grounding_supports: {grounding_metadata.grounding_supports}")
+                    if hasattr(grounding_metadata, 'web_search_queries'):
+                        print(f"🔍 DEBUG: Found web_search_queries: {grounding_metadata.web_search_queries}")
             else:
                 print(f"⚠️ No grounding_metadata in candidate")
         else:
