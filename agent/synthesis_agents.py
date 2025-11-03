@@ -555,17 +555,22 @@ class PowerInfrastructureAgentWrapper:
                 # Inject grounding sources and sanitize
                 if grounding_sources:
                     existing_sources = response_data.get("sources", [])
+                    print(f"🔍 DEBUG: Existing sources from LLM JSON: {len(existing_sources) if isinstance(existing_sources, list) else 0}")
                     combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
                     response_data["sources"] = sanitize_sources(combined_sources)
                     print(f"✅ Injected and sanitized {len(response_data['sources'])} total sources into Power Agent response")
+                    print(f"🔍 DEBUG: Sources in response_data before Pydantic: {len(response_data.get('sources', []))}")
                 else:
                     # Still sanitize existing sources even if no grounding sources
                     if "sources" in response_data:
                         response_data["sources"] = sanitize_sources(response_data.get("sources", []))
+                    print(f"⚠️ No grounding sources extracted for Power Agent")
 
                 # Try to create PowerInfrastructureOutput first (new format)
                 try:
-                    return PowerInfrastructureOutput(**response_data)
+                    result = PowerInfrastructureOutput(**response_data)
+                    print(f"🔍 DEBUG: Sources in PowerInfrastructureOutput object: {len(result.sources)}")
+                    return result
                 except Exception as pydantic_error:
                     print(f"⚠️ PowerInfrastructureOutput validation failed: {pydantic_error}")
                     # Fallback to generic AgentOutput for backward compatibility

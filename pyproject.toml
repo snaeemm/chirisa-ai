@@ -3,7 +3,7 @@ name = "shaz"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
     "google-adk>=1.15.1",
     "google-genai>=0.3.0",
