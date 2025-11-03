@@ -28,6 +28,7 @@ from .hyperscaler_agent import hyperscaler_agent
 # Synthesis agent
 from .synthesis_agents import datacenter_report_tool
 from .database_agent import database_agent
+from .search_agent import search_agent
 from google.adk.sessions import DatabaseSessionService
 
 
@@ -247,6 +248,8 @@ root_agent = LlmAgent(
         # One-shot parallel analysis and report generation
         datacenter_report_tool,                      # Complete pipeline: parallel analysis → report generation
         AgentTool(agent=location_agent),             # Location intelligence
+        # Web search for real-time market intelligence
+        AgentTool(agent=search_agent),               # Google Search for current data and trends
         # Individual domain agents for specific questions
         AgentTool(agent=power_agent),
         AgentTool(agent=network_agent),

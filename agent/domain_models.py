@@ -47,6 +47,7 @@ class PowerInfrastructureOutput(BaseModel):
     data_gaps: List[str] = Field(default_factory=list, description="Identified data gaps requiring verification")
     third_party_verification: List[str] = Field(default_factory=list, description="Third-party services needed")
     phase_1_recommendations: Optional[Dict[str, str]] = Field(None, description="Domain-specific Phase 1 recommendations")
+    sources: List[Dict[str, str]] = Field(default_factory=list, description="Web sources: [{'url': '...', 'title': '...', 'date': '...', 'snippet': '...'}]")
 
 # ================================================================================================
 # NETWORK CONNECTIVITY DOMAIN MODEL
@@ -72,6 +73,7 @@ class NetworkConnectivityOutput(BaseModel):
     data_gaps: List[str] = Field(default_factory=list, description="Identified data gaps requiring verification")
     third_party_verification: List[str] = Field(default_factory=list, description="Third-party services needed")
     phase_1_recommendations: Optional[Dict[str, str]] = Field(None, description="Domain-specific Phase 1 recommendations")
+    sources: List[Dict[str, str]] = Field(default_factory=list, description="Web sources: [{'url': '...', 'title': '...', 'date': '...', 'snippet': '...'}]")
 
 # ================================================================================================
 # CLIMATE ANALYSIS DOMAIN MODEL
@@ -97,6 +99,7 @@ class ClimateAnalysisOutput(BaseModel):
     data_gaps: List[str] = Field(default_factory=list, description="Identified data gaps requiring verification")
     third_party_verification: List[str] = Field(default_factory=list, description="Third-party services needed")
     phase_1_recommendations: Optional[Dict[str, str]] = Field(None, description="Domain-specific Phase 1 recommendations")
+    sources: List[Dict[str, str]] = Field(default_factory=list, description="Web sources: [{'url': '...', 'title': '...', 'date': '...', 'snippet': '...'}]")
 
 # ================================================================================================
 # ESG SUSTAINABILITY DOMAIN MODEL
@@ -120,6 +123,7 @@ class ESGSustainabilityOutput(BaseModel):
     data_gaps: List[str] = Field(default_factory=list, description="Identified data gaps requiring verification")
     third_party_verification: List[str] = Field(default_factory=list, description="Third-party services needed")
     phase_1_recommendations: Optional[Dict[str, str]] = Field(None, description="Domain-specific Phase 1 recommendations")
+    sources: List[Dict[str, str]] = Field(default_factory=list, description="Web sources: [{'url': '...', 'title': '...', 'date': '...', 'snippet': '...'}]")
 
 # ================================================================================================
 # OPERATIONAL RISK DOMAIN MODEL
@@ -143,6 +147,7 @@ class OperationalRiskOutput(BaseModel):
     data_gaps: List[str] = Field(default_factory=list, description="Identified data gaps requiring verification")
     third_party_verification: List[str] = Field(default_factory=list, description="Third-party services needed")
     phase_1_recommendations: Optional[Dict[str, str]] = Field(None, description="Domain-specific Phase 1 recommendations")
+    sources: List[Dict[str, str]] = Field(default_factory=list, description="Web sources: [{'url': '...', 'title': '...', 'date': '...', 'snippet': '...'}]")
 
 # ================================================================================================
 # REGULATORY COMPLIANCE DOMAIN MODEL
@@ -165,6 +170,7 @@ class RegulatoryComplianceOutput(BaseModel):
     data_gaps: List[str] = Field(default_factory=list, description="Identified data gaps requiring verification")
     third_party_verification: List[str] = Field(default_factory=list, description="Third-party services needed")
     phase_1_recommendations: Optional[Dict[str, str]] = Field(None, description="Domain-specific Phase 1 recommendations")
+    sources: List[Dict[str, str]] = Field(default_factory=list, description="Web sources: [{'url': '...', 'title': '...', 'date': '...', 'snippet': '...'}]")
 
 # ================================================================================================
 # HYPERSCALER ATTRACTIVENESS DOMAIN MODEL
@@ -190,6 +196,7 @@ class HyperscalerAttractivenessOutput(BaseModel):
     data_gaps: List[str] = Field(default_factory=list, description="Identified data gaps requiring verification")
     third_party_verification: List[str] = Field(default_factory=list, description="Third-party services needed")
     phase_1_recommendations: Optional[Dict[str, str]] = Field(None, description="Domain-specific Phase 1 recommendations")
+    sources: List[Dict[str, str]] = Field(default_factory=list, description="Web sources: [{'url': '...', 'title': '...', 'date': '...', 'snippet': '...'}]")
 
 # ================================================================================================
 # UTILITY FUNCTIONS FOR MODEL CONVERSION

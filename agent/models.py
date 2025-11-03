@@ -1,5 +1,5 @@
 # models.py - Pydantic Models for Data Center Analysis System
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional, Any, Union
 from pydantic import BaseModel, Field
 from datetime import datetime
 
@@ -78,7 +78,7 @@ class DomainSummary(BaseModel):
 
 class InsightsInput(BaseModel):
     """Input for insights agent containing essential cross-domain data"""
-    location_context: LocationContext
+    location_context: Union[LocationContext, Dict[str, Any]]
     composite_score: float = Field(..., description="Overall composite score")
     power_analysis: DomainSummary
     network_analysis: DomainSummary

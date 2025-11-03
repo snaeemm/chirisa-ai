@@ -4,7 +4,7 @@ import os
 import time
 from typing import Dict, Any, List, Optional
 from google.adk.agents import LlmAgent
-from google.adk.tools import FunctionTool
+from google.adk.tools import FunctionTool, AgentTool
 
 # Import core database functions and intelligent JSON parser
 from .database import (
@@ -15,6 +15,7 @@ from .database import (
     get_domain_comparison, get_all_domain_scores, get_top_reports,
     get_reports_tool, delete_tool
 )
+from .search_agent import search_agent
 
 # Database configuration is handled by database.py
 GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
@@ -29,6 +30,9 @@ list_locations_tool = FunctionTool(func=list_processed_locations)
 get_reports_tool = FunctionTool(func=get_reports_tool)
 extract_data_tool = FunctionTool(func=extract_relevant_data)
 delete_tool = FunctionTool(func=delete_tool)
+
+# Create search tool for web intelligence
+search_tool = AgentTool(agent=search_agent)
 
 
 # Helper functions are imported from database.py
@@ -119,7 +123,9 @@ database_agent = LlmAgent(
         list_locations_tool,  # Fast direct query
         get_reports_tool,  # Combined: by location or ID
         extract_data_tool,
-        delete_tool  # Combined: by location, ID, or all
+        delete_tool,  # Combined: by location, ID, or all
+        # Web search for supplemental intelligence
+        search_tool  # Search for missing data or market trends
     ],
     description="Smart database orchestrator with PostgreSQL JSON optimization, automatic query intelligence, and seamless external agent coordination for missing data.",
     output_key="database_results"

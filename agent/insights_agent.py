@@ -4,6 +4,10 @@ from google.adk.agents import LlmAgent
 from .models import (
     LocationContext, DomainSummary, InsightsInput, InsightsOutput
 )
+from .domain_models import (
+    PowerInfrastructureOutput, NetworkConnectivityOutput, ClimateAnalysisOutput,
+    OperationalRiskOutput, ESGSustainabilityOutput, RegulatoryComplianceOutput
+)
 from typing import Any
 
 # Configuration
@@ -131,8 +135,8 @@ You MUST return ONLY a valid JSON object. No markdown, no explanations, no addit
 
 # Helper function to prepare insights input from domain results
 def prepare_insights_input(location_context: LocationContext, composite_score: float,
-                          power_result: Any, network_result: Any, climate_result: Any,
-                          risk_result: Any, esg_result: Any, regulatory_result: Any) -> InsightsInput:
+                          power_result: PowerInfrastructureOutput, network_result: NetworkConnectivityOutput, climate_result: ClimateAnalysisOutput,
+                          risk_result: OperationalRiskOutput, esg_result: ESGSustainabilityOutput, regulatory_result: RegulatoryComplianceOutput) -> InsightsInput:
     """Prepare focused input for insights agent from domain results"""
 
     def extract_domain_summary(domain_result: Any) -> DomainSummary:

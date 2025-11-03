@@ -12,7 +12,7 @@ from reportlab.lib.units import inch
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, Table, TableStyle
 from reportlab.lib.colors import HexColor
 
-from .models import ReportSchema
+from .models import ReportSchema, LocationContext
 from .domain_models import (
     PowerInfrastructureOutput, NetworkConnectivityOutput, ClimateAnalysisOutput,
     ESGSustainabilityOutput, OperationalRiskOutput, RegulatoryComplianceOutput,
@@ -162,8 +162,8 @@ REPORTS_DIR = Path(os.getenv('REPORTS_OUTPUT_DIR', 'agent/Reports')).resolve()
 # DYNAMIC PHASE 1 DEPLOYMENT PLAN GENERATOR
 # ================================================================================================
 
-def generate_dynamic_phase1_plan(location_context, power_result, network_result, climate_result,
-                                risk_result, esg_result, regulatory_result, composite_score: float):
+def generate_dynamic_phase1_plan(location_context: LocationContext, power_result: PowerInfrastructureOutput, network_result: NetworkConnectivityOutput, climate_result: ClimateAnalysisOutput,
+                                risk_result: OperationalRiskOutput, esg_result: ESGSustainabilityOutput, regulatory_result: RegulatoryComplianceOutput, composite_score: float):
     """Simple fallback Phase 1 plan - will be replaced by insights_agent.py"""
     from .models import Phase1Deployment
 
@@ -910,6 +910,69 @@ def generate_pdf_report(report: ReportSchema, location_name: str) -> dict:
             # Important note about analysis limitations
             story.append(Paragraph("<b>Important:</b> This analysis is based on publicly available information. Critical business decisions should include verification of the identified data gaps through third-party specialists.", styles['Normal']))
             story.append(Spacer(1, 20))
+
+        # Sources & References Section
+        story.append(Paragraph("Sources & References", heading_style))
+
+        # Collect all sources from domain analyses
+        all_sources = []
+        domain_mapping = {
+            'power_infrastructure': 'Power Infrastructure',
+            'network_connectivity': 'Network Connectivity',
+            'climate_environmental': 'Climate Suitability',
+            'operational_risk': 'Operational Risk',
+            'esg_sustainability': 'ESG & Sustainability',
+            'regulatory_compliance': 'Regulatory Compliance',
+            'hyperscaler_attractiveness': 'Hyperscaler Attractiveness'
+        }
+
+        for domain_key, domain_name in domain_mapping.items():
+            if hasattr(report, domain_key):
+                domain_data = getattr(report, domain_key)
+                if domain_data and hasattr(domain_data, 'sources') and domain_data.sources:
+                    for source in domain_data.sources:
+                        source_with_domain = source.copy()
+                        source_with_domain['domain'] = domain_name
+                        all_sources.append(source_with_domain)
+
+        if all_sources:
+            story.append(Paragraph("This analysis incorporates real-time data from the following web sources:", styles['Normal']))
+            story.append(Spacer(1, 10))
+
+            # Group sources by domain
+            from collections import defaultdict
+            sources_by_domain = defaultdict(list)
+            for source in all_sources:
+                sources_by_domain[source.get('domain', 'General')].append(source)
+
+            # Display sources grouped by domain
+            for domain_name in domain_mapping.values():
+                if domain_name in sources_by_domain:
+                    story.append(Paragraph(f"<b>{domain_name}:</b>", styles['Normal']))
+                    for source in sources_by_domain[domain_name]:
+                        url = source.get('url', 'N/A')
+                        title = source.get('title', 'Untitled')
+                        date = source.get('date', 'N/A')
+                        snippet = source.get('snippet', '')
+
+                        # Clean text for PDF
+                        clean_title = clean_markdown_text(title)
+                        clean_snippet = clean_markdown_text(snippet)[:150] + '...' if snippet else ''
+
+                        source_text = f"• <b>{clean_title}</b>"
+                        if date != 'N/A':
+                            source_text += f" ({date})"
+                        source_text += f"<br/>&nbsp;&nbsp;{url}"
+                        if clean_snippet:
+                            source_text += f"<br/>&nbsp;&nbsp;<i>{clean_snippet}</i>"
+
+                        story.append(Paragraph(source_text, styles['Normal']))
+                        story.append(Spacer(1, 5))
+                    story.append(Spacer(1, 10))
+        else:
+            story.append(Paragraph("This analysis is based on the agent's comprehensive knowledge base and publicly available information. No specific web sources were cited for this location.", styles['Normal']))
+
+        story.append(Spacer(1, 20))
 
         # Build PDF
         print(f"🔧 DEBUG: Building PDF with {len(story)} story elements...")
