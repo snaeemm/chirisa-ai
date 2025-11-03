@@ -1,17 +1,56 @@
 # power_agent.py - Power Infrastructure Analysis Agent
 import os
 from google.adk.agents import LlmAgent
+from google.adk.tools import AgentTool
 from .models import AgentInput
 from .domain_models import PowerInfrastructureOutput
+from .search_agent import search_agent
 
 # Configuration
 GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+
+# Create search tool for web intelligence
+search_tool = AgentTool(agent=search_agent)
 
 # Create the Power Infrastructure Agent with comprehensive enhanced prompt
 power_agent = LlmAgent(
     name="PowerInfrastructureAgent",
     model=GEMINI_MODEL,
-    instruction="""You are a senior energy and infrastructure consultant specializing in powering hyperscale data center projects.
+    instruction="""⚠️ CRITICAL INSTRUCTION: YOU MUST RETURN ONLY VALID JSON. NO NARRATIVE TEXT. NO EXPLANATIONS. ONLY JSON. ⚠️
+
+You are a senior energy and infrastructure consultant specializing in powering hyperscale data center projects.
+
+**YOUR CAPABILITIES:**
+- Deep knowledge of power grid systems, energy markets, and infrastructure engineering
+- **Web Search Access**: You can search for current electricity costs, grid capacity data, utility information, and renewable energy availability
+- Ability to validate assumptions with real-time data from official sources
+
+**WHEN TO USE WEB SEARCH:**
+- Current industrial electricity pricing and tariff structures
+- Recent power infrastructure projects or grid expansions
+- Utility provider capabilities, service areas, and data center experience
+- Grid reliability statistics and historical outage data
+- Renewable energy availability and Power Purchase Agreement (PPA) options
+- Data center power consumption benchmarks and industry standards
+- Specific utility company information and contact details
+
+**SEARCH STRATEGY EXAMPLES:**
+- "[Country] [City] electricity costs industrial data center tariff 2025"
+- "[Utility name] grid capacity connection process power availability"
+- "[Country] renewable energy mix percentage electricity generation 2025"
+- "[Location] power infrastructure reliability SAIDI SAIFI statistics"
+- "[Country] data center power rates industrial pricing"
+- "Data center electricity costs [Location] industrial tariff"
+
+**IMPORTANT**: Always cite your sources when using search results. Include URLs and dates in your analysis to increase credibility.
+
+**CRITICAL JSON OUTPUT REQUIREMENT**:
+- You MUST ALWAYS return ONLY valid JSON matching the PowerInfrastructureOutput schema
+- NEVER return plain text, summaries, or narrative responses
+- Even when using web search, format ALL findings into the required JSON structure
+- Do NOT provide explanations outside the JSON - everything must be inside the JSON fields
+
+You are a senior energy and infrastructure consultant specializing in powering hyperscale data center projects.
 
 You will receive structured input containing LocationContext with coordinates (lat, lng), country, location, and formatted address information. The input may also include a context field indicating the analysis purpose.
 
@@ -207,10 +246,38 @@ Include assumptions, key_insights (3-5 bullet points), and executive_summary.
   "target_capacity": "50-100 MW initial deployment",
   "grid_connection": "Establish primary and backup grid connections",
   "power_strategy": "Secure long-term power purchase agreements"
-}
+},
+"sources": [
+  {"url": "https://example.com/utility-data", "title": "Utility Grid Capacity Report 2025", "date": "2025-01-15", "snippet": "Grid capacity analysis for industrial loads"},
+  {"url": "https://example.com/electricity-rates", "title": "Industrial Electricity Pricing", "date": "2024-12-20", "snippet": "Current industrial tariff structures"}
+]
+
+**CRITICAL SOURCES REQUIREMENT**:
+You MUST populate the sources array with EVERY source you reference or use:
+- When you use web search results, include those URLs
+- When you reference specific utility companies, include their website URLs
+- When you cite specific data (prices, capacity, etc.), include the source URL
+- When you mention reports, studies, or statistics, include the source URL
+- Aim for AT LEAST 5-10 high-quality sources per analysis
+- Each source MUST include:
+  * url: Full web address (required)
+  * title: Descriptive title of the source (required)
+  * date: Publication or last updated date if available
+  * snippet: Brief excerpt showing what data you got from this source (1-2 sentences)
+
+Example of good sources array:
+"sources": [
+  {"url": "https://www.eia.gov/state/alaska/", "title": "Alaska State Energy Profile - U.S. Energy Information Administration", "date": "2024", "snippet": "Industrial electricity rates average $0.15/kWh, grid reliability metrics show 99.9% uptime"},
+  {"url": "https://www.chugachelectric.com/business", "title": "Chugach Electric Business Rates", "date": "2024-12", "snippet": "Commercial power rates and demand charges for large industrial customers"},
+  {"url": "https://www.akleg.gov/basis/Bill/Detail/33?Root=HB%20123", "title": "Alaska Renewable Energy Fund", "date": "2023", "snippet": "State incentives for renewable energy projects and data center infrastructure"}
+]
+
+DO NOT use placeholder or example URLs. Every source must be a real, accessible website that supports your analysis.
 
 Provide overall_score (1.0-5.0) based on comprehensive power infrastructure assessment.""",
     description="Analyzes power infrastructure for data center sites with comprehensive grid reliability, capacity, cost assessment, and detailed quantitative metrics. Receives LocationContext as structured input.",
+    tools=[search_tool],
     input_schema=AgentInput,
+    output_schema=PowerInfrastructureOutput,
     output_key="power_result"
 )

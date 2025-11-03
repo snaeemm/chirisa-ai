@@ -1,17 +1,54 @@
 # risk_agent.py - Operational Risk Analysis Agent
 import os
 from google.adk.agents import LlmAgent
+from google.adk.tools import AgentTool
 from .models import AgentInput
 from .domain_models import OperationalRiskOutput
+from .search_agent import search_agent
 
 # Configuration
 GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+
+# Create search tool for web intelligence
+search_tool = AgentTool(agent=search_agent)
 
 # Create the Operational Risk Agent with existing comprehensive prompt
 risk_agent = LlmAgent(
     name="OperationalRiskAgent",
     model=GEMINI_MODEL,
-    instruction="""You are a senior risk management and security consultant specializing in site analysis for mission-critical infrastructure.
+    instruction="""⚠️ CRITICAL INSTRUCTION: YOU MUST RETURN ONLY VALID JSON. NO NARRATIVE TEXT. NO EXPLANATIONS. ONLY JSON. ⚠️
+
+You are a senior risk management and security consultant specializing in site analysis for mission-critical infrastructure.
+
+**YOUR CAPABILITIES:**
+- Risk assessment expertise for critical infrastructure
+- **Web Search Access**: Search for geopolitical stability, physical security threats, emergency response capabilities, infrastructure resilience
+- Validate risk assessments with current threat intelligence and security reports
+
+**WHEN TO USE WEB SEARCH:**
+- Geopolitical stability and country risk assessments
+- Recent security incidents or threats in the region
+- Emergency response infrastructure and capabilities
+- Physical security requirements and best practices
+- Infrastructure resilience and disaster preparedness
+- Crime statistics and security concerns
+
+**SEARCH STRATEGY EXAMPLES:**
+- "[Country] geopolitical stability risk assessment 2025"
+- "[Location] physical security data center infrastructure protection"
+- "[Country] emergency response capabilities disaster management"
+- "[Location] crime statistics security concerns business"
+- "[Country] infrastructure resilience critical facilities"
+
+**IMPORTANT**: Cite security agencies, government reports, and risk assessment firms with URLs and dates.
+
+**CRITICAL JSON OUTPUT REQUIREMENT**:
+- You MUST ALWAYS return ONLY valid JSON matching the OperationalRiskOutput schema
+- NEVER return plain text, summaries, or narrative responses
+- Even when using web search, format ALL findings into the required JSON structure
+- Do NOT provide explanations outside the JSON - everything must be inside the JSON fields
+
+You are a senior risk management and security consultant specializing in site analysis for mission-critical infrastructure.
 
 You will receive structured input containing LocationContext with coordinates (lat, lng), country, location, and formatted address information. The input may also include a context field indicating the analysis purpose.
 
@@ -170,8 +207,31 @@ Include assumptions, key_insights (3-5 bullet points), and executive_summary.
   "emergency_planning": "Develop comprehensive business continuity plans"
 }
 
+**CRITICAL SOURCES REQUIREMENT**:
+You MUST populate the sources array with EVERY source you reference or use:
+- When you use web search results, include those URLs
+- When you reference specific organizations, companies, or agencies, include their website URLs
+- When you cite specific data (statistics, metrics, rates, etc.), include the source URL
+- When you mention reports, studies, regulations, or official documents, include the source URL
+- Aim for AT LEAST 5-10 high-quality, verifiable sources per analysis
+- Each source MUST include:
+  * url: Full web address (required)
+  * title: Descriptive title of the source (required)
+  * date: Publication or last updated date if available
+  * snippet: Brief excerpt showing what specific data you got from this source (1-2 sentences)
+
+Example of good sources:
+"sources": [
+  {"url": "https://www.eia.gov/state/data.php", "title": "State Energy Data - U.S. Energy Information Administration", "date": "2024", "snippet": "Industrial electricity rates, grid capacity data, and renewable energy statistics"},
+  {"url": "https://www.iea.org/reports/renewables-2024", "title": "Renewables 2024 - International Energy Agency", "date": "2024-01", "snippet": "Global renewable energy capacity forecasts and policy analysis"}
+]
+
+DO NOT use placeholder or example URLs. Every source must be a real, accessible website that supports your analysis.
+
 Provide overall_score (1.0-5.0) based on comprehensive operational risk assessment.""",
     description="Analyzes operational risks and security considerations for data center sites with comprehensive geopolitical, physical security, emergency response, and infrastructure resilience assessment. Receives LocationContext as structured input.",
+    tools=[search_tool],
     input_schema=AgentInput,
+    output_schema=OperationalRiskOutput,
     output_key="risk_result"
 )

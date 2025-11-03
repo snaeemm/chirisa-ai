@@ -74,7 +74,7 @@ def load_report_details(report_id: int) -> Optional[Dict[str, Any]]:
         st.error(f"Error loading report details: {e}")
         return None
 
-def render_metrics_table(metrics: Dict[str, Any], section_name: str):
+def render_metrics_table(metrics: Dict[str, Any], section_name: str) -> None:
     """Render metrics data as comprehensive tables"""
     if not metrics:
         return
@@ -149,7 +149,7 @@ def render_metrics_table(metrics: Dict[str, Any], section_name: str):
             _, df = tab_data[0]
             st.dataframe(df, use_container_width=True, hide_index=True)
 
-def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], structured_analysis: Dict[str, Any]):
+def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], structured_analysis: Dict[str, Any]) -> None:
     """Render a single domain analysis section with complete detailed analysis"""
     score = domain_data.get("score", 0)
     summary = domain_data.get("summary", "")
@@ -233,7 +233,32 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
                 for assumption in assumptions:
                     st.write(f"• {assumption}")
 
-def render_report_viewer(report_id: int):
+        # Show sources if available
+        if domain_structured and 'sources' in domain_structured:
+            sources = domain_structured['sources']
+            if sources and isinstance(sources, list) and len(sources) > 0:
+                st.divider()
+                st.write(f"**📚 Sources & References ({len(sources)} sources)**")
+                with st.expander("View all sources", expanded=False):
+                    for idx, source in enumerate(sources, 1):
+                        if isinstance(source, dict):
+                            url = source.get("url", "")
+                            title = source.get("title", "Unknown Source")
+                            date = source.get("date", "")
+                            snippet = source.get("snippet", "")
+
+                            st.markdown(f"""
+                            **{idx}. {title}**
+                            {f"📅 {date}  " if date else ""}
+                            {f"🔗 [{url}]({url})  " if url else ""}
+                            {f"*{snippet}*" if snippet else ""}
+                            """)
+                            if idx < len(sources):
+                                st.divider()
+                        elif isinstance(source, str):
+                            st.write(f"{idx}. {source}")
+
+def render_report_viewer(report_id: int) -> None:
     """Render the complete report viewer for a given report ID"""
     # Load report data
     report_data = load_report_details(report_id)
@@ -746,6 +771,31 @@ def render_report_viewer(report_id: int):
                     for assumption in assumptions:
                         html += f"<li>{clean_markdown(assumption)}</li>"
                     html += "</ul></div>"
+
+                # Add sources/references section
+                sources = domain_data.get("sources", [])
+                if sources:
+                    html += f'<div class="subsection" style="page-break-inside: avoid; break-inside: avoid-column;">'
+                    html += "<h4>📚 Sources & References</h4>"
+                    for source in sources:
+                        if isinstance(source, dict):
+                            url = source.get("url", "")
+                            title = source.get("title", "Unknown Source")
+                            date = source.get("date", "")
+                            snippet = source.get("snippet", "")
+
+                            html += f"<p style='margin: 4px 0; padding-left: 10px; border-left: 2px solid #1f77b4;'>"
+                            html += f"<strong>{clean_markdown(title)}</strong><br>"
+                            if date:
+                                html += f"<em>Date: {clean_markdown(date)}</em><br>"
+                            if url:
+                                html += f"<span style='font-size: 9px; color: #666;'>{clean_markdown(url)}</span><br>"
+                            if snippet:
+                                html += f"<em style='font-size: 9px;'>{clean_markdown(snippet)}</em>"
+                            html += "</p>"
+                        elif isinstance(source, str):
+                            html += f"<p style='margin: 2px 0; padding-left: 10px;'>• {clean_markdown(source)}</p>"
+                    html += "</div>"
 
                 html += "</div>"
                 return html

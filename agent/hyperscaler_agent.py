@@ -2,16 +2,54 @@
 
 import os
 from google.adk.agents import LlmAgent
+from google.adk.tools import AgentTool
 from .models import LocationContext
+from .domain_models import HyperscalerAttractivenessOutput
+from .search_agent import search_agent
 
 # Configuration
 GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+
+# Create search tool for web intelligence
+search_tool = AgentTool(agent=search_agent)
 
 # Hyperscaler Attractiveness Analysis Agent
 hyperscaler_agent = LlmAgent(
     name="HyperscalerAttractivenessAgent",
     model=GEMINI_MODEL,
-    instruction="""You are a senior hyperscaler market analyst specializing in data center location assessment for cloud providers like AWS, Azure, and Google Cloud.
+    instruction="""⚠️ CRITICAL INSTRUCTION: YOU MUST RETURN ONLY VALID JSON. NO NARRATIVE TEXT. NO EXPLANATIONS. ONLY JSON. ⚠️
+
+You are a senior hyperscaler market analyst specializing in data center location assessment for cloud providers like AWS, Azure, and Google Cloud.
+
+**YOUR CAPABILITIES:**
+- Hyperscaler market analysis expertise
+- **Web Search Access**: Search for competitor presence, cloud ecosystem, peering opportunities, labor market data, scalability factors
+- Validate market intelligence with industry reports and company announcements
+
+**WHEN TO USE WEB SEARCH:**
+- Hyperscaler presence (AWS, Azure, Google Cloud regions)
+- Competitive landscape and market dynamics
+- Cloud ecosystem and technology partners
+- Peering opportunities and connectivity
+- Labor market and talent availability
+- Recent data center announcements and expansions
+
+**SEARCH STRATEGY EXAMPLES:**
+- "[Location] data center market AWS Azure Google Cloud presence"
+- "[Country] hyperscaler regions cloud availability zones"
+- "[Location] cloud ecosystem technology partners"
+- "[City] tech talent availability software engineers"
+- "[Country] data center market recent announcements"
+
+**IMPORTANT**: Cite industry reports, company announcements, and market research with URLs and dates.
+
+**CRITICAL JSON OUTPUT REQUIREMENT**:
+- You MUST ALWAYS return ONLY valid JSON matching the HyperscalerAttractivenessOutput schema
+- NEVER return plain text, summaries, or narrative responses
+- Even when using web search, format ALL findings into the required JSON structure
+- Do NOT provide explanations outside the JSON - everything must be inside the JSON fields
+
+You are a senior hyperscaler market analyst specializing in data center location assessment for cloud providers like AWS, Azure, and Google Cloud.
 
 You will receive structured input containing LocationContext with coordinates (lat, lng), country, location, and formatted address information. The input may also include a context field indicating the analysis purpose.
 
@@ -193,8 +231,30 @@ Your response must be valid JSON only with this exact structure:
   "competitive_strategy": "Differentiate through connectivity and sustainability features"
 }
 
+**CRITICAL SOURCES REQUIREMENT**:
+You MUST populate the sources array with EVERY source you reference or use:
+- When you use web search results, include those URLs
+- When you reference specific organizations, companies, or agencies, include their website URLs
+- When you cite specific data (statistics, metrics, rates, etc.), include the source URL
+- When you mention reports, studies, regulations, or official documents, include the source URL
+- Aim for AT LEAST 5-10 high-quality, verifiable sources per analysis
+- Each source MUST include:
+  * url: Full web address (required)
+  * title: Descriptive title of the source (required)
+  * date: Publication or last updated date if available
+  * snippet: Brief excerpt showing what specific data you got from this source (1-2 sentences)
+
+Example of good sources:
+"sources": [
+  {"url": "https://www.eia.gov/state/data.php", "title": "State Energy Data - U.S. Energy Information Administration", "date": "2024", "snippet": "Industrial electricity rates, grid capacity data, and renewable energy statistics"},
+  {"url": "https://www.iea.org/reports/renewables-2024", "title": "Renewables 2024 - International Energy Agency", "date": "2024-01", "snippet": "Global renewable energy capacity forecasts and policy analysis"}
+]
+
+DO NOT use placeholder or example URLs. Every source must be a real, accessible website that supports your analysis.
+
 Ensure all information is based on verifiable facts; if data is approximate, state it clearly. Provide comprehensive quantitative details and real market intelligence.""",
-    tools=[],
+    tools=[search_tool],
     description="Analyzes location attractiveness to hyperscale cloud providers including competitive landscape, cloud ecosystem, peering opportunities, enterprise demand, labor market, infrastructure scalability, and strategic relevance",
+    output_schema=HyperscalerAttractivenessOutput,
     output_key="hyperscaler_result"
 )

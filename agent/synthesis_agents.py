@@ -66,9 +66,20 @@ def repair_json_response(json_text: str) -> str:
     if end_idx >= 0:
         json_text = json_text[:end_idx + 1]
 
+    # Fix invalid escape sequences (e.g., \$ -> \\$)
+    json_text = re.sub(r'\\(?!["\\/bfnrtu])', r'\\\\', json_text)
+
     # Fix common issues
     # Remove trailing commas before } or ]
     json_text = re.sub(r',(\s*[}\]])', r'\1', json_text)
+
+    # Fix missing commas between fields - look for patterns like }" or ]" followed by "
+    # This handles cases where closing brace/bracket of nested object/array is immediately followed by a new field
+    json_text = re.sub(r'(\}|\])\s*(")', r'\1,\2', json_text)
+
+    # Fix missing commas between string values and next property
+    # Pattern: "value" followed by whitespace and then "key":
+    json_text = re.sub(r'("\s*)\s+("[\w_]+"\s*:)', r'\1,\2', json_text)
 
     # Fix single quotes to double quotes (comprehensive)
     # Replace single quotes with double quotes for keys
@@ -85,6 +96,116 @@ def repair_json_response(json_text: str) -> str:
     json_text = re.sub(r':\s*([^",{\[\s][^,}\]]*?)(?=\s*[,}\]])', r': "\1"', json_text)
 
     return json_text
+
+def extract_grounding_sources(response) -> list:
+    """Extract grounding sources (web search results) from Gemini API response"""
+    grounding_sources = []
+    try:
+        if hasattr(response, 'candidates') and response.candidates:
+            candidate = response.candidates[0]
+            if hasattr(candidate, 'grounding_metadata') and candidate.grounding_metadata:
+                grounding_metadata = candidate.grounding_metadata
+                if hasattr(grounding_metadata, 'grounding_chunks') and grounding_metadata.grounding_chunks:
+                    for chunk in grounding_metadata.grounding_chunks:
+                        if hasattr(chunk, 'web') and chunk.web:
+                            # Ensure all fields are strings, never None
+                            url = chunk.web.uri if hasattr(chunk.web, 'uri') and chunk.web.uri else ""
+                            title = chunk.web.title if hasattr(chunk.web, 'title') and chunk.web.title else "Web Source"
+
+                            source = {
+                                "url": str(url) if url else "",
+                                "title": str(title) if title else "Web Source",
+                                "date": "",  # Not typically provided by search grounding
+                                "snippet": ""  # Not typically provided directly
+                            }
+                            if source["url"]:  # Only add if we have a URL
+                                grounding_sources.append(source)
+    except Exception as e:
+        print(f"⚠️ Could not extract grounding metadata: {e}")
+
+    return grounding_sources
+
+def sanitize_sources(sources: list) -> list:
+    """Sanitize sources list to ensure all fields are valid strings"""
+    if not isinstance(sources, list):
+        return []
+
+    sanitized = []
+    for source in sources:
+        if isinstance(source, dict):
+            # Ensure all required fields are present and are strings (not None)
+            sanitized_source = {
+                "url": str(source.get("url", "")) if source.get("url") is not None else "",
+                "title": str(source.get("title", "Unknown Source")) if source.get("title") is not None else "Unknown Source",
+                "date": str(source.get("date", "")) if source.get("date") is not None else "",
+                "snippet": str(source.get("snippet", "")) if source.get("snippet") is not None else ""
+            }
+            # Only add if we have at least a URL
+            if sanitized_source["url"]:
+                sanitized.append(sanitized_source)
+        elif isinstance(source, str):
+            # If source is just a string, create a minimal source object
+            sanitized.append({
+                "url": "",
+                "title": str(source),
+                "date": "",
+                "snippet": ""
+            })
+
+    return sanitized
+
+def sanitize_metrics_data(data: dict) -> dict:
+    """Sanitize metrics data to ensure all percentages and numerical values are valid numbers"""
+    import re
+
+    def clean_number_string(value):
+        """Convert string representations to numbers, handling special cases"""
+        if isinstance(value, (int, float)):
+            return value
+
+        if isinstance(value, str):
+            # Remove any non-numeric characters except decimal point, minus sign, and digits
+            cleaned = re.sub(r'[^\d.\-]', '', value.strip())
+
+            # If we have an empty string after cleaning, return 0
+            if not cleaned or cleaned == '-':
+                return 0
+
+            try:
+                # Try to parse as float first, then convert to int if it's a whole number
+                num = float(cleaned)
+                if num == int(num):
+                    return int(num)
+                return num
+            except ValueError:
+                return 0
+
+        return 0
+
+    # Recursively process the data structure
+    if isinstance(data, dict):
+        sanitized = {}
+        for key, value in data.items():
+            if key in ['percentages', 'numerical_values']:
+                # These should contain numeric values
+                if isinstance(value, dict):
+                    sanitized[key] = {k: clean_number_string(v) for k, v in value.items()}
+                else:
+                    sanitized[key] = value
+            elif key == 'metrics' and isinstance(value, dict):
+                # Recursively sanitize metrics
+                sanitized[key] = sanitize_metrics_data(value)
+            elif isinstance(value, dict):
+                # Recursively process nested dicts
+                sanitized[key] = sanitize_metrics_data(value)
+            elif isinstance(value, list):
+                # Process lists
+                sanitized[key] = [sanitize_metrics_data(item) if isinstance(item, dict) else item for item in value]
+            else:
+                sanitized[key] = value
+        return sanitized
+
+    return data
 
 def detect_json_error_type(error_message: str, response_text: str) -> str:
     """Detect specific type of JSON error for targeted retry instructions"""
@@ -301,28 +422,68 @@ class PowerInfrastructureAgentWrapper:
             # Use the ADK agent's instruction as the prompt base (like old code)
             prompt = f"{self.adk_agent.instruction}\n\nAnalyze power infrastructure for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
 
-            # Call using Google Generative AI directly like old code did
-            import google.generativeai as genai
+            # Use Google GenAI client with Search grounding
+            from google.genai import Client, types
+            from google.genai.types import Tool, GoogleSearch
             import os
 
             api_key = os.getenv('GEMINI_API_KEY')
             if not api_key:
                 raise Exception("GEMINI_API_KEY not found")
 
-            genai.configure(api_key=api_key)
-            model = genai.GenerativeModel(self.model)
+            # Create client and grounding tool
+            client = Client(api_key=api_key)
+            grounding_tool = Tool(google_search=GoogleSearch())
 
-            response = await asyncio.to_thread(model.generate_content, prompt)
+            print(f"🔍 {self.name} calling with Google Search grounding enabled")
+
+            # Call with grounding
+            response = await asyncio.to_thread(
+                client.models.generate_content,
+                model=self.model,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    tools=[grounding_tool],
+                    response_modalities=["TEXT"],
+                )
+            )
 
             # Parse JSON response from agent into PowerInfrastructureOutput
             print(f"🔍 DEBUG Power Agent Response (first 500 chars): {response.text[:500]}...")
+
+            # Extract grounding sources from Google Search
+            grounding_sources = extract_grounding_sources(response)
+            if grounding_sources:
+                print(f"📚 Extracted {len(grounding_sources)} grounding sources from Power Agent")
+
             try:
                 import json
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response.text)
                 print(f"🔧 DEBUG Cleaned Response (first 100 chars): {cleaned_response[:100]}...")
-                response_data = json.loads(cleaned_response)
+
+                # Try to parse JSON, with repair if needed
+                try:
+                    response_data = json.loads(cleaned_response)
+                except json.JSONDecodeError as first_error:
+                    print(f"⚠️ Initial JSON parse failed, attempting repair...")
+                    repaired_response = repair_json_response(cleaned_response)
+                    response_data = json.loads(repaired_response)
                 print(f"✅ Power Agent JSON parsed successfully")
+
+                # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
+                response_data = sanitize_metrics_data(response_data)
+
+                # Inject grounding sources and sanitize
+                if grounding_sources:
+                    existing_sources = response_data.get("sources", [])
+                    combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
+                    response_data["sources"] = sanitize_sources(combined_sources)
+                    print(f"✅ Injected and sanitized {len(response_data['sources'])} total sources into Power Agent response")
+                else:
+                    # Still sanitize existing sources even if no grounding sources
+                    if "sources" in response_data:
+                        response_data["sources"] = sanitize_sources(response_data.get("sources", []))
 
                 # Try to create PowerInfrastructureOutput first (new format)
                 try:
@@ -367,24 +528,68 @@ class NetworkConnectivityAgentWrapper:
         """Match old agent signature exactly"""
         try:
             prompt = f"{self.adk_agent.instruction}\n\nAnalyze network connectivity for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
-            import google.generativeai as genai
+            # Use Google GenAI client with Search grounding
+            from google.genai import Client, types
+            from google.genai.types import Tool, GoogleSearch
             import os
+
             api_key = os.getenv('GEMINI_API_KEY')
             if not api_key:
                 raise Exception("GEMINI_API_KEY not found")
-            genai.configure(api_key=api_key)
-            model = genai.GenerativeModel(self.model)
-            response = await asyncio.to_thread(model.generate_content, prompt)
+
+            # Create client and grounding tool
+            client = Client(api_key=api_key)
+            grounding_tool = Tool(google_search=GoogleSearch())
+
+            print(f"🔍 {self.name} calling with Google Search grounding enabled")
+
+            # Call with grounding
+            response = await asyncio.to_thread(
+                client.models.generate_content,
+                model=self.model,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    tools=[grounding_tool],
+                    response_modalities=["TEXT"],
+                )
+            )
 
             # Parse JSON response from agent into NetworkConnectivityOutput
             print(f"🔍 DEBUG Network Agent Response (first 500 chars): {response.text[:500]}...")
+
+            # Extract grounding sources from Google Search
+            grounding_sources = extract_grounding_sources(response)
+            if grounding_sources:
+                print(f"📚 Extracted {len(grounding_sources)} grounding sources from Network Agent")
+
             try:
                 import json
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response.text)
                 print(f"🔧 DEBUG Cleaned Response (first 100 chars): {cleaned_response[:100]}...")
-                response_data = json.loads(cleaned_response)
+
+                # Try to parse JSON, with repair if needed
+                try:
+                    response_data = json.loads(cleaned_response)
+                except json.JSONDecodeError as first_error:
+                    print(f"⚠️ Initial JSON parse failed, attempting repair...")
+                    repaired_response = repair_json_response(cleaned_response)
+                    response_data = json.loads(repaired_response)
                 print(f"✅ Network Agent JSON parsed successfully")
+
+                # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
+                response_data = sanitize_metrics_data(response_data)
+
+                # Inject grounding sources and sanitize
+                if grounding_sources:
+                    existing_sources = response_data.get("sources", [])
+                    combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
+                    response_data["sources"] = sanitize_sources(combined_sources)
+                    print(f"✅ Injected and sanitized {len(response_data['sources'])} total sources into Network Agent response")
+                else:
+                    # Still sanitize existing sources even if no grounding sources
+                    if "sources" in response_data:
+                        response_data["sources"] = sanitize_sources(response_data.get("sources", []))
 
                 # Try to create NetworkConnectivityOutput first (new format)
                 try:
@@ -429,22 +634,59 @@ class ClimateSuitabilityAgentWrapper:
         """Match old agent signature exactly"""
         try:
             prompt = f"{self.adk_agent.instruction}\n\nAnalyze climate suitability for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
-            import google.generativeai as genai
+            # Use Google GenAI client with Search grounding
+            from google.genai import Client, types
+            from google.genai.types import Tool, GoogleSearch
             import os
+
             api_key = os.getenv('GEMINI_API_KEY')
             if not api_key:
                 raise Exception("GEMINI_API_KEY not found")
-            genai.configure(api_key=api_key)
-            model = genai.GenerativeModel(self.model)
-            response = await asyncio.to_thread(model.generate_content, prompt)
+
+            # Create client and grounding tool
+            client = Client(api_key=api_key)
+            grounding_tool = Tool(google_search=GoogleSearch())
+
+            print(f"🔍 {self.name} calling with Google Search grounding enabled")
+
+            # Call with grounding
+            response = await asyncio.to_thread(
+                client.models.generate_content,
+                model=self.model,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    tools=[grounding_tool],
+                    response_modalities=["TEXT"],
+                )
+            )
 
             # Parse JSON response from agent into ClimateAnalysisOutput
+
+            # Extract grounding sources from Google Search
+            grounding_sources = extract_grounding_sources(response)
+            if grounding_sources:
+                print(f"📚 Extracted {len(grounding_sources)} grounding sources from Climate Suitability Agent")
+
             try:
                 import json
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response.text)
                 response_data = json.loads(cleaned_response)
                 print(f"✅ Climate Agent JSON parsed successfully")
+
+                # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
+                response_data = sanitize_metrics_data(response_data)
+
+                # Inject grounding sources and sanitize
+                if grounding_sources:
+                    existing_sources = response_data.get("sources", [])
+                    combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
+                    response_data["sources"] = sanitize_sources(combined_sources)
+                    print(f"✅ Injected and sanitized {len(response_data['sources'])} total sources into Climate Suitability Agent response")
+                else:
+                    # Still sanitize existing sources even if no grounding sources
+                    if "sources" in response_data:
+                        response_data["sources"] = sanitize_sources(response_data.get("sources", []))
 
                 # Try to create ClimateAnalysisOutput first (new format)
                 try:
@@ -489,22 +731,59 @@ class OperationalRiskAgentWrapper:
         """Match old agent signature exactly"""
         try:
             prompt = f"{self.adk_agent.instruction}\n\nAnalyze operational risk for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
-            import google.generativeai as genai
+            # Use Google GenAI client with Search grounding
+            from google.genai import Client, types
+            from google.genai.types import Tool, GoogleSearch
             import os
+
             api_key = os.getenv('GEMINI_API_KEY')
             if not api_key:
                 raise Exception("GEMINI_API_KEY not found")
-            genai.configure(api_key=api_key)
-            model = genai.GenerativeModel(self.model)
-            response = await asyncio.to_thread(model.generate_content, prompt)
+
+            # Create client and grounding tool
+            client = Client(api_key=api_key)
+            grounding_tool = Tool(google_search=GoogleSearch())
+
+            print(f"🔍 {self.name} calling with Google Search grounding enabled")
+
+            # Call with grounding
+            response = await asyncio.to_thread(
+                client.models.generate_content,
+                model=self.model,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    tools=[grounding_tool],
+                    response_modalities=["TEXT"],
+                )
+            )
 
             # Parse JSON response from agent into OperationalRiskOutput
+
+            # Extract grounding sources from Google Search
+            grounding_sources = extract_grounding_sources(response)
+            if grounding_sources:
+                print(f"📚 Extracted {len(grounding_sources)} grounding sources from Operational Risk Agent")
+
             try:
                 import json
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response.text)
                 response_data = json.loads(cleaned_response)
                 print(f"✅ Risk Agent JSON parsed successfully")
+
+                # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
+                response_data = sanitize_metrics_data(response_data)
+
+                # Inject grounding sources and sanitize
+                if grounding_sources:
+                    existing_sources = response_data.get("sources", [])
+                    combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
+                    response_data["sources"] = sanitize_sources(combined_sources)
+                    print(f"✅ Injected and sanitized {len(response_data['sources'])} total sources into Operational Risk Agent response")
+                else:
+                    # Still sanitize existing sources even if no grounding sources
+                    if "sources" in response_data:
+                        response_data["sources"] = sanitize_sources(response_data.get("sources", []))
 
                 # Try to create OperationalRiskOutput first (new format)
                 try:
@@ -548,22 +827,59 @@ class SustainabilityESGAgentWrapper:
         """Match old agent signature exactly"""
         try:
             prompt = f"{self.adk_agent.instruction}\n\nAnalyze sustainability ESG for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
-            import google.generativeai as genai
+            # Use Google GenAI client with Search grounding
+            from google.genai import Client, types
+            from google.genai.types import Tool, GoogleSearch
             import os
+
             api_key = os.getenv('GEMINI_API_KEY')
             if not api_key:
                 raise Exception("GEMINI_API_KEY not found")
-            genai.configure(api_key=api_key)
-            model = genai.GenerativeModel(self.model)
-            response = await asyncio.to_thread(model.generate_content, prompt)
+
+            # Create client and grounding tool
+            client = Client(api_key=api_key)
+            grounding_tool = Tool(google_search=GoogleSearch())
+
+            print(f"🔍 {self.name} calling with Google Search grounding enabled")
+
+            # Call with grounding
+            response = await asyncio.to_thread(
+                client.models.generate_content,
+                model=self.model,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    tools=[grounding_tool],
+                    response_modalities=["TEXT"],
+                )
+            )
 
             # Parse JSON response from agent into ESGSustainabilityOutput
+
+            # Extract grounding sources from Google Search
+            grounding_sources = extract_grounding_sources(response)
+            if grounding_sources:
+                print(f"📚 Extracted {len(grounding_sources)} grounding sources from Sustainability ESG Agent")
+
             try:
                 import json
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response.text)
                 response_data = json.loads(cleaned_response)
                 print(f"✅ ESG Agent JSON parsed successfully")
+
+                # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
+                response_data = sanitize_metrics_data(response_data)
+
+                # Inject grounding sources and sanitize
+                if grounding_sources:
+                    existing_sources = response_data.get("sources", [])
+                    combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
+                    response_data["sources"] = sanitize_sources(combined_sources)
+                    print(f"✅ Injected and sanitized {len(response_data['sources'])} total sources into Sustainability ESG Agent response")
+                else:
+                    # Still sanitize existing sources even if no grounding sources
+                    if "sources" in response_data:
+                        response_data["sources"] = sanitize_sources(response_data.get("sources", []))
 
                 # Try to create ESGSustainabilityOutput first (new format)
                 try:
@@ -607,22 +923,68 @@ class RegulatoryComplianceAgentWrapper:
         """Match old agent signature exactly"""
         try:
             prompt = f"{self.adk_agent.instruction}\n\nAnalyze regulatory compliance for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
-            import google.generativeai as genai
+            # Use Google GenAI client with Search grounding
+            from google.genai import Client, types
+            from google.genai.types import Tool, GoogleSearch
             import os
+
             api_key = os.getenv('GEMINI_API_KEY')
             if not api_key:
                 raise Exception("GEMINI_API_KEY not found")
-            genai.configure(api_key=api_key)
-            model = genai.GenerativeModel(self.model)
-            response = await asyncio.to_thread(model.generate_content, prompt)
+
+            # Create client and grounding tool
+            client = Client(api_key=api_key)
+            grounding_tool = Tool(google_search=GoogleSearch())
+
+            print(f"🔍 {self.name} calling with Google Search grounding enabled")
+
+            # Call with grounding
+            response = await asyncio.to_thread(
+                client.models.generate_content,
+                model=self.model,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    tools=[grounding_tool],
+                    response_modalities=["TEXT"],
+                )
+            )
 
             # Parse JSON response from agent into RegulatoryComplianceOutput
+            print(f"🔍 DEBUG Regulatory Agent Response (first 500 chars): {response.text[:500]}...")
+
+            # Extract grounding sources from Google Search
+            grounding_sources = extract_grounding_sources(response)
+            if grounding_sources:
+                print(f"📚 Extracted {len(grounding_sources)} grounding sources from Regulatory Agent")
+
             try:
                 import json
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response.text)
-                response_data = json.loads(cleaned_response)
+                print(f"🔧 DEBUG Cleaned Response (first 100 chars): {cleaned_response[:100]}...")
+
+                # Try to parse JSON, with repair if needed
+                try:
+                    response_data = json.loads(cleaned_response)
+                except json.JSONDecodeError as first_error:
+                    print(f"⚠️ Initial JSON parse failed, attempting repair...")
+                    repaired_response = repair_json_response(cleaned_response)
+                    response_data = json.loads(repaired_response)
                 print(f"✅ Regulatory Agent JSON parsed successfully")
+
+                # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
+                response_data = sanitize_metrics_data(response_data)
+
+                # Inject grounding sources and sanitize
+                if grounding_sources:
+                    existing_sources = response_data.get("sources", [])
+                    combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
+                    response_data["sources"] = sanitize_sources(combined_sources)
+                    print(f"✅ Injected and sanitized {len(response_data['sources'])} total sources into Regulatory Agent response")
+                else:
+                    # Still sanitize existing sources even if no grounding sources
+                    if "sources" in response_data:
+                        response_data["sources"] = sanitize_sources(response_data.get("sources", []))
 
                 # Try to create RegulatoryComplianceOutput first (new format)
                 try:
@@ -666,22 +1028,59 @@ class HyperscalerAttractivenessAgentWrapper:
         """Match old agent signature exactly"""
         try:
             prompt = f"{self.adk_agent.instruction}\n\nAnalyze hyperscaler attractiveness for data center at {lat}, {lng} in {country}.\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
-            import google.generativeai as genai
+            # Use Google GenAI client with Search grounding
+            from google.genai import Client, types
+            from google.genai.types import Tool, GoogleSearch
             import os
+
             api_key = os.getenv('GEMINI_API_KEY')
             if not api_key:
                 raise Exception("GEMINI_API_KEY not found")
-            genai.configure(api_key=api_key)
-            model = genai.GenerativeModel(self.model)
-            response = await asyncio.to_thread(model.generate_content, prompt)
+
+            # Create client and grounding tool
+            client = Client(api_key=api_key)
+            grounding_tool = Tool(google_search=GoogleSearch())
+
+            print(f"🔍 {self.name} calling with Google Search grounding enabled")
+
+            # Call with grounding
+            response = await asyncio.to_thread(
+                client.models.generate_content,
+                model=self.model,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    tools=[grounding_tool],
+                    response_modalities=["TEXT"],
+                )
+            )
 
             # Parse JSON response from agent into HyperscalerAttractivenessOutput
+
+            # Extract grounding sources from Google Search
+            grounding_sources = extract_grounding_sources(response)
+            if grounding_sources:
+                print(f"📚 Extracted {len(grounding_sources)} grounding sources from Hyperscaler Attractiveness Agent")
+
             try:
                 import json
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response.text)
                 response_data = json.loads(cleaned_response)
                 print(f"✅ Hyperscaler Agent JSON parsed successfully")
+
+                # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
+                response_data = sanitize_metrics_data(response_data)
+
+                # Inject grounding sources and sanitize
+                if grounding_sources:
+                    existing_sources = response_data.get("sources", [])
+                    combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
+                    response_data["sources"] = sanitize_sources(combined_sources)
+                    print(f"✅ Injected and sanitized {len(response_data['sources'])} total sources into Hyperscaler Attractiveness Agent response")
+                else:
+                    # Still sanitize existing sources even if no grounding sources
+                    if "sources" in response_data:
+                        response_data["sources"] = sanitize_sources(response_data.get("sources", []))
 
                 # Try to create HyperscalerAttractivenessOutput first (new format)
                 try:

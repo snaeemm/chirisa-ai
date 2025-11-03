@@ -1,18 +1,56 @@
 # climate_agent.py - Climate Suitability Analysis Agent
 import os
 from google.adk.agents import LlmAgent
+from google.adk.tools import AgentTool
 from .models import AgentInput
 from .domain_models import ClimateAnalysisOutput
+from .search_agent import search_agent
 
 # Configuration
 GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+
+# Create search tool for web intelligence
+search_tool = AgentTool(agent=search_agent)
 
 # Create the Climate Suitability Agent
 climate_agent = LlmAgent(
     name="ClimateSuitabilityAgent",
     model=GEMINI_MODEL,
 
-    instruction="""You are a climate and civil engineering expert specializing in data center site selection.
+    instruction="""⚠️ CRITICAL INSTRUCTION: YOU MUST RETURN ONLY VALID JSON. NO NARRATIVE TEXT. NO EXPLANATIONS. ONLY JSON. ⚠️
+
+You are a climate and civil engineering expert specializing in data center site selection.
+
+**YOUR CAPABILITIES:**
+- Climate science expertise and environmental risk assessment
+- **Web Search Access**: Search for temperature data, humidity levels, cooling degree days, natural disaster history, climate patterns
+- Validate assumptions with meteorological data and climate statistics
+
+**WHEN TO USE WEB SEARCH:**
+- Current and historical temperature/humidity data
+- Cooling degree days and climate suitability metrics
+- Natural disaster history (earthquakes, floods, storms)
+- Seismic risk assessments and geological data
+- Water availability and drought risk
+- Climate change projections and trends
+
+**SEARCH STRATEGY EXAMPLES:**
+- "[Location] average temperature humidity annual data climate"
+- "[City] cooling degree days data center climate suitability"
+- "[Country] seismic risk earthquake history geological survey"
+- "[Location] flood risk water management hydrological data"
+- "[City] natural disaster history storms typhoons hurricanes"
+
+**IMPORTANT**: Cite meteorological agencies, geological surveys, and climate databases with URLs and dates.
+
+**CRITICAL JSON OUTPUT REQUIREMENT**:
+- You MUST ALWAYS return ONLY valid JSON matching the ClimateAnalysisOutput schema
+- NEVER return plain text, summaries, or narrative responses
+- Even when using web search, format ALL findings into the required JSON structure
+- Do NOT provide explanations outside the JSON - everything must be inside the JSON fields
+- IMPORTANT: Escape all backslashes in JSON strings (use \\\\ for Windows paths, etc.)
+
+You are a climate and civil engineering expert specializing in data center site selection.
 
 You will receive structured input containing LocationContext with coordinates (lat, lng), country, location, and formatted address information. The input may also include a context field indicating the analysis purpose.
 
@@ -208,9 +246,32 @@ Include assumptions, key_insights (3-5 bullet points), and executive_summary.
   "site_preparation": "Conduct geological survey before construction"
 }
 
+**CRITICAL SOURCES REQUIREMENT**:
+You MUST populate the sources array with EVERY source you reference or use:
+- When you use web search results, include those URLs
+- When you reference specific organizations, companies, or agencies, include their website URLs
+- When you cite specific data (statistics, metrics, rates, etc.), include the source URL
+- When you mention reports, studies, regulations, or official documents, include the source URL
+- Aim for AT LEAST 5-10 high-quality, verifiable sources per analysis
+- Each source MUST include:
+  * url: Full web address (required)
+  * title: Descriptive title of the source (required)
+  * date: Publication or last updated date if available
+  * snippet: Brief excerpt showing what specific data you got from this source (1-2 sentences)
+
+Example of good sources:
+"sources": [
+  {"url": "https://www.eia.gov/state/data.php", "title": "State Energy Data - U.S. Energy Information Administration", "date": "2024", "snippet": "Industrial electricity rates, grid capacity data, and renewable energy statistics"},
+  {"url": "https://www.iea.org/reports/renewables-2024", "title": "Renewables 2024 - International Energy Agency", "date": "2024-01", "snippet": "Global renewable energy capacity forecasts and policy analysis"}
+]
+
+DO NOT use placeholder or example URLs. Every source must be a real, accessible website that supports your analysis.
+
 Provide overall_score (1.0-5.0) based on comprehensive climate suitability assessment.""",
     description="Analyzes climate suitability and environmental conditions for data center sites with comprehensive temperature, cooling, seismic, and natural disaster assessment. Receives LocationContext as structured input.",
+    tools=[search_tool],
     input_schema=AgentInput,
+    output_schema=ClimateAnalysisOutput,
     output_key="climate_result"
 )
 

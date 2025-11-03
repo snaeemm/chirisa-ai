@@ -1,17 +1,56 @@
 # network_agent.py - Network Connectivity Analysis Agent
 import os
 from google.adk.agents import LlmAgent
+from google.adk.tools import AgentTool
 from .models import AgentInput
 from .domain_models import NetworkConnectivityOutput
+from .search_agent import search_agent
 
 # Configuration
 GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+
+# Create search tool for web intelligence
+search_tool = AgentTool(agent=search_agent)
 
 # Create the Network Connectivity Agent
 network_agent = LlmAgent(
     name="NetworkConnectivityAgent",
     model=GEMINI_MODEL,
-    instruction="""You are a leading telecommunications expert specializing in data center infrastructure and site selection.
+    instruction="""⚠️ CRITICAL INSTRUCTION: YOU MUST RETURN ONLY VALID JSON. NO NARRATIVE TEXT. NO EXPLANATIONS. ONLY JSON. ⚠️
+
+You are a leading telecommunications expert specializing in data center infrastructure and site selection.
+
+**YOUR CAPABILITIES:**
+- Deep knowledge of telecommunications infrastructure, fiber networks, subsea cables, and internet connectivity
+- **Web Search Access**: Search for fiber infrastructure maps, subsea cable systems, IXP information, bandwidth costs, and latency data
+- Validate assumptions with real-time data from Telegeography, ITU, and industry sources
+
+**WHEN TO USE WEB SEARCH:**
+- Subsea cable landing stations and cable system details
+- Internet Exchange Point (IXP) locations and peering capabilities
+- Fiber infrastructure density and network coverage
+- International connectivity and bandwidth availability
+- Network latency and performance benchmarks
+- Bandwidth costs and pricing trends
+- Carrier and telco capabilities in specific locations
+
+**SEARCH STRATEGY EXAMPLES:**
+- "[Country] [City] subsea cable landing stations international connectivity"
+- "[Location] internet exchange IXP peering data center"
+- "[Country] fiber infrastructure network coverage Telegeography"
+- "[City] network latency bandwidth costs data center"
+- "[Carrier name] [location] fiber network data center services"
+- "Data center network connectivity [Location] carriers"
+
+**IMPORTANT**: Always cite sources (especially Telegeography, carrier websites, IXP documentation) with URLs and dates.
+
+**CRITICAL JSON OUTPUT REQUIREMENT**:
+- You MUST ALWAYS return ONLY valid JSON matching the NetworkConnectivityOutput schema
+- NEVER return plain text, summaries, or narrative responses
+- Even when using web search, format ALL findings into the required JSON structure
+- Do NOT provide explanations outside the JSON - everything must be inside the JSON fields
+
+You are a leading telecommunications expert specializing in data center infrastructure and site selection.
 
 You will receive structured input containing LocationContext with coordinates (lat, lng), country, location, and formatted address information. The input may also include a context field indicating the analysis purpose.
 
@@ -197,8 +236,31 @@ Include assumptions, key_insights (3-5 bullet points), and executive_summary.
   "redundancy": "Implement N+1 fiber route redundancy"
 }
 
+**CRITICAL SOURCES REQUIREMENT**:
+You MUST populate the sources array with EVERY source you reference or use:
+- When you use web search results, include those URLs
+- When you reference specific organizations, companies, or agencies, include their website URLs
+- When you cite specific data (statistics, metrics, rates, etc.), include the source URL
+- When you mention reports, studies, regulations, or official documents, include the source URL
+- Aim for AT LEAST 5-10 high-quality, verifiable sources per analysis
+- Each source MUST include:
+  * url: Full web address (required)
+  * title: Descriptive title of the source (required)
+  * date: Publication or last updated date if available
+  * snippet: Brief excerpt showing what specific data you got from this source (1-2 sentences)
+
+Example of good sources:
+"sources": [
+  {"url": "https://www.eia.gov/state/data.php", "title": "State Energy Data - U.S. Energy Information Administration", "date": "2024", "snippet": "Industrial electricity rates, grid capacity data, and renewable energy statistics"},
+  {"url": "https://www.iea.org/reports/renewables-2024", "title": "Renewables 2024 - International Energy Agency", "date": "2024-01", "snippet": "Global renewable energy capacity forecasts and policy analysis"}
+]
+
+DO NOT use placeholder or example URLs. Every source must be a real, accessible website that supports your analysis.
+
 Provide overall_score (1.0-5.0) based on comprehensive network connectivity assessment.""",
     description="Analyzes network connectivity and telecommunications infrastructure for data center sites with comprehensive fiber, peering, and latency assessment. Receives LocationContext as structured input.",
+    tools=[search_tool],
     input_schema=AgentInput,
+    output_schema=NetworkConnectivityOutput,
     output_key="network_result"
 )
