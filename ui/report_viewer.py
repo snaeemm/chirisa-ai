@@ -143,11 +143,11 @@ def render_metrics_table(metrics: Dict[str, Any], section_name: str) -> None:
             tabs = st.tabs(tabs_to_create)
             for i, (tab_type, df) in enumerate(tab_data):
                 with tabs[i]:
-                    st.dataframe(df, use_container_width=True, hide_index=True)
+                    st.dataframe(df, width='stretch', hide_index=True)
         else:
             # Single table, no tabs needed
             _, df = tab_data[0]
-            st.dataframe(df, use_container_width=True, hide_index=True)
+            st.dataframe(df, width='stretch', hide_index=True)
 
 def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], structured_analysis: Dict[str, Any]) -> None:
     """Render a single domain analysis section with complete detailed analysis"""
@@ -186,7 +186,14 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
 
         # Render detailed structured analysis sections
         if domain_structured and isinstance(domain_structured, dict):
-            st.write("**📊 Detailed Analysis Sections:**")
+            # Check if all subsections are empty/null
+            subsection_keys = [k for k in domain_structured.keys() if k not in ['assumptions', 'overall_score', 'phase_1_deployment', 'phase_1_recommendations', 'sources', 'key_insights', 'executive_summary', 'data_gaps', 'third_party_verification', 'no_go_gates', 'caution_flags', 'provenance_badges', 'distance_measurements']]
+            populated_subsections = [k for k in subsection_keys if isinstance(domain_structured.get(k), dict) and domain_structured.get(k)]
+
+            if len(subsection_keys) > 0 and len(populated_subsections) == 0:
+                st.warning(f"⚠️ **Detailed subsections incomplete for this domain** - Showing summary and sources. This may indicate incomplete data collection.")
+            else:
+                st.write("**📊 Detailed Analysis Sections:**")
 
             # Iterate through all subsections in this domain
             for section_key, section_data in domain_structured.items():
@@ -195,7 +202,7 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
                     if section_key in ['assumptions', 'overall_score', 'phase_1_deployment', 'phase_1_recommendations']:
                         continue
 
-                    section_name = section_data.get("name", section_key.replace("_", " ").title())
+                    section_name = section_data.get("name") or section_key.replace("_", " ").title()
                     content = section_data.get("content", "")
                     sub_score = section_data.get("sub_score", -1)
                     metrics = section_data.get("metrics", {})
@@ -236,8 +243,8 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
         # Show sources if available
         if domain_structured and 'sources' in domain_structured:
             sources = domain_structured['sources']
+            st.divider()
             if sources and isinstance(sources, list) and len(sources) > 0:
-                st.divider()
                 st.write(f"**📚 Sources & References ({len(sources)} sources)**")
                 with st.expander("View all sources", expanded=False):
                     for idx, source in enumerate(sources, 1):
@@ -257,6 +264,8 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
                                 st.divider()
                         elif isinstance(source, str):
                             st.write(f"{idx}. {source}")
+            else:
+                st.info("📚 **Sources & References:** No sources available - data collection pending")
 
 def render_report_viewer(report_id: int) -> None:
     """Render the complete report viewer for a given report ID"""
@@ -336,6 +345,61 @@ def render_report_viewer(report_id: int) -> None:
     # Overall recommendation
     if recommendation:
         st.info(f"💡 **Overall Assessment**: {recommendation}")
+
+    st.divider()
+
+    # Investment-Grade Scoring Breakdown
+    st.markdown("### 📊 Investment-Grade Scoring Breakdown")
+
+    weighted_scores = raw_data.get("weighted_domain_scores", [])
+    all_caution_flags = raw_data.get("all_caution_flags", [])
+
+    if weighted_scores:
+        with st.expander("💎 Weighted Domain Contributions", expanded=True):
+            # Create scoring breakdown table
+            scoring_data = []
+            total_weighted = 0
+
+            for ws in weighted_scores:
+                domain_name = ws.get("domain_name", "Unknown").replace("_", " ").title()
+                raw_score = ws.get("raw_score", 0)
+                weight = ws.get("weight", 0)
+                contribution = ws.get("weighted_contribution", 0)
+                no_go_count = ws.get("no_go_gates_triggered", 0)
+                caution_count = ws.get("caution_flags_count", 0)
+
+                total_weighted += contribution
+
+                scoring_data.append({
+                    "Domain": domain_name,
+                    "Raw Score": f"{raw_score:.2f}/5.0",
+                    "Weight": f"{weight * 100:.0f}%",
+                    "Contribution": f"{contribution:.3f}",
+                    "⛔ NO-GO": no_go_count,
+                    "⚠️ Caution": caution_count
+                })
+
+            df = pd.DataFrame(scoring_data)
+            st.dataframe(df, width='stretch', hide_index=True)
+
+            # Calculate penalty
+            total_penalty = sum(flag.get("severity_points", 0) for flag in all_caution_flags)
+
+            # Show calculation
+            st.markdown("**Composite Score Calculation:**")
+            col1, col2, col3 = st.columns(3)
+
+            with col1:
+                st.metric("Weighted Subtotal", f"{total_weighted:.2f}/5.0")
+            with col2:
+                penalty_color = "🔴" if total_penalty > 1.0 else "🟡" if total_penalty > 0.3 else "🟢"
+                st.metric("Caution Penalties", f"{penalty_color} -{total_penalty:.2f}")
+            with col3:
+                final_score = max(1.0, total_weighted - total_penalty)
+                st.metric("Final Composite", f"{final_score:.2f}/5.0",
+                         delta=f"{final_score - total_weighted:.2f}")
+
+    st.divider()
 
     # Domain Scores Overview - Clean Display
     domain_analysis = raw_data.get("domain_analysis", {})
@@ -498,6 +562,121 @@ def render_report_viewer(report_id: int) -> None:
                 with st.expander("🎯 Critical Success Factors", expanded=False):
                     for i, factor in enumerate(success_factors, 1):
                         st.write(f"**{i}.** 🔑 {factor}")
+
+    st.divider()
+
+    # NO-GO Gates Dashboard
+    st.header("🚫 NO-GO Gate Analysis")
+
+    all_no_go_gates = raw_data.get("all_no_go_gates", [])
+
+    if all_no_go_gates:
+        triggered_gates = [g for g in all_no_go_gates if g.get("triggered", False)]
+        passed_gates = [g for g in all_no_go_gates if not g.get("triggered", False)]
+
+        col1, col2 = st.columns(2)
+
+        with col1:
+            st.metric("✅ Passed Gates", len(passed_gates))
+        with col2:
+            alert_color = "🔴" if len(triggered_gates) > 0 else "🟢"
+            st.metric(f"{alert_color} Triggered Gates", len(triggered_gates))
+
+        # Show triggered gates first (critical)
+        if triggered_gates:
+            with st.expander(f"⛔ TRIGGERED NO-GO GATES ({len(triggered_gates)})", expanded=True):
+                for idx, gate in enumerate(triggered_gates, 1):
+                    st.markdown(f"### {idx}. 🚨 {gate.get('gate_type', 'Unknown Gate')}")
+
+                    col1, col2 = st.columns([2, 1])
+
+                    with col1:
+                        st.markdown(f"**Reason:** {gate.get('reason', 'N/A')}")
+                        if gate.get('standard_reference'):
+                            st.markdown(f"**Standard:** {gate.get('standard_reference')}")
+
+                    with col2:
+                        mitigation_possible = gate.get('mitigation_possible', False)
+                        if mitigation_possible:
+                            st.success("✅ Mitigation Possible")
+                            if gate.get('mitigation_cost'):
+                                st.markdown(f"**Cost:** {gate.get('mitigation_cost')}")
+                        else:
+                            st.error("❌ Cannot Mitigate")
+
+                    if idx < len(triggered_gates):
+                        st.divider()
+
+        # Show passed gates (collapsed by default)
+        if passed_gates:
+            with st.expander(f"✅ PASSED NO-GO GATES ({len(passed_gates)})", expanded=False):
+                cols_per_row = 3
+                for i in range(0, len(passed_gates), cols_per_row):
+                    cols = st.columns(cols_per_row)
+                    for col_idx in range(cols_per_row):
+                        if i + col_idx < len(passed_gates):
+                            gate = passed_gates[i + col_idx]
+                            with cols[col_idx]:
+                                st.markdown(f"✅ **{gate.get('gate_type', 'Unknown')}**")
+
+    st.divider()
+
+    # Caution Flags with Penalties
+    st.header("⚠️ Caution Flags & Risk Mitigation")
+
+    if all_caution_flags:
+        # Group by severity
+        high_severity = [f for f in all_caution_flags if f.get("severity", "").lower() == "high"]
+        medium_severity = [f for f in all_caution_flags if f.get("severity", "").lower() == "medium"]
+        low_severity = [f for f in all_caution_flags if f.get("severity", "").lower() == "low"]
+
+        total_penalty = sum(f.get("severity_points", 0) for f in all_caution_flags)
+
+        st.info(f"📊 **Total Flags:** {len(all_caution_flags)} • **Total Penalty:** -{total_penalty:.2f} points from composite score")
+
+        # High Severity Flags
+        if high_severity:
+            high_penalty = sum(f.get("severity_points", 0) for f in high_severity)
+            with st.expander(f"🔴 HIGH SEVERITY ({len(high_severity)} flags, -{high_penalty:.2f} penalty)", expanded=True):
+                for idx, flag in enumerate(high_severity, 1):
+                    st.markdown(f"### {idx}. {flag.get('category', 'Unknown Category')}")
+
+                    col1, col2 = st.columns([2, 1])
+
+                    with col1:
+                        st.markdown(f"**Issue:** {flag.get('description', 'N/A')}")
+                        st.markdown(f"**Mitigation:** {flag.get('mitigation_plan', 'TBD')}")
+
+                    with col2:
+                        st.error(f"**Penalty:** -{flag.get('severity_points', 0):.2f} points")
+                        if flag.get('cost_impact'):
+                            st.markdown(f"**Cost:** {flag.get('cost_impact')}")
+                        if flag.get('timeline_impact'):
+                            st.markdown(f"**Timeline:** {flag.get('timeline_impact')}")
+
+                    if idx < len(high_severity):
+                        st.divider()
+
+        # Medium Severity Flags
+        if medium_severity:
+            medium_penalty = sum(f.get("severity_points", 0) for f in medium_severity)
+            with st.expander(f"🟡 MEDIUM SEVERITY ({len(medium_severity)} flags, -{medium_penalty:.2f} penalty)", expanded=False):
+                for idx, flag in enumerate(medium_severity, 1):
+                    st.markdown(f"**{idx}. {flag.get('category', 'Unknown')}** (Penalty: -{flag.get('severity_points', 0):.2f})")
+                    st.markdown(f"• {flag.get('description', 'N/A')}")
+                    st.markdown(f"• Mitigation: {flag.get('mitigation_plan', 'TBD')}")
+                    if flag.get('cost_impact'):
+                        st.caption(f"💰 {flag.get('cost_impact')}")
+                    if idx < len(medium_severity):
+                        st.markdown("---")
+
+        # Low Severity Flags
+        if low_severity:
+            low_penalty = sum(f.get("severity_points", 0) for f in low_severity)
+            with st.expander(f"🟢 LOW SEVERITY ({len(low_severity)} flags, -{low_penalty:.2f} penalty)", expanded=False):
+                for idx, flag in enumerate(low_severity, 1):
+                    st.markdown(f"**{idx}. {flag.get('category', 'Unknown')}** (Penalty: -{flag.get('severity_points', 0):.2f})")
+                    st.caption(f"{flag.get('description', 'N/A')}")
 
     st.divider()
 
@@ -672,9 +851,9 @@ def render_report_viewer(report_id: int) -> None:
                 for i, step in enumerate(priority_steps, 1):
                     st.write(f"**{i}.** {step}")
 
-    if st.button("📄 Download Professional Report (PDF)", use_container_width=True, type="primary"):
+    if st.button("📄 Download Professional Report (PDF)", width='stretch', type="primary"):
         try:
-            import weasyprint
+            from xhtml2pdf import pisa
             import io
             from datetime import datetime
             import re
@@ -738,11 +917,28 @@ def render_report_viewer(report_id: int) -> None:
                     return ""
 
                 html = '<div class="structured-section">'
-                skip_sections = ['phase_1', 'phase_1_deployment', 'deployment', 'recommendations']
+                skip_sections = ['phase_1', 'phase_1_deployment', 'deployment', 'recommendations', 'assumptions', 'overall_score', 'sources', 'key_insights', 'executive_summary', 'data_gaps', 'third_party_verification', 'no_go_gates', 'caution_flags', 'provenance_badges', 'distance_measurements']
+
+                # Count how many actual subsections exist
+                subsection_count = 0
+                for section_key, section_data in domain_data.items():
+                    if isinstance(section_data, dict) and not any(skip in section_key.lower() for skip in skip_sections):
+                        content = section_data.get("content", "")
+                        key_points = section_data.get("key_points", [])
+                        sub_score = section_data.get("sub_score", -1)
+                        metrics = section_data.get("metrics", {})
+                        if content or key_points or sub_score > 0 or metrics:
+                            subsection_count += 1
+
+                # Show warning if no subsections populated
+                if subsection_count == 0:
+                    html += '<div class="subsection" style="background-color: #fff3cd; padding: 10px; border-left: 3px solid #ffc107; margin: 10px 0;">'
+                    html += "<p><strong>⚠️ Detailed subsections incomplete for this domain</strong> - Showing summary and sources. This may indicate incomplete data collection.</p>"
+                    html += "</div>"
 
                 for section_key, section_data in domain_data.items():
                     if isinstance(section_data, dict) and not any(skip in section_key.lower() for skip in skip_sections):
-                        section_name = section_data.get("name", section_key.replace("_", " ").title())
+                        section_name = section_data.get("name") or section_key.replace("_", " ").title()
                         content = section_data.get("content", "")
                         sub_score = section_data.get("sub_score", -1)
                         key_points = section_data.get("key_points", [])
@@ -774,7 +970,7 @@ def render_report_viewer(report_id: int) -> None:
 
                 # Add sources/references section
                 sources = domain_data.get("sources", [])
-                if sources:
+                if sources and len(sources) > 0:
                     html += f'<div class="subsection" style="page-break-inside: avoid; break-inside: avoid-column;">'
                     html += "<h4>📚 Sources & References</h4>"
                     for source in sources:
@@ -795,6 +991,11 @@ def render_report_viewer(report_id: int) -> None:
                             html += "</p>"
                         elif isinstance(source, str):
                             html += f"<p style='margin: 2px 0; padding-left: 10px;'>• {clean_markdown(source)}</p>"
+                    html += "</div>"
+                else:
+                    # Show info message if no sources available
+                    html += '<div class="subsection" style="background-color: #e7f3ff; padding: 10px; border-left: 3px solid #2196F3; margin: 10px 0;">'
+                    html += "<p><strong>📚 Sources & References:</strong> No sources available - data collection pending</p>"
                     html += "</div>"
 
                 html += "</div>"
@@ -924,6 +1125,107 @@ def render_report_viewer(report_id: int) -> None:
                         html_content += f"<li>{clean_markdown(factor)}</li>"
                     html_content += "</ul></div>"
                 html_content += "</div>"
+
+            # Investment-Grade Scoring Breakdown (PDF)
+            weighted_scores_pdf = raw_data.get("weighted_domain_scores", [])
+            all_caution_flags_pdf = raw_data.get("all_caution_flags", [])
+
+            if weighted_scores_pdf:
+                html_content += '<div class="section"><h2>📊 Investment-Grade Scoring Breakdown</h2>'
+                html_content += '<h3>Weighted Domain Contributions</h3>'
+                html_content += '<table class="metrics-table" style="margin: 10px 0;">'
+                html_content += '<tr><th>Domain</th><th>Raw Score</th><th>Weight</th><th>Contribution</th><th>NO-GO</th><th>Caution</th></tr>'
+
+                total_weighted_pdf = 0
+                for ws in weighted_scores_pdf:
+                    domain = clean_markdown(ws.get("domain_name", "Unknown").replace("_", " ").title())
+                    raw = ws.get("raw_score", 0)
+                    weight = ws.get("weight", 0)
+                    contrib = ws.get("weighted_contribution", 0)
+                    no_go = ws.get("no_go_gates_triggered", 0)
+                    caution = ws.get("caution_flags_count", 0)
+                    total_weighted_pdf += contrib
+
+                    html_content += f'<tr><td>{domain}</td><td>{raw:.2f}/5.0</td><td>{weight * 100:.0f}%</td><td>{contrib:.3f}</td><td>{no_go}</td><td>{caution}</td></tr>'
+
+                html_content += '</table>'
+
+                total_penalty_pdf = sum(f.get("severity_points", 0) for f in all_caution_flags_pdf)
+                final_score_pdf = max(1.0, total_weighted_pdf - total_penalty_pdf)
+
+                html_content += '<div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin: 10px 0;">'
+                html_content += f'<p><strong>Weighted Subtotal:</strong> {total_weighted_pdf:.2f}/5.0</p>'
+                html_content += f'<p><strong>Caution Penalties:</strong> -{total_penalty_pdf:.2f} points</p>'
+                html_content += f'<p><strong>Final Composite Score:</strong> {final_score_pdf:.2f}/5.0</p>'
+                html_content += '</div></div>'
+
+            # NO-GO Gates (PDF)
+            all_no_go_gates_pdf = raw_data.get("all_no_go_gates", [])
+
+            if all_no_go_gates_pdf:
+                triggered_pdf = [g for g in all_no_go_gates_pdf if g.get("triggered", False)]
+                passed_pdf = [g for g in all_no_go_gates_pdf if not g.get("triggered", False)]
+
+                html_content += '<div class="section"><h2>🚫 NO-GO Gate Analysis</h2>'
+                html_content += f'<p><strong>Passed:</strong> {len(passed_pdf)} • <strong>Triggered:</strong> {len(triggered_pdf)}</p>'
+
+                if triggered_pdf:
+                    html_content += '<h3 style="color: #dc3545;">⛔ TRIGGERED NO-GO GATES</h3>'
+                    for idx, gate in enumerate(triggered_pdf, 1):
+                        html_content += f'<div style="background: #f8d7da; padding: 8px; border-left: 3px solid #dc3545; margin: 8px 0;">'
+                        html_content += f'<h4>{idx}. {clean_markdown(gate.get("gate_type", "Unknown"))}</h4>'
+                        html_content += f'<p><strong>Reason:</strong> {clean_markdown(gate.get("reason", "N/A"))}</p>'
+                        if gate.get('standard_reference'):
+                            html_content += f'<p><strong>Standard:</strong> {clean_markdown(gate.get("standard_reference"))}</p>'
+                        if gate.get('mitigation_cost'):
+                            html_content += f'<p><strong>Mitigation Cost:</strong> {clean_markdown(gate.get("mitigation_cost"))}</p>'
+                        html_content += '</div>'
+
+                if passed_pdf:
+                    html_content += '<h3 style="color: #28a745;">✅ PASSED NO-GO GATES</h3>'
+                    html_content += '<ul style="column-count: 2; font-size: 9px;">'
+                    for gate in passed_pdf:
+                        html_content += f'<li>{clean_markdown(gate.get("gate_type", "Unknown"))}</li>'
+                    html_content += '</ul>'
+
+                html_content += '</div>'
+
+            # Caution Flags (PDF)
+            if all_caution_flags_pdf:
+                high_pdf = [f for f in all_caution_flags_pdf if f.get("severity", "").lower() == "high"]
+                medium_pdf = [f for f in all_caution_flags_pdf if f.get("severity", "").lower() == "medium"]
+                low_pdf = [f for f in all_caution_flags_pdf if f.get("severity", "").lower() == "low"]
+
+                total_penalty_pdf = sum(f.get("severity_points", 0) for f in all_caution_flags_pdf)
+
+                html_content += '<div class="section"><h2>⚠️ Caution Flags & Risk Mitigation</h2>'
+                html_content += f'<p><strong>Total Flags:</strong> {len(all_caution_flags_pdf)} • <strong>Total Penalty:</strong> -{total_penalty_pdf:.2f} points</p>'
+
+                if high_pdf:
+                    high_pen = sum(f.get("severity_points", 0) for f in high_pdf)
+                    html_content += f'<h3 style="color: #dc3545;">🔴 HIGH SEVERITY ({len(high_pdf)} flags, -{high_pen:.2f} penalty)</h3>'
+                    for idx, flag in enumerate(high_pdf, 1):
+                        html_content += '<div style="background: #f8d7da; padding: 6px; margin: 4px 0; border-left: 2px solid #dc3545;">'
+                        html_content += f'<p><strong>{idx}. {clean_markdown(flag.get("category", "Unknown"))} (Penalty: -{flag.get("severity_points", 0):.2f})</strong></p>'
+                        html_content += f'<p style="font-size: 9px;">{clean_markdown(flag.get("description", "N/A"))}</p>'
+                        html_content += f'<p style="font-size: 9px;"><em>Mitigation: {clean_markdown(flag.get("mitigation_plan", "TBD"))}</em></p>'
+                        if flag.get('cost_impact'):
+                            html_content += f'<p style="font-size: 8px;">Cost: {clean_markdown(flag.get("cost_impact"))}</p>'
+                        html_content += '</div>'
+
+                if medium_pdf:
+                    medium_pen = sum(f.get("severity_points", 0) for f in medium_pdf)
+                    html_content += f'<h3 style="color: #ffc107;">🟡 MEDIUM SEVERITY ({len(medium_pdf)} flags, -{medium_pen:.2f} penalty)</h3>'
+                    for idx, flag in enumerate(medium_pdf, 1):
+                        html_content += f'<p style="font-size: 9px;"><strong>{idx}. {clean_markdown(flag.get("category", "Unknown"))} (-{flag.get("severity_points", 0):.2f}):</strong> {clean_markdown(flag.get("description", "N/A"))}</p>'
+
+                if low_pdf:
+                    low_pen = sum(f.get("severity_points", 0) for f in low_pdf)
+                    html_content += f'<h3 style="color: #28a745;">🟢 LOW SEVERITY ({len(low_pdf)} flags, -{low_pen:.2f} penalty)</h3>'
+                    for idx, flag in enumerate(low_pdf, 1):
+                        html_content += f'<p style="font-size: 8px;">{idx}. {clean_markdown(flag.get("category", "Unknown"))} (-{flag.get("severity_points", 0):.2f})</p>'
+
+                html_content += '</div>'
 
             # Domain Analysis
             if domain_analysis:
@@ -1055,10 +1357,17 @@ def render_report_viewer(report_id: int) -> None:
             </html>
             """
 
-            # Generate PDF
+            # Generate PDF using xhtml2pdf (pure Python, cross-platform)
             pdf_buffer = io.BytesIO()
-            weasyprint.HTML(string=html_content).write_pdf(pdf_buffer)
+            pisa_status = pisa.CreatePDF(
+                src=html_content,
+                dest=pdf_buffer,
+                encoding='utf-8'
+            )
             pdf_buffer.seek(0)
+
+            if pisa_status.err:
+                raise Exception(f"PDF generation failed with {pisa_status.err} errors")
 
             # Download button
             st.download_button(
@@ -1070,7 +1379,7 @@ def render_report_viewer(report_id: int) -> None:
             st.success("📄 PDF generated successfully!")
 
         except ImportError:
-            st.error("📄 PDF generation requires weasyprint. Install with: uv add weasyprint or pip install weasyprint")
+            st.error("📄 PDF generation requires xhtml2pdf. Install with: uv add xhtml2pdf or pip install xhtml2pdf")
             text_content = f"""
     DATACENTER ANALYSIS REPORT
     {flag} {location_name}
@@ -1098,4 +1407,4 @@ def render_report_viewer(report_id: int) -> None:
             )
         except Exception as e:
             st.error(f"Error generating PDF: {str(e)}")
-            st.info("💡 Please ensure weasyprint is installed: uv add weasyprint")
+            st.info("💡 Please ensure xhtml2pdf is installed: uv add xhtml2pdf")

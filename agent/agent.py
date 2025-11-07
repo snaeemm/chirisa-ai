@@ -21,10 +21,10 @@ load_dotenv()
 from .power_agent import power_agent
 from .network_agent import network_agent
 from .climate_agent import climate_agent
-from .risk_agent import risk_agent
-from .esg_agent import esg_agent
-from .regulatory_agent import regulatory_agent
-from .hyperscaler_agent import hyperscaler_agent
+from .site_civil_agent import site_civil_agent
+from .mechanical_thermal_agent import mechanical_thermal_agent
+from .regulatory_esg_agent import regulatory_esg_agent
+from .market_competition_agent import market_competition_agent
 # Synthesis agent
 from .synthesis_agents import datacenter_report_tool
 from .database_agent import database_agent
@@ -36,10 +36,10 @@ from google.adk.sessions import DatabaseSessionService
 power_agent.output_key = "power_result"
 network_agent.output_key = "network_result"
 climate_agent.output_key = "climate_result"
-risk_agent.output_key = "risk_result"
-esg_agent.output_key = "esg_result"
-regulatory_agent.output_key = "regulatory_result"
-hyperscaler_agent.output_key = "hyperscaler_result"
+site_civil_agent.output_key = "site_civil_result"
+mechanical_thermal_agent.output_key = "mechanical_thermal_result"
+regulatory_esg_agent.output_key = "regulatory_esg_result"
+market_competition_agent.output_key = "market_competition_result"
 
 # Configuration - API Keys from environment
 GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
@@ -238,26 +238,28 @@ root_agent = LlmAgent(
     * When database agent escalates for more information, immediately use your knowledge provide comprehensive answers
 
 **MANDATORY OUTPUT FORMAT:**
-* Synthesize the results from different agents (e.g., location and domain data) into a clear and concise response.
+* When `datacenter_report_tool` returns its comprehensive executive response, YOU MUST present it directly to the user without modification or summary.
+* The report tool returns a fully formatted executive briefing - DO NOT summarize, truncate, or modify it.
+* For other tool outputs, synthesize the results from different agents (e.g., location and domain data) into a clear and concise response.
 * If a tool returns an error, gracefully report the issue to the user.
 
 **Do not mention function names to user, and when user intends to dig into more detail like *I want a web search on this or more info*, use your expert knowledge whether on its own, or whether backed up by database knowledge.**
 
-**Remember:** Your job is to be the intelligent traffic controller, final presenter, AND helpful data center expert who can discuss any aspect of the industry.""",
+**Remember:** Your job is to be the intelligent traffic controller, final presenter, AND helpful data center expert who can discuss any aspect of the industry. When the datacenter_report_tool completes, its output IS your response - present it immediately.""",
     tools=[
         # One-shot parallel analysis and report generation
         datacenter_report_tool,                      # Complete pipeline: parallel analysis → report generation
         AgentTool(agent=location_agent),             # Location intelligence
         # Web search for real-time market intelligence
         AgentTool(agent=search_agent),               # Google Search for current data and trends
-        # Individual domain agents for specific questions
+        # Individual domain agents for specific questions (7 agents per Expert Spec)
         AgentTool(agent=power_agent),
         AgentTool(agent=network_agent),
         AgentTool(agent=climate_agent),
-        AgentTool(agent=risk_agent),
-        AgentTool(agent=esg_agent),
-        AgentTool(agent=regulatory_agent),
-        AgentTool(agent=hyperscaler_agent),
+        AgentTool(agent=site_civil_agent),
+        AgentTool(agent=mechanical_thermal_agent),
+        AgentTool(agent=regulatory_esg_agent),
+        AgentTool(agent=market_competition_agent),
         # Intelligent database agent for all database operations
         AgentTool(agent=database_agent),
     ],

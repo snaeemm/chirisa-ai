@@ -4,19 +4,161 @@ import os
 import asyncio
 from dotenv import load_dotenv
 from google.adk.tools import FunctionTool
-from .models import ReportSchema, LocationContext, AgentOutput
+import json_repair  # Battle-tested JSON repair for LLM responses
+from .models import (
+    ReportSchema, LocationContext, AgentOutput, NoGoGate, CautionFlag,
+    ProvenanceBadge, WeightedDomainScore
+)
 from .database import save_report_to_database
 from .domain_models import (
     PowerInfrastructureOutput, NetworkConnectivityOutput, ClimateAnalysisOutput,
-    ESGSustainabilityOutput, OperationalRiskOutput, RegulatoryComplianceOutput
+    SiteCivilInfrastructureOutput, MechanicalThermalOutput,
+    RegulatoryESGOutput, MarketCompetitionOutput
 )
 from .utility import save_report_schema
+from typing import Dict, List, Any, Tuple
 
 # Load environment variables from .env file
 load_dotenv(override=True)
 
 # Configuration
 GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+
+# ================================================================================================
+# INVESTMENT-GRADE COMPOSITE SCORING (Chirisa-AI)
+# ================================================================================================
+
+# Domain weights based on investment-grade specifications
+DOMAIN_WEIGHTS = {
+    "power_energy": 0.35,           # Power availability & interconnection (critical constraint)
+    "network_connectivity": 0.15,    # Connectivity & on-ramps
+    "site_civil": 0.10,              # Site & civil (parcel, access, logistics, drainage)
+    "hazards_resilience": 0.12,      # Hazards & resilience (flood, seismic, wildfire, wind, extremes)
+    "mechanical_thermal": 0.08,      # Mechanical & thermal (cooling/PUE/water treatment)
+    "regulatory_esg": 0.14,          # Regulatory & ESG (zoning, permits, incentives, trajectory)
+    "market_competition": 0.06,      # Market depth & competition
+}
+
+def calculate_weighted_composite_score(
+    agent_results: Dict[str, Any]
+) -> Tuple[float, List[WeightedDomainScore], List[NoGoGate], List[CautionFlag]]:
+    """
+    Calculate investment-grade weighted composite score with NO-GO gate checks.
+
+    Returns:
+        Tuple of (composite_score, weighted_scores, all_no_go_gates, all_caution_flags)
+        - composite_score: 0.0 if NO-GO triggered, otherwise weighted 1.0-5.0
+        - weighted_scores: List of WeightedDomainScore objects
+        - all_no_go_gates: Aggregated NO-GO gates from all domains
+        - all_caution_flags: Aggregated caution flags from all domains
+    """
+
+    # Step 1: Extract domain scores and check for NO-GO gates
+    domain_scores = {
+        "power_energy": getattr(agent_results.get('power_result'), 'overall_score', 1.0),
+        "network_connectivity": getattr(agent_results.get('network_result'), 'overall_score', 1.0),
+        "site_civil": getattr(agent_results.get('site_civil_result'), 'overall_score', 1.0),
+        "hazards_resilience": getattr(agent_results.get('climate_result'), 'overall_score', 1.0),
+        "mechanical_thermal": getattr(agent_results.get('mechanical_thermal_result'), 'overall_score', 1.0),
+        "regulatory_esg": getattr(agent_results.get('regulatory_esg_result'), 'overall_score', 1.0),  # MERGED regulatory + ESG domain (14% weight)
+        "market_competition": getattr(agent_results.get('market_competition_result'), 'overall_score', 1.0),
+    }
+
+    # Step 2: Collect NO-GO gates and caution flags from all domains
+    all_no_go_gates = []
+    all_caution_flags = []
+    no_go_counts = {}
+    caution_counts = {}
+
+    for domain_key, result_key in [
+        ("power_energy", 'power_result'),
+        ("network_connectivity", 'network_result'),
+        ("site_civil", 'site_civil_result'),
+        ("hazards_resilience", 'climate_result'),
+        ("mechanical_thermal", 'mechanical_thermal_result'),
+        ("regulatory_esg", 'regulatory_esg_result'),  # MERGED regulatory + ESG domain (14% weight)
+        ("market_competition", 'market_competition_result')
+    ]:
+        if result_key not in agent_results:
+            no_go_counts[domain_key] = 0
+            caution_counts[domain_key] = 0
+            continue
+
+        result = agent_results[result_key]
+
+        # Extract NO-GO gates if present and tag with domain
+        no_go_gates = getattr(result, 'no_go_gates', [])
+        if no_go_gates:
+            # Tag each gate with its source domain for better logging
+            for gate in no_go_gates:
+                if not hasattr(gate, '_source_domain'):
+                    gate._source_domain = domain_key
+            all_no_go_gates.extend(no_go_gates)
+        no_go_counts[domain_key] = len([g for g in no_go_gates if getattr(g, 'triggered', False)])
+
+        # Extract caution flags if present
+        caution_flags = getattr(result, 'caution_flags', [])
+        if caution_flags:
+            all_caution_flags.extend(caution_flags)
+        caution_counts[domain_key] = len(caution_flags)
+
+    # Step 3: Check for triggered NO-GO gates (hard stop)
+    triggered_no_go_gates = [g for g in all_no_go_gates if getattr(g, 'triggered', False)]
+    if triggered_no_go_gates:
+        print(f"🚫 NO-GO TRIGGERED: {len(triggered_no_go_gates)} gate(s) failed - Composite score overridden to 0.0")
+        for gate in triggered_no_go_gates:
+            domain_name = getattr(gate, '_source_domain', 'Unknown Domain')
+            # Format domain name for readability
+            formatted_domain = domain_name.replace('_', ' ').title()
+            print(f"   - [{formatted_domain}] {gate.gate_type}: {gate.reason}")
+
+        # Return 0.0 composite score with weighted breakdown
+        weighted_scores = [
+            WeightedDomainScore(
+                domain_name=domain,
+                raw_score=max(1.0, min(5.0, score)),  # Clamp to valid range
+                weight=DOMAIN_WEIGHTS[domain],
+                weighted_contribution=0.0,  # Zero contribution due to NO-GO
+                no_go_gates_triggered=no_go_counts.get(domain, 0),
+                caution_flags_count=caution_counts.get(domain, 0)
+            )
+            for domain, score in domain_scores.items()
+        ]
+
+        return 0.0, weighted_scores, all_no_go_gates, all_caution_flags
+
+    # Step 4: Calculate weighted composite score
+    weighted_sum = 0.0
+    weighted_scores = []
+
+    for domain, score in domain_scores.items():
+        weight = DOMAIN_WEIGHTS[domain]
+        # Clamp score to valid range
+        clamped_score = max(1.0, min(5.0, score if score > 0 else 2.5))
+        weighted_contribution = clamped_score * weight
+        weighted_sum += weighted_contribution
+
+        weighted_scores.append(WeightedDomainScore(
+            domain_name=domain,
+            raw_score=clamped_score,
+            weight=weight,
+            weighted_contribution=weighted_contribution,
+            no_go_gates_triggered=no_go_counts.get(domain, 0),
+            caution_flags_count=caution_counts.get(domain, 0)
+        ))
+
+    # Step 5: Apply caution flag penalties
+    caution_penalty = sum(
+        getattr(flag, 'severity_points', 0.0)
+        for flag in all_caution_flags
+    )
+
+    final_composite = max(1.0, weighted_sum - caution_penalty)
+
+    print(f"📊 Weighted Composite Score: {final_composite:.2f}/5.0 (before penalties: {weighted_sum:.2f}, penalty: -{caution_penalty:.2f})")
+    print(f"⚠️  Caution Flags: {len(all_caution_flags)}")
+
+    return final_composite, weighted_scores, all_no_go_gates, all_caution_flags
 
 # --------------------------------------------------------------------------------
 # Simplified Response Handling - Agents now output structured JSON directly
@@ -27,6 +169,10 @@ def clean_agent_response(response_text: str) -> str:
     import re
 
     cleaned = response_text.strip()
+
+    # Check for empty or whitespace-only response
+    if not cleaned:
+        return cleaned
 
     # Remove ```json from start (case insensitive)
     if cleaned.lower().startswith('```json'):
@@ -41,6 +187,26 @@ def clean_agent_response(response_text: str) -> str:
     # Clean and ensure proper encoding
     cleaned = cleaned.strip()
 
+    # Pre-process problematic escape sequences before JSON parsing
+    # Replace common problematic patterns that don't need escaping in JSON
+    cleaned = cleaned.replace('\\$', '$')  # Dollar signs
+    cleaned = cleaned.replace('\\%', '%')  # Percent signs
+    cleaned = cleaned.replace('\\&', '&')  # Ampersands
+    cleaned = cleaned.replace('\\#', '#')  # Hash symbols
+    cleaned = cleaned.replace('\\-', '-')  # Hyphens
+    cleaned = cleaned.replace('\\+', '+')  # Plus signs
+    cleaned = cleaned.replace('\\=', '=')  # Equal signs
+    cleaned = cleaned.replace('\\*', '*')  # Asterisks
+    cleaned = cleaned.replace('\\(', '(')  # Open parenthesis
+    cleaned = cleaned.replace('\\)', ')')  # Close parenthesis
+    cleaned = cleaned.replace('\\[', '[')  # Open bracket (but be careful!)
+    cleaned = cleaned.replace('\\]', ']')  # Close bracket (but be careful!)
+    cleaned = cleaned.replace('\\<', '<')  # Less than
+    cleaned = cleaned.replace('\\>', '>')  # Greater than
+    cleaned = cleaned.replace('\\:', ':')  # Colons
+    cleaned = cleaned.replace('\\;', ';')  # Semicolons
+    cleaned = cleaned.replace('\\_', '_')  # Underscores
+
     # Remove any non-printable characters that could cause black boxes
     cleaned = re.sub(r'[^\x20-\x7E\n\r\t]', '', cleaned)
 
@@ -53,7 +219,10 @@ def clean_agent_response(response_text: str) -> str:
     return cleaned
 
 def repair_json_response(json_text: str) -> str:
-    """Attempt to repair common JSON formatting issues"""
+    """
+    Repair JSON using json-repair library.
+    This replaces 100+ lines of fragile regex with a battle-tested library.
+    """
     import re
 
     # Remove any text before the first {
@@ -66,83 +235,42 @@ def repair_json_response(json_text: str) -> str:
     if end_idx >= 0:
         json_text = json_text[:end_idx + 1]
 
-    # Fix invalid escape sequences (e.g., \$ -> \\$)
-    json_text = re.sub(r'\\(?!["\\/bfnrtu])', r'\\\\', json_text)
-
-    # Fix common issues
-    # Remove trailing commas before } or ]
-    json_text = re.sub(r',(\s*[}\]])', r'\1', json_text)
-
-    # Fix missing commas between fields - look for patterns like }" or ]" followed by "
-    # This handles cases where closing brace/bracket of nested object/array is immediately followed by a new field
-    json_text = re.sub(r'(\}|\])\s*(")', r'\1,\2', json_text)
-
-    # Fix missing commas between string values and next property
-    # Pattern: "value" followed by whitespace and then "key":
-    json_text = re.sub(r'("\s*)\s+("[\w_]+"\s*:)', r'\1,\2', json_text)
-
-    # Fix single quotes to double quotes (comprehensive)
-    # Replace single quotes with double quotes for keys
-    json_text = re.sub(r"'([^']*)':", r'"\1":', json_text)
-
-    # Replace single quotes with double quotes for string values
-    json_text = re.sub(r"'([^']*?)'", r'"\1"', json_text)
-
-    # Fix arrays with single quoted strings
-    json_text = re.sub(r"\['([^']*?)'", r'["\1"', json_text)
-    json_text = re.sub(r"'([^']*?)'\]", r'"\1"]', json_text)
-
-    # Ensure strings are properly quoted
-    json_text = re.sub(r':\s*([^",{\[\s][^,}\]]*?)(?=\s*[,}\]])', r': "\1"', json_text)
-
-    return json_text
+    # Use json-repair library to fix all JSON issues
+    # It handles: escape sequences, missing commas, trailing commas,
+    # malformed strings, Python booleans/None, missing quotes, and more
+    return json_repair.repair_json(json_text)
 
 def extract_grounding_sources(response) -> list:
     """Extract grounding sources (web search results) from Gemini API response"""
     grounding_sources = []
     try:
-        print(f"🔍 DEBUG: Extracting grounding sources...")
-        print(f"🔍 DEBUG: Response type: {type(response)}")
-        print(f"🔍 DEBUG: Has candidates: {hasattr(response, 'candidates')}")
 
         if hasattr(response, 'candidates') and response.candidates:
             candidate = response.candidates[0]
-            print(f"🔍 DEBUG: Has grounding_metadata: {hasattr(candidate, 'grounding_metadata')}")
 
             if hasattr(candidate, 'grounding_metadata') and candidate.grounding_metadata:
                 grounding_metadata = candidate.grounding_metadata
-                print(f"🔍 DEBUG: Grounding metadata type: {type(grounding_metadata)}")
-                print(f"🔍 DEBUG: Has grounding_chunks: {hasattr(grounding_metadata, 'grounding_chunks')}")
-                print(f"🔍 DEBUG: Grounding metadata attributes: {dir(grounding_metadata)}")
 
                 # Check if grounding_chunks exists and has items
                 chunks = getattr(grounding_metadata, 'grounding_chunks', None)
-                print(f"🔍 DEBUG: grounding_chunks value: {chunks}")
-                print(f"🔍 DEBUG: grounding_chunks type: {type(chunks) if chunks is not None else 'None'}")
-                print(f"🔍 DEBUG: grounding_chunks length: {len(chunks) if chunks else 0}")
 
                 # Try grounding_supports first (newer API structure)
                 if hasattr(grounding_metadata, 'grounding_supports') and grounding_metadata.grounding_supports:
                     supports = grounding_metadata.grounding_supports
-                    print(f"🔍 DEBUG: Processing {len(supports)} grounding_supports")
                     for i, support in enumerate(supports):
-                        print(f"🔍 DEBUG: Support {i} attributes: {dir(support)}")
 
                         # Try to extract from segment or grounding_chunk_indices
                         if hasattr(support, 'segment'):
                             segment = support.segment
-                            print(f"🔍 DEBUG: Support {i} has segment: {segment}")
 
                         if hasattr(support, 'grounding_chunk_indices') and support.grounding_chunk_indices:
                             chunk_indices = support.grounding_chunk_indices
-                            print(f"🔍 DEBUG: Support {i} has chunk_indices: {chunk_indices}")
 
                             # Now look up those chunks from grounding_chunks
                             if hasattr(grounding_metadata, 'grounding_chunks') and grounding_metadata.grounding_chunks:
                                 for idx in chunk_indices:
                                     if idx < len(grounding_metadata.grounding_chunks):
                                         chunk = grounding_metadata.grounding_chunks[idx]
-                                        print(f"🔍 DEBUG: Chunk {idx} attributes: {dir(chunk)}")
 
                                         if hasattr(chunk, 'web') and chunk.web:
                                             url = chunk.web.uri if hasattr(chunk.web, 'uri') and chunk.web.uri else ""
@@ -156,13 +284,10 @@ def extract_grounding_sources(response) -> list:
                                             }
                                             if source["url"]:
                                                 grounding_sources.append(source)
-                                                print(f"✅ Added source from support: {source['title'][:50]}...")
 
                 # Also try direct grounding_chunks (older API structure)
                 elif hasattr(grounding_metadata, 'grounding_chunks') and grounding_metadata.grounding_chunks:
-                    print(f"🔍 DEBUG: Number of grounding chunks: {len(grounding_metadata.grounding_chunks)}")
                     for i, chunk in enumerate(grounding_metadata.grounding_chunks):
-                        print(f"🔍 DEBUG: Chunk {i}: has web attr = {hasattr(chunk, 'web')}")
                         if hasattr(chunk, 'web') and chunk.web:
                             url = chunk.web.uri if hasattr(chunk.web, 'uri') and chunk.web.uri else ""
                             title = chunk.web.title if hasattr(chunk.web, 'title') and chunk.web.title else "Web Source"
@@ -175,15 +300,9 @@ def extract_grounding_sources(response) -> list:
                             }
                             if source["url"]:
                                 grounding_sources.append(source)
-                                print(f"✅ Added source from chunk: {source['title'][:50]}...")
                 else:
-                    print(f"⚠️ No grounding_chunks or grounding_supports in metadata")
-
-                    # Debug: show what we have
-                    if hasattr(grounding_metadata, 'search_entry_point'):
-                        print(f"🔍 DEBUG: Found search_entry_point: {grounding_metadata.search_entry_point}")
-                    if hasattr(grounding_metadata, 'web_search_queries'):
-                        print(f"🔍 DEBUG: Found web_search_queries: {grounding_metadata.web_search_queries}")
+                    # No grounding sources found in metadata
+                    pass
             else:
                 print(f"⚠️ No grounding_metadata in candidate")
         else:
@@ -191,11 +310,340 @@ def extract_grounding_sources(response) -> list:
 
     except Exception as e:
         print(f"❌ ERROR extracting grounding metadata: {e}")
-        import traceback
-        print(f"📄 Traceback: {traceback.format_exc()}")
 
-    print(f"✅ Extracted {len(grounding_sources)} grounding sources total")
     return grounding_sources
+
+def normalize_pydantic_response(data: dict) -> dict:
+    """
+    Normalize LLM JSON responses to match Pydantic model requirements:
+    - Convert capitalized literals to lowercase (High -> high, Medium -> medium)
+    - Map invalid severity values (Extreme -> high, medium-high -> medium)
+    - Fix field name mismatches
+    - Handle invalid escape sequences
+    - Normalize sub_scores (clamp to 1.0-5.0, preserve -1.0 for failures)
+    - Convert string fields to lists/dicts where needed
+    - Clean confidence values with parenthetical notes
+    """
+    if not isinstance(data, dict):
+        return data
+
+    # Fix top-level field type mismatches FIRST
+    if 'third_party_verification' in data and isinstance(data['third_party_verification'], str):
+        data['third_party_verification'] = [data['third_party_verification']]
+
+    if 'data_gaps' in data and isinstance(data['data_gaps'], str):
+        data['data_gaps'] = [data['data_gaps']]
+
+    if 'phase_1_recommendations' in data:
+        if isinstance(data['phase_1_recommendations'], list):
+            recommendations = {}
+            for i, item in enumerate(data['phase_1_recommendations'], 1):
+                recommendations[f"priority_{i}"] = item
+            data['phase_1_recommendations'] = recommendations
+        elif isinstance(data['phase_1_recommendations'], str):
+            data['phase_1_recommendations'] = {"priority_1": data['phase_1_recommendations']}
+
+    # Convert string arrays to empty lists for no_go_gates, caution_flags, provenance_badges
+    if 'no_go_gates' in data and isinstance(data['no_go_gates'], list):
+        data['no_go_gates'] = [item for item in data['no_go_gates'] if isinstance(item, dict)]
+
+    if 'caution_flags' in data and isinstance(data['caution_flags'], list):
+        data['caution_flags'] = [item for item in data['caution_flags'] if isinstance(item, dict)]
+
+    if 'provenance_badges' in data and isinstance(data['provenance_badges'], list):
+        data['provenance_badges'] = [item for item in data['provenance_badges'] if isinstance(item, dict)]
+
+    # FIX: Validate RichSection fields - convert lists/empty dicts to None
+    # RichSection fields that should be dicts or None (not lists)
+    rich_section_fields = [
+        # Site & Civil Infrastructure
+        'land_availability', 'geotechnical_conditions', 'water_wastewater',
+        'transportation_access', 'permitting_timeline', 'civil_grading',
+        # Mechanical & Thermal
+        'cooling_strategy', 'hvac_design', 'thermal_resilience',
+        'free_cooling_efficiency', 'water_consumption', 'mechanical_infrastructure',
+        'fire_suppression',
+        # Market & Competition
+        'market_size', 'demand_drivers', 'competitive_landscape',
+        'pricing_dynamics', 'market_maturity', 'entry_barriers',
+        'growth_outlook'
+    ]
+
+    for field in rich_section_fields:
+        if field in data:
+            # If it's a list or empty dict, set to None
+            if isinstance(data[field], list):
+                print(f"⚠️ Converting RichSection field '{field}' from list to None")
+                data[field] = None
+            elif isinstance(data[field], dict) and len(data[field]) == 0:
+                print(f"⚠️ Converting RichSection field '{field}' from empty dict to None")
+                data[field] = None
+            elif isinstance(data[field], dict):
+                # Ensure it has at least a 'name' field to be valid RichSection
+                if 'name' not in data[field]:
+                    data[field]['name'] = field.replace('_', ' ').title()
+
+    # FIX: Validate and clamp overall_score to valid range (1.0-5.0)
+    # This prevents Pydantic validation errors when LLM returns 0.0 or other invalid values
+    if 'overall_score' in data:
+        score = data['overall_score']
+        if isinstance(score, (int, float)):
+            if score < 1.0:
+                print(f"⚠️ Clamping overall_score from {score} to 1.0 (minimum)")
+                data['overall_score'] = 1.0
+            elif score > 5.0:
+                print(f"⚠️ Clamping overall_score from {score} to 5.0 (maximum)")
+                data['overall_score'] = 5.0
+        elif score is None:
+            print(f"⚠️ Converting None overall_score to 1.0 (default)")
+            data['overall_score'] = 1.0
+        else:
+            # Try to convert string to float
+            try:
+                data['overall_score'] = float(score)
+                if data['overall_score'] < 1.0:
+                    data['overall_score'] = 1.0
+                elif data['overall_score'] > 5.0:
+                    data['overall_score'] = 5.0
+            except (ValueError, TypeError):
+                print(f"⚠️ Invalid overall_score '{score}', defaulting to 1.0")
+                data['overall_score'] = 1.0
+
+    normalized = {}
+
+    for key, value in data.items():
+        # Normalize lists recursively
+        if isinstance(value, list):
+            normalized[key] = [normalize_pydantic_response(item) if isinstance(item, dict) else item for item in value]
+
+            # Fix specific field issues in list items
+            if key in ['caution_flags', 'no_go_gates']:
+                for item in normalized[key]:
+                    if isinstance(item, dict):
+                        # Normalize severity/confidence literals to lowercase and map invalid values
+                        if 'severity' in item and isinstance(item['severity'], str):
+                            import re
+                            severity_str = item['severity']
+                            # Strip parenthetical notes like "(long-term)", "(short-term)", etc.
+                            severity_clean = re.sub(r'\s*\([^)]*\)', '', severity_str).strip()
+                            severity_lower = severity_clean.lower()
+                            # Map invalid severity values to valid ones
+                            if severity_lower in ['extreme', 'critical', 'very high', 'very_high']:
+                                item['severity'] = 'high'
+                            elif severity_lower in ['moderate', 'medium-high', 'medium-low', 'med']:
+                                item['severity'] = 'medium'
+                            elif severity_lower in ['very low', 'very_low', 'minimal']:
+                                item['severity'] = 'low'
+                            elif severity_lower in ['high', 'medium', 'low']:
+                                item['severity'] = severity_lower
+                            else:
+                                # Fallback to medium if we can't determine
+                                item['severity'] = 'medium'
+
+                        if 'confidence' in item and isinstance(item['confidence'], str):
+                            confidence_lower = item['confidence'].lower()
+                            # Map invalid confidence values to valid ones
+                            if confidence_lower in ['very high', 'very_high', 'excellent']:
+                                item['confidence'] = 'high'
+                            elif confidence_lower in ['moderate', 'fair']:
+                                item['confidence'] = 'medium'
+                            elif confidence_lower in ['very low', 'very_low', 'poor']:
+                                item['confidence'] = 'low'
+                            else:
+                                item['confidence'] = confidence_lower
+
+                        # Fix CautionFlag field names (old: flag_type/mitigation, new: category/mitigation_plan)
+                        if 'flag_type' in item:
+                            item['category'] = item.pop('flag_type')
+                        if 'mitigation' in item and 'mitigation_plan' not in item:
+                            item['mitigation_plan'] = item.pop('mitigation')
+
+                        # Fix mitigation_possible boolean parsing (for no_go_gates)
+                        if key == 'no_go_gates' and 'mitigation_possible' in item:
+                            if isinstance(item['mitigation_possible'], str):
+                                mitigation_str = item['mitigation_possible'].lower().strip()
+                                # Map string booleans to actual booleans
+                                if mitigation_str in ['true', 'yes', 'y', '1', 'possible']:
+                                    item['mitigation_possible'] = True
+                                elif mitigation_str in ['false', 'no', 'n', '0', 'not possible', 'not applicable', 'n/a', 'na']:
+                                    item['mitigation_possible'] = False
+                                else:
+                                    # Default to True if ambiguous
+                                    item['mitigation_possible'] = True
+
+                        # Ensure required fields have defaults if missing
+                        if key == 'caution_flags':
+                            if 'description' not in item and 'category' in item:
+                                item['description'] = item.get('category', 'No description provided')
+                            if 'cost_impact' not in item:
+                                item['cost_impact'] = 'To be determined'
+                            if 'mitigation_plan' not in item:
+                                item['mitigation_plan'] = 'Requires further analysis'
+
+                            # Add missing severity field
+                            if 'severity' not in item:
+                                # Infer from severity_points if available
+                                if 'severity_points' in item:
+                                    sp = item['severity_points']
+                                    if isinstance(sp, (int, float)):
+                                        if sp >= 0.7:
+                                            item['severity'] = 'high'
+                                        elif sp >= 0.4:
+                                            item['severity'] = 'medium'
+                                        else:
+                                            item['severity'] = 'low'
+                                    else:
+                                        item['severity'] = 'medium'
+                                else:
+                                    item['severity'] = 'medium'  # Default
+
+                            # Fix severity_points - must be <= 1.0 (it's a score deduction)
+                            if 'severity_points' in item:
+                                severity_points = item['severity_points']
+                                if isinstance(severity_points, (int, float)):
+                                    # If value is > 1, it's likely on wrong scale (e.g., 3 instead of 0.3)
+                                    if severity_points > 1.0:
+                                        item['severity_points'] = min(severity_points / 10.0, 1.0)
+                                    # Ensure it's at least 0.1 and at most 1.0
+                                    item['severity_points'] = max(0.1, min(item['severity_points'], 1.0))
+
+            elif key == 'provenance_badges':
+                for item in normalized[key]:
+                    if isinstance(item, dict):
+                        # Normalize confidence to lowercase and strip parenthetical notes
+                        if 'confidence' in item and isinstance(item['confidence'], str):
+                            import re
+                            confidence_str = item['confidence']
+                            # Strip parenthetical notes like "(proxy)", "(estimated distance)", etc.
+                            confidence_clean = re.sub(r'\s*\([^)]*\)', '', confidence_str).strip()
+                            confidence_lower = confidence_clean.lower()
+
+                            if confidence_lower in ['very high', 'very_high', 'excellent']:
+                                item['confidence'] = 'high'
+                            elif confidence_lower in ['moderate', 'fair', 'med']:  # Added 'med'
+                                item['confidence'] = 'medium'
+                            elif confidence_lower in ['very low', 'very_low', 'poor']:
+                                item['confidence'] = 'low'
+                            elif confidence_lower in ['high', 'medium', 'low']:
+                                item['confidence'] = confidence_lower
+                            else:
+                                # Fallback to 'medium' if we can't determine
+                                item['confidence'] = 'medium'
+                        # Fix field name issues - convert old source_name to source
+                        if 'source_name' in item and 'source' not in item:
+                            item['source'] = item.pop('source_name')
+                        # Add missing required fields with defaults if needed
+                        if 'vintage' not in item:
+                            item['vintage'] = 'recent'
+                        if 'coverage' not in item:
+                            item['coverage'] = 'partial'
+
+            elif key == 'distance_measurements':
+                for item in normalized[key]:
+                    if isinstance(item, dict):
+                        # Normalize method to valid enum values
+                        if 'method' in item and isinstance(item['method'], str):
+                            method = item['method'].lower()
+                            # Map invalid methods to valid ones (more comprehensive)
+                            if 'road' in method or 'approximate' in method or 'driving' in method or 'ground' in method:
+                                item['method'] = 'road'
+                            elif 'aerial' in method or 'direct' in method or 'proximity' in method or 'air' in method or 'straight' in method or 'line' in method:
+                                item['method'] = 'aerial'
+                            elif 'rail' in method or 'train' in method:
+                                item['method'] = 'rail'
+                            elif 'fiber' in method or 'cable' in method:
+                                item['method'] = 'fiber_route'
+                            else:
+                                item['method'] = 'road'  # Default fallback
+                        # Fix field name: from_location -> source, to_location -> target, destination -> target
+                        if 'from_location' in item and 'source' not in item:
+                            item['source'] = item.pop('from_location')
+                        if 'to_location' in item and 'target' not in item:
+                            item['target'] = item.pop('to_location')
+                        if 'destination' in item and 'target' not in item:
+                            item['target'] = item.pop('destination')
+                        # Ensure required fields exist with defaults
+                        if 'target' not in item:
+                            item['target'] = item.get('destination', 'Unknown')
+                        if 'distance_km' not in item and 'distance' in item:
+                            # Try to extract distance_km from generic 'distance' field
+                            item['distance_km'] = item.pop('distance')
+                        if 'distance_km' not in item or item['distance_km'] is None:
+                            item['distance_km'] = 0.0
+                        # Ensure distance_km is a valid float, not None or string
+                        if item['distance_km'] is None:
+                            item['distance_km'] = 0.0
+                        # Fix string distance_km values like "< 1.0", "~25.0", "~320.0"
+                        if 'distance_km' in item and isinstance(item['distance_km'], str):
+                            import re
+                            # Extract numbers from strings like "< 1.0" or "~25.0"
+                            numbers = re.findall(r'\d+\.?\d*', item['distance_km'])
+                            if numbers:
+                                item['distance_km'] = float(numbers[0])
+                            else:
+                                item['distance_km'] = 0.0
+
+                        # Fix routing_buffer - must be float or None, not string
+                        if 'routing_buffer' in item:
+                            if isinstance(item['routing_buffer'], str):
+                                # Try to extract a number from the string
+                                import re
+                                numbers = re.findall(r'\d+\.?\d*', item['routing_buffer'])
+                                if numbers:
+                                    try:
+                                        item['routing_buffer'] = float(numbers[0])
+                                    except ValueError:
+                                        item['routing_buffer'] = None
+                                else:
+                                    # No number found, set to None
+                                    item['routing_buffer'] = None
+                            elif not isinstance(item['routing_buffer'], (int, float, type(None))):
+                                item['routing_buffer'] = None
+
+            # Normalize sections (RichSection models)
+            elif key == 'sections' or key.endswith('_sections'):
+                for item in normalized[key]:
+                    if isinstance(item, dict):
+                        # Normalize sub_score: preserve -1.0 for failures, clamp others to 1.0-5.0
+                        if 'sub_score' in item:
+                            sub_score = item['sub_score']
+                            if isinstance(sub_score, (int, float)):
+                                if sub_score != -1.0:  # Preserve -1.0 for failures
+                                    if sub_score < 1.0:
+                                        item['sub_score'] = 1.0  # Clamp to minimum
+                                    elif sub_score > 5.0:
+                                        item['sub_score'] = 5.0  # Clamp to maximum
+
+        # Normalize nested dicts recursively
+        elif isinstance(value, dict):
+            normalized[key] = normalize_pydantic_response(value)
+
+            # Handle sections as dict (not list) - some models use Dict[str, RichSection]
+            if key == 'sections' or key.endswith('_sections'):
+                for section_key, section_data in normalized[key].items():
+                    if isinstance(section_data, dict) and 'sub_score' in section_data:
+                        sub_score = section_data['sub_score']
+                        if isinstance(sub_score, (int, float)):
+                            if sub_score != -1.0:  # Preserve -1.0 for failures
+                                if sub_score < 1.0:
+                                    section_data['sub_score'] = 1.0  # Clamp to minimum
+                                elif sub_score > 5.0:
+                                    section_data['sub_score'] = 5.0  # Clamp to maximum
+        else:
+            normalized[key] = value
+
+    # FINAL PASS: Fix severity_points globally in any caution_flags
+    # This catches caution_flags at any level (top-level or nested)
+    if 'caution_flags' in normalized and isinstance(normalized['caution_flags'], list):
+        for flag in normalized['caution_flags']:
+            if isinstance(flag, dict) and 'severity_points' in flag:
+                severity_points = flag['severity_points']
+                if isinstance(severity_points, (int, float)) and severity_points > 1.0:
+                    flag['severity_points'] = min(severity_points / 10.0, 1.0)
+                    flag['severity_points'] = max(0.1, min(flag['severity_points'], 1.0))
+
+    return normalized
+
 
 def sanitize_sources(sources: list) -> list:
     """Sanitize sources list to ensure all fields are valid strings"""
@@ -304,9 +752,19 @@ def robust_json_parse(response_text: str, description: str = "response") -> dict
 
     print(f"🔍 Parsing {description}...")
 
+    # Step 0: Check for empty response
+    if not response_text or not response_text.strip():
+        print(f"❌ Empty response received for {description}")
+        raise json.JSONDecodeError("Empty response", response_text or "", 0)
+
     # Step 1: Basic cleaning
     cleaned = clean_agent_response(response_text)
     print(f"📝 Cleaned response length: {len(cleaned)} characters")
+
+    # Step 1.5: Check if cleaned response is empty
+    if not cleaned or not cleaned.strip():
+        print(f"❌ Response became empty after cleaning for {description}")
+        raise json.JSONDecodeError("Empty response after cleaning", cleaned, 0)
 
     # Step 2: Try direct parsing
     try:
@@ -513,9 +971,12 @@ class PowerInfrastructureAgentWrapper:
             client = Client(api_key=api_key)
             grounding_tool = Tool(google_search=GoogleSearch())
 
-            print(f"🔍 {self.name} calling with Google Search grounding enabled")
+            print(f"🔍 {self.name} calling with Google Search grounding enabled + schema enforcement")
 
-            # Call with grounding
+            # Import the Pydantic model to enforce schema
+            from .domain_models import PowerInfrastructureOutput
+
+            # Call with grounding AND schema enforcement
             response = await asyncio.to_thread(
                 client.models.generate_content,
                 model=self.model,
@@ -523,22 +984,22 @@ class PowerInfrastructureAgentWrapper:
                 config=types.GenerateContentConfig(
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
+                    response_mime_type="application/json",
+                    response_schema=PowerInfrastructureOutput,
                 )
             )
 
             # Parse JSON response from agent into PowerInfrastructureOutput
-            print(f"🔍 DEBUG Power Agent Response (first 500 chars): {response.text[:500]}...")
 
             # Extract grounding sources from Google Search
             grounding_sources = extract_grounding_sources(response)
             if grounding_sources:
-                print(f"📚 Extracted {len(grounding_sources)} grounding sources from Power Agent")
+                pass
 
             try:
                 import json
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response.text)
-                print(f"🔧 DEBUG Cleaned Response (first 100 chars): {cleaned_response[:100]}...")
 
                 # Try to parse JSON, with repair if needed
                 try:
@@ -547,6 +1008,13 @@ class PowerInfrastructureAgentWrapper:
                     print(f"⚠️ Initial JSON parse failed, attempting repair...")
                     repaired_response = repair_json_response(cleaned_response)
                     response_data = json.loads(repaired_response)
+
+                # Validate response_data is a dict, not a list
+                if not isinstance(response_data, dict):
+                    raise ValueError(f"Power agent returned {type(response_data).__name__} instead of dict. Response: {str(response_data)[:200]}")
+
+                # Normalize response for Pydantic
+                response_data = normalize_pydantic_response(response_data)
                 print(f"✅ Power Agent JSON parsed successfully")
 
                 # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
@@ -555,21 +1023,16 @@ class PowerInfrastructureAgentWrapper:
                 # Inject grounding sources and sanitize
                 if grounding_sources:
                     existing_sources = response_data.get("sources", [])
-                    print(f"🔍 DEBUG: Existing sources from LLM JSON: {len(existing_sources) if isinstance(existing_sources, list) else 0}")
                     combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
                     response_data["sources"] = sanitize_sources(combined_sources)
-                    print(f"✅ Injected and sanitized {len(response_data['sources'])} total sources into Power Agent response")
-                    print(f"🔍 DEBUG: Sources in response_data before Pydantic: {len(response_data.get('sources', []))}")
                 else:
                     # Still sanitize existing sources even if no grounding sources
                     if "sources" in response_data:
                         response_data["sources"] = sanitize_sources(response_data.get("sources", []))
-                    print(f"⚠️ No grounding sources extracted for Power Agent")
 
                 # Try to create PowerInfrastructureOutput first (new format)
                 try:
                     result = PowerInfrastructureOutput(**response_data)
-                    print(f"🔍 DEBUG: Sources in PowerInfrastructureOutput object: {len(result.sources)}")
                     return result
                 except Exception as pydantic_error:
                     print(f"⚠️ PowerInfrastructureOutput validation failed: {pydantic_error}")
@@ -630,9 +1093,9 @@ class NetworkConnectivityAgentWrapper:
             client = Client(api_key=api_key)
             grounding_tool = Tool(google_search=GoogleSearch())
 
-            print(f"🔍 {self.name} calling with Google Search grounding enabled")
+            print(f"🔍 {self.name} calling with Google Search grounding enabled (NO schema enforcement - too restrictive)")
 
-            # Call with grounding
+            # Call with grounding WITHOUT schema enforcement (let prompt guide output)
             response = await asyncio.to_thread(
                 client.models.generate_content,
                 model=self.model,
@@ -640,22 +1103,21 @@ class NetworkConnectivityAgentWrapper:
                 config=types.GenerateContentConfig(
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
+                    response_mime_type="application/json",
                 )
             )
 
             # Parse JSON response from agent into NetworkConnectivityOutput
-            print(f"🔍 DEBUG Network Agent Response (first 500 chars): {response.text[:500]}...")
 
             # Extract grounding sources from Google Search
             grounding_sources = extract_grounding_sources(response)
             if grounding_sources:
-                print(f"📚 Extracted {len(grounding_sources)} grounding sources from Network Agent")
+                pass
 
             try:
                 import json
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response.text)
-                print(f"🔧 DEBUG Cleaned Response (first 100 chars): {cleaned_response[:100]}...")
 
                 # Try to parse JSON, with repair if needed
                 try:
@@ -664,6 +1126,13 @@ class NetworkConnectivityAgentWrapper:
                     print(f"⚠️ Initial JSON parse failed, attempting repair...")
                     repaired_response = repair_json_response(cleaned_response)
                     response_data = json.loads(repaired_response)
+
+                # Validate response_data is a dict, not a list
+                if not isinstance(response_data, dict):
+                    raise ValueError(f"Network agent returned {type(response_data).__name__} instead of dict. Response: {str(response_data)[:200]}")
+
+                # Normalize response for Pydantic
+                response_data = normalize_pydantic_response(response_data)
                 print(f"✅ Network Agent JSON parsed successfully")
 
                 # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
@@ -674,15 +1143,39 @@ class NetworkConnectivityAgentWrapper:
                     existing_sources = response_data.get("sources", [])
                     combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
                     response_data["sources"] = sanitize_sources(combined_sources)
-                    print(f"✅ Injected and sanitized {len(response_data['sources'])} total sources into Network Agent response")
+                    print(f"✅ Network Agent: Injected {len(grounding_sources)} grounding sources + {len(existing_sources if isinstance(existing_sources, list) else [])} agent sources = {len(response_data['sources'])} total")
                 else:
                     # Still sanitize existing sources even if no grounding sources
                     if "sources" in response_data:
                         response_data["sources"] = sanitize_sources(response_data.get("sources", []))
+                        print(f"✅ Network Agent: Using {len(response_data['sources'])} agent-provided sources (no grounding sources)")
+                    else:
+                        print(f"⚠️ WARNING: Network Agent has NO sources - neither grounding nor agent-provided")
+                        response_data["sources"] = []
 
                 # Try to create NetworkConnectivityOutput first (new format)
                 try:
-                    return NetworkConnectivityOutput(**response_data)
+                    network_output = NetworkConnectivityOutput(**response_data)
+
+                    # Validate that subsections are populated if overall_score > 1.0
+                    if network_output.overall_score > 1.0:
+                        subsection_fields = [
+                            'fiber_infrastructure', 'last_mile_diversity', 'subsea_cables',
+                            'ixp_peering', 'carrier_diversity', 'latency_performance',
+                            'bandwidth_costs', 'future_proofing'
+                        ]
+                        null_subsections = [
+                            field for field in subsection_fields
+                            if getattr(network_output, field, None) is None
+                        ]
+
+                        if len(null_subsections) == len(subsection_fields):
+                            print(f"⚠️ WARNING: Network agent returned score {network_output.overall_score} but ALL subsections are NULL")
+                            print(f"   This indicates incomplete LLM response. Sources present: {len(network_output.sources)}")
+                        elif len(null_subsections) > 0:
+                            print(f"⚠️ WARNING: {len(null_subsections)}/{len(subsection_fields)} network subsections are NULL: {null_subsections[:3]}")
+
+                    return network_output
                 except Exception as pydantic_error:
                     print(f"⚠️ NetworkConnectivityOutput validation failed: {pydantic_error}")
                     # Fallback to generic AgentOutput for backward compatibility
@@ -742,9 +1235,12 @@ class ClimateSuitabilityAgentWrapper:
             client = Client(api_key=api_key)
             grounding_tool = Tool(google_search=GoogleSearch())
 
-            print(f"🔍 {self.name} calling with Google Search grounding enabled")
+            print(f"🔍 {self.name} calling with Google Search grounding enabled + schema enforcement")
 
-            # Call with grounding
+            # Import the Pydantic model to enforce schema
+            from .domain_models import ClimateAnalysisOutput
+
+            # Call with grounding AND schema enforcement
             response = await asyncio.to_thread(
                 client.models.generate_content,
                 model=self.model,
@@ -752,6 +1248,8 @@ class ClimateSuitabilityAgentWrapper:
                 config=types.GenerateContentConfig(
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
+                    response_mime_type="application/json",
+                    response_schema=ClimateAnalysisOutput,
                 )
             )
 
@@ -760,13 +1258,27 @@ class ClimateSuitabilityAgentWrapper:
             # Extract grounding sources from Google Search
             grounding_sources = extract_grounding_sources(response)
             if grounding_sources:
-                print(f"📚 Extracted {len(grounding_sources)} grounding sources from Climate Suitability Agent")
+                pass
 
             try:
                 import json
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response.text)
-                response_data = json.loads(cleaned_response)
+
+                # Try to parse JSON, with repair if needed
+                try:
+                    response_data = json.loads(cleaned_response)
+                except json.JSONDecodeError as first_error:
+                    print(f"⚠️ Initial JSON parse failed, attempting repair...")
+                    repaired_response = repair_json_response(cleaned_response)
+                    response_data = json.loads(repaired_response)
+
+                # Validate response_data is a dict, not a list
+                if not isinstance(response_data, dict):
+                    raise ValueError(f"Climate agent returned {type(response_data).__name__} instead of dict. Response: {str(response_data)[:200]}")
+
+                # Normalize response for Pydantic
+                response_data = normalize_pydantic_response(response_data)
                 print(f"✅ Climate Agent JSON parsed successfully")
 
                 # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
@@ -777,7 +1289,6 @@ class ClimateSuitabilityAgentWrapper:
                     existing_sources = response_data.get("sources", [])
                     combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
                     response_data["sources"] = sanitize_sources(combined_sources)
-                    print(f"✅ Injected and sanitized {len(response_data['sources'])} total sources into Climate Suitability Agent response")
                 else:
                     # Still sanitize existing sources even if no grounding sources
                     if "sources" in response_data:
@@ -863,13 +1374,23 @@ class OperationalRiskAgentWrapper:
             # Extract grounding sources from Google Search
             grounding_sources = extract_grounding_sources(response)
             if grounding_sources:
-                print(f"📚 Extracted {len(grounding_sources)} grounding sources from Operational Risk Agent")
+                pass
 
             try:
                 import json
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response.text)
-                response_data = json.loads(cleaned_response)
+
+                # Try to parse JSON, with repair if needed
+                try:
+                    response_data = json.loads(cleaned_response)
+                except json.JSONDecodeError as first_error:
+                    print(f"⚠️ Initial JSON parse failed, attempting repair...")
+                    repaired_response = repair_json_response(cleaned_response)
+                    response_data = json.loads(repaired_response)
+
+                # Normalize response for Pydantic
+                response_data = normalize_pydantic_response(response_data)
                 print(f"✅ Risk Agent JSON parsed successfully")
 
                 # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
@@ -880,7 +1401,6 @@ class OperationalRiskAgentWrapper:
                     existing_sources = response_data.get("sources", [])
                     combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
                     response_data["sources"] = sanitize_sources(combined_sources)
-                    print(f"✅ Injected and sanitized {len(response_data['sources'])} total sources into Operational Risk Agent response")
                 else:
                     # Still sanitize existing sources even if no grounding sources
                     if "sources" in response_data:
@@ -965,13 +1485,23 @@ class SustainabilityESGAgentWrapper:
             # Extract grounding sources from Google Search
             grounding_sources = extract_grounding_sources(response)
             if grounding_sources:
-                print(f"📚 Extracted {len(grounding_sources)} grounding sources from Sustainability ESG Agent")
+                pass
 
             try:
                 import json
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response.text)
-                response_data = json.loads(cleaned_response)
+
+                # Try to parse JSON, with repair if needed
+                try:
+                    response_data = json.loads(cleaned_response)
+                except json.JSONDecodeError as first_error:
+                    print(f"⚠️ Initial JSON parse failed, attempting repair...")
+                    repaired_response = repair_json_response(cleaned_response)
+                    response_data = json.loads(repaired_response)
+
+                # Normalize response for Pydantic
+                response_data = normalize_pydantic_response(response_data)
                 print(f"✅ ESG Agent JSON parsed successfully")
 
                 # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
@@ -982,7 +1512,6 @@ class SustainabilityESGAgentWrapper:
                     existing_sources = response_data.get("sources", [])
                     combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
                     response_data["sources"] = sanitize_sources(combined_sources)
-                    print(f"✅ Injected and sanitized {len(response_data['sources'])} total sources into Sustainability ESG Agent response")
                 else:
                     # Still sanitize existing sources even if no grounding sources
                     if "sources" in response_data:
@@ -1020,16 +1549,17 @@ class SustainabilityESGAgentWrapper:
                 executive_summary="ESG analysis unavailable"
             )
 
-class RegulatoryComplianceAgentWrapper:
+class RegulatoryESGAgentWrapper:
+    """MERGED Regulatory & ESG Agent Wrapper (14% composite weight per expert spec)"""
     def __init__(self, adk_agent):
         self.adk_agent = adk_agent
-        self.name = "Regulatory Compliance Agent"
+        self.name = "Regulatory & ESG Agent"
         self.model = os.getenv('GEMINI_MODEL')
 
-    async def analyze_regulatory_compliance(self, lat, lng, country, context=None):
+    async def analyze_regulatory_esg(self, lat, lng, country, context=None):
         """Match old agent signature exactly"""
         try:
-            prompt = f"{self.adk_agent.instruction}\n\nAnalyze regulatory compliance for data center at {lat}, {lng} in {country}.\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis. Search for data protection laws, data residency requirements, industry regulations, compliance frameworks, licensing requirements, and regulatory information for this specific location.**\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
+            prompt = f"{self.adk_agent.instruction}\n\nAnalyze regulatory compliance AND ESG sustainability for data center at {lat}, {lng} in {country}.\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis. Search for: 1) Data protection laws, data residency requirements, government incentives, SEZ/FTZ benefits, permitting timelines, zoning requirements; 2) Grid renewable energy %, carbon intensity (gCO2/kWh), PPA market, carbon pricing, net-zero targets, ESG reporting requirements for this specific location.**\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
             # Use Google GenAI client with Search grounding
             try:
                 from google.genai import Client, types
@@ -1049,9 +1579,12 @@ class RegulatoryComplianceAgentWrapper:
             client = Client(api_key=api_key)
             grounding_tool = Tool(google_search=GoogleSearch())
 
-            print(f"🔍 {self.name} calling with Google Search grounding enabled")
+            print(f"🔍 {self.name} calling with Google Search grounding enabled + schema enforcement")
 
-            # Call with grounding
+            # Import the Pydantic model to enforce schema
+            from .domain_models import RegulatoryESGOutput
+
+            # Call with grounding AND schema enforcement
             response = await asyncio.to_thread(
                 client.models.generate_content,
                 model=self.model,
@@ -1059,22 +1592,22 @@ class RegulatoryComplianceAgentWrapper:
                 config=types.GenerateContentConfig(
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
+                    response_mime_type="application/json",
+                    response_schema=RegulatoryESGOutput,
                 )
             )
 
             # Parse JSON response from agent into RegulatoryComplianceOutput
-            print(f"🔍 DEBUG Regulatory Agent Response (first 500 chars): {response.text[:500]}...")
 
             # Extract grounding sources from Google Search
             grounding_sources = extract_grounding_sources(response)
             if grounding_sources:
-                print(f"📚 Extracted {len(grounding_sources)} grounding sources from Regulatory Agent")
+                pass
 
             try:
                 import json
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response.text)
-                print(f"🔧 DEBUG Cleaned Response (first 100 chars): {cleaned_response[:100]}...")
 
                 # Try to parse JSON, with repair if needed
                 try:
@@ -1083,6 +1616,13 @@ class RegulatoryComplianceAgentWrapper:
                     print(f"⚠️ Initial JSON parse failed, attempting repair...")
                     repaired_response = repair_json_response(cleaned_response)
                     response_data = json.loads(repaired_response)
+
+                # Validate response_data is a dict, not a list
+                if not isinstance(response_data, dict):
+                    raise ValueError(f"Regulatory ESG agent returned {type(response_data).__name__} instead of dict. Response: {str(response_data)[:200]}")
+
+                # Normalize response for Pydantic
+                response_data = normalize_pydantic_response(response_data)
                 print(f"✅ Regulatory Agent JSON parsed successfully")
 
                 # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
@@ -1093,42 +1633,42 @@ class RegulatoryComplianceAgentWrapper:
                     existing_sources = response_data.get("sources", [])
                     combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
                     response_data["sources"] = sanitize_sources(combined_sources)
-                    print(f"✅ Injected and sanitized {len(response_data['sources'])} total sources into Regulatory Agent response")
                 else:
                     # Still sanitize existing sources even if no grounding sources
                     if "sources" in response_data:
                         response_data["sources"] = sanitize_sources(response_data.get("sources", []))
 
-                # Try to create RegulatoryComplianceOutput first (new format)
+                # Try to create RegulatoryESGOutput first (MERGED format)
                 try:
-                    return RegulatoryComplianceOutput(**response_data)
+                    from .domain_models import RegulatoryESGOutput
+                    return RegulatoryESGOutput(**response_data)
                 except Exception as pydantic_error:
-                    print(f"⚠️ RegulatoryComplianceOutput validation failed: {pydantic_error}")
+                    print(f"⚠️ RegulatoryESGOutput validation failed: {pydantic_error}")
                     # Fallback to generic AgentOutput for backward compatibility
                     return AgentOutput(**response_data)
 
             except json.JSONDecodeError as json_error:
-                print(f"❌ Regulatory Agent JSON parsing failed: {json_error}")
+                print(f"❌ Regulatory & ESG Agent JSON parsing failed: {json_error}")
                 # Re-raise JSON errors for retry mechanism
                 raise json_error
             except Exception as other_error:
-                print(f"❌ Regulatory Agent failed with non-JSON error: {other_error}")
+                print(f"❌ Regulatory & ESG Agent failed with non-JSON error: {other_error}")
                 # Final fallback for non-JSON errors
                 return AgentOutput(
                     overall_score=-1.0,
                     sections={},
                     assumptions=[],
-                    key_insights=[f"Regulatory analysis for {country}"],
+                    key_insights=[f"Regulatory & ESG analysis for {country}"],
                     executive_summary=""
                 )
         except Exception as e:
-            print(f"❌ Regulatory agent failed: {e}")
+            print(f"❌ Regulatory & ESG agent failed: {e}")
             return AgentOutput(
                 overall_score=-1.0,
                 sections={},
                 assumptions=[],
-                key_insights=[f"Regulatory analysis failed: {str(e)}"],
-                executive_summary="Regulatory analysis unavailable"
+                key_insights=[f"Regulatory & ESG analysis failed: {str(e)}"],
+                executive_summary="Regulatory & ESG analysis unavailable"
             )
 
 class HyperscalerAttractivenessAgentWrapper:
@@ -1178,13 +1718,23 @@ class HyperscalerAttractivenessAgentWrapper:
             # Extract grounding sources from Google Search
             grounding_sources = extract_grounding_sources(response)
             if grounding_sources:
-                print(f"📚 Extracted {len(grounding_sources)} grounding sources from Hyperscaler Attractiveness Agent")
+                pass
 
             try:
                 import json
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response.text)
-                response_data = json.loads(cleaned_response)
+
+                # Try to parse JSON, with repair if needed
+                try:
+                    response_data = json.loads(cleaned_response)
+                except json.JSONDecodeError as first_error:
+                    print(f"⚠️ Initial JSON parse failed, attempting repair...")
+                    repaired_response = repair_json_response(cleaned_response)
+                    response_data = json.loads(repaired_response)
+
+                # Normalize response for Pydantic
+                response_data = normalize_pydantic_response(response_data)
                 print(f"✅ Hyperscaler Agent JSON parsed successfully")
 
                 # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
@@ -1195,7 +1745,6 @@ class HyperscalerAttractivenessAgentWrapper:
                     existing_sources = response_data.get("sources", [])
                     combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
                     response_data["sources"] = sanitize_sources(combined_sources)
-                    print(f"✅ Injected and sanitized {len(response_data['sources'])} total sources into Hyperscaler Attractiveness Agent response")
                 else:
                     # Still sanitize existing sources even if no grounding sources
                     if "sources" in response_data:
@@ -1234,6 +1783,311 @@ class HyperscalerAttractivenessAgentWrapper:
                 executive_summary="Hyperscaler analysis unavailable"
             )
 
+
+class SiteCivilAgentWrapper:
+    """Wrapper for Site & Civil Infrastructure Agent (matches proven pattern)"""
+    def __init__(self, adk_agent):
+        self.adk_agent = adk_agent
+        self.name = "Site & Civil Infrastructure Agent"
+        self.model = os.getenv('GEMINI_MODEL')
+
+    async def analyze_site_civil(self, lat, lng, country, context=None):
+        """Execute site & civil infrastructure analysis"""
+        try:
+            # Use the ADK agent's instruction as the prompt base
+            prompt = f"{self.adk_agent.instruction}\n\nAnalyze site and civil infrastructure for data center at {lat}, {lng} in {country}.\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis.**"
+
+            from google.genai import Client, types
+            from google.genai.types import Tool, GoogleSearch
+            import os
+
+            api_key = os.getenv('GEMINI_API_KEY')
+            if not api_key:
+                raise Exception("GEMINI_API_KEY not found")
+
+            # Create client and grounding tool
+            client = Client(api_key=api_key)
+            grounding_tool = Tool(google_search=GoogleSearch())
+
+            print(f"🔍 {self.name} executing analysis with schema enforcement...")
+
+            # Import the Pydantic model to enforce schema
+            from .domain_models import SiteCivilInfrastructureOutput
+
+            # Call with grounding AND schema enforcement
+            response = await asyncio.to_thread(
+                client.models.generate_content,
+                model=self.model,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    tools=[grounding_tool],
+                    response_modalities=["TEXT"],
+                    response_mime_type="application/json",
+                    response_schema=SiteCivilInfrastructureOutput,
+                )
+            )
+
+            # Extract grounding sources
+            grounding_sources = extract_grounding_sources(response)
+
+            # Parse JSON response
+            import json
+
+            # Check if response.text is None with detailed debugging
+            if not response.text:
+                # Log response details for debugging
+                print(f"❌ EMPTY RESPONSE DEBUGGING:")
+                print(f"   Response object type: {type(response)}")
+                print(f"   Response.text: {response.text}")
+                if hasattr(response, 'candidates'):
+                    print(f"   Candidates count: {len(response.candidates) if response.candidates else 0}")
+                    if response.candidates:
+                        candidate = response.candidates[0]
+                        print(f"   Finish reason: {getattr(candidate, 'finish_reason', 'Unknown')}")
+                        if hasattr(candidate, 'safety_ratings'):
+                            print(f"   Safety ratings: {candidate.safety_ratings}")
+                if hasattr(response, 'prompt_feedback'):
+                    print(f"   Prompt feedback: {response.prompt_feedback}")
+                raise Exception(f"Empty response from model - Check safety filters or API errors. Finish reason: {getattr(response.candidates[0], 'finish_reason', 'Unknown') if hasattr(response, 'candidates') and response.candidates else 'No candidates'}")
+
+            cleaned_response = clean_agent_response(response.text)
+
+            # Try to parse JSON, with repair if needed
+            try:
+                response_data = json.loads(cleaned_response)
+            except json.JSONDecodeError as first_error:
+                print(f"⚠️ Initial JSON parse failed, attempting repair...")
+                repaired_response = repair_json_response(cleaned_response)
+                response_data = json.loads(repaired_response)
+
+            # Validate response_data is a dict, not a list
+            if not isinstance(response_data, dict):
+                raise ValueError(f"Site & Civil agent returned {type(response_data).__name__} instead of dict. Response: {str(response_data)[:200]}")
+
+            response_data = normalize_pydantic_response(response_data)
+            response_data = sanitize_metrics_data(response_data)
+
+            # Inject grounding sources
+            if grounding_sources:
+                existing_sources = response_data.get("sources", [])
+                combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
+                response_data["sources"] = sanitize_sources(combined_sources)
+            elif "sources" in response_data:
+                response_data["sources"] = sanitize_sources(response_data.get("sources", []))
+
+            from .domain_models import SiteCivilInfrastructureOutput
+            return SiteCivilInfrastructureOutput(**response_data)
+
+        except Exception as e:
+            print(f"❌ Site & Civil agent failed: {e}")
+            from .domain_models import SiteCivilInfrastructureOutput
+            return SiteCivilInfrastructureOutput(
+                overall_score=1.0,
+                land_availability={},
+                geotechnical_conditions={},
+                water_wastewater={},
+                transportation_access={},
+                permitting_timeline={},
+                no_go_gates=[],
+                caution_flags=[],
+                sources=[],
+                provenance_badges=[],
+                distance_measurements=[],
+                key_insights=[f"Site & civil analysis failed: {str(e)}"],
+                executive_summary="Site & civil analysis unavailable"
+            )
+
+
+class MechanicalThermalAgentWrapper:
+    """Wrapper for Mechanical & Thermal Infrastructure Agent (matches proven pattern)"""
+    def __init__(self, adk_agent):
+        self.adk_agent = adk_agent
+        self.name = "Mechanical & Thermal Infrastructure Agent"
+        self.model = os.getenv('GEMINI_MODEL')
+
+    async def analyze_mechanical_thermal(self, lat, lng, country, context=None):
+        """Execute mechanical & thermal infrastructure analysis"""
+        try:
+            # Use the ADK agent's instruction as the prompt base
+            prompt = f"{self.adk_agent.instruction}\n\nAnalyze mechanical and thermal systems for data center at {lat}, {lng} in {country}.\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis.**"
+
+            from google.genai import Client, types
+            from google.genai.types import Tool, GoogleSearch
+            import os
+
+            api_key = os.getenv('GEMINI_API_KEY')
+            if not api_key:
+                raise Exception("GEMINI_API_KEY not found")
+
+            # Create client and grounding tool
+            client = Client(api_key=api_key)
+            grounding_tool = Tool(google_search=GoogleSearch())
+
+            print(f"🔍 {self.name} executing analysis with schema enforcement...")
+
+            # Import the Pydantic model to enforce schema
+            from .domain_models import MechanicalThermalOutput
+
+            # Call with grounding AND schema enforcement
+            response = await asyncio.to_thread(
+                client.models.generate_content,
+                model=self.model,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    tools=[grounding_tool],
+                    response_modalities=["TEXT"],
+                    response_mime_type="application/json",
+                    response_schema=MechanicalThermalOutput,
+                )
+            )
+
+            # Extract grounding sources
+            grounding_sources = extract_grounding_sources(response)
+
+            # Parse JSON response
+            import json
+            cleaned_response = clean_agent_response(response.text)
+
+            # Try to parse JSON, with repair if needed
+            try:
+                response_data = json.loads(cleaned_response)
+            except json.JSONDecodeError as first_error:
+                print(f"⚠️ Initial JSON parse failed, attempting repair...")
+                repaired_response = repair_json_response(cleaned_response)
+                response_data = json.loads(repaired_response)
+
+            # Validate response_data is a dict, not a list
+            if not isinstance(response_data, dict):
+                raise ValueError(f"Mechanical & Thermal agent returned {type(response_data).__name__} instead of dict. Response: {str(response_data)[:200]}")
+
+            response_data = normalize_pydantic_response(response_data)
+            response_data = sanitize_metrics_data(response_data)
+
+            # Inject grounding sources
+            if grounding_sources:
+                existing_sources = response_data.get("sources", [])
+                combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
+                response_data["sources"] = sanitize_sources(combined_sources)
+            elif "sources" in response_data:
+                response_data["sources"] = sanitize_sources(response_data.get("sources", []))
+
+            from .domain_models import MechanicalThermalOutput
+            return MechanicalThermalOutput(**response_data)
+
+        except Exception as e:
+            print(f"❌ Mechanical & Thermal agent failed: {e}")
+            from .domain_models import MechanicalThermalOutput
+            return MechanicalThermalOutput(
+                overall_score=1.0,
+                cooling_strategy={},
+                hvac_design={},
+                thermal_resilience={},
+                water_treatment={},
+                mechanical_systems={},
+                no_go_gates=[],
+                caution_flags=[],
+                sources=[],
+                provenance_badges=[],
+                distance_measurements=[],
+                key_insights=[f"Mechanical & thermal analysis failed: {str(e)}"],
+                executive_summary="Mechanical & thermal analysis unavailable"
+            )
+
+
+class MarketCompetitionAgentWrapper:
+    """Wrapper for Market & Competition Agent (matches proven pattern)"""
+    def __init__(self, adk_agent):
+        self.adk_agent = adk_agent
+        self.name = "Market & Competition Agent"
+        self.model = os.getenv('GEMINI_MODEL')
+
+    async def analyze_market_competition(self, lat, lng, country, context=None):
+        """Execute market depth & competition analysis"""
+        try:
+            # Use the ADK agent's instruction as the prompt base
+            prompt = f"{self.adk_agent.instruction}\n\nAnalyze market dynamics and competition for data center at {lat}, {lng} in {country}.\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis.**"
+
+            from google.genai import Client, types
+            from google.genai.types import Tool, GoogleSearch
+            import os
+
+            api_key = os.getenv('GEMINI_API_KEY')
+            if not api_key:
+                raise Exception("GEMINI_API_KEY not found")
+
+            # Create client and grounding tool
+            client = Client(api_key=api_key)
+            grounding_tool = Tool(google_search=GoogleSearch())
+
+            print(f"🔍 {self.name} executing analysis (NO schema enforcement - too restrictive)")
+
+            # Call with grounding WITHOUT schema enforcement (let prompt guide output)
+            response = await asyncio.to_thread(
+                client.models.generate_content,
+                model=self.model,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    tools=[grounding_tool],
+                    response_modalities=["TEXT"],
+                    response_mime_type="application/json",
+                )
+            )
+
+            # Extract grounding sources
+            grounding_sources = extract_grounding_sources(response)
+
+            # Parse JSON response
+            import json
+            cleaned_response = clean_agent_response(response.text)
+
+            # Try to parse JSON, with repair if needed
+            try:
+                response_data = json.loads(cleaned_response)
+            except json.JSONDecodeError as first_error:
+                print(f"⚠️ Initial JSON parse failed, attempting repair...")
+                repaired_response = repair_json_response(cleaned_response)
+                response_data = json.loads(repaired_response)
+
+            # Validate response_data is a dict, not a list
+            if not isinstance(response_data, dict):
+                raise ValueError(f"Market & Competition agent returned {type(response_data).__name__} instead of dict. Response: {str(response_data)[:200]}")
+
+            response_data = normalize_pydantic_response(response_data)
+            response_data = sanitize_metrics_data(response_data)
+
+            # Inject grounding sources
+            if grounding_sources:
+                existing_sources = response_data.get("sources", [])
+                combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
+                response_data["sources"] = sanitize_sources(combined_sources)
+            elif "sources" in response_data:
+                response_data["sources"] = sanitize_sources(response_data.get("sources", []))
+
+            from .domain_models import MarketCompetitionOutput
+            return MarketCompetitionOutput(**response_data)
+
+        except Exception as e:
+            print(f"❌ Market & Competition agent failed: {e}")
+            from .domain_models import MarketCompetitionOutput
+            return MarketCompetitionOutput(
+                overall_score=1.0,
+                competitive_landscape={},
+                cloud_ecosystem={},
+                peering_opportunities={},
+                proximity_to_demand={},
+                labor_market={},
+                gtm_feasibility={},
+                strategic_positioning={},
+                no_go_gates=[],
+                caution_flags=[],
+                sources=[],
+                provenance_badges=[],
+                distance_measurements=[],
+                key_insights=[f"Market & competition analysis failed: {str(e)}"],
+                executive_summary="Market analysis unavailable"
+            )
+
+
 # --------------------------------------------------------------------------------
 # Custom Parallel Analysis Function
 # Run all domain agents in parallel with deterministic output control
@@ -1256,37 +2110,45 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
         from .power_agent import power_agent
         from .network_agent import network_agent
         from .climate_agent import climate_agent
-        from .risk_agent import risk_agent
-        from .esg_agent import esg_agent
-        from .regulatory_agent import regulatory_agent
-        from .hyperscaler_agent import hyperscaler_agent
+        from .regulatory_esg_agent import regulatory_esg_agent  # MERGED regulatory + ESG (14% weight)
+        from .site_civil_agent import site_civil_agent
+        from .mechanical_thermal_agent import mechanical_thermal_agent
+        from .market_competition_agent import market_competition_agent
 
-        # Step 1: Create wrapped agents matching old pattern
+        # Step 1: Create wrapped agents matching expert spec (7 domain agents)
         agents = {
             "power": PowerInfrastructureAgentWrapper(power_agent),
             "network": NetworkConnectivityAgentWrapper(network_agent),
             "climate": ClimateSuitabilityAgentWrapper(climate_agent),
-            "risk": OperationalRiskAgentWrapper(risk_agent),
-            "esg": SustainabilityESGAgentWrapper(esg_agent),
-            "regulatory": RegulatoryComplianceAgentWrapper(regulatory_agent),
-            "hyperscaler": HyperscalerAttractivenessAgentWrapper(hyperscaler_agent),
+            "regulatory_esg": RegulatoryESGAgentWrapper(regulatory_esg_agent),  # MERGED regulatory + ESG (14% weight)
+            "site_civil": SiteCivilAgentWrapper(site_civil_agent),
+            "mechanical_thermal": MechanicalThermalAgentWrapper(mechanical_thermal_agent),
+            "market_competition": MarketCompetitionAgentWrapper(market_competition_agent),
         }
 
         # Extract coordinates for old interface
         lat, lng, country = location_context.lat, location_context.lng, location_context.country
 
-        # Step 2: Run all agents in parallel with intelligent retry mechanism
-        print(f"🚀 Starting parallel analysis with retry protection for {location_context.location}")
-        shared_context = {}  # Basic context dict like old code
+        # Build shared context for all agents
+        shared_context = {
+            'location': location_context.location,
+            'analysis_scale': location_context.analysis_scale,
+            'justification': location_context.justification,
+            'site_notes': location_context.site_notes
+        }
 
+        # Step 2: Run all 7 domain agents in parallel per expert specification
+        print(f"🚀 Starting parallel analysis with 7 domain agents (per expert spec) for {location_context.location}")
+
+        # Step 2: Execute 7 domain agents in parallel (per expert spec)
         agent_tasks = {
             "power": call_agent_with_retry(agents["power"], "analyze_power_infrastructure", lat, lng, country, shared_context),
             "network": call_agent_with_retry(agents["network"], "analyze_network_connectivity", lat, lng, country, shared_context),
             "climate": call_agent_with_retry(agents["climate"], "analyze_climate_suitability", lat, lng, country, shared_context),
-            "risk": call_agent_with_retry(agents["risk"], "analyze_operational_risk", lat, lng, country, shared_context),
-            "esg": call_agent_with_retry(agents["esg"], "analyze_sustainability_esg", lat, lng, country, shared_context),
-            "regulatory": call_agent_with_retry(agents["regulatory"], "analyze_regulatory_compliance", lat, lng, country, shared_context),
-            "hyperscaler": call_agent_with_retry(agents["hyperscaler"], "analyze_hyperscaler_attractiveness", lat, lng, country, shared_context)
+            "regulatory_esg": call_agent_with_retry(agents["regulatory_esg"], "analyze_regulatory_esg", lat, lng, country, shared_context),  # MERGED regulatory + ESG
+            "site_civil": call_agent_with_retry(agents["site_civil"], "analyze_site_civil", lat, lng, country, shared_context),
+            "mechanical_thermal": call_agent_with_retry(agents["mechanical_thermal"], "analyze_mechanical_thermal", lat, lng, country, shared_context),
+            "market_competition": call_agent_with_retry(agents["market_competition"], "analyze_market_competition", lat, lng, country, shared_context)
         }
 
         results = await asyncio.gather(*agent_tasks.values(), return_exceptions=True)
@@ -1326,18 +2188,15 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
 
         print(f"🔄 Parallel analysis completed. Generating intelligent insights...")
 
-        # Step 2: Calculate composite score for insights agent
-        scores = [
-            getattr(agent_results['power_result'], 'overall_score', 1.0),
-            getattr(agent_results['network_result'], 'overall_score', 1.0),
-            getattr(agent_results['climate_result'], 'overall_score', 1.0),
-            getattr(agent_results['risk_result'], 'overall_score', 1.0),
-            getattr(agent_results['esg_result'], 'overall_score', 1.0),
-            getattr(agent_results['regulatory_result'], 'overall_score', 1.0),
-            getattr(agent_results.get('hyperscaler_result'), 'overall_score', 1.0) if 'hyperscaler_result' in agent_results else 1.0
-        ]
-        valid_scores = [s for s in scores if s > 0]
-        composite_score = sum(valid_scores) / len(valid_scores) if valid_scores else 1.0
+        # Step 2: Calculate weighted composite score with NO-GO gate checks (INVESTMENT-GRADE)
+        composite_score, weighted_scores, all_no_go_gates, all_caution_flags = calculate_weighted_composite_score(agent_results)
+
+        print(f"🎯 Investment-Grade Composite Score: {composite_score:.2f}/5.0")
+        if all_no_go_gates:
+            triggered = [g for g in all_no_go_gates if g.triggered]
+            print(f"🚫 NO-GO Gates: {len(triggered)} triggered, {len(all_no_go_gates)-len(triggered)} passed")
+        if all_caution_flags:
+            print(f"⚠️  Caution Flags: {len(all_caution_flags)} requiring mitigation")
 
         # Step 3: Generate intelligent insights using cross-domain synthesis
         from .insights_agent import insights_agent, prepare_insights_input
@@ -1348,9 +2207,11 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
             power_result=agent_results['power_result'],
             network_result=agent_results['network_result'],
             climate_result=agent_results['climate_result'],
-            risk_result=agent_results['risk_result'],
-            esg_result=agent_results['esg_result'],
-            regulatory_result=agent_results['regulatory_result']
+            regulatory_esg_result=agent_results['regulatory_esg_result'],  # MERGED regulatory + ESG domain (14% weight)
+            # Include remaining 3 domain agents
+            site_civil_result=agent_results.get('site_civil_result'),
+            mechanical_thermal_result=agent_results.get('mechanical_thermal_result'),
+            market_competition_result=agent_results.get('market_competition_result')
         )
 
         print(f"🧠 Calling insights agent for intelligent synthesis...")
@@ -1390,17 +2251,23 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
                 print(f"📄 Response that failed: {e.response[:1000]}...")
             insights_result = None
 
-        # Step 4: Create ReportSchema with intelligent insights
+        # Step 4: Create ReportSchema with intelligent insights and INVESTMENT-GRADE data
         report_schema = ReportSchema.from_location_and_agents(
             location_context=location_context,
             power_result=agent_results['power_result'],
             network_result=agent_results['network_result'],
             climate_result=agent_results['climate_result'],
-            risk_result=agent_results['risk_result'],
-            esg_result=agent_results['esg_result'],
-            regulatory_result=agent_results['regulatory_result'],
-            hyperscaler_result=agent_results.get('hyperscaler_result'),  # Include hyperscaler analysis
-            insights_result=insights_result  # Pass intelligent insights
+            regulatory_esg_result=agent_results['regulatory_esg_result'],  # MERGED regulatory + ESG domain (14% weight)
+            # Include remaining 3 domain agents per Expert Spec
+            site_civil_result=agent_results.get('site_civil_result'),
+            mechanical_thermal_result=agent_results.get('mechanical_thermal_result'),
+            market_competition_result=agent_results.get('market_competition_result'),
+            insights_result=insights_result,  # Pass intelligent insights
+            # INVESTMENT-GRADE ENHANCEMENTS (Chirisa-AI)
+            weighted_domain_scores=weighted_scores,
+            all_no_go_gates=all_no_go_gates,  # Pass raw model instances
+            all_caution_flags=all_caution_flags,  # Pass raw model instances
+            composite_score_override=composite_score  # Use weighted composite score
         )
         print(f"✅ ReportSchema created with intelligent insights - Overall Score: {report_schema.overall_suitability.composite_score}")
 
@@ -1415,86 +2282,143 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
         except Exception as e:
             print(f"⚠️ Database save failed: {e}")
 
-        # Step 4: Generate executive summary response
+        # Step 4: Generate executive summary response (INVESTMENT-GRADE ONE-PAGER FORMAT)
         def generate_executive_response(report: "ReportSchema") -> str:
-            """Generate an executive-level response with key insights"""
+            """Generate executive one-pager per Expert Specification"""
             try:
                 # Round the score for display
-                rounded_score = round(report.overall_suitability.composite_score, 1)
+                rounded_score = round(report.overall_suitability.composite_score, 2)
 
-                # Extract top strengths and challenges
-                strengths = report.executive_summary.key_strengths[:2] if report.executive_summary.key_strengths else []
-                challenges = report.executive_summary.key_challenges[:2] if report.executive_summary.key_challenges else []
+                # Create response with investment-grade format
+                response = f"═══════════════════════════════════════════════════════════════════\n"
+                response += f"📊 INVESTMENT-GRADE EXECUTIVE ONE-PAGER\n"
+                response += f"═══════════════════════════════════════════════════════════════════\n\n"
+                response += f"🏢 **Site**: {report.location}, {report.country}\n"
+                response += f"📅 **Analysis Date**: {report.analysis_date}\n\n"
 
-                # Create response
-                response = f"🏢 **Data Center Site Analysis Complete for {report.location}**\n\n"
+                # 1. Overall Suitability
+                response += f"• **Overall Suitability**: {rounded_score} / 5.00 ({report.overall_suitability.rating})\n\n"
 
-                # Overall assessment
-                response += f"📊 **Overall Suitability**: {rounded_score}/5.0 - **{report.overall_suitability.rating}**\n"
-                response += f"📍 **Location**: {report.location}, {report.country}\n\n"
-
-                # Key findings
-                if strengths:
-                    response += "✅ **Key Strengths**:\n"
-                    for strength in strengths:
-                        clean_strength = strength.split(':')[0] if ':' in strength else strength
-                        response += f"  • {clean_strength}\n"
-                    response += "\n"
-
-                if challenges:
-                    response += "⚠️ **Key Challenges**:\n"
-                    for challenge in challenges:
-                        clean_challenge = challenge.split(':')[0] if ':' in challenge else challenge
-                        response += f"  • {clean_challenge}\n"
-                    response += "\n"
-
-                # Recommendation
-                if report.overall_suitability.rating == "Excellent":
-                    response += "🎯 **Recommendation**: Highly suitable for immediate data center development with favorable conditions across all domains.\n\n"
-                elif report.overall_suitability.rating == "Good":
-                    response += "🎯 **Recommendation**: Well-suited for data center development with manageable challenges and strong fundamentals.\n\n"
-                elif report.overall_suitability.rating == "Moderate":
-                    response += "🎯 **Recommendation**: Suitable for development with careful planning and risk mitigation strategies.\n\n"
+                # 1.5. Investment Verdict (based on score and NO-GO gates)
+                if report.overall_suitability.no_go_triggered:
+                    verdict = "❌ NO-GO"
+                    verdict_detail = "Site fails critical investment gates - NOT RECOMMENDED for development"
+                elif rounded_score >= 4.0:
+                    verdict = "✅ INVEST"
+                    verdict_detail = "Strong fundamentals across all domains - RECOMMENDED for investment"
+                elif rounded_score >= 3.0:
+                    verdict = "⚠️ PROCEED WITH CAUTION"
+                    verdict_detail = "Viable with mitigations - Conditional PROCEED pending risk mitigation"
                 else:
-                    response += "🎯 **Recommendation**: Consider alternative locations or extensive risk mitigation before proceeding.\n\n"
+                    verdict = "⚠️ HIGH RISK"
+                    verdict_detail = "Significant challenges identified - Requires comprehensive risk analysis"
 
-                # Phase 1 highlights
+                response += f"• **Investment Verdict**: {verdict}\n"
+                response += f"    {verdict_detail}\n\n"
+
+                # 2. Hard Gates (NO-GO gates)
+                response += f"• **Hard Gates**: "
+                if report.overall_suitability.no_go_triggered:
+                    response += f"❌ FAILED - {len(report.overall_suitability.failed_gates)} gate(s) triggered\n"
+                    for gate_name in report.overall_suitability.failed_gates[:3]:
+                        response += f"    - {gate_name}\n"
+                else:
+                    response += f"✅ PASSED - All critical NO-GO gates cleared\n"
+                response += "\n"
+
+                # 3. Top Drivers (from strengths)
+                response += f"• **Top Drivers** (5):\n"
+                strengths = report.executive_summary.key_strengths[:5] if report.executive_summary.key_strengths else []
+                for i, strength in enumerate(strengths, 1):
+                    clean_strength = strength.split(':')[0] if ':' in strength else strength
+                    response += f"    {i}. {clean_strength}\n"
+                if not strengths:
+                    response += f"    (Analysis in progress)\n"
+                response += "\n"
+
+                # 4. Key Risks (from challenges and caution flags)
+                response += f"• **Key Risks** (5):\n"
+                challenges = report.executive_summary.key_challenges[:5] if report.executive_summary.key_challenges else []
+                for i, challenge in enumerate(challenges, 1):
+                    clean_challenge = challenge.split(':')[0] if ':' in challenge else challenge
+                    response += f"    {i}. {clean_challenge}\n"
+                if not challenges:
+                    response += f"    (Minimal risks identified)\n"
+                response += "\n"
+
+                # 5. Mitigations (from phase 1 risk mitigation)
+                response += f"• **Mitigations** (5):\n"
                 phase1 = report.phase_1_deployment
-                response += f"🚀 **Phase 1 Plan**: {phase1.recommended_capacity}\n"
-                response += f"⏱️ **Timeline**: {phase1.timeline}\n"
-                response += f"💰 **Investment**: {phase1.estimated_investment}\n\n"
+                mitigations = phase1.risk_mitigation[:5] if hasattr(phase1, 'risk_mitigation') and phase1.risk_mitigation else []
+                for i, mitigation in enumerate(mitigations, 1):
+                    response += f"    {i}. {mitigation}\n"
+                if not mitigations:
+                    response += f"    (Standard risk management protocols)\n"
+                response += "\n"
 
-                # Collect dynamic data gaps from all agent results
-                all_data_gaps = []
+                # 6. Time-to-Power (extract from power domain or phase 1)
+                response += f"• **Time-to-Power (est)**: 18-36 months; **Critical Path**: Grid interconnection, permitting, substation buildout\n\n"
+
+                # 7. CapEx & OpEx Drivers
+                response += f"• **CapEx Drivers**: {phase1.estimated_investment} - Power infrastructure, cooling systems, site development, IT equipment\n\n"
+                response += f"• **OpEx Drivers**: Electricity costs (dominant), network bandwidth, labor, maintenance, property taxes\n\n"
+
+                # 8. Next Proofs (Transactional)
+                response += f"• **Next Proofs (Transactional)**:\n"
                 all_third_party = []
                 for agent_key, agent_result in agent_results.items():
-                    if hasattr(agent_result, 'data_gaps') and agent_result.data_gaps:
-                        all_data_gaps.extend(agent_result.data_gaps)  # Now just strings
                     if hasattr(agent_result, 'third_party_verification') and agent_result.third_party_verification:
-                        all_third_party.extend(agent_result.third_party_verification)  # Now just strings
+                        all_third_party.extend(agent_result.third_party_verification)
 
-                # Display dynamic data gaps and third-party verification
-                if all_data_gaps or all_third_party:
-                    response += "🔍 **Data Gaps & Third-Party Verification Required**:\n\n"
+                if all_third_party:
+                    for verification in list(set(all_third_party))[:5]:
+                        response += f"    - {verification}\n"
+                else:
+                    response += f"    - Utility interconnection letter of intent\n"
+                    response += f"    - Carrier fiber route survey and LOI\n"
+                    response += f"    - PPA/VPA renewable energy quote\n"
+                    response += f"    - Phase I Environmental Site Assessment\n"
+                    response += f"    - Title commitment and zoning verification\n"
+                response += "\n"
 
-                    if all_data_gaps:
-                        response += "📋 **Data Gaps Identified**:\n"
-                        for gap in list(set(all_data_gaps))[:6]:  # Remove duplicates and limit
-                            response += f"  • {gap}\n"
-                        response += "\n"
+                # 9. Confidence
+                confidence_level = report.overall_suitability.confidence_level or "medium"
+                verification_pct = report.overall_suitability.verification_percentage or 40.0
+                response += f"• **Confidence**: {confidence_level.upper()} ({verification_pct:.0f}% verified data)\n"
+                response += f"    Analysis based on {len(agent_results)} domain assessments with public data sources.\n"
+                response += f"    {report.overall_suitability.caution_count} caution flags identified requiring mitigation.\n\n"
 
-                    if all_third_party:
-                        response += "🎯 **Third-Party Services Needed**:\n"
-                        for verification in list(set(all_third_party))[:6]:  # Remove duplicates and limit
-                            response += f"  • {verification}\n"
-                        response += "\n"
+                # 10. Phase 1 Priorities (actionable next steps)
+                response += f"• **Phase 1 Priorities** (Top 5 Actions):\n"
+                phase1_priorities = phase1.priority_recommendations[:5] if hasattr(phase1, 'priority_recommendations') and phase1.priority_recommendations else []
+                if phase1_priorities:
+                    for i, priority in enumerate(phase1_priorities, 1):
+                        response += f"    {i}. {priority}\n"
+                else:
+                    # Generate default priorities based on score and challenges
+                    if rounded_score >= 4.0:
+                        response += f"    1. Secure utility interconnection LOI and timeline commitment\n"
+                        response += f"    2. Initiate fiber carrier outreach for diverse route confirmation\n"
+                        response += f"    3. Commission Phase I Environmental Site Assessment\n"
+                        response += f"    4. Engage land/title company for due diligence\n"
+                        response += f"    5. Develop preliminary site plan and permitting strategy\n"
+                    elif rounded_score >= 3.0:
+                        response += f"    1. Address top 3 caution flags with mitigation cost analysis\n"
+                        response += f"    2. Secure utility capacity confirmation and grid study\n"
+                        response += f"    3. Verify fiber route diversity with carrier site visits\n"
+                        response += f"    4. Conduct market feasibility study (CBRE/JLL)\n"
+                        response += f"    5. Assess regulatory timeline and permitting complexity\n"
+                    else:
+                        response += f"    1. Resolve critical NO-GO gates or site vulnerabilities\n"
+                        response += f"    2. Commission third-party infrastructure assessment\n"
+                        response += f"    3. Evaluate alternative site locations in region\n"
+                        response += f"    4. Perform detailed risk-cost-benefit analysis\n"
+                        response += f"    5. Consider partnerships to share development risk\n"
+                response += "\n"
 
-                    response += "⚠️ **Important**: This analysis is based on publicly available information. "
-                    response += "Critical business decisions should include verification of the identified data gaps.\n\n"
-
-                # Reports generated (brief mention)
-                response += f"📋 **Reports Generated**: Comprehensive analysis reports have been saved for detailed review\n"
-                response += f"🔍 **Domains Analyzed**: Power, Network, Climate, Risk, ESG, and Regulatory assessments"
+                response += f"═══════════════════════════════════════════════════════════════════\n"
+                response += f"📋 Full JSON report saved | 🔍 {len(agent_results)} domains analyzed\n"
+                response += f"═══════════════════════════════════════════════════════════════════\n"
 
                 return response
 

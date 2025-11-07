@@ -9,6 +9,7 @@ dependencies = [
     "google-genai>=0.3.0",
     "google-generativeai>=0.8.5",
     "googlemaps>=4.10.0",
+    "json-repair>=0.52.4",
     "pillow>=10.0.0",
     "psycopg2-binary>=2.9.10",
     "pydantic>=2.11.9",
@@ -18,7 +19,7 @@ dependencies = [
     "python-dotenv>=1.1.1",
     "reportlab>=4.4.4",
     "streamlit>=1.50.0",
-    "weasyprint>=66.0",
+    "xhtml2pdf>=0.2.16",
 ]
 
 [tool.pyright]
