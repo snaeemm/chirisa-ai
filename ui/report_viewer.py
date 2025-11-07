@@ -1009,12 +1009,12 @@ def render_report_viewer(report_id: int) -> None:
                             date = source.get("date", "")
                             snippet = source.get("snippet", "")
 
-                            html += f"<p style='margin: 4px 0; padding-left: 10px; border-left: 2px solid #1f77b4;'>"
+                            html += f"<p style='margin: 4px 0; padding-left: 10px; border-left: 2px solid #1f77b4; word-wrap: break-word; overflow-wrap: break-word;'>"
                             html += f"<strong>{clean_markdown(title)}</strong><br>"
                             if date:
                                 html += f"<em>Date: {clean_markdown(date)}</em><br>"
                             if url:
-                                html += f"<span style='font-size: 9px; color: #666;'>{clean_markdown(url)}</span><br>"
+                                html += f"<span style='font-size: 8px; color: #666; word-break: break-all;'>{clean_markdown(url)}</span><br>"
                             if snippet:
                                 html += f"<em style='font-size: 9px;'>{clean_markdown(snippet)}</em>"
                             html += "</p>"
@@ -1082,9 +1082,13 @@ def render_report_viewer(report_id: int) -> None:
                     .subsection {{ margin: 12px 0; page-break-inside: avoid; clear: both; }}
                     .domain-section {{ margin: 15px 0; padding: 10px; background: #f8f9fa; border-left: 4px solid #1f77b4; page-break-inside: avoid; }}
                     .metrics-container {{ margin: 10px 0; page-break-inside: avoid; clear: both; }}
-                    .metrics-table {{ width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 9px; page-break-inside: avoid; position: relative; z-index: 1; }}
-                    .metrics-table th, .metrics-table td {{ border: 1px solid #dee2e6; padding: 5px 8px; text-align: left; vertical-align: top; background: white; }}
+                    .metrics-table {{ width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 9px; page-break-inside: avoid; position: relative; z-index: 1; table-layout: fixed; }}
+                    .metrics-table th, .metrics-table td {{ border: 1px solid #dee2e6; padding: 5px 8px; text-align: left; vertical-align: top; background: white; word-wrap: break-word; overflow-wrap: break-word; }}
                     .metrics-table th {{ background: #f8f9fa; font-weight: bold; }}
+                    .metrics-table th:first-child, .metrics-table td:first-child {{ width: 50%; }}
+                    .metrics-table th:nth-child(2), .metrics-table td:nth-child(2) {{ width: 25%; }}
+                    .metrics-table th:nth-child(3), .metrics-table td:nth-child(3) {{ width: 25%; }}
+                    .metrics-table th:last-child, .metrics-table td:last-child {{ width: 20%; }}
                     .structured-section {{ page-break-inside: avoid; margin: 10px 0; clear: both; }}
                     ul, ol {{ margin: 8px 0; padding-left: 20px; }}
                     li {{ margin: 4px 0; line-height: 1.6; }}
