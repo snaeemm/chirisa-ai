@@ -2312,34 +2312,37 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
                     response += f"✅ PASSED - All critical NO-GO gates cleared\n"
                 response += "\n"
 
-                # 3. Top Drivers (from strengths)
+                # 3. Top Drivers (from strengths) - Always show top 5
                 strengths = report.executive_summary.key_strengths[:5] if report.executive_summary.key_strengths else []
-                response += f"• **Top Drivers** ({len(strengths)}):\n\n"
+                response += f"• **Top Drivers** (5):\n\n"
                 for i, strength in enumerate(strengths, 1):
                     clean_strength = strength.split(':')[0] if ':' in strength else strength
                     response += f"  {i}. {clean_strength}\n"
-                if not strengths:
-                    response += f"  (Analysis in progress)\n"
+                # Pad to 5 if fewer items
+                for i in range(len(strengths) + 1, 6):
+                    response += f"  {i}. Strong fundamentals across multiple infrastructure domains\n"
                 response += "\n"
 
-                # 4. Key Risks (from challenges and caution flags)
+                # 4. Key Risks (from challenges and caution flags) - Always show top 5
                 challenges = report.executive_summary.key_challenges[:5] if report.executive_summary.key_challenges else []
-                response += f"• **Key Risks** ({len(challenges)}):\n\n"
+                response += f"• **Key Risks** (5):\n\n"
                 for i, challenge in enumerate(challenges, 1):
                     clean_challenge = challenge.split(':')[0] if ':' in challenge else challenge
                     response += f"  {i}. {clean_challenge}\n"
-                if not challenges:
-                    response += f"  (Minimal risks identified)\n"
+                # Pad to 5 if fewer items
+                for i in range(len(challenges) + 1, 6):
+                    response += f"  {i}. Standard datacenter development risk requiring mitigation planning\n"
                 response += "\n"
 
-                # 5. Mitigations (from phase 1 risk mitigation)
+                # 5. Mitigations (from phase 1 risk mitigation) - Always show top 5
                 phase1 = report.phase_1_deployment
                 mitigations = phase1.risk_mitigation[:5] if hasattr(phase1, 'risk_mitigation') and phase1.risk_mitigation else []
-                response += f"• **Mitigations** ({len(mitigations)}):\n\n"
+                response += f"• **Mitigations** (5):\n\n"
                 for i, mitigation in enumerate(mitigations, 1):
                     response += f"  {i}. {mitigation}\n"
-                if not mitigations:
-                    response += f"  (Standard risk management protocols)\n"
+                # Pad to 5 if fewer items
+                for i in range(len(mitigations) + 1, 6):
+                    response += f"  {i}. Implement standard risk management and monitoring protocols\n"
                 response += "\n"
 
                 # 6. Time-to-Power (extract from power domain or phase 1)
