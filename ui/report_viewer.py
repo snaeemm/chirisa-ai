@@ -1066,7 +1066,7 @@ def render_report_viewer(report_id: int) -> None:
                 <title>Datacenter Analysis Report - {clean_markdown(location_name)}</title>
                 <style>
                     @page {{ margin: 0.5in; size: A4; }}
-                    body {{ font-family: Arial, sans-serif; font-size: 11px; line-height: 1.4; color: #333; margin: 0 auto; max-width: 600px; }}
+                    body {{ font-family: Arial, sans-serif; font-size: 10px; line-height: 1.5; color: #333; margin: 0 auto; max-width: 100%; }}
                     .cover-page {{ text-align: center; padding: 30px 20px; background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 10px; margin-bottom: 25px; page-break-after: always; }}
                     .cover-title {{ font-size: 22px; font-weight: bold; color: #1f77b4; margin-bottom: 8px; }}
                     .cover-subtitle {{ font-size: 14px; color: #666; margin-bottom: 20px; }}
@@ -1074,20 +1074,21 @@ def render_report_viewer(report_id: int) -> None:
                     .cover-metric {{ background: white; border: 1px solid #dee2e6; border-radius: 6px; padding: 12px; text-align: center; }}
                     .cover-metric-label {{ font-size: 9px; color: #666; text-transform: uppercase; margin-bottom: 3px; }}
                     .cover-metric-value {{ font-size: 16px; font-weight: bold; color: #1f77b4; }}
-                    h1 {{ font-size: 16px; margin: 12px 0 8px 0; color: #1f77b4; }}
-                    h2 {{ font-size: 14px; margin: 10px 0 6px 0; color: #333; }}
-                    h3 {{ font-size: 12px; margin: 8px 0 5px 0; color: #666; }}
-                    h4 {{ font-size: 11px; margin: 6px 0 3px 0; color: #666; }}
-                    .section {{ margin: 15px 0; page-break-inside: avoid; }}
-                    .subsection {{ margin: 8px 0; break-inside: avoid-column; }}
-                    .metrics-container {{ margin-top: 6px; break-inside: avoid-column; }}
-                    .metrics-table {{ width: 100%; border-collapse: collapse; margin: 6px 0; font-size: 9px; }}
-                    .metrics-table th, .metrics-table td {{ border: 1px solid #dee2e6; padding: 4px 6px; text-align: left; }}
+                    h1 {{ font-size: 16px; margin: 15px 0 10px 0; color: #1f77b4; page-break-after: avoid; }}
+                    h2 {{ font-size: 14px; margin: 12px 0 8px 0; color: #333; page-break-after: avoid; }}
+                    h3 {{ font-size: 12px; margin: 10px 0 6px 0; color: #666; page-break-after: avoid; }}
+                    h4 {{ font-size: 11px; margin: 8px 0 4px 0; color: #666; page-break-after: avoid; }}
+                    .section {{ margin: 20px 0; page-break-inside: avoid; clear: both; }}
+                    .subsection {{ margin: 12px 0; page-break-inside: avoid; clear: both; }}
+                    .domain-section {{ margin: 15px 0; padding: 10px; background: #f8f9fa; border-left: 4px solid #1f77b4; page-break-inside: avoid; }}
+                    .metrics-container {{ margin: 10px 0; page-break-inside: avoid; clear: both; }}
+                    .metrics-table {{ width: 100%; border-collapse: collapse; margin: 10px 0; font-size: 9px; page-break-inside: avoid; position: relative; z-index: 1; }}
+                    .metrics-table th, .metrics-table td {{ border: 1px solid #dee2e6; padding: 5px 8px; text-align: left; vertical-align: top; background: white; }}
                     .metrics-table th {{ background: #f8f9fa; font-weight: bold; }}
-                    .structured-section {{ page-break-inside: avoid; break-inside: avoid-column; }}
-                    ul, ol {{ margin: 6px 0; padding-left: 15px; }}
-                    li {{ margin: 2px 0; }}
-                    p {{ margin: 4px 0; }}
+                    .structured-section {{ page-break-inside: avoid; margin: 10px 0; clear: both; }}
+                    ul, ol {{ margin: 8px 0; padding-left: 20px; }}
+                    li {{ margin: 4px 0; line-height: 1.6; }}
+                    p {{ margin: 6px 0; line-height: 1.6; }}
                 </style>
             </head>
             <body>
