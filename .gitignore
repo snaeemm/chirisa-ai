@@ -9,6 +9,9 @@ wheels/
 # Virtual environments
 .venv
 
+# UV lock file (keep local only, use requirements.txt for deployment)
+uv.lock
+
 # ADK SQLite session database
 shaz_sessions.db
 *.db
