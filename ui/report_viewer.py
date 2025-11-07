@@ -1041,6 +1041,13 @@ def render_report_viewer(report_id: int) -> None:
             domain_analysis = raw_data.get("domain_analysis", {})
             structured_analysis = raw_data.get("structured_analysis", {})
 
+            # Ensure location_name is a string, not a dict or other object
+            location_name_raw = raw_data.get('location', 'Unknown Location')
+            if not isinstance(location_name_raw, str):
+                location_name = str(location_name_raw) if location_name_raw else 'Unknown Location'
+            else:
+                location_name = location_name_raw
+
             # Generate HTML for PDF
             html_content = f"""
             <!DOCTYPE html>
