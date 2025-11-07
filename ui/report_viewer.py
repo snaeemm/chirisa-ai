@@ -1272,23 +1272,31 @@ def render_report_viewer(report_id: int) -> None:
                     for idx, flag in enumerate(high_pdf, 1):
                         html_content += '<div style="background: #f8d7da; padding: 6px; margin: 4px 0; border-left: 2px solid #dc3545;">'
                         html_content += f'<p><strong>{idx}. {clean_markdown(flag.get("category", "Unknown"))} (Penalty: -{flag.get("severity_points", 0):.2f})</strong></p>'
-                        html_content += f'<p style="font-size: 9px;">{clean_markdown(flag.get("description", "N/A"))}</p>'
-                        html_content += f'<p style="font-size: 9px;"><em>Mitigation: {clean_markdown(flag.get("mitigation_plan", "TBD"))}</em></p>'
+                        html_content += f'<p style="font-size: 9px;"><strong>Issue:</strong> {clean_markdown(flag.get("description", "N/A"))}</p>'
+                        html_content += f'<p style="font-size: 9px;"><strong>Mitigation:</strong> {clean_markdown(flag.get("mitigation_plan", "TBD"))}</p>'
                         if flag.get('cost_impact'):
-                            html_content += f'<p style="font-size: 8px;">Cost: {clean_markdown(flag.get("cost_impact"))}</p>'
+                            html_content += f'<p style="font-size: 8px;"><strong>Cost:</strong> {clean_markdown(flag.get("cost_impact"))}</p>'
+                        if flag.get('timeline_impact'):
+                            html_content += f'<p style="font-size: 8px;"><strong>Timeline:</strong> {clean_markdown(flag.get("timeline_impact"))}</p>'
                         html_content += '</div>'
 
                 if medium_pdf:
                     medium_pen = sum(f.get("severity_points", 0) for f in medium_pdf)
                     html_content += f'<h3 style="color: #ffc107;">🟡 MEDIUM SEVERITY ({len(medium_pdf)} flags, -{medium_pen:.2f} penalty)</h3>'
                     for idx, flag in enumerate(medium_pdf, 1):
-                        html_content += f'<p style="font-size: 9px;"><strong>{idx}. {clean_markdown(flag.get("category", "Unknown"))} (-{flag.get("severity_points", 0):.2f}):</strong> {clean_markdown(flag.get("description", "N/A"))}</p>'
+                        html_content += '<div style="background: #fff3cd; padding: 6px; margin: 4px 0; border-left: 2px solid #ffc107;">'
+                        html_content += f'<p style="font-size: 9px;"><strong>{idx}. {clean_markdown(flag.get("category", "Unknown"))} (Penalty: -{flag.get("severity_points", 0):.2f})</strong></p>'
+                        html_content += f'<p style="font-size: 9px;">{clean_markdown(flag.get("description", "N/A"))}</p>'
+                        html_content += f'<p style="font-size: 9px;"><em>Mitigation: {clean_markdown(flag.get("mitigation_plan", "TBD"))}</em></p>'
+                        if flag.get('cost_impact'):
+                            html_content += f'<p style="font-size: 8px;">Cost: {clean_markdown(flag.get("cost_impact"))}</p>'
+                        html_content += '</div>'
 
                 if low_pdf:
                     low_pen = sum(f.get("severity_points", 0) for f in low_pdf)
                     html_content += f'<h3 style="color: #28a745;">🟢 LOW SEVERITY ({len(low_pdf)} flags, -{low_pen:.2f} penalty)</h3>'
                     for idx, flag in enumerate(low_pdf, 1):
-                        html_content += f'<p style="font-size: 8px;">{idx}. {clean_markdown(flag.get("category", "Unknown"))} (-{flag.get("severity_points", 0):.2f})</p>'
+                        html_content += f'<p style="font-size: 8px;"><strong>{idx}. {clean_markdown(flag.get("category", "Unknown"))} (-{flag.get("severity_points", 0):.2f}):</strong> {clean_markdown(flag.get("description", "N/A"))}</p>'
 
                 html_content += '</div>'
 
