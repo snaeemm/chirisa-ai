@@ -1009,17 +1009,23 @@ def render_report_viewer(report_id: int) -> None:
                             date = source.get("date", "")
                             snippet = source.get("snippet", "")
 
-                            html += f"<p style='margin: 4px 0; padding-left: 10px; border-left: 2px solid #1f77b4; word-wrap: break-word; overflow-wrap: break-word;'>"
-                            html += f"<strong>{clean_markdown(title)}</strong><br>"
+                            # Truncate very long URLs for PDF display (VertexAI grounding URLs can be 200+ chars)
+                            display_url = url
+                            if url and len(url) > 80:
+                                # Show first 40 chars + ... + last 20 chars
+                                display_url = url[:40] + "..." + url[-20:]
+
+                            html += f"<p style='margin: 4px 0; padding-left: 10px; border-left: 2px solid #1f77b4; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; max-width: 100%;'>"
+                            html += f"<strong style='word-break: break-word;'>{clean_markdown(title)}</strong><br>"
                             if date:
-                                html += f"<em>Date: {clean_markdown(date)}</em><br>"
-                            if url:
-                                html += f"<span style='font-size: 8px; color: #666; word-break: break-all;'>{clean_markdown(url)}</span><br>"
+                                html += f"<em style='word-break: break-word;'>Date: {clean_markdown(date)}</em><br>"
+                            if display_url:
+                                html += f"<span style='font-size: 7px; color: #666; word-break: break-all; overflow-wrap: anywhere; max-width: 100%; display: block;'>{clean_markdown(display_url)}</span><br>"
                             if snippet:
-                                html += f"<em style='font-size: 9px;'>{clean_markdown(snippet)}</em>"
+                                html += f"<em style='font-size: 9px; word-break: break-word; overflow-wrap: break-word;'>{clean_markdown(snippet)}</em>"
                             html += "</p>"
                         elif isinstance(source, str):
-                            html += f"<p style='margin: 2px 0; padding-left: 10px;'>• {clean_markdown(source)}</p>"
+                            html += f"<p style='margin: 2px 0; padding-left: 10px; word-break: break-word; overflow-wrap: break-word; word-break: break-all; max-width: 100%;'>• {clean_markdown(source)}</p>"
                     html += "</div>"
                 else:
                     # Show info message if no sources available
@@ -1066,7 +1072,7 @@ def render_report_viewer(report_id: int) -> None:
                 <title>Datacenter Analysis Report - {clean_markdown(location_name)}</title>
                 <style>
                     @page {{ margin: 0.5in; size: A4; }}
-                    body {{ font-family: Arial, sans-serif; font-size: 10px; line-height: 1.5; color: #333; margin: 0 auto; max-width: 100%; }}
+                    body {{ font-family: Arial, sans-serif; font-size: 10px; line-height: 1.5; color: #333; margin: 0 auto; max-width: 100%; word-wrap: break-word; overflow-wrap: break-word; overflow-x: hidden; }}
                     .cover-page {{ text-align: center; padding: 30px 20px; background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-radius: 10px; margin-bottom: 25px; page-break-after: always; }}
                     .cover-title {{ font-size: 22px; font-weight: bold; color: #1f77b4; margin-bottom: 8px; }}
                     .cover-subtitle {{ font-size: 14px; color: #666; margin-bottom: 20px; }}
@@ -1090,9 +1096,13 @@ def render_report_viewer(report_id: int) -> None:
                     .metrics-table th:nth-child(3), .metrics-table td:nth-child(3) {{ width: 25%; }}
                     .metrics-table th:last-child, .metrics-table td:last-child {{ width: 20%; }}
                     .structured-section {{ page-break-inside: avoid; margin: 10px 0; clear: both; }}
-                    ul, ol {{ margin: 8px 0; padding-left: 20px; }}
-                    li {{ margin: 4px 0; line-height: 1.6; }}
-                    p {{ margin: 6px 0; line-height: 1.6; }}
+                    ul, ol {{ margin: 8px 0; padding-left: 20px; max-width: 100%; }}
+                    li {{ margin: 4px 0; line-height: 1.6; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; max-width: 100%; }}
+                    p {{ margin: 6px 0; line-height: 1.6; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; max-width: 100%; }}
+                    span {{ word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; }}
+                    strong, em {{ word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; }}
+                    div {{ word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; max-width: 100%; }}
+                    a {{ word-wrap: break-word; overflow-wrap: break-word; word-break: break-all; }}
                 </style>
             </head>
             <body>
