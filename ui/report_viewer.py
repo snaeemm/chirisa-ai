@@ -884,6 +884,8 @@ def render_report_viewer(report_id: int) -> None:
             import io
             from datetime import datetime
             import re
+            import sys
+            from contextlib import redirect_stdout
 
             def clean_markdown(text):
                 """Remove markdown formatting from text"""
@@ -1429,6 +1431,10 @@ def render_report_viewer(report_id: int) -> None:
             </body>
             </html>
             """
+
+            # Sanitize html_content to remove any stray Python dict representations
+            # Pattern matches: {'key': 'value', ...} anywhere in the HTML
+            html_content = re.sub(r'\{[\'"]category[\'"]:.*?\}', '', html_content, flags=re.DOTALL)
 
             # Generate PDF using xhtml2pdf (pure Python, cross-platform)
             pdf_buffer = io.BytesIO()
