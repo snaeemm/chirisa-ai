@@ -1016,13 +1016,13 @@ def render_report_viewer(report_id: int) -> None:
                                 display_url = url[:40] + "..." + url[-20:]
 
                             html += f"<p style='margin: 4px 0; padding-left: 10px; border-left: 2px solid #1f77b4; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; max-width: 100%;'>"
-                            html += f"<strong style='word-break: break-word;'>{clean_markdown(title)}</strong><br>"
+                            html += f"<strong style='word-break: break-word;'>{clean_markdown(title)}</strong>"
                             if date:
-                                html += f"<em style='word-break: break-word;'>Date: {clean_markdown(date)}</em><br>"
+                                html += f"<br><em style='word-break: break-word;'>Date: {clean_markdown(date)}</em>"
                             if display_url:
-                                html += f"<span style='font-size: 7px; color: #666; word-break: break-all; overflow-wrap: anywhere; max-width: 100%; display: block;'>{clean_markdown(display_url)}</span><br>"
+                                html += f"<br><span style='font-size: 7px; color: #666; word-break: break-all; overflow-wrap: anywhere; max-width: 100%; display: block;'>{clean_markdown(display_url)}</span>"
                             if snippet:
-                                html += f"<em style='font-size: 9px; word-break: break-word; overflow-wrap: break-word;'>{clean_markdown(snippet)}</em>"
+                                html += f"<br><em style='font-size: 9px; word-break: break-word; overflow-wrap: break-word;'>{clean_markdown(snippet)}</em>"
                             html += "</p>"
                         elif isinstance(source, str):
                             html += f"<p style='margin: 2px 0; padding-left: 10px; word-break: break-word; overflow-wrap: break-word; word-break: break-all; max-width: 100%;'>• {clean_markdown(source)}</p>"
