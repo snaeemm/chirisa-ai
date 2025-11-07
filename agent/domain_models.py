@@ -1,6 +1,6 @@
 # domain_models.py - Domain-Specific Pydantic Models for Data Center Analysis
 from typing import Dict, List, Optional, Any, Union
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator, ConfigDict
 from datetime import datetime
 # Import investment-grade models
 from .models import NoGoGate, CautionFlag, ProvenanceBadge, DistanceMeasurement
@@ -11,6 +11,8 @@ from .models import NoGoGate, CautionFlag, ProvenanceBadge, DistanceMeasurement
 
 class MetricsData(BaseModel):
     """Base model for storing quantitative metrics with proper typing"""
+    model_config = ConfigDict(extra="forbid")
+
     numerical_values: Dict[str, Union[float, int, str]] = Field(default_factory=dict, description="Numerical metrics like MW, Tbps, USD/MWh")
     percentages: Dict[str, Union[float, int]] = Field(default_factory=dict, description="Percentage values like efficiency, uptime")
     ranges: Dict[str, Union[Dict[str, float], str, Any]] = Field(default_factory=dict, description="Min/max ranges for values (can be dict or string for data gaps)")
@@ -18,6 +20,8 @@ class MetricsData(BaseModel):
 
 class RichSection(BaseModel):
     """Enhanced section model that preserves structured data"""
+    model_config = ConfigDict(extra="forbid")
+
     name: str = Field("", description="Section display name")
     content: str = Field("", description="Detailed textual analysis")
     sub_score: float = Field(1.0, ge=-1.0, le=5.0, description="Section scoring (-1 for not found/failed, 1.0-5.0 for scored)")
@@ -45,6 +49,8 @@ class RichSection(BaseModel):
 
 class PowerInfrastructureOutput(BaseModel):
     """Domain-specific model for Power Infrastructure Analysis - INVESTMENT-GRADE (Chirisa-AI)"""
+    model_config = ConfigDict(extra="forbid")
+
     overall_score: float = Field(..., ge=1.0, le=5.0, description="Overall power infrastructure score")
 
     # Core Power Infrastructure Sections
@@ -77,6 +83,8 @@ class PowerInfrastructureOutput(BaseModel):
 
 class NetworkConnectivityOutput(BaseModel):
     """Domain-specific model for Network Connectivity Analysis - INVESTMENT-GRADE (Chirisa-AI)"""
+    model_config = ConfigDict(extra="forbid")
+
     overall_score: float = Field(..., ge=1.0, le=5.0, description="Overall network connectivity score")
 
     # Core Network Infrastructure Sections (8 subsections - expanded from 7)
@@ -137,6 +145,8 @@ class NetworkConnectivityOutput(BaseModel):
 
 class ClimateAnalysisOutput(BaseModel):
     """Domain-specific model for Climate Suitability Analysis - INVESTMENT-GRADE (Chirisa-AI)"""
+    model_config = ConfigDict(extra="forbid")
+
     overall_score: float = Field(..., ge=1.0, le=5.0, description="Overall climate suitability score")
 
     # Core Climate Analysis Sections
@@ -169,6 +179,8 @@ class ClimateAnalysisOutput(BaseModel):
 
 class SiteCivilInfrastructureOutput(BaseModel):
     """Domain-specific model for Site & Civil Infrastructure Analysis - INVESTMENT-GRADE (Chirisa-AI)"""
+    model_config = ConfigDict(extra="forbid")
+
     overall_score: float = Field(..., ge=1.0, le=5.0, description="Overall site & civil infrastructure score")
 
     # Core Site & Civil Sections (6 sections)
@@ -200,6 +212,8 @@ class SiteCivilInfrastructureOutput(BaseModel):
 
 class MechanicalThermalOutput(BaseModel):
     """Domain-specific model for Mechanical & Thermal Systems Analysis - INVESTMENT-GRADE (Chirisa-AI)"""
+    model_config = ConfigDict(extra="forbid")
+
     overall_score: float = Field(..., ge=1.0, le=5.0, description="Overall mechanical & thermal score")
 
     # Core Mechanical & Thermal Sections (7 sections)
@@ -232,6 +246,8 @@ class MechanicalThermalOutput(BaseModel):
 
 class ESGSustainabilityOutput(BaseModel):
     """Domain-specific model for ESG & Sustainability Analysis - INVESTMENT-GRADE (Chirisa-AI)"""
+    model_config = ConfigDict(extra="forbid")
+
     overall_score: float = Field(..., ge=1.0, le=5.0, description="Overall ESG sustainability score")
 
     # Core ESG Analysis Sections
@@ -265,6 +281,8 @@ class ESGSustainabilityOutput(BaseModel):
 
 class OperationalRiskOutput(BaseModel):
     """Domain-specific model for Operational Risk Analysis - INVESTMENT-GRADE (Chirisa-AI)"""
+    model_config = ConfigDict(extra="forbid")
+
     overall_score: float = Field(..., ge=1.0, le=5.0, description="Overall operational risk score")
 
     # Core Risk Analysis Sections
@@ -295,6 +313,8 @@ class OperationalRiskOutput(BaseModel):
 
 class RegulatoryComplianceOutput(BaseModel):
     """Domain-specific model for Regulatory Compliance Analysis - INVESTMENT-GRADE (Chirisa-AI)"""
+    model_config = ConfigDict(extra="forbid")
+
     overall_score: float = Field(..., ge=1.0, le=5.0, description="Overall regulatory compliance score")
 
     # Core Regulatory Analysis Sections
@@ -329,6 +349,8 @@ class RegulatoryESGOutput(BaseModel):
     Covers 5 subsections: A) Data Sovereignty, B) Government Incentives, C) Operational/Environmental Compliance,
     D) Permitting & Zoning, E) ESG Trajectory (carbon, renewable energy, climate policy).
     """
+    model_config = ConfigDict(extra="forbid")
+
     overall_score: float = Field(..., ge=1.0, le=5.0, description="Overall regulatory & ESG compliance score (merged domain)")
 
     # 5 Core Subsections per Expert Specification
@@ -363,6 +385,8 @@ class MarketCompetitionOutput(BaseModel):
     Per expert spec, covers 4 subsections: A) Competitive Landscape, B) Cloud Ecosystem & Demand,
     C) Peering Opportunities & Network Ecosystem, D) Strategic Positioning.
     """
+    model_config = ConfigDict(extra="forbid")
+
     overall_score: float = Field(..., ge=1.0, le=5.0, description="Overall market & competition score")
 
     # 4 Core Subsections per Expert Specification
@@ -394,6 +418,8 @@ class MarketCompetitionOutput(BaseModel):
 
 class HyperscalerAttractivenessOutput(BaseModel):
     """Domain-specific model for Hyperscaler Attractiveness Analysis - INVESTMENT-GRADE (Chirisa-AI)"""
+    model_config = ConfigDict(extra="forbid")
+
     overall_score: float = Field(..., ge=1.0, le=5.0, description="Overall hyperscaler attractiveness score")
 
     # Core Hyperscaler Attractiveness Sections (7 sections including GTM feasibility)

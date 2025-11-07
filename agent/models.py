@@ -1,6 +1,6 @@
 # models.py - Pydantic Models for Data Center Analysis System
 from typing import Dict, List, Optional, Any, Union, Literal
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, Field, field_validator, ConfigDict
 from datetime import datetime
 
 # ================================================================================================
@@ -9,6 +9,8 @@ from datetime import datetime
 
 class NoGoGate(BaseModel):
     """Hard stop gate that fails the entire site analysis"""
+    model_config = ConfigDict(extra="forbid")
+
     gate_type: str = Field(..., description="Type of NO-GO gate (e.g., 'Power Quality', 'Flood Risk', 'Protected Area')")
     triggered: bool = Field(..., description="Whether this gate is triggered")
     reason: str = Field(..., description="Detailed reason for NO-GO status")
@@ -18,6 +20,8 @@ class NoGoGate(BaseModel):
 
 class CautionFlag(BaseModel):
     """Yellow flag requiring mitigation plan but not blocking deployment"""
+    model_config = ConfigDict(extra="forbid")
+
     category: str = Field(..., description="Category (e.g., 'Seismic', 'Water Stress', 'Grid Timeline')")
     severity: Literal["low", "medium", "high"] = Field(..., description="Severity level")
     description: str = Field(..., description="Detailed description of the caution")
@@ -45,6 +49,8 @@ class CautionFlag(BaseModel):
 
 class ProvenanceBadge(BaseModel):
     """Data source provenance with vintage and confidence tracking"""
+    model_config = ConfigDict(extra="forbid")
+
     source: str = Field(..., description="Source name (e.g., 'ENTSO-E Transparency Platform')")
     api_version: Optional[str] = Field(None, description="API version or dataset version")
     vintage: str = Field(..., description="Data vintage (e.g., '2025-01', 'Q4 2024', '<6 months')")
@@ -72,6 +78,8 @@ class ProvenanceBadge(BaseModel):
 
 class TransactionalVerification(BaseModel):
     """Transactional artifacts that upgrade assumptions to facts"""
+    model_config = ConfigDict(extra="forbid")
+
     verification_type: str = Field(..., description="Type (e.g., 'Utility Letter', 'Carrier Quote', 'PPA Quote', 'Land Registry')")
     provider: str = Field(..., description="Provider name (e.g., utility company, carrier, broker)")
     artifact_description: str = Field(..., description="What was verified")
@@ -82,6 +90,8 @@ class TransactionalVerification(BaseModel):
 
 class DistanceMeasurement(BaseModel):
     """Structured distance measurement with method tracking"""
+    model_config = ConfigDict(extra="forbid")
+
     target: str = Field(..., description="Target (e.g., 'Nearest 220kV substation', 'Primary fiber POP')")
     distance_km: float = Field(..., description="Distance in kilometers")
     distance_mi: Optional[float] = Field(None, description="Distance in miles (auto-calculated)")
@@ -110,6 +120,8 @@ class DistanceMeasurement(BaseModel):
 
 class LocationContext(BaseModel):
     """Structured location data model with investment-grade enhancements"""
+    model_config = ConfigDict(extra="forbid")
+
     lat: float = Field(..., description="Latitude coordinate")
     lng: float = Field(..., description="Longitude coordinate")
     country: str = Field(..., description="Country name")
@@ -120,17 +132,23 @@ class LocationContext(BaseModel):
 
 class AgentInput(BaseModel):
     """Standardized input structure for all domain agents"""
+    model_config = ConfigDict(extra="forbid")
+
     location_context: LocationContext
     additional_params: Dict[str, Any] = {}
 
 class AgentSection(BaseModel):
     """Individual analysis section within an agent response"""
+    model_config = ConfigDict(extra="forbid")
+
     name: str = Field(..., description="Section name (e.g., 'Grid Reliability & Resiliency')")
     content: str = Field(..., description="Section content without markdown formatting")
     sub_score: float = Field(-1.0, description="Sub-score for this section, -1 if not found")
 
 class StructuredAgentOutput(BaseModel):
     """Enhanced agent output with structured sections"""
+    model_config = ConfigDict(extra="forbid")
+
     overall_score: float = Field(-1.0, description="Overall score from 1.0 to 5.0, -1 if failed")
     sections: Dict[str, AgentSection] = Field(default_factory=dict, description="Structured analysis sections")
     assumptions: List[str] = Field(default_factory=list, description="Analysis assumptions")
@@ -140,6 +158,8 @@ class StructuredAgentOutput(BaseModel):
 
 class AgentOutput(BaseModel):
     """Standardized output structure for all domain agents"""
+    model_config = ConfigDict(extra="forbid")
+
     overall_score: float = Field(-1.0, description="Overall score 1.0-5.0, -1 if failed")
     sections: Dict[str, AgentSection] = Field(default_factory=dict, description="Structured analysis sections")
     assumptions: List[str] = Field(default_factory=list, description="Analysis assumptions")
@@ -151,12 +171,16 @@ class AgentOutput(BaseModel):
 
 class DomainAnalysis(BaseModel):
     """Individual domain analysis structure"""
+    model_config = ConfigDict(extra="forbid")
+
     score: float = Field(..., ge=1.0, le=5.0)
     key_findings: List[str] = Field(..., max_items=5)
     summary: str
 
 class OverallSuitability(BaseModel):
     """Overall suitability assessment with investment-grade enhancements"""
+    model_config = ConfigDict(extra="forbid")
+
     composite_score: float = Field(..., ge=-1.0, le=5.0, description="Weighted composite score or 0.0 if NO-GO")
     rating: str = Field(..., pattern="^(Excellent|Good|Moderate|Poor|NO-GO)$", description="Rating classification")
     recommendation: str = Field(..., description="Overall recommendation")
@@ -168,6 +192,8 @@ class OverallSuitability(BaseModel):
 
 class ExecutiveSummary(BaseModel):
     """Executive summary structure"""
+    model_config = ConfigDict(extra="forbid")
+
     location_overview: str
     key_strengths: List[str] = Field(..., max_items=5)
     key_challenges: List[str] = Field(..., max_items=5)
@@ -175,6 +201,8 @@ class ExecutiveSummary(BaseModel):
 
 class Phase1Deployment(BaseModel):
     """Phase 1 deployment details"""
+    model_config = ConfigDict(extra="forbid")
+
     recommended_capacity: str
     timeline: str
     priority_actions: List[str] = Field(..., max_items=5)
@@ -184,12 +212,16 @@ class Phase1Deployment(BaseModel):
 # Insights Agent Models - Cross-Domain Intelligence
 class DomainSummary(BaseModel):
     """Essential data from each domain analysis"""
+    model_config = ConfigDict(extra="forbid")
+
     overall_score: float = Field(..., description="Domain score 1.0-5.0")
     key_insights: List[str] = Field(..., description="Top 2-3 insights from domain")
     executive_summary: str = Field(..., description="Domain executive summary")
 
 class InsightsInput(BaseModel):
     """Input for insights agent containing essential cross-domain data (7 domain agents per Expert Spec)"""
+    model_config = ConfigDict(extra="forbid")
+
     location_context: Union[LocationContext, Dict[str, Any]]
     composite_score: float = Field(..., description="Overall composite score")
     power_analysis: DomainSummary
@@ -203,6 +235,8 @@ class InsightsInput(BaseModel):
 
 class IntelligentExecutiveSummary(BaseModel):
     """Intelligent executive summary with cross-domain insights"""
+    model_config = ConfigDict(extra="forbid")
+
     location_overview: str = Field(..., description="Location context and business rationale")
     key_strengths: List[str] = Field(default_factory=list, description="Primary competitive advantages")
     key_challenges: List[str] = Field(default_factory=list, description="Critical challenges to address")
@@ -211,6 +245,8 @@ class IntelligentExecutiveSummary(BaseModel):
 
 class IntelligentPhase1Plan(BaseModel):
     """Intelligent Phase 1 deployment plan based on cross-domain analysis"""
+    model_config = ConfigDict(extra="forbid")
+
     recommended_capacity: str = Field(..., description="Technical capacity with business justification")
     timeline: str = Field(..., description="Realistic timeline considering domain constraints")
     priority_actions: List[str] = Field(default_factory=list, description="Location-specific priority actions")
@@ -220,6 +256,8 @@ class IntelligentPhase1Plan(BaseModel):
 
 class InsightsOutput(BaseModel):
     """Complete insights agent output"""
+    model_config = ConfigDict(extra="forbid")
+
     executive_summary: IntelligentExecutiveSummary
     phase_1_deployment: IntelligentPhase1Plan
     strategic_recommendation: str = Field(..., description="Overall strategic recommendation")
@@ -229,6 +267,8 @@ class InsightsOutput(BaseModel):
 # Data Gaps and Assumptions Tracking Models
 class DataSource(BaseModel):
     """Information about data sources used in analysis"""
+    model_config = ConfigDict(extra="forbid")
+
     name: str = Field(..., description="Name of the data source")
     type: str = Field(..., description="Type: public, commercial, proprietary, estimated")
     reliability: str = Field(..., description="Reliability level: high, medium, low")
@@ -237,6 +277,8 @@ class DataSource(BaseModel):
 
 class DataGap(BaseModel):
     """Information about missing or insufficient data"""
+    model_config = ConfigDict(extra="forbid")
+
     category: str = Field(..., description="Analysis category affected")
     description: str = Field(..., description="Description of the data gap")
     impact: str = Field(..., description="Impact on analysis: high, medium, low")
@@ -245,6 +287,8 @@ class DataGap(BaseModel):
 
 class ThirdPartyDueDiligence(BaseModel):
     """Third-party services needed for complete analysis"""
+    model_config = ConfigDict(extra="forbid")
+
     service_type: str = Field(..., description="Type of service: legal, environmental, financial, technical")
     provider_type: str = Field(..., description="Type of provider needed")
     description: str = Field(..., description="Description of what is needed")
@@ -254,6 +298,8 @@ class ThirdPartyDueDiligence(BaseModel):
 
 class AssumptionTracking(BaseModel):
     """Enhanced assumption tracking with confidence levels"""
+    model_config = ConfigDict(extra="forbid")
+
     category: str = Field(..., description="Analysis category")
     assumption: str = Field(..., description="The assumption made")
     confidence_level: str = Field(..., description="Confidence level: high, medium, low")
@@ -262,6 +308,8 @@ class AssumptionTracking(BaseModel):
 
 class DataGapAnalysis(BaseModel):
     """Complete data gap and assumptions analysis"""
+    model_config = ConfigDict(extra="forbid")
+
     data_sources_used: List[DataSource] = Field(default_factory=list, description="Data sources used in analysis")
     data_gaps_identified: List[str] = Field(default_factory=list, description="Identified data gaps")
     third_party_requirements: List[str] = Field(default_factory=list, description="Third-party due diligence needed")
@@ -271,6 +319,8 @@ class DataGapAnalysis(BaseModel):
 
 class WeightedDomainScore(BaseModel):
     """Domain score with weight and contribution to composite"""
+    model_config = ConfigDict(extra="forbid")
+
     domain_name: str = Field(..., description="Domain name")
     raw_score: float = Field(..., ge=1.0, le=5.0, description="Raw domain score (1.0-5.0)")
     weight: float = Field(..., ge=0.0, le=1.0, description="Weight in composite (0.0-1.0)")
@@ -280,6 +330,8 @@ class WeightedDomainScore(BaseModel):
 
 class ReportSchema(BaseModel):
     """Complete report structure with investment-grade enhancements"""
+    model_config = ConfigDict(extra="forbid")
+
     location: str
     coordinates: Dict[str, float]  # {"lat": float, "lng": float}
     country: str
