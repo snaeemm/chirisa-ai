@@ -4,7 +4,15 @@ import os
 import asyncio
 from dotenv import load_dotenv
 from google.adk.tools import FunctionTool
-import json_repair  # Battle-tested JSON repair for LLM responses
+
+# Try to import json_repair, fall back to basic repair if not available
+try:
+    import json_repair
+    HAS_JSON_REPAIR = True
+except ImportError:
+    HAS_JSON_REPAIR = False
+    print("⚠️ json-repair not installed, using basic JSON repair")
+
 from .models import (
     ReportSchema, LocationContext, AgentOutput, NoGoGate, CautionFlag,
     ProvenanceBadge, WeightedDomainScore
@@ -235,10 +243,17 @@ def repair_json_response(json_text: str) -> str:
     if end_idx >= 0:
         json_text = json_text[:end_idx + 1]
 
-    # Use json-repair library to fix all JSON issues
-    # It handles: escape sequences, missing commas, trailing commas,
-    # malformed strings, Python booleans/None, missing quotes, and more
-    return json_repair.repair_json(json_text)
+    # Use json-repair library if available, otherwise use basic repair
+    if HAS_JSON_REPAIR:
+        # It handles: escape sequences, missing commas, trailing commas,
+        # malformed strings, Python booleans/None, missing quotes, and more
+        return json_repair.repair_json(json_text)
+    else:
+        # Basic fallback repair - fix common issues
+        json_text = json_text.replace("'", '"')  # Single to double quotes
+        json_text = json_text.replace('True', 'true').replace('False', 'false').replace('None', 'null')
+        json_text = json_text.replace(',}', '}').replace(',]', ']')  # Trailing commas
+        return json_text
 
 def extract_grounding_sources(response) -> list:
     """Extract grounding sources (web search results) from Gemini API response"""
