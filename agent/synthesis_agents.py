@@ -985,7 +985,6 @@ class PowerInfrastructureAgentWrapper:
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
                     response_mime_type="application/json",
-                    response_schema=PowerInfrastructureOutput,
                 )
             )
 
@@ -1249,7 +1248,6 @@ class ClimateSuitabilityAgentWrapper:
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
                     response_mime_type="application/json",
-                    response_schema=ClimateAnalysisOutput,
                 )
             )
 
@@ -1593,7 +1591,6 @@ class RegulatoryESGAgentWrapper:
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
                     response_mime_type="application/json",
-                    response_schema=RegulatoryESGOutput,
                 )
             )
 
@@ -1823,7 +1820,6 @@ class SiteCivilAgentWrapper:
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
                     response_mime_type="application/json",
-                    response_schema=SiteCivilInfrastructureOutput,
                 )
             )
 
@@ -1937,7 +1933,6 @@ class MechanicalThermalAgentWrapper:
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
                     response_mime_type="application/json",
-                    response_schema=MechanicalThermalOutput,
                 )
             )
 
