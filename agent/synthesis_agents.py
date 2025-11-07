@@ -984,7 +984,6 @@ class PowerInfrastructureAgentWrapper:
                 config=types.GenerateContentConfig(
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
-                    response_mime_type="application/json",
                 )
             )
 
@@ -1102,7 +1101,6 @@ class NetworkConnectivityAgentWrapper:
                 config=types.GenerateContentConfig(
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
-                    response_mime_type="application/json",
                 )
             )
 
@@ -1247,7 +1245,6 @@ class ClimateSuitabilityAgentWrapper:
                 config=types.GenerateContentConfig(
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
-                    response_mime_type="application/json",
                 )
             )
 
@@ -1590,7 +1587,6 @@ class RegulatoryESGAgentWrapper:
                 config=types.GenerateContentConfig(
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
-                    response_mime_type="application/json",
                 )
             )
 
@@ -1819,7 +1815,6 @@ class SiteCivilAgentWrapper:
                 config=types.GenerateContentConfig(
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
-                    response_mime_type="application/json",
                 )
             )
 
@@ -1932,7 +1927,6 @@ class MechanicalThermalAgentWrapper:
                 config=types.GenerateContentConfig(
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
-                    response_mime_type="application/json",
                 )
             )
 
@@ -2024,7 +2018,6 @@ class MarketCompetitionAgentWrapper:
                 config=types.GenerateContentConfig(
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
-                    response_mime_type="application/json",
                 )
             )
 
