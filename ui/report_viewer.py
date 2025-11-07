@@ -1048,6 +1048,13 @@ def render_report_viewer(report_id: int) -> None:
             else:
                 location_name = location_name_raw
 
+            # Sanitize location name to remove any dict/list repr artifacts
+            import re
+            location_name = re.sub(r'\{[^}]*\}', '', location_name)  # Remove {dict} artifacts
+            location_name = location_name.strip()
+            if not location_name:
+                location_name = 'Unknown Location'
+
             # Generate HTML for PDF
             html_content = f"""
             <!DOCTYPE html>
