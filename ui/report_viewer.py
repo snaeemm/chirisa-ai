@@ -355,6 +355,33 @@ def render_report_viewer(report_id: int) -> None:
     all_caution_flags = raw_data.get("all_caution_flags", [])
 
     if weighted_scores:
+        # Check for NO-GO gates and explain scoring logic
+        has_no_go = any(ws.get("no_go_gates_triggered", 0) > 0 for ws in weighted_scores)
+        total_caution_penalty = sum(f.get("severity_points", 0) for f in all_caution_flags)
+
+        if has_no_go:
+            st.error("🚫 **CRITICAL: NO-GO GATE TRIGGERED**")
+            st.markdown("""
+            **Scoring Override:** One or more critical failure conditions have been detected. When a NO-GO gate is triggered:
+            - All domain contributions are set to **0.0** (regardless of individual scores)
+            - Final composite score becomes **0.0/5.0**
+            - Site is marked as **NOT VIABLE** for datacenter development
+
+            **Critical failures must be resolved before proceeding with investment.**
+            """)
+        elif total_caution_penalty > 0:
+            st.warning(f"⚠️ **Scoring Note:** {len(all_caution_flags)} caution flags identified (-{total_caution_penalty:.2f} point penalty)")
+            st.markdown("""
+            **How scoring works:**
+            1. Each domain contributes: `Raw Score × Weight` to the total
+            2. Caution flags apply penalty deductions based on severity
+            3. Final score = `Weighted Sum - Penalties` (minimum 1.0)
+            """)
+        else:
+            st.success("✅ **Clean Analysis:** No NO-GO gates triggered, no caution flags")
+
+        st.markdown("---")
+
         with st.expander("💎 Weighted Domain Contributions", expanded=True):
             # Create scoring breakdown table
             scoring_data = []
@@ -1132,6 +1159,30 @@ def render_report_viewer(report_id: int) -> None:
 
             if weighted_scores_pdf:
                 html_content += '<div class="section"><h2>📊 Investment-Grade Scoring Breakdown</h2>'
+
+                # Add scoring explanation
+                has_no_go_pdf = any(ws.get("no_go_gates_triggered", 0) > 0 for ws in weighted_scores_pdf)
+                total_caution_penalty_pdf = sum(f.get("severity_points", 0) for f in all_caution_flags_pdf)
+
+                if has_no_go_pdf:
+                    html_content += '<div style="background: #fee; border-left: 4px solid #c00; padding: 12px; margin: 10px 0;">'
+                    html_content += '<h3 style="color: #c00; margin-top: 0;">🚫 CRITICAL: NO-GO GATE TRIGGERED</h3>'
+                    html_content += '<p><strong>Scoring Override:</strong> One or more critical failure conditions have been detected. When a NO-GO gate is triggered:</p>'
+                    html_content += '<ul><li>All domain contributions are set to <strong>0.0</strong> (regardless of individual scores)</li>'
+                    html_content += '<li>Final composite score becomes <strong>0.0/5.0</strong></li>'
+                    html_content += '<li>Site is marked as <strong>NOT VIABLE</strong> for datacenter development</li></ul>'
+                    html_content += '<p><strong>Critical failures must be resolved before proceeding with investment.</strong></p></div>'
+                elif total_caution_penalty_pdf > 0:
+                    html_content += '<div style="background: #ffc; border-left: 4px solid #f90; padding: 12px; margin: 10px 0;">'
+                    html_content += f'<h3 style="color: #f90; margin-top: 0;">⚠️ Scoring Note: {len(all_caution_flags_pdf)} caution flags identified (-{total_caution_penalty_pdf:.2f} point penalty)</h3>'
+                    html_content += '<p><strong>How scoring works:</strong></p><ol>'
+                    html_content += '<li>Each domain contributes: <strong>Raw Score × Weight</strong> to the total</li>'
+                    html_content += '<li>Caution flags apply penalty deductions based on severity</li>'
+                    html_content += '<li>Final score = <strong>Weighted Sum - Penalties</strong> (minimum 1.0)</li></ol></div>'
+                else:
+                    html_content += '<div style="background: #efe; border-left: 4px solid #0a0; padding: 12px; margin: 10px 0;">'
+                    html_content += '<p style="color: #0a0; margin: 0;"><strong>✅ Clean Analysis:</strong> No NO-GO gates triggered, no caution flags</p></div>'
+
                 html_content += '<h3>Weighted Domain Contributions</h3>'
                 html_content += '<table class="metrics-table" style="margin: 10px 0;">'
                 html_content += '<tr><th>Domain</th><th>Raw Score</th><th>Weight</th><th>Contribution</th><th>NO-GO</th><th>Caution</th></tr>'
