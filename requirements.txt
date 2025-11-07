@@ -1,3 +1,4 @@
+# Core dependencies for Chirisa AI - Updated 2025-11-07
 google-adk>=1.15.1
 google-genai>=0.3.0
 google-generativeai>=0.8.5
