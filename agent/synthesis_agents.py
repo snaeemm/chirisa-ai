@@ -2278,9 +2278,9 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
                 rounded_score = round(report.overall_suitability.composite_score, 2)
 
                 # Create response with investment-grade format
-                response = f"═══════════════════════════════════════════════════════════════════\n"
+                response = f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
                 response += f"📊 INVESTMENT-GRADE EXECUTIVE ONE-PAGER\n"
-                response += f"═══════════════════════════════════════════════════════════════════\n\n"
+                response += f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n\n"
                 response += f"🏢 **Site**: {report.location}, {report.country}\n"
                 response += f"📅 **Analysis Date**: {report.analysis_date}\n\n"
 
@@ -2404,9 +2404,9 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
                         response += f"    5. Consider partnerships to share development risk\n"
                 response += "\n"
 
-                response += f"═══════════════════════════════════════════════════════════════════\n"
+                response += f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
                 response += f"📋 Full JSON report saved | 🔍 {len(agent_results)} domains analyzed\n"
-                response += f"═══════════════════════════════════════════════════════════════════\n"
+                response += f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
 
                 return response
 
