@@ -5,22 +5,6 @@ from datetime import datetime
 # Import investment-grade models
 from .models import NoGoGate, CautionFlag, ProvenanceBadge, DistanceMeasurement
 
-# Helper function to remove additionalProperties from Pydantic schema for Gemini API compatibility
-def remove_additional_properties(schema: Dict[str, Any]) -> Dict[str, Any]:
-    """Recursively remove additionalProperties from JSON schema for Gemini API"""
-    if isinstance(schema, dict):
-        # Remove additionalProperties key
-        schema.pop('additionalProperties', None)
-        # Recursively process nested schemas
-        for key, value in schema.items():
-            if isinstance(value, dict):
-                remove_additional_properties(value)
-            elif isinstance(value, list):
-                for item in value:
-                    if isinstance(item, dict):
-                        remove_additional_properties(item)
-    return schema
-
 # ================================================================================================
 # BASE MODELS FOR SHARED STRUCTURES
 # ================================================================================================
