@@ -15,8 +15,9 @@ from reportlab.lib.colors import HexColor
 from .models import ReportSchema, LocationContext
 from .domain_models import (
     PowerInfrastructureOutput, NetworkConnectivityOutput, ClimateAnalysisOutput,
-    ESGSustainabilityOutput, OperationalRiskOutput, RegulatoryComplianceOutput,
-    HyperscalerAttractivenessOutput, RichSection, extract_metrics_for_tables
+    SiteCivilInfrastructureOutput, MechanicalThermalOutput,
+    RegulatoryESGOutput, MarketCompetitionOutput,
+    RichSection, extract_metrics_for_tables
 )
 
 # ================================================================================================
@@ -163,7 +164,7 @@ REPORTS_DIR = Path(os.getenv('REPORTS_OUTPUT_DIR', 'agent/Reports')).resolve()
 # ================================================================================================
 
 def generate_dynamic_phase1_plan(location_context: LocationContext, power_result: PowerInfrastructureOutput, network_result: NetworkConnectivityOutput, climate_result: ClimateAnalysisOutput,
-                                risk_result: OperationalRiskOutput, esg_result: ESGSustainabilityOutput, regulatory_result: RegulatoryComplianceOutput, composite_score: float):
+                                regulatory_esg_result: RegulatoryESGOutput, site_civil_result=None, mechanical_thermal_result=None, market_competition_result=None, composite_score: float = 3.0):
     """Simple fallback Phase 1 plan - will be replaced by insights_agent.py"""
     from .models import Phase1Deployment
 
@@ -440,7 +441,8 @@ def render_rich_section(rich_section: RichSection, story: List, styles: Dict, se
 
 def render_domain_specific_analysis(domain_output: Union[
     PowerInfrastructureOutput, NetworkConnectivityOutput, ClimateAnalysisOutput,
-    ESGSustainabilityOutput, OperationalRiskOutput, RegulatoryComplianceOutput, HyperscalerAttractivenessOutput
+    SiteCivilInfrastructureOutput, MechanicalThermalOutput,
+    RegulatoryESGOutput, MarketCompetitionOutput
 ], story: List, styles: Dict, domain_name: str):
     """Render domain-specific analysis with rich structured data"""
 
@@ -661,10 +663,10 @@ def generate_pdf_report(report: ReportSchema, location_name: str) -> dict:
             'power_infrastructure': 'Power Infrastructure',
             'network_connectivity': 'Network Connectivity',
             'climate_environmental': 'Climate Suitability',
-            'operational_risk': 'Operational Risk',
-            'esg_sustainability': 'ESG & Sustainability',
-            'regulatory_compliance': 'Regulatory Compliance',
-            'hyperscaler_attractiveness': 'Hyperscaler\nAttractiveness'
+            'site_civil': 'Site & Civil',
+            'mechanical_thermal': 'Mechanical & Thermal',
+            'regulatory_esg': 'Regulatory & ESG',
+            'market_competition': 'Market & Competition'
         }
 
         for key, display_name in domain_mapping.items():
@@ -748,10 +750,10 @@ def generate_pdf_report(report: ReportSchema, location_name: str) -> dict:
                     'power_infrastructure': ['grid_reliability', 'power_capacity', 'generation_mix', 'connection_process', 'electricity_costs', 'cost_model', 'industrial_heritage'],
                     'network_connectivity': ['fiber_infrastructure', 'subsea_cables', 'international_connectivity', 'domestic_peering', 'latency_performance', 'bandwidth_costs', 'future_proofing'],
                     'climate_environmental': ['temperature_humidity', 'cooling_strategy', 'free_cooling', 'seismic_geological', 'hydrological_flood', 'wind_storm', 'climate_extremes'],
-                    'operational_risk': ['geopolitical_stability', 'physical_security', 'emergency_response', 'infrastructure_resilience', 'economic_social_stability'],
-                    'esg_sustainability': ['renewable_energy', 'carbon_climate_policy', 'environmental_regulations', 'social_community_impact', 'corporate_governance'],
-                    'regulatory_compliance': ['data_sovereignty', 'government_incentives', 'operational_compliance', 'permitting_zoning'],
-                    'hyperscaler_attractiveness': ['competitive_landscape', 'cloud_ecosystem', 'peering_opportunities', 'proximity_to_demand', 'labor_market', 'infrastructure_scalability', 'strategic_relevance']
+                    'site_civil': ['land_availability', 'topography', 'geotechnical', 'water_resources', 'transportation_access', 'utilities_hookup'],
+                    'mechanical_thermal': ['cooling_systems', 'hvac_design', 'backup_power', 'fire_suppression', 'cabling_distribution', 'equipment_specifications', 'energy_efficiency'],
+                    'regulatory_esg': ['data_sovereignty', 'government_incentives', 'operational_compliance', 'permitting_zoning', 'esg_trajectory'],
+                    'market_competition': ['competitive_landscape', 'cloud_ecosystem', 'peering_opportunities', 'proximity_to_demand', 'labor_market', 'infrastructure_scalability', 'strategic_relevance']
                 }
 
                 expected_sections = domain_rich_sections.get(key, [])
@@ -920,10 +922,10 @@ def generate_pdf_report(report: ReportSchema, location_name: str) -> dict:
             'power_infrastructure': 'Power Infrastructure',
             'network_connectivity': 'Network Connectivity',
             'climate_environmental': 'Climate Suitability',
-            'operational_risk': 'Operational Risk',
-            'esg_sustainability': 'ESG & Sustainability',
-            'regulatory_compliance': 'Regulatory Compliance',
-            'hyperscaler_attractiveness': 'Hyperscaler Attractiveness'
+            'site_civil': 'Site & Civil',
+            'mechanical_thermal': 'Mechanical & Thermal',
+            'regulatory_esg': 'Regulatory & ESG',
+            'market_competition': 'Market & Competition'
         }
 
         for domain_key, domain_name in domain_mapping.items():

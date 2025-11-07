@@ -6,7 +6,8 @@ from .models import (
 )
 from .domain_models import (
     PowerInfrastructureOutput, NetworkConnectivityOutput, ClimateAnalysisOutput,
-    OperationalRiskOutput, ESGSustainabilityOutput, RegulatoryComplianceOutput
+    SiteCivilInfrastructureOutput, MechanicalThermalOutput,
+    RegulatoryESGOutput, MarketCompetitionOutput
 )
 from typing import Any
 
@@ -136,8 +137,9 @@ You MUST return ONLY a valid JSON object. No markdown, no explanations, no addit
 # Helper function to prepare insights input from domain results
 def prepare_insights_input(location_context: LocationContext, composite_score: float,
                           power_result: PowerInfrastructureOutput, network_result: NetworkConnectivityOutput, climate_result: ClimateAnalysisOutput,
-                          risk_result: OperationalRiskOutput, esg_result: ESGSustainabilityOutput, regulatory_result: RegulatoryComplianceOutput) -> InsightsInput:
-    """Prepare focused input for insights agent from domain results"""
+                          regulatory_esg_result=None,  # MERGED regulatory + ESG domain (14% weight)
+                          site_civil_result=None, mechanical_thermal_result=None, market_competition_result=None) -> InsightsInput:
+    """Prepare focused input for insights agent from domain results (now supports 9 domains)"""
 
     def extract_domain_summary(domain_result: Any) -> DomainSummary:
         """Extract essential data from domain result, preserving rich insights"""
@@ -250,7 +252,9 @@ def prepare_insights_input(location_context: LocationContext, composite_score: f
         power_analysis=extract_domain_summary(power_result),
         network_analysis=extract_domain_summary(network_result),
         climate_analysis=extract_domain_summary(climate_result),
-        risk_analysis=extract_domain_summary(risk_result),
-        esg_analysis=extract_domain_summary(esg_result),
-        regulatory_analysis=extract_domain_summary(regulatory_result)
+        regulatory_esg_analysis=extract_domain_summary(regulatory_esg_result) if regulatory_esg_result else None,  # MERGED regulatory + ESG domain
+        # Include remaining 3 domain agents per Expert Spec (7 total)
+        site_civil_analysis=extract_domain_summary(site_civil_result) if site_civil_result else None,
+        mechanical_thermal_analysis=extract_domain_summary(mechanical_thermal_result) if mechanical_thermal_result else None,
+        market_competition_analysis=extract_domain_summary(market_competition_result) if market_competition_result else None
     )

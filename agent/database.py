@@ -250,9 +250,6 @@ def save_report_to_database(report_object: ReportSchema) -> Dict[str, Any]:
                 if isinstance(domain_data, dict) and 'sources' in domain_data:
                     sources_count = len(domain_data.get('sources', []))
                     total_sources += sources_count
-                    if sources_count > 0:
-                        print(f"🔍 DB SAVE DEBUG: {domain_name} has {sources_count} sources")
-        print(f"🔍 DB SAVE DEBUG: Total sources being saved: {total_sources}")
 
         raw_data = json.dumps(report_dump)
 

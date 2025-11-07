@@ -70,7 +70,7 @@ State all assumptions made in the analysis clearly and concisely, especially whe
 
 Analyze these specific factors exactly, providing comprehensive real-world details without hallucination. Use actual known infrastructure and regulatory elements.
 
-Grid Reliability & Resiliency:
+## SECTION A: Grid Reliability & Resiliency
 - National and regional grid reliability statistics (e.g., SAIDI/SAIFI metrics in minutes/year, historical uptime records >99.9%).
 - Grid stability, including frequency and voltage regulation capabilities (e.g., ±0.1Hz frequency tolerance, ±5% voltage regulation).
 - Historical outage data for the specific region (last 10 years) and the primary causes (weather, equipment failure, cyber).
@@ -78,7 +78,7 @@ Grid Reliability & Resiliency:
 - Grid modernization initiatives, smart grid deployment, and resilience investments.
 Sub-Score: X.X/5.0 (Quantitative justification based on reliability metrics and global benchmarks)
 
-Power Capacity & Scalability:
+## SECTION B: Power Capacity & Scalability
 - Available power capacity at the substation/transmission level for hyperscale loads (e.g., available MW capacity within 10km radius).
 - Proximity to high-voltage transmission lines (e.g., 220kV, 380kV, 500kV) and existing substations with spare capacity.
 - Grid capacity forecasts and planned reinforcements, including new generation and transmission projects with specific timelines.
@@ -86,7 +86,7 @@ Power Capacity & Scalability:
 - Load growth projections and grid investment plans that support data center development.
 Sub-Score: X.X/5.0 (Quantitative justification based on available capacity and expansion feasibility)
 
-Power Generation Mix & Sustainability:
+## SECTION C: Power Generation Mix & Sustainability
 - Current power generation mix with specific percentages (e.g., 40% nuclear, 30% gas, 20% renewables, 10% coal).
 - Baseload generation stability and reliance on intermittent sources, capacity factors for different technologies.
 - Availability of renewable energy sources and options for Power Purchase Agreements (PPAs), green tariff programs.
@@ -94,7 +94,7 @@ Power Generation Mix & Sustainability:
 - Future generation mix projections and renewable energy targets with specific timelines.
 Sub-Score: X.X/5.0 (Quantitative justification based on generation mix and sustainability metrics)
 
-Connection Process & Regulatory Framework:
+## SECTION D: Connection Process & Regulatory Framework
 - Detailed grid interconnection process and typical timelines for large-scale projects (e.g., 18-36 months for 50MW+ load).
 - Required regulatory approvals, permits, and key stakeholders (e.g., specific names of utility companies, grid operators, regulatory bodies).
 - Standardized grid connection fees and engineering study requirements (e.g., USD per MW connected).
@@ -102,7 +102,7 @@ Connection Process & Regulatory Framework:
 - Fast-track processes available for critical infrastructure or foreign investment projects.
 Sub-Score: X.X/5.0 (Quantitative justification based on timelines, costs, and regulatory efficiency)
 
-Electricity Costs & Market Dynamics:
+## SECTION E: Electricity Costs & Market Dynamics
 - Current industrial electricity rates with detailed breakdown (e.g., energy charges in USD/kWh, demand charges in USD/kW-month).
 - Pricing structure analysis including time-of-use tariffs, seasonal variations, power factor penalties, and other surcharges.
 - Long-term cost projections and factors influencing price volatility (e.g., fuel price correlations, carbon tax impacts, renewable penetration).
@@ -110,7 +110,7 @@ Electricity Costs & Market Dynamics:
 - Hedging options, contract structures, and risk mitigation strategies for long-term price stability.
 Sub-Score: X.X/5.0 (Quantitative justification based on cost competitiveness and market stability)
 
-Cost Model & Financial Projections:
+## SECTION F: Cost Model & Financial Projections
 - 20-year electricity cost projections with detailed assumptions (e.g., base case, high case, low case scenarios).
 - Cost escalation factors including fuel price trends, carbon pricing, infrastructure investment recovery.
 - Regional market forecasts and regulatory changes that may impact pricing (e.g., market deregulation, renewable mandates).
@@ -118,7 +118,7 @@ Cost Model & Financial Projections:
 - Sensitivity analysis for key variables (fuel costs, carbon pricing, load factor variations).
 Sub-Score: X.X/5.0 (Quantitative justification based on cost predictability and competitiveness)
 
-Industrial Heritage & Infrastructure:
+## SECTION G: Industrial Heritage & Infrastructure
 - Proximity to decommissioned industrial facilities with existing electrical infrastructure (e.g., former steel mills, refineries).
 - Assessment of existing electrical infrastructure that can be repurposed (e.g., substations, transmission corridors).
 - Industrial zoning benefits and regulatory advantages for data center development in industrial areas.
