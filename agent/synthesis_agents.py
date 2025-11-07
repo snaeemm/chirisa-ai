@@ -2313,8 +2313,8 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
                 response += "\n"
 
                 # 3. Top Drivers (from strengths)
-                response += f"• **Top Drivers** (5):\n\n"
                 strengths = report.executive_summary.key_strengths[:5] if report.executive_summary.key_strengths else []
+                response += f"• **Top Drivers** ({len(strengths)}):\n\n"
                 for i, strength in enumerate(strengths, 1):
                     clean_strength = strength.split(':')[0] if ':' in strength else strength
                     response += f"  {i}. {clean_strength}\n"
@@ -2323,8 +2323,8 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
                 response += "\n"
 
                 # 4. Key Risks (from challenges and caution flags)
-                response += f"• **Key Risks** (5):\n\n"
                 challenges = report.executive_summary.key_challenges[:5] if report.executive_summary.key_challenges else []
+                response += f"• **Key Risks** ({len(challenges)}):\n\n"
                 for i, challenge in enumerate(challenges, 1):
                     clean_challenge = challenge.split(':')[0] if ':' in challenge else challenge
                     response += f"  {i}. {clean_challenge}\n"
@@ -2333,9 +2333,9 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
                 response += "\n"
 
                 # 5. Mitigations (from phase 1 risk mitigation)
-                response += f"• **Mitigations** (5):\n\n"
                 phase1 = report.phase_1_deployment
                 mitigations = phase1.risk_mitigation[:5] if hasattr(phase1, 'risk_mitigation') and phase1.risk_mitigation else []
+                response += f"• **Mitigations** ({len(mitigations)}):\n\n"
                 for i, mitigation in enumerate(mitigations, 1):
                     response += f"  {i}. {mitigation}\n"
                 if not mitigations:
