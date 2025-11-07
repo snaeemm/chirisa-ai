@@ -13,10 +13,17 @@ from .database import save_report_to_database
 from .domain_models import (
     PowerInfrastructureOutput, NetworkConnectivityOutput, ClimateAnalysisOutput,
     SiteCivilInfrastructureOutput, MechanicalThermalOutput,
-    RegulatoryESGOutput, MarketCompetitionOutput
+    RegulatoryESGOutput, MarketCompetitionOutput, remove_additional_properties
 )
 from .utility import save_report_schema
-from typing import Dict, List, Any, Tuple
+from typing import Dict, List, Any, Tuple, Type
+from pydantic import BaseModel
+
+# Helper to create Gemini-compatible schema
+def gemini_schema(model: Type[BaseModel]) -> Dict[str, Any]:
+    """Generate Gemini API compatible schema by removing additionalProperties"""
+    schema = model.model_json_schema()
+    return remove_additional_properties(schema)
 
 # Load environment variables from .env file
 load_dotenv(override=True)
@@ -985,7 +992,7 @@ class PowerInfrastructureAgentWrapper:
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
                     response_mime_type="application/json",
-                    response_schema=PowerInfrastructureOutput,
+                    response_schema=gemini_schema(PowerInfrastructureOutput),
                 )
             )
 
@@ -1249,7 +1256,7 @@ class ClimateSuitabilityAgentWrapper:
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
                     response_mime_type="application/json",
-                    response_schema=ClimateAnalysisOutput,
+                    response_schema=gemini_schema(ClimateAnalysisOutput),
                 )
             )
 
@@ -1593,7 +1600,7 @@ class RegulatoryESGAgentWrapper:
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
                     response_mime_type="application/json",
-                    response_schema=RegulatoryESGOutput,
+                    response_schema=gemini_schema(RegulatoryESGOutput),
                 )
             )
 
@@ -1823,7 +1830,7 @@ class SiteCivilAgentWrapper:
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
                     response_mime_type="application/json",
-                    response_schema=SiteCivilInfrastructureOutput,
+                    response_schema=gemini_schema(SiteCivilInfrastructureOutput),
                 )
             )
 
@@ -1937,7 +1944,7 @@ class MechanicalThermalAgentWrapper:
                     tools=[grounding_tool],
                     response_modalities=["TEXT"],
                     response_mime_type="application/json",
-                    response_schema=MechanicalThermalOutput,
+                    response_schema=gemini_schema(MechanicalThermalOutput),
                 )
             )
 
