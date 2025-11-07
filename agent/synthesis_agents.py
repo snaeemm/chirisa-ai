@@ -2315,33 +2315,33 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
                 response += "\n"
 
                 # 3. Top Drivers (from strengths)
-                response += f"• **Top Drivers** (5):\n"
+                response += f"• **Top Drivers** (5):\n\n"
                 strengths = report.executive_summary.key_strengths[:5] if report.executive_summary.key_strengths else []
                 for i, strength in enumerate(strengths, 1):
                     clean_strength = strength.split(':')[0] if ':' in strength else strength
-                    response += f"    {i}. {clean_strength}\n"
+                    response += f"  {i}. {clean_strength}\n"
                 if not strengths:
-                    response += f"    (Analysis in progress)\n"
+                    response += f"  (Analysis in progress)\n"
                 response += "\n"
 
                 # 4. Key Risks (from challenges and caution flags)
-                response += f"• **Key Risks** (5):\n"
+                response += f"• **Key Risks** (5):\n\n"
                 challenges = report.executive_summary.key_challenges[:5] if report.executive_summary.key_challenges else []
                 for i, challenge in enumerate(challenges, 1):
                     clean_challenge = challenge.split(':')[0] if ':' in challenge else challenge
-                    response += f"    {i}. {clean_challenge}\n"
+                    response += f"  {i}. {clean_challenge}\n"
                 if not challenges:
-                    response += f"    (Minimal risks identified)\n"
+                    response += f"  (Minimal risks identified)\n"
                 response += "\n"
 
                 # 5. Mitigations (from phase 1 risk mitigation)
-                response += f"• **Mitigations** (5):\n"
+                response += f"• **Mitigations** (5):\n\n"
                 phase1 = report.phase_1_deployment
                 mitigations = phase1.risk_mitigation[:5] if hasattr(phase1, 'risk_mitigation') and phase1.risk_mitigation else []
                 for i, mitigation in enumerate(mitigations, 1):
-                    response += f"    {i}. {mitigation}\n"
+                    response += f"  {i}. {mitigation}\n"
                 if not mitigations:
-                    response += f"    (Standard risk management protocols)\n"
+                    response += f"  (Standard risk management protocols)\n"
                 response += "\n"
 
                 # 6. Time-to-Power (extract from power domain or phase 1)
@@ -2377,31 +2377,31 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
                 response += f"    {report.overall_suitability.caution_count} caution flags identified requiring mitigation.\n\n"
 
                 # 10. Phase 1 Priorities (actionable next steps)
-                response += f"• **Phase 1 Priorities** (Top 5 Actions):\n"
+                response += f"• **Phase 1 Priorities** (Top 5 Actions):\n\n"
                 phase1_priorities = phase1.priority_recommendations[:5] if hasattr(phase1, 'priority_recommendations') and phase1.priority_recommendations else []
                 if phase1_priorities:
                     for i, priority in enumerate(phase1_priorities, 1):
-                        response += f"    {i}. {priority}\n"
+                        response += f"  {i}. {priority}\n"
                 else:
                     # Generate default priorities based on score and challenges
                     if rounded_score >= 4.0:
-                        response += f"    1. Secure utility interconnection LOI and timeline commitment\n"
-                        response += f"    2. Initiate fiber carrier outreach for diverse route confirmation\n"
-                        response += f"    3. Commission Phase I Environmental Site Assessment\n"
-                        response += f"    4. Engage land/title company for due diligence\n"
-                        response += f"    5. Develop preliminary site plan and permitting strategy\n"
+                        response += f"  1. Secure utility interconnection LOI and timeline commitment\n"
+                        response += f"  2. Initiate fiber carrier outreach for diverse route confirmation\n"
+                        response += f"  3. Commission Phase I Environmental Site Assessment\n"
+                        response += f"  4. Engage land/title company for due diligence\n"
+                        response += f"  5. Develop preliminary site plan and permitting strategy\n"
                     elif rounded_score >= 3.0:
-                        response += f"    1. Address top 3 caution flags with mitigation cost analysis\n"
-                        response += f"    2. Secure utility capacity confirmation and grid study\n"
-                        response += f"    3. Verify fiber route diversity with carrier site visits\n"
-                        response += f"    4. Conduct market feasibility study (CBRE/JLL)\n"
-                        response += f"    5. Assess regulatory timeline and permitting complexity\n"
+                        response += f"  1. Address top 3 caution flags with mitigation cost analysis\n"
+                        response += f"  2. Secure utility capacity confirmation and grid study\n"
+                        response += f"  3. Verify fiber route diversity with carrier site visits\n"
+                        response += f"  4. Conduct market feasibility study (CBRE/JLL)\n"
+                        response += f"  5. Assess regulatory timeline and permitting complexity\n"
                     else:
-                        response += f"    1. Resolve critical NO-GO gates or site vulnerabilities\n"
-                        response += f"    2. Commission third-party infrastructure assessment\n"
-                        response += f"    3. Evaluate alternative site locations in region\n"
-                        response += f"    4. Perform detailed risk-cost-benefit analysis\n"
-                        response += f"    5. Consider partnerships to share development risk\n"
+                        response += f"  1. Resolve critical NO-GO gates or site vulnerabilities\n"
+                        response += f"  2. Commission third-party infrastructure assessment\n"
+                        response += f"  3. Evaluate alternative site locations in region\n"
+                        response += f"  4. Perform detailed risk-cost-benefit analysis\n"
+                        response += f"  5. Consider partnerships to share development risk\n"
                 response += "\n"
 
                 response += f"━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n"
