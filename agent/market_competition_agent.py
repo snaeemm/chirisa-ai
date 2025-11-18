@@ -276,27 +276,44 @@ Return a VALID JSON object with this structure (matching MarketCompetitionOutput
       "units": {"existing_capacity_mw": "MW", "absorption_mw_per_quarter": "MW/qtr", "pricing_usd_per_kw_month": "USD/kW/mo"},
       "ranges": {}
     },
-    "key_points": ["Moderate vacancy at 8.5%", "Healthy absorption of 35 MW/quarter", "Competitive pricing at $145/kW/month"],
+    "key_points": ["Moderate vacancy at 8.5% (verified from market reports)", "Healthy absorption of 35 MW/quarter", "Pricing: $145/kW/month (model inference)"],
     "tables": [],
-    "sub_score": 4.0
+    "sub_score": 4.0,
+    "verification_metadata": {
+      "vacancy_rate": "verified_by_public_source",
+      "absorption_rate": "verified_by_public_source",
+      "pricing": "model_inference"
+    }
   },
   "cloud_ecosystem_demand": {
     "name": "Cloud Ecosystem & Demand Drivers",
     "content": "Analysis of hyperscaler presence (AWS/Azure/GCP regions), enterprise demand anchors, regulated sector requirements...",
     "sub_score": 3.9,
-    "key_points": ["3 AWS availability zones present", "Strong enterprise cloud adoption", "Growing hyperscaler footprint"]
+    "key_points": ["3 AWS availability zones present (verified by AWS website)", "Strong enterprise cloud adoption", "Growing hyperscaler footprint"],
+    "verification_metadata": {
+      "aws_presence": "verified_by_public_source",
+      "enterprise_demand": "model_inference"
+    }
   },
   "peering_network_ecosystem": {
     "name": "Peering & Network Ecosystem",
     "content": "Assessment of IXPs, carrier-neutral hubs, CDN presence, subsea cable proximity...",
     "sub_score": 3.7,
-    "key_points": ["Major IXP within 25km", "Carrier-neutral facilities available", "Strong CDN presence"]
+    "key_points": ["Major IXP within 25km (verified by PeeringDB)", "Carrier-neutral facilities available", "Strong CDN presence"],
+    "verification_metadata": {
+      "ixp_presence": "verified_by_public_source",
+      "cdn_presence": "model_inference"
+    }
   },
   "strategic_positioning": {
     "name": "Strategic Positioning & Advantages",
     "content": "Regional market access, government incentives, time-zone coverage, geopolitical advantages...",
     "sub_score": 4.1,
-    "key_points": ["Strategic regional hub", "Government data center incentives", "Favorable regulatory environment"]
+    "key_points": ["Strategic regional hub", "Government data center incentives (verified by government website)", "Favorable regulatory environment"],
+    "verification_metadata": {
+      "market_tier": "model_inference",
+      "government_incentives": "verified_by_public_source"
+    }
   },
   "assumptions": ["Market data from CBRE Q4 2024 report", "Vacancy rate estimated from public sources"],
   "key_insights": ["Balanced market with moderate vacancy (8.5%)", "Strong hyperscaler presence with 3 AWS availability zones", "Limited anchor tenant prospects require pre-sales focus"],
