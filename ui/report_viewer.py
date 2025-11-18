@@ -199,11 +199,12 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
         if domain_structured and isinstance(domain_structured, dict):
             # Check if all subsections are empty/null
             subsection_keys = [k for k in domain_structured.keys() if k not in ['assumptions', 'overall_score', 'phase_1_deployment', 'phase_1_recommendations', 'sources', 'key_insights', 'executive_summary', 'data_gaps', 'third_party_verification', 'no_go_gates', 'caution_flags', 'provenance_badges', 'distance_measurements']]
-            populated_subsections = [k for k in subsection_keys if isinstance(domain_structured.get(k), dict) and domain_structured.get(k)]
+            # Check if subsections have actual RichSection structure (name, content, metrics, etc.)
+            populated_subsections = [k for k in subsection_keys if isinstance(domain_structured.get(k), dict) and len(domain_structured.get(k, {})) > 0]
 
             if len(subsection_keys) > 0 and len(populated_subsections) == 0:
                 st.warning(f"⚠️ **Detailed subsections incomplete for this domain** - Showing summary and sources. This may indicate incomplete data collection.")
-            else:
+            elif len(populated_subsections) > 0:
                 st.write("**📊 Detailed Analysis Sections:**")
 
             # Iterate through all subsections in this domain
