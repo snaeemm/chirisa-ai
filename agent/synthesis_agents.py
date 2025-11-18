@@ -147,16 +147,91 @@ def calculate_weighted_composite_score(
             caution_flags_count=caution_counts.get(domain, 0)
         ))
 
-    # Step 5: Apply caution flag penalties
-    caution_penalty = sum(
-        getattr(flag, 'severity_points', 0.0)
-        for flag in all_caution_flags
+    # Step 5: Apply caution flag penalties with anti-stacking for regional baseline adjustments
+    # Regional baseline flags (coastal, climate, foundations) share geography-based risks
+    # and should not stack excessively. Independent hazards (seismic, wildfire) stack normally.
+
+    regional_baseline_keywords = [
+        # Climate/Weather (regional norms)
+        'flood', 'coastal', 'temperature', 'humidity', 'wind', 'hurricane', 'storm',
+        'precipitation', 'climate', 'heat', 'cold', 'thermal', 'freezing', 'snow', 'ice',
+        'sea level', 'slr', 'storm surge', 'typhoon', 'cyclone',
+
+        # Infrastructure (regional baseline)
+        'pile', 'foundation', 'soil', 'bearing', 'geotechnical', 'groundwater',
+        'drainage', 'freeboard', 'elevation', 'topography', 'grade', 'grading', 'fill',
+        'water', 'wastewater', 'water consumption', 'wue', 'cooling',
+        'transportation', 'highway', 'rail', 'road access', 'logistics',
+
+        # Energy/Efficiency (regional baseline)
+        'pue', 'power', 'grid', 'utility', 'electrical',
+
+        # Regulatory (regional norms)
+        'permitting', 'permit', 'zoning', 'public hearing', 'cup', 'regulatory',
+        'compliance', 'municipal', 'county', 'local regulation'
+    ]
+
+    # Independent hazard keywords - these should NOT be classified as regional baseline
+    independent_hazard_keywords = [
+        # Site-specific hazards (not geography-based)
+        'seismic', 'earthquake', 'liquefaction', 'wildfire', 'fire',
+        'tsunami', 'volcano', 'subsidence', 'karst', 'sinkhole',
+        'landslide', 'avalanche', 'tornado',
+
+        # Resource scarcity (site-specific, not regional norm)
+        'water stress', 'water scarcity', 'drought', 'aqueduct',
+
+        # Site-specific environmental
+        'contamination', 'endangered species', 'brownfield', 'hazmat', 'wetland',
+        'protected area', 'conservation',
+
+        # Business/market (not geography-based)
+        'ixp', 'bandwidth', 'peering', 'demand', 'lease', 'market',
+        'data sovereignty', 'cloud act', 'lawful access',
+
+        # Design choices (not baseline)
+        'pue optimization', 'design choice'
+    ]
+
+    def is_regional_baseline(flag):
+        category_lower = getattr(flag, 'category', '').lower()
+        # Exclude if it's an independent hazard
+        if any(keyword in category_lower for keyword in independent_hazard_keywords):
+            return False
+        # Include if it's a regional baseline factor
+        return any(keyword in category_lower for keyword in regional_baseline_keywords)
+
+    regional_baseline_flags = [f for f in all_caution_flags if is_regional_baseline(f)]
+    independent_flags = [f for f in all_caution_flags if f not in regional_baseline_flags]
+
+    # Regional baseline: Take MAX penalty (don't stack coastal + wind + foundation for same geography)
+    regional_penalty = max(
+        [getattr(f, 'severity_points', 0.0) for f in regional_baseline_flags],
+        default=0.0
     )
 
-    final_composite = max(1.0, weighted_sum - caution_penalty)
+    # Independent hazards: Sum normally (seismic + wildfire should stack as they're independent risks)
+    independent_penalty = sum(
+        [getattr(f, 'severity_points', 0.0) for f in independent_flags]
+    )
 
-    print(f"📊 Weighted Composite Score: {final_composite:.2f}/5.0 (before penalties: {weighted_sum:.2f}, penalty: -{caution_penalty:.2f})")
-    print(f"⚠️  Caution Flags: {len(all_caution_flags)}")
+    total_caution_penalty = regional_penalty + independent_penalty
+
+    # Apply penalty cap: Cannot drop more than 50% below weighted sum
+    # This prevents composite collapse when category scores are solid (3.5+)
+    capped_penalty = min(total_caution_penalty, weighted_sum * 0.5)
+    final_composite = max(1.0, weighted_sum - capped_penalty)
+
+    print(f"📊 Weighted Composite Score: {final_composite:.2f}/5.0")
+    print(f"   Base Weighted Sum: {weighted_sum:.2f}")
+    print(f"   Regional Baseline Penalty: -{regional_penalty:.2f} (max of {len(regional_baseline_flags)} flags)")
+    print(f"   Independent Hazards Penalty: -{independent_penalty:.2f} (sum of {len(independent_flags)} flags)")
+    print(f"   Total Penalty: -{total_caution_penalty:.2f}")
+    if capped_penalty < total_caution_penalty:
+        print(f"   ⚠️  Penalty Capped: -{capped_penalty:.2f} (50% of base score cap applied)")
+    else:
+        print(f"   Applied Penalty: -{capped_penalty:.2f}")
+    print(f"⚠️  Caution Flags: {len(all_caution_flags)} total ({len(regional_baseline_flags)} regional, {len(independent_flags)} independent)")
 
     return final_composite, weighted_scores, all_no_go_gates, all_caution_flags
 
