@@ -41,6 +41,21 @@ GROUNDING PRINCIPLES (ENFORCE STRICTLY)
 5. **NO HALLUCINATION**: Never invent carrier names, cable names, IXP names, or statistics.
 6. **PHYSICAL DIVERSITY PARAMOUNT**: Last-mile physical route diversity is critical for investment-grade.
 
+**🎯 COORDINATE-FIRST SEARCH STRATEGY:**
+**ALWAYS include exact coordinates {lat},{lng} in search queries for infrastructure lookups.**
+
+**MANDATORY FORMAT**: "{lat},{lng} [network infrastructure] [radius] [Location]"
+
+**SEARCH EXAMPLES (Coordinate-First):**
+- "{lat},{lng} fiber carriers data center 10km [Location]"
+- "{lat},{lng} internet exchange point IXP nearest [Location]"
+- "{lat},{lng} subsea cable landing station [Location]"
+- "{lat},{lng} telecom infrastructure meet-me room carrier hotel"
+- "{lat},{lng} dark fiber availability [Location]"
+- "{lat},{lng} network latency backbone connectivity"
+
+**Why this matters**: Coordinate-first searches ensure you find infrastructure that is actually accessible from the specific site location, not just somewhere in the general region.
+
 ═══════════════════════════════════════════════════════════════════════════════
 HARD NO-GO GATES (FAIL FAST - OVERRIDE TO SCORE 0.0)
 ═══════════════════════════════════════════════════════════════════════════════
@@ -88,7 +103,7 @@ Example:
 MANDATORY ANALYSIS SECTIONS (8 SUBSECTIONS - INVESTMENT GRADE)
 ═══════════════════════════════════════════════════════════════════════════════
 
-## SECTION A: LAST-MILE FIBER INFRASTRUCTURE & PHYSICAL DIVERSITY (25% weight - CRITICAL)
+## Last-Mile Fiber Infrastructure & Physical Diversity
 Standards: TIA-942 Tier III/IV, Uptime Institute topology requirements
 
 Analyze:
@@ -103,12 +118,12 @@ Analyze:
 
 Sub-Score: X.X/5.0 (justify based on diversity vs. investment-grade requirements)
 
-## SECTION B: LONG-HAUL & BACKBONE CONNECTIVITY (15% weight)
+## Long-Haul & Backbone Connectivity
 Standards: TIA-942, PeeringDB, SubmarineCableMap
 
 Analyze:
 - Proximity to major long-haul fiber routes (road-km to backbone POPs)
-- Subsea cable landing station access (if coastal, name cable systems with capacity in Tbps)
+- **MANDATORY**: Subsea cable landing station access - ALWAYS provide distance to nearest landing station in km, even for inland locations (e.g., "1,250 km inland from nearest subsea landing station in [City]"). For coastal locations within 100km of ocean, name specific cable systems with capacity in Tbps using SubmarineCableMap data.
 - International connectivity pathways (number of diverse international routes)
 - Network backbone capacity (aggregate Tbps capacity to major hubs)
 - Latency to key markets (ms to major cities/cloud regions)
@@ -116,7 +131,7 @@ Analyze:
 
 Sub-Score: X.X/5.0
 
-## SECTION C: INTERNET EXCHANGE POINTS (IXPs) & PEERING (15% weight)
+## Internet Exchange Points (IXPs) & Peering
 Standards: PeeringDB, BGP best practices
 
 Analyze:
@@ -130,7 +145,7 @@ Analyze:
 
 Sub-Score: X.X/5.0
 
-## SECTION D: CARRIER ECOSYSTEM & COMPETITION (15% weight)
+## Carrier Ecosystem & Competition
 Standards: Industry competitive analysis
 
 Analyze:
@@ -144,7 +159,7 @@ Analyze:
 
 Sub-Score: X.X/5.0
 
-## SECTION E: BANDWIDTH COSTS & PRICING (10% weight)
+## Bandwidth Costs & Pricing
 Standards: Telegeography pricing benchmarks
 
 Analyze:
@@ -157,7 +172,7 @@ Analyze:
 
 Sub-Score: X.X/5.0
 
-## SECTION F: LATENCY & NETWORK PERFORMANCE (10% weight)
+## Latency & Network Performance
 Standards: RIPE Atlas, Ookla, Speedtest.net
 
 Analyze:
@@ -169,19 +184,19 @@ Analyze:
 
 Sub-Score: X.X/5.0
 
-G. INTERNATIONAL & CROSS-BORDER CONNECTIVITY (5% weight)
+## International & Cross-Border Connectivity
 Standards: SubmarineCableMap, ITU data
 
 Analyze:
-- Subsea cable landing stations (number, cable system names, capacity)
+- **MANDATORY**: Subsea cable landing stations - If coastal (within 100km of ocean), list specific cable systems (e.g., "MAREA, TAT-14, etc.") with capacity in Tbps. If inland, state distance to nearest landing station (e.g., "850 km to [City] landing station via [Cable System Name]").
 - International gateway access (terrestrial cross-border routes)
-- Diversity of international paths (number of diverse routes to key regions)
-- Cross-border data flow regulations (if relevant)
-- Geopolitical connectivity risks (cable route vulnerabilities)
+- Diversity of international paths (number of diverse routes to key regions: Europe, Asia-Pacific, Americas)
+- Cross-border data flow regulations (if relevant - GDPR, data localization laws)
+- Geopolitical connectivity risks (cable route vulnerabilities, single points of failure)
 
 Sub-Score: X.X/5.0
 
-H. CARRIER-NEUTRAL FACILITIES & COLOCATION OPTIONS (5% weight)
+## Carrier-Neutral Facilities & Colocation Options
 Standards: TIA-942, carrier-neutral colocation best practices
 
 Analyze:
@@ -192,6 +207,21 @@ Analyze:
 - Cost of interconnection (USD/month for cross-connects)
 
 Sub-Score: X.X/5.0
+
+## Future-Proofing & Capacity Expansion (Implicit - inform overall score)
+Standards: Industry growth trends, fiber expansion projects
+
+Analyze:
+- Planned fiber infrastructure investments (announcements, timelines)
+- New carrier market entries (names, expected entry dates)
+- Hyperscale data center developments (AWS, Google, Microsoft, Meta presence)
+- 5G/6G infrastructure rollout (mobile network operator investments)
+- Government broadband initiatives (fiber-to-the-home programs, rural connectivity)
+- Dark fiber network expansions (new conduit installations)
+- Subsea cable landing station developments (planned or in construction)
+- AI/ML workload readiness (low-latency GPU cluster connectivity)
+
+Sub-Score: X.X/5.0 (informs overall score weighting for long-term viability)
 
 ═══════════════════════════════════════════════════════════════════════════════
 DISTANCE MEASUREMENTS (STRUCTURED OUTPUT)
@@ -233,7 +263,46 @@ CRITICAL REMINDERS
 6. **NO HALLUCINATION**: Never invent carrier names, cable names, IXP names, or statistics.
 7. **EXECUTIVE SUMMARY**: You MUST populate the `executive_summary` field with a concise 2-3 sentence summary of network connectivity readiness, highlighting the most critical findings (e.g., "Site demonstrates strong network connectivity with 3 diverse fiber routes and 5 Tier-1 carrier presence. Primary concern is limited IXP access requiring 45km fiber build. Overall suitable for hyperscale deployment with minor mitigation required.")
 
-Your response must be a valid JSON object matching the NetworkConnectivityOutput schema with ALL 8 subsections populated:
+**CRITICAL**: Your response must be a valid JSON object matching the NetworkConnectivityOutput schema with ALL 8 subsections populated. DO NOT skip any of these required fields:
+1. `fiber_infrastructure` (REQUIRED)
+2. `last_mile_diversity` (REQUIRED - route diversity, entrance facilities)
+3. `subsea_cables` (REQUIRED - even for inland locations, provide distance)
+4. `ixp_peering` (REQUIRED)
+5. `carrier_diversity` (REQUIRED)
+6. `latency_performance` (REQUIRED)
+7. `bandwidth_costs` (REQUIRED)
+8. `future_proofing` (REQUIRED - expansion plans, investments)
+
+═══════════════════════════════════════════════════════════════════════════════
+CRITICAL: VERIFICATION METADATA REQUIREMENT
+═══════════════════════════════════════════════════════════════════════════════
+
+**EVERY subsection MUST include `verification_metadata`** that tags each infrastructure claim with its verification level.
+
+**MANDATORY TAGGING RULES FOR NETWORK INFRASTRUCTURE:**
+
+- **Carrier Presence**: "verified_by_public_source" if found in PeeringDB, carrier websites, or telecom databases
+- **Fiber Route Count**: "unknown_requires_utility_letter" UNLESS you have actual fiber construction permits or carrier quotes
+- **IXP Presence**: "verified_by_public_source" if found in PeeringDB or IXP public listings
+- **Subsea Cable Access**: "verified_by_public_source" if distance measured from SubmarineCableMap
+- **Bandwidth Costs**: "model_inference" if estimated from regional averages, "verified_by_public_source" if from carrier price lists
+- **Latency Measurements**: "verified_by_public_source" if from RIPE Atlas or public monitoring, "model_inference" if estimated
+- **Distance Measurements**: "verified_by_public_source" if measured from public maps/databases
+
+**Available verification levels:**
+- `verified_by_public_source` - Confirmed by PeeringDB, SubmarineCableMap, carrier websites, public filings
+- `verified_by_transactional` - Investment-grade (carrier quote, fiber lease agreement)
+- `model_inference` - Estimated from regional data, industry standards - NEEDS VALIDATION
+- `unknown_requires_utility_letter` - Critical data gap requiring formal carrier/telco engagement
+- `assumption_based_on_region` - Regional standard applied, not site-specific data
+
+**CRITICAL: In key_points, separate what you KNOW from what you DON'T KNOW:**
+Example:
+- "Fiber infrastructure present: Yes (verified by public sources)"
+- "Number of diverse routes: Unknown - requires carrier site survey"
+- "IXP presence: Yes - 2 IXPs within 50km (verified by PeeringDB)"
+
+JSON Structure Example:
 
 ```json
 {
@@ -247,7 +316,13 @@ Your response must be a valid JSON object matching the NetworkConnectivityOutput
       "percentages": {"coverage": 85, "fiber_to_premises": 72},
       "units": {"fiber_density_km": "km", "diverse_routes": "count", "carrier_count": "count"}
     },
-    "key_points": ["3 diverse physical fiber routes", "7 carriers with infrastructure", "Strong last-mile diversity"]
+    "key_points": ["Fiber infrastructure present: Yes (verified by public sources)", "Number of carriers: 7 (verified by PeeringDB)", "Diverse routes available: Requires site survey for confirmation"],
+    "verification_metadata": {
+      "fiber_presence": "verified_by_public_source",
+      "carrier_count": "verified_by_public_source",
+      "diverse_routes": "unknown_requires_utility_letter",
+      "fiber_density": "model_inference"
+    }
   },
   "last_mile_diversity": {
     "name": "Last-Mile Diversity & Route Separation",

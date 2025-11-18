@@ -227,14 +227,20 @@ and go-to-market feasibility for 50-100 MW hyperscale data center deployment.
 - **Confidence**: high (broker reports <6mo), medium (industry reports <12mo), low (estimated)
 - **Coverage**: (e.g., "Metro-level", "Regional", "National")
 
-**Web Search Strategy**:
-Use search tool to find:
-1. "[Location] data center market vacancy rate absorption CBRE JLL"
-2. "[Location] hyperscaler AWS Azure GCP availability zones"
-3. "[Location] cloud adoption rate enterprise"
-4. "[Location] Fortune 500 headquarters"
-5. "[Location] IXP internet exchange point PeeringDB"
-6. "[Location] data center labor market wages"
+**🎯 COORDINATE-FIRST WEB SEARCH STRATEGY**:
+**Include coordinates {lat},{lng} for market radius and competitive landscape assessment.**
+
+**MANDATORY FORMAT**: "{lat},{lng} [market aspect] [radius] [Location]"
+
+**Search Examples (Coordinate-First)**:
+1. "{lat},{lng} data center market 50km vacancy CBRE JLL [Location]"
+2. "{lat},{lng} AWS Azure GCP availability zones cloud regions"
+3. "{lat},{lng} Fortune 500 headquarters enterprise demand 100km"
+4. "{lat},{lng} IXP internet exchange PeeringDB nearest"
+5. "{lat},{lng} data center operators existing facilities 50km"
+6. "{lat},{lng} data center labor wages salaries [Location]"
+
+**Why this matters**: Market dynamics are regional - existing data center supply, enterprise demand, and competitive landscape must be assessed within specific radiuses from the site.
 
 **Data Gaps Requiring Third-Party Verification**:
 - Market: CBRE or JLL market study (USD $15-50K)
@@ -242,6 +248,19 @@ Use search tool to find:
 - Labor: Workforce availability study and salary benchmarking
 
 ---
+
+## VERIFICATION METADATA REQUIREMENT
+
+**EVERY subsection MUST include `verification_metadata`**:
+
+**MANDATORY TAGGING RULES:**
+- **Competitor Presence**: "verified_by_public_source" if from data center databases/public announcements
+- **Market Pricing**: "model_inference" unless you have actual rate cards/quotes
+- **Demand Metrics**: "verified_by_public_source" if from market research firms
+- **Cloud Provider Presence**: "verified_by_public_source" if from official cloud region listings
+- **Enterprise Density**: "verified_by_public_source" if from Fortune 500/economic data
+
+**Available levels:** verified_by_public_source, verified_by_transactional, model_inference, unknown_requires_utility_letter, assumption_based_on_region
 
 ## RESPONSE FORMAT
 

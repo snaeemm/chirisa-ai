@@ -245,14 +245,20 @@ thermal resilience, and mechanical infrastructure requirements for 50-100 MW hyp
 - **Confidence**: high (site-specific data <6mo), medium (regional data <2yr), low (modeled/estimated)
 - **Coverage**: (e.g., "Site-specific weather station", "Regional climate data")
 
-**Web Search Strategy**:
-Use search tool to find:
-1. "[Location] climate data temperature humidity annual"
-2. "[Location] free cooling hours data center PUE"
-3. "[Location] data center cooling strategy best practices"
-4. "[Location] wet bulb temperature distribution"
-5. "ASHRAE climate zone [location]"
-6. "[Location] HVAC equipment suppliers lead times"
+**🎯 COORDINATE-FIRST WEB SEARCH STRATEGY**:
+**ALWAYS include exact coordinates {lat},{lng} in search queries for climate/thermal data.**
+
+**MANDATORY FORMAT**: "{lat},{lng} [thermal/climate parameter] [Location]"
+
+**Search Examples (Coordinate-First)**:
+1. "{lat},{lng} climate temperature humidity NOAA [Location]"
+2. "{lat},{lng} free cooling hours PUE data center"
+3. "{lat},{lng} wet bulb temperature distribution annual"
+4. "{lat},{lng} ASHRAE climate zone"
+5. "{lat},{lng} cooling degree days CDD base 18C"
+6. "{lat},{lng} HVAC equipment suppliers [Location]"
+
+**Why this matters**: Temperature and humidity data are highly location-specific - weather station selection based on exact coordinates ensures accurate PUE calculations.
 
 **Data Gaps Requiring Third-Party Verification**:
 - Mechanical: Energy modeling consultant (IES VE, EnergyPlus) for PUE validation
@@ -260,6 +266,19 @@ Use search tool to find:
 - Equipment: Vendor quotes for chillers, cooling towers, AHUs (lead times and costs)
 
 ---
+
+## VERIFICATION METADATA REQUIREMENT
+
+**EVERY subsection MUST include `verification_metadata`**:
+
+**MANDATORY TAGGING RULES:**
+- **PUE Estimates**: "model_inference" - always requires actual design validation
+- **Cooling System Design**: "model_inference" - based on climate data and industry standards
+- **Equipment Specs**: "assumption_based_on_region" if using industry standards
+- **HVAC Costs**: "model_inference" if estimated from regional data
+- **Fire Suppression**: "verified_by_public_source" if from NFPA standards
+
+**Available levels:** verified_by_public_source, verified_by_transactional, model_inference, unknown_requires_utility_letter, assumption_based_on_region
 
 ## RESPONSE FORMAT
 

@@ -263,20 +263,27 @@ Assess data sovereignty laws, government incentives, operational compliance, per
 - **Confidence**: High (legal text <12mo), Medium (official guidance <2yr), Low (estimated)
 - **Coverage**: (e.g., "National", "Regional", "City-level")
 
-**Web Search Strategy**:
-Use search tool to find:
-1. "[Country] data protection law GDPR equivalent"
+**🎯 COORDINATE-FIRST WEB SEARCH STRATEGY**:
+**Include coordinates {lat},{lng} when searching for location-specific regulations (SEZ, zoning, local permitting).**
+**Use country/region names for national-level regulations.**
+
+**MANDATORY FORMAT for local regulations**: "{lat},{lng} [regulatory aspect] [Location]"
+
+**Search Examples (Coordinate-First where applicable)**:
+1. "[Country] data protection law GDPR equivalent 2024"
 2. "[Country] data localization requirements"
-3. "[Country] Special Economic Zone SEZ data center incentives"
+3. "{lat},{lng} Special Economic Zone SEZ incentives [Location]"
 4. "[Country] foreign ownership restrictions critical infrastructure"
-5. "[Location] data center zoning permitting timeline"
-6. "[Country] EIA environmental impact assessment requirements"
-7. "[Country] grid renewable % 2024"
-8. "[Country] carbon intensity gCO2/kWh"
-9. "[Country] PPA market renewable energy"
+5. "{lat},{lng} data center zoning permitting timeline [Location]"
+6. "{lat},{lng} EIA environmental assessment requirements [Location]"
+7. "[Country] grid renewable energy % 2024"
+8. "[Country] carbon intensity gCO2/kWh electricity"
+9. "{lat},{lng} PPA renewable energy market [Location]"
 10. "[Country] carbon pricing 2024"
-11. "[Country] net zero target"
-12. "[Country] ESG reporting requirements"
+11. "[Country] net zero carbon neutrality target"
+12. "[Country] ESG reporting requirements CSRD"
+
+**Why this matters**: SEZ boundaries, zoning regulations, and local permitting vary significantly by exact location. National regulations can use country/region names.
 
 **Data Gaps Requiring Third-Party Verification**:
 - Legal: Local legal counsel for regulatory compliance review
@@ -285,6 +292,19 @@ Use search tool to find:
 - ESG: Grid carbon intensity audit, PPA legal counsel, renewable procurement feasibility study
 
 ---
+
+## VERIFICATION METADATA REQUIREMENT
+
+**EVERY subsection MUST include `verification_metadata`**:
+
+**MANDATORY TAGGING RULES:**
+- **Data Sovereignty Laws**: "verified_by_public_source" if from government websites/legal databases
+- **Tax Incentives**: "verified_by_public_source" if from official government sources
+- **Permitting Timelines**: "model_inference" unless you have actual permit data
+- **ESG Metrics**: "verified_by_public_source" if from official grid/environmental data
+- **Compliance Requirements**: "verified_by_public_source" if from regulatory websites
+
+**Available levels:** verified_by_public_source, verified_by_transactional, model_inference, unknown_requires_utility_letter, assumption_based_on_region
 
 ## RESPONSE FORMAT
 

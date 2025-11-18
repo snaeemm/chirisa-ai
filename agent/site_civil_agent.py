@@ -108,7 +108,8 @@ and civil engineering feasibility for 50-100 MW Phase 1 data center deployment.
 **CAUTION FLAG #2**: Poor Soil Conditions Requiring Mitigation
 - **TRIGGER**: Bearing capacity 50-150 kPa OR high groundwater table (<3m) OR expansive soils (PI >35)
 - **SEVERITY**: medium (0.3-0.6 deduction)
-- **COST IMPACT**: +15-30% structural cost for deep foundations or soil improvement
+- **⚠️  REGIONAL BASELINE NOTE**: Pile foundations are STANDARD PRACTICE in coastal areas (within 50km of ocean), areas with high groundwater tables, and seismic zones. Do NOT apply this caution flag if pile foundations are the regional norm. Only apply if foundation costs exceed regional baseline by >30% OR pile depth >30m OR driven piles infeasible due to vibration restrictions.
+- **COST IMPACT**: +15-30% structural cost for deep foundations or soil improvement (vs inland baseline, NOT vs coastal regional norm)
 - **MITIGATION**: Soil improvement (compaction, grouting), deep piles, dewatering systems
 
 ---
@@ -135,6 +136,78 @@ and civil engineering feasibility for 50-100 MW Phase 1 data center deployment.
 - WRI Aqueduct Water Stress (0-5 scale)
 - Wastewater capacity (m³/day)
 - Distance to water main (km)
+
+**🎯 CRITICAL - WATER STRESS SPATIAL PRECISION REQUIREMENTS**:
+
+When retrieving WRI Aqueduct water stress data, you MUST follow this exact process to ensure point-specific accuracy:
+
+**STEP 1 - PRECISE SEARCH QUERY**:
+- Format: "{exact_lat},{exact_lng} WRI Aqueduct catchment water stress basin"
+- Include additional terms: "hydrological basin" "watershed" "sub-basin ID"
+- Example: "33.126,-80.009 WRI Aqueduct catchment water stress Santee River basin"
+
+**STEP 2 - SPATIAL VALIDATION** (MANDATORY):
+- EXTRACT from search results:
+  * Catchment/basin identifier (e.g., "AS_10245", "Santee River Basin")
+  * Basin name or watershed name
+  * Coordinates of the data point or basin centroid
+  * Resolution/coverage area (e.g., "10km grid cell", "basin-level ~30km")
+- CALCULATE distance between:
+  * Data point coordinates ↔ Target site coordinates
+  * If exact coordinates unavailable, estimate basin size and offset
+- DOCUMENT spatial precision category:
+  * **Site-specific**: <5km from target (HIGH confidence)
+  * **Local**: 5-10km from target (MEDIUM-HIGH confidence)
+  * **Regional proxy**: 10-25km from target (MEDIUM confidence)
+  * **Low-confidence**: >25km from target (LOW confidence - flag as data gap)
+
+**STEP 3 - DATA VINTAGE VERIFICATION**:
+- Extract specific year or date of WRI Aqueduct data (e.g., "2019 baseline", "2024 update")
+- Prefer "baseline" data (current conditions) over future projections unless specified
+- Note data currency: <2 years = high confidence, 2-5 years = medium, >5 years = low
+
+**STEP 4 - CROSS-VALIDATION**:
+- If multiple sources found with different scores, investigate WHY:
+  * Different basins/catchments? (use the most granular available)
+  * Different indicators? (baseline_water_stress vs seasonal_variability)
+  * Different years? (use most recent)
+- If discrepancy >1.0 points on 0-5 scale, document both values and explain
+
+**STEP 5 - PROVENANCE DOCUMENTATION** (mandatory in provenance_badges):
+```json
+{
+  "source": "WRI Aqueduct Water Risk Atlas v4.0 - [Catchment/Basin ID]",
+  "api_version": "v4.0",
+  "vintage": "2019 baseline data",
+  "refresh_frequency": "Annual (WRI updates)",
+  "confidence": "high",  // based on spatial precision rules above
+  "coverage": "[Spatial precision category] - [Resolution details]",
+  "url": "https://www.wri.org/aqueduct",
+  // INCLUDE THESE IN THE SOURCE DETAILS WITHIN THE TEXT:
+  // - Catchment/Basin ID: [ID]
+  // - Data coordinates: [lat, lng] or basin centroid
+  // - Distance from site: [X.X km]
+  // - Resolution: [10km grid / basin-level ~30km / etc.]
+  // - Spatial precision: [Site-specific / Regional proxy / etc.]
+}
+```
+
+**STEP 6 - DATA GAP FLAGGING**:
+Add to `data_gaps` list if ANY of these apply:
+- Spatial offset >10km from target site
+- Data vintage >3 years old
+- Conflicting scores from different sources (>1.0 point difference)
+- Basin-level data used instead of parcel/catchment-specific
+- Example: "Site-specific WRI Aqueduct catchment-level data (within 5km) recommended for investment-grade validation. Current data is basin-level estimate [X km] from site."
+
+**STEP 7 - CONFIDENCE SCORING**:
+Assign `confidence` level in provenance badge based on:
+- **high**: Catchment-specific data <5km from site, vintage <2 years, verified basin ID
+- **medium**: Regional data 5-25km from site, vintage 2-5 years, basin-level resolution
+- **low**: Proxy data >25km from site, vintage >5 years, or no spatial validation possible
+
+**WHY THIS MATTERS**:
+WRI Aqueduct provides **basin-level data** (~10-30km resolution), NOT parcel-specific. Your LLM searches may return regional aggregates (e.g., "Eastern US low-stress average") instead of the actual catchment containing the site. This can cause discrepancies like Berkeley County showing both 1.8 (regional estimate) and 3.5 (actual basin score). ALWAYS validate spatial precision and document it transparently.
 
 **NO-GO GATE CHECK #3**: Critical Water Scarcity
 - **TRIGGER**: WRI Aqueduct score >4.0 (Extremely High stress) AND no alternative water sources (recycled, desalination) AND no governmental exemption
@@ -261,14 +334,24 @@ and civil engineering feasibility for 50-100 MW Phase 1 data center deployment.
 - **Confidence**: high (site-specific data <6mo), medium (official data <2yr), low (modeled/estimated)
 - **Coverage**: (e.g., "10km radius", "Regional assessment")
 
-**Web Search Strategy**:
-Use search tool to find:
-1. "[Location] industrial land availability zoning"
-2. "[Location] geotechnical soil conditions bearing capacity"
-3. "[Location] water supply capacity data center"
-4. "[Location] WRI Aqueduct water stress"
-5. "[Location] data center permitting timeline"
-6. "[Location] airport cargo seaport distance"
+**🎯 COORDINATE-FIRST WEB SEARCH STRATEGY**:
+**ALWAYS include exact coordinates {lat},{lng} in search queries for site-specific infrastructure.**
+
+**MANDATORY FORMAT**: "{lat},{lng} [site/civil feature] [radius] [Location]"
+
+**Search Examples (Coordinate-First)**:
+1. "{lat},{lng} industrial land zoning availability [Location]"
+2. "{lat},{lng} geotechnical soil conditions bearing capacity"
+3. "{lat},{lng} water supply utility capacity data center"
+4. "{lat},{lng} WRI Aqueduct catchment water stress basin watershed" ← **ENHANCED for spatial precision**
+5. "{lat},{lng} permitting timeline data center [Location]"
+6. "{lat},{lng} airport cargo seaport distance logistics"
+7. "{lat},{lng} industrial sites available acreage"
+
+**Why this matters**: Site/civil infrastructure requires precise location data - water mains, soil conditions, and land availability vary significantly within a few kilometers.
+
+**SPECIAL NOTE FOR WATER STRESS QUERIES**:
+The enhanced water stress query in Example #4 includes "catchment", "basin", and "watershed" terms to help retrieve basin-specific data with identifiers. This improves spatial validation and reduces reliance on regional aggregates. See Section C for full water stress spatial precision requirements.
 
 **Data Gaps Requiring Third-Party Verification**:
 - Geotechnical: Phase I/II Environmental Site Assessment (ESA), soil borings (ASTM D1586)
@@ -277,6 +360,24 @@ Use search tool to find:
 - Land: Title search, property survey
 
 ---
+
+## VERIFICATION METADATA REQUIREMENT
+
+**EVERY subsection MUST include `verification_metadata`** that tags each site/civil claim with its verification level.
+
+**MANDATORY TAGGING RULES:**
+- **Land Availability**: "model_inference" unless you have actual land registry/listing data
+- **Soil Bearing Capacity**: "verified_by_public_source" if from USGS/geological survey, "unknown_requires_utility_letter" if needs geotech report
+- **Water Availability**: "verified_by_public_source" if from utility data, "unknown_requires_utility_letter" if needs water utility letter
+- **Topography**: "verified_by_public_source" if from USGS/elevation databases
+- **Transportation Access**: "verified_by_public_source" if measured from public maps
+- **Zoning**: "verified_by_public_source" if from municipal zoning maps
+
+**Available verification levels:**
+- `verified_by_public_source` - From USGS, municipal records, utility websites
+- `verified_by_transactional` - Geotechnical report, title search, water letter
+- `model_inference` - Estimated from regional data
+- `unknown_requires_utility_letter` - Needs formal utility/municipal engagement
 
 ## RESPONSE FORMAT
 
@@ -294,9 +395,14 @@ Return a VALID JSON object with this structure (matching SiteCivilInfrastructure
       "units": {"available_land_hectares": "ha", "land_cost_usd_per_hectare": "USD/ha"},
       "ranges": {}
     },
-    "key_points": ["15 hectares available in industrial zone", "Single parcel reduces risk", "Zoned for critical infrastructure"],
+    "key_points": ["15 hectares available in industrial zone", "Single parcel reduces risk", "Zoning: Industrial (verified by municipal records)"],
     "tables": [],
-    "sub_score": 4.5
+    "sub_score": 4.5,
+    "verification_metadata": {
+      "land_availability": "model_inference",
+      "zoning_status": "verified_by_public_source",
+      "land_cost": "model_inference"
+    }
   },
   "geotechnical_conditions": {
     "name": "Geotechnical Conditions & Foundation Requirements",
@@ -399,12 +505,12 @@ Return a VALID JSON object with this structure (matching SiteCivilInfrastructure
   ],
   "provenance_badges": [
     {
-      "source": "WRI Aqueduct Water Risk Atlas",
+      "source": "WRI Aqueduct Water Risk Atlas v4.0 - Santee River Basin (Catchment AS_10245)",
       "api_version": "v4.0",
-      "vintage": "2024-Q2",
-      "refresh_frequency": "Annual",
-      "confidence": "high",
-      "coverage": "Global 10km resolution",
+      "vintage": "2019 baseline data",
+      "refresh_frequency": "Annual (WRI updates)",
+      "confidence": "medium",
+      "coverage": "Regional proxy - Basin-level data (~25km resolution), 8.3km from site. Spatial precision: Local proxy. Data coordinates: Basin centroid 33.15,-79.95. Recommend site-specific catchment validation for investment-grade confidence.",
       "url": "https://www.wri.org/aqueduct"
     }
   ],
