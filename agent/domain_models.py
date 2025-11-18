@@ -3,7 +3,7 @@ from typing import Dict, List, Optional, Any, Union
 from pydantic import BaseModel, Field, field_validator, model_validator
 from datetime import datetime
 # Import investment-grade models
-from .models import NoGoGate, CautionFlag, ProvenanceBadge, DistanceMeasurement
+from .models import NoGoGate, CautionFlag, ProvenanceBadge, DistanceMeasurement, VerificationLevel
 
 # ================================================================================================
 # BASE MODELS FOR SHARED STRUCTURES
@@ -24,6 +24,10 @@ class RichSection(BaseModel):
     metrics: MetricsData = Field(default_factory=MetricsData, description="Structured quantitative data")
     key_points: List[str] = Field(default_factory=list, description="Key findings for this section")
     tables: List[Dict[str, Any]] = Field(default_factory=list, description="Structured table data")
+    verification_metadata: Dict[str, str] = Field(
+        default_factory=dict,
+        description="Maps statement keys to verification levels (verified_by_public_source, model_inference, unknown_requires_utility_letter, etc.)"
+    )
 
     @field_validator('sub_score')
     @classmethod

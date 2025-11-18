@@ -24,6 +24,17 @@ from .domain_models import (
 # TEXT PROCESSING UTILITIES
 # ================================================================================================
 
+def _get_verification_badge_text(verification_level: str) -> str:
+    """Get text representation of verification level for PDF"""
+    badge_text = {
+        "verified_by_public_source": "✓ Verified by Public Source",
+        "verified_by_transactional": "✓✓ Investment-Grade",
+        "model_inference": "⚠ Model Inference - Needs Validation",
+        "unknown_requires_utility_letter": "⚠ Unknown - Requires Utility Letter",
+        "assumption_based_on_region": "~ Regional Assumption"
+    }
+    return badge_text.get(verification_level, verification_level)
+
 def clean_markdown_text(text: str) -> str:
     """Remove markdown formatting artifacts from text"""
     if not text:
@@ -405,6 +416,15 @@ def render_rich_section(rich_section: RichSection, story: List, styles: Dict, se
                 story.append(Paragraph(f"• {clean_point}", styles['Normal']))
             story.append(Spacer(1, 8))
 
+        # Verification metadata if available
+        if hasattr(rich_section, 'verification_metadata') and rich_section.verification_metadata:
+            story.append(Paragraph("<b>Verification Status:</b>", styles['Normal']))
+            for claim, verification_level in rich_section.verification_metadata.items():
+                badge_text = _get_verification_badge_text(verification_level)
+                claim_display = claim.replace("_", " ").title()
+                story.append(Paragraph(f"• <b>{claim_display}:</b> {badge_text}", styles['Normal']))
+            story.append(Spacer(1, 8))
+
         # Metrics table if available
         metrics_table = create_metrics_table(rich_section, section_name)
         if metrics_table:
@@ -748,7 +768,7 @@ def generate_pdf_report(report: ReportSchema, location_name: str) -> dict:
                 # Define expected RichSection attributes for each domain (matching JSON structure)
                 domain_rich_sections = {
                     'power_infrastructure': ['grid_reliability', 'power_capacity', 'generation_mix', 'connection_process', 'electricity_costs', 'cost_model', 'industrial_heritage'],
-                    'network_connectivity': ['fiber_infrastructure', 'subsea_cables', 'international_connectivity', 'domestic_peering', 'latency_performance', 'bandwidth_costs', 'future_proofing'],
+                    'network_connectivity': ['fiber_infrastructure', 'last_mile_diversity', 'subsea_cables', 'ixp_peering', 'carrier_diversity', 'latency_performance', 'bandwidth_costs', 'future_proofing'],
                     'climate_environmental': ['temperature_humidity', 'cooling_strategy', 'free_cooling', 'seismic_geological', 'hydrological_flood', 'wind_storm', 'climate_extremes'],
                     'site_civil': ['land_availability', 'topography', 'geotechnical', 'water_resources', 'transportation_access', 'utilities_hookup'],
                     'mechanical_thermal': ['cooling_systems', 'hvac_design', 'backup_power', 'fire_suppression', 'cabling_distribution', 'equipment_specifications', 'energy_efficiency'],

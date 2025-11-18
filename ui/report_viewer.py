@@ -57,6 +57,17 @@ def get_score_color(score: float) -> str:
     else:
         return "score-poor"
 
+def _get_verification_badge(verification_level: str) -> str:
+    """Get HTML badge for verification level"""
+    badge_styles = {
+        "verified_by_public_source": '<span style="background-color: #28a745; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">✓ Verified by Public Source</span>',
+        "verified_by_transactional": '<span style="background-color: #007bff; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">✓✓ Investment-Grade</span>',
+        "model_inference": '<span style="background-color: #ffc107; color: black; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">⚠ Model Inference - Needs Validation</span>',
+        "unknown_requires_utility_letter": '<span style="background-color: #dc3545; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">⚠ Unknown - Requires Utility Letter</span>',
+        "assumption_based_on_region": '<span style="background-color: #6c757d; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">~ Regional Assumption</span>'
+    }
+    return badge_styles.get(verification_level, f'<span style="background-color: #6c757d; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">{verification_level}</span>')
+
 @st.cache_data(ttl=300)
 def load_report_details(report_id: int) -> Optional[Dict[str, Any]]:
     """Load detailed report data by ID"""
@@ -207,6 +218,7 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
                     sub_score = section_data.get("sub_score", -1)
                     metrics = section_data.get("metrics", {})
                     key_points = section_data.get("key_points", [])
+                    verification_metadata = section_data.get("verification_metadata", {})
 
                     # Create a nested expander for each subsection
                     with st.expander(f"📋 {section_name}", expanded=False):
@@ -226,6 +238,14 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
                             st.write("**Key Points:**")
                             for point in key_points:
                                 st.write(f"• {point}")
+
+                        # Verification badges (for power capacity section)
+                        if verification_metadata:
+                            st.write("**🔍 Verification Status:**")
+                            for claim, verification_level in verification_metadata.items():
+                                badge = _get_verification_badge(verification_level)
+                                claim_display = claim.replace("_", " ").title()
+                                st.markdown(f"• **{claim_display}**: {badge}", unsafe_allow_html=True)
 
                         # Render metrics tables if available
                         if metrics and any(metrics.get(key, {}) for key in ['numerical_values', 'percentages', 'ranges']):
@@ -253,10 +273,14 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
                             title = source.get("title", "Unknown Source")
                             date = source.get("date", "")
                             snippet = source.get("snippet", "")
+                            distance_km = source.get("distance_from_site_km")
+                            spatial_precision = source.get("spatial_precision", "")
 
                             st.markdown(f"""
                             **{idx}. {title}**
                             {f"📅 {date}  " if date else ""}
+                            {f"📍 **{distance_km} km from site**  " if distance_km is not None else ""}
+                            {f"🎯 {spatial_precision}  " if spatial_precision else ""}
                             {f"🔗 [{url}]({url})  " if url else ""}
                             {f"*{snippet}*" if snippet else ""}
                             """)
@@ -370,12 +394,70 @@ def render_report_viewer(report_id: int) -> None:
             **Critical failures must be resolved before proceeding with investment.**
             """)
         elif total_caution_penalty > 0:
-            st.warning(f"⚠️ **Scoring Note:** {len(all_caution_flags)} caution flags identified (-{total_caution_penalty:.2f} point penalty)")
+            # Calculate regional vs independent breakdown
+            regional_baseline_keywords = [
+                # Climate/Weather (regional norms)
+                'flood', 'coastal', 'temperature', 'humidity', 'wind', 'hurricane', 'storm',
+                'precipitation', 'climate', 'heat', 'cold', 'thermal', 'freezing', 'snow', 'ice',
+                'sea level', 'slr', 'storm surge', 'typhoon', 'cyclone',
+                # Infrastructure (regional baseline)
+                'pile', 'foundation', 'soil', 'bearing', 'geotechnical', 'groundwater',
+                'drainage', 'freeboard', 'elevation', 'topography', 'grade', 'grading', 'fill',
+                'water', 'wastewater', 'water consumption', 'wue', 'cooling',
+                'transportation', 'highway', 'rail', 'road access', 'logistics',
+                # Energy/Efficiency (regional baseline)
+                'pue', 'power', 'grid', 'utility', 'electrical',
+                # Regulatory (regional norms)
+                'permitting', 'permit', 'zoning', 'public hearing', 'cup', 'regulatory',
+                'compliance', 'municipal', 'county', 'local regulation'
+            ]
+
+            independent_hazard_keywords = [
+                # Site-specific hazards
+                'seismic', 'earthquake', 'liquefaction', 'wildfire', 'fire',
+                'tsunami', 'volcano', 'subsidence', 'karst', 'sinkhole',
+                'landslide', 'avalanche', 'tornado',
+                # Resource scarcity
+                'water stress', 'water scarcity', 'drought', 'aqueduct',
+                # Site-specific environmental
+                'contamination', 'endangered species', 'brownfield', 'hazmat', 'wetland',
+                'protected area', 'conservation',
+                # Business/market
+                'ixp', 'bandwidth', 'peering', 'demand', 'lease', 'market',
+                'data sovereignty', 'cloud act', 'lawful access',
+                # Design choices
+                'pue optimization', 'design choice'
+            ]
+
+            def is_regional_baseline_ui(flag):
+                category_lower = flag.get('category', '').lower()
+                if any(keyword in category_lower for keyword in independent_hazard_keywords):
+                    return False
+                return any(keyword in category_lower for keyword in regional_baseline_keywords)
+
+            regional_flags = [f for f in all_caution_flags if is_regional_baseline_ui(f)]
+            independent_flags = [f for f in all_caution_flags if f not in regional_flags]
+
+            regional_penalty = max([f.get('severity_points', 0.0) for f in regional_flags], default=0.0)
+            independent_penalty = sum([f.get('severity_points', 0.0) for f in independent_flags])
+
+            st.warning(f"⚠️ **Scoring Note:** {len(all_caution_flags)} caution flags identified (-{total_caution_penalty:.2f} point total penalty)")
+
+            if regional_flags:
+                st.info(f"""
+                📊 **Penalty Breakdown:**
+                - **Regional Baseline Adjustments:** {len(regional_flags)} flags → **-{regional_penalty:.2f}** points (max penalty, not stacked)
+                - **Independent Hazards:** {len(independent_flags)} flags → **-{independent_penalty:.2f}** points (summed)
+
+                💡 **Why regional flags don't stack:** Regional baseline flags (coastal, climate, foundations) reflect local construction norms and share geography-based risks. We apply the MAX penalty to avoid excessive stacking. Independent hazards (seismic, wildfire) are summed as they represent distinct risks.
+                """)
+
             st.markdown("""
             **How scoring works:**
             1. Each domain contributes: `Raw Score × Weight` to the total
-            2. Caution flags apply penalty deductions based on severity
-            3. Final score = `Weighted Sum - Penalties` (minimum 1.0)
+            2. Regional baseline flags: **MAX penalty applied** (not summed to avoid stacking)
+            3. Independent hazard flags: **Penalties summed** (distinct risks)
+            4. Final score = `Weighted Sum - Total Penalties` (minimum 1.0)
             """)
         else:
             st.success("✅ **Clean Analysis:** No NO-GO gates triggered, no caution flags")
@@ -409,8 +491,38 @@ def render_report_viewer(report_id: int) -> None:
             df = pd.DataFrame(scoring_data)
             st.dataframe(df, width='stretch', hide_index=True)
 
-            # Calculate penalty
-            total_penalty = sum(flag.get("severity_points", 0) for flag in all_caution_flags)
+            # Calculate penalty using regional baseline logic (matching synthesis_agents.py)
+            regional_baseline_keywords_calc = [
+                'flood', 'coastal', 'temperature', 'humidity', 'wind', 'hurricane', 'storm',
+                'precipitation', 'climate', 'heat', 'cold', 'thermal', 'sea level', 'slr',
+                'pile', 'foundation', 'soil', 'bearing', 'geotechnical', 'groundwater',
+                'drainage', 'water', 'wastewater', 'transportation', 'permitting', 'permit',
+                'zoning', 'regulatory', 'pue', 'power', 'grid', 'utility', 'cooling'
+            ]
+
+            independent_hazard_keywords_calc = [
+                'seismic', 'earthquake', 'liquefaction', 'wildfire', 'fire',
+                'water stress', 'water scarcity', 'drought', 'aqueduct',
+                'contamination', 'endangered species', 'brownfield', 'hazmat', 'wetland',
+                'ixp', 'bandwidth', 'peering', 'demand', 'lease', 'market',
+                'data sovereignty', 'cloud act'
+            ]
+
+            def is_regional_calc(flag):
+                cat_lower = flag.get('category', '').lower()
+                if any(kw in cat_lower for kw in independent_hazard_keywords_calc):
+                    return False
+                return any(kw in cat_lower for kw in regional_baseline_keywords_calc)
+
+            regional_flags_calc = [f for f in all_caution_flags if is_regional_calc(f)]
+            independent_flags_calc = [f for f in all_caution_flags if f not in regional_flags_calc]
+
+            regional_penalty = max([f.get('severity_points', 0.0) for f in regional_flags_calc], default=0.0)
+            independent_penalty = sum([f.get('severity_points', 0.0) for f in independent_flags_calc])
+            total_penalty = regional_penalty + independent_penalty
+
+            # Apply 50% cap
+            capped_penalty = min(total_penalty, total_weighted * 0.5)
 
             # Show calculation
             st.markdown("**Composite Score Calculation:**")
@@ -419,12 +531,15 @@ def render_report_viewer(report_id: int) -> None:
             with col1:
                 st.metric("Weighted Subtotal", f"{total_weighted:.2f}/5.0")
             with col2:
-                penalty_color = "🔴" if total_penalty > 1.0 else "🟡" if total_penalty > 0.3 else "🟢"
-                st.metric("Caution Penalties", f"{penalty_color} -{total_penalty:.2f}")
+                penalty_color = "🔴" if capped_penalty > 1.0 else "🟡" if capped_penalty > 0.3 else "🟢"
+                st.metric("Caution Penalties", f"{penalty_color} -{capped_penalty:.2f}")
+                if capped_penalty < total_penalty:
+                    st.caption(f"(Capped from -{total_penalty:.2f})")
             with col3:
-                final_score = max(1.0, total_weighted - total_penalty)
-                st.metric("Final Composite", f"{final_score:.2f}/5.0",
-                         delta=f"{final_score - total_weighted:.2f}")
+                # Use actual composite score from data instead of recalculating
+                # (synthesis agent applies additional logic like NO-GO overrides)
+                st.metric("Final Composite", f"{composite_score:.2f}/5.0",
+                         delta=f"{composite_score - total_weighted:.2f}")
 
     st.divider()
 
@@ -652,21 +767,74 @@ def render_report_viewer(report_id: int) -> None:
     st.header("⚠️ Caution Flags & Risk Mitigation")
 
     if all_caution_flags:
+        # Classify flags as regional baseline vs independent
+        regional_baseline_keywords = [
+            # Climate/Weather (regional norms)
+            'flood', 'coastal', 'temperature', 'humidity', 'wind', 'hurricane', 'storm',
+            'precipitation', 'climate', 'heat', 'cold', 'thermal', 'freezing', 'snow', 'ice',
+            'sea level', 'slr', 'storm surge', 'typhoon', 'cyclone',
+            # Infrastructure (regional baseline)
+            'pile', 'foundation', 'soil', 'bearing', 'geotechnical', 'groundwater',
+            'drainage', 'freeboard', 'elevation', 'topography', 'grade', 'grading', 'fill',
+            'water', 'wastewater', 'water consumption', 'wue', 'cooling',
+            'transportation', 'highway', 'rail', 'road access', 'logistics',
+            # Energy/Efficiency (regional baseline)
+            'pue', 'power', 'grid', 'utility', 'electrical',
+            # Regulatory (regional norms)
+            'permitting', 'permit', 'zoning', 'public hearing', 'cup', 'regulatory',
+            'compliance', 'municipal', 'county', 'local regulation'
+        ]
+
+        independent_hazard_keywords = [
+            # Site-specific hazards
+            'seismic', 'earthquake', 'liquefaction', 'wildfire', 'fire',
+            'tsunami', 'volcano', 'subsidence', 'karst', 'sinkhole',
+            'landslide', 'avalanche', 'tornado',
+            # Resource scarcity
+            'water stress', 'water scarcity', 'drought', 'aqueduct',
+            # Site-specific environmental
+            'contamination', 'endangered species', 'brownfield', 'hazmat', 'wetland',
+            'protected area', 'conservation',
+            # Business/market
+            'ixp', 'bandwidth', 'peering', 'demand', 'lease', 'market',
+            'data sovereignty', 'cloud act', 'lawful access',
+            # Design choices
+            'pue optimization', 'design choice'
+        ]
+
+        def is_regional_baseline(flag):
+            category_lower = flag.get('category', '').lower()
+            if any(keyword in category_lower for keyword in independent_hazard_keywords):
+                return False
+            return any(keyword in category_lower for keyword in regional_baseline_keywords)
+
         # Group by severity
         high_severity = [f for f in all_caution_flags if f.get("severity", "").lower() == "high"]
         medium_severity = [f for f in all_caution_flags if f.get("severity", "").lower() == "medium"]
         low_severity = [f for f in all_caution_flags if f.get("severity", "").lower() == "low"]
 
-        total_penalty = sum(f.get("severity_points", 0) for f in all_caution_flags)
+        # Calculate penalty breakdown
+        regional_flags = [f for f in all_caution_flags if is_regional_baseline(f)]
+        independent_flags = [f for f in all_caution_flags if f not in regional_flags]
+        regional_penalty = max([f.get('severity_points', 0.0) for f in regional_flags], default=0.0)
+        independent_penalty = sum([f.get('severity_points', 0.0) for f in independent_flags])
+        total_penalty_uncapped = regional_penalty + independent_penalty
 
-        st.info(f"📊 **Total Flags:** {len(all_caution_flags)} • **Total Penalty:** -{total_penalty:.2f} points from composite score")
+        st.info(f"📊 **Total Flags:** {len(all_caution_flags)} ({len(regional_flags)} regional baseline, {len(independent_flags)} independent)")
+        st.caption(f"**Penalty Breakdown:** Regional max: -{regional_penalty:.2f} | Independent sum: -{independent_penalty:.2f} | Total: -{total_penalty_uncapped:.2f} (applied with 50% cap)")
+        if regional_flags:
+            st.caption("🌍 Regional baseline flags (max penalty applied): Coastal, climate, and foundation flags reflect local construction norms")
 
         # High Severity Flags
         if high_severity:
             high_penalty = sum(f.get("severity_points", 0) for f in high_severity)
             with st.expander(f"🔴 HIGH SEVERITY ({len(high_severity)} flags, -{high_penalty:.2f} penalty)", expanded=True):
                 for idx, flag in enumerate(high_severity, 1):
-                    st.markdown(f"### {idx}. {flag.get('category', 'Unknown Category')}")
+                    # Show regional baseline indicator
+                    is_regional = is_regional_baseline(flag)
+                    regional_badge = "🌍 **Regional Baseline**" if is_regional else "⚠️ **Independent Hazard**"
+
+                    st.markdown(f"### {idx}. {flag.get('category', 'Unknown Category')} {regional_badge}")
 
                     col1, col2 = st.columns([2, 1])
 
@@ -675,7 +843,8 @@ def render_report_viewer(report_id: int) -> None:
                         st.markdown(f"**Mitigation:** {flag.get('mitigation_plan', 'TBD')}")
 
                     with col2:
-                        st.error(f"**Penalty:** -{flag.get('severity_points', 0):.2f} points")
+                        penalty_label = "Max Penalty" if is_regional else "Penalty"
+                        st.error(f"**{penalty_label}:** -{flag.get('severity_points', 0):.2f} points")
                         if flag.get('cost_impact'):
                             st.markdown(f"**Cost:** {flag.get('cost_impact')}")
                         if flag.get('timeline_impact'):
@@ -689,7 +858,9 @@ def render_report_viewer(report_id: int) -> None:
             medium_penalty = sum(f.get("severity_points", 0) for f in medium_severity)
             with st.expander(f"🟡 MEDIUM SEVERITY ({len(medium_severity)} flags, -{medium_penalty:.2f} penalty)", expanded=False):
                 for idx, flag in enumerate(medium_severity, 1):
-                    st.markdown(f"**{idx}. {flag.get('category', 'Unknown')}** (Penalty: -{flag.get('severity_points', 0):.2f})")
+                    is_regional = is_regional_baseline(flag)
+                    regional_icon = "🌍" if is_regional else "⚠️"
+                    st.markdown(f"{regional_icon} **{idx}. {flag.get('category', 'Unknown')}** (Penalty: -{flag.get('severity_points', 0):.2f})")
                     st.markdown(f"• {flag.get('description', 'N/A')}")
                     st.markdown(f"• Mitigation: {flag.get('mitigation_plan', 'TBD')}")
                     if flag.get('cost_impact'):
@@ -702,7 +873,9 @@ def render_report_viewer(report_id: int) -> None:
             low_penalty = sum(f.get("severity_points", 0) for f in low_severity)
             with st.expander(f"🟢 LOW SEVERITY ({len(low_severity)} flags, -{low_penalty:.2f} penalty)", expanded=False):
                 for idx, flag in enumerate(low_severity, 1):
-                    st.markdown(f"**{idx}. {flag.get('category', 'Unknown')}** (Penalty: -{flag.get('severity_points', 0):.2f})")
+                    is_regional = is_regional_baseline(flag)
+                    regional_icon = "🌍" if is_regional else "⚠️"
+                    st.markdown(f"{regional_icon} **{idx}. {flag.get('category', 'Unknown')}** (Penalty: -{flag.get('severity_points', 0):.2f})")
                     st.caption(f"{flag.get('description', 'N/A')}")
 
     st.divider()
@@ -1017,10 +1190,17 @@ def render_report_viewer(report_id: int) -> None:
 
                             # Only show sources with meaningful content
                             if title and title != "Unknown Source":
+                                distance_km = source.get("distance_from_site_km")
+                                spatial_precision = source.get("spatial_precision", "")
+
                                 html += f"<p style='margin: 2px 0; padding-left: 8px; border-left: 2px solid #1f77b4; word-wrap: break-word; overflow-wrap: break-word; word-break: break-word; max-width: 100%; line-height: 1.3;'>"
                                 html += f"<strong style='word-break: break-word; font-size: 9px;'>{clean_markdown(title)}</strong>"
                                 if date and date.strip():
-                                    html += f"<br><em style='word-break: break-word; font-size: 8px;'>Date: {clean_markdown(date)}</em>"
+                                    html += f"<br><em style='word-break: break-word; font-size: 8px;'>📅 {clean_markdown(date)}</em>"
+                                if distance_km is not None:
+                                    html += f"<br><span style='font-size: 7px; color: #1f77b4;'>📍 {distance_km} km from site</span>"
+                                if spatial_precision and spatial_precision.strip():
+                                    html += f"<br><span style='font-size: 7px; color: #666;'>🎯 {clean_markdown(spatial_precision)}</span>"
                                 if display_url and display_url.strip():
                                     html += f"<br><span style='font-size: 7px; color: #666; word-break: break-all; overflow-wrap: anywhere; max-width: 100%;'>{clean_markdown(display_url)}</span>"
                                 if snippet and snippet.strip():
@@ -1235,12 +1415,13 @@ def render_report_viewer(report_id: int) -> None:
                 html_content += '</table>'
 
                 total_penalty_pdf = sum(f.get("severity_points", 0) for f in all_caution_flags_pdf)
-                final_score_pdf = max(1.0, total_weighted_pdf - total_penalty_pdf)
+                # Use actual composite score from data instead of recalculating
+                # (synthesis agent applies additional logic like NO-GO overrides)
 
                 html_content += '<div style="background: #f8f9fa; padding: 10px; border-radius: 5px; margin: 10px 0;">'
                 html_content += f'<p><strong>Weighted Subtotal:</strong> {total_weighted_pdf:.2f}/5.0</p>'
                 html_content += f'<p><strong>Caution Penalties:</strong> -{total_penalty_pdf:.2f} points</p>'
-                html_content += f'<p><strong>Final Composite Score:</strong> {final_score_pdf:.2f}/5.0</p>'
+                html_content += f'<p><strong>Final Composite Score:</strong> {composite_score:.2f}/5.0</p>'
                 html_content += '</div></div>'
 
             # NO-GO Gates (PDF)
@@ -1276,21 +1457,70 @@ def render_report_viewer(report_id: int) -> None:
 
             # Caution Flags (PDF)
             if all_caution_flags_pdf:
+                # Classify regional baseline vs independent flags for PDF
+                regional_baseline_keywords_pdf = [
+                    # Climate/Weather
+                    'flood', 'coastal', 'temperature', 'humidity', 'wind', 'hurricane', 'storm',
+                    'precipitation', 'climate', 'heat', 'cold', 'thermal', 'freezing', 'snow', 'ice',
+                    'sea level', 'slr', 'storm surge', 'typhoon', 'cyclone',
+                    # Infrastructure
+                    'pile', 'foundation', 'soil', 'bearing', 'geotechnical', 'groundwater',
+                    'drainage', 'freeboard', 'elevation', 'topography', 'grade', 'grading', 'fill',
+                    'water', 'wastewater', 'water consumption', 'wue', 'cooling',
+                    'transportation', 'highway', 'rail', 'road access', 'logistics',
+                    # Energy/Efficiency
+                    'pue', 'power', 'grid', 'utility', 'electrical',
+                    # Regulatory
+                    'permitting', 'permit', 'zoning', 'public hearing', 'cup', 'regulatory',
+                    'compliance', 'municipal', 'county', 'local regulation'
+                ]
+
+                independent_hazard_keywords_pdf = [
+                    # Site-specific hazards
+                    'seismic', 'earthquake', 'liquefaction', 'wildfire', 'fire',
+                    'tsunami', 'volcano', 'subsidence', 'karst', 'sinkhole',
+                    'landslide', 'avalanche', 'tornado',
+                    # Resource scarcity
+                    'water stress', 'water scarcity', 'drought', 'aqueduct',
+                    # Site-specific environmental
+                    'contamination', 'endangered species', 'brownfield', 'hazmat', 'wetland',
+                    'protected area', 'conservation',
+                    # Business/market
+                    'ixp', 'bandwidth', 'peering', 'demand', 'lease', 'market',
+                    'data sovereignty', 'cloud act', 'lawful access',
+                    # Design choices
+                    'pue optimization', 'design choice'
+                ]
+
+                def is_regional_baseline_pdf(flag):
+                    category_lower = flag.get('category', '').lower()
+                    if any(keyword in category_lower for keyword in independent_hazard_keywords_pdf):
+                        return False
+                    return any(keyword in category_lower for keyword in regional_baseline_keywords_pdf)
+
+                regional_flags_pdf = [f for f in all_caution_flags_pdf if is_regional_baseline_pdf(f)]
+                independent_flags_pdf = [f for f in all_caution_flags_pdf if f not in regional_flags_pdf]
+                regional_penalty_pdf = max([f.get('severity_points', 0.0) for f in regional_flags_pdf], default=0.0)
+                independent_penalty_pdf = sum([f.get('severity_points', 0.0) for f in independent_flags_pdf])
+                total_penalty_pdf = regional_penalty_pdf + independent_penalty_pdf
+
                 high_pdf = [f for f in all_caution_flags_pdf if f.get("severity", "").lower() == "high"]
                 medium_pdf = [f for f in all_caution_flags_pdf if f.get("severity", "").lower() == "medium"]
                 low_pdf = [f for f in all_caution_flags_pdf if f.get("severity", "").lower() == "low"]
 
-                total_penalty_pdf = sum(f.get("severity_points", 0) for f in all_caution_flags_pdf)
-
                 html_content += '<div class="section"><h2>⚠️ Caution Flags & Risk Mitigation</h2>'
-                html_content += f'<p><strong>Total Flags:</strong> {len(all_caution_flags_pdf)} • <strong>Total Penalty:</strong> -{total_penalty_pdf:.2f} points</p>'
+                html_content += f'<p><strong>Total Flags:</strong> {len(all_caution_flags_pdf)} ({len(regional_flags_pdf)} regional baseline, {len(independent_flags_pdf)} independent) • <strong>Total Penalty:</strong> -{total_penalty_pdf:.2f} points</p>'
+                if regional_flags_pdf:
+                    html_content += f'<p style="font-size: 9px; background: #e3f2fd; padding: 5px; border-radius: 3px;">🌍 <strong>Penalty Breakdown:</strong> Regional baseline flags: -{regional_penalty_pdf:.2f} (max applied, not stacked) | Independent hazards: -{independent_penalty_pdf:.2f} (summed)</p>'
 
                 if high_pdf:
                     high_pen = sum(f.get("severity_points", 0) for f in high_pdf)
                     html_content += f'<h3 style="color: #dc3545;">🔴 HIGH SEVERITY ({len(high_pdf)} flags, -{high_pen:.2f} penalty)</h3>'
                     for idx, flag in enumerate(high_pdf, 1):
+                        is_regional_pdf = is_regional_baseline_pdf(flag)
+                        regional_badge_pdf = "🌍 Regional" if is_regional_pdf else "⚠️ Independent"
                         html_content += '<div style="background: #f8d7da; padding: 6px; margin: 4px 0; border-left: 2px solid #dc3545;">'
-                        html_content += f'<p><strong>{idx}. {clean_markdown(flag.get("category", "Unknown"))} (Penalty: -{flag.get("severity_points", 0):.2f})</strong></p>'
+                        html_content += f'<p><strong>{idx}. {clean_markdown(flag.get("category", "Unknown"))} ({regional_badge_pdf}, Penalty: -{flag.get("severity_points", 0):.2f})</strong></p>'
                         html_content += f'<p style="font-size: 9px;"><strong>Issue:</strong> {clean_markdown(flag.get("description", "N/A"))}</p>'
                         html_content += f'<p style="font-size: 9px;"><strong>Mitigation:</strong> {clean_markdown(flag.get("mitigation_plan", "TBD"))}</p>'
                         if flag.get('cost_impact'):
@@ -1303,8 +1533,10 @@ def render_report_viewer(report_id: int) -> None:
                     medium_pen = sum(f.get("severity_points", 0) for f in medium_pdf)
                     html_content += f'<h3 style="color: #ffc107;">🟡 MEDIUM SEVERITY ({len(medium_pdf)} flags, -{medium_pen:.2f} penalty)</h3>'
                     for idx, flag in enumerate(medium_pdf, 1):
+                        is_regional_pdf = is_regional_baseline_pdf(flag)
+                        regional_icon_pdf = "🌍" if is_regional_pdf else "⚠️"
                         html_content += '<div style="background: #fff3cd; padding: 6px; margin: 4px 0; border-left: 2px solid #ffc107;">'
-                        html_content += f'<p style="font-size: 9px;"><strong>{idx}. {clean_markdown(flag.get("category", "Unknown"))} (Penalty: -{flag.get("severity_points", 0):.2f})</strong></p>'
+                        html_content += f'<p style="font-size: 9px;"><strong>{regional_icon_pdf} {idx}. {clean_markdown(flag.get("category", "Unknown"))} (Penalty: -{flag.get("severity_points", 0):.2f})</strong></p>'
                         html_content += f'<p style="font-size: 9px;">{clean_markdown(flag.get("description", "N/A"))}</p>'
                         html_content += f'<p style="font-size: 9px;"><em>Mitigation: {clean_markdown(flag.get("mitigation_plan", "TBD"))}</em></p>'
                         if flag.get('cost_impact'):
@@ -1315,7 +1547,9 @@ def render_report_viewer(report_id: int) -> None:
                     low_pen = sum(f.get("severity_points", 0) for f in low_pdf)
                     html_content += f'<h3 style="color: #28a745;">🟢 LOW SEVERITY ({len(low_pdf)} flags, -{low_pen:.2f} penalty)</h3>'
                     for idx, flag in enumerate(low_pdf, 1):
-                        html_content += f'<p style="font-size: 8px;"><strong>{idx}. {clean_markdown(flag.get("category", "Unknown"))} (-{flag.get("severity_points", 0):.2f}):</strong> {clean_markdown(flag.get("description", "N/A"))}</p>'
+                        is_regional_pdf = is_regional_baseline_pdf(flag)
+                        regional_icon_pdf = "🌍" if is_regional_pdf else "⚠️"
+                        html_content += f'<p style="font-size: 8px;"><strong>{regional_icon_pdf} {idx}. {clean_markdown(flag.get("category", "Unknown"))} (-{flag.get("severity_points", 0):.2f}):</strong> {clean_markdown(flag.get("description", "N/A"))}</p>'
 
                 html_content += '</div>'
 

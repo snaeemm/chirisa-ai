@@ -2,10 +2,19 @@
 from typing import Dict, List, Optional, Any, Union, Literal
 from pydantic import BaseModel, Field, field_validator
 from datetime import datetime
+from enum import Enum
 
 # ================================================================================================
 # INVESTMENT-GRADE CORE MODELS (Chirisa-AI Enhancement)
 # ================================================================================================
+
+class VerificationLevel(str, Enum):
+    """Verification level for infrastructure claims to distinguish facts from unknowns"""
+    VERIFIED_PUBLIC_SOURCE = "verified_by_public_source"  # Confirmed by utility/grid docs
+    VERIFIED_TRANSACTIONAL = "verified_by_transactional"  # Investment-grade (utility letter, quote)
+    MODEL_INFERENCE = "model_inference"  # AI-estimated from patterns, needs validation
+    UNKNOWN_REQUIRES_UTILITY_LETTER = "unknown_requires_utility_letter"  # Data gap, must obtain from utility
+    ASSUMPTION_REGIONAL = "assumption_based_on_region"  # Regional standard, not site-specific
 
 class NoGoGate(BaseModel):
     """Hard stop gate that fails the entire site analysis"""
@@ -204,19 +213,19 @@ class InsightsInput(BaseModel):
 class IntelligentExecutiveSummary(BaseModel):
     """Intelligent executive summary with cross-domain insights"""
     location_overview: str = Field(..., description="Location context and business rationale")
-    key_strengths: List[str] = Field(default_factory=list, description="Primary competitive advantages")
-    key_challenges: List[str] = Field(default_factory=list, description="Critical challenges to address")
-    strategic_opportunities: List[str] = Field(default_factory=list, description="Strategic business opportunities")
-    critical_success_factors: List[str] = Field(default_factory=list, description="Must-have factors for success")
+    key_strengths: List[str] = Field(default_factory=list, max_items=5, description="Primary competitive advantages (max 5)")
+    key_challenges: List[str] = Field(default_factory=list, max_items=5, description="Critical challenges to address (max 5)")
+    strategic_opportunities: List[str] = Field(default_factory=list, max_items=5, description="Strategic business opportunities (max 5)")
+    critical_success_factors: List[str] = Field(default_factory=list, max_items=5, description="Must-have factors for success (max 5)")
 
 class IntelligentPhase1Plan(BaseModel):
     """Intelligent Phase 1 deployment plan based on cross-domain analysis"""
     recommended_capacity: str = Field(..., description="Technical capacity with business justification")
     timeline: str = Field(..., description="Realistic timeline considering domain constraints")
-    priority_actions: List[str] = Field(default_factory=list, description="Location-specific priority actions")
+    priority_actions: List[str] = Field(default_factory=list, max_items=5, description="Location-specific priority actions (max 5)")
     estimated_investment: str = Field(..., description="Investment estimate with breakdown")
-    risk_mitigation: List[str] = Field(default_factory=list, description="Critical risk mitigation strategies")
-    success_metrics: List[str] = Field(default_factory=list, description="Key success metrics to track")
+    risk_mitigation: List[str] = Field(default_factory=list, max_items=5, description="Critical risk mitigation strategies (max 5)")
+    success_metrics: List[str] = Field(default_factory=list, max_items=5, description="Key success metrics to track (max 5)")
 
 class InsightsOutput(BaseModel):
     """Complete insights agent output"""
