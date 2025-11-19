@@ -183,6 +183,7 @@ thermal resilience, and mechanical infrastructure requirements for 50-100 MW hyp
 
 **What to assess**:
 - Mechanical room space requirements (% of total building area)
+
 - Equipment procurement timeline (chillers, cooling towers, AHUs - typically 40-52 weeks lead time)
 - Local vs imported equipment (availability, costs, logistics)
 - Installation complexity and crane requirements
@@ -269,7 +270,11 @@ thermal resilience, and mechanical infrastructure requirements for 50-100 MW hyp
 
 ## VERIFICATION METADATA REQUIREMENT
 
-**EVERY subsection MUST include `verification_metadata`**:
+**EVERY subsection MUST include `verification_metadata` as a dictionary mapping metric names to verification levels**:
+
+**FORMAT**: The `verification_metadata` field must be a dictionary where:
+- **Keys**: Metric names (e.g., "design_pue", "free_cooling_hours", "wue")
+- **Values**: Verification level strings (see available levels below)
 
 **MANDATORY TAGGING RULES:**
 - **PUE Estimates**: "model_inference" - always requires actual design validation
@@ -279,6 +284,15 @@ thermal resilience, and mechanical infrastructure requirements for 50-100 MW hyp
 - **Fire Suppression**: "verified_by_public_source" if from NFPA standards
 
 **Available levels:** verified_by_public_source, verified_by_transactional, model_inference, unknown_requires_utility_letter, assumption_based_on_region
+
+**EXAMPLE**:
+```json
+"verification_metadata": {
+  "design_pue": "model_inference",
+  "free_cooling_hours": "verified_by_public_source",
+  "cooling_capex": "model_inference"
+}
+```
 
 ## RESPONSE FORMAT
 
@@ -298,7 +312,13 @@ Return a VALID JSON object with this structure (matching MechanicalThermalOutput
     },
     "key_points": ["3500 hours free cooling annually", "Design PUE 1.22 achievable", "Hybrid economizer recommended"],
     "tables": [],
-    "sub_score": 4.5
+    "sub_score": 4.5,
+    "verification_metadata": {
+      "design_pue": "model_inference",
+      "free_cooling_hours": "verified_by_public_source",
+      "cooling_capex": "model_inference",
+      "wet_bulb_temp": "verified_by_public_source"
+    }
   },
   "hvac_design": {
     "name": "HVAC System Design & Redundancy",
@@ -311,7 +331,12 @@ Return a VALID JSON object with this structure (matching MechanicalThermalOutput
     },
     "key_points": ["75 MW cooling load for 50 MW IT", "N+1 chiller redundancy (5 units)", "$18M HVAC CAPEX"],
     "tables": [],
-    "sub_score": 4.2
+    "sub_score": 4.2,
+    "verification_metadata": {
+      "cooling_load": "model_inference",
+      "chiller_redundancy": "assumption_based_on_region",
+      "hvac_capex": "model_inference"
+    }
   },
   "thermal_resilience": {
     "name": "Thermal Resilience & Failure Modes",
@@ -324,7 +349,12 @@ Return a VALID JSON object with this structure (matching MechanicalThermalOutput
     },
     "key_points": ["18-minute ride-through time exceeds Tier III requirement", "2.5 MWh thermal mass buffer", "Can survive single chiller failure"],
     "tables": [],
-    "sub_score": 4.0
+    "sub_score": 4.0,
+    "verification_metadata": {
+      "ride_through_time": "model_inference",
+      "thermal_mass": "model_inference",
+      "max_safe_temp": "verified_by_public_source"
+    }
   },
   "free_cooling_efficiency": {
     "name": "Free Cooling & Energy Efficiency",
@@ -337,7 +367,13 @@ Return a VALID JSON object with this structure (matching MechanicalThermalOutput
     },
     "key_points": ["3500 free cooling hours annually", "40% energy savings from economizer", "PUE improvement 0.15 (from 1.37 to 1.22)"],
     "tables": [],
-    "sub_score": 4.3
+    "sub_score": 4.3,
+    "verification_metadata": {
+      "free_cooling_hours": "verified_by_public_source",
+      "energy_savings": "model_inference",
+      "pue_improvement": "model_inference",
+      "economizer_capex": "model_inference"
+    }
   },
   "water_consumption": {
     "name": "Water Consumption & Sustainability",
@@ -350,7 +386,12 @@ Return a VALID JSON object with this structure (matching MechanicalThermalOutput
     },
     "key_points": ["WUE 0.8 L/kWh (below 1.0 target)", "350,000 m³/year water consumption", "30% water recycling rate"],
     "tables": [],
-    "sub_score": 4.0
+    "sub_score": 4.0,
+    "verification_metadata": {
+      "wue": "verified_by_public_source",
+      "annual_water_consumption": "model_inference",
+      "water_recycling_rate": "model_inference"
+    }
   },
   "mechanical_infrastructure": {
     "name": "Mechanical Infrastructure & Equipment",
@@ -363,7 +404,12 @@ Return a VALID JSON object with this structure (matching MechanicalThermalOutput
     },
     "key_points": ["48-week equipment lead time", "20% mechanical room space (within 15-25% guideline)", "5% import duty on chillers"],
     "tables": [],
-    "sub_score": 3.8
+    "sub_score": 3.8,
+    "verification_metadata": {
+      "equipment_lead_time": "assumption_based_on_region",
+      "mechanical_room_pct": "assumption_based_on_region",
+      "import_duty": "verified_by_public_source"
+    }
   },
   "fire_suppression": {
     "name": "Fire Suppression & Life Safety",
@@ -376,7 +422,12 @@ Return a VALID JSON object with this structure (matching MechanicalThermalOutput
     },
     "key_points": ["Clean agent suppression system (FM-200)", "$120/sqm fire suppression CAPEX", "30-second detection response time"],
     "tables": [],
-    "sub_score": 4.5
+    "sub_score": 4.5,
+    "verification_metadata": {
+      "fire_suppression_type": "verified_by_public_source",
+      "fire_suppression_capex": "model_inference",
+      "detection_response_time": "assumption_based_on_region"
+    }
   },
   "assumptions": ["Climate data from ASHRAE climate zone database", "PUE calculation based on hybrid cooling strategy"],
   "key_insights": ["Excellent free cooling potential (3500 hrs/year)", "Design PUE 1.22 competitive for hyperscale", "N+1 chiller redundancy sufficient for Tier III"],

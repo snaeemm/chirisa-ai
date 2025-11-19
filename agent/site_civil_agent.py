@@ -415,7 +415,12 @@ Return a VALID JSON object with this structure (matching SiteCivilInfrastructure
     },
     "key_points": ["Bearing capacity 180 kPa requires deep piles", "Groundwater at 8m depth manageable", "Foundation cost +20% for pile system"],
     "tables": [],
-    "sub_score": 3.5
+    "sub_score": 3.5,
+    "verification_metadata": {
+      "soil_bearing_capacity": "model_inference",
+      "groundwater_depth": "model_inference",
+      "foundation_cost": "model_inference"
+    }
   },
   "water_wastewater": {
     "name": "Water & Wastewater Infrastructure",
@@ -428,7 +433,13 @@ Return a VALID JSON object with this structure (matching SiteCivilInfrastructure
     },
     "key_points": ["5000 m³/day water capacity adequate", "Moderate water stress (2.5/5)", "Wastewater discharge permit required"],
     "tables": [],
-    "sub_score": 4.0
+    "sub_score": 4.0,
+    "verification_metadata": {
+      "water_capacity": "unknown_requires_utility_letter",
+      "water_cost": "verified_by_public_source",
+      "water_stress": "verified_by_public_source",
+      "wastewater_capacity": "unknown_requires_utility_letter"
+    }
   },
   "transportation_access": {
     "name": "Transportation & Logistics Access",
@@ -441,7 +452,12 @@ Return a VALID JSON object with this structure (matching SiteCivilInfrastructure
     },
     "key_points": ["8km to major highway", "35km to cargo airport", "Last-mile road needs weight upgrade for transformers"],
     "tables": [],
-    "sub_score": 3.8
+    "sub_score": 3.8,
+    "verification_metadata": {
+      "highway_distance": "verified_by_public_source",
+      "airport_distance": "verified_by_public_source",
+      "road_weight_limit": "verified_by_public_source"
+    }
   },
   "permitting_timeline": {
     "name": "Permitting, Environmental & Surveying Timeline",
@@ -454,7 +470,13 @@ Return a VALID JSON object with this structure (matching SiteCivilInfrastructure
     },
     "key_points": ["18-month permitting timeline", "EIA required (12 months)", "Public hearing with moderate opposition risk"],
     "tables": [],
-    "sub_score": 3.2
+    "sub_score": 3.2,
+    "verification_metadata": {
+      "permitting_timeline": "model_inference",
+      "eia_required": "verified_by_public_source",
+      "eia_timeline": "model_inference",
+      "permit_fees": "model_inference"
+    }
   },
   "civil_grading": {
     "name": "Civil Engineering & Grading Complexity",
@@ -467,7 +489,12 @@ Return a VALID JSON object with this structure (matching SiteCivilInfrastructure
     },
     "key_points": ["Moderate 3% slope", "Medium grading complexity", "Stormwater detention basin required"],
     "tables": [],
-    "sub_score": 4.0
+    "sub_score": 4.0,
+    "verification_metadata": {
+      "site_slope": "verified_by_public_source",
+      "grading_complexity": "model_inference",
+      "stormwater_requirements": "verified_by_public_source"
+    }
   },
   "assumptions": ["Soil data from regional geological survey (2022)", "Water costs based on published municipal rates"],
   "key_insights": ["Excellent land availability with single parcel", "Geotechnical conditions require deep piles (+20% cost)", "Water stress moderate (score 2.5)"],

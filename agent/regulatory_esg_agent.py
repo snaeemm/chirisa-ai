@@ -295,7 +295,11 @@ Assess data sovereignty laws, government incentives, operational compliance, per
 
 ## VERIFICATION METADATA REQUIREMENT
 
-**EVERY subsection MUST include `verification_metadata`**:
+**EVERY subsection MUST include `verification_metadata` as a dictionary mapping metric names to verification levels**:
+
+**FORMAT**: The `verification_metadata` field must be a dictionary where:
+- **Keys**: Metric names (e.g., "data_protection_law", "corporate_tax_rate", "grid_renewable_pct")
+- **Values**: Verification level strings (see available levels below)
 
 **MANDATORY TAGGING RULES:**
 - **Data Sovereignty Laws**: "verified_by_public_source" if from government websites/legal databases
@@ -305,6 +309,15 @@ Assess data sovereignty laws, government incentives, operational compliance, per
 - **Compliance Requirements**: "verified_by_public_source" if from regulatory websites
 
 **Available levels:** verified_by_public_source, verified_by_transactional, model_inference, unknown_requires_utility_letter, assumption_based_on_region
+
+**EXAMPLE**:
+```json
+"verification_metadata": {
+  "corporate_tax_rate": "verified_by_public_source",
+  "tax_holiday": "verified_by_public_source",
+  "permitting_timeline": "model_inference"
+}
+```
 
 ## RESPONSE FORMAT
 
@@ -324,7 +337,14 @@ Return a VALID JSON object with this structure (matching RegulatoryESGOutput mod
     },
     "key_points": ["GDPR-equivalent data protection law", "No mandatory data localization", "Adequacy decision for EU data transfers", "ISO 27001 framework recommended"],
     "tables": [],
-    "sub_score": 4.5
+    "sub_score": 4.5,
+    "verification_metadata": {
+      "data_protection_law": "verified_by_public_source",
+      "data_localization": "verified_by_public_source",
+      "cross_border_transfers": "verified_by_public_source",
+      "government_access_risk": "model_inference",
+      "cybersecurity_framework": "verified_by_public_source"
+    }
   },
   "government_incentives": {
     "name": "Government Incentives & Investment Climate",
@@ -337,7 +357,14 @@ Return a VALID JSON object with this structure (matching RegulatoryESGOutput mod
     },
     "key_points": ["15% corporate tax with 10-year holiday in SEZ", "100% foreign ownership permitted", "Zero import duty on IT equipment"],
     "tables": [],
-    "sub_score": 4.8
+    "sub_score": 4.8,
+    "verification_metadata": {
+      "corporate_tax_rate": "verified_by_public_source",
+      "tax_holiday": "verified_by_public_source",
+      "import_duty": "verified_by_public_source",
+      "foreign_ownership": "verified_by_public_source",
+      "investment_protection": "verified_by_public_source"
+    }
   },
   "operational_environmental_compliance": {
     "name": "Operational & Environmental Compliance",
@@ -350,7 +377,15 @@ Return a VALID JSON object with this structure (matching RegulatoryESGOutput mod
     },
     "key_points": ["IBC-compliant building codes", "EIA required (12-month timeline)", "Noise limit 50 dBA at property line", "Low-medium water stress (2.5/5)"],
     "tables": [],
-    "sub_score": 3.9
+    "sub_score": 3.9,
+    "verification_metadata": {
+      "building_codes": "verified_by_public_source",
+      "eia_requirements": "verified_by_public_source",
+      "eia_timeline": "model_inference",
+      "noise_limits": "verified_by_public_source",
+      "water_stress": "verified_by_public_source",
+      "air_quality": "verified_by_public_source"
+    }
   },
   "permitting_zoning": {
     "name": "Permitting & Zoning Framework",
@@ -363,7 +398,14 @@ Return a VALID JSON object with this structure (matching RegulatoryESGOutput mod
     },
     "key_points": ["CUP required (not use-by-right)", "18-month typical permitting timeline", "$150K total permit fees"],
     "tables": [],
-    "sub_score": 3.5
+    "sub_score": 3.5,
+    "verification_metadata": {
+      "zoning_classification": "verified_by_public_source",
+      "permits_required": "model_inference",
+      "permitting_timeline": "model_inference",
+      "permit_fees": "model_inference",
+      "public_hearing": "verified_by_public_source"
+    }
   },
   "esg_trajectory": {
     "name": "ESG Trajectory (Policy & Carbon)",
@@ -376,7 +418,15 @@ Return a VALID JSON object with this structure (matching RegulatoryESGOutput mod
     },
     "key_points": ["55% renewable grid mix", "220 gCO₂/kWh carbon intensity", "Mature PPA market", "$35/tonne carbon price (ETS)", "National net-zero target 2050", "Low NIMBY risk (2/5)"],
     "tables": [],
-    "sub_score": 4.3
+    "sub_score": 4.3,
+    "verification_metadata": {
+      "grid_renewable_pct": "verified_by_public_source",
+      "carbon_intensity": "verified_by_public_source",
+      "ppa_market": "model_inference",
+      "carbon_price": "verified_by_public_source",
+      "net_zero_target": "verified_by_public_source",
+      "nimby_risk": "model_inference"
+    }
   },
   "assumptions": ["Data sovereignty assessment based on DLA Piper 2024 report", "Incentives from Investment Authority website 2024", "Grid renewable % from national energy authority 2024", "Carbon intensity from ElectricityMaps 2024"],
   "key_insights": ["Strong regulatory environment with GDPR-equivalent privacy", "Attractive incentives in Special Economic Zone", "Moderate permitting complexity (18 months typical)", "Strong ESG profile with majority-renewable grid and carbon pricing"],

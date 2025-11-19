@@ -328,25 +328,41 @@ JSON Structure Example:
     "name": "Last-Mile Diversity & Route Separation",
     "content": "Analysis of physical route diversity, entrance facility diversity, carrier hotel proximity...",
     "sub_score": 4.0,
-    "key_points": ["Diverse entry points to site", "Physical route separation confirmed"]
+    "key_points": ["Diverse entry points to site", "Physical route separation confirmed"],
+    "verification_metadata": {
+      "route_diversity": "verified_by_public_source",
+      "entrance_facility": "verified_by_public_source"
+    }
   },
   "subsea_cables": {
     "name": "Subsea Cable Access",
     "content": "Cable landing points, specific systems, capacities (Tbps)...",
     "sub_score": 3.5,
-    "key_points": ["Landing station 45km away", "3 cable systems accessible"]
+    "key_points": ["Landing station 45km away", "3 cable systems accessible"],
+    "verification_metadata": {
+      "subsea_access": "verified_by_public_source",
+      "cable_systems": "verified_by_public_source"
+    }
   },
   "ixp_peering": {
     "name": "IXP & Peering Ecosystem",
     "content": "IXP presence, peering ecosystem, regional traffic exchange...",
     "sub_score": 3.8,
-    "key_points": ["Major IXP within 20km", "Active peering community"]
+    "key_points": ["Major IXP within 20km", "Active peering community"],
+    "verification_metadata": {
+      "ixp_presence": "verified_by_public_source",
+      "peering_community": "verified_by_public_source"
+    }
   },
   "carrier_diversity": {
     "name": "Carrier Ecosystem & Diversity",
     "content": "Carrier diversity, Tier-1 presence, market concentration...",
     "sub_score": 4.1,
-    "key_points": ["5 Tier-1 carriers present", "Competitive carrier market"]
+    "key_points": ["5 Tier-1 carriers present", "Competitive carrier market"],
+    "verification_metadata": {
+      "tier1_carriers": "verified_by_public_source",
+      "carrier_diversity": "verified_by_public_source"
+    }
   },
   "latency_performance": {
     "name": "Latency & Network Performance",
@@ -356,7 +372,11 @@ JSON Structure Example:
       "numerical_values": {"avg_latency_ms": 12, "cdn_pops": 8},
       "units": {"avg_latency_ms": "ms", "cdn_pops": "count"}
     },
-    "key_points": ["Low latency to major markets", "Strong CDN presence"]
+    "key_points": ["Low latency to major markets", "Strong CDN presence"],
+    "verification_metadata": {
+      "avg_latency": "verified_by_public_source",
+      "cdn_presence": "verified_by_public_source"
+    }
   },
   "bandwidth_costs": {
     "name": "Bandwidth Costs & Pricing",
@@ -366,13 +386,21 @@ JSON Structure Example:
       "numerical_values": {"cost_per_mbps": 8.5},
       "units": {"cost_per_mbps": "USD/Mbps/month"}
     },
-    "key_points": ["Competitive bandwidth pricing", "Scalable capacity"]
+    "key_points": ["Competitive bandwidth pricing", "Scalable capacity"],
+    "verification_metadata": {
+      "bandwidth_pricing": "model_inference",
+      "capacity_scalability": "model_inference"
+    }
   },
   "future_proofing": {
     "name": "Future-Proofing & Capacity Expansion",
     "content": "AI/ML readiness, capacity expansion plans, investments...",
     "sub_score": 4.0,
-    "key_points": ["Major fiber expansion underway", "5G infrastructure deployment"]
+    "key_points": ["Major fiber expansion underway", "5G infrastructure deployment"],
+    "verification_metadata": {
+      "capacity_expansion": "verified_by_public_source",
+      "infrastructure_investment": "verified_by_public_source"
+    }
   },
   "assumptions": ["Analysis based on publicly available network data", "Carrier presence verified through PeeringDB"],
   "key_insights": ["Strong network connectivity with good diversity", "Minor IXP build required", "Overall suitable for hyperscale"],

@@ -610,7 +610,13 @@ You MUST return ONLY valid JSON matching this EXACT structure:
       "FEMA Zone X (minimal flood risk) - NO-GO gate passed",
       "Site elevation 8 meters above 100-year floodplain with no historical flooding",
       "Excellent drainage with 3.5 km buffer to Special Flood Hazard Area"
-    ]
+    ],
+    "verification_metadata": {
+      "fema_zone": "verified_by_public_source",
+      "site_elevation": "verified_by_public_source",
+      "flood_events": "verified_by_public_source",
+      "storm_surge_risk": "model_inference"
+    }
   },
 
   "free_cooling": {
@@ -642,7 +648,13 @@ You MUST return ONLY valid JSON matching this EXACT structure:
       "Low Fire Hazard Severity Zone - NO-GO gate passed (not Very High)",
       "Minimal fuel loads (8 tons/acre) and only 12 fire danger days/year",
       "No historical wildfires within 10km in past 20 years - excellent wildfire resilience"
-    ]
+    ],
+    "verification_metadata": {
+      "fire_hazard_zone": "verified_by_public_source",
+      "fuel_load": "model_inference",
+      "fire_danger_days": "verified_by_public_source",
+      "historical_wildfires": "verified_by_public_source"
+    }
   },
 
   "seismic_geological": {
@@ -672,7 +684,13 @@ You MUST return ONLY valid JSON matching this EXACT structure:
       "Moderate seismic hazard (PGA 0.18g, SDC C) - NO-GO gate passed (not >0.4g)",
       "Nearest Holocene-active fault 15km away with low liquefaction risk",
       "Seismic design adds +15% to structural costs but remains feasible for hyperscale"
-    ]
+    ],
+    "verification_metadata": {
+      "pga": "verified_by_public_source",
+      "seismic_design_category": "verified_by_public_source",
+      "active_fault_distance": "verified_by_public_source",
+      "structural_cost_premium": "model_inference"
+    }
   },
 
   "hydrological_flood": {
@@ -701,7 +719,13 @@ You MUST return ONLY valid JSON matching this EXACT structure:
       "No WDPA Category I-III protected areas within 10km - NO-GO gate passed",
       "No jurisdictional wetlands or endangered species habitat on-site",
       "Streamlined EIA process expected (6-9 months) with no major environmental constraints"
-    ]
+    ],
+    "verification_metadata": {
+      "protected_areas": "verified_by_public_source",
+      "wetlands": "verified_by_public_source",
+      "endangered_species": "verified_by_public_source",
+      "eia_complexity": "model_inference"
+    }
   },
 
   "wind_storm": {
@@ -730,7 +754,13 @@ You MUST return ONLY valid JSON matching this EXACT structure:
       "Moderate design wind speed (52 m/s) with no hurricane exposure",
       "Low tornado risk (2 EF2+ events within 100km in 50 years)",
       "Minimal structural wind premium (+8%) - no wind-borne debris provisions required"
-    ]
+    ],
+    "verification_metadata": {
+      "design_wind_speed": "verified_by_public_source",
+      "hurricane_history": "verified_by_public_source",
+      "tornado_risk": "verified_by_public_source",
+      "structural_wind_premium": "model_inference"
+    }
   },
 
   "climate_extremes": {
@@ -759,7 +789,13 @@ You MUST return ONLY valid JSON matching this EXACT structure:
       "Moderate warming projected (+2.1°C by 2050) within manageable range for cooling systems",
       "Slight precipitation decrease (-8%) and 15% drought risk increase require water management planning",
       "12 additional heat wave days/year by 2050 will modestly reduce free cooling hours but PUE remains <1.4"
-    ]
+    ],
+    "verification_metadata": {
+      "climate_projections": "verified_by_public_source",
+      "temp_increase": "verified_by_public_source",
+      "precipitation_change": "verified_by_public_source",
+      "drought_risk": "model_inference"
+    }
   },
 
   "assumptions": [

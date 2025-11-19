@@ -163,7 +163,12 @@ Your response must be a valid JSON object matching the PowerInfrastructureOutput
       "ranges": {"voltage_regulation": {"min": -5, "max": 5}},
       "units": {"saidi_minutes": "minutes/year", "saifi_interruptions": "interruptions/year", "grid_uptime": "%"}
     },
-    "key_points": ["High grid reliability with 99.95% uptime", "Advanced grid modernization programs", "Strong utility disaster recovery protocols"]
+    "key_points": ["High grid reliability with 99.95% uptime", "Advanced grid modernization programs", "Strong utility disaster recovery protocols"],
+    "verification_metadata": {
+      "saidi_saifi": "verified_by_public_source",
+      "grid_uptime": "verified_by_public_source",
+      "grid_modernization": "verified_by_public_source"
+    }
   },
   "power_capacity": {
     "name": "Power Capacity & Scalability",
@@ -192,7 +197,12 @@ Your response must be a valid JSON object matching the PowerInfrastructureOutput
       "percentages": {"nuclear": 40, "gas": 30, "renewables": 20, "coal": 10},
       "units": {"carbon_intensity": "gCO2/kWh", "baseload_capacity_factor": "%"}
     },
-    "key_points": ["Moderate carbon intensity", "Strong baseload stability", "Growing renewable penetration"]
+    "key_points": ["Moderate carbon intensity", "Strong baseload stability", "Growing renewable penetration"],
+    "verification_metadata": {
+      "carbon_intensity": "verified_by_public_source",
+      "generation_mix": "verified_by_public_source",
+      "baseload_stability": "verified_by_public_source"
+    }
   },
   "connection_process": {
     "name": "Connection Process & Regulatory Framework",
@@ -203,7 +213,12 @@ Your response must be a valid JSON object matching the PowerInfrastructureOutput
       "percentages": {"fast_track_eligibility": 80},
       "units": {"interconnection_timeline_months": "months", "connection_fee_per_mw": "USD/MW"}
     },
-    "key_points": ["24-month interconnection timeline", "Standardized connection process", "Utility experience with data centers"]
+    "key_points": ["24-month interconnection timeline", "Standardized connection process", "Utility experience with data centers"],
+    "verification_metadata": {
+      "interconnection_timeline": "model_inference",
+      "connection_fee": "model_inference",
+      "fast_track_eligibility": "verified_by_public_source"
+    }
   },
   "electricity_costs": {
     "name": "Electricity Costs & Market Dynamics",
@@ -214,7 +229,12 @@ Your response must be a valid JSON object matching the PowerInfrastructureOutput
       "percentages": {"cost_competitiveness": 85},
       "units": {"industrial_rate": "USD/kWh", "demand_charge": "USD/kW-month"}
     },
-    "key_points": ["Competitive industrial rates", "Stable pricing structure", "Good long-term cost outlook"]
+    "key_points": ["Competitive industrial rates", "Stable pricing structure", "Good long-term cost outlook"],
+    "verification_metadata": {
+      "industrial_rate": "verified_by_public_source",
+      "demand_charge": "verified_by_public_source",
+      "cost_competitiveness": "model_inference"
+    }
   },
   "cost_model": {
     "name": "Cost Model & Financial Projections",
@@ -226,7 +246,12 @@ Your response must be a valid JSON object matching the PowerInfrastructureOutput
       "ranges": {"price_scenario": {"min": 0.08, "max": 0.12}},
       "units": {"projected_escalation": "%/year", "lcoe_20_year": "USD/kWh"}
     },
-    "key_points": ["Predictable cost escalation", "Moderate long-term LCOE", "Good cost certainty"]
+    "key_points": ["Predictable cost escalation", "Moderate long-term LCOE", "Good cost certainty"],
+    "verification_metadata": {
+      "projected_escalation": "model_inference",
+      "lcoe": "model_inference",
+      "cost_certainty": "model_inference"
+    }
   },
   "industrial_heritage": {
     "name": "Industrial Heritage & Infrastructure",
@@ -237,7 +262,12 @@ Your response must be a valid JSON object matching the PowerInfrastructureOutput
       "percentages": {"industrial_zoning": 90, "skilled_workforce": 85},
       "units": {"industrial_sites_within_10km": "count", "substation_reuse_potential": "count"}
     },
-    "key_points": ["Strong industrial heritage", "Existing electrical infrastructure", "Skilled electrical workforce available"]
+    "key_points": ["Strong industrial heritage", "Existing electrical infrastructure", "Skilled electrical workforce available"],
+    "verification_metadata": {
+      "industrial_sites": "verified_by_public_source",
+      "infrastructure_reuse": "verified_by_public_source",
+      "workforce_availability": "model_inference"
+    }
   },
   "assumptions": [
     "Analysis based on publicly available utility data and industry reports",
