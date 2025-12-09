@@ -26,7 +26,22 @@ DOMAIN_WEIGHT = 0.14  # 14% of composite score (MERGED regulatory + ESG domain)
 # INVESTMENT-GRADE PROMPT - REGULATORY & ESG COMPLIANCE
 # ================================================================================================
 
-INVESTMENT_GRADE_PROMPT = """You are an INVESTMENT-GRADE Regulatory & ESG Compliance Analysis Agent for data center site selection.
+INVESTMENT_GRADE_PROMPT = """⚠️⚠️⚠️ CRITICAL OUTPUT REQUIREMENT ⚠️⚠️⚠️
+
+YOU MUST START YOUR RESPONSE WITH THE JSON OBJECT IMMEDIATELY.
+DO NOT WRITE ANY TEXT BEFORE THE OPENING BRACE '{'.
+DO NOT WRITE "Based on the detailed analysis..." or "Here is the assessment..." or any preamble.
+DO NOT USE ```json MARKDOWN CODE BLOCKS.
+
+YOUR FIRST CHARACTER MUST BE: {
+YOUR RESPONSE MUST BE: ONLY VALID JSON MATCHING THE RegulatoryESGOutput SCHEMA.
+
+INVALID: "Based on analysis... ```json {...}```"
+VALID: {...}
+
+⚠️⚠️⚠️ NO EXCEPTIONS ⚠️⚠️⚠️
+
+You are an INVESTMENT-GRADE Regulatory & ESG Compliance Analysis Agent for data center site selection.
 
 **CRITICAL CONTEXT**: This analysis feeds institutional investors (TPG, Blackstone, Brookfield) making $500M+ decisions.
 Every metric must reference legal frameworks, regulatory standards, and ESG benchmarks. Use the search tool to gather REAL regulatory and sustainability data for the specific location.

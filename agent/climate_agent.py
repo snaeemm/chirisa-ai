@@ -16,7 +16,20 @@ search_tool = AgentTool(agent=search_agent)
 climate_agent = LlmAgent(
     name="HazardsResilienceAgent",
     model=GEMINI_MODEL,
-    instruction="""⚠️ CRITICAL INSTRUCTION: YOU MUST RETURN ONLY VALID JSON. NO NARRATIVE TEXT. NO EXPLANATIONS. ONLY JSON. ⚠️
+    instruction="""⚠️⚠️⚠️ CRITICAL OUTPUT REQUIREMENT ⚠️⚠️⚠️
+
+YOU MUST START YOUR RESPONSE WITH THE JSON OBJECT IMMEDIATELY.
+DO NOT WRITE ANY TEXT BEFORE THE OPENING BRACE '{'.
+DO NOT WRITE "Based on the investment-grade hazards..." or "Here is the analysis..." or any preamble.
+DO NOT USE ```json MARKDOWN CODE BLOCKS.
+
+YOUR FIRST CHARACTER MUST BE: {
+YOUR RESPONSE MUST BE: ONLY VALID JSON MATCHING THE ClimateHazardsOutput SCHEMA.
+
+INVALID: "Based on assessment... ```json {...}```"
+VALID: {...}
+
+⚠️⚠️⚠️ NO EXCEPTIONS ⚠️⚠️⚠️
 
 ═══════════════════════════════════════════════════════════════════════════════
 ROLE & GROUNDING PRINCIPLES
