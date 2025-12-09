@@ -1162,6 +1162,30 @@ def enrich_power_output_with_osm(response_data: dict, osm_data: dict) -> dict:
             metrics["numerical_values"]["osm_transmission_lines_nearby"] = line_count
             metrics["units"]["osm_transmission_lines_nearby"] = "count"
 
+    # 5. Update verification_metadata to include source names with dates (match PeeringDB format)
+    osm_last_updated = osm_data.get("last_updated", "Unknown")
+    if osm_last_updated == "Unknown":
+        osm_source_name = "OpenInfraMap"
+    else:
+        # Use parentheses format: "OpenInfraMap (2024-12-08)"
+        date_str = osm_last_updated[:10] if len(osm_last_updated) > 10 else osm_last_updated
+        osm_source_name = f"OpenInfraMap ({date_str})"
+
+    # Add verification_metadata for OSM-derived metrics in power_capacity
+    if "power_capacity" in response_data and isinstance(response_data["power_capacity"], dict):
+        capacity_section = response_data["power_capacity"]
+        if "verification_metadata" not in capacity_section:
+            capacity_section["verification_metadata"] = {}
+
+        # Add source attribution for OSM metrics
+        osm_metrics = ["osm_nearest_substation_distance_km", "osm_substation_max_voltage_kv", "osm_transmission_lines_nearby"]
+        for metric_key in osm_metrics:
+            if metric_key in capacity_section.get("metrics", {}).get("numerical_values", {}):
+                capacity_section["verification_metadata"][metric_key] = {
+                    "level": "verified_by_osm",
+                    "source": osm_source_name
+                }
+
     return response_data
 
 
