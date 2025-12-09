@@ -1560,9 +1560,14 @@ def enrich_network_output_with_peeringdb(response_data: dict, peeringdb_data: di
                 response_data["carrier_diversity"]["tables"] = []
             response_data["carrier_diversity"]["tables"].append(carriers_table)
 
-    # 6. Update verification_metadata to include source names with dates
-    peeringdb_date = last_updated if last_updated != "Unknown" else "2024-12"
-    peeringdb_source_name = f"PeeringDB {peeringdb_date[:10] if len(peeringdb_date) > 10 else peeringdb_date}"
+    # 6. Update verification_metadata to include source names with dates (match OSM format)
+    peeringdb_date = formatted_date if formatted_date != "Unknown" else last_updated
+    if peeringdb_date == "Unknown":
+        peeringdb_source_name = "PeeringDB"
+    else:
+        # Use parentheses format to match OSM: "PeeringDB (2024-12-08)"
+        date_str = peeringdb_date[:10] if len(peeringdb_date) > 10 else peeringdb_date
+        peeringdb_source_name = f"PeeringDB ({date_str})"
 
     subsection_verifications = {
         "fiber_infrastructure": ["peeringdb_facilities_within_200km"],

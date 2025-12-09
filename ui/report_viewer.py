@@ -170,10 +170,16 @@ def render_metrics_table(metrics: Dict[str, Any], section_name: str, verificatio
                     if found_source and found_level:
                         break
 
-        # If we found a source, use it
+        # If we found a source, use it with appropriate emoji
         if found_source:
             source_text = found_source
-            source_badge = "✓"
+            # Determine badge based on source content
+            if "PeeringDB" in source_text:
+                source_badge = "🌐"
+            elif "OpenInfraMap" in source_text or "OSM" in source_text:
+                source_badge = "🗺️"
+            else:
+                source_badge = "✓"
         elif found_level:
             # No explicit source, but we have a level - use default text
             if found_level == "verified_by_public_source":
