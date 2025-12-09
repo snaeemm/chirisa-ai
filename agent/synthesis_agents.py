@@ -1857,7 +1857,9 @@ class PowerInfrastructureAgentWrapper:
                     response_data = json.loads(cleaned_response)
                 except json.JSONDecodeError as first_error:
                     print(f"⚠️ Initial JSON parse failed, attempting repair...")
+                    print(f"🔍 First 300 chars of response: {cleaned_response[:300]}")
                     repaired_response = repair_json_response(cleaned_response)
+                    print(f"🔍 First 300 chars after repair: {repaired_response[:300]}")
                     response_data = json.loads(repaired_response)
 
                 # Validate response_data is a dict, not a list
@@ -2021,7 +2023,9 @@ class NetworkConnectivityAgentWrapper:
                     response_data = json.loads(cleaned_response)
                 except json.JSONDecodeError as first_error:
                     print(f"⚠️ Initial JSON parse failed, attempting repair...")
+                    print(f"🔍 First 300 chars of response: {cleaned_response[:300]}")
                     repaired_response = repair_json_response(cleaned_response)
+                    print(f"🔍 First 300 chars after repair: {repaired_response[:300]}")
                     response_data = json.loads(repaired_response)
 
                 # Validate response_data is a dict, not a list
@@ -2173,7 +2177,9 @@ class ClimateSuitabilityAgentWrapper:
                     response_data = json.loads(cleaned_response)
                 except json.JSONDecodeError as first_error:
                     print(f"⚠️ Initial JSON parse failed, attempting repair...")
+                    print(f"🔍 First 300 chars of response: {cleaned_response[:300]}")
                     repaired_response = repair_json_response(cleaned_response)
+                    print(f"🔍 First 300 chars after repair: {repaired_response[:300]}")
                     response_data = json.loads(repaired_response)
 
                 # Validate response_data is a dict, not a list
@@ -2289,7 +2295,9 @@ class OperationalRiskAgentWrapper:
                     response_data = json.loads(cleaned_response)
                 except json.JSONDecodeError as first_error:
                     print(f"⚠️ Initial JSON parse failed, attempting repair...")
+                    print(f"🔍 First 300 chars of response: {cleaned_response[:300]}")
                     repaired_response = repair_json_response(cleaned_response)
+                    print(f"🔍 First 300 chars after repair: {repaired_response[:300]}")
                     response_data = json.loads(repaired_response)
 
                 # Normalize response for Pydantic
@@ -2400,7 +2408,9 @@ class SustainabilityESGAgentWrapper:
                     response_data = json.loads(cleaned_response)
                 except json.JSONDecodeError as first_error:
                     print(f"⚠️ Initial JSON parse failed, attempting repair...")
+                    print(f"🔍 First 300 chars of response: {cleaned_response[:300]}")
                     repaired_response = repair_json_response(cleaned_response)
+                    print(f"🔍 First 300 chars after repair: {repaired_response[:300]}")
                     response_data = json.loads(repaired_response)
 
                 # Normalize response for Pydantic
@@ -2527,7 +2537,9 @@ class RegulatoryESGAgentWrapper:
                     response_data = json.loads(cleaned_response)
                 except json.JSONDecodeError as first_error:
                     print(f"⚠️ Initial JSON parse failed, attempting repair...")
+                    print(f"🔍 First 300 chars of response: {cleaned_response[:300]}")
                     repaired_response = repair_json_response(cleaned_response)
+                    print(f"🔍 First 300 chars after repair: {repaired_response[:300]}")
                     response_data = json.loads(repaired_response)
 
                 # Validate response_data is a dict, not a list
@@ -2643,7 +2655,9 @@ class HyperscalerAttractivenessAgentWrapper:
                     response_data = json.loads(cleaned_response)
                 except json.JSONDecodeError as first_error:
                     print(f"⚠️ Initial JSON parse failed, attempting repair...")
+                    print(f"🔍 First 300 chars of response: {cleaned_response[:300]}")
                     repaired_response = repair_json_response(cleaned_response)
+                    print(f"🔍 First 300 chars after repair: {repaired_response[:300]}")
                     response_data = json.loads(repaired_response)
 
                 # Normalize response for Pydantic
