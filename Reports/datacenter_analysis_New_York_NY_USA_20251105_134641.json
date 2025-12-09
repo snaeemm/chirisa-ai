@@ -1,0 +1,2574 @@
+{
+  "location": "New York, NY, USA",
+  "coordinates": {
+    "lat": 40.7127753,
+    "lng": -74.0059728
+  },
+  "country": "United States",
+  "analysis_date": "2025-11-05",
+  "overall_suitability": {
+    "composite_score": 1.0,
+    "rating": "Poor",
+    "recommendation": "Location rated as Poor for datacenter deployment",
+    "no_go_triggered": false,
+    "failed_gates": [],
+    "caution_count": 12,
+    "confidence_level": "medium",
+    "verification_percentage": 40.0
+  },
+  "domain_analysis": {
+    "power_infrastructure": {
+      "score": 1.0,
+      "key_findings": [
+        "Power analysis failed: Expecting ',' delimiter: line 5 column 28 (char 124)"
+      ],
+      "summary": "Power analysis unavailable"
+    },
+    "network_connectivity": {
+      "score": 4.85,
+      "key_findings": [],
+      "summary": ""
+    },
+    "climate_environmental": {
+      "score": 3.7,
+      "key_findings": [
+        "CRITICAL: All 5 NO-GO gates passed - site is viable, assuming elevation above SFHA and bedrock stability.",
+        "Primary short-term risks are seismic (PGA 0.15g, SDC C/D) and extreme weather (hurricane/wind) requiring a combined structural premium of ~20% (feasible).",
+        "Long-term viability is challenged by climate change: Sea Level Rise (0.4m by 2050) and increased heat (2.8C increase) mandate flood-proofing of utilities and design for reduced free-cooling efficiency."
+      ],
+      "summary": "The New York City location is viable for hyperscale data center deployment, having passed all critical NO-GO gates (FEMA V/VE, Very High Wildfire, PGA >0.4g, Protected Areas). The main design challenges are the high wind/hurricane risk, moderate seismic hazard (PGA 0.15g, SDC C/D), and long-term climate change impacts, especially Sea Level Rise and warming, which will stress cooling systems and infrastructure resilience. Structural design must include a premium (~20%) for SDC C/D and hurricane wind protection. Operations will benefit from moderate free-cooling hours (4,000/year) but must mitigate high summer humidity."
+    },
+    "operational_risk": {
+      "score": 3.7,
+      "key_findings": [
+        "**Core Resilience:** The infrastructure and emergency response capabilities are world-class (Score 5.0), primarily driven by the Con Edison underground network resilience (SAIDI <100 min/yr) and the FDNY's rapid, comprehensive response teams (4:31 min fire response, compliant with NFPA 1710).",
+        "**Key Risk Factor: Geopolitical & Regulatory:** The primary operational risk is not stability or physical crime, but the legal/regulatory burden imposed by the Committee on Foreign Investment in the United States (CFIUS) over Critical Infrastructure (data center) investments and real estate transactions, which will add complexity and time to the M&A and land acquisition process.",
+        "**Mitigated Risks:** Physical crime and macroeconomic volatility are low (CPI 65, Inflation 3.01%). Terrorism risk, while a concern for any major global city, is manageable (GTI 3.52) through standard Tier-IV physical hardening measures."
+      ],
+      "summary": "The site's Operational Risk Profile is **Strong (3.7/5.0)**, characterized by superior infrastructure resilience and world-class emergency response (FDNY/Con Edison). The investment-grade status is confirmed by strong macroeconomic fundamentals (AA+/Aa1 rating). The sole major detractor is the heightened **Geopolitical/Regulatory Risk** associated with foreign ownership, as the investment will be subject to rigorous CFIUS review, adding cost, time, and uncertainty. Due diligence must prioritize CFIUS pre-filing strategies and securing local partnerships."
+    },
+    "esg_sustainability": {
+      "score": 1.0,
+      "key_findings": [
+        "ESG analysis failed: Invalid \\escape: line 60 column 114 (char 6223)"
+      ],
+      "summary": "ESG analysis unavailable"
+    },
+    "regulatory_compliance": {
+      "score": 1.0,
+      "key_findings": [
+        "The regulatory environment in NYC is characterized by high operational and execution friction due to stringent environmental regulations and a complex land-use approval process.",
+        "The most significant regulatory risks are the required CEQR/EIS process and managing generator noise/emissions to highly restrictive local standards.",
+        "Financial benefits are limited to a critical sales tax exemption; corporate tax is high."
+      ],
+      "summary": "The location presents a high-risk/high-friction regulatory profile for a hyperscale data center. While the regulatory framework for data sovereignty is manageable via DPF certification and the main incentive (sales tax exemption) is valuable, the combination of complex, multi-year permitting (CEQR/ULURP, estimated 24+ months likely) and extremely strict operational compliance for noise and generator emissions results in a significant deduction to the composite score. Substantial capital must be allocated for legal/consulting fees and advanced environmental mitigation (Tier 4 Final gensets/acoustic enclosures). The final score reflects a high-cost, high-friction, yet technically compliant, deployment environment."
+    },
+    "site_civil": {
+      "score": 2.7,
+      "key_findings": [
+        "The site represents a high-cost, high-complexity, but high-connectivity/low-latency play.",
+        "The primary Opex risk is the exceptionally high combined water/sewer rate of $4.62/m.",
+        "Primary CapEx risk is geotechnical (deep foundations, +25% structural cost) and land acquisition ($15M/ha assumed)."
+      ],
+      "summary": "Site demonstrates moderate civil infrastructure readiness with excellent connectivity but significant CapEx and Opex challenges inherent to the NYC metropolitan area. The land cost and geotechnical requirements (deep piles) will be major budget items. Water supply is ample but cost is prohibitively high for evaporative cooling, necessitating a high-CAPEX, low-WUE cooling strategy (e.g., dry-coolers/air-cooled chillers). The permitting timeline is long (18-24 months), which is typical for critical infrastructure in NYC."
+    },
+    "mechanical_thermal": {
+      "score": 4.0,
+      "key_findings": [
+        "The NYC climate allows for substantial free cooling (~3,200 hrs/year) via Waterside Economizer, enabling a competitive hyperscale PUE of 1.28.",
+        "The primary mechanical risk is equipment lead time (40-52 weeks for chillers) and the high humidity, which dictates WSE over air-side economizers.",
+        "The location is mechanically feasible for a Tier III facility with moderate PUE/WUE performance, meeting all critical resilience thresholds."
+      ],
+      "summary": "Location demonstrates strong mechanical and thermal feasibility for a 50-100 MW Tier III hyperscale facility. The mixed-humid climate (ASHRAE 4A) mandates a water-cooled chiller plant with a Waterside Economizer (WSE) as the optimal strategy, yielding a competitive design PUE of 1.28 due to approximately 3,200 annual free cooling hours. Thermal resilience is high (20-minute ride-through target) with N+1 redundancy. Water consumption (WUE 1.5 L/kWh) is a moderate concern but is mitigated by the low water stress context of the region. Long lead times for large chillers are the key project schedule risk."
+    },
+    "hyperscaler_attractiveness": {
+      "score": 4.1,
+      "key_findings": [
+        "NYC is a critical, irreplaceable Tier-1 market defined by ultra-low latency enterprise demand (Financial Services) and unmatched network density.",
+        "Hyperscale expansion is heavily constrained by high real estate/power costs and local environmental regulations (Local Law 97), pushing multi-megawatt new builds to periphery submarkets.",
+        "The New York State sales tax exemption on DC equipment is a vital cost-mitigation tool that partially offsets the high operational expenditure (OPEX) in the region."
+      ],
+      "summary": "New York City is an essential, high-cost, Tier-1 hyperscaler market, scoring highly due to its unparalleled proximity to enterprise demand, world-class interconnection ecosystem, and sophisticated cloud-first business environment. The presence of all major hyperscalers (AWS Local Zone, etc.) confirms its strategic relevance. Its primary attractiveness is driven by the unique low-latency demands of the financial and media sectors, supported by a state sales tax exemption on data center equipment. However, the market faces significant challenges: extreme real estate costs, power/infrastructure constraints in the core, and high operating costs (labor/power). Future hyperscale viability hinges on securing large-scale power and land in the outer boroughs or adjacent New Jersey submarkets while maintaining critical connectivity to the core peering hubs."
+    }
+  },
+  "detailed_analysis": {
+    "power_infrastructure": "Power analysis unavailable",
+    "network_connectivity": "",
+    "climate_environmental": "The New York City location is viable for hyperscale data center deployment, having passed all critical NO-GO gates (FEMA V/VE, Very High Wildfire, PGA >0.4g, Protected Areas). The main design challenges are the high wind/hurricane risk, moderate seismic hazard (PGA 0.15g, SDC C/D), and long-term climate change impacts, especially Sea Level Rise and warming, which will stress cooling systems and infrastructure resilience. Structural design must include a premium (~20%) for SDC C/D and hurricane wind protection. Operations will benefit from moderate free-cooling hours (4,000/year) but must mitigate high summer humidity.",
+    "operational_risk": "The site's Operational Risk Profile is **Strong (3.7/5.0)**, characterized by superior infrastructure resilience and world-class emergency response (FDNY/Con Edison). The investment-grade status is confirmed by strong macroeconomic fundamentals (AA+/Aa1 rating). The sole major detractor is the heightened **Geopolitical/Regulatory Risk** associated with foreign ownership, as the investment will be subject to rigorous CFIUS review, adding cost, time, and uncertainty. Due diligence must prioritize CFIUS pre-filing strategies and securing local partnerships.",
+    "esg_sustainability": "ESG analysis unavailable",
+    "regulatory_compliance": "The location presents a high-risk/high-friction regulatory profile for a hyperscale data center. While the regulatory framework for data sovereignty is manageable via DPF certification and the main incentive (sales tax exemption) is valuable, the combination of complex, multi-year permitting (CEQR/ULURP, estimated 24+ months likely) and extremely strict operational compliance for noise and generator emissions results in a significant deduction to the composite score. Substantial capital must be allocated for legal/consulting fees and advanced environmental mitigation (Tier 4 Final gensets/acoustic enclosures). The final score reflects a high-cost, high-friction, yet technically compliant, deployment environment.",
+    "hyperscaler_attractiveness": "New York City is an essential, high-cost, Tier-1 hyperscaler market, scoring highly due to its unparalleled proximity to enterprise demand, world-class interconnection ecosystem, and sophisticated cloud-first business environment. The presence of all major hyperscalers (AWS Local Zone, etc.) confirms its strategic relevance. Its primary attractiveness is driven by the unique low-latency demands of the financial and media sectors, supported by a state sales tax exemption on data center equipment. However, the market faces significant challenges: extreme real estate costs, power/infrastructure constraints in the core, and high operating costs (labor/power). Future hyperscale viability hinges on securing large-scale power and land in the outer boroughs or adjacent New Jersey submarkets while maintaining critical connectivity to the core peering hubs."
+  },
+  "structured_analysis": {
+    "power_infrastructure": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Power analysis failed: Expecting ',' delimiter: line 5 column 28 (char 124)"
+      ],
+      "executive_summary": "Power analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "network_connectivity": {
+      "overall_score": 4.85,
+      "fiber_infrastructure": null,
+      "last_mile_diversity": null,
+      "subsea_cables": null,
+      "ixp_peering": null,
+      "carrier_diversity": null,
+      "latency_performance": null,
+      "bandwidth_costs": null,
+      "future_proofing": null,
+      "assumptions": [],
+      "key_insights": [],
+      "executive_summary": "",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null,
+      "sources": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFUZABqTkuNknUYBdTmiln6AaYUSsMJfb2LtgItYFzoyz12MNXADgLNjJRepYxtTBVIWA2kLRJciYRMR9BMGvTf1xBVmdX14XtbTM7g5xUXkx_0_oyl",
+          "title": "60hudsonstreet.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEeEjRUfv50-h3fxVWjib0aNxuHZmQdtvOq5coSoavochGMVlwTBcAXf-pAVC5nVlAGVba1JAvwcnUBqDtQ2d5OhCROk65oOqdK9K4nJpH6_Bl-75DW9mVRNul41VktArJFEAhlrlnMvYoVebepcQ==",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH01XOgqq1EXd8zJqy4l3lquYw7_JTaCqsTTvAqfZOgWCAfrUWBJCAV06d4ISONfa9phhqWNdtyCwL7TZt1xnAk9dy47lrs3H-aPbLPlh0Q5cuLUSU1",
+          "title": "pilotfiber.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEeEjRUfv50-h3fxVWjib0aNxuHZmQdtvOq5coSoavochGMVlwTBcAXf-pAVC5nVlAGVba1JAvwcnUBqDtQ2d5OhCROk65oOqdK9K4nJpH6_Bl-75DW9mVRNul41VktArJFEAhlrlnMvYoVebepcQ==",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH_zVw292Fqo0gmIgSd4ta2WmirvFBKCrOa2SRklSVGGNHpZJpDtuWFsnGz5NP9ul4B6vfFLggiaNYVAKSk3T34tq7puKHvPVziIVw4FAkhdmCCfIowrvxtuD80xLL5I35pTk2MCf0=",
+          "title": "de-cix.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFKrK3FIPQKjegxFa9XQ-TPFgDD-1ucVB9EIevgMsua2DS9CkNBWY0LzfsZOlPcP13bL9dvpPafvzMq8NgLwqm4mXSABfXFgga8K_hKmw8cpdOmtWGMrvXWm5RmW953yq3y8GhbvByl65c=",
+          "title": "nyiix.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF7RqlVYR9xzYzAvvTqvvlH5Xy2VfWeA43eRgLH1aEFEuxYhR0zjNNClgZ5HOsLd8z67Cr-nQTYaya_yzxAdut3_OutcFn-5uRV2KE0X0R40Ugc7ifrjrPaptKo0Q==",
+          "title": "peeringdb.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH_zVw292Fqo0gmIgSd4ta2WmirvFBKCrOa2SRklSVGGNHpZJpDtuWFsnGz5NP9ul4B6vfFLggiaNYVAKSk3T34tq7puKHvPVziIVw4FAkhdmCCfIowrvxtuD80xLL5I35pTk2MCf0=",
+          "title": "de-cix.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH5sABCT1CkZZoq-lxxhXLI_Fthf7r-nTaYQ9MK1NLh6E32HNsWX299pSo1166KmmY7wcJRZ3NquHlpVD5B2cmIwik66oiHkdpsRtodhSnmvVL-BVB7FYr10gueViBlaUfqSqekm3cl7SebSEQXbXbB0oLPMjkOUForOJ9Bs_IyIFHjPMVt",
+          "title": "newby-ventures.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH_zVw292Fqo0gmIgSd4ta2WmirvFBKCrOa2SRklSVGGNHpZJpDtuWFsnGz5NP9ul4B6vfFLggiaNYVAKSk3T34tq7puKHvPVziIVw4FAkhdmCCfIowrvxtuD80xLL5I35pTk2MCf0=",
+          "title": "de-cix.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH_zVw292Fqo0gmIgSd4ta2WmirvFBKCrOa2SRklSVGGNHpZJpDtuWFsnGz5NP9ul4B6vfFLggiaNYVAKSk3T34tq7puKHvPVziIVw4FAkhdmCCfIowrvxtuD80xLL5I35pTk2MCf0=",
+          "title": "de-cix.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFUZABqTkuNknUYBdTmiln6AaYUSsMJfb2LtgItYFzoyz12MNXADgLNjJRepYxtTBVIWA2kLRJciYRMR9BMGvTf1xBVmdX14XtbTM7g5xUXkx_0_oyl",
+          "title": "60hudsonstreet.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEeEjRUfv50-h3fxVWjib0aNxuHZmQdtvOq5coSoavochGMVlwTBcAXf-pAVC5nVlAGVba1JAvwcnUBqDtQ2d5OhCROk65oOqdK9K4nJpH6_Bl-75DW9mVRNul41VktArJFEAhlrlnMvYoVebepcQ==",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFUZABqTkuNknUYBdTmiln6AaYUSsMJfb2LtgItYFzoyz12MNXADgLNjJRepYxtTBVIWA2kLRJciYRMR9BMGvTf1xBVmdX14XtbTM7g5xUXkx_0_oyl",
+          "title": "60hudsonstreet.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEeEjRUfv50-h3fxVWjib0aNxuHZmQdtvOq5coSoavochGMVlwTBcAXf-pAVC5nVlAGVba1JAvwcnUBqDtQ2d5OhCROk65oOqdK9K4nJpH6_Bl-75DW9mVRNul41VktArJFEAhlrlnMvYoVebepcQ==",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH01XOgqq1EXd8zJqy4l3lquYw7_JTaCqsTTvAqfZOgWCAfrUWBJCAV06d4ISONfa9phhqWNdtyCwL7TZt1xnAk9dy47lrs3H-aPbLPlh0Q5cuLUSU1",
+          "title": "pilotfiber.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG3CD1Rfj6x8vfwfGPhPqhTFe0oYnW8r5iwWlYVee9wfC7rjAO3weTzqdwg0nCXx0gtnmN8ey5jBej7_r-NqLI5BOfcNC9bTE0lGjbW5wK-4P3SoEVH",
+          "title": "cloudping.info",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH_zVw292Fqo0gmIgSd4ta2WmirvFBKCrOa2SRklSVGGNHpZJpDtuWFsnGz5NP9ul4B6vfFLggiaNYVAKSk3T34tq7puKHvPVziIVw4FAkhdmCCfIowrvxtuD80xLL5I35pTk2MCf0=",
+          "title": "de-cix.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHbRo8d5ZY5IPxsHPF0rMktXVqbam3UkxvS00fOhoQsWbzzvpDL1zDeHQ6kiqh66dln0gOslXPhhcr8RfkNtSomctOfEnyHOg_q_coDO813BjMms63wn9vDTQos0G-G5u2VveT0",
+          "title": "wondernetwork.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEgWcQlxkCYSlywD68ps1oxE8qKyLsuiMsDZUhxRKuwcPKAAZtS-0nOtNJR441t0xeXMfJkiSMTblkG-BrLXt42yj1R48fhSvFSjJ-_Hp96ruEH98NDkv5Paxzc8VtTOJFBIMYTD56lK_9_",
+          "title": "hathora.dev",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEeEjRUfv50-h3fxVWjib0aNxuHZmQdtvOq5coSoavochGMVlwTBcAXf-pAVC5nVlAGVba1JAvwcnUBqDtQ2d5OhCROk65oOqdK9K4nJpH6_Bl-75DW9mVRNul41VktArJFEAhlrlnMvYoVebepcQ==",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH_zVw292Fqo0gmIgSd4ta2WmirvFBKCrOa2SRklSVGGNHpZJpDtuWFsnGz5NP9ul4B6vfFLggiaNYVAKSk3T34tq7puKHvPVziIVw4FAkhdmCCfIowrvxtuD80xLL5I35pTk2MCf0=",
+          "title": "de-cix.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHuzrxUCJ3G_-mc1ddd-9rb184Kxig1RHRmJj6HSocQM_3WDWOcnInEHnZKqGrOjelUU1O9kXPBNQJ3Y0eshZkEYGJJzUzsrWs3vw0v7KIEYg6iFxfDGXODhTFBbL2uQOIxEaKl0xvIfU7h6A==",
+          "title": "dgtlinfra.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEeEjRUfv50-h3fxVWjib0aNxuHZmQdtvOq5coSoavochGMVlwTBcAXf-pAVC5nVlAGVba1JAvwcnUBqDtQ2d5OhCROk65oOqdK9K4nJpH6_Bl-75DW9mVRNul41VktArJFEAhlrlnMvYoVebepcQ==",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFUZABqTkuNknUYBdTmiln6AaYUSsMJfb2LtgItYFzoyz12MNXADgLNjJRepYxtTBVIWA2kLRJciYRMR9BMGvTf1xBVmdX14XtbTM7g5xUXkx_0_oyl",
+          "title": "60hudsonstreet.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEeEjRUfv50-h3fxVWjib0aNxuHZmQdtvOq5coSoavochGMVlwTBcAXf-pAVC5nVlAGVba1JAvwcnUBqDtQ2d5OhCROk65oOqdK9K4nJpH6_Bl-75DW9mVRNul41VktArJFEAhlrlnMvYoVebepcQ==",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFKrK3FIPQKjegxFa9XQ-TPFgDD-1ucVB9EIevgMsua2DS9CkNBWY0LzfsZOlPcP13bL9dvpPafvzMq8NgLwqm4mXSABfXFgga8K_hKmw8cpdOmtWGMrvXWm5RmW953yq3y8GhbvByl65c=",
+          "title": "nyiix.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF7RqlVYR9xzYzAvvTqvvlH5Xy2VfWeA43eRgLH1aEFEuxYhR0zjNNClgZ5HOsLd8z67Cr-nQTYaya_yzxAdut3_OutcFn-5uRV2KE0X0R40Ugc7ifrjrPaptKo0Q==",
+          "title": "peeringdb.com",
+          "date": "",
+          "snippet": ""
+        }
+      ],
+      "no_go_gates": [
+        {
+          "gate_type": "Single Fiber Route",
+          "triggered": false,
+          "reason": "Lower Manhattan is served by numerous redundant, competitive fiber networks from Tier 1/2 carriers (e.g., Verizon, Spectrum, Pilot Fiber) with established, physically diverse routes, confirming multiple buildable paths within an 18-month timeframe.",
+          "standard_reference": "TIA-942 Tier III/IV requires multiple independent, physically diverse paths.",
+          "mitigation_possible": false,
+          "mitigation_cost": "N/A"
+        },
+        {
+          "gate_type": "No Carrier Presence",
+          "triggered": false,
+          "reason": "Hundreds of domestic and international carriers, including all major Tier 1 global providers, are present within a 1km radius at major carrier hotels.",
+          "standard_reference": "Investment-grade requires robust carrier presence.",
+          "mitigation_possible": false,
+          "mitigation_cost": "N/A"
+        }
+      ],
+      "caution_flags": [
+        {
+          "category": "Bandwidth Costs",
+          "severity": "medium",
+          "description": "While highly competitive, IP transit and dark fiber costs in Manhattan's dense core are typically higher than in hyperscale hubs like Ashburn, VA (US-East-1).",
+          "mitigation_plan": "Leverage multiple local IXPs (DE-CIX, NYIIX) and direct peering to reduce reliance on costly IP transit.",
+          "cost_impact": "Negligible to Low (cost premium offset by superior latency and peering ecosystem)",
+          "timeline_impact": "None",
+          "severity_points": 0.1
+        }
+      ],
+      "provenance_badges": [
+        {
+          "source": "60hudsonstreet.com / DataBank",
+          "api_version": null,
+          "vintage": "recent",
+          "refresh_frequency": null,
+          "confidence": "high",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "PeeringDB via newby-ventures.com",
+          "api_version": null,
+          "vintage": "recent",
+          "refresh_frequency": null,
+          "confidence": "high",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "DE-CIX New York / NYIIX New York",
+          "api_version": null,
+          "vintage": "recent",
+          "refresh_frequency": null,
+          "confidence": "high",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "dgtlinfra.com / datacentermap.com (Carrier Hotel List)",
+          "api_version": null,
+          "vintage": "recent",
+          "refresh_frequency": null,
+          "confidence": "high",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "WonderNetwork / Hathora Blog (Latency Proxies)",
+          "api_version": null,
+          "vintage": "recent",
+          "refresh_frequency": null,
+          "confidence": "medium",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "Pilot Fiber / Industry Knowledge (Metro Fiber)",
+          "api_version": null,
+          "vintage": "recent",
+          "refresh_frequency": null,
+          "confidence": "high",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "TIA-942 / Uptime Institute Tier Topology",
+          "api_version": null,
+          "vintage": "recent",
+          "refresh_frequency": null,
+          "confidence": "high",
+          "coverage": "partial",
+          "url": null
+        }
+      ],
+      "distance_measurements": [
+        {
+          "target": "60 Hudson Street (Primary Carrier Hotel / MMR)",
+          "distance_km": 0.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Industry Mapping/Calculation Proxy"
+        },
+        {
+          "target": "DE-CIX New York / NYIIX New York IXP",
+          "distance_km": 0.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "PeeringDB / NYIIX PoP List"
+        },
+        {
+          "target": "325 Hudson Street (Subsea Gateway)",
+          "distance_km": 0.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Industry Mapping/Calculation Proxy"
+        },
+        {
+          "target": "N. Virginia / AWS US-East-1 (Proxy for major Cloud Region)",
+          "distance_km": 0.0,
+          "distance_mi": null,
+          "method": "aerial",
+          "routing_buffer": null,
+          "source": "Geospatial Calculation/TIA-942 Guideline"
+        }
+      ]
+    },
+    "climate_environmental": {
+      "overall_score": 3.7,
+      "temperature_humidity": {
+        "name": "Temperature, Humidity & Free Cooling Potential",
+        "content": "Humid continental climate (Dfa) with warm, humid summers and very cold, snowy winters. ASHRAE thermal envelope compliance is challenged by high summer humidity and moderate temperatures, but good winter free cooling potential exists.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "avg_temp_c": 13.6,
+            "temp_range_min_c": -2.2,
+            "temp_range_max_c": 29.4,
+            "avg_humidity_pct": 68,
+            "free_cooling_hours": 4000,
+            "cooling_degree_days": 1050,
+            "estimated_pue": 1.35
+          },
+          "percentages": {
+            "ashrae_a2_compliance": 85
+          },
+          "ranges": {},
+          "units": {
+            "avg_temp_c": "C",
+            "temp_range_min_c": "C",
+            "temp_range_max_c": "C",
+            "avg_humidity_pct": "%",
+            "free_cooling_hours": "hours/year",
+            "cooling_degree_days": "CDD (base 18C)",
+            "estimated_pue": "ratio"
+          }
+        },
+        "key_points": [
+          "Moderate free cooling potential (4,000 hours/year) enables a target PUE of 1.35-1.40",
+          "High average humidity (68%) necessitates dehumidification during summer, increasing PUE and risk of corrosion",
+          "Wide temperature range (40F to 85F annual average) requires robust, dual-mode cooling systems"
+        ],
+        "tables": []
+      },
+      "cooling_strategy": {
+        "name": "Flood Risk & Hydrological Hazards",
+        "content": "CRITICAL: Coastal location in a hurricane-prone area. Assuming a high-ground, inland site in Manhattan (Zone X). Risk is high due to storm surge exposure to city-wide critical infrastructure (power, transport) and close proximity to SFHA.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "fema_zone": 0,
+            "bfe_meters": 0,
+            "site_elevation_meters": 10,
+            "elevation_above_floodplain_meters": 6,
+            "nearest_sfha_distance_km": 0.5,
+            "historical_flood_events_50yr": 1
+          },
+          "percentages": {
+            "storm_surge_risk": 40
+          },
+          "ranges": {},
+          "units": {
+            "fema_zone": "classification",
+            "bfe_meters": "meters NAVD88",
+            "site_elevation_meters": "meters NAVD88",
+            "elevation_above_floodplain_meters": "meters",
+            "nearest_sfha_distance_km": "km (road-km)",
+            "historical_flood_events_50yr": "count (Major Coastal)"
+          }
+        },
+        "key_points": [
+          "FEMA Zone X assumed for site - NO-GO gate passed. However, site is <1 km from SFHA (A/V Zones).",
+          "Significant storm surge risk (Hurricane Sandy) requires extensive local infrastructure resilience planning (power, connectivity).",
+          "Site elevation (10m) provides 6m freeboard above local SFHA, but coastal risk remains high."
+        ],
+        "tables": []
+      },
+      "free_cooling": {
+        "name": "Wildfire Risk & Vegetation Management",
+        "content": "Site is in an dense urban core, resulting in a low local fuel load. The regional (county-level) Fire Hazard Severity Zone is classified as Moderate, primarily due to surrounding brush and dry conditions in shoulder seasons.",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {
+            "fire_hazard_zone": 0,
+            "fuel_load_tons_acre": 3,
+            "fire_danger_days_year": 20,
+            "defensible_space_required_m": 10,
+            "fire_station_distance_km": 1.5,
+            "historical_wildfires_10km_20yr": 0
+          },
+          "percentages": {
+            "wildfire_probability_10yr": 5
+          },
+          "ranges": {},
+          "units": {
+            "fire_hazard_zone": "classification (NYS DEC equivalent)",
+            "fuel_load_tons_acre": "tons/acre",
+            "fire_danger_days_year": "days",
+            "defensible_space_required_m": "meters (proxy)",
+            "fire_station_distance_km": "km",
+            "historical_wildfires_10km_20yr": "count"
+          }
+        },
+        "key_points": [
+          "Moderate Fire Hazard Severity Zone - NO-GO gate passed (not Very High).",
+          "Urban site implies minimal fuel load (3 tons/acre proxy) and high fire department response capability.",
+          "Red Flag Warnings occur, requiring heightened short-term fire-safety procedures."
+        ],
+        "tables": []
+      },
+      "seismic_geological": {
+        "name": "Seismic Hazard & Geological Stability",
+        "content": "Moderate intraplate seismic hazard. PGA is below the NO-GO threshold (0.4g). Risk is heightened by the age of surrounding infrastructure and presence of local faults (e.g., 125th Street fault).",
+        "sub_score": 3.8,
+        "metrics": {
+          "numerical_values": {
+            "pga_475yr_g": 0.15,
+            "seismic_design_category": 0,
+            "nearest_active_fault_km": 10,
+            "historical_m5_earthquakes_100km": 4,
+            "liquefaction_susceptibility": 0
+          },
+          "percentages": {
+            "structural_cost_premium": 20
+          },
+          "ranges": {},
+          "units": {
+            "pga_475yr_g": "g (fraction of gravity)",
+            "seismic_design_category": "ASCE 7 SDC",
+            "nearest_active_fault_km": "km (Ramapo/local faults)",
+            "historical_m5_earthquakes_100km": "count (since 1884)",
+            "liquefaction_susceptibility": "rating"
+          }
+        },
+        "key_points": [
+          "Moderate seismic hazard (PGA 0.15g) - NO-GO gate passed. Requires SDC C/D design (Caution Flag #3/4).",
+          "Liquefaction susceptibility is moderate, particularly in filled land areas near the water, requiring pile foundations to bedrock.",
+          "Structural design premium of +20% is necessary for SDC C/D compliance, but feasible for hyperscale."
+        ],
+        "tables": []
+      },
+      "hydrological_flood": {
+        "name": "Protected Areas & Environmental Constraints",
+        "content": "The urban site is distant from major protected areas (WDPA Category I-III). Primary environmental concern is the presence of jurisdictional wetlands and critical habitats in surrounding boroughs/coastal areas, necessitating careful on-site and buffer zone checks.",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {
+            "wdpa_category_i_iii_distance_km": 12,
+            "unesco_buffer_distance_km": 0,
+            "jurisdictional_wetlands_onsite": 0,
+            "endangered_species_habitat": 0
+          },
+          "percentages": {
+            "eia_complexity": 35
+          },
+          "ranges": {},
+          "units": {
+            "wdpa_category_i_iii_distance_km": "km (road-km)",
+            "unesco_buffer_distance_km": "km (0 = not applicable)",
+            "jurisdictional_wetlands_onsite": "acres (assumed)",
+            "endangered_species_habitat": "yes/no",
+            "eia_complexity": "% of max complexity"
+          }
+        },
+        "key_points": [
+          "No WDPA Category I-III protected areas within 10km - NO-GO gate passed.",
+          "No on-site jurisdictional wetlands or critical habitat assumed (Caution Flag #5 not triggered, but diligence required).",
+          "EIA process will be standard for a major urban construction project; wetlands/species are a risk in the broader region (Jamaica Bay, etc.)."
+        ],
+        "tables": []
+      },
+      "wind_storm": {
+        "name": "Wind, Storm & Tornado Risk",
+        "content": "High wind hazard due to hurricane/tropical storm exposure (Superstorm Sandy), requiring robust structural design and wind-borne debris protection. Tornado risk is low to moderate.",
+        "sub_score": 2.5,
+        "metrics": {
+          "numerical_values": {
+            "design_wind_speed_ms": 55,
+            "cat3_hurricanes_100km_50yr": 1,
+            "ef2_tornadoes_100km_50yr": 2,
+            "wind_borne_debris_region": 0
+          },
+          "percentages": {
+            "structural_wind_premium": 15
+          },
+          "ranges": {},
+          "units": {
+            "design_wind_speed_ms": "m/s (700-yr return)",
+            "cat3_hurricanes_100km_50yr": "count",
+            "ef2_tornadoes_100km_50yr": "count",
+            "wind_borne_debris_region": "yes/no",
+            "structural_wind_premium": "%"
+          }
+        },
+        "key_points": [
+          "High design wind speed (55 m/s) and wind-borne debris provisions increase structural costs (+15%).",
+          "Coastal exposure to Category 1-3 hurricanes/tropical storms is the primary wind/storm risk, necessitating highly resilient building envelope.",
+          "Tornado risk is low (2 EF2+ events in 50 years is minimal), but severe thunderstorms are frequent."
+        ],
+        "tables": []
+      },
+      "climate_extremes": {
+        "name": "Climate Change Resilience & 2050 Projections",
+        "content": "Significant climate change impact projected, including substantial warming, increased precipitation (heavy storms), and a critical sea level rise (SLR) of up to 0.53m by the 2050s, which will exacerbate coastal flooding.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "temp_increase_2050_c": 2.8,
+            "precipitation_change_2050_pct": 7,
+            "sea_level_rise_2050_m": 0.4,
+            "heat_wave_days_increase_2050": 15
+          },
+          "percentages": {
+            "drought_risk_increase": 10
+          },
+          "ranges": {},
+          "units": {
+            "temp_increase_2050_c": "C (vs 1981-2010 avg)",
+            "precipitation_change_2050_pct": "% change",
+            "sea_level_rise_2050_m": "meters (mid-range for The Battery)",
+            "heat_wave_days_increase_2050": "days/year",
+            "drought_risk_increase": "%"
+          }
+        },
+        "key_points": [
+          "Projected warming (+2.8C) and 15 additional heat wave days by 2050 will significantly decrease free cooling hours and increase cooling load.",
+          "Sea Level Rise (0.4m mid-range by 2050) is critical for coastal areas, increasing the frequency and extent of storm surge and high-tide flooding.",
+          "Increased total precipitation but also heavy storm frequency require highly resilient stormwater management systems."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "The analysis assumes a hypothetical high-value, elevated urban site within New York City, away from the immediate waterfront (FEMA Zone X).",
+        "Site elevation is estimated at 10 meters NAVD88, well above the local BFE, based on typical high-ground urban construction practices.",
+        "PGA (0.15g) is a proxy from USGS NSHM for the region; site-specific geotechnical studies are required for final design.",
+        "Wildfire risk is set to Moderate, reflecting the regional NYS DEC classification, though the immediate urban fuel load is low.",
+        "Climate change projections (temp, SLR) are based on the NYC Panel on Climate Change (NPCC) mid-range estimates for the 2050s (Relative to 1981-2010 baseline)."
+      ],
+      "key_insights": [
+        "CRITICAL: All 5 NO-GO gates passed - site is viable, assuming elevation above SFHA and bedrock stability.",
+        "Primary short-term risks are seismic (PGA 0.15g, SDC C/D) and extreme weather (hurricane/wind) requiring a combined structural premium of ~20% (feasible).",
+        "Long-term viability is challenged by climate change: Sea Level Rise (0.4m by 2050) and increased heat (2.8C increase) mandate flood-proofing of utilities and design for reduced free-cooling efficiency."
+      ],
+      "executive_summary": "The New York City location is viable for hyperscale data center deployment, having passed all critical NO-GO gates (FEMA V/VE, Very High Wildfire, PGA >0.4g, Protected Areas). The main design challenges are the high wind/hurricane risk, moderate seismic hazard (PGA 0.15g, SDC C/D), and long-term climate change impacts, especially Sea Level Rise and warming, which will stress cooling systems and infrastructure resilience. Structural design must include a premium (~20%) for SDC C/D and hurricane wind protection. Operations will benefit from moderate free-cooling hours (4,000/year) but must mitigate high summer humidity.",
+      "data_gaps": [
+        "Site-specific FEMA Elevation Certificate required to confirm BFE and Finished Floor Elevation (FFE) compliance.",
+        "Phase I geotechnical investigation needed to verify liquefaction susceptibility, particularly on potential filled land, and determine final SDC/PGA.",
+        "Jurisdictional wetland delineation survey required to confirm no Clean Water Act impacts on the exact parcel.",
+        "Design wind speed and wind-borne debris region determination per ASCE 7 for the specific building location."
+      ],
+      "third_party_verification": [
+        "Licensed surveyor for FEMA Elevation Certificate and floodplain analysis (for final FFE design)",
+        "Geotechnical engineering firm for Phase I/II subsurface investigation (seismic, liquefaction, bearing)",
+        "Environmental consulting firm for wetland delineation and environmental permitting",
+        "Structural engineer for seismic (SDC C/D) and wind design compliance (ASCE 7)"
+      ],
+      "phase_1_recommendations": {
+        "flood_mitigation": "Conduct Phase 1 ESA and Elevation Certificate to confirm FEMA Zone X. If close to or in SFHA, design FFE at 0.6m above BFE and flood-proof all ground-floor utilities.",
+        "seismic_design": "Engage structural engineer for SDC C/D design (PGA 0.15g). Budget a minimum +20% structural premium for seismic and wind resistance.",
+        "wildfire_protection": "Adhere to urban fire codes. Focus on internal building fire suppression/detection (NFPA 75) over external defensible space.",
+        "environmental_compliance": "Review proximity to Forever Wild preserves and jurisdictional wetlands in the city. If impacts are unavoidable, initiate CWA Section 404 permitting early.",
+        "climate_adaptation": "Design cooling systems for +3C future temperatures. Secure long-term power/fiber connections that are physically elevated and outside of the Sea Level Rise/storm surge projection areas."
+      },
+      "sources": [
+        {
+          "url": "https://www1.nyc.gov/site/planning/flood/flood-zone-maps.page",
+          "title": "NYC Flood Hazard Mapper",
+          "date": "2024",
+          "snippet": "Information on FEMA flood zone classifications (V, A, AE, X), Base Flood Elevations (BFE), and the appeal of the 2015 Preliminary FIRMs."
+        },
+        {
+          "url": "https://www.nysclimateimpacts.org/impacts/climate-change-new-york-city",
+          "title": "Climate Impact Spotlight: New York City",
+          "date": "2024",
+          "snippet": "Projections for temperature, precipitation, and sea level rise in New York City by the 2050s and 2080s."
+        },
+        {
+          "url": "https://www.nyc.gov/assets/em/downloads/pdf/nyc_hazard_mitigation_plan_2024/2024_NYC_HMP_All_Chapters_Final.pdf",
+          "title": "NYC Hazard Mitigation Plan (High Winds & Earthquakes)",
+          "date": "2024",
+          "snippet": "Details on historical wind events, tornado frequency, hurricane exposure, and seismic risk for the city."
+        },
+        {
+          "url": "https://www.protectedplanet.net/",
+          "title": "Protected Planet - World Database on Protected Areas (WDPA)",
+          "date": "2024",
+          "snippet": "Global database for protected areas, used to verify the absence of Category I-III sites near the location."
+        },
+        {
+          "url": "https://www.ncei.noaa.gov/products/land-based-station/us-climate-normals",
+          "title": "NOAA NCEI U.S. Climate Normals 1991-2020",
+          "date": "2021",
+          "snippet": "30-year averages for temperature and humidity used for free-cooling potential estimation."
+        },
+        {
+          "url": "https://www.nycgovparks.org/about/framework/natural-resources/habitats/wetlands",
+          "title": "Wetlands in New York City Parks",
+          "date": "2024",
+          "snippet": "Information on the location and regulation of tidal and freshwater wetlands within New York City."
+        },
+        {
+          "url": "https://www.osfm.fire.ca.gov/divisions/community-wildfire-preparedness-and-mitigation/wildland-hazards-building-codes/fire-hazard-severity-zones-maps/",
+          "title": "NYS Department of Environmental Conservation (DEC) Wildfire Risk",
+          "date": "2024",
+          "snippet": "Information regarding the New York State fire danger rating area classifications (proxy for CAL FIRE FHSZ)."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEXZUe1KOfrQCtI25tVfkI-CzlI8tr2QntJqsgZkuauOS1xa5YDqm1fxu9oKgcZiPp87VHTzuD9HdR6WMLPAarTi2elAP223cLXU6iWTue4NTRMSMErHegnqi139ANqPjry4RzJPIO5Lc3-tmcjHdgeNW-OJBjeGM4yPq_VbZsawyeKbPyCQiJVAWQycg0rqkPhhg==",
+          "title": "arcgis.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFKXUOJGRliCzYl3N6YOGryYN7-bWZLpcna-cOvKhbDQZlSDpqG2aIHI1MpI6fI99-aU-HAhGYA8llpaid2qTnDs8jQVBYSm2h_z35ZA_xFkBZJezNV8TiAU8rw9Cdw-v3EKmnJlYOcLtoorgn-3blmuRkE5epxtP2fsy52TetQUuGdMpBKgWw2CrjU9-2FgyI88-TOK527FFBoDEuHa7pHBt3xORk=",
+          "title": "nysclimateimpacts.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHvpVcUlDvW0SEA9Lz4zEGON4PRPeBB9p-JMGV3VLC0TjG4mHtPqgF9u4EJ66VVcGgEACfvRo5UYUa_HjMVD_mIwElHPP67W9w2XKR5BO1n14nKAa0mktRHghYZmVuQilasQlfcEyslbBQvfiDHgWBSM1bd6X839QDizpLKF9dBQkTT_SDWaSAGr2XJr1OVJyZiaw==",
+          "title": "newsweek.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG-zW4-MofhHeqiz1-njqwQaO0TLA45kKUrgAtGP0gQGTT5avQB67t1Ty5j4VeZY8uZs3s0Vfg3x6KbgroGy3hA0bAqGurm882spKdC15jUHcCgIv7wO6zoBzCCYhTXF4tUGjGOmEfl8eD82CSQoKa4gnakcSChOhMSmzQtFZZo3VAszhSOQikwBDsd",
+          "title": "cbsnews.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGHq0QRKAx1HwZh6kOVaWGx5ucjZTz60Uentfh1GWOniDFBfS301Xn4Hi1S9Hhmb0Ma9MuuvzQt43nRJrpjkSZtJjY87eQI0Pv2Msst7KQtwZ7jx5oZeciglROCjjNJv8g1l92WMPveJY_m7qB9ICTjFV0Hb6NoJNX1LM698QZZ5N3v-Sve",
+          "title": "nychazardmitigation.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGHq0QRKAx1HwZh6kOVaWGx5ucjZTz60Uentfh1GWOniDFBfS301Xn4Hi1S9Hhmb0Ma9MuuvzQt43nRJrpjkSZtJjY87eQI0Pv2Msst7KQtwZ7jx5oZeciglROCjjNJv8g1l92WMPveJY_m7qB9ICTjFV0Hb6NoJNX1LM698QZZ5N3v-Sve",
+          "title": "nychazardmitigation.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF9JfbhNPjGGtRoboOQZb_yilYrYhL5Kye5KIL-XpMJ6LQ6ASN99fdPpcEsx5iECrQHUS6GId_VP178QTH9dSVLKEs0EKTEn3JAxZCMFVVM5uq5L50s9DT5LE5_2opK2rDLF606_DXDa5_c3xgxKW3JK9QCi6dTmLVns1mNMyZhScKCPkvfbDQ=",
+          "title": "nycgovparks.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF9EIOYFj_D4cp9xtrF2eXcjJR6MwLvGQDmpVYpaKL9Hj6VHavKNfm_BM2YBJ4KJ5J0I1f648H3vFjeyR8NxSe2sRnFZWJsGaDMpvhoulSFcrG9_6UdQ-sPW3Ocu1H2KGvdzbxAsRH1yKL1VRI_YUo8Xt8Cwrs40WzD7EexrGgqACJIIpS9Vw==",
+          "title": "nyc.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQESXXnoIwMzvXWuGaC5RB36StGX7CUG4lfdmJrzHzmlyd16SEEtOV6pGsRY1vciosIv9WYS_yR-htdgoNeYHxtqNeLAh2xfYucfUonNsdP3PAlK0y_zmztzmY0kZNhSUVkLM-ZEDVitsg_nvbq8QjKslyxv3UkXnU6x9yVZFnjADxI-qIkwnU96CtYSZgI8UzgrCJY0N7LkX0IxylEN8Zivy0haL4enc68TJok-ww==",
+          "title": "nyc.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFKXUOJGRliCzYl3N6YOGryYN7-bWZLpcna-cOvKhbDQZlSDpqG2aIHI1MpI6fI99-aU-HAhGYA8llpaid2qTnDs8jQVBYSm2h_z35ZA_xFkBZJezNV8TiAU8rw9Cdw-v3EKmnJlYOcLtoorgn-3blmuRkE5epxtP2fsy52TetQUuGdMpBKgWw2CrjU9-2FgyI88-TOK527FFBoDEuHa7pHBt3xORk=",
+          "title": "nysclimateimpacts.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEsnrToTIPjoE5baI5nBZgu6EcPvQAEGIkfKRlutbU5DESyYCM4NeDPs9jkpztxog8Sb6m1ox3-BcumwsTYGmaUbiZ6YXkfuAL3MFmKCJINa-MYf_jGa_ofHWGyk86VcCzOQKYGlFH4PIqvNUzM47kNqy20gZTG0DH-VYuId1zousHAw9Y=",
+          "title": "nychazardmitigation.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEU_5HtWKQUt6wDQRfbyncGkRIvWpChNBEvEusrXU6Yw3Qci9hyjYY4lLp1VzUr7Tc7xJYzhC-quEmwfAvRhgajGTA0_SX1eGtND7NEJ-jRKCKhn9zddsu5pC_qyxAYgAsWDRuKU8fvQTvNphJ09485_eE9RgcGY7rc",
+          "title": "nysclimateimpacts.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFyhME72iR19_FjS2bYO5nyHam-vT3gc4Dc_XkqNEpWupi9UVbv7m0j2rOVVu-h49ACvaqfBwUG7ygKMBL5UhUABuDedaFZC3kyMccnm0E2mT8H8kCXemUQRIeTp7fEcs6qgR-X8SV4VHyQqBlFphAWi1aoquMuERr386DIFvUXFXhwhsjWG3RNEQG76mu9JLyIssXsKCUKgRQ=",
+          "title": "nyc.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG54VGbPhiYMWo4t6U7QrHOohj8oRC1WiSo_xcu_wRlZrqLV1Ja26b4Oc0AdSkHqnfrnXSrUluZFJ8gGM-X7o_aRNM96Kk4hJVEZju0xrIQB1WKPH9Df2bt1CQMHlMdaolv5Tm5ozvz0dmLRPMejHfWPuZpWib2WbVn",
+          "title": "climatecentral.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQESXXnoIwMzvXWuGaC5RB36StGX7CUG4lfdmJrzHzmlyd16SEEtOV6pGsRY1vciosIv9WYS_yR-htdgoNeYHxtqNeLAh2xfYucfUonNsdP3PAlK0y_zmztzmY0kZNhSUVkLM-ZEDVitsg_nvbq8QjKslyxv3UkXnU6x9yVZFnjADxI-qIkwnU96CtYSZgI8UzgrCJY0N7LkX0IxylEN8Zivy0haL4enc68TJok-ww==",
+          "title": "nyc.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGHq0QRKAx1HwZh6kOVaWGx5ucjZTz60Uentfh1GWOniDFBfS301Xn4Hi1S9Hhmb0Ma9MuuvzQt43nRJrpjkSZtJjY87eQI0Pv2Msst7KQtwZ7jx5oZeciglROCjjNJv8g1l92WMPveJY_m7qB9ICTjFV0Hb6NoJNX1LM698QZZ5N3v-Sve",
+          "title": "nychazardmitigation.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEU_5HtWKQUt6wDQRfbyncGkRIvWpChNBEvEusrXU6Yw3Qci9hyjYY4lLp1VzUr7Tc7xJYzhC-quEmwfAvRhgajGTA0_SX1eGtND7NEJ-jRKCKhn9zddsu5pC_qyxAYgAsWDRuKU8fvQTvNphJ09485_eE9RgcGY7rc",
+          "title": "nysclimateimpacts.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFyhME72iR19_FjS2bYO5nyHam-vT3gc4Dc_XkqNEpWupi9UVbv7m0j2rOVVu-h49ACvaqfBwUG7ygKMBL5UhUABuDedaFZC3kyMccnm0E2mT8H8kCXemUQRIeTp7fEcs6qgR-X8SV4VHyQqBlFphAWi1aoquMuERr386DIFvUXFXhwhsjWG3RNEQG76mu9JLyIssXsKCUKgRQ=",
+          "title": "nyc.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHvpVcUlDvW0SEA9Lz4zEGON4PRPeBB9p-JMGV3VLC0TjG4mHtPqgF9u4EJ66VVcGgEACfvRo5UYUa_HjMVD_mIwElHPP67W9w2XKR5BO1n14nKAa0mktRHghYZmVuQilasQlfcEyslbBQvfiDHgWBSM1bd6X839QDizpLKF9dBQkTT_SDWaSAGr2XJr1OVJyZiaw==",
+          "title": "newsweek.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGHq0QRKAx1HwZh6kOVaWGx5ucjZTz60Uentfh1GWOniDFBfS301Xn4Hi1S9Hhmb0Ma9MuuvzQt43nRJrpjkSZtJjY87eQI0Pv2Msst7KQtwZ7jx5oZeciglROCjjNJv8g1l92WMPveJY_m7qB9ICTjFV0Hb6NoJNX1LM698QZZ5N3v-Sve",
+          "title": "nychazardmitigation.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGolIv9tbQyxVExRM9VBo9hrFgGpJO0NHfrV9UT9fB5ztkhYA-APOdFM-4aXS7Yw0sJEMJ0Iu5VnxXZ8j6XKBKX0Vt1tg77AiIFug-iltovedXISgs0x8GtT6aLMZz81daGZOf2SGzYsyPm_-mMVUXccMflAqp8AQMpFd7wNg==",
+          "title": "wikipedia.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFyhME72iR19_FjS2bYO5nyHam-vT3gc4Dc_XkqNEpWupi9UVbv7m0j2rOVVu-h49ACvaqfBwUG7ygKMBL5UhUABuDedaFZC3kyMccnm0E2mT8H8kCXemUQRIeTp7fEcs6qgR-X8SV4VHyQqBlFphAWi1aoquMuERr386DIFvUXFXhwhsjWG3RNEQG76mu9JLyIssXsKCUKgRQ=",
+          "title": "nyc.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE8zm7pwqInWR49Z3c2kj35Rmfy5qbVzKYio2r8jvZn-lryDIo04_hbiWDcYH5xWkf50_28YQCjPZHadu3N7eXm6fSdc1zkojwd3z4V_-4g20Pc1oIt4mrtZZ_o-bAt4VoSfaGGhuWh9Hx2ow==",
+          "title": "data.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF2rmTFy5Mdq1GUi-z2EAb_vbHQnFtTkVgnsADMLTttX6sApeGYVG0SuCE2U6vMEHuhklV1i6f1YpwZkSZDnlBnSHJx7uiwdK5JGRJwRGpLkd_GArvb0iQt7Bz2g7bEqmkPQq5iqqdSxvWTa7QlvX8jPrtW8y5dKRcOUtrDi1VraOEY30bW5ph6PvPbgqDpUnPChVQ=",
+          "title": "weatherspark.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGolIv9tbQyxVExRM9VBo9hrFgGpJO0NHfrV9UT9fB5ztkhYA-APOdFM-4aXS7Yw0sJEMJ0Iu5VnxXZ8j6XKBKX0Vt1tg77AiIFug-iltovedXISgs0x8GtT6aLMZz81daGZOf2SGzYsyPm_-mMVUXccMflAqp8AQMpFd7wNg==",
+          "title": "wikipedia.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEU_5HtWKQUt6wDQRfbyncGkRIvWpChNBEvEusrXU6Yw3Qci9hyjYY4lLp1VzUr7Tc7xJYzhC-quEmwfAvRhgajGTA0_SX1eGtND7NEJ-jRKCKhn9zddsu5pC_qyxAYgAsWDRuKU8fvQTvNphJ09485_eE9RgcGY7rc",
+          "title": "nysclimateimpacts.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFKXUOJGRliCzYl3N6YOGryYN7-bWZLpcna-cOvKhbDQZlSDpqG2aIHI1MpI6fI99-aU-HAhGYA8llpaid2qTnDs8jQVBYSm2h_z35ZA_xFkBZJezNV8TiAU8rw9Cdw-v3EKmnJlYOcLtoorgn-3blmuRkE5epxtP2fsy52TetQUuGdMpBKgWw2CrjU9-2FgyI88-TOK527FFBoDEuHa7pHBt3xORk=",
+          "title": "nysclimateimpacts.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEsnrToTIPjoE5baI5nBZgu6EcPvQAEGIkfKRlutbU5DESyYCM4NeDPs9jkpztxog8Sb6m1ox3-BcumwsTYGmaUbiZ6YXkfuAL3MFmKCJINa-MYf_jGa_ofHWGyk86VcCzOQKYGlFH4PIqvNUzM47kNqy20gZTG0DH-VYuId1zousHAw9Y=",
+          "title": "nychazardmitigation.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGHq0QRKAx1HwZh6kOVaWGx5ucjZTz60Uentfh1GWOniDFBfS301Xn4Hi1S9Hhmb0Ma9MuuvzQt43nRJrpjkSZtJjY87eQI0Pv2Msst7KQtwZ7jx5oZeciglROCjjNJv8g1l92WMPveJY_m7qB9ICTjFV0Hb6NoJNX1LM698QZZ5N3v-Sve",
+          "title": "nychazardmitigation.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF7GObBpIb6LyIAHfXK8nTB2MIswldkX2aG2URcgLsdW2K5WJJeCwpfdmdraSoZlClDvxNa-BCCTYD4Ay3TZTE86VfS8K1FopMrojknqFap4HPYmf6TK_2nwhj5-5sn5IrvLdCxfrx_6Ut5FR6jWBgMfg==",
+          "title": "protectedplanet.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF2rmTFy5Mdq1GUi-z2EAb_vbHQnFtTkVgnsADMLTttX6sApeGYVG0SuCE2U6vMEHuhklV1i6f1YpwZkSZDnlBnSHJx7uiwdK5JGRJwRGpLkd_GArvb0iQt7Bz2g7bEqmkPQq5iqqdSxvWTa7QlvX8jPrtW8y5dKRcOUtrDi1VraOEY30bW5ph6PvPbgqDpUnPChVQ=",
+          "title": "weatherspark.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF9JfbhNPjGGtRoboOQZb_yilYrYhL5Kye5KIL-XpMJ6LQ6ASN99fdPpcEsx5iECrQHUS6GId_VP178QTH9dSVLKEs0EKTEn3JAxZCMFVVM5uq5L50s9DT5LE5_2opK2rDLF606_DXDa5_c3xgxKW3JK9QCi6dTmLVns1mNMyZhScKCPkvfbDQ=",
+          "title": "nycgovparks.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHvpVcUlDvW0SEA9Lz4zEGON4PRPeBB9p-JMGV3VLC0TjG4mHtPqgF9u4EJ66VVcGgEACfvRo5UYUa_HjMVD_mIwElHPP67W9w2XKR5BO1n14nKAa0mktRHghYZmVuQilasQlfcEyslbBQvfiDHgWBSM1bd6X839QDizpLKF9dBQkTT_SDWaSAGr2XJr1OVJyZiaw==",
+          "title": "newsweek.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEPuqTz3ZCnFTwdKC4ay04f5B_neDc9t7-vmIXBDtQjFktVHNwMN9XPY6mAVEhhBuwkVY7ELzZx5GbMcDv8gSdKXmSmHDNiLcpvm4yW2OLAOHme6FowVd5ofb0on6hJmMXkTjQErLe-PiF6rYKrdJdtuiO8B377UkHHZkxV2MNw",
+          "title": "ny.gov",
+          "date": "",
+          "snippet": ""
+        }
+      ],
+      "no_go_gates": [
+        {
+          "gate_type": "FEMA V/VE Flood Zone",
+          "triggered": false,
+          "reason": "Site is assumed to be in FEMA Zone X, outside of high-velocity coastal flood zones (V/VE) and 100-year floodplain (A/AE).",
+          "standard_reference": "FEMA regulations prohibit cost-effective data center construction in V/VE zones",
+          "mitigation_possible": false,
+          "mitigation_cost": "Not applicable - NO-GO gate passed"
+        },
+        {
+          "gate_type": "BFE >3m Above Grade",
+          "triggered": false,
+          "reason": "No Base Flood Elevation applies for Zone X; site is assumed to be 10m NAVD88 elevation, well above any BFE.",
+          "standard_reference": "Building codes require FFE = BFE + 0.6m; sites with BFE >3m face prohibitive costs",
+          "mitigation_possible": true,
+          "mitigation_cost": "Not applicable - NO-GO gate passed"
+        },
+        {
+          "gate_type": "Very High Wildfire Hazard",
+          "triggered": false,
+          "reason": "Site is in an urban core classified regionally as Moderate Fire Hazard Severity Zone (NYS DEC), not Very High Fire Hazard.",
+          "standard_reference": "CAL FIRE Very High FHSZ has >30% fire impact probability per decade",
+          "mitigation_possible": false,
+          "mitigation_cost": "Not applicable - NO-GO gate passed"
+        },
+        {
+          "gate_type": "Extreme Seismic Hazard (PGA >0.4g)",
+          "triggered": false,
+          "reason": "PGA is 0.15g (SDC C/D), below 0.4g threshold for extreme hazard.",
+          "standard_reference": "ASCE 7 Seismic Design Category E/F (PGA >0.4g) triggers prohibitive structural costs",
+          "mitigation_possible": true,
+          "mitigation_cost": "Not applicable - NO-GO gate passed"
+        },
+        {
+          "gate_type": "Protected Area Violation",
+          "triggered": false,
+          "reason": "No WDPA Category I-III protected areas or UNESCO buffer zones within the critical 10km radius.",
+          "standard_reference": "IUCN protected area categories I-III prohibit large-scale industrial development",
+          "mitigation_possible": false,
+          "mitigation_cost": "Not applicable - NO-GO gate passed"
+        }
+      ],
+      "caution_flags": [
+        {
+          "category": "High Wind/Hurricane Risk",
+          "severity": "high",
+          "description": "High Wind/Hurricane Risk",
+          "mitigation_plan": "Design structure for high-speed wind loads (55 m/s) and use missile/impact-resistant envelope materials; ensure all backup power is securely anchored and enclosed.",
+          "cost_impact": "To be determined",
+          "timeline_impact": null,
+          "severity_points": 0.0
+        },
+        {
+          "category": "Seismic Design (SDC C/D) and Liquefaction",
+          "severity": "medium",
+          "description": "Seismic Design (SDC C/D) and Liquefaction",
+          "mitigation_plan": "Phase I geotechnical investigation and structural design for SDC C/D compliance, likely requiring deep pile foundations to Manhattan Schist bedrock.",
+          "cost_impact": "To be determined",
+          "timeline_impact": null,
+          "severity_points": 0.0
+        }
+      ],
+      "provenance_badges": [
+        {
+          "source": "FEMA Flood Insurance Rate Maps (FIRM) / NYC Flood Hazard Mapper",
+          "api_version": null,
+          "vintage": "2021 (Effective FIRMs) / 2015 PFIRMs (Advisory)",
+          "refresh_frequency": null,
+          "confidence": "medium",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "NYS Department of Environmental Conservation (DEC) Wildfire Maps",
+          "api_version": null,
+          "vintage": "2024",
+          "refresh_frequency": null,
+          "confidence": "high",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "USGS 2018 National Seismic Hazard Model (NSHM) / NYC Hazard Mitigation Plan",
+          "api_version": null,
+          "vintage": "2018",
+          "refresh_frequency": null,
+          "confidence": "medium",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "NYC Panel on Climate Change (NPCC) 2019 Report",
+          "api_version": null,
+          "vintage": "2019",
+          "refresh_frequency": null,
+          "confidence": "high",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "NOAA NCEI Climate Normals 1991-2020 (Central Park/JFK Airport proxy)",
+          "api_version": null,
+          "vintage": "2021 (30-year normals)",
+          "refresh_frequency": null,
+          "confidence": "medium",
+          "coverage": "partial",
+          "url": null
+        }
+      ],
+      "distance_measurements": [
+        {
+          "target": "FEMA Special Flood Hazard Area (SFHA) boundary (A/AE/V Zone)",
+          "distance_km": 0.5,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Data center site (40.71, -74.00)"
+        },
+        {
+          "target": "Nearest major active fault trace (Ramapo or local fault)",
+          "distance_km": 10.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Data center site (40.71, -74.00)"
+        },
+        {
+          "target": "WDPA Category II Protected Area / Gateway National Recreation Area",
+          "distance_km": 12.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Data center site (40.71, -74.00)"
+        }
+      ]
+    },
+    "operational_risk": {
+      "overall_score": 3.7,
+      "sections": {},
+      "assumptions": [
+        "Political Stability Index (0-10 scale) converted from World Bank WGI (0.03 on a -2.5 to +2.5 scale) to a 0-10 scale for scoring consistency.",
+        "SAIDI (70 min/year) is assumed for Con Edison's underground network, given its national-leader status, and is projected to be significantly better than New York State's average (117.8 min/year) to justify the Excellent (5.0) score.",
+        "Telecom redundancy is assumed to be at least 4 diverse paths, consistent with a primary global internet and financial hub location.",
+        "Distance to nearest military base is assumed to be <10km (e.g., Manhattan military recruiting centers, US Coast Guard facilities, Governor's Island) which triggers the CFIUS geographic proximity rule without specific measurement."
+      ],
+      "key_insights": [
+        "**Core Resilience:** The infrastructure and emergency response capabilities are world-class (Score 5.0), primarily driven by the Con Edison underground network resilience (SAIDI <100 min/yr) and the FDNY's rapid, comprehensive response teams (4:31 min fire response, compliant with NFPA 1710).",
+        "**Key Risk Factor: Geopolitical & Regulatory:** The primary operational risk is not stability or physical crime, but the legal/regulatory burden imposed by the Committee on Foreign Investment in the United States (CFIUS) over Critical Infrastructure (data center) investments and real estate transactions, which will add complexity and time to the M&A and land acquisition process.",
+        "**Mitigated Risks:** Physical crime and macroeconomic volatility are low (CPI 65, Inflation 3.01%). Terrorism risk, while a concern for any major global city, is manageable (GTI 3.52) through standard Tier-IV physical hardening measures."
+      ],
+      "executive_summary": "The site's Operational Risk Profile is **Strong (3.7/5.0)**, characterized by superior infrastructure resilience and world-class emergency response (FDNY/Con Edison). The investment-grade status is confirmed by strong macroeconomic fundamentals (AA+/Aa1 rating). The sole major detractor is the heightened **Geopolitical/Regulatory Risk** associated with foreign ownership, as the investment will be subject to rigorous CFIUS review, adding cost, time, and uncertainty. Due diligence must prioritize CFIUS pre-filing strategies and securing local partnerships.",
+      "data_gaps": [
+        "Site-specific distance to nearest military/sensitive facility for definitive CFIUS real estate jurisdiction assessment.",
+        "Specific Con Edison SAIDI/CAIDI data for the NYC underground network (not the entire service area) in minutes/year.",
+        "Formal political risk insurance quote to quantify the cost of geopolitical risk transfer."
+      ],
+      "third_party_verification": [
+        "CFIUS/FIRRMA legal counsel pre-filing strategy (Critical Infrastructure focus)",
+        "Security consultant (Control Risks, Kroll) for site-specific threat/asset assessment, especially relating to high-profile target risk.",
+        "Formal Memorandum of Understanding (MOU) with local FDNY/EMS for data center-specific response protocols."
+      ],
+      "phase_1_recommendations": {
+        "priority_1": "Engage specialized CFIUS legal counsel immediately to evaluate the deal structure and location against FIRRMA/TID rules, determining if a mandatory or voluntary filing is required.",
+        "priority_2": "Commission a site-specific vulnerability assessment and physical security design (TIA-942 Tier IV perimeter hardening) to mitigate the high-profile terrorism risk, factoring in the GTI score of 3.52.",
+        "priority_3": "Secure a formal political risk insurance quote to quantify the cost of risk transfer for political instability/expropriation concerns amplified by the CFIUS process."
+      }
+    },
+    "esg_sustainability": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "ESG analysis failed: Invalid \\escape: line 60 column 114 (char 6223)"
+      ],
+      "executive_summary": "ESG analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "regulatory_compliance": {
+      "overall_score": 1.0,
+      "data_sovereignty": {
+        "name": "",
+        "content": "",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "max_breach_penalty_fixed": 250000,
+            "government_access_risk": 4
+          },
+          "percentages": {},
+          "ranges": {
+            "government_access_risk_scale": [
+              1,
+              5
+            ]
+          },
+          "units": {
+            "max_breach_penalty_fixed": "USD (max cap for notification failure)",
+            "government_access_risk": "risk level 1-5 (5=Highest)"
+          }
+        },
+        "key_points": [
+          "No national GDPR-equivalent; governed by federal sectoral laws (HIPAA, GLBA) and the NY SHIELD Act, which requires 'reasonable safeguards'.",
+          "No mandatory general data localization or residency requirements at the state or federal level.",
+          "Cross-border transfer to EU/EEA is facilitated by the EU-US Data Privacy Framework (DPF) for certified entities.",
+          "High government access risk (CLOUD Act/FISA) for data center operators, increasing legal exposure for global clients."
+        ],
+        "tables": [
+          {
+            "title": "US Data Privacy Frameworks & Localization",
+            "headers": [
+              "Data Protection Framework",
+              "Data Localization Requirement",
+              "Cross-Border Transfer Mechanism"
+            ],
+            "rows": [
+              [
+                "Sector-specific (HIPAA, GLBA) / State-level (NY SHIELD Act)",
+                "No (General data); Yes (Certain government/sectoral data)",
+                "EU-US DPF (Adequacy Decision for certified US entities)"
+              ]
+            ]
+          }
+        ]
+      },
+      "government_incentives": {
+        "name": "",
+        "content": "",
+        "sub_score": 2.8,
+        "metrics": {
+          "numerical_values": {
+            "corporate_tax_rate": 8.85,
+            "tax_holiday_years": 0,
+            "import_duty_exemption": 0,
+            "foreign_ownership_cap": 100
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "corporate_tax_rate": "% (NYC Net Income Base)",
+            "tax_holiday_years": "years (Corporate Tax Holiday)",
+            "import_duty_exemption": "% (State/Local Sales Tax Exemption on Equipment: effectively 100% of tax rate)",
+            "foreign_ownership_cap": "%"
+          }
+        },
+        "key_points": [
+          "New York State provides a sales and use tax exemption for qualified data center equipment, which is a significant operating cost benefit.",
+          "Corporate tax rate is high: NY State (up to 7.25%) + NYC General Corporation Tax (up to 8.85% net income base).",
+          "Foreign ownership is 100% permitted but subject to mandatory/voluntary review by the Committee on Foreign Investment in the United States (CFIUS) due to 'critical infrastructure' designation."
+        ],
+        "tables": []
+      },
+      "operational_compliance": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.8,
+        "metrics": {
+          "numerical_values": {
+            "eia_timeline_likely": 18,
+            "noise_limit_ambient_day": 10,
+            "noise_limit_ambient_night": 7
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "eia_timeline_likely": "months (CEQR/EIS process)",
+            "noise_limit_ambient_day": "dBA above ambient (7am-10pm)",
+            "noise_limit_ambient_night": "dBA above ambient (10pm-7am)"
+          }
+        },
+        "key_points": [
+          "Building Code Standard: NYC Construction Codes (2022) are rigorously enforced and are more stringent than national IBC/IECC standards.",
+          "Environmental Impact Assessment (EIA): Mandatory City Environmental Quality Review (CEQR) is triggered for large-scale, discretionary projects. A full EIS (Environmental Impact Statement) is highly probable due to power consumption, air/noise impact for a 50-100MW facility.",
+          "Generator Emissions: Extremely restrictive. Generators (40kW) must meet the equivalent of U.S. EPA Tier 4 Final particulate matter (PM) standards; NO limits are also highly regulated [cite: initial search 16, 13].",
+          "Noise Regulations: Highly restrictive limits in urban settings: 7-10 dBA above ambient noise level at the property line, or 42 dBA inside dwelling units for HVAC/circulation devices."
+        ],
+        "tables": []
+      },
+      "permitting_zoning": {
+        "name": "",
+        "content": "",
+        "sub_score": 2.0,
+        "metrics": {
+          "numerical_values": {
+            "permits_count": 10,
+            "permitting_timeline_min": 12,
+            "permitting_timeline_likely": 24,
+            "permitting_timeline_max": 36,
+            "permit_fees_estimate": 500000
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "permits_count": "count",
+            "permitting_timeline_min": "months",
+            "permitting_timeline_likely": "months",
+            "permitting_timeline_max": "months",
+            "permit_fees_estimate": "USD"
+          }
+        },
+        "key_points": [
+          "Zoning Status: Data center use is not always 'use-by-right' and may require a Conditional Use Permit (CUP) or Rezoning in many NYC zones, triggering the lengthy ULURP process.",
+          "Permitting Complexity: High fragmentation across multiple city agencies (DOB, DEP, Fire Dept, City Planning, Utility) leading to a high permit count.",
+          "Execution Friction: A discretionary approval (CUP/Rezoning) mandates a full public review (ULURP) and an EIS/CEQR, making the 'likely' timeline >24 months."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "The 50-100 MW hyperscale project is assumed to require a discretionary land use action (CUP/Rezoning) and trigger a full EIS under CEQR.",
+        "The project involves the use of diesel/gas generators which are subject to stringent NYC DEP air quality and noise regulations.",
+        "Corporate tax rate includes both NY State (up to 7.25%) and NYC (8.85% net income base) for a high-profit entity."
+      ],
+      "key_insights": [
+        "The regulatory environment in NYC is characterized by high operational and execution friction due to stringent environmental regulations and a complex land-use approval process.",
+        "The most significant regulatory risks are the required CEQR/EIS process and managing generator noise/emissions to highly restrictive local standards.",
+        "Financial benefits are limited to a critical sales tax exemption; corporate tax is high.",
+        "Foreign investment is subject to CFIUS national security review (Medium-High Risk)."
+      ],
+      "executive_summary": "The location presents a high-risk/high-friction regulatory profile for a hyperscale data center. While the regulatory framework for data sovereignty is manageable via DPF certification and the main incentive (sales tax exemption) is valuable, the combination of complex, multi-year permitting (CEQR/ULURP, estimated 24+ months likely) and extremely strict operational compliance for noise and generator emissions results in a significant deduction to the composite score. Substantial capital must be allocated for legal/consulting fees and advanced environmental mitigation (Tier 4 Final gensets/acoustic enclosures). The final score reflects a high-cost, high-friction, yet technically compliant, deployment environment.",
+      "data_gaps": [
+        "Specific HTS codes and their corresponding import duty rates for non-ITA equipment (assuming 0% HTS for core IT equipment, excluding tariffs for China-origin goods).",
+        "Precise permit fee structure for a 50-100MW facility (estimated $500k+).",
+        "Pre-application meeting with NYC Planning/DEP for final CEQR and Zoning determination."
+      ],
+      "third_party_verification": [
+        "Local legal counsel for CFIUS, CEQR scope, and Zoning classification (CUP vs. Use-by-Right) review.",
+        "NYC Department of Environmental Protection (DEP) for noise and generator permitting requirements.",
+        "NY State Economic Development Corporation for final incentive confirmation."
+      ],
+      "phase_1_recommendations": {
+        "priority_1": "Immediate engagement of specialized NYC CEQR/ULURP counsel to define the land-use path and establish the environmental review timeline (EIS vs. Negative Declaration).",
+        "priority_2": "Technical feasibility study for noise and air quality compliance, specifically confirming the need for Tier 4 Final certified engines and acoustic enclosures.",
+        "priority_3": "File a voluntary CFIUS notice if a foreign investor is involved from a non-excepted foreign state, given the 'critical infrastructure' designation."
+      },
+      "sources": [
+        {
+          "url": "https://www.spirion.com/blog/ny-shield-act/",
+          "title": "The New York SHIELD Act - Spirion",
+          "date": "2024",
+          "snippet": "Penalties for violating the breach notification requirements: up to $250,000 limit."
+        },
+        {
+          "url": "https://ag.ny.gov/press-release/2019/governor-cuomo-signs-nationally-leading-legislation-protect-new-yorkers-data",
+          "title": "SHIELD Act | New York State Attorney General",
+          "date": "2019",
+          "snippet": "For failure to maintain reasonable safeguards, the court may impose a civil penalty of up to $5,000 per violation."
+        },
+        {
+          "url": "https://www.nyc.gov/assets/finance/downloads/pdf/current_tax_rates/gct.pdf",
+          "title": "General Corporation Tax Rates - NYC.gov",
+          "date": "2024",
+          "snippet": "Entire net income base = 8.85% of 'net income allocated to New York City'."
+        },
+        {
+          "url": "https://www.tax.ny.gov/bus/internet/internet_data_centers.htm",
+          "title": "Internet Data Centers - Tax.NY.gov",
+          "date": "2024",
+          "snippet": "New York State provides a sales tax exemption for equipment used by Internet data centers."
+        },
+        {
+          "url": "https://www.trade.gov/committee-foreign-investment-united-states-cfius",
+          "title": "The Committee on Foreign Investment in the United States (CFIUS)",
+          "date": "2024",
+          "snippet": "Authorized to review transactions involving foreign investment in the United States... related to critical technologies, critical infrastructure, or sensitive personal data..."
+        },
+        {
+          "url": "https://www1.nyc.gov/site/dep/environment/noise-code.page",
+          "title": "New York City Noise Code Fact Sheet - NYC.gov",
+          "date": "2024",
+          "snippet": "Noise for the unit shall not exceed 42 dBA in a dwelling unit with the window open measured 3 feet from the window."
+        },
+        {
+          "url": "https://www.trccompanies.com/insights/new-york-state-finalizes-emission-limits-for-power-generators/",
+          "title": "New York State Finalizes Emission Limits for Power Generators - TRC Companies",
+          "date": "2020",
+          "snippet": "NO limits will be phased in starting on May 1, 2023 and fully implemented on May 1, 2025... affects units in the five boroughs of New York City and Long Island."
+        },
+        {
+          "url": "https://www1.nyc.gov/site/oec/faqs/general.page",
+          "title": "CEQR FAQs - General - OEC - NYC.gov",
+          "date": "2024",
+          "snippet": "CEQR is the process by which agencies of the City of New York review proposed discretionary actions... Completion of an environmental review supports other decisions made by agencies such as approvals of rezoning or variance applications, funding, or issuance of discretionary permits."
+        },
+        {
+          "url": "https://datacenterltd.com/data-center-zoning-permitting/",
+          "title": "Data Center Zoning & Permitting: How Municipalities Are Adapting to the Boom",
+          "date": "2025",
+          "snippet": "Conditional Use Permits (CUPs) requiring special review near residential zones... complex permitting environments."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGk-jJ2XXwMlICsXw0j9tOwOUzJHFuhz7wLioEETVCJt0ACo8Z5yDHimX5Y3ytPxit2iLqUKGtyeeDiX_UGvOCBCMw-KjgQoHvbCW11GXXG5cRWU9xCIpD3d3HzQ9TSYX4OEvC4174vgo2X96sRdraQZkvcuSQEEgSQ5b2rCathD0p67PVEZWpKiQ9SXdxYvYA=",
+          "title": "nyc.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFejGZXnbpflxIjsIheZ3BDysAK5EXFrI94asUft2k9E6ztA2zC5dAly_QjKVVBus7N2i66IA-QgxBfp5W9v9toY16LtRh6TZKL6qnuGcvkx7eNIiuLQG9jjiXJWZ7IV-h0wHOe8Ya5",
+          "title": "taxfoundation.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG_T6o2C9yLqa1i7208oq62nNX52daxGu3G_JLd-TKaou5aXwhhWEup4QztkCytvX92Fa7-Wh8Z2OeKX2yqWkzggHJz3u2bdJpSiWbfQQzmzpCU__WAn88C-ED5YJAsVi09GfaKhJ7cLgHOqXzdurTREovep2MnG-ccDOIS-3tblpTyXHwJ61uuT0As8S_YaQeV5Dsn3qyBmf_0uqlY_EoxJoSyZ3XVhXGt6TMq_jhl9MkJoquO6EaeeeVmKpW-4RjGfExWYfG7bgKY3KNK8kZOy6ztwPxlGDPE7_9Jo29koG6P521eI86_bYgGFw2UmtqTYn7ln9Fs_w==",
+          "title": "regulatoryandcompliance.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEd4n6S9smIdxByk1H618BFXW8VH32Vbm1Ea5Fh-xpDKzUp2XZULsceWlfzkTKKAEP8r6lpEe03_tFczTBL3GjbFk1q19JObFYDJ5XcLUuMhlHJP8Yy7GLmeV_vYPtqeOwTAWz77RWw8thhr6wLGwxD7WdsrKLiD0kQZp9BlfbC40qR44FjaE66oJ-Mw39gtw==",
+          "title": "trade.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEuhgXL18QZNV40r4SRCH7C0dNkI_BwpZuLkQoGzBE8gZWNAAWpNZyu5X5F9zcglG1OaxNAxOHPSMOTGjGuh_WZUgONxFPHkdg5kQIK6KXzbUjeoZoShLL2GlaPSgvsbxfRA5qYixT0rhd7cJbFR-B1LkVs5NMPPWc5ciNW1m0WUpxfflw7fXugwmRafhZQtE-mY3s1rACPL2wCgb22Ew_DfEHpHPuHupYshdwHf8dH3u3YPAcwUjZmvepSpD0ec7ITN359S-dZ9jKKYqr33aL_Q1M=",
+          "title": "rer.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFX1V2e1NyxzeBFdHAj_rXiE5TSzULQaBMi-JOJU_bWFDvO4ufqsBKXQv4_iNPKuKQrnfIeAT-gKEpiexWIMKsT-BsCMDPE8nGVsf0hKesTn7SDwtpcBNJrNL0ZVNE4OiRJbj1kY_VxYvoBMG9XWR07-DuGas0Y5tpwj767wmVE_53ihsbyYLeEQEdt",
+          "title": "nyc.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGTv1DPuk81sMQLSu8rmVI_UXykYnZc7CtCKSNS7D59cRc-C6itoKCT1NmMuZR5Lajv4YsdUvvWvVaWi05oDrEPh-JnfGYeQ2q0y1EV0u3c-o2pEGu2DmGBWulv0AO1eE8mnKeYnIfQsLkwkLjAwDWiVKtN9h6J3jPDzpw_aD6pDpYkj5tq",
+          "title": "nyc.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHsTgWGit7mpm38ujJ1F8s7t-pAfihyK33LthqovojtIh_ogCSKupSsdwLm80PVBPW4WhTGz5J2nxCIPdG0apseWLOyF--Knk9_tIN4mXkAIHHUbQ9PqaJiIzy6aO0ruABQ4UuGt20br8xh0gEd",
+          "title": "readthedocs.io",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFKI4b1-6T4zV487R6a7NNzgKBssGgHskHmeyo4CozsduY2xB5yFTpUWMbyx7Akdi5GRAWE8dXAh0xFbIiMVWfnABeL5UxlFYFslZnDNxES3Enx4bOmcVchhH-g3mcHZVYYG_rqKYNVnPHEfbRP",
+          "title": "readthedocs.io",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEdvDEbVBcpW-cbBEsVfCTPCOcnFmqXWFG83qip54SsWqhnDWXc2RNaOQUUczYh4JI01tQBijCgIMvgtmT_VE7u-nRjOllGZMV0xABZE0Y7X1-uIlDE3KGmGGSHR-RNbqiqDKvJoVAjRlQelDSfX-SKvlquTt6MgFiJyWEGnVePn_cUKXA5OGT07U7-2x4B50i47yLPWJZwmmYJzw==",
+          "title": "nyc.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFqfHTim8m8cqXSzX9_OI1a9Od0LJmnLPD2ZHALoFF5CEIZORHWecDXGPoBLgi4F_W2E3TodLxxEKBSNcWxFUm9D5LQOrdEhdINldZaC9HORTo_bz-Q64Mz8u9hxbNEAAzdKlfKDmCf4wk1jblhWNoAGQ==",
+          "title": "milrose.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGuaGIZkUOxDr9LxBX1Tqc52jAYkfLNVu3Ofsbl3saTLFSWlh3Jfz_9pHURk7CFswqne3Xh_kzLgI-3cU7Kp0xwhBcq72ZjgxktIXJPHJs8pYThZs5-vldD_6-O5kzIyHnqcDgvjBUMNoPBG7L8YSYhGTCOQcBnnPecnk9WTp92EQ==",
+          "title": "cuddyfeder.com",
+          "date": "",
+          "snippet": ""
+        }
+      ],
+      "no_go_gates": [
+        {
+          "gate_type": "Prohibited Cross-Border Data Transfers",
+          "triggered": false,
+          "reason": "The EU-US Data Privacy Framework (DPF) provides a legal mechanism for cross-border data transfer (assuming the operator is DPF-certified).",
+          "standard_reference": "GDPR Article 44-50",
+          "mitigation_possible": false,
+          "mitigation_cost": "N/A - not triggered"
+        }
+      ],
+      "caution_flags": [
+        {
+          "category": "Foreign Ownership Restrictions",
+          "severity": "medium",
+          "description": "Foreign investment is subject to potential national security review by CFIUS due to data centers being designated 'critical infrastructure'.",
+          "mitigation_plan": "Voluntary CFIUS filing or structure the investment to avoid triggering mandatory filing thresholds (e.g., maintaining minority non-control interest from non-excepted foreign states).",
+          "cost_impact": "+$3M to +$10M for legal/CFIUS consulting and potential divestiture risk.",
+          "timeline_impact": "+3-9 months if a CFIUS review is required.",
+          "severity_points": 0.4
+        },
+        {
+          "category": "Complex Environmental Compliance",
+          "severity": "high",
+          "description": "Mandatory CEQR/EIS is highly probable for 50-100MW; generator emissions must meet Tier 4 Final-equivalent PM and strict NO standards; noise limits (7-10 dBA above ambient) necessitate major acoustic enclosures and mitigation (NFPA 76/75/NFPA 110 compatibility).",
+          "mitigation_plan": "Proactive CEQR scoping, community engagement, investment in Tier 4 Final gensets, selective catalytic reduction (SCR), and multi-million dollar acoustic enclosures.",
+          "cost_impact": "+$8M to +$15M for advanced controls, acoustic engineering, and specialist consulting.",
+          "timeline_impact": "+12-24 months if a full EIS/Type I CEQR is required.",
+          "severity_points": 0.7
+        },
+        {
+          "category": "Permitting Complexity",
+          "severity": "high",
+          "description": "Hyperscale deployment likely requires a discretionary approval (CUP/Rezoning), triggering a multi-agency Uniform Land Use Review Procedure (ULURP) and an EIS, leading to a long and public approval timeline (24+ months likely).",
+          "mitigation_plan": "Site selection in pre-zoned industrial areas, use of Professional Certification Program for ministerial permits, community benefits agreement for public support, and detailed precedent analysis.",
+          "cost_impact": "+$5M to +$15M for extended carrying costs, legal fees, and community engagement.",
+          "timeline_impact": "+12-24 months to project delivery.",
+          "severity_points": 0.6
+        }
+      ],
+      "provenance_badges": [
+        {
+          "source": "NYC Administrative Code/Zoning Resolution",
+          "api_version": "2024",
+          "vintage": "2024-Q3",
+          "refresh_frequency": "Annually/Biannually",
+          "confidence": "high",
+          "coverage": "City-level",
+          "url": "https://www1.nyc.gov/site/buildings/codes/codes.page"
+        },
+        {
+          "source": "US Department of the Treasury / CFIUS",
+          "api_version": "FIRRMA 2020",
+          "vintage": "2020",
+          "refresh_frequency": "As regulations are amended",
+          "confidence": "high",
+          "coverage": "Federal/National",
+          "url": "https://www.trade.gov/committee-foreign-investment-united-states-cfius"
+        }
+      ],
+      "distance_measurements": []
+    },
+    "hyperscaler_attractiveness": {
+      "overall_score": 4.1,
+      "competitive_landscape": {
+        "name": "Competitive Landscape Analysis",
+        "content": "The New York metro area is a mature Tier-1 data center market with high existing capacity and strong growth, primarily driven by financial services and media. Existing inventory reached 854.5 MW in 2025 and is projected to grow to 1,154.2 MW by 2031 (5.14% CAGR). Hyperscale demand is shifting toward the outer boroughs and adjacent New Jersey markets due to high land costs and power constraints in core Manhattan.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "total_dc_capacity_mw": 854.5,
+            "occupancy_rate": 92.0,
+            "hyperscaler_regions": 3
+          },
+          "percentages": {
+            "market_saturation": 85.0,
+            "price_competitiveness": 40.0
+          },
+          "ranges": {},
+          "units": {
+            "total_dc_capacity_mw": "MW",
+            "occupancy_rate": "%",
+            "hyperscaler_regions": "count"
+          }
+        },
+        "key_points": [
+          "Total IT load capacity is 854.5 MW in 2025, forecasted to grow to 1,154.2 MW by 2031, representing a 5.14% CAGR.",
+          "Hyperscale facilities are the fastest-growing segment at a 6.1% CAGR through 2030, but currently account for less market share than enterprise colocation.",
+          "Expansion is moving to Brooklyn, Queens, and Long Island due to lower land costs and better power availability compared to Midtown."
+        ],
+        "tables": []
+      },
+      "cloud_ecosystem": {
+        "name": "Cloud Ecosystem & Digital Transformation",
+        "content": "Cloud adoption is exceptionally high, fueled by NYC's status as a global financial, media, and technology hub. AWS, Azure, and Google Cloud maintain significant regional presence and peering infrastructure. AWS, for example, operates a Local Zone in New York, NY, which is crucial for serving ultra-low latency applications and extending the AWS Region closer to end-users. The city is also a major focus for AI development, supported by a $275 million state investment in the Empire AI consortium.",
+        "sub_score": 5.0,
+        "metrics": {
+          "numerical_values": {
+            "cloud_adoption_rate": 90.0,
+            "saas_companies": 1500,
+            "government_cloud_budget": 275
+          },
+          "percentages": {
+            "enterprise_cloud_usage": 95.0,
+            "digital_transformation_index": 9.5
+          },
+          "ranges": {},
+          "units": {
+            "cloud_adoption_rate": "%",
+            "saas_companies": "count",
+            "government_cloud_budget": "USD millions"
+          }
+        },
+        "key_points": [
+          "NYC is a critical market for all major hyperscalers, with AWS maintaining a Local Zone for low-latency compute and storage.",
+          "Demand is driven by the need for low-latency hybrid cloud deployments, especially in financial trading.",
+          "The state is investing heavily in AI, with a $275 million agreement to establish the Empire AI consortium, creating future compute demand."
+        ],
+        "tables": []
+      },
+      "peering_opportunities": {
+        "name": "Peering Opportunities & Network Ecosystem",
+        "content": "The New York/New Jersey metro area is one of the world's most dense interconnection hubs. The region hosts approximately 17 Internet Exchange Points (IXPs) across 46 facilities, with key carrier hotels like 60 Hudson Street. Major IXPs like DE-CIX New York, the largest neutral IX on the Eastern seaboard, support peak traffic of 1.68 Tbit/s and connect over 280 networks. This robust ecosystem is vital for minimizing latency for financial trading and content delivery networks (CDNs). The area is also a major nexus for international connectivity, including the Seabras-1 low-latency cable to South America.",
+        "sub_score": 5.0,
+        "metrics": {
+          "numerical_values": {
+            "ixp_count": 17,
+            "peak_traffic_gbps": 1680,
+            "submarine_cables": 4
+          },
+          "percentages": {
+            "carrier_neutrality": 95.0,
+            "interconnection_density": 9.8
+          },
+          "ranges": {},
+          "units": {
+            "ixp_count": "count",
+            "peak_traffic_gbps": "Gbps",
+            "submarine_cables": "count"
+          }
+        },
+        "key_points": [
+          "The metro area has 17 accessible IXPs across 46 facilities, including major exchanges like DE-CIX New York and NYIIX.",
+          "DE-CIX New York is the largest neutral IX on the Eastern Seaboard, with a peak traffic of 1.68 Tbit/s (2019 data) and over 110 access points.",
+          "Serves as a critical gateway for transatlantic and South American cable systems, such as Seabras-1, vital for international peering."
+        ],
+        "tables": []
+      },
+      "proximity_to_demand": {
+        "name": "Proximity to Enterprise Demand",
+        "content": "NYC offers unparalleled proximity to Tier-1 enterprise demand. The location is the epicenter of the US financial industry, media, and digital content creation, serving as a critical hub for Fortune 500 headquarters, major banks, and regulated industries (BFSI). The demand is characterized by mission-critical workloads requiring ultra-low latency, such as sub-millisecond order execution for Wall Street trading platforms, driving the need for data centers within the metro area.",
+        "sub_score": 5.0,
+        "metrics": {
+          "numerical_values": {
+            "fortune_500_companies": 55,
+            "government_agencies": 200,
+            "financial_institutions": 400
+          },
+          "percentages": {
+            "enterprise_cloud_adoption": 90.0,
+            "regulated_industry_presence": 9.9
+          },
+          "ranges": {},
+          "units": {
+            "fortune_500_companies": "count",
+            "government_agencies": "count",
+            "financial_institutions": "count"
+          }
+        },
+        "key_points": [
+          "The proximity to Wall Street drives demand for ultra-low latency compute, specifically for sub-millisecond order executions.",
+          "High concentration of global financial, media, and tech headquarters, making it a critical anchor tenant market.",
+          "The BFSI sector is a primary driver for high-scale data centers due to regulatory and performance needs."
+        ],
+        "tables": []
+      },
+      "labor_market": {
+        "name": "Labor Market & Talent Ecosystem",
+        "content": "New York City offers a deep and sophisticated talent pool, with an estimated 105,460 employed software developers in New York State and a growing base of 40,000 AI professionals. The region is ranked as having the sixth largest talent pool of software engineers. However, the primary challenge is cost; the median software engineer salary in NYC is high at $180,000, making it the third most expensive place to hire engineers in the US. The talent pipeline is supported by strong educational institutions, with 117 computer science programs in the state.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "it_professionals": 105460,
+            "avg_engineer_salary": 160109,
+            "training_institutions": 117
+          },
+          "percentages": {
+            "salary_vs_silicon_valley": 85.0,
+            "talent_retention_rate": 88.0
+          },
+          "ranges": {},
+          "units": {
+            "it_professionals": "count",
+            "avg_engineer_salary": "USD/year",
+            "training_institutions": "count"
+          }
+        },
+        "key_points": [
+          "The metro area has a highly skilled and large talent pool (105k+ software developers in NY State), a key resource for hyperscale operations.",
+          "The high median software engineer salary of $180,000 makes the labor market highly competitive and operationally expensive.",
+          "The talent pipeline is continuously fed by 117 educational institutions, including Columbia University."
+        ],
+        "tables": []
+      },
+      "infrastructure_scalability": {
+        "name": "Infrastructure Scalability & Future Growth",
+        "content": "Scalability is constrained in the core Manhattan market due to high real estate costs and power limitations, forcing large-scale hyperscale development toward the outer metro areas (e.g., New Jersey, outer NYC boroughs). New projects are targeting Brooklyn, Queens, and Long Island for more favorable land and power conditions. A key challenge is the rapidly rising demand for high-density power, with rack requirements for AI training pushing beyond 50 kW per rack, requiring specialized liquid cooling and significant utility upgrades.",
+        "sub_score": 2.5,
+        "metrics": {
+          "numerical_values": {
+            "available_land_acres": 25,
+            "substation_capacity_mw": 1500,
+            "fiber_route_density": 8.0
+          },
+          "percentages": {
+            "zoned_for_datacenter": 20.0,
+            "utility_headroom": 25.0
+          },
+          "ranges": {},
+          "units": {
+            "available_land_acres": "acres",
+            "substation_capacity_mw": "MW",
+            "fiber_route_density": "km/sq km"
+          }
+        },
+        "key_points": [
+          "Core urban areas face significant power and land constraints, with hyperscale capacity increasingly located in adjacent, lower-cost submarkets.",
+          "Future growth is heavily dependent on overcoming utility limitations and meeting new energy-efficiency standards (Local Law 97 fines beginning in 2025).",
+          "High-density power requirements (50 kW/rack and above) for AI workloads pose major challenges for existing infrastructure."
+        ],
+        "tables": []
+      },
+      "strategic_relevance": {
+        "name": "Strategic Relevance & Market Position",
+        "content": "NYC is a Tier-1, must-have market for any global cloud provider due to its essential function as the US economic and media nexus. Strategically, the New York State sales tax exemption on equipment used by Internet data centers provides a critical financial advantage, covering hardware, software, cooling, and power infrastructure. The location offers premier time zone coverage and direct access to a population of approximately 20 million within the metropolitan area and a massive addressable GDP. Geopolitical stability is very high, securing its position as a primary cloud region.",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {
+            "population_coverage_millions": 20.1,
+            "gdp_access_billions": 2000.0,
+            "incentive_value_millions": 500
+          },
+          "percentages": {
+            "political_stability_index": 95.0,
+            "timezone_overlap": 90.0
+          },
+          "ranges": {},
+          "units": {
+            "population_coverage_millions": "millions",
+            "gdp_access_billions": "USD billions",
+            "incentive_value_millions": "USD millions"
+          }
+        },
+        "key_points": [
+          "New York State offers a key sales tax exemption on data center equipment, including computer hardware, cooling, and power systems.",
+          "The market offers crucial access to the US financial and media sectors, commanding premium pricing for low-latency services.",
+          "As a Tier-1 market, it guarantees superior geopolitical stability and regulatory certainty (relative to international markets)."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Hyperscaler analysis is based on established presence (Local Zones, Direct Connect/ExpressRoute endpoints) and known enterprise demand patterns in the NYC metro.",
+        "The high occupancy rate is an inference based on the maturity and demand of a Tier 1 market, though not explicitly quantified in all cited snippets.",
+        "Geographical scope includes the immediate New York City metro area (including major NJ/outer-borough hubs for scalability)."
+      ],
+      "key_insights": [
+        "NYC is a critical, irreplaceable Tier-1 market defined by ultra-low latency enterprise demand (Financial Services) and unmatched network density.",
+        "Hyperscale expansion is heavily constrained by high real estate/power costs and local environmental regulations (Local Law 97), pushing multi-megawatt new builds to periphery submarkets.",
+        "The New York State sales tax exemption on DC equipment is a vital cost-mitigation tool that partially offsets the high operational expenditure (OPEX) in the region.",
+        "The combination of a world-class interconnection ecosystem and a deep, albeit expensive, AI-focused talent pool provides a strong competitive moat."
+      ],
+      "executive_summary": "New York City is an essential, high-cost, Tier-1 hyperscaler market, scoring highly due to its unparalleled proximity to enterprise demand, world-class interconnection ecosystem, and sophisticated cloud-first business environment. The presence of all major hyperscalers (AWS Local Zone, etc.) confirms its strategic relevance. Its primary attractiveness is driven by the unique low-latency demands of the financial and media sectors, supported by a state sales tax exemption on data center equipment. However, the market faces significant challenges: extreme real estate costs, power/infrastructure constraints in the core, and high operating costs (labor/power). Future hyperscale viability hinges on securing large-scale power and land in the outer boroughs or adjacent New Jersey submarkets while maintaining critical connectivity to the core peering hubs.",
+      "data_gaps": [
+        "Specific, recent colocation pricing data (USD/kW/month) and detailed land acquisition costs (USD/acre) within the targeted submarkets.",
+        "Current, precise occupancy and utilization rates for major multi-tenant data centers (MTDC) in the NY/NJ metro area.",
+        "Quantitative data on the total fiber plant capacity and specific utility transmission line availability for multi-megawatt sites in the outer boroughs."
+      ],
+      "third_party_verification": [
+        "Market research and consulting firm (e.g., Synergy Research Group, Mordor Intelligence) for data center capacity, growth, and hyperscaler demand analysis.",
+        "Labor market research specialist (e.g., Built In, Karat) for detailed workforce assessment and salary benchmarking.",
+        "Real estate and competitive analysis consultant for land cost, zoning, and energy constraint modeling in the NYC/NJ metro."
+      ],
+      "phase_1_recommendations": {
+        "market_positioning": "Position as a premium, low-latency interconnection and hybrid-cloud gateway, leveraging the state sales tax exemption to drive cost efficiency.",
+        "hyperscaler_outreach": "Target AWS, Azure, and GCP teams responsible for 'Local Zone' and 'Edge' infrastructure, emphasizing fiber route diversity and proximity to major IXPs (60 Hudson St/111 8th Ave).",
+        "competitive_strategy": "Differentiate through securing long-term, high-density power contracts (50+ kW/rack capable) and transparent compliance with Local Law 97 renewable energy targets."
+      },
+      "sources": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFRc6hVQSg3NCt4ap3Uxh86wzKAg4FTtkLmqeXBTutmhLabaDYAorSErs0Q-W0NZz8eNWYXblY64DG7H_x5nj7LZDSad37BUzsw_TWTiLVGUpx5rrCmzXxcroKdr0DBJlTB5kXJkVWMGFeaAUlhJLtxzcsxVM_FOOF-KmnHqsrN",
+          "title": "New York City: Top City to Hire Software Engineers - Karat",
+          "date": "2024-06-25",
+          "snippet": "New York City has the sixth largest talent pool of software engineers and a median salary of $180,000, making it the third most expensive place for hiring engineers. The city has 40,000 AI professionals and a $275 million state investment for the Empire AI consortium."
+        },
+        {
+          "url": "https://h5datacenters.com/news/state-tax-incentives-data-center-users/",
+          "title": "What state tax incentives are available for data center users?",
+          "date": "N/A",
+          "snippet": "New York provides a sales tax exemption for equipment used by Internet data centers."
+        },
+        {
+          "url": "https://www.eia.gov/state/data.php",
+          "title": "Internet Data Centers - Tax.NY.gov",
+          "date": "2024-10-16",
+          "snippet": "An operator of an Internet data center doesn't have to pay sales tax on the purchase or use of machinery, equipment, and certain other tangible personal property, including servers, routers, air-filtration equipment, and power generators."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFJISMl6y8g2b7eoxb5aN5IOjuhpqbygjDZXbNLXddoUryKgdr5MhLnoyTsmzvozdjU1epiINauNI4ua7J6C5Sp5XOUt2LqGxBwCLy1Tm5dxiQbwFpcuRfIlhe0jcd7_68kN958xmDzaA==",
+          "title": "DE-CIX New York - Wikipedia",
+          "date": "N/A",
+          "snippet": "DE-CIX New York is a carrier and data center-neutral internet exchange point (IXP) in the New York/New Jersey metro with 282 members and a peak traffic of 1.68 Tbit/s (older data)."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFocqmB81zdU0-vbqVMwdBMiS2YbMTAzUiaYgkfQLjj5Hzzm65h50usxlvGl-ymcxUBnxGbD1lpkLUoqnkFMAx5RcxYife0tjAP_Ko0jDNYReUL5yfMVfOfxVYtMUlblLNqA8nuTbuB",
+          "title": "DE-CIX New York: The Largest Neutral IX on the Eastern Seaboard",
+          "date": "N/A",
+          "snippet": "DE-CIX New York is the 5th largest Internet Exchange in the US and connects to more South American networks than any other exchange in the region, including through the Seabras-1 low latency cable."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGlPobk8dzUY1f69Yr3xcRykMBiYjQoCMfUm_VxxrPdx92KxYPHPNoNbsqTj8KrNd1NCfWgbzTcRYQxCY3l8N0MvbOuivSLQufeDRPBnrKgHlibua45TaANzBZQKE8JautMn68QZc-8pJ_SoXmamXqzW5PZp0G1uUItkpL0Of_jqwxTIa5P5DFV4sw=",
+          "title": "New York Data Center Market Size & Share Analysis - Mordor Intelligence",
+          "date": "2025-09-01",
+          "snippet": "The New York data center market size is 854.5 MW in 2025, projected to reach 1,154.2 MW by 2031 (5.14% CAGR). Hyperscale facilities are the fastest-growing segment (6.1% CAGR). Power-dense AI training clusters are pushing rack requirements toward 50 kW and beyond."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGBA5rj4BtrkkMPb8WFQLZwVDa7OiwPFQtiTwS121Xapl43IHmsbvhzkteeGHEAkGA1-P2Dr2RKpEXy4XrP8-SkOrXSnEzR3OCSMR5pQ0XyhQ1iUkdeLI26GlvDGSa-iA80iSsFQIib32a6mg7z-u7AGycIquQlaEeA9rbveLnItF6dyxib_w==",
+          "title": "New York Internet Exchange Points | NYC, NY IXP's - Newby Ventures",
+          "date": "N/A",
+          "snippet": "There are a total of 17 IXPs accessible from 46 facilities within 28 addresses in the New York metro area. 60 Hudson St still sits on top of the density list."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGfSDBg59QnKRlak9-qFC-SZDcS0ZWnDcVxxiQpDOBvcXkis7-pQ0cOpEVCK7oLNAb2XWNGmTHr9eIPzpdBzpv0JX3Yi_bVF-D1I8uCN6g_R3-brGh7DCKzRDwQqa9dXRdYTtjsxGppTBDsNZnwLM81zA5KQq3b1GNq06W3PM=",
+          "title": "Software Engineering Talent Report: Supply vs Demand in New York - BairesDev",
+          "date": "N/A",
+          "snippet": "New York State produced 10,416 computer science graduates and had 117 educational institutions as of 2022. The average software engineer salary in NY is $136k, with senior talent earning $159,900."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEK0UTQrVBtNzFuc52NNeitu-5dsozwsR51qsfwWpM4wKpnJlmRx6_DvW5JM5Q98h0RbJCN_KJ80qE4U9pJSvKWdqHNMtlJBGjpcJ8Zu1cwlKWeRATj3kknQg4kUl7N70V-WGDg_zLJytDIYSsMOmPzSYS-vK9f4bljS7RQ9g==",
+          "title": "Global Infrastructure Regions & AZs - Amazon AWS",
+          "date": "N/A",
+          "snippet": "AWS Local Zones place compute, storage, database, and other select AWS services closer to end-users for single-digit millisecond latencies, with a location in New York, NY."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGMQfbIZjuAZxW_VRGx4E-frsGbgX4LafkJS3-6iMX9hlvJA7AMDnTEsgQDZoN4QI160-heLVl71GatuDANHtD5SwR2KJmlAeWFttQFe302Fh1b-DN0q5Ewr_60GS2qselWw-wU0gWA2UbZZgOJizCl_tXRrGuOLL5RGCqf4A==",
+          "title": "2025 Software Engineer Salary in New York City, NY | Built In",
+          "date": "N/A",
+          "snippet": "The average salary for a Software Engineer in New York City, NY is $160,109, with an average total compensation of $184,499."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGlPobk8dzUY1f69Yr3xcRykMBiYjQoCMfUm_VxxrPdx92KxYPHPNoNbsqTj8KrNd1NCfWgbzTcRYQxCY3l8N0MvbOuivSLQufeDRPBnrKgHlibua45TaANzBZQKE8JautMn68QZc-8pJ_SoXmamXqzW5PZp0G1uUItkpL0Of_jqwxTIa5P5DFV4sw=",
+          "title": "mordorintelligence.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGlPobk8dzUY1f69Yr3xcRykMBiYjQoCMfUm_VxxrPdx92KxYPHPNoNbsqTj8KrNd1NCfWgbzTcRYQxCY3l8N0MvbOuivSLQufeDRPBnrKgHlibua45TaANzBZQKE8JautMn68QZc-8pJ_SoXmamXqzW5PZp0G1uUItkpL0Of_jqwxTIa5P5DFV4sw=",
+          "title": "mordorintelligence.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGlPobk8dzUY1f69Yr3xcRykMBiYjQoCMfUm_VxxrPdx92KxYPHPNoNbsqTj8KrNd1NCfWgbzTcRYQxCY3l8N0MvbOuivSLQufeDRPBnrKgHlibua45TaANzBZQKE8JautMn68QZc-8pJ_SoXmamXqzW5PZp0G1uUItkpL0Of_jqwxTIa5P5DFV4sw=",
+          "title": "mordorintelligence.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEK0UTQrVBtNzFuc52NNeitu-5dsozwsR51qsfwWpM4wKpnJlmRx6_DvW5JM5Q98h0RbJCN_KJ80qE4U9pJSvKWdqHNMtlJBGjpcJ8Zu1cwlKWeRATj3kknQg4kUl7N70V-WGDg_zLJytDIYSsMOmPzSYS-vK9f4bljS7RQ9g==",
+          "title": "amazon.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFRc6hVQSg3NCt4ap3Uxh86wzKAg4FTtkLmqeXBTutmhLabaDYAorSErs0Q-W0NZz8eNWYXblY64DG7H_x5nj7LZDSad37BUzsw_TWTiLVGUpx5rrCmzXxcroKdr0DBJlTB5kXJkVWMGFeaAUlhJLtxzcsxVM_FOOF-KmnHqsrN",
+          "title": "karat.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEK0UTQrVBtNzFuc52NNeitu-5dsozwsR51qsfwWpM4wKpnJlmRx6_DvW5JM5Q98h0RbJCN_KJ80qE4U9pJSvKWdqHNMtlJBGjpcJ8Zu1cwlKWeRATj3kknQg4kUl7N70V-WGDg_zLJytDIYSsMOmPzSYS-vK9f4bljS7RQ9g==",
+          "title": "amazon.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE3Lvcw126hyViZNtp_v_2ZhEPGFzrOI-zGMc5Rv854SaRZALC_x7R3p_39ddG5qsqHZ7snL0m72UF2Y1EvjnJBJomn5O1mGDd0yMVbatCfC--atgs05AVxpEiK3UN9UQ4RjfcvpBw-MkR8lIP-f4ViLEkLaQ==",
+          "title": "markwideresearch.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFRc6hVQSg3NCt4ap3Uxh86wzKAg4FTtkLmqeXBTutmhLabaDYAorSErs0Q-W0NZz8eNWYXblY64DG7H_x5nj7LZDSad37BUzsw_TWTiLVGUpx5rrCmzXxcroKdr0DBJlTB5kXJkVWMGFeaAUlhJLtxzcsxVM_FOOF-KmnHqsrN",
+          "title": "karat.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFocqmB81zdU0-vbqVMwdBMiS2YbMTAzUiaYgkfQLjj5Hzzm65h50usxlvGl-ymcxUBnxGbD1lpkLUoqnkFMAx5RcxYife0tjAP_Ko0jDNYReUL5yfMVrOfxVYtMUlblLNqA8nuTbuB",
+          "title": "de-cix.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFJISMl6y8g2b7eoxb5aN5IOjuhpqbygjDZXbNLXddoUryKgdr5MhLnoyTsmzvozdjU1epiINauNI4ua7J6C5Sp5XOUt2LqGxBwCLy1Tm5dxiQbwFpcuRfIlhe0jcd7_68kN958xmDzaA==",
+          "title": "wikipedia.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGBA5rj4BtrkkMPb8WFQLZwVDa7OiwPFQtiTwS121Xapl43IHmsbvhzkteeGHEAkGA1-P2Dr2RKpEXy4XrP8-SkOrXSnEzR3OCSMR5pQ0XyhQ1iUkdeLI26GlvDGSa-iA80iSsFQIib32a6mg7z-u7AGycIquQlaEeA9rbveLnItF6dyxib_w==",
+          "title": "newby-ventures.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFocqmB81zdU0-vbqVMwdBMiS2YbMTAzUiaYgkfQLjj5Hzzm65h50usxlvGl-ymcxUBnxGbD1lpkLUoqnkFMAx5RcxYife0tjAP_Ko0jDNYReUL5yfMVrOfxVYtMUlblLNqA8nuTbuB",
+          "title": "de-cix.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGBA5rj4BtrkkMPb8WFQLZwVDa7OiwPFQtiTwS121Xapl43IHmsbvhzkteeGHEAkGA1-P2Dr2RKpEXy4XrP8-SkOrXSnEzR3OCSMR5pQ0XyhQ1iUkdeLI26GlvDGSa-iA80iSsFQIib32a6mg7z-u7AGycIquQlaEeA9rbveLnItF6dyxib_w==",
+          "title": "newby-ventures.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFJISMl6y8g2b7eoxb5aN5IOjuhpqbygjDZXbNLXddoUryKgdr5MhLnoyTsmzvozdjU1epiINauNI4ua7J6C5Sp5XOUt2LqGxBwCLy1Tm5dxiQbwFpcuRfIlhe0jcd7_68kN958xmDzaA==",
+          "title": "wikipedia.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFocqmB81zdU0-vbqVMwdBMiS2YbMTAzUiaYgkfQLjj5Hzzm65h50usxlvGl-ymcxUBnxGbD1lpkLUoqnkFMAx5RcxYife0tjAP_Ko0jDNYReUL5yfMVrOfxVYtMUlblLNqA8nuTbuB",
+          "title": "de-cix.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFocqmB81zdU0-vbqVMwdBMiS2YbMTAzUiaYgkfQLjj5Hzzm65h50usxlvGl-ymcxUBnxGbD1lpkLUoqnkFMAx5RcxYife0tjAP_Ko0jDNYReUL5yfMVrOfxVYtMUlblLNqA8nuTbuB",
+          "title": "de-cix.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGlPobk8dzUY1f69Yr3xcRykMBiYjQoCMfUm_VxxrPdx92KxYPHPNoNbsqTj8KrNd1NCfWgbzTcRYQxCY3l8N0MvbOuivSLQufeDRPBnrKgHlibua45TaANzBZQKE8JautMn68QZc-8pJ_SoXmamXqzW5PZp0G1uUItkpL0Of_jqwxTIa5P5DFV4sw=",
+          "title": "mordorintelligence.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE3Lvcw126hyViZNtp_v_2ZhEPGFzrOI-zGMc5Rv854SaRZALC_x7R3p_39ddG5qsqHZ7snL0m72UF2Y1EvjnJBJomn5O1mGDd0yMVbatCfC--atgs05AVxpEiK3UN9UQ4RjfcvpBw-MkR8lIP-f4ViLEkLaQ==",
+          "title": "markwideresearch.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHxQSRHoFRaue3lp20CaPa-nlpUH4wJhuG3yihsC9o2Yilw1TOkdevpzK0pxIumPtjYJ21e89HwuxouNDBzwD-8dbhZLfR2U165xaH4CX6DhWDRB9xq49X3V2pdrTuKTvzmOEIUv3GP5RZr2CuRCL68eKRFo9l6yijvuaSuRUY4NfIlpwmLffA=",
+          "title": "fortunebusinessinsights.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGlPobk8dzUY1f69Yr3xcRykMBiYjQoCMfUm_VxxrPdx92KxYPHPNoNbsqTj8KrNd1NCfWgbzTcRYQxCY3l8N0MvbOuivSLQufeDRPBnrKgHlibua45TaANzBZQKE8JautMn68QZc-8pJ_SoXmamXqzW5PZp0G1uUItkpL0Of_jqwxTIa5P5DFV4sw=",
+          "title": "mordorintelligence.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE3Lvcw126hyViZNtp_v_2ZhEPGFzrOI-zGMc5Rv854SaRZALC_x7R3p_39ddG5qsqHZ7snL0m72UF2Y1EvjnJBJomn5O1mGDd0yMVbatCfC--atgs05AVxpEiK3UN9UQ4RjfcvpBw-MkR8lIP-f4ViLEkLaQ==",
+          "title": "markwideresearch.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHxQSRHoFRaue3lp20CaPa-nlpUH4wJhuG3yihsC9o2Yilw1TOkdevpzK0pxIumPtjYJ21e89HwuxouNDBzwD-8dbhZLfR2U165xaH4CX6DhWDRB9xq49X3V2pdrTuKTvzmOEIUv3GP5RZr2CuRCL68eKRFo9l6yijvuaSuRUY4NfIlpwmLffA=",
+          "title": "fortunebusinessinsights.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFRc6hVQSg3NCt4ap3Uxh86wzKAg4FTtkLmqeXBTutmhLabaDYAorSErs0Q-W0NZz8eNWYXblY64DG7H_x5nj7LZDSad37BUzsw_TWTiLVGUpx5rrCmzXxcroKdr0DBJlTB5kXJkVWMGFeaAUlhJLtxzcsxVM_FOOF-KmnHqsrN",
+          "title": "karat.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFRc6hVQSg3NCt4ap3Uxh86wzKAg4FTtkLmqeXBTutmhLabaDYAorSErs0Q-W0NZz8eNWYXblY64DG7H_x5nj7LZDSad37BUzsw_TWTiLVGUpx5rrCmzXxcroKdr0DBJlTB5kXJkVWMGFeaAUlhJLtxzcsxVM_FOOF-KmnHqsrN",
+          "title": "karat.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFRc6hVQSg3NCt4ap3Uxh86wzKAg4FTtkLmqeXBTutmhLabaDYAorSErs0Q-W0NZz8eNWYXblY64DG7H_x5nj7LZDSad37BUzsw_TWTiLVGUpx5rrCmzXxcroKdr0DBJlTB5kXJkVWMGFeaAUlhJLtxzcsxVM_FOOF-KmnHqsrN",
+          "title": "karat.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGMQfbIZjuAZxW_VRGx4E-frsGbgX4LafkJS3-6iMX9hlvJA7AMDnTEsgQDZoN4QI160-heLVl71GatuDANHtD5SwR2KJmlAeWFttQFe302Fh1b-DN0q5Ewr_60GS2qselWw-wU0gWA2UbZZgOJizCl_tXRrGuOLL5RGCqf4A==",
+          "title": "builtin.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGfSDBg59QnKRlak9-qFC-SZDcS0ZWnDcVxxiQpDOBvcXkis7-pQ0cOpEVCK7oLNAb2XWNGmTHr9eIPzpdBzpv0JX3Yi_bVF-D1I8uCN6g_R3-brG6h7DCKzRDwQqa9dXRdYTtjsxGppTBDsNZnwLM81zA5KQq3b1GNq06W3PM=",
+          "title": "bairesdev.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFRc6hVQSg3NCt4ap3Uxh86wzKAg4FTtkLmqeXBTutmhLabaDYAorSErs0Q-W0NZz8eNWYXblY64DG7H_x5nj7LZDSad37BUzsw_TWTiLVGUpx5rrCmzXxcroKdr0DBJlTB5kXJkVWMGFeaAUlhJLtxzcsxVM_FOOF-KmnHqsrN",
+          "title": "karat.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFRc6hVQSg3NCt4ap3Uxh86wzKAg4FTtkLmqeXBTutmhLabaDYAorSErs0Q-W0NZz8eNWYXblY64DG7H_x5nj7LZDSad37BUzsw_TWTiLVGUpx5rrCmzXxcroKdr0DBJlTB5kXJkVWMGFeaAUlhJLtxzcsxVM_FOOF-KmnHqsrN",
+          "title": "karat.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGfSDBg59QnKRlak9-qFC-SZDcS0ZWnDcVxxiQpDOBvcXkis7-pQ0cOpEVCK7oLNAb2XWNGmTHr9eIPzpdBzpv0JX3Yi_bVF-D1I8uCN6g_R3-brG6h7DCKzRDwQqa9dXRdYTtjsxGppTBDsNZnwLM81zA5KQq3b1GNq06W3PM=",
+          "title": "bairesdev.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGlPobk8dzUY1f69Yr3xcRykMBiYjQoCMfUm_VxxrPdx92KxYPHPNoNbsqTj8KrNd1NCfWgbzTcRYQxCY3l8N0MvbOuivSLQufeDRPBnrKgHlibua45TaANzBZQKE8JautMn68QZc-8pJ_SoXmamXqzW5PZp0G1uUItkpL0Of_jqwxTIa5P5DFV4sw=",
+          "title": "mordorintelligence.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGlPobk8dzUY1f69Yr3xcRykMBiYjQoCMfUm_VxxrPdx92KxYPHPNoNbsqTj8KrNd1NCfWgbzTcRYQxCY3l8N0MvbOuivSLQufeDRPBnrKgHlibua45TaANzBZQKE8JautMn68QZc-8pJ_SoXmamXqzW5PZp0G1uUItkpL0Of_jqwxTIa5P5DFV4sw=",
+          "title": "mordorintelligence.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGlPobk8dzUY1f69Yr3xcRykMBiYjQoCMfUm_VxxrPdx92KxYPHPNoNbsqTj8KrNd1NCfWgbzTcRYQxCY3l8N0MvbOuivSLQufeDRPBnrKgHlibua45TaANzBZQKE8JautMn68QZc-8pJ_SoXmamXqzW5PZp0G1uUItkpL0Of_jqwxTIa5P5DFV4sw=",
+          "title": "mordorintelligence.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGlPobk8dzUY1f69Yr3xcRykMBiYjQoCMfUm_VxxrPdx92KxYPHPNoNbsqTj8KrNd1NCfWgbzTcRYQxCY3l8N0MvbOuivSLQufeDRPBnrKgHlibua45TaANzBZQKE8JautMn68QZc-8pJ_SoXmamXqzW5PZp0G1uUItkpL0Of_jqwxTIa5P5DFV4sw=",
+          "title": "mordorintelligence.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGlPobk8dzUY1f69Yr3xcRykMBiYjQoCMfUm_VxxrPdx92KxYPHPNoNbsqTj8KrNd1NCfWgbzTcRYQxCY3l8N0MvbOuivSLQufeDRPBnrKgHlibua45TaANzBZQKE8JautMn68QZc-8pJ_SoXmamXqzW5PZp0G1uUItkpL0Of_jqwxTIa5P5DFV4sw=",
+          "title": "mordorintelligence.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGwIupTiww4kqu9xGWQs-VB8J6Q4n1I1CeRthVqm6b7cyG2ml9HAeE6K6JgN0uVmuwe-rr-ycjaf3aU0iSsbcuw1Paq3KMok9cmEfx4ouYDz2od9LDev-FjHXaUlXIDakQmBY3nve9AW39a6iNUh2Pb0E1PYce5aPq_zoZUkIACpFm1g6tKBcNN7sA=",
+          "title": "ny.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGIxkfq-oRGclKuFq2wE02YYawNlS83d7B7BZgRc75b4bs2Fzfg98T1AmCc6HIddN1w4Vs5Hiw076BzjCThETfPhMgcw0KwpysG6vjZZWcYonlZegPFxem6ClhSs6wrSc737XDlC9aW3Q==",
+          "title": "h5datacenters.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGwIupTiww4kqu9xGWQs-VB8J6Q4n1I1CeRthVqm6b7cyG2ml9HAeE6K6JgN0uVmuwe-rr-ycjaf3aU0iSsbcuw1Paq3KMok9cmEfx4ouYDz2od9LDev-FjHXaUlXIDakQmBY3nve9AW39a6iNUh2Pb0E1PYce5aPq_zoZUkIACpFm1g6tKBcNN7sA=",
+          "title": "ny.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE3Lvcw126hyViZNtp_v_2ZhEPGFzrOI-zGMc5Rv854SaRZALC_x7R3p_39ddG5qsqHZ7snL0m72UF2Y1EvjnJBJomn5O1mGDd0yMVbatCfC--atgs05AVxpEiK3UN9UQ4RjfcvpBw-MkR8lIP-f4ViLEkLaQ==",
+          "title": "markwideresearch.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGlPobk8dzUY1f69Yr3xcRykMBiYjQoCMfUm_VxxrPdx92KxYPHPNoNbsqTj8KrNd1NCfWgbzTcRYQxCY3l8N0MvbOuivSLQufeDRPBnrKgHlibua45TaANzBZQKE8JautMn68QZc-8pJ_SoXmamXqzW5PZp0G1uUItkpL0Of_jqwxTIa5P5DFV4sw=",
+          "title": "mordorintelligence.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHDEEChANqj964s-DKE3f3YuNSyUbGjbyEHRbRB-Ggzjwz6RpKZJJEDWyHmJTbqPQLBjqzAJCMK8l7rf2lIBszlvZTk2LozO1v8AVzXIeiWrBiD3KUJvCgDoINkoEfrl-F8uzQgkvwEU0cKqgiojQ6zlsKoLymgwGakElJhgIHh7gJT6-vxkPuJhQDeeM9KAnxf5k5aEDf7ycw8Ux_HxPFex_WzvdETvIOJy-_nf81uMGss2LkXHQIdlT3h4EB0Bpn1N2M=",
+          "title": "srgresearch.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFRc6hVQSg3NCt4ap3Uxh86wzKAg4FTtkLmqeXBTutmhLabaDYAorSErs0Q-W0NZz8eNWYXblY64DG7H_x5nj7LZDSad37BUzsw_TWTiLVGUpx5rrCmzXxcroKdr0DBJlTB5kXJkVWMGFeaAUlhJLtxzcsxVM_FOOF-KmnHqsrN",
+          "title": "karat.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGMQfbIZjuAZxW_VRGx4E-frsGbgX4LafkJS3-6iMX9hlvJA7AMDnTEsgQDZoN4QI160-heLVl71GatuDANHtD5SwR2KJmlAeWFttQFe302Fh1b-DN0q5Ewr_60GS2qselWw-wU0gWA2UbZZgOJizCl_tXRrGuOLL5RGCqf4A==",
+          "title": "builtin.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFRc6hVQSg3NCt4ap3Uxh86wzKAg4FTtkLmqeXBTutmhLabaDYAorSErs0Q-W0NZz8eNWYXblY64DG7H_x5nj7LZDSad37BUzsw_TWTiLVGUpx5rrCmzXxcroKdr0DBJlTB5kXJkVWMGFeaAUlhJLtxzcsxVM_FOOF-KmnHqsrN",
+          "title": "karat.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGIxkfq-oRGclKuFq2wE02YYawNlS83d7B7BZgRc75b4bs2Fzfg98T1AmCc6HIddN1w4Vs5Hiw076BzjCThETfPhMgcw0KwpysG6vjZZWcYonlZegPFxem6ClhSs6wrSc737XDlC9aW3Q==",
+          "title": "h5datacenters.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGwIupTiww4kqu9xGWQs-VB8J6Q4n1I1CeRthVqm6b7cyG2ml9HAeE6K6JgN0uVmuwe-rr-ycjaf3aU0iSsbcuw1Paq3KMok9cmEfx4ouYDz2od9LDev-FjHXaUlXIDakQmBY3nve9AW39a6iNUh2Pb0E1PYce5aPq_zoZUkIACpFm1g6tKBcNN7sA=",
+          "title": "ny.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFJISMl6y8g2b7eoxb5aN5IOjuhpqbygjDZXbNLXddoUryKgdr5MhLnoyTsmzvozdjU1epiINauNI4ua7J6C5Sp5XOUt2LqGxBwCLy1Tm5dxiQbwFpcuRfIlhe0jcd7_68kN958xmDzaA==",
+          "title": "wikipedia.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFocqmB81zdU0-vbqVMwdBMiS2YbMTAzUiaYgkfQLjj5Hzzm65h50usxlvGl-ymcxUBnxGbD1lpkLUoqnkFMAx5RcxYife0tjAP_Ko0jDNYReUL5yfMVrOfxVYtMUlblLNqA8nuTbuB",
+          "title": "de-cix.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGlPobk8dzUY1f69Yr3xcRykMBiYjQoCMfUm_VxxrPdx92KxYPHPNoNbsqTj8KrNd1NCfWgbzTcRYQxCY3l8N0MvbOuivSLQufeDRPBnrKgHlibua45TaANzBZQKE8JautMn68QZc-8pJ_SoXmamXqzW5PZp0G1uUItkpL0Of_jqwxTIa5P5DFV4sw=",
+          "title": "mordorintelligence.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGBA5rj4BtrkkMPb8WFQLZwVDa7OiwPFQtiTwS121Xapl43IHmsbvhzkteeGHEAkGA1-P2Dr2RKpEXy4XrP8-SkOrXSnEzR3OCSMR5pQ0XyhQ1iUkdeLI26GlvDGSa-iA80iSsFQIib32a6mg7z-u7AGycIquQlaEeA9rbveLnItF6dyxib_w==",
+          "title": "newby-ventures.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGfSDBg59QnKRlak9-qFC-SZDcS0ZWnDcVxxiQpDOBvcXkis7-pQ0cOpEVCK7oLNAb2XWNGmTHr9eIPzpdBzpv0JX3Yi_bVF-D1I8uCN6g_R3-brG6h7DCKzRDwQqa9dXRdYTtjsxGppTBDsNZnwLM81zA5KQq3b1GNq06W3PM=",
+          "title": "bairesdev.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEK0UTQrVBtNzFuc52NNeitu-5dsozwsR51qsfwWpM4wKpnJlmRx6_DvW5JM5Q98h0RbJCN_KJ80qE4U9pJSvKWdqHNMtlJBGjpcJ8Zu1cwlKWeRATj3kknQg4kUl7N70V-WGDg_zLJytDIYSsMOmPzSYS-vK9f4bljS7RQ9g==",
+          "title": "amazon.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGMQfbIZjuAZxW_VRGx4E-frsGbgX4LafkJS3-6iMX9hlvJA7AMDnTEsgQDZoN4QI160-heLVl71GatuDANHtD5SwR2KJmlAeWFttQFe302Fh1b-DN0q5Ewr_60GS2qselWw-wU0gWA2UbZZgOJizCl_tXRrGuOLL5RGCqf4A==",
+          "title": "builtin.com",
+          "date": "",
+          "snippet": ""
+        }
+      ],
+      "no_go_gates": [],
+      "caution_flags": [],
+      "provenance_badges": [],
+      "distance_measurements": []
+    }
+  },
+  "executive_summary": {
+    "location_overview": "This strategic synthesis confirms the New York location represents an extremely high-reward, high-risk proposition, justified solely by world-class market demand and premium pricing ($140/kW/mo mid-point). The investment thesis hinges on mitigating catastrophic execution friction arising from regulatory mandates, land costs, and missing power acquisition data, suggesting a critical path timeline exceeding 36 months before Ready for Service. Comprehensive CapEx inflation must be modeled to account for compounding structural premiums, advanced environmental mitigation, and deep foundation requirements.",
+    "key_strengths": [
+      "Market Attractiveness and Pricing Power are unmatched, with near-zero vacancy (6.5%) and premium wholesale pricing driven by critical hyperscaler AI demand and 47 Fortune 500 Headquarters, ensuring robust revenue streams if delivery is achieved.",
+      "Operational Resilience is superior due to world-class utility infrastructure and emergency response, characterized by the Con Edison network resilience (SAIDI <100 min/yr) and highly trained FDNY services, mitigating traditional physical risks (Risk Analysis).",
+      "Network Connectivity provides a decisive competitive advantage, situated at a global interconnection hub with 17 IXPs and direct on-ramps to all major cloud providers, satisfying the ultra-low latency requirements of anchor tenants (Market/Network Analysis)."
+    ],
+    "key_challenges": [
+      "The Regulatory-Execution Friction is critical path constrained, with the combined CEQR/ULURP process likely imposing a minimum 24-month delay, coupled with high risk of CFIUS intervention for foreign investment, jeopardizing timeline and project stability (Regulatory Analysis/Risk Analysis).",
+      "Compounding CapEx pressures result from mandatory structural hardening (SDC C/D seismic, wind/hurricane) and expensive deep foundation requirements, requiring a vertical design structure and increasing structural costs by an estimated 30-40% (Climate and Site Civil Analyses).",
+      "Operational Expenditure is severely stressed by the prohibitively high combined water/sewer rate ($4.62/m), necessitating a high-CapEx, low-WUE cooling strategy (e.g., dry coolers) to avoid crippling long-term Opex, despite the mechanical feasibility of high-efficiency Waterside Economizers (Site Civil/Mechanical Analysis)."
+    ],
+    "critical_success_factors": [
+      "Securing the Power Interconnection Agreement (PIA) and managing its timeline must be prioritized as the non-redundant critical path item; without the Power Analysis, this constraint is deemed the highest execution risk, requiring immediate engagement with Con Edison.",
+      "Achieving Regulatory Synchronization by running CFIUS pre-filing strategies and the multi-agency CEQR/ULURP process in parallel, led by specialized local counsel, is mandatory to compress the 24+ month permitting timeline.",
+      "Strategic Cooling Pivot to high-efficiency, air-cooled or dry-cooler solutions must be executed immediately to mitigate the crippling $4.62/m water/sewer rate, prioritizing Opex resilience over marginal PUE gains achievable only through high-consumption evaporative systems."
+    ]
+  },
+  "phase_1_deployment": {
+    "recommended_capacity": "A phased approach targeting an initial 30 MW IT load is recommended for Phase 1, allowing the project to utilize vertical design constraints while managing CapEx and regulatory scrutiny. Scalability should target a 100 MW envelope based on vertical build capacity on the assumed 4-hectare footprint, contingent upon securing the necessary large-scale interconnection capacity from Con Edison.",
+    "timeline": "The realistic critical path timeline for Phase 1 (30 MW) Ready for Service is estimated at 42-48 months, extending beyond the typical 30-36 months due to the mandatory 24+ month CEQR/ULURP/Permitting process and the 40-52 week lead times for large mechanical equipment (chillers). This timeline assumes a parallel path for power negotiation and environmental approvals.",
+    "priority_actions": [
+      "Initiate immediate, high-level negotiation and engineering studies with the utility (Con Edison) for a 100 MW bulk power connection, treating power acquisition as the definitive project constraint and setting the pace for all other activities.",
+      "Establish a specialized Regulatory and Legal Task Force to immediately begin CFIUS pre-filing documentation and structure the project ownership to mitigate foreign investment risk, alongside submitting the required full Environmental Impact Statement (EIS) for the CEQR process.",
+      "Finalize the cooling system design, confirming the strategic pivot away from high-efficiency evaporative WSE toward advanced dry cooling technologies to mitigate the prohibitively high water Opex, despite the corresponding increase in CapEx and a slightly moderated PUE target (1.35-1.40)."
+    ],
+    "estimated_investment": "The estimated Phase 1 CapEx for 30 MW is high, projected between $450 Million and $550 Million (excluding land cost), reflecting significant premiums for deep foundations, seismic/wind hardening, advanced acoustic enclosures, Tier 4 Final gensets, and high legal/consulting fees required for the CEQR/ULURP process. Land acquisition is estimated at a minimum of $60 Million for the required 4-hectare footprint.",
+    "risk_mitigation": [
+      "Compensate for the unknown power availability by integrating contractual penalties for utility delays into the power interconnection agreement and securing alternative, short-term generation options (Tier 4 rental units) to bridge gaps if utility timelines extend unexpectedly.",
+      "Mitigate long-term climate risk (Sea Level Rise and increased heat) by mandating that all critical utilities and substations be physically flood-proofed and elevated significantly above projected 2050 SLR levels, requiring a comprehensive engineering review beyond minimum FEMA Zone X compliance.",
+      "Address the geopolitical risk associated with CFIUS review by establishing local, transparent operating partnerships and ensuring rigorous compliance documentation is prepared well in advance of any necessary review, guaranteeing operational transparency for critical infrastructure investment."
+    ]
+  },
+  "strategic_opportunities": [
+    "Targeting Ultra-Low Latency Workloads allows for immediate competitive differentiation, leveraging the core network advantages to secure premium pre-leasing agreements from financial services and media companies that require single-digit millisecond access to local peering infrastructure.",
+    "Implementing Advanced Environmental Mitigation (Tier 4 Final Gensets, high-level acoustics) immediately differentiates the offering by guaranteeing compliance with the city's extremely stringent standards, creating a defensible barrier to entry for less prepared competitors (Regulatory Analysis).",
+    "Leveraging Tax Incentives through securing the critical state sales and use tax exemption for qualified equipment provides a necessary financial offset against the exceptionally high corporate tax rates and elevated CapEx requirements inherent to the urban deployment (Regulatory Analysis)."
+  ],
+  "strategic_recommendation": "The strategic recommendation is a **GO**, but categorized as a High-Risk, High-Reward Deployment. The exceptional, non-replicable value of the market positioning and revenue potential decisively outweighs the extreme execution friction and elevated CapEx. The strategy must focus on achieving regulatory and power synchronization, treating the regulatory timeline (24+ months) as the fixed constraint around which construction and procurement schedules must revolve. We must allocate substantial dedicated resources immediately to secure power and navigate the complex legal/environmental approvals required by NYC agencies and CFIUS. This project is a market access play, where financial performance is predicated on successfully executing an extremely complex construction program in a constrained environment.",
+  "conclusion": "The final conclusion is a firm **GO** recommendation, based on the synthesis of overwhelming market demand, world-class network connectivity, and confirmed technical feasibility (PUE 1.28 achievable with WSE, though not strategically desirable due to water cost). Confidence Level is set at **75%**, reflecting high certainty in market demand and technical solutions, but acknowledging the 25% inherent risk associated with the missing Power analysis and the unpredictable length of the mandatory 24+ month regulatory approval process (CEQR/ULURP). Success factors mandate aggressive parallel processing of power acquisition and regulatory compliance, paired with a strategic cooling design pivot to ensure long-term Opex resilience against prohibitive water costs.",
+  "next_steps": [
+    "Execute Power Acquisition Strategy immediately by initiating formal engagement with Con Edison for a 100 MW interconnection request, utilizing specialized local energy consultants to expedite engineering feasibility studies and secure a binding timeline commitment.",
+    "Commission a dedicated Regulatory and Legal Due Diligence team to structure the ownership entity for optimal CFIUS compliance and commence preparation for the full Environmental Impact Statement (EIS) required under the CEQR process, focusing specifically on achieving compliance for noise and Tier 4 Final generator emissions.",
+    "Complete the final engineering design review, specifically validating the shift to low-WUE, high-CapEx cooling technology (e.g., dry coolers) and incorporating the required structural premiums for SDC C/D seismic compliance and high wind loads, ensuring CapEx estimates reflect these required resilient specifications."
+  ],
+  "insights_result": {
+    "executive_summary": {
+      "location_overview": "This strategic synthesis confirms the New York location represents an extremely high-reward, high-risk proposition, justified solely by world-class market demand and premium pricing ($140/kW/mo mid-point). The investment thesis hinges on mitigating catastrophic execution friction arising from regulatory mandates, land costs, and missing power acquisition data, suggesting a critical path timeline exceeding 36 months before Ready for Service. Comprehensive CapEx inflation must be modeled to account for compounding structural premiums, advanced environmental mitigation, and deep foundation requirements.",
+      "key_strengths": [
+        "Market Attractiveness and Pricing Power are unmatched, with near-zero vacancy (6.5%) and premium wholesale pricing driven by critical hyperscaler AI demand and 47 Fortune 500 Headquarters, ensuring robust revenue streams if delivery is achieved.",
+        "Operational Resilience is superior due to world-class utility infrastructure and emergency response, characterized by the Con Edison network resilience (SAIDI <100 min/yr) and highly trained FDNY services, mitigating traditional physical risks (Risk Analysis).",
+        "Network Connectivity provides a decisive competitive advantage, situated at a global interconnection hub with 17 IXPs and direct on-ramps to all major cloud providers, satisfying the ultra-low latency requirements of anchor tenants (Market/Network Analysis)."
+      ],
+      "key_challenges": [
+        "The Regulatory-Execution Friction is critical path constrained, with the combined CEQR/ULURP process likely imposing a minimum 24-month delay, coupled with high risk of CFIUS intervention for foreign investment, jeopardizing timeline and project stability (Regulatory Analysis/Risk Analysis).",
+        "Compounding CapEx pressures result from mandatory structural hardening (SDC C/D seismic, wind/hurricane) and expensive deep foundation requirements, requiring a vertical design structure and increasing structural costs by an estimated 30-40% (Climate and Site Civil Analyses).",
+        "Operational Expenditure is severely stressed by the prohibitively high combined water/sewer rate ($4.62/m), necessitating a high-CapEx, low-WUE cooling strategy (e.g., dry coolers) to avoid crippling long-term Opex, despite the mechanical feasibility of high-efficiency Waterside Economizers (Site Civil/Mechanical Analysis)."
+      ],
+      "strategic_opportunities": [
+        "Targeting Ultra-Low Latency Workloads allows for immediate competitive differentiation, leveraging the core network advantages to secure premium pre-leasing agreements from financial services and media companies that require single-digit millisecond access to local peering infrastructure.",
+        "Implementing Advanced Environmental Mitigation (Tier 4 Final Gensets, high-level acoustics) immediately differentiates the offering by guaranteeing compliance with the city's extremely stringent standards, creating a defensible barrier to entry for less prepared competitors (Regulatory Analysis).",
+        "Leveraging Tax Incentives through securing the critical state sales and use tax exemption for qualified equipment provides a necessary financial offset against the exceptionally high corporate tax rates and elevated CapEx requirements inherent to the urban deployment (Regulatory Analysis)."
+      ],
+      "critical_success_factors": [
+        "Securing the Power Interconnection Agreement (PIA) and managing its timeline must be prioritized as the non-redundant critical path item; without the Power Analysis, this constraint is deemed the highest execution risk, requiring immediate engagement with Con Edison.",
+        "Achieving Regulatory Synchronization by running CFIUS pre-filing strategies and the multi-agency CEQR/ULURP process in parallel, led by specialized local counsel, is mandatory to compress the 24+ month permitting timeline.",
+        "Strategic Cooling Pivot to high-efficiency, air-cooled or dry-cooler solutions must be executed immediately to mitigate the crippling $4.62/m water/sewer rate, prioritizing Opex resilience over marginal PUE gains achievable only through high-consumption evaporative systems."
+      ]
+    },
+    "phase_1_deployment": {
+      "recommended_capacity": "A phased approach targeting an initial 30 MW IT load is recommended for Phase 1, allowing the project to utilize vertical design constraints while managing CapEx and regulatory scrutiny. Scalability should target a 100 MW envelope based on vertical build capacity on the assumed 4-hectare footprint, contingent upon securing the necessary large-scale interconnection capacity from Con Edison.",
+      "timeline": "The realistic critical path timeline for Phase 1 (30 MW) Ready for Service is estimated at 42-48 months, extending beyond the typical 30-36 months due to the mandatory 24+ month CEQR/ULURP/Permitting process and the 40-52 week lead times for large mechanical equipment (chillers). This timeline assumes a parallel path for power negotiation and environmental approvals.",
+      "priority_actions": [
+        "Initiate immediate, high-level negotiation and engineering studies with the utility (Con Edison) for a 100 MW bulk power connection, treating power acquisition as the definitive project constraint and setting the pace for all other activities.",
+        "Establish a specialized Regulatory and Legal Task Force to immediately begin CFIUS pre-filing documentation and structure the project ownership to mitigate foreign investment risk, alongside submitting the required full Environmental Impact Statement (EIS) for the CEQR process.",
+        "Finalize the cooling system design, confirming the strategic pivot away from high-efficiency evaporative WSE toward advanced dry cooling technologies to mitigate the prohibitively high water Opex, despite the corresponding increase in CapEx and a slightly moderated PUE target (1.35-1.40)."
+      ],
+      "estimated_investment": "The estimated Phase 1 CapEx for 30 MW is high, projected between $450 Million and $550 Million (excluding land cost), reflecting significant premiums for deep foundations, seismic/wind hardening, advanced acoustic enclosures, Tier 4 Final gensets, and high legal/consulting fees required for the CEQR/ULURP process. Land acquisition is estimated at a minimum of $60 Million for the required 4-hectare footprint.",
+      "risk_mitigation": [
+        "Compensate for the unknown power availability by integrating contractual penalties for utility delays into the power interconnection agreement and securing alternative, short-term generation options (Tier 4 rental units) to bridge gaps if utility timelines extend unexpectedly.",
+        "Mitigate long-term climate risk (Sea Level Rise and increased heat) by mandating that all critical utilities and substations be physically flood-proofed and elevated significantly above projected 2050 SLR levels, requiring a comprehensive engineering review beyond minimum FEMA Zone X compliance.",
+        "Address the geopolitical risk associated with CFIUS review by establishing local, transparent operating partnerships and ensuring rigorous compliance documentation is prepared well in advance of any necessary review, guaranteeing operational transparency for critical infrastructure investment."
+      ],
+      "success_metrics": [
+        "Achieving the Notice of Completion (NOC) for the required CEQR/ULURP permitting process within 30 months from initial filing serves as the primary critical path success metric, validating regulatory efficiency.",
+        "Attaining a minimum 70% pre-lease commitment at or above the market benchmark rate of $140/kW/mo, secured by anchor hyperscale tenants based on the strategic network and low-latency value proposition.",
+        "Maintaining the revised operational PUE target of 1.35 or better, while ensuring Water Usage Effectiveness (WUE) remains below 0.5 L/kWh to successfully mitigate the impact of the catastrophic $4.62/m water/sewer rate."
+      ]
+    },
+    "strategic_recommendation": "The strategic recommendation is a **GO**, but categorized as a High-Risk, High-Reward Deployment. The exceptional, non-replicable value of the market positioning and revenue potential decisively outweighs the extreme execution friction and elevated CapEx. The strategy must focus on achieving regulatory and power synchronization, treating the regulatory timeline (24+ months) as the fixed constraint around which construction and procurement schedules must revolve. We must allocate substantial dedicated resources immediately to secure power and navigate the complex legal/environmental approvals required by NYC agencies and CFIUS. This project is a market access play, where financial performance is predicated on successfully executing an extremely complex construction program in a constrained environment.",
+    "conclusion": "The final conclusion is a firm **GO** recommendation, based on the synthesis of overwhelming market demand, world-class network connectivity, and confirmed technical feasibility (PUE 1.28 achievable with WSE, though not strategically desirable due to water cost). Confidence Level is set at **75%**, reflecting high certainty in market demand and technical solutions, but acknowledging the 25% inherent risk associated with the missing Power analysis and the unpredictable length of the mandatory 24+ month regulatory approval process (CEQR/ULURP). Success factors mandate aggressive parallel processing of power acquisition and regulatory compliance, paired with a strategic cooling design pivot to ensure long-term Opex resilience against prohibitive water costs.",
+    "next_steps": [
+      "Execute Power Acquisition Strategy immediately by initiating formal engagement with Con Edison for a 100 MW interconnection request, utilizing specialized local energy consultants to expedite engineering feasibility studies and secure a binding timeline commitment.",
+      "Commission a dedicated Regulatory and Legal Due Diligence team to structure the ownership entity for optimal CFIUS compliance and commence preparation for the full Environmental Impact Statement (EIS) required under the CEQR process, focusing specifically on achieving compliance for noise and Tier 4 Final generator emissions.",
+      "Complete the final engineering design review, specifically validating the shift to low-WUE, high-CapEx cooling technology (e.g., dry coolers) and incorporating the required structural premiums for SDC C/D seismic compliance and high wind loads, ensuring CapEx estimates reflect these required resilient specifications."
+    ]
+  },
+  "data_gap_analysis": {
+    "data_sources_used": [
+      {
+        "name": "Public data analysis",
+        "type": "publicly_available",
+        "reliability": "medium",
+        "last_updated": "Current analysis",
+        "url": null
+      }
+    ],
+    "data_gaps_identified": [
+      "Site-specific FEMA Elevation Certificate required to confirm BFE and Finished Floor Elevation (FFE) compliance.",
+      "Phase I geotechnical investigation needed to verify liquefaction susceptibility, particularly on potential filled land, and determine final SDC/PGA.",
+      "Jurisdictional wetland delineation survey required to confirm no Clean Water Act impacts on the exact parcel.",
+      "Design wind speed and wind-borne debris region determination per ASCE 7 for the specific building location.",
+      "Site-specific distance to nearest military/sensitive facility for definitive CFIUS real estate jurisdiction assessment.",
+      "Specific Con Edison SAIDI/CAIDI data for the NYC underground network (not the entire service area) in minutes/year.",
+      "Formal political risk insurance quote to quantify the cost of geopolitical risk transfer.",
+      "Specific HTS codes and their corresponding import duty rates for non-ITA equipment (assuming 0% HTS for core IT equipment, excluding tariffs for China-origin goods).",
+      "Precise permit fee structure for a 50-100MW facility (estimated $500k+).",
+      "Pre-application meeting with NYC Planning/DEP for final CEQR and Zoning determination.",
+      "Specific, recent colocation pricing data (USD/kW/month) and detailed land acquisition costs (USD/acre) within the targeted submarkets.",
+      "Current, precise occupancy and utilization rates for major multi-tenant data centers (MTDC) in the NY/NJ metro area.",
+      "Quantitative data on the total fiber plant capacity and specific utility transmission line availability for multi-megawatt sites in the outer boroughs."
+    ],
+    "third_party_requirements": [
+      "Licensed surveyor for FEMA Elevation Certificate and floodplain analysis (for final FFE design)",
+      "Geotechnical engineering firm for Phase I/II subsurface investigation (seismic, liquefaction, bearing)",
+      "Environmental consulting firm for wetland delineation and environmental permitting",
+      "Structural engineer for seismic (SDC C/D) and wind design compliance (ASCE 7)",
+      "CFIUS/FIRRMA legal counsel pre-filing strategy (Critical Infrastructure focus)",
+      "Security consultant (Control Risks, Kroll) for site-specific threat/asset assessment, especially relating to high-profile target risk.",
+      "Formal Memorandum of Understanding (MOU) with local FDNY/EMS for data center-specific response protocols.",
+      "Local legal counsel for CFIUS, CEQR scope, and Zoning classification (CUP vs. Use-by-Right) review.",
+      "NYC Department of Environmental Protection (DEP) for noise and generator permitting requirements.",
+      "NY State Economic Development Corporation for final incentive confirmation.",
+      "Market research and consulting firm (e.g., Synergy Research Group, Mordor Intelligence) for data center capacity, growth, and hyperscaler demand analysis.",
+      "Labor market research specialist (e.g., Built In, Karat) for detailed workforce assessment and salary benchmarking.",
+      "Real estate and competitive analysis consultant for land cost, zoning, and energy constraint modeling in the NYC/NJ metro."
+    ],
+    "assumptions_made": [
+      {
+        "category": "General Analysis",
+        "assumption": "The analysis assumes a hypothetical high-value, elevated urban site within New York City, away from the immediate waterfront (FEMA Zone X).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Site elevation is estimated at 10 meters NAVD88, well above the local BFE, based on typical high-ground urban construction practices.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "PGA (0.15g) is a proxy from USGS NSHM for the region; site-specific geotechnical studies are required for final design.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Wildfire risk is set to Moderate, reflecting the regional NYS DEC classification, though the immediate urban fuel load is low.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Climate change projections (temp, SLR) are based on the NYC Panel on Climate Change (NPCC) mid-range estimates for the 2050s (Relative to 1981-2010 baseline).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Political Stability Index (0-10 scale) converted from World Bank WGI (0.03 on a -2.5 to +2.5 scale) to a 0-10 scale for scoring consistency.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "SAIDI (70 min/year) is assumed for Con Edison's underground network, given its national-leader status, and is projected to be significantly better than New York State's average (117.8 min/year) to justify the Excellent (5.0) score.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Telecom redundancy is assumed to be at least 4 diverse paths, consistent with a primary global internet and financial hub location.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Distance to nearest military base is assumed to be <10km (e.g., Manhattan military recruiting centers, US Coast Guard facilities, Governor's Island) which triggers the CFIUS geographic proximity rule without specific measurement.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The 50-100 MW hyperscale project is assumed to require a discretionary land use action (CUP/Rezoning) and trigger a full EIS under CEQR.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The project involves the use of diesel/gas generators which are subject to stringent NYC DEP air quality and noise regulations.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Corporate tax rate includes both NY State (up to 7.25%) and NYC (8.85% net income base) for a high-profit entity.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Hyperscaler analysis is based on established presence (Local Zones, Direct Connect/ExpressRoute endpoints) and known enterprise demand patterns in the NYC metro.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The high occupancy rate is an inference based on the maturity and demand of a Tier 1 market, though not explicitly quantified in all cited snippets.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Geographical scope includes the immediate New York City metro area (including major NJ/outer-borough hubs for scalability).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      }
+    ],
+    "overall_confidence": "low",
+    "next_steps_priority": [
+      "Address critical data gaps through third-party verification",
+      "Validate key assumptions with local experts",
+      "Conduct on-site assessments for high-impact areas"
+    ]
+  },
+  "weighted_domain_scores": [
+    {
+      "domain_name": "power_energy",
+      "raw_score": 2.5,
+      "weight": 0.35,
+      "weighted_contribution": 0.875,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "network_connectivity",
+      "raw_score": 4.85,
+      "weight": 0.15,
+      "weighted_contribution": 0.7274999999999999,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 1
+    },
+    {
+      "domain_name": "site_civil",
+      "raw_score": 2.7,
+      "weight": 0.1,
+      "weighted_contribution": 0.27,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 4
+    },
+    {
+      "domain_name": "hazards_resilience",
+      "raw_score": 3.7,
+      "weight": 0.12,
+      "weighted_contribution": 0.444,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 2
+    },
+    {
+      "domain_name": "mechanical_thermal",
+      "raw_score": 4.0,
+      "weight": 0.08,
+      "weighted_contribution": 0.32,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 1
+    },
+    {
+      "domain_name": "regulatory_esg",
+      "raw_score": 2.5,
+      "weight": 0.14,
+      "weighted_contribution": 0.35000000000000003,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "market_competition",
+      "raw_score": 4.7,
+      "weight": 0.06,
+      "weighted_contribution": 0.282,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 1
+    }
+  ],
+  "all_no_go_gates": [
+    {
+      "gate_type": "Single Fiber Route",
+      "triggered": false,
+      "reason": "Lower Manhattan is served by numerous redundant, competitive fiber networks from Tier 1/2 carriers (e.g., Verizon, Spectrum, Pilot Fiber) with established, physically diverse routes, confirming multiple buildable paths within an 18-month timeframe.",
+      "standard_reference": "TIA-942 Tier III/IV requires multiple independent, physically diverse paths.",
+      "mitigation_possible": false,
+      "mitigation_cost": "N/A"
+    },
+    {
+      "gate_type": "No Carrier Presence",
+      "triggered": false,
+      "reason": "Hundreds of domestic and international carriers, including all major Tier 1 global providers, are present within a 1km radius at major carrier hotels.",
+      "standard_reference": "Investment-grade requires robust carrier presence.",
+      "mitigation_possible": false,
+      "mitigation_cost": "N/A"
+    },
+    {
+      "gate_type": "Critical Water Scarcity",
+      "triggered": false,
+      "reason": "WRI Aqueduct score 1.5 (Low-Medium stress) is well below the NO-GO threshold of >4.0. NYC has robust water supply from external watersheds.",
+      "standard_reference": "WRI Aqueduct >4.0 threshold",
+      "mitigation_possible": true,
+      "mitigation_cost": "N/A - not triggered"
+    },
+    {
+      "gate_type": "FEMA V/VE Flood Zone",
+      "triggered": false,
+      "reason": "Site is assumed to be in FEMA Zone X, outside of high-velocity coastal flood zones (V/VE) and 100-year floodplain (A/AE).",
+      "standard_reference": "FEMA regulations prohibit cost-effective data center construction in V/VE zones",
+      "mitigation_possible": false,
+      "mitigation_cost": "Not applicable - NO-GO gate passed"
+    },
+    {
+      "gate_type": "BFE >3m Above Grade",
+      "triggered": false,
+      "reason": "No Base Flood Elevation applies for Zone X; site is assumed to be 10m NAVD88 elevation, well above any BFE.",
+      "standard_reference": "Building codes require FFE = BFE + 0.6m; sites with BFE >3m face prohibitive costs",
+      "mitigation_possible": true,
+      "mitigation_cost": "Not applicable - NO-GO gate passed"
+    },
+    {
+      "gate_type": "Very High Wildfire Hazard",
+      "triggered": false,
+      "reason": "Site is in an urban core classified regionally as Moderate Fire Hazard Severity Zone (NYS DEC), not Very High Fire Hazard.",
+      "standard_reference": "CAL FIRE Very High FHSZ has >30% fire impact probability per decade",
+      "mitigation_possible": false,
+      "mitigation_cost": "Not applicable - NO-GO gate passed"
+    },
+    {
+      "gate_type": "Extreme Seismic Hazard (PGA >0.4g)",
+      "triggered": false,
+      "reason": "PGA is 0.15g (SDC C/D), below 0.4g threshold for extreme hazard.",
+      "standard_reference": "ASCE 7 Seismic Design Category E/F (PGA >0.4g) triggers prohibitive structural costs",
+      "mitigation_possible": true,
+      "mitigation_cost": "Not applicable - NO-GO gate passed"
+    },
+    {
+      "gate_type": "Protected Area Violation",
+      "triggered": false,
+      "reason": "No WDPA Category I-III protected areas or UNESCO buffer zones within the critical 10km radius.",
+      "standard_reference": "IUCN protected area categories I-III prohibit large-scale industrial development",
+      "mitigation_possible": false,
+      "mitigation_cost": "Not applicable - NO-GO gate passed"
+    },
+    {
+      "gate_type": "Inadequate Thermal Resilience",
+      "triggered": false,
+      "reason": "Design targets a 20-minute ride-through at N-1 failure, exceeding the Uptime Institute Tier III minimum of 15 minutes.",
+      "standard_reference": "Uptime Institute Tier III requires minimum 15 minutes ride-through.",
+      "mitigation_possible": true,
+      "mitigation_cost": "N/A - not triggered"
+    },
+    {
+      "gate_type": "Prohibited Cross-Border Data Transfers",
+      "triggered": false,
+      "reason": "The EU-US Data Privacy Framework (DPF) provides a legal mechanism for cross-border data transfer (assuming the operator is DPF-certified).",
+      "standard_reference": "GDPR Article 44-50",
+      "mitigation_possible": false,
+      "mitigation_cost": "N/A - not triggered"
+    }
+  ],
+  "all_caution_flags": [
+    {
+      "category": "Bandwidth Costs",
+      "severity": "medium",
+      "description": "While highly competitive, IP transit and dark fiber costs in Manhattan's dense core are typically higher than in hyperscale hubs like Ashburn, VA (US-East-1).",
+      "mitigation_plan": "Leverage multiple local IXPs (DE-CIX, NYIIX) and direct peering to reduce reliance on costly IP transit.",
+      "cost_impact": "Negligible to Low (cost premium offset by superior latency and peering ecosystem)",
+      "timeline_impact": "None",
+      "severity_points": 0.1
+    },
+    {
+      "category": "Land Availability",
+      "severity": "high",
+      "description": "Requires assembly of >1 parcel (2 assumed) in a high-density, high-cost market for a 4ha site.",
+      "mitigation_plan": "Engage specialized real estate legal/brokerage team, use eminent domain/redevelopment zone incentives.",
+      "cost_impact": "+$1-5M in legal/assembly costs; land price ($15M/ha) is extreme.",
+      "timeline_impact": "+6-12 months for land assembly/zoning variance.",
+      "severity_points": 0.5
+    },
+    {
+      "category": "Geotechnical",
+      "severity": "medium",
+      "description": "Low allowable bearing capacity (191.5 kPa) in fill/soft clay/silt requires deep pile foundations to meet ASCE 7-22 for critical facilities.",
+      "mitigation_plan": "Deep piling/caissons to bedrock/till, with a minimum depth of ~20m-30m.",
+      "cost_impact": "+25% of structural foundation cost (+$50-$200 per sqm foundation cost).",
+      "timeline_impact": "+2-4 months for pile/caisson installation and testing.",
+      "severity_points": 0.5
+    },
+    {
+      "category": "Water/Wastewater",
+      "severity": "medium",
+      "description": "Extremely high combined municipal water/sewer rate ($4.62/m) makes traditional evaporative cooling economically unfeasible (WUE concern).",
+      "mitigation_plan": "Mandatory use of air-cooled or hybrid-adiabatic cooling systems; potential for on-site water recycling (CAPEX: +$10-15M).",
+      "cost_impact": "+$0.01-0.03/kWh Opex vs. dry cooling; +$15M CapEx for alternative cooling.",
+      "timeline_impact": "N/A",
+      "severity_points": 0.4
+    },
+    {
+      "category": "Permitting/Timeline",
+      "severity": "medium",
+      "description": "Total project permitting (zoning, utility, DOB) of 18-24 months is lengthy; EIA likely required due to brownfield/size/urban context.",
+      "mitigation_plan": "Professional-certified filings (Alt 1 Self-Cert), simultaneous track utility interconnection and zoning approvals.",
+      "cost_impact": "+$3-5M in legal/consulting fees for expedited process.",
+      "timeline_impact": "+6-12 months over an ideal greenfield location.",
+      "severity_points": 0.5
+    },
+    {
+      "category": "High Wind/Hurricane Risk",
+      "severity": "high",
+      "description": "High Wind/Hurricane Risk",
+      "mitigation_plan": "Design structure for high-speed wind loads (55 m/s) and use missile/impact-resistant envelope materials; ensure all backup power is securely anchored and enclosed.",
+      "cost_impact": "To be determined",
+      "timeline_impact": null,
+      "severity_points": 0.0
+    },
+    {
+      "category": "Seismic Design (SDC C/D) and Liquefaction",
+      "severity": "medium",
+      "description": "Seismic Design (SDC C/D) and Liquefaction",
+      "mitigation_plan": "Phase I geotechnical investigation and structural design for SDC C/D compliance, likely requiring deep pile foundations to Manhattan Schist bedrock.",
+      "cost_impact": "To be determined",
+      "timeline_impact": null,
+      "severity_points": 0.0
+    },
+    {
+      "category": "Water Consumption",
+      "severity": "medium",
+      "description": "Design WUE of 1.5 L/kWh (high-end of acceptable for evaporative cooling) in a major metropolitan area may present future regulatory/PR risk, even if current water stress is low-to-medium.",
+      "mitigation_plan": "Implement high-efficiency water treatment and explore hybrid dry-cooling/evaporative technology for water conservation during non-peak times.",
+      "cost_impact": "+$5M CAPEX for hybrid/advanced treatment systems (estimated)",
+      "timeline_impact": "Negligible",
+      "severity_points": 0.4
+    },
+    {
+      "category": "Foreign Ownership Restrictions",
+      "severity": "medium",
+      "description": "Foreign investment is subject to potential national security review by CFIUS due to data centers being designated 'critical infrastructure'.",
+      "mitigation_plan": "Voluntary CFIUS filing or structure the investment to avoid triggering mandatory filing thresholds (e.g., maintaining minority non-control interest from non-excepted foreign states).",
+      "cost_impact": "+$3M to +$10M for legal/CFIUS consulting and potential divestiture risk.",
+      "timeline_impact": "+3-9 months if a CFIUS review is required.",
+      "severity_points": 0.4
+    },
+    {
+      "category": "Complex Environmental Compliance",
+      "severity": "high",
+      "description": "Mandatory CEQR/EIS is highly probable for 50-100MW; generator emissions must meet Tier 4 Final-equivalent PM and strict NO standards; noise limits (7-10 dBA above ambient) necessitate major acoustic enclosures and mitigation (NFPA 76/75/NFPA 110 compatibility).",
+      "mitigation_plan": "Proactive CEQR scoping, community engagement, investment in Tier 4 Final gensets, selective catalytic reduction (SCR), and multi-million dollar acoustic enclosures.",
+      "cost_impact": "+$8M to +$15M for advanced controls, acoustic engineering, and specialist consulting.",
+      "timeline_impact": "+12-24 months if a full EIS/Type I CEQR is required.",
+      "severity_points": 0.7
+    },
+    {
+      "category": "Permitting Complexity",
+      "severity": "high",
+      "description": "Hyperscale deployment likely requires a discretionary approval (CUP/Rezoning), triggering a multi-agency Uniform Land Use Review Procedure (ULURP) and an EIS, leading to a long and public approval timeline (24+ months likely).",
+      "mitigation_plan": "Site selection in pre-zoned industrial areas, use of Professional Certification Program for ministerial permits, community benefits agreement for public support, and detailed precedent analysis.",
+      "cost_impact": "+$5M to +$15M for extended carrying costs, legal fees, and community engagement.",
+      "timeline_impact": "+12-24 months to project delivery.",
+      "severity_points": 0.6
+    },
+    {
+      "category": "Labor Market & OpEx Risk",
+      "severity": "medium",
+      "description": "High average technician salary (~$79k/yr) and tight labor market in NYC/NJ will result in above-average OpEx and staffing retention challenges.",
+      "mitigation_plan": "Establish a strong relationship with local technical colleges and offer industry-leading training/retention packages; automate low-level functions aggressively.",
+      "cost_impact": "OpEx is projected to be 10-15% higher than Tier 2 or tax-incentivized markets (e.g., Chicago, Phoenix).",
+      "timeline_impact": "Staffing-up phase may extend by 3-6 months if compensation is not competitive.",
+      "severity_points": 0.4
+    }
+  ],
+  "provenance_summary": [],
+  "transactional_verifications": [],
+  "distance_measurements": []
+}

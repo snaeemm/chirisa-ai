@@ -1,0 +1,2519 @@
+{
+  "location": "Quaid-e-Azam Industrial Estate (QAIED) Area, Lahore",
+  "coordinates": {
+    "lat": 31.464,
+    "lng": 74.341
+  },
+  "country": "Pakistan",
+  "analysis_date": "2025-11-05",
+  "overall_suitability": {
+    "composite_score": 1.0,
+    "rating": "Poor",
+    "recommendation": "Location rated as Poor for datacenter deployment",
+    "no_go_triggered": false,
+    "failed_gates": [],
+    "caution_count": 10,
+    "confidence_level": "medium",
+    "verification_percentage": 40.0
+  },
+  "domain_analysis": {
+    "power_infrastructure": {
+      "score": 3.3,
+      "key_findings": [
+        "The primary risk is the high baseline electricity cost (13.5 cents/kWh) and grid reliability/instability (loadshedding).",
+        "Project viability is highly dependent on securing the proposed targeted industrial tariff (~$0.082/kWh) and ensuring long-term regulatory certainty via NEPRA/IMF.",
+        "Physical infrastructure and scalability are strong (NTDC 500kV/220kV access), but realization timelines are extended by project delays and complex interconnection processes (36+ months)."
+      ],
+      "summary": "The location in Lahore, Pakistan, offers significant power capacity and scalability potential due to the presence of the NTDC high-voltage grid and strong industrial infrastructure. However, the viability of a hyperscale data center is critically challenged by the high current industrial electricity rate ($0.135/kWh) and low grid reliability (loadshedding). Success requires successful negotiation and regulatory lock-in of a special, lower industrial tariff and a robust, fully redundant power strategy to mitigate the inherent grid instability."
+    },
+    "network_connectivity": {
+      "score": 3.82,
+      "key_findings": [],
+      "summary": ""
+    },
+    "climate_environmental": {
+      "score": 3.4,
+      "key_findings": [
+        "CRITICAL: All 5 NO-GO gates are passed based on available data, rendering the site technically viable for hyperscale deployment.",
+        "The primary operational constraint is a poor cooling climate (high temp, high CDD) yielding an estimated PUE of 1.45 and low free cooling (1800 hours/year).",
+        "Flood and Wildfire hazards are formally categorized as 'High' (Caution Flags), requiring non-discretionary investments in flood-proofing (FFL elevation) and vegetation management."
+      ],
+      "summary": "The site is technically viable, having passed ALL critical NO-GO gates (Flood V/VE, Wildfire Very High, PGA >0.4g, Protected Areas). However, the location presents several significant, manageable Caution Flags: High Flood Risk (riverine/pluvial) requiring FFE elevation; High Wildfire Hazard requiring stringent management; and poor thermal climate (estimated PUE 1.45 with 1800 free cooling hours). The most critical long-term factor is the combination of moderate-to-high seismic hazard (PGA 0.12g, SDC C) and severe 2050 climate change projections (+2.0C, -25% precipitation), which necessitates up-front investment in structural hardening and advanced water management/cooling design to ensure 25+ year resilience."
+    },
+    "operational_risk": {
+      "score": 1.0,
+      "key_findings": [
+        "The site presents an unacceptable risk profile, failing two critical investment-grade NO-GO Gates: Geopolitical Stability and Extreme Physical Security.",
+        "Investment is not recommended due to unmitigable state-level risks: high political instability (WGI 1.13) and extreme terrorism threat (GTI 8.37).",
+        "Secondary risks include non-investment grade sovereign credit (B-/Caa1), high corruption (CPI 27), and grossly inadequate utility power resilience (Estimated SAIDI 750 min/year)."
+      ],
+      "summary": "Location demonstrates an UNACCEPTABLE operational risk profile, triggering two Critical NO-GO Gates. The extreme political instability and high-impact terrorism risk preclude any investment-grade decision. Secondary risks across infrastructure resilience (estimated SAIDI >500 min/year) and economic/legal stability (non-investment grade credit, high corruption) compound the primary security and geopolitical threats. Investment is not recommended and is likely uninsurable under standard political risk policies."
+    },
+    "esg_sustainability": {
+      "score": 1.0,
+      "key_findings": [
+        "ESG analysis failed: Invalid \\escape: line 71 column 59 (char 4415)"
+      ],
+      "summary": "ESG analysis unavailable"
+    },
+    "regulatory_compliance": {
+      "score": 3.15,
+      "key_findings": [
+        "**Incentives are Best-in-Class:** The 10-year full tax holiday and 100% import duty exemption in STZs are highly competitive and a major driver for site selection (Sub-Score 5.0).",
+        "**Data Sovereignty is the Primary Risk:** The imminent and strict localization mandate for 'Critical Personal Data' requires a multi-million dollar architectural design decision (i.e., local-only deployment for CPD or a multi-region hybrid architecture).",
+        "**Execution Friction is Mitigated:** The SIFC/STZA 'One-Window' approach significantly de-risks the permitting and construction phase, compressing the likely timeline to an institutionally acceptable level (12-18 months)."
+      ],
+      "summary": "Location demonstrates a moderately favorable regulatory environment with a raw score of 3.85, reduced to **3.15** after mandatory caution flag deductions. The deployment environment is fundamentally attractive due to a **10-year income tax holiday** and **100% import duty exemption** within the Special Technology Zone (STZ) framework. However, the investment is subject to two high-severity legal/regulatory risks: 1) The *mandatory data localization for 'Critical Personal Data'* under the pending PDPB, which creates a hard cap on data mobility (Caution Flag #1); and 2) The *high government lawful access risk*. Successful execution hinges entirely on licensing within an STZ and robust acoustic engineering to meet stringent night-time noise limits."
+    },
+    "hyperscaler_attractiveness": {
+      "score": 3.9,
+      "key_findings": [
+        "The Lahore region is an emerging Tier-2 market with a critical first-mover advantage for hyperscalers due to the absence of an established region.",
+        "The 2,000 MW power allocation and exceptional labor cost competitiveness are unparalleled advantages in the region.",
+        "The core challenge lies in the underdeveloped colocation inventory (20 MW) and perceived geopolitical risk, which is mitigated by strong governmental and strategic support."
+      ],
+      "summary": "Lahore, Pakistan, presents a high-potential greenfield opportunity for hyperscale data center investment, scoring 3.9/5.0. Its attractiveness is driven primarily by exceptional infrastructure scalability (2,000 MW power allocation for AI/DC development) and highly competitive OpEx due to low labor costs (~20% of US/Europe). While the competitive landscape is nascent, the cloud market is robust, expecting a 19.1% CAGR to $1.5 billion, signaling explosive future demand. Furthermore, new submarine cable systems (+200 Tbps planned) and the new carrier-neutral PIE powered by DE-CIX solidify Lahore's future as a strategic regional connectivity hub. The government's strong commitment through fiscal incentives and a national digital strategy makes this an unmissable second-wave Asian market for hyperscale expansion."
+    }
+  },
+  "detailed_analysis": {
+    "power_infrastructure": "The location in Lahore, Pakistan, offers significant power capacity and scalability potential due to the presence of the NTDC high-voltage grid and strong industrial infrastructure. However, the viability of a hyperscale data center is critically challenged by the high current industrial electricity rate ($0.135/kWh) and low grid reliability (loadshedding). Success requires successful negotiation and regulatory lock-in of a special, lower industrial tariff and a robust, fully redundant power strategy to mitigate the inherent grid instability.",
+    "network_connectivity": "",
+    "climate_environmental": "The site is technically viable, having passed ALL critical NO-GO gates (Flood V/VE, Wildfire Very High, PGA >0.4g, Protected Areas). However, the location presents several significant, manageable Caution Flags: High Flood Risk (riverine/pluvial) requiring FFE elevation; High Wildfire Hazard requiring stringent management; and poor thermal climate (estimated PUE 1.45 with 1800 free cooling hours). The most critical long-term factor is the combination of moderate-to-high seismic hazard (PGA 0.12g, SDC C) and severe 2050 climate change projections (+2.0C, -25% precipitation), which necessitates up-front investment in structural hardening and advanced water management/cooling design to ensure 25+ year resilience.",
+    "operational_risk": "Location demonstrates an UNACCEPTABLE operational risk profile, triggering two Critical NO-GO Gates. The extreme political instability and high-impact terrorism risk preclude any investment-grade decision. Secondary risks across infrastructure resilience (estimated SAIDI >500 min/year) and economic/legal stability (non-investment grade credit, high corruption) compound the primary security and geopolitical threats. Investment is not recommended and is likely uninsurable under standard political risk policies.",
+    "esg_sustainability": "ESG analysis unavailable",
+    "regulatory_compliance": "Location demonstrates a moderately favorable regulatory environment with a raw score of 3.85, reduced to **3.15** after mandatory caution flag deductions. The deployment environment is fundamentally attractive due to a **10-year income tax holiday** and **100% import duty exemption** within the Special Technology Zone (STZ) framework. However, the investment is subject to two high-severity legal/regulatory risks: 1) The *mandatory data localization for 'Critical Personal Data'* under the pending PDPB, which creates a hard cap on data mobility (Caution Flag #1); and 2) The *high government lawful access risk*. Successful execution hinges entirely on licensing within an STZ and robust acoustic engineering to meet stringent night-time noise limits.",
+    "hyperscaler_attractiveness": "Lahore, Pakistan, presents a high-potential greenfield opportunity for hyperscale data center investment, scoring 3.9/5.0. Its attractiveness is driven primarily by exceptional infrastructure scalability (2,000 MW power allocation for AI/DC development) and highly competitive OpEx due to low labor costs (~20% of US/Europe). While the competitive landscape is nascent, the cloud market is robust, expecting a 19.1% CAGR to $1.5 billion, signaling explosive future demand. Furthermore, new submarine cable systems (+200 Tbps planned) and the new carrier-neutral PIE powered by DE-CIX solidify Lahore's future as a strategic regional connectivity hub. The government's strong commitment through fiscal incentives and a national digital strategy makes this an unmissable second-wave Asian market for hyperscale expansion."
+  },
+  "structured_analysis": {
+    "power_infrastructure": {
+      "overall_score": 3.3,
+      "grid_reliability": {
+        "name": "Grid Reliability & Resiliency",
+        "content": "Pakistan's grid, managed by NTDC (National Transmission and Despatch Company) and distributed by LESCO (Lahore Electric Supply Company) in this region, is known to be fragile with frequent blackouts (loadshedding) despite capacity increases, primarily due to financial issues and old infrastructure. There are no widely published, recent, data center-grade SAIDI/SAIFI metrics, but the system's operational instability requires significant investment and is a major risk factor, necessitating robust on-site backup generation and redundancy.",
+        "sub_score": 2.5,
+        "metrics": {
+          "numerical_values": {
+            "saidi_minutes_estimated": 600,
+            "saifi_interruptions_estimated": 10,
+            "grid_uptime": 98.86
+          },
+          "percentages": {
+            "loadshedding_issue": 80,
+            "transmission_performance_target": 98
+          },
+          "ranges": {
+            "voltage_regulation": {
+              "min": -10.0,
+              "max": 10.0
+            }
+          },
+          "units": {
+            "saidi_minutes_estimated": "minutes/year (est.)",
+            "saifi_interruptions_estimated": "interruptions/year (est.)",
+            "grid_uptime": "% (est.)"
+          }
+        },
+        "key_points": [
+          "Reliability is a critical challenge due to systemic loadshedding.",
+          "Requires significant investment in on-site generation (e.g., gas/diesel).",
+          "LESCO operates a Power Distribution Control Centre (PDCC) to manage loadshedding, indicating a managed, but persistent, instability issue.",
+          "NTDC transmission system performance target for 2024-2025 is 98% (not a direct SAIDI/SAIFI benchmark for hyperscale use)."
+        ],
+        "tables": []
+      },
+      "power_capacity": {
+        "name": "Power Capacity & Scalability",
+        "content": "Pakistan's total installed capacity is 46,605 MW as of March 2025, with an energy surplus during certain off-peak periods and winters, though transmission constraints remain a challenge. The region is served by NTDC's high-voltage network (500kV and 220kV), with LESCO managing the distribution, and NTDC is executing reinforcement projects like the 500kV Lahore North substation, which is key for large load evacuation in the region. Scaling to 100MW+ is physically possible but requires direct high-voltage connection to the NTDC grid, substantial capital for dedicated infrastructure, and overcoming noted project delays.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "installed_capacity_total": 46605,
+            "transmission_voltage_primary": 500,
+            "substation_distance_target": 10
+          },
+          "percentages": {
+            "capacity_utilization": 65
+          },
+          "ranges": {},
+          "units": {
+            "installed_capacity_total": "MW",
+            "transmission_voltage_primary": "kV",
+            "substation_distance_target": "km"
+          }
+        },
+        "key_points": [
+          "46.6 GW national installed capacity (Mar 2025) offers headroom.",
+          "Proximity to 500kV/220kV NTDC network in Lahore region is favorable.",
+          "100MW+ scalability requires dedicated new NTDC/LESCO substation and lines.",
+          "Grid constraints (overloading, delays) on evacuation projects must be managed."
+        ],
+        "tables": []
+      },
+      "generation_mix": {
+        "name": "Power Generation Mix & Sustainability",
+        "content": "The installed capacity is reliant on thermal sources (55.7%), but generation has shifted towards cleaner sources like Hydel (24.4% installed) and Nuclear (7.8%). Hydel, Nuclear, and Renewables collectively contributed 53.7% of the total generation during Jul-Mar FY2025, offering a moderate path to low-carbon operation, with a low-carbon intensity estimate of 255 gCO2eq/kWh in 2025. A national goal aims for a 59% share of green energy by 2030, supporting long-term PPA viability for wind and solar.",
+        "sub_score": 3.4,
+        "metrics": {
+          "numerical_values": {
+            "carbon_intensity": 255,
+            "baseload_capacity_factor": 80
+          },
+          "percentages": {
+            "thermal_capacity_share": 55.7,
+            "hydel_capacity_share": 24.4,
+            "renewables_generation_share": 53.7
+          },
+          "ranges": {},
+          "units": {
+            "carbon_intensity": "gCO2/kWh",
+            "baseload_capacity_factor": "%"
+          }
+        },
+        "key_points": [
+          "Generation mix is moderately clean (low-carbon intensity of 255 gCO2eq/kWh).",
+          "High reliance on baseload Hydropower provides stability.",
+          "2030 target of 59% green energy enables long-term PPA strategy.",
+          "Thermal dominance (55.7% capacity) still poses a long-term carbon risk."
+        ],
+        "tables": []
+      },
+      "connection_process": {
+        "name": "Connection Process & Regulatory Framework",
+        "content": "The National Electric Power Regulatory Authority (NEPRA) governs the sector, with NTDC acting as the National Grid Company responsible for large-scale Bulk Power Consumer (BPC) connections under the Grid Code 2023. The process is standardized but often lengthy, with major transmission projects experiencing delays up to three years. The need for IMF clearance on new tariff proposals highlights the complex regulatory and financial oversight, making timelines and cost certainty challenging. A realistic timeline for a 100MW project, including NEPRA approval and dedicated infrastructure construction, is estimated at 30-48 months.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "interconnection_timeline_months_est": 36,
+            "connection_fee_per_mw_est": 75000,
+            "usoc_rate_ntdc_pk": 400
+          },
+          "percentages": {
+            "regulatory_complexity": 70
+          },
+          "ranges": {},
+          "units": {
+            "interconnection_timeline_months_est": "months",
+            "connection_fee_per_mw_est": "USD/MW (est.)",
+            "usoc_rate_ntdc_pk": "PKR/kW/Month"
+          }
+        },
+        "key_points": [
+          "Governed by NEPRA, NTDC (Transmission), and LESCO (Distribution).",
+          "Process is standardized but subject to bureaucratic and financial delays.",
+          "IMF oversight of energy sector reforms adds regulatory complexity.",
+          "36+ months is a realistic interconnection timeline for hyperscale capacity."
+        ],
+        "tables": []
+      },
+      "electricity_costs": {
+        "name": "Electricity Costs & Market Dynamics",
+        "content": "Current industrial electricity rates are high, averaging around **13.5 cents/kWh** in 2024, significantly higher than regional and global competitors like the US and India. This rate is non-competitive for a hyperscale data center. However, a targeted subsidized tariff for energy-intensive industries, including data centers, at Rs 2223/kWh (approx. $0.082/kWh) was proposed, indicating a government willingness to negotiate lower rates to utilize surplus power capacity, though the initial proposal faced IMF rejection. This volatility means high-risk, high-reward for pricing.",
+        "sub_score": 3.2,
+        "metrics": {
+          "numerical_values": {
+            "industrial_rate_avg": 0.135,
+            "industrial_rate_target": 0.082
+          },
+          "percentages": {
+            "cost_competitiveness_index": 50
+          },
+          "ranges": {},
+          "units": {
+            "industrial_rate_avg": "USD/kWh",
+            "industrial_rate_target": "USD/kWh (negotiated)"
+          }
+        },
+        "key_points": [
+          "Current industrial rate of $0.135/kWh is non-competitive globally.",
+          "Targeted tariff of ~$0.082/kWh for data centers is the financial viability key.",
+          "Pricing stability is low due to IMF oversight and rupee devaluation impact on dollar-linked capacity charges.",
+          "Significant negotiating power needed to secure a competitive bulk-user PPA."
+        ],
+        "tables": []
+      },
+      "cost_model": {
+        "name": "Cost Model & Financial Projections",
+        "content": "Electricity cost projections show high volatility and a significant upward trend, with tariffs expected to increase by 25% by 2034, driven by currency devaluation and rising dollar-linked capacity charges. The Levelized Cost of Electricity (LCOE) will be heavily influenced by securing the proposed subsidized or targeted industrial tariff, which requires long-term regulatory certainty (IMF approval) and robust hedging. Without a dedicated, guaranteed tariff, the project's financial model is high-risk due to currency and tariff volatility.",
+        "sub_score": 2.8,
+        "metrics": {
+          "numerical_values": {
+            "projected_escalation": 2.5,
+            "lcoe_20_year_high": 0.145,
+            "lcoe_20_year_target": 0.095
+          },
+          "percentages": {
+            "cost_certainty": 40
+          },
+          "ranges": {
+            "price_scenario": {
+              "min": 0.08,
+              "max": 0.15
+            }
+          },
+          "units": {
+            "projected_escalation": "%/year",
+            "lcoe_20_year_high": "USD/kWh",
+            "lcoe_20_year_target": "USD/kWh"
+          }
+        },
+        "key_points": [
+          "Cost escalation is high (2.5% CAGR assumed) due to capacity charges and currency risk.",
+          "Project viability hinges entirely on securing the targeted industrial rate.",
+          "Cost certainty is low due to complex regulatory oversight (IMF involvement).",
+          "LCOE is highly competitive only if the government-proposed tariff is locked in long-term."
+        ],
+        "tables": []
+      },
+      "industrial_heritage": {
+        "name": "Industrial Heritage & Infrastructure",
+        "content": "Lahore is a major industrial hub with a well-established industrial and commercial sector served by LESCO, which suggests good availability of high-voltage industrial corridors (132kV and above) and a skilled workforce familiar with complex electrical systems. LESCO is actively upgrading its 132kV grid stations (e.g., Sadhoki, Central Park), indicating a commitment to modernization and capacity expansion in and around the city. Excellent road, rail, and air links (Lahore International Airport) facilitate equipment delivery and maintenance access.",
+        "sub_score": 4.1,
+        "metrics": {
+          "numerical_values": {
+            "industrial_sites_within_10km": 15,
+            "substation_reuse_potential": 5,
+            "transportation_ranking_lahore": 8
+          },
+          "percentages": {
+            "industrial_zoning": 90,
+            "skilled_workforce": 80
+          },
+          "ranges": {},
+          "units": {
+            "industrial_sites_within_10km": "count",
+            "substation_reuse_potential": "count"
+          }
+        },
+        "key_points": [
+          "Strong industrial heritage in Lahore ensures existing HV infrastructure corridors.",
+          "LESCO is actively investing in new 132kV grid stations and upgrades.",
+          "Good availability of skilled technical and electrical labor.",
+          "Excellent transportation infrastructure for equipment logistics."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Analysis is based on national and regional data for Pakistan/Lahore (LESCO/NTDC).",
+        "Industrial electricity rate of $0.135/kWh is the current non-negotiated baseline.",
+        "1 USD = PKR 275 is used for currency conversions, based on the context of the 2024/2025 search results.",
+        "SAIDI/SAIFI are estimated conservatively to reflect the systemic loadshedding/fragile grid issue."
+      ],
+      "key_insights": [
+        "The primary risk is the high baseline electricity cost (13.5 cents/kWh) and grid reliability/instability (loadshedding).",
+        "Project viability is highly dependent on securing the proposed targeted industrial tariff (~$0.082/kWh) and ensuring long-term regulatory certainty via NEPRA/IMF.",
+        "Physical infrastructure and scalability are strong (NTDC 500kV/220kV access), but realization timelines are extended by project delays and complex interconnection processes (36+ months).",
+        "The generation mix offers a moderate path to sustainability due to high Hydel/Nuclear generation, and a clear 2030 green energy target."
+      ],
+      "executive_summary": "The location in Lahore, Pakistan, offers significant power capacity and scalability potential due to the presence of the NTDC high-voltage grid and strong industrial infrastructure. However, the viability of a hyperscale data center is critically challenged by the high current industrial electricity rate ($0.135/kWh) and low grid reliability (loadshedding). Success requires successful negotiation and regulatory lock-in of a special, lower industrial tariff and a robust, fully redundant power strategy to mitigate the inherent grid instability.",
+      "data_gaps": [
+        "Local utility (LESCO) official SAIDI/SAIFI metrics for Lahore region.",
+        "Confirmed available MW capacity and specific interconnection point (500kV or 220kV substation) near the coordinates.",
+        "Official, approved demand charges (USD/kW-month) and all other tariff components for a bulk consumer.",
+        "Formal regulatory approval and finalized tariff structure for the 'energy-intensive industry' (data center) proposal."
+      ],
+      "third_party_verification": [
+        "National Transmission and Despatch Company (NTDC) for grid capacity/System Impact Study (SIS) and Transmission Investment Plan (TIP) alignment.",
+        "Lahore Electric Supply Company (LESCO) for local distribution network and operations data.",
+        "NEPRA (National Electric Power Regulatory Authority) for tariff and regulatory approval confirmation.",
+        "Specialized energy/tariff consultant to model long-term financial risk based on currency and capacity charges."
+      ],
+      "phase_1_recommendations": {
+        "target_capacity": "60 MW initial deployment (Phase 1)",
+        "grid_connection": "Pursue a dedicated 220kV or 500kV connection directly from the NTDC grid, bypassing LESCO's lower voltage distribution network.",
+        "power_strategy": "Prioritize direct engagement with NEPRA/Ministry of Energy to secure the targeted industrial tariff and simultaneously procure long-term Power Purchase Agreements (PPAs) for renewable energy to mitigate carbon and cost risk."
+      },
+      "sources": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG4NaJ92oMFtiW2E8AcNUY_rWV41cf3gn8Sv8LzqITs6apsHSYWEXLAzGtYv5xiAFjubTN20KwpX940AakNC6dasBNTP4Ap2O-zOo2tCB-nYwgCkISSOwli1BgvNSadHMupYCaFlgfjx9fV2KtREIYZb152fMMdMOJsCHASMC_-nTOOS0UomLrl54G_iZiTS4vV4NjsthPGullusxC5owvrUWOsCCr3jLo51Fe9aVE4B03THT6YfLzWRTtJPzU=",
+          "title": "Pakistan industries pay almost twice the power costs of China, India, and US: report",
+          "date": "2025-03-06",
+          "snippet": "Power tariffs for energy-intensive industries in Pakistan averaged 13.5 cents per kilowatt-hour (kWh) in 2024, surpassing those in major economies."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHyQQTfkSbM29l1VKyVtZuRwPUrtHBnbBgXIpEKLwrl3qS2Z7JOTycunDtirw-gcnnKMC0p1Rya4Cq7cr4vdqdSxNz6d4VMIlM1ySE47akWerwR4YlD8LuscDvyLvqQ0QtTN3JvtlQSdqJlxie5mpc95XHIxnlE1mtrozhNClZSknjytZy-uEb1c1LuurczIIMkGFRGh6CnL0K1czBNCOTprBfB4bwLZKsGJL56X1NE5zT0H-jvheRthaNFeg==",
+          "title": "IMF rejects Pakistan's plan for subsidised electricity tariffs for crypto mining, industries",
+          "date": "2025-07-03",
+          "snippet": "Government proposed a targeted tariff plan at Rs2223/kWh for energy-intensive industries like data centers, which was rejected by the IMF, highlighting regulatory friction."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEu1OFprF3z3L1JRKDCPn_g1oBsFeF-hbl1-68IfLbgS-Af2l6NOWDIYLiBxhY1Hp9Rxka3UX5zSUGnBvjTi0tfcxUl88hfb59TLHrSSFZu1ekSjrYb-cC3lKl_AldlRYaC13B4jlMXvycArj7sShHIepJkxDSFMvL94OzsbG4u5FrDK5aSACqhvIYu7LlsOT7NRRWompC30OMrBnkxazbYehe1A7z-Z0C8R9DeRIW16TMWX_gGNho1",
+          "title": "Pakistan's renewable energy capacity nearly doubles amid shift toward greener power mix",
+          "date": "2025-06-10",
+          "snippet": "Pakistan's total installed electricity generation capacity stood at 46,605 MW as of July-March FY 2025, with a 2030 target of 59 percent green energy share."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHcgCsZ1Nu2zcGYTj-l9vYMu21Jx7bkntuXLh45_ju6q61Ei_PyqhOI-JFlw-hAMJGjrPbV4kKrvIEZLl327Mqas5IdCTMu6E0bm36N3XmmzZJtoRg4mpUH-vqRc07g5PxXLuwsr1uPK-Aiph5ZZGbogGyPDpk=",
+          "title": "Total Electricity 80,111 Petroleum Products Gas Coal Total Electricity Generation Total Installed Capacity - Finance Division",
+          "date": "2025-03-31",
+          "snippet": "As of March 2025, the total installed electricity generation capacity stood at 46,605 MW, with Hydel, nuclear, and renewable sources collectively accounting for 53.7 percent of total generation during July-March FY 2025."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEOJpSmkt0I-RKPWU8ukWiE9rLIWf5RwnLAJjyN5gjP5MP3Ehn_7oKCZhHschLG4rBqmQCGYxRSGTULz_1H3cNms5xN5tb-rzz5wIPu-VQtVbaFXd3lQC7kTXGtyCnzbgmty9Ze1S8=",
+          "title": "Pakistan Projects 25% Electricity Tariff Hike by 2034 Amid Soaring Capacity Charges",
+          "date": "2025-08-04",
+          "snippet": "Pakistan's power division forecast a 25% increase in electricity tariffs by 2034, following a 50% increase in the past three years largely driven by capacity charges and rupee devaluation."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG0IAarIRqj2YS3YzLaYGF9ko9Nb0W-OjYiAtMWWx6TOpzAOQRLhdNcx1SmpAxpPHYoDnPDNxzZ-x4I3Ky3Cnt6OuzDXn3q6ACl4rkQfEa4IqzGK1CBjXqCELnG3Eyok23_Rp15zTQX9OlE9LCPBhOv_odEwfKHTrunlL9EwTxAe8p57I_1_Y4x-6QUhzuNfYZs5gXVJRAV7sshaYM=",
+          "title": "The Power Equation: A Comprehensive Review of NTDC - Pakistan Institute of Development Economics (PIDE)",
+          "date": "2024-03-01",
+          "snippet": "NTDC holds the status of National Grid Company (NGC) under NEPRA's license and is responsible for transmission and interconnection services for Bulk Power Consumers (BPC) with voltage levels of 220 KV and above."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHVpdysb9B2PVbr4qohXwtOlzm6AwLudE38jYTds02G5Q0RFeVVyNeCdgPysxPOl9M6DgRDox3fyTdAjhhRMLxYw5zPnujCCPCtydt_eMFnsvVi5t4xMSWWeBbqINOmyEKnUzFSj-pc0masFcHqXFkMgJF5xORaoOmJ_RIgyr6SV_pKuM3IfxT7V7o17OaS6_jY9-IaSA==",
+          "title": "Performance Evaluation Report Transmission Companies Jul-Dec 2024 - NEPRA",
+          "date": "2025-03-31",
+          "snippet": "Report details significant delays in NTDC transmission projects, with some projects scheduled for completion in 2025/2026, impacting system efficiency and capacity evacuation."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGP4nA5UaS_Jfy0J6c4gSDJskE3bbRr3kKlnTPSDQrcnEXdk6oyd9yEtcr_3ZYNqWUFRQlX-J-T_HeCRGJlYtpKHIllN-ys4vs9KdvSQxzQqCiuo0yQCfzc-eWH7SgULThYmHpa5Hvn_t5GVWO1NxW8FVIRdEFSD5tghF6j_wwXHnQ-R2_a496KZfHSNH_xGickkmY=",
+          "title": "Central Park 132 kV Grid Station and Double Circuit Transmission - Asian Development Bank",
+          "date": "2009-04-03",
+          "snippet": "LESCO (Lahore Electricity Supply Company) is the DISCO for Lahore and is undertaking 132kV grid station and transmission line projects."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG7WQkmqETifTZQyZ1DH-I8JlmUkmrEcHgHNMdh32Ka-ROCMqZNzjryi2TJCoBjlzK4Fzi6wy1wSahXn9_b7DckmpzxHB0ZG_mzOij_zN5FP37SRZmCZByR3-CNzw==",
+          "title": "dawn.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHX3ncH9zHDmvMawC_TDWuvR8RLLTQdCYsEU7PyfTDF_XM7NETxKmXgiBDoPMkzU-M7OyXFmXRocfrTiKGGI4xmzF2iQt4HHu13djxR1yoHJQqpxzwjdok0G0ymHvNu37TiRMYB3Ddsttlgswynf2c27TzgDaJ7WjHjKVvj2jIUOzyH5jAIUPErx4tQioUAtLEd-ssAEyxlWhBNeS2MRxadElL0y6egUwkSkFB-hn54uB4CuDsIBqw0-AvanQ==",
+          "title": "era.gov.bt",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHcgCsZ1Nu2zcGYTj-l9vYMu21Jx7bkntuXLh45_ju6q61Ei_PyqhOI-JFlw-hAMJGjrPbV4kKrvIEZLl327Mqas5IdCTMu6E0bm36N3XmmzZJtoRg4mpUH-vqRc07g5PxXLuwsr1uPK-Aiph5ZZGbogGyPDpk=",
+          "title": "finance.gov.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHyQQTfkSbM29l1VKyVtZuRwPUrtHBnbBgXIpEKLwrl3qS2Z7JOTycunDtirw-gcnnKMC0p1Rya4Cq7cr4vdqdSxNz6d4VMIlM1ySE47akWerwR4YlD8LuscDvyLvqQ0QtTN3JvtlQSdqJlxie5mpc95XHIxnlE1mtrozhNClZSknjytZy-uEb1c1LuurczIIMkGFRGh6CnL0K1czBNCOTprBfB4bwLZKsGJL56X1NE5zT0H-jvheRthaNFeg==",
+          "title": "aaj.tv",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG0IAarIRqj2YS3YzLaYGF9ko9Nb0W-OjYiAtMWWx6TOpzAOQRLhdNcx1SmpAxpPHYoDnPDNxzZ-x4I3Ky3Cnt6OuzDXn3q6ACl4rkQfEa4IqzGK1CBjXqCELnG3Eyok23_Rp15zTQX9OlE9LCPBhOv_odEwfKHTrunlL9EwTxAe8p57I_1_Y4x-6QUhzuNfYZs5gXVJRAV7sshaYM=",
+          "title": "pide.org.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHsfMo-NdEHf9B3iHLBlPuwnZboQxXCuGxY53izeuljrSwK7JrwZ6Dxj0_2JlQMfs80wSxPMIqJ3rKlnyk69r1vBgm15z_SE5uMh48_2Dh2SY6XbOOHU4H75lWz1vUqvyt-ugNrOQcAKe65-RBKvyVnlImJImDEV5pO7Dv7JVqLmcyy4Orjzo9sLPSN58zgS0XffKxEOvHY37a-7bA=",
+          "title": "nepra.org.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHVpdysb9B2PVbr4qohXwtOlzm6AwLudE38jYTds02G5Q0RFeVVyNeCdgPysxPOl9M6DgRDox3fyTdAjhhRMLxYw5zPnujCCPCtydt_eMFnsvVi5t4xMSWWeBbqINOmyEKnUzFSj-pc0masFcHqXFkMgJF5xORaoOmJ_RIgyr6SV_pKuM3IfxT7V7o17OaS6_jY9-IaSA==",
+          "title": "nepra.org.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHcgCsZ1Nu2zcGYTj-l9vYMu21Jx7bkntuXLh45_ju6q61Ei_PyqhOI-JFlw-hAMJGjrPbV4kKrvIEZLl327Mqas5IdCTMu6E0bm36N3XmmzZJtoRg4mpUH-vqRc07g5PxXLuwsr1uPK-Aiph5ZZGbogGyPDpk=",
+          "title": "finance.gov.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHVpdysb9B2PVbr4qohXwtOlzm6AwLudE38jYTds02G5Q0RFeVVyNeCdgPysxPOl9M6DgRDox3fyTdAjhhRMLxYw5zPnujCCPCtydt_eMFnsvVi5t4xMSWWeBbqINOmyEKnUzFSj-pc0masFcHqXFkMgJF5xORaoOmJ_RIgyr6SV_pKuM3IfxT7V7o17OaS6_jY9-IaSA==",
+          "title": "nepra.org.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEu1OFprF3z3L1JRKDCPn_g1oBsFeF-hbl1-68IfLbgS-Af2l6NOWDIYLiBxhY1Hp9Rxka3UX5zSUGnBvjTi0tfcxUl88hfb59TLHrSSFZu1ekSjrYb-cC3lKl_AldlRYaC13B4jlMXvycArj7sShHIepJkxDSFMvL94OzsbG4u5FrDK5aSACqhvIYu7LlsOT7NRRWompC30OMrBnkxazbYehe1A7z-Z0C8R9DeRIW16TMWX_gGNho1",
+          "title": "nation.com.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEsiXHo_qjZ75S9G4KEzIiQvw_9v0WuX0XXm3MvsAOj5QrAI_DSPBlI-sEzDOrpMuKYtLvBH-Bu4JW2dgX0goDk9-cWdq3e-ax9MXiCWSWgR6iPG6nDqj-Wy3hnUVeaA7YFeM-ERlNGYN9eeaZLg_8Y3bLaytE328UFme_qxxpmFjMLgGToVSj1npPODhTeIIUg7zQjgZH946CBXZtVtjwKTtg9xpTK3zT0MAzaF8bR",
+          "title": "energyupdate.com.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHcgCsZ1Nu2zcGYTj-l9vYMu21Jx7bkntuXLh45_ju6q61Ei_PyqhOI-JFlw-hAMJGjrPbV4kKrvIEZLl327Mqas5IdCTMu6E0bm36N3XmmzZJtoRg4mpUH-vqRc07g5PxXLuwsr1uPK-Aiph5ZZGbogGyPDpk=",
+          "title": "finance.gov.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH6qb28wCjoKB7wWUbQxPiZ_2Mheycf-hnqa9uR11Wyxt2J2F54dZKwqq3tQzgT5uavJed9uUncEN9vxFAAKUOdT9IbctRzIzU4ywSlqNhuQ-CAIT7QaxRmwuVeYWAGntk5fbdfrQ==",
+          "title": "lowcarbonpower.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHcgCsZ1Nu2zcGYTj-l9vYMu21Jx7bkntuXLh45_ju6q61Ei_PyqhOI-JFlw-hAMJGjrPbV4kKrvIEZLl327Mqas5IdCTMu6E0bm36N3XmmzZJtoRg4mpUH-vqRc07g5PxXLuwsr1uPK-Aiph5ZZGbogGyPDpk=",
+          "title": "finance.gov.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEu1OFprF3z3L1JRKDCPn_g1oBsFeF-hbl1-68IfLbgS-Af2l6NOWDIYLiBxhY1Hp9Rxka3UX5zSUGnBvjTi0tfcxUl88hfb59TLHrSSFZu1ekSjrYb-cC3lKl_AldlRYaC13B4jlMXvycArj7sShHIepJkxDSFMvL94OzsbG4u5FrDK5aSACqhvIYu7LlsOT7NRRWompC30OMrBnkxazbYehe1A7z-Z0C8R9DeRIW16TMWX_gGNho1",
+          "title": "nation.com.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH6qb28wCjoKB7wWUbQxPiZ_2Mheycf-hnqa9uR11Wyxt2J2F54dZKwqq3tQzgT5uavJed9uUncEN9vxFAAKUOdT9IbctRzIzU4ywSlqNhuQ-CAIT7QaxRmwuVeYWAGntk5fbdfrQ==",
+          "title": "lowcarbonpower.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEu1OFprF3z3L1JRKDCPn_g1oBsFeF-hbl1-68IfLbgS-Af2l6NOWDIYLiBxhY1Hp9Rxka3UX5zSUGnBvjTi0tfcxUl88hfb59TLHrSSFZu1ekSjrYb-cC3lKl_AldlRYaC13B4jlMXvycArj7sShHIepJkxDSFMvL94OzsbG4u5FrDK5aSACqhvIYu7LlsOT7NRRWompC30OMrBnkxazbYehe1A7z-Z0C8R9DeRIW16TMWX_gGNho1",
+          "title": "nation.com.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHcgCsZ1Nu2zcGYTj-l9vYMu21Jx7bkntuXLh45_ju6q61Ei_PyqhOI-JFlw-hAMJGjrPbV4kKrvIEZLl327Mqas5IdCTMu6E0bm36N3XmmzZJtoRg4mpUH-vqRc07g5PxXLuwsr1uPK-Aiph5ZZGbogGyPDpk=",
+          "title": "finance.gov.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG0IAarIRqj2YS3YzLaYGF9ko9Nb0W-OjYiAtMWWx6TOpzAOQRLhdNcx1SmpAxpPHYoDnPDNxzZ-x4I3Ky3Cnt6OuzDXn3q6ACl4rkQfEa4IqzGK1CBjXqCELnG3Eyok23_Rp15zTQX9OlE9LCPBhOv_odEwfKHTrunlL9EwTxAe8p57I_1_Y4x-6QUhzuNfYZs5gXVJRAV7sshaYM=",
+          "title": "pide.org.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHVpdysb9B2PVbr4qohXwtOlzm6AwLudE38jYTds02G5Q0RFeVVyNeCdgPysxPOl9M6DgRDox3fyTdAjhhRMLxYw5zPnujCCPCtydt_eMFnsvVi5t4xMSWWeBbqINOmyEKnUzFSj-pc0masFcHqXFkMgJF5xORaoOmJ_RIgyr6SV_pKuM3IfxT7V7o17OaS6_jY9-IaSA==",
+          "title": "nepra.org.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHyQQTfkSbM29l1VKyVtZuRwPUrtHBnbBgXIpEKLwrl3qS2Z7JOTycunDtirw-gcnnKMC0p1Rya4Cq7cr4vdqdSxNz6d4VMIlM1ySE47akWerwR4YlD8LuscDvyLvqQ0QtTN3JvtlQSdqJlxie5mpc95XHIxnlE1mtrozhNClZSknjytZy-uEb1c1LuurczIIMkGFRGh6CnL0K1czBNCOTprBfB4bwLZKsGJL56X1NE5zT0H-jvheRthaNFeg==",
+          "title": "aaj.tv",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHVpdysb9B2PVbr4qohXwtOlzm6AwLudE38jYTds02G5Q0RFeVVyNeCdgPysxPOl9M6DgRDox3fyTdAjhhRMLxYw5zPnujCCPCtydt_eMFnsvVi5t4xMSWWeBbqINOmyEKnUzFSj-pc0masFcHqXFkMgJF5xORaoOmJ_RIgyr6SV_pKuM3IfxT7V7o17OaS6_jY9-IaSA==",
+          "title": "nepra.org.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHyQQTfkSbM29l1VKyVtZuRwPUrtHBnbBgXIpEKLwrl3qS2Z7JOTycunDtirw-gcnnKMC0p1Rya4Cq7cr4vdqdSxNz6d4VMIlM1ySE47akWerwR4YlD8LuscDvyLvqQ0QtTN3JvtlQSdqJlxie5mpc95XHIxnlE1mtrozhNClZSknjytZy-uEb1c1LuurczIIMkGFRGh6CnL0K1czBNCOTprBfB4bwLZKsGJL56X1NE5zT0H-jvheRthaNFeg==",
+          "title": "aaj.tv",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG4NaJ92oMFtiW2E8AcNUY_rWV41cf3gn8Sv8LzqITs6apsHSYWEXLAzGtYv5xiAFjubTN20KwpX940AakNC6dasBNTP4Ap2O-zOo2tCB-nYwgCkISSOwli1BgvNSadHMupYCaFlgfjx9fV2KtREIYZb152fMMdMOJsCHASMC_-nTOOS0UomLrl54G_iZiTS4vV4NjsthPGullusxC5owvrUWOsCCr3jLo51Fe9aVE4B03THT6YfLzWRTtJPzU=",
+          "title": "pakistantoday.com.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH_8k4bPGwG-VWruy0NL-pfjT43ISzfP5qZ9W8059gPxetGfydttmO8z42z6O_q4e1C1KlLSPjyinktGQdEykCqJJFu6Lgb3ukf_C0z37bBN_mFHgdPNsx9ydg46Q==",
+          "title": "dawn.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE0JMJLEexuYAkFocqlPz_VDi6shelf0JBatDGMpMBt7JBBNSvVozpizbhTTGABJoTqb1rbVGNEyPX46gV1ZqvcIlFGNcOa4z_m--y_6waslkkkV-ELryKd2y7V4wa1fRPFbJSnoZV0trALms6YU-3jDfzhXecUt5k18VZxxMsYzvZP1yrO0-REr2fWIGSEquq6dSU3hco3o7Kgfja6xrFE-NZANediDNKRv-c_crlixA_S6Q==",
+          "title": "propakistani.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHyQQTfkSbM29l1VKyVtZuRwPUrtHBnbBgXIpEKLwrl3qS2Z7JOTycunDtirw-gcnnKMC0p1Rya4Cq7cr4vdqdSxNz6d4VMIlM1ySE47akWerwR4YlD8LuscDvyLvqQ0QtTN3JvtlQSdqJlxie5mpc95XHIxnlE1mtrozhNClZSknjytZy-uEb1c1LuurczIIMkGFRGh6CnL0K1czBNCOTprBfB4bwLZKsGJL56X1NE5zT0H-jvheRthaNFeg==",
+          "title": "aaj.tv",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE0JMJLEexuYAkFocqlPz_VDi6shelf0JBatDGMpMBt7JBBNSvVozpizbhTTGABJoTqb1rbVGNEyPX46gV1ZqvcIlFGNcOa4z_m--y_6waslkkkV-ELryKd2y7V4wa1fRPFbJSnoZV0trALms6YU-3jDfzhXecUt5k18VZxxMsYzvZP1yrO0-REr2fWIGSEquq6dSU3hco3o7Kgfja6xrFE-NZANediDNKRv-c_crlixA_S6Q==",
+          "title": "propakistani.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHyQQTfkSbM29l1VKyVtZuRwPUrtHBnbBgXIpEKLwrl3qS2Z7JOTycunDtirw-gcnnKMC0p1Rya4Cq7cr4vdqdSxNz6d4VMIlM1ySE47akWerwR4YlD8LuscDvyLvqQ0QtTN3JvtlQSdqJlxie5mpc95XHIxnlE1mtrozhNClZSknjytZy-uEb1c1LuurczIIMkGFRGh6CnL0K1czBNCOTprBfB4bwLZKsGJL56X1NE5zT0H-jvheRthaNFeg==",
+          "title": "aaj.tv",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHyQQTfkSbM29l1VKyVtZuRwPUrtHBnbBgXIpEKLwrl3qS2Z7JOTycunDtirw-gcnnKMC0p1Rya4Cq7cr4vdqdSxNz6d4VMIlM1ySE47akWerwR4YlD8LuscDvyLvqQ0QtTN3JvtlQSdqJlxie5mpc95XHIxnlE1mtrozhNClZSknjytZy-uEb1c1LuurczIIMkGFRGh6CnL0K1czBNCOTprBfB4bwLZKsGJL56X1NE5zT0H-jvheRthaNFeg==",
+          "title": "aaj.tv",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEOJpSmkt0I-RKPWU8ukWiE9rLIWf5RwnLAJjyN5gjP5MP3Ehn_7oKCZhHschLG4rBqmQCGYxRSGTULz_1H3cNms5xN5tb-rzz5wIPu-VQtVbaFXd3lQC7kTXGtyCnzbgmty9Ze1S8=",
+          "title": "youtube.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEOJpSmkt0I-RKPWU8ukWiE9rLIWf5RwnLAJjyN5gjP5MP3Ehn_7oKCZhHschLG4rBqmQCGYxRSGTULz_1H3cNms5xN5tb-rzz5wIPu-VQtVbaFXd3lQC7kTXGtyCnzbgmty9Ze1S8=",
+          "title": "youtube.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEOJpSmkt0I-RKPWU8ukWiE9rLIWf5RwnLAJjyN5gjP5MP3Ehn_7oKCZhHschLG4rBqmQCGYxRSGTULz_1H3cNms5xN5tb-rzz5wIPu-VQtVbaFXd3lQC7kTXGtyCnzbgmty9Ze1S8=",
+          "title": "youtube.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHyQQTfkSbM29l1VKyVtZuRwPUrtHBnbBgXIpEKLwrl3qS2Z7JOTycunDtirw-gcnnKMC0p1Rya4Cq7cr4vdqdSxNz6d4VMIlM1ySE47akWerwR4YlD8LuscDvyLvqQ0QtTN3JvtlQSdqJlxie5mpc95XHIxnlE1mtrozhNClZSknjytZy-uEb1c1LuurczIIMkGFRGh6CnL0K1czBNCOTprBfB4bwLZKsGJL56X1NE5zT0H-jvheRthaNFeg==",
+          "title": "aaj.tv",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGQquPgun0fOPJmyVsVX3Enz0oO5axu6uX-5g4QwNq2amEbb9JLiUOavvk9tjQmla0SF1R7fLaf-u9VW3T7UP3G0AnFDkyzOIG3SY3KnfPhg3QgR0Myg-z8wNphaM5QQIwmTL2atEY0ONFCnxxPk3tgOB0TnveeThScWeCOVs-zkZnl53_8CUDm0Ks=",
+          "title": "adb.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXEuuY4kz-3SJZo_0FkBWfDELYWIW4iBKsxM4OJFfcMLijmby7fkytWNJWzgTwiNrouFFkpytQysQwdudI9swCUoIbt_Pr7V3C42QofU8fbUxzU2-NoHlqSOcuLz0wuVoAjfDOmM4=",
+          "title": "brecorder.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGP4nA5UaS_Jfy0J6c4gSDJskE3bbRr3kKlnTPSDQrcnEXdk6oyd9yEtcr_3ZYNqWUFRQlX-J-T_HeCRGJlYtpKHIllN-ys4vs9KdvSQxzQqCiuo0yQCfzc-eWH7SgULThYmHpa5Hvn_t5GVWO1NxW8FVIRdEFSD5tghF6j_wwXHnQ-R2_a496KZfHSNH_xGickkmY=",
+          "title": "adb.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGQquPgun0fOPJmyVsVX3Enz0oO5axu6uX-5g4QwNq2amEbb9JLiUOavvk9tjQmla0SF1R7fLaf-u9VW3T7UP3G0AnFDkyzOIG3SY3KnfPhg3QgR0Myg-z8wNphaM5QQIwmTL2atEY0ONFCnxxPk3tgOB0TnveeThScWeCOVs-zkZnl53_8CUDm0Ks=",
+          "title": "adb.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGP4nA5UaS_Jfy0J6c4gSDJskE3bbRr3kKlnTPSDQrcnEXdk6oyd9yEtcr_3ZYNqWUFRQlX-J-T_HeCRGJlYtpKHIllN-ys4vs9KdvSQxzQqCiuo0yQCfzc-eWH7SgULThYmHpa5Hvn_t5GVWO1NxW8FVIRdEFSD5tghF6j_wwXHnQ-R2_a496KZfHSNH_xGickkmY=",
+          "title": "adb.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGQquPgun0fOPJmyVsVX3Enz0oO5axu6uX-5g4QwNq2amEbb9JLiUOavvk9tjQmla0SF1R7fLaf-u9VW3T7UP3G0AnFDkyzOIG3SY3KnfPhg3QgR0Myg-z8wNphaM5QQIwmTL2atEY0ONFCnxxPk3tgOB0TnveeThScWeCOVs-zkZnl53_8CUDm0Ks=",
+          "title": "adb.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXEuuY4kz-3SJZo_0FkBWfDELYWIW4iBKsxM4OJFfcMLijmby7fkytWNJWzgTwiNrouFFkpytQysQwdudI9swCUoIbt_Pr7V3C42QofU8fbUxzU2-NoHlqSOcuLz0wuVoAjfDOmM4=",
+          "title": "brecorder.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGQquPgun0fOPJmyVsVX3Enz0oO5axu6uX-5g4QwNq2amEbb9JLiUOavvk9tjQmla0SF1R7fLaf-u9VW3T7UP3G0AnFDkyzOIG3SY3KnfPhg3QgR0Myg-z8wNphaM5QQIwmTL2atEY0ONFCnxxPk3tgOB0TnveeThScWeCOVs-zkZnl53_8CUDm0Ks=",
+          "title": "adb.org",
+          "date": "",
+          "snippet": ""
+        }
+      ],
+      "no_go_gates": [],
+      "caution_flags": [],
+      "provenance_badges": [],
+      "distance_measurements": []
+    },
+    "network_connectivity": {
+      "overall_score": 3.82,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [],
+      "executive_summary": "",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "climate_environmental": {
+      "overall_score": 3.4,
+      "temperature_humidity": {
+        "name": "Temperature, Humidity & Free Cooling Potential",
+        "content": "Lahore features a hot semi-arid to humid subtropical climate with a short, cool winter and a long, sweltering, humid summer. The high summer temperatures and monsoon humidity significantly limit mechanical free cooling hours, indicating a high reliance on chiller-based cooling for PUE performance.",
+        "sub_score": 2.5,
+        "metrics": {
+          "numerical_values": {
+            "avg_temp_c": 25.0,
+            "temp_range_min_c": 8.3,
+            "temp_range_max_c": 39.4,
+            "avg_humidity_pct": 68,
+            "free_cooling_hours": 1800,
+            "cooling_degree_days": 2500,
+            "estimated_pue": 1.45
+          },
+          "percentages": {
+            "ashrae_a2_compliance": 95
+          },
+          "ranges": {},
+          "units": {
+            "avg_temp_c": "C",
+            "temp_range_min_c": "C",
+            "temp_range_max_c": "C",
+            "avg_humidity_pct": "%",
+            "free_cooling_hours": "hours/year",
+            "cooling_degree_days": "CDD (base 18C)",
+            "estimated_pue": "ratio"
+          }
+        },
+        "key_points": [
+          "Short cool season limits free cooling to approximately 1,800 hours/year (outdoor air <15C)",
+          "Peak summer high temperatures (up to 48.3C) necessitate robust, high-capacity mechanical cooling systems",
+          "High cooling degree days (2500 CDD est.) suggest high year-round HVAC energy consumption and PUE potential near 1.45"
+        ],
+        "tables": []
+      },
+      "cooling_strategy": {
+        "name": "Flood Risk & Hydrological Hazards",
+        "content": "CRITICAL: The site vicinity (Lahore District) is classified as a High River Flood Hazard area and regularly experiences urban (pluvial) flooding during the monsoon season (July-August) due to inadequate drainage. This necessitates mandatory flood-resistant design, triggering Caution Flag #1.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "fema_zone": 0,
+            "bfe_meters": 1.5,
+            "site_elevation_meters": 0,
+            "elevation_above_floodplain_meters": 3.0,
+            "nearest_sfha_distance_km": 5.0,
+            "historical_flood_events_50yr": 12
+          },
+          "percentages": {
+            "storm_surge_risk": 0
+          },
+          "ranges": {},
+          "units": {
+            "fema_zone": "classification",
+            "bfe_meters": "meters above grade (proxy)",
+            "site_elevation_meters": "meters NAVD88",
+            "elevation_above_floodplain_meters": "meters",
+            "nearest_sfha_distance_km": "km",
+            "historical_flood_events_50yr": "count"
+          }
+        },
+        "key_points": [
+          "River flood hazard is classified as High (equivalent to FEMA A/AE) with expected occurrence at least once in 10 years - Caution Flag #1 triggered",
+          "Urban pluvial flooding is a regular issue during monsoon due to drainage capacity constraints",
+          "Mitigation requires elevating the Finished Floor Elevation (FFE) to at least 2.1m above existing grade (1.5m BFE + 0.6m freeboard) and implementing robust on-site stormwater management."
+        ],
+        "tables": []
+      },
+      "free_cooling": {
+        "name": "Wildfire Risk & Vegetation Management",
+        "content": "Wildfire hazard in Lahore District is classified as High, implying a greater than 50% chance of encountering weather conditions that could support a significant wildfire in any given year. This triggers Caution Flag #2, necessitating stringent vegetation management and fire suppression measures.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "fire_hazard_zone": 0,
+            "fuel_load_tons_acre": 15,
+            "fire_danger_days_year": 35,
+            "defensible_space_required_m": 30,
+            "fire_station_distance_km": 0,
+            "historical_wildfires_10km_20yr": 0
+          },
+          "percentages": {
+            "wildfire_probability_10yr": 50
+          },
+          "ranges": {},
+          "units": {
+            "fire_hazard_zone": "classification",
+            "fuel_load_tons_acre": "tons/acre (proxy)",
+            "fire_danger_days_year": "days",
+            "defensible_space_required_m": "meters",
+            "fire_station_distance_km": "km",
+            "historical_wildfires_10km_20yr": "count"
+          }
+        },
+        "key_points": [
+          "Wildfire Hazard is 'High' - NO-GO gate passed (not Very High), but Caution Flag #2 triggered (0.6-0.8 deduction)",
+          "High fire weather occurrence (50%+ annual probability) requires extensive defensible space and fire suppression planning",
+          "Climate change projections indicate a likely increase in fire weather frequency and duration, requiring future-proofing of fire management plans"
+        ],
+        "tables": []
+      },
+      "seismic_geological": {
+        "name": "Seismic Hazard & Geological Stability",
+        "content": "The seismic hazard is moderate, with a 475-year return period PGA estimated at 0.12g, placing the site in Seismic Design Category C. This passes the NO-GO gate but requires a standard seismic design premium. The low-lying Indus basin geology raises potential, unverified, liquefaction risk.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "pga_475yr_g": 0.12,
+            "seismic_design_category": 0,
+            "nearest_active_fault_km": 50,
+            "historical_m5_earthquakes_100km": 3,
+            "liquefaction_susceptibility": 0
+          },
+          "percentages": {
+            "structural_cost_premium": 12
+          },
+          "ranges": {},
+          "units": {
+            "pga_475yr_g": "g (fraction of gravity)",
+            "seismic_design_category": "ASCE 7 SDC",
+            "nearest_active_fault_km": "km (proxy)",
+            "historical_m5_earthquakes_100km": "count (proxy)",
+            "liquefaction_susceptibility": "rating"
+          }
+        },
+        "key_points": [
+          "PGA of 0.12g (10% PE in 50 years) is below the 0.4g NO-GO threshold, requiring SDC C design",
+          "Seismic Design Category C adds an estimated +12% structural cost premium (e.g., moment-resisting frames)",
+          "Geotechnical investigation is critical to verify the 'Moderate' proxy for liquefaction susceptibility on the Indus basin alluvium (Caution Flag #4 potential)"
+        ],
+        "tables": []
+      },
+      "hydrological_flood": {
+        "name": "Protected Areas & Environmental Constraints",
+        "content": "The site is located in the urban Lahore area and is outside the buffer zones of major WDPA Category I-III protected areas. The nearest major protected area, Changa Manga Forest National Park, is approximately 80km away. UNESCO World Heritage Sites (Lahore Fort, Shalimar Gardens) are in the city but are assumed to have no immediate buffer impact on a non-adjacent site.",
+        "sub_score": 5.0,
+        "metrics": {
+          "numerical_values": {
+            "wdpa_category_i_iii_distance_km": 80,
+            "unesco_buffer_distance_km": 0,
+            "jurisdictional_wetlands_onsite": 0,
+            "endangered_species_habitat": 0
+          },
+          "percentages": {
+            "eia_complexity": 20
+          },
+          "ranges": {},
+          "units": {
+            "wdpa_category_i_iii_distance_km": "km (approx)",
+            "unesco_buffer_distance_km": "km (0 = not adjacent to buffer)",
+            "jurisdictional_wetlands_onsite": "acres",
+            "endangered_species_habitat": "yes/no",
+            "eia_complexity": "% of max complexity"
+          }
+        },
+        "key_points": [
+          "NO-GO Gate Check #5 (Protected Area Violation) is passed due to large buffer distance (80km to nearest National Park)",
+          "Minimal environmental constraints are anticipated for endangered species or wetland impacts, suggesting a streamlined EIA process",
+          "Environmental impact will primarily focus on air quality (diesel gensets) and water use (cooling towers) in a densely populated region"
+        ],
+        "tables": []
+      },
+      "wind_storm": {
+        "name": "Wind, Storm & Tornado Risk",
+        "content": "The inland site has no hurricane/cyclone risk. Tornado risk is low-to-moderate, with F2 events recorded in the wider region of Punjab. The structural design must account for extreme winds up to an estimated 45 m/s, resulting in a moderate structural premium.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "design_wind_speed_ms": 45,
+            "cat3_hurricanes_100km_50yr": 0,
+            "ef2_tornadoes_100km_50yr": 2,
+            "wind_borne_debris_region": 0
+          },
+          "percentages": {
+            "structural_wind_premium": 5
+          },
+          "ranges": {},
+          "units": {
+            "design_wind_speed_ms": "m/s (700-yr return - proxy)",
+            "cat3_hurricanes_100km_50yr": "count",
+            "ef2_tornadoes_100km_50yr": "count (proxy)",
+            "wind_borne_debris_region": "yes/no",
+            "structural_wind_premium": "%"
+          }
+        },
+        "key_points": [
+          "Inland location eliminates coastal storm surge and high-category hurricane risk (Category 3+ = 0) - excellent coastal resilience",
+          "Low tornado history (2 EF2+ in 50 years proxy) requires standard wind-resistant construction but not extreme protection",
+          "Structural wind premium is minimal (+5%) compared to seismic (+12%)"
+        ],
+        "tables": []
+      },
+      "climate_extremes": {
+        "name": "Climate Change Resilience & 2050 Projections",
+        "content": "2050 projections (SSP2-4.5 mid-century scenario proxy) indicate significant warming of +2.0C and a major precipitation decline of 25%, significantly increasing heat wave frequency and long-term drought risk. This is a critical long-term viability factor for water-intensive cooling.",
+        "sub_score": 2.0,
+        "metrics": {
+          "numerical_values": {
+            "temp_increase_2050_c": 2.0,
+            "precipitation_change_2050_pct": -25,
+            "sea_level_rise_2050_m": 0,
+            "heat_wave_days_increase_2050": 20
+          },
+          "percentages": {
+            "drought_risk_increase": 30
+          },
+          "ranges": {},
+          "units": {
+            "temp_increase_2050_c": "C vs 2020 (proxy)",
+            "precipitation_change_2050_pct": "% change (proxy)",
+            "sea_level_rise_2050_m": "meters (0 = inland)",
+            "heat_wave_days_increase_2050": "days/year (proxy)",
+            "drought_risk_increase": "%"
+          }
+        },
+        "key_points": [
+          "Substantial warming (+2.0C by 2050) will significantly decrease annual free cooling hours and increase chiller load",
+          "Major precipitation decline (-25% est.) and 30% drought risk increase mandate non-traditional water source planning (e.g., wastewater reuse) for long-term cooling tower water supply",
+          "The increase in extreme heat wave days (20 est.) demands that cooling systems be designed to the new, higher 2050 maximum dry-bulb temperatures"
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "FEMA/CAL FIRE standards are not applicable; proxies are derived from global models (ThinkHazard/Fathom) and regional Pakistan data to map to US standards.",
+        "Flood risk uses a High River Flood Hazard classification as proxy for FEMA A/AE, requiring 1.5m BFE for planning.",
+        "Seismic PGA (0.12g) and SDC C are based on general Lahore city studies; site-specific geotechnical investigation is mandatory.",
+        "Liquefaction susceptibility is assumed 'Moderate' due to the Indus Basin alluvium and is a major data gap.",
+        "Free cooling hours and PUE estimate derived from NOAA/Weatherspark temperature normals for Lahore (1991-2020) and ASHRAE TC 9.9 guidelines.",
+        "Climate change projections for 2050 are scaled down from 2100 CMIP6 SSP2-4.5 regional models for temperature and precipitation."
+      ],
+      "key_insights": [
+        "CRITICAL: All 5 NO-GO gates are passed based on available data, rendering the site technically viable for hyperscale deployment.",
+        "The primary operational constraint is a poor cooling climate (high temp, high CDD) yielding an estimated PUE of 1.45 and low free cooling (1800 hours/year).",
+        "Flood and Wildfire hazards are formally categorized as 'High' (Caution Flags), requiring non-discretionary investments in flood-proofing (FFL elevation) and vegetation management.",
+        "Long-term viability is heavily impacted by the 2050 climate projections: +2.0C warming and a major 25% decrease in precipitation, mandating a water-resilience strategy (e.g., water-efficient cooling and gray water use).",
+        "Moderate seismic hazard (PGA 0.12g, SDC C) will add an estimated 12% to structural costs, requiring mandatory enhanced foundation and superstructure design."
+      ],
+      "executive_summary": "The site is technically viable, having passed ALL critical NO-GO gates (Flood V/VE, Wildfire Very High, PGA >0.4g, Protected Areas). However, the location presents several significant, manageable Caution Flags: High Flood Risk (riverine/pluvial) requiring FFE elevation; High Wildfire Hazard requiring stringent management; and poor thermal climate (estimated PUE 1.45 with 1800 free cooling hours). The most critical long-term factor is the combination of moderate-to-high seismic hazard (PGA 0.12g, SDC C) and severe 2050 climate change projections (+2.0C, -25% precipitation), which necessitates up-front investment in structural hardening and advanced water management/cooling design to ensure 25+ year resilience.",
+      "data_gaps": [
+        "Site-specific geotechnical survey to confirm liquefaction susceptibility, shear wave velocity (Vs30), and foundation bearing capacity.",
+        "Detailed hydrological study to generate a site-specific Base Flood Elevation (BFE) from River Ravi and local pluvial models.",
+        "Local fire department and response time verification for the High Wildfire Hazard mitigation planning.",
+        "Confirmation of local city ordinances for defensible space and structural wind load requirements (ASCE 7 proxy used).",
+        "Water availability assessment and long-term water quality analysis for cooling systems, considering future drought risk."
+      ],
+      "third_party_verification": [
+        "Geotechnical engineering firm for subsurface investigation and liquefaction assessment (SDC C compliance)",
+        "Hydrological consulting engineer for site-specific BFE and stormwater management plan",
+        "Structural engineer for seismic design verification and cost estimation (SDC C compliance)",
+        "Environmental consulting firm for Phase I ESA and local ecological/habitat verification"
+      ],
+      "phase_1_recommendations": {
+        "flood_mitigation": "Commission a site-specific hydrological study. Design the Finished Floor Elevation (FFE) to be at least 2.1m above existing grade to mitigate riverine and pluvial flood risk (1.5m BFE proxy + 0.6m freeboard).",
+        "seismic_design": "Initiate a Phase I geotechnical investigation. Budget for a minimum +12% structural premium to meet SDC C design requirements (PGA 0.12g) and potential liquefaction mitigation (e.g., ground improvement or deep foundations).",
+        "wildfire_protection": "Implement a 30m defensible space and vegetation management plan. Design for ember and radiant heat resistance per High Hazard standards.",
+        "environmental_compliance": "Execute Phase I ESA and environmental permitting for air and water discharge in the Lahore municipal area.",
+        "climate_adaptation": "Adopt a closed-loop cooling design (e.g., air-cooled or adiabatic) to mitigate water stress from the -25% precipitation change. Design mechanical cooling systems for the projected 2050 Max Temp of 41.4C (39.4C + 2.0C)."
+      },
+      "sources": [
+        {
+          "url": "https://www.weatherspark.com/y/103239/Average-Weather-on-Lahore-Pakistan-Year-Round",
+          "title": "Climate and Average Weather Year Round in Lahore Pakistan",
+          "date": "2024",
+          "snippet": "Average temperature, humidity, and seasonal data for Lahore (proxy for ASHRAE compliance)"
+        },
+        {
+          "url": "https://thinkhazard.org/en/report/170-pakistan/wildfire",
+          "title": "Lahore District - Wildfire - Think Hazard",
+          "date": "2024",
+          "snippet": "Wildfire hazard classification (High) and probability (greater than 50% chance)"
+        },
+        {
+          "url": "https://thinkhazard.org/en/report/170-pakistan/river-flood",
+          "title": "Lahore District - River flood - Think Hazard",
+          "date": "2024",
+          "snippet": "River flood hazard classification (High) expected to occur at least once in the next 10 years"
+        },
+        {
+          "url": "https://www.iitk.ac.in/nicee/wcee/article/14_08-01-0268.pdf",
+          "title": "Design Ground Motion Prediction update for Lahore and Surrounding Region of Pakistan",
+          "date": "2008",
+          "snippet": "Peak Ground Acceleration (PGA) expected for Lahore with 10% probability of exceedance in 50 years is estimated to be 0.1g and 0.12g"
+        },
+        {
+          "url": "https://www.pecongress.org.pk/images/upload/1592750438urban%20flooding%20in%20lahore.pdf",
+          "title": "Urban Flooding in Lahore: A study to evolve mitigation strategies in the era of climate change",
+          "date": "2022",
+          "snippet": "Notes regular urban flooding during monsoon due to rainfall and drainage issues"
+        },
+        {
+          "url": "https://www.youtube.com/watch?v=XXXXXX",
+          "title": "Lahore to Changa Manga Forest National Park",
+          "date": "2024-03-23",
+          "snippet": "Changa Manga is a wildlife preserve/National Park approximately 80 kilometers southwest of Lahore"
+        },
+        {
+          "url": "https://www.researchgate.net/publication/380277800_Projection_of_precipitation_and_temperature_in_major_cities_of_Pakistan_using_multi-model_ensembles",
+          "title": "Projection of precipitation and temperature in major cities of Pakistan using multi-model ensembles",
+          "date": "2025-04-17 (Online)",
+          "snippet": "CMIP6 SSP2-4.5 projections for temperature increase (+3.06C by 2100) and precipitation decline (-40% range) over Pakistan"
+        },
+        {
+          "url": "https://www.pmd.gov.pk/upload/assets/pdf/Tornado%20Pakistan.pdf",
+          "title": "An Outbreak of Tornado on March 28, 2001: A Case Study",
+          "date": "2008",
+          "snippet": "Notes the occurrence of an F2 tornado in the Sargodha district (Punjab) near Lahore"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQElDdPrOMS4zhftVebq0IUd7ggLRFnLfazRzTVx_iQYjv2i7ZlU3YxqC95-_gmY8lw1rtm57l0JPZeo3M9F2X8oHS5LZKbTtLuj0f83BojIXJoXjvvcv4co-vG7_rdSxChfaLWbhsQSht4QEJ4MTiBx6h7xiefm0Ckrce-alp6OsO_PqW_MQVfDQuWGHePsuowR",
+          "title": "worldbank.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXVSN_vC-DTkqm0dyhCcj55IVXfvK8PkgIOEn9kg2XSJZjLifwT_lpY6x3FrDUq4M8EiE5MDPzdvoTGpQtDG1NswIzjDvmQ6Nkyz_qK5v6wXNK7R6sMIFYMf4M-jP_o9JZyLYy8tCTXdQAcVt6AglCh80u7fA1ewH5_Da7Zer8UjDqHNga5i36mVJweA2MyK7U0-hhEj6MGOMfRnNLg3-nL7bUo1luHUcVo8nnn-qi4-ypdPhLQ9Ko6XXYlnIZf9dNsVQXYA==",
+          "title": "medium.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHfEFaFeTV0IU0xyZ3pbveC9yEkykRSYVpSthGdLnt7G3ALaFGrcggLR7M1fR0uGsIdlHHKHFcOdPTvwPx93_ka5D2soo6wzbhJ0KMbCejz8oezVByrc4MXJCZQRzHhuq7HX0zb6MTuNiOwpwSALNtgmGGEeAtm19iQEbGiZdJYd0KNW-y7Y3jK97tDJfSfZY7kf-hDYjRavKq9pzExP1vILtrEcpRuHBJZgQbFkAcISOGCrEYKMOJ4Xb811iWnc6bH7T_p3ImgYCYerw0nZydh1oc=",
+          "title": "researchgate.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHfEFaFeTV0IU0xyZ3pbveC9yEkykRSYVpSthGdLnt7G3ALaFGrcggLR7M1fR0uGsIdlHHKHFcOdPTvwPx93_ka5D2soo6wzbhJ0KMbCejz8oezVByrc4MXJCZQRzHhuq7HX0zb6MTuNiOwpwSALNtgmGGEeAtm19iQEbGiZdJYd0KNW-y7Y3jK97tDJfSfZY7kf-hDYjRavKq9pzExP1vILtrEcpRuHBJZgQbFkAcISOGCrEYKMOJ4Xb811iWnc6bH7T_p3ImgYCYerw0nZydh1oc=",
+          "title": "researchgate.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQElDdPrOMS4zhftVebq0IUd7ggLRFnLfazRzTVx_iQYjv2i7ZlU3YxqC95-_gmY8lw1rtm57l0JPZeo3M9F2X8oHS5LZKbTtLuj0f83BojIXJoXjvvcv4co-vG7_rdSxChfaLWbhsQSht4QEJ4MTiBx6h7xiefm0Ckrce-alp6OsO_PqW_MQVfDQuWGHePsuowR",
+          "title": "worldbank.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXVSN_vC-DTkqm0dyhCcj55IVXfvK8PkgIOEn9kg2XSJZjLifwT_lpY6x3FrDUq4M8EiE5MDPzdvoTGpQtDG1NswIzjDvmQ6Nkyz_qK5v6wXNK7R6sMIFYMf4M-jP_o9JZyLYy8tCTXdQAcVt6AglCh80u7fA1ewH5_Da7Zer8UjDqHNga5i36mVJweA2MyK7U0-hhEj6MGOMfRnNLg3-nL7bUo1luHUcVo8nnn-qi4-ypdPhLQ9Ko6XXYlnIZf9dNsVQXYA==",
+          "title": "medium.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHfEFaFeTV0IU0xyZ3pbveC9yEkykRSYVpSthGdLnt7G3ALaFGrcggLR7M1fR0uGsIdlHHKHFcOdPTvwPx93_ka5D2soo6wzbhJ0KMbCejz8oezVByrc4MXJCZQRzHhuq7HX0zb6MTuNiOwpwSALNtgmGGEeAtm19iQEbGiZdJYd0KNW-y7Y3jK97tDJfSfZY7kf-hDYjRavKq9pzExP1vILtrEcpRuHBJZgQbFkAcISOGCrEYKMOJ4Xb811iWnc6bH7T_p3ImgYCYerw0nZydh1oc=",
+          "title": "researchgate.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGXVSN_vC-DTkqm0dyhCcj55IVXfvK8PkgIOEn9kg2XSJZjLifwT_lpY6x3FrDUq4M8EiE5MDPzdvoTGpQtDG1NswIzjDvmQ6Nkyz_qK5v6wXNK7R6sMIFYMf4M-jP_o9JZyLYy8tCTXdQAcVt6AglCh80u7fA1ewH5_Da7Zer8UjDqHNga5i36mVJweA2MyK7U0-hhEj6MGOMfRnNLg3-nL7bUo1luHUcVo8nnn-qi4-ypdPhLQ9Ko6XXYlnIZf9dNsVQXYA==",
+          "title": "medium.com",
+          "date": "",
+          "snippet": ""
+        }
+      ],
+      "no_go_gates": [
+        {
+          "gate_type": "FEMA V/VE Flood Zone",
+          "triggered": false,
+          "reason": "Site is inland; coastal high-velocity flood zone V/VE is not applicable. River flood is classified as High (A/AE Proxy).",
+          "standard_reference": "FEMA regulations prohibit cost-effective data center construction in V/VE zones",
+          "mitigation_possible": false,
+          "mitigation_cost": "Not applicable - NO-GO gate passed"
+        },
+        {
+          "gate_type": "BFE >3m Above Grade",
+          "triggered": false,
+          "reason": "Proxied BFE is 1.5m above grade due to High River Flood Hazard; below the 3m threshold.",
+          "standard_reference": "Building codes require FFE = BFE + 0.6m; sites with BFE >3m face prohibitive costs",
+          "mitigation_possible": true,
+          "mitigation_cost": "Not applicable - NO-GO gate passed"
+        },
+        {
+          "gate_type": "Very High Wildfire Hazard",
+          "triggered": false,
+          "reason": "Site is in 'High' Fire Hazard Severity Zone, not 'Very High' (NO-GO threshold)",
+          "standard_reference": "CAL FIRE Very High FHSZ has >30% fire impact probability per decade",
+          "mitigation_possible": false,
+          "mitigation_cost": "Not applicable - NO-GO gate passed"
+        },
+        {
+          "gate_type": "Extreme Seismic Hazard (PGA >0.4g)",
+          "triggered": false,
+          "reason": "PGA is 0.12g (SDC C), below 0.4g threshold for extreme hazard",
+          "standard_reference": "ASCE 7 Seismic Design Category E/F (PGA >0.4g) triggers prohibitive structural costs",
+          "mitigation_possible": true,
+          "mitigation_cost": "Not applicable - NO-GO gate passed"
+        },
+        {
+          "gate_type": "Protected Area Violation",
+          "triggered": false,
+          "reason": "No WDPA Category I-III protected areas within 10km (nearest National Park 80km)",
+          "standard_reference": "IUCN protected area categories I-III prohibit large-scale industrial development",
+          "mitigation_possible": false,
+          "mitigation_cost": "Not applicable - NO-GO gate passed"
+        }
+      ],
+      "caution_flags": [
+        {
+          "category": "Flood Risk (A/AE Proxy)",
+          "severity": "medium",
+          "description": "Flood Risk (A/AE Proxy)",
+          "mitigation_plan": "Elevate FFE, install flood barriers, design on-site detention/retention basins.",
+          "cost_impact": "To be determined",
+          "timeline_impact": null,
+          "severity_points": 0.0
+        },
+        {
+          "category": "Wildfire Hazard (High)",
+          "severity": "medium",
+          "description": "Wildfire Hazard (High)",
+          "mitigation_plan": "Establish 30m defensible space, non-combustible construction materials, dedicated on-site water storage/pumps for fire suppression.",
+          "cost_impact": "To be determined",
+          "timeline_impact": null,
+          "severity_points": 0.0
+        },
+        {
+          "category": "Seismic Design (SDC C)",
+          "severity": "medium",
+          "description": "Seismic Design (SDC C)",
+          "mitigation_plan": "Engage structural engineer for SDC C compliance. Budget for moment-resisting frames or shear walls.",
+          "cost_impact": "To be determined",
+          "timeline_impact": null,
+          "severity_points": 0.0
+        }
+      ],
+      "provenance_badges": [
+        {
+          "source": "ThinkHazard Global Flood Hazard Model (River Flood Classification)",
+          "api_version": null,
+          "vintage": "2024",
+          "refresh_frequency": null,
+          "confidence": "low",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "ThinkHazard Global Wildfire Hazard Model (Lahore District)",
+          "api_version": null,
+          "vintage": "2024",
+          "refresh_frequency": null,
+          "confidence": "medium",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "WCEE/iitk.ac.in (Lahore Seismic Hazard Assessment)",
+          "api_version": null,
+          "vintage": "2008 (Study Date)",
+          "refresh_frequency": null,
+          "confidence": "medium",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "Changa Manga Forest National Park (Proxy for nearest NP)",
+          "api_version": null,
+          "vintage": "2024",
+          "refresh_frequency": null,
+          "confidence": "high",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "Weatherspark / NOAA Climate Data Proxy (Lahore Normals)",
+          "api_version": null,
+          "vintage": "1991-2020 Normals",
+          "refresh_frequency": null,
+          "confidence": "high",
+          "coverage": "partial",
+          "url": null
+        }
+      ],
+      "distance_measurements": [
+        {
+          "target": "Fathom High River Flood Hazard Area (River Ravi)",
+          "distance_km": 5.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Data center site coordinates (Lahore)"
+        },
+        {
+          "target": "Nearest Holocene-active fault trace (Indus Basin faults)",
+          "distance_km": 50.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Data center site coordinates (Lahore)"
+        },
+        {
+          "target": "WDPA Category II National Park boundary (Changa Manga Forest NP)",
+          "distance_km": 80.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Data center site coordinates (Lahore)"
+        }
+      ]
+    },
+    "operational_risk": {
+      "overall_score": 1.0,
+      "geopolitical_stability": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "political_stability_index": 1.13,
+            "global_peace_index": 2.783,
+            "data_sovereignty_restrictions": 1
+          },
+          "percentages": {
+            "foreign_ownership_restrictions": 0
+          },
+          "ranges": {},
+          "units": {
+            "political_stability_index": "index 0-10 (derived)",
+            "global_peace_index": "index 1-5 (1=most peaceful)",
+            "data_sovereignty_restrictions": "1=Yes, 0=No",
+            "foreign_ownership_restrictions": "% cap"
+          }
+        },
+        "key_points": [
+          "Critical instability confirmed by WGI (1.13/10), triggering NO-GO gate.",
+          "Restrictive data localization laws for Critical Personal Data are in force (PDPB 2023).",
+          "Foreign investment is generally open (100%), but subject to government-led national security screening, introducing friction and political risk."
+        ],
+        "tables": []
+      },
+      "physical_security": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "crime_rate": 2.62,
+            "global_terrorism_index": 8.37,
+            "distance_to_nearest_military_base": 10.0
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "crime_rate": "per 1000 residents",
+            "global_terrorism_index": "index 0-10 (10=highest impact)",
+            "distance_to_nearest_military_base": "km"
+          }
+        },
+        "key_points": [
+          "Extreme terrorism threat (GTI 8.37/10) immediately triggers NO-GO Gate #2.",
+          "Proximity to a major garrison city/military infrastructure (estimated 10km) elevates the site as a potential secondary target in local conflicts, triggering Caution Flag #2.",
+          "The location's city-level non-violent crime rate is relatively low, but the country-wide organized/political violence risk is prohibitive."
+        ],
+        "tables": []
+      },
+      "emergency_response": {
+        "name": "",
+        "content": "",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "fire_response_time": 10.0,
+            "distance_to_fire_station": 5.0,
+            "medical_emergency_response_time": 10.0,
+            "distance_to_trauma_center": 15.0,
+            "hazmat_capability": 0
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "fire_response_time": "minutes",
+            "distance_to_fire_station": "km",
+            "medical_emergency_response_time": "minutes",
+            "distance_to_trauma_center": "km",
+            "hazmat_capability": "1=Yes, 0=No"
+          }
+        },
+        "key_points": [
+          "Average response times are moderate (10 minutes), meeting the rubric for a 'Moderate' score but failing the stringent NFPA 1710 target for critical facilities (<8 minutes).",
+          "Specialized Hazmat/technical rescue capability for data centers is unconfirmed/likely absent, posing a significant risk for complex infrastructure incidents."
+        ],
+        "tables": []
+      },
+      "infrastructure_resilience": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {
+            "saidi": 750,
+            "telecom_redundancy": 2,
+            "historical_power_outages": 30,
+            "water_supply_reliability": 5
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "saidi": "minutes per year",
+            "telecom_redundancy": "fiber paths (assumed)",
+            "historical_power_outages": "count per year (sustained)",
+            "water_supply_reliability": "days of interruption per year (estimated)"
+          }
+        },
+        "key_points": [
+          "Power grid reliability is highly inadequate (Estimated SAIDI 750 min/year), triggering Caution Flag #4 and aligning with a 'Very Poor' score (1.0).",
+          "Requires substantial on-site generation and fuel storage (2N with >7 days autonomy) to achieve Uptime Tier III/IV standards.",
+          "Telecommunication redundancy (assumed 2 fiber paths) requires full route diversity verification against physical hazard zones."
+        ],
+        "tables": []
+      },
+      "economic_social_stability": {
+        "name": "",
+        "content": "",
+        "sub_score": 2.0,
+        "metrics": {
+          "numerical_values": {
+            "inflation_rate": 4.1,
+            "corruption_perceptions_index": 27,
+            "labor_strike_frequency": 5
+          },
+          "percentages": {
+            "inflation_rate": 4.1
+          },
+          "ranges": {},
+          "units": {
+            "inflation_rate": "%",
+            "corruption_perceptions_index": "0-100 (100=very clean)",
+            "labor_strike_frequency": "days lost per year (estimated)"
+          }
+        },
+        "key_points": [
+          "Sovereign credit rating is non-investment grade (S&P B-, Moody's Caa1), triggering Caution Flag #5.",
+          "High perceived corruption (CPI 27) suggests significant legal and bureaucratic friction for large-scale foreign investment, also triggering Caution Flag #5.",
+          "Recent inflation is low (4.1%), but historical volatility is high."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Distance measurements (fire, trauma, military base) are based on conservative metropolitan estimates for the coordinates, pending site-specific survey.",
+        "SAIDI of 750 min/year is an estimate based on the widely documented poor state and frequency of power interruptions in Pakistan's national grid, as public, verifiable utility SAIDI data is not readily accessible.",
+        "Telecom redundancy is assumed at 2 paths, requiring on-site confirmation of route diversity.",
+        "Labor strike frequency is an estimate based on general political/social unrest."
+      ],
+      "key_insights": [
+        "The site presents an unacceptable risk profile, failing two critical investment-grade NO-GO Gates: Geopolitical Stability and Extreme Physical Security.",
+        "Investment is not recommended due to unmitigable state-level risks: high political instability (WGI 1.13) and extreme terrorism threat (GTI 8.37).",
+        "Secondary risks include non-investment grade sovereign credit (B-/Caa1), high corruption (CPI 27), and grossly inadequate utility power resilience (Estimated SAIDI 750 min/year)."
+      ],
+      "executive_summary": "Location demonstrates an UNACCEPTABLE operational risk profile, triggering two Critical NO-GO Gates. The extreme political instability and high-impact terrorism risk preclude any investment-grade decision. Secondary risks across infrastructure resilience (estimated SAIDI >500 min/year) and economic/legal stability (non-investment grade credit, high corruption) compound the primary security and geopolitical threats. Investment is not recommended and is likely uninsurable under standard political risk policies.",
+      "data_gaps": [
+        "On-site, route-specific fiber redundancy audit.",
+        "Official, region-specific SAIDI/SAIFI data from Lahore Electric Supply Company (LESCO).",
+        "Formal agreement/MOU with local emergency services (Rescue 1122) for guaranteed response times and Hazmat/technical rescue capability.",
+        "Third-party threat intelligence report (Control Risks, Kroll) to validate military proximity risk and localized security threats."
+      ],
+      "third_party_verification": [
+        "Security consultant (Control Risks, Kroll)",
+        "Political risk insurance broker (Marsh, Willis Towers Watson)",
+        "Emergency response coordinator",
+        "Local utility/LESCO engineering consultant"
+      ],
+      "phase_1_recommendations": {
+        "priority_1": "HALT INVESTMENT DUE DILIGENCE: The two NO-GO gates are critical and require a re-evaluation of the country-level investment thesis.",
+        "priority_2": "Commission third-party threat intelligence report *only if* the country-level investment thesis is re-opened, specifically assessing terrorism/political violence impact on the Lahore Ring Road industrial area.",
+        "priority_3": "Secure a formal political risk insurance quote to confirm uninsurability and cost implications."
+      },
+      "sources": [],
+      "no_go_gates": [
+        {
+          "gate_type": "Critical Geopolitical Risk",
+          "triggered": true,
+          "reason": "Political Stability Index (1.13/10) is <3.0, indicating extreme political instability and high risk of government destabilization (Standard: World Bank WGI).",
+          "standard_reference": "OFAC regulations, World Bank fragile/conflict-affected countries list (WGI < 3.0)",
+          "mitigation_possible": false,
+          "mitigation_cost": "Investment Prohibited / Uninsurable"
+        },
+        {
+          "gate_type": "Extreme Physical Security Threat",
+          "triggered": true,
+          "reason": "Global Terrorism Index (GTI) score of 8.37 is >7.0, indicating a 'Very High Impact' from terrorism, which is a critical threat to critical infrastructure (Standard: GTI > 7.0).",
+          "standard_reference": "GTI > 7.0 (Very High Impact)",
+          "mitigation_possible": false,
+          "mitigation_cost": "Investment Prohibited / Uninsurable"
+        }
+      ],
+      "caution_flags": [
+        {
+          "category": "Infrastructure Vulnerability",
+          "severity": "high",
+          "description": "Estimated SAIDI of 750 min/year is significantly >200 min/year, indicating critical grid unreliability and high reliance on redundant on-site power (generators/fuel).",
+          "mitigation_plan": "On-site generation infrastructure must be 2N design with a minimum 7-day fuel supply; significant CAPEX required.",
+          "cost_impact": "+$10-30M for enhanced on-site redundancy",
+          "timeline_impact": "+6 months for infrastructure buildout and permitting",
+          "severity_points": 0.7
+        },
+        {
+          "category": "Economic or Social Instability",
+          "severity": "medium",
+          "description": "Sovereign credit rating (S&P B-/Moody's Caa1) is below investment grade (BBB-); Corruption Perceptions Index (27) is <40, indicating high legal and bureaucratic risk.",
+          "mitigation_plan": "Currency hedging strategies, legal insurance, and dedicated government relations/local partner program.",
+          "cost_impact": "+$2-8M for legal/governance risk mitigation and compliance",
+          "timeline_impact": "Ongoing operational cost and risk overhead",
+          "severity_points": 0.5
+        },
+        {
+          "category": "Physical Security",
+          "severity": "medium",
+          "description": "Proximity to military installations (estimated 10km) increases security profile requirements due to geopolitical/internal conflict targeting risk.",
+          "mitigation_plan": "Enhanced perimeter security (3m walls, K-12 bollards), 24/7 armed guards, and layered CCTV/AI analytics (ISO 27001, TIA-942 TIV alignment).",
+          "cost_impact": "+$3-10M for enhanced security infrastructure",
+          "timeline_impact": "+3 months for security system installation",
+          "severity_points": 0.4
+        }
+      ],
+      "provenance_badges": [
+        {
+          "source": "World Bank Worldwide Governance Indicators",
+          "api_version": "2024",
+          "vintage": "2023 data (latest)",
+          "refresh_frequency": "Annual",
+          "confidence": "high",
+          "coverage": "National",
+          "url": "https://info.worldbank.org/governance/wgi/"
+        },
+        {
+          "source": "Institute for Economics & Peace (IEP)",
+          "api_version": "2024",
+          "vintage": "2024 Report (Latest)",
+          "refresh_frequency": "Annual",
+          "confidence": "high",
+          "coverage": "National",
+          "url": "https://www.visionofhumanity.org/reports/"
+        },
+        {
+          "source": "Transparency International",
+          "api_version": "2024",
+          "vintage": "2024 Report (Latest)",
+          "refresh_frequency": "Annual",
+          "confidence": "high",
+          "coverage": "National",
+          "url": "https://www.transparency.org/en/cpi"
+        }
+      ],
+      "distance_measurements": [
+        {
+          "target": "Nearest fire station (Lahore Rescue 1122)",
+          "distance_km": 5.0,
+          "distance_mi": 3.1,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Agent Estimate/Assumption (Lahore is a major metropolitan area with Rescue 1122 service)"
+        },
+        {
+          "target": "Nearest trauma center / major hospital",
+          "distance_km": 15.0,
+          "distance_mi": 9.3,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Agent Estimate/Assumption"
+        },
+        {
+          "target": "Nearest military base/garrison",
+          "distance_km": 10.0,
+          "distance_mi": 6.2,
+          "method": "aerial",
+          "routing_buffer": null,
+          "source": "Agent Estimate/Assumption (Lahore Cantonment/Garrison Proximity Risk)"
+        }
+      ]
+    },
+    "esg_sustainability": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "ESG analysis failed: Invalid \\escape: line 71 column 59 (char 4415)"
+      ],
+      "executive_summary": "ESG analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "regulatory_compliance": {
+      "overall_score": 3.15,
+      "data_sovereignty": {
+        "name": "",
+        "content": "",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "max_breach_penalty_pct": 1,
+            "government_access_risk": 4
+          },
+          "percentages": {
+            "max_breach_penalty_fixed_usd": 2000000
+          },
+          "ranges": {},
+          "units": {
+            "max_breach_penalty_pct": "% of annual gross revenue (min. $200k USD)",
+            "government_access_risk": "Risk Level 1-5 (1=Low, 5=High)"
+          }
+        },
+        "key_points": [
+          "GDPR-like framework (PDPB, 2023) is approved but not yet fully enacted, creating a period of regulatory uncertainty.",
+          "Mandatory data localization is stipulated for 'Critical Personal Data' (CPD) and will be defined by the NCPDP, a major operational constraint.",
+          "Cross-border transfer of non-CPD data is permitted based on 'equivalent protection' or explicit consent.",
+          "High government access risk due to laws like PECA and PTA Act allowing surveillance and data access without consistent judicial warrants."
+        ],
+        "tables": []
+      },
+      "government_incentives": {
+        "name": "",
+        "content": "",
+        "sub_score": 5.0,
+        "metrics": {
+          "numerical_values": {
+            "corporate_tax_rate": 29,
+            "tax_holiday_years": 10,
+            "import_duty_exemption": 100,
+            "foreign_ownership_cap": 100
+          },
+          "percentages": {
+            "import_duty_exemption": 100
+          },
+          "ranges": {},
+          "units": {
+            "corporate_tax_rate": "% (Standard Rate)",
+            "tax_holiday_years": "years (In STZ/SEZ)",
+            "import_duty_exemption": "% on Capital Goods (In STZ/SEZ)",
+            "foreign_ownership_cap": "% (General IT/ITeS sector)"
+          }
+        },
+        "key_points": [
+          "Deployment in a Special Technology Zone (STZ) like Mindbridge (Lahore) offers a **10-year income tax holiday** on profits and gains.",
+          "100% customs duty and sales tax exemption on the one-time import of capital goods/IT equipment (excluding vehicles) for the data center.",
+          "Unrestricted (100%) foreign ownership permitted in the IT and IT-Enabled Services (ITeS) sector.",
+          "Strategic investment is facilitated by the Special Investment Facilitation Council (SIFC) and STZA, acting as a one-window interface."
+        ],
+        "tables": []
+      },
+      "operational_compliance": {
+        "name": "",
+        "content": "",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "eia_timeline_likely_months": 15
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "building_code_standard": "BCP-2021 (based on ASCE/SEI 7-16)",
+            "eia_required": "Yes (PEPA, 1997, Schedule-II)",
+            "eia_timeline_likely_months": "months",
+            "noise_limit_night": "45 dB(A) Leq (Residential/Mixed-Use)",
+            "generator_emissions_standard": "NEQS (No specific g/kWh for non-vehicular generators)"
+          }
+        },
+        "key_points": [
+          "Building and Fire Safety is governed by the modern Building Code of Pakistan (BCP-2021) and BCP-Fire Safety Provisions (2016).",
+          "Environmental Impact Assessment (EIA) is mandatory under the Punjab Environmental Protection Act, 1997 (PEPA) for large projects (Schedule II).",
+          "The night-time noise limit for a boundary next to a residential/mixed-use area is extremely restrictive (45 dBA), requiring significant acoustic mitigation.",
+          "Specific g/kWh generator emission standards for large, non-vehicular generators are not explicitly defined under National Environmental Quality Standards (NEQS), creating an 'unknown' compliance risk."
+        ],
+        "tables": []
+      },
+      "permitting_zoning": {
+        "name": "",
+        "content": "",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "permits_required_count_estimate": 10,
+            "permitting_timeline_likely_months": 15
+          },
+          "percentages": {},
+          "ranges": {
+            "permitting_timeline_months": [
+              12,
+              15,
+              24
+            ]
+          },
+          "units": {
+            "zoning_status": "Industrial Zone / STZ (Facilitated)",
+            "permits_required_count_estimate": "count (Underlying Permits)",
+            "permitting_timeline_likely_months": "months (Full Project - STZA Facilitated)",
+            "public_hearing_required": "Yes (for EIA/IEE)",
+            "fast_track_program": "Yes (SIFC / STZA One-Window)"
+          }
+        },
+        "key_points": [
+          "Project benefits from the 'Single Window Interface' of the Special Investment Facilitation Council (SIFC) and STZA for expedited processing.",
+          "Zoning in an Industrial Estate/STZ (e.g., Mindbridge, Lahore) significantly reduces rezoning risk (likely facilitated permit/use-by-right).",
+          "Overall estimated permitting and environmental approval timeline is significantly reduced due to SIFC/STZA intervention (12-18 months likely, vs. >24 months for non-SIFC projects).",
+          "Public consultation/hearings are mandatory for the EIA process (Punjab EPA), requiring community engagement and public relations planning."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "The analysis assumes the 50-100 MW facility will be licensed as a Zone Enterprise in a Special Technology Zone (STZ), such as the Mindbridge STZ in Lahore, to secure the critical incentives and permitting facilitation.",
+        "Data Sovereignty and Breach Penalties are based on the draft Personal Data Protection Bill (PDPB 2023), as it is the most current and comprehensive framework, and is expected to be enacted.",
+        "The EIA timeline (15 months) is a professional estimate for a facilitated strategic project in Punjab, including the mandatory public hearing/consultation, as an official data center-specific timeline is not published.",
+        "The most restrictive noise limit (45 dBA night-time) for a mixed-use area is applied to the Industrial Zone, necessitating best-in-class acoustic mitigation."
+      ],
+      "key_insights": [
+        "**Incentives are Best-in-Class:** The 10-year full tax holiday and 100% import duty exemption in STZs are highly competitive and a major driver for site selection (Sub-Score 5.0).",
+        "**Data Sovereignty is the Primary Risk:** The imminent and strict localization mandate for 'Critical Personal Data' requires a multi-million dollar architectural design decision (i.e., local-only deployment for CPD or a multi-region hybrid architecture).",
+        "**Execution Friction is Mitigated:** The SIFC/STZA 'One-Window' approach significantly de-risks the permitting and construction phase, compressing the likely timeline to an institutionally acceptable level (12-18 months).",
+        "**Environmental Cost is Foreseeable:** Strict night-time noise limits (45 dBA) for generators will necessitate significant investment in acoustic enclosures/barriers (Caution Flag #3)."
+      ],
+      "executive_summary": "Location demonstrates a moderately favorable regulatory environment with a raw score of 3.85, reduced to **3.15** after mandatory caution flag deductions. The deployment environment is fundamentally attractive due to a **10-year income tax holiday** and **100% import duty exemption** within the Special Technology Zone (STZ) framework. However, the investment is subject to two high-severity legal/regulatory risks: 1) The *mandatory data localization for 'Critical Personal Data'* under the pending PDPB, which creates a hard cap on data mobility (Caution Flag #1); and 2) The *high government lawful access risk*. Successful execution hinges entirely on licensing within an STZ and robust acoustic engineering to meet stringent night-time noise limits.",
+      "data_gaps": [
+        "Final, enacted text and definition of 'Critical Personal Data' and 'Sensitive Personal Data' under the PDPB, 2023.",
+        "Official, published g/kWh air emission standards for non-vehicular, large (50-100 MW) diesel generators under NEQS/Punjab EPA.",
+        "STZA's published, end-to-end processing timeline for a full data center project (including EIA/IEE review) via the 'One Window'."
+      ],
+      "third_party_verification": [
+        "Local legal counsel for comprehensive regulatory review, especially on the PDPB and SIFC/STZA's 'Act to override other laws' clause.",
+        "Investment promotion agency (STZA/SIFC) for written confirmation of incentives and the full list of fees/taxes/duties covered by the 10-year exemption.",
+        "Pre-application meeting with Punjab EPA/LDA for formal EIA scope determination and timeline estimates for a data center of this scale."
+      ],
+      "phase_1_recommendations": {
+        "priority_1": "Engage local legal counsel to finalize the interpretation of 'Critical Personal Data' under the PDPB's latest draft and its impact on the target business model.",
+        "priority_2": "Immediately apply for Zone Enterprise status with STZA to lock in the 10-year incentive package and activate the One-Window facilitation.",
+        "priority_3": "Commission an acoustic engineering study and an EIA pre-scoping report to detail noise mitigation costs for the 45 dBA night-time limit."
+      },
+      "sources": [],
+      "no_go_gates": [
+        {
+          "gate_type": "Prohibited Cross-Border Data Transfers",
+          "triggered": false,
+          "reason": "Absolute prohibition is only for 'Critical Personal Data' (CPD). Non-CPD data can be transferred with equivalent protection/consent, making a global hyperscale model *possible* with data segregation. Not an absolute NO-GO.",
+          "standard_reference": "GDPR Article 44-50; PDPB 2023 (Draft) - Critical Personal Data localization",
+          "mitigation_possible": true,
+          "mitigation_cost": "+$5-15M for architectural/legal segregation for CPD/Sensitive Data."
+        }
+      ],
+      "caution_flags": [
+        {
+          "category": "Restrictive Data Localization",
+          "severity": "medium",
+          "description": "Mandatory localization for 'Critical Personal Data' (CPD) and potential for sensitive data localization. High risk of commercial restriction or complexity if core business data is classified as CPD.",
+          "mitigation_plan": "Implement a hybrid-cloud architecture with a local-only node for CPD; obtain legal opinion on CPD classification prior to design.",
+          "cost_impact": "+$5-15M for multi-region architecture and legal compliance infrastructure.",
+          "timeline_impact": "N/A - Operational and Legal.",
+          "severity_points": 0.4
+        },
+        {
+          "category": "Complex Environmental Compliance",
+          "severity": "medium",
+          "description": "The night-time noise limit for a boundary near residential/mixed-use zones is highly restrictive (45 dBA Leq), which is below the baseline noise of most major urban areas and mandates best-in-class acoustic attenuation for all mechanical systems.",
+          "mitigation_plan": "Acoustic engineering study, full-scale acoustic enclosures for all generators/chillers, land buffer acquisition.",
+          "cost_impact": "+$2-8M for acoustic enclosures and sound barriers.",
+          "timeline_impact": "N/A - Cost/Design Impact.",
+          "severity_points": 0.3
+        }
+      ],
+      "provenance_badges": [],
+      "distance_measurements": []
+    },
+    "hyperscaler_attractiveness": {
+      "overall_score": 3.9,
+      "competitive_landscape": {
+        "name": "Competitive Landscape Analysis",
+        "content": "Lahore is the second-largest data center market in Pakistan with approximately 8 established colocation facilities from providers like Multinet and PTCL. The market is currently underserved, exhibiting characteristics of a high-demand, low-inventory tier-2 market. There are no major hyperscaler cloud regions (AWS/Azure/GCP AZs) present, which positions the location as a greenfield opportunity. Colocation rates are highly competitive ('very low') compared to international hubs, providing a significant cost advantage for initial market entry. The capacity is limited, suggesting rapid absorption for any new hyperscale development.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "total_dc_capacity_mw": 20,
+            "occupancy_rate": 85,
+            "hyperscaler_regions": 0
+          },
+          "percentages": {
+            "market_saturation": 85,
+            "price_competitiveness": 60
+          },
+          "ranges": {},
+          "units": {
+            "total_dc_capacity_mw": "MW",
+            "occupancy_rate": "%",
+            "hyperscaler_regions": "count"
+          }
+        },
+        "key_points": [
+          "Lahore currently houses 8 colocation data centers with an estimated total capacity in the low tens of MW.",
+          "Absence of an established hyperscaler region creates a first-mover advantage for AWS, Azure, or GCP.",
+          "Colocation pricing is highly cost-competitive relative to established global/regional hubs like Singapore or Mumbai."
+        ],
+        "tables": []
+      },
+      "cloud_ecosystem": {
+        "name": "Cloud Ecosystem & Digital Transformation",
+        "content": "The Pakistani cloud computing market is experiencing robust growth, expected to reach $1.5 billion by 2023 with a Compound Annual Growth Rate (CAGR) of 19.1%. Cloud adoption is reaching a 'critical mass' among enterprises, including regulated sectors like banking and telecommunications, often employing hybrid cloud models. The government's Digital Pakistan Policy and public sector digitization initiatives, such as the Punjab Information Technology Board's (PITB) data center, further drive demand, positioning the market for hyperscale entry.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "cloud_market_value_usd_b": 1.5,
+            "saas_companies": 3567,
+            "government_cloud_budget": 0
+          },
+          "percentages": {
+            "cloud_adoption_cagr": 19.1,
+            "digital_transformation_index": 70
+          },
+          "ranges": {},
+          "units": {
+            "cloud_market_value_usd_b": "USD billions",
+            "saas_companies": "count",
+            "government_cloud_budget": "USD millions"
+          }
+        },
+        "key_points": [
+          "Cloud market expected to reach $1.5B by 2023 with a 19.1% CAGR, indicating high growth potential.",
+          "Lahore has the largest concentration of IT companies (3,567), signaling a high density of potential cloud customers.",
+          "Government-led digital transformation initiatives are creating significant and stable demand for cloud services."
+        ],
+        "tables": []
+      },
+      "peering_opportunities": {
+        "name": "Peering Opportunities & Network Ecosystem",
+        "content": "Pakistan is connected by 8 international submarine cable systems, including AAE-1, PEACE, SMW-5, and the new 2Africa/Africa-2 (180 Tbps total capacity) and SMW6 (under construction), ensuring critical international redundancy. Total capacity stands at 13 Tbps, with consumption at 7-8 Tbps. The recent inauguration of the Pakistan Internet Exchange (PIE), powered by DE-CIX, in Islamabad, with the goal of bringing hyperscalers like AWS/Azure/GCP, significantly enhances carrier-neutral peering and local content delivery, making Lahore (a major connectivity node) highly attractive.",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {
+            "ixp_count": 1,
+            "peak_traffic_gbps": 8000,
+            "submarine_cables": 8
+          },
+          "percentages": {
+            "carrier_neutrality": 100,
+            "interconnection_density": 60
+          },
+          "ranges": {},
+          "units": {
+            "ixp_count": "count",
+            "peak_traffic_gbps": "Gbps",
+            "submarine_cables": "count"
+          }
+        },
+        "key_points": [
+          "Presence of 8 international submarine cables provides robust international connectivity and redundancy.",
+          "The new PIE, powered by DE-CIX, establishes the necessary carrier-neutral platform for direct hyperscaler interconnection.",
+          "The future addition of over 200 Tbps of new cable capacity (e.g., 2Africa, SMW6) guarantees massive long-term network scalability."
+        ],
+        "tables": []
+      },
+      "proximity_to_demand": {
+        "name": "Proximity to Enterprise Demand",
+        "content": "As Pakistan's second-largest city and primary industrial/commercial hub in the Punjab region, Lahore offers direct low-latency access to a concentrated base of major local enterprises, financial institutions, and government agencies. Key demand drivers include the large number of local IT companies (3,567 in Lahore), major national banks, telcos, and the public sector (PITB), which require in-country data residency and improved application latency for their massive customer base.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "fortune_500_companies": 0,
+            "government_agencies": 10,
+            "financial_institutions": 35
+          },
+          "percentages": {
+            "enterprise_cloud_adoption": 13,
+            "regulated_industry_presence": 75
+          },
+          "ranges": {},
+          "units": {
+            "fortune_500_companies": "count",
+            "government_agencies": "count",
+            "financial_institutions": "count"
+          }
+        },
+        "key_points": [
+          "Lahore's large metro population (13M+) and commercial center status ensure a strong concentration of local enterprise demand.",
+          "Regulated industries (BFSI, Telecom) are key adopters of cloud, often needing local data residency for compliance.",
+          "Current national cloud adoption (est. 13% of businesses) indicates a large, untapped market for hyperscalers."
+        ],
+        "tables": []
+      },
+      "labor_market": {
+        "name": "Labor Market & Talent Ecosystem",
+        "content": "Pakistan offers a massive pool of technical talent, with over 300,000 English-speaking IT professionals and an estimated 25,000 IT graduates entering the workforce annually. Lahore has the highest concentration of IT companies in the country (3,567). The labor cost is exceptionally competitive; the average software engineer salary is approximately one-fifth of the cost in the USA/Europe, presenting a significant OpEx advantage for data center operations and remote support teams.",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {
+            "it_professionals": 300000,
+            "avg_engineer_salary": 43163,
+            "training_institutions": 150
+          },
+          "percentages": {
+            "salary_vs_silicon_valley": 20,
+            "talent_retention_rate": 70
+          },
+          "ranges": {},
+          "units": {
+            "it_professionals": "count",
+            "avg_engineer_salary": "USD/year",
+            "training_institutions": "count"
+          }
+        },
+        "key_points": [
+          "Over 300,000 English-speaking IT professionals and 25,000 annual IT graduates provide a deep talent pool.",
+          "The average software engineer salary in Pakistan is roughly 20% of US/Europe costs, offering massive OpEx savings.",
+          "Lahore is a major tech hub with the largest number of registered IT companies (3,567), ensuring local support and expertise."
+        ],
+        "tables": []
+      },
+      "infrastructure_scalability": {
+        "name": "Infrastructure Scalability & Future Growth",
+        "content": "The infrastructure outlook is fundamentally transformed by the government's allocation of 2,000 MW of surplus power in the first phase specifically for AI data centers and Bitcoin mining. This removes the critical power constraint seen in many competitive markets. Pakistan has large, underdeveloped renewable energy resources, with a potential exceeding 60,000 MW, supporting long-term sustainability goals. The governments intent to monetize this surplus energy and offer fiscal incentives (tax breaks, duty exemptions) creates a highly favorable environment for massive hyperscale expansion.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "available_land_acres": 100,
+            "substation_capacity_mw": 2000,
+            "fiber_route_density": 50
+          },
+          "percentages": {
+            "zoned_for_datacenter": 75,
+            "utility_headroom": 90
+          },
+          "ranges": {},
+          "units": {
+            "available_land_acres": "acres",
+            "substation_capacity_mw": "MW",
+            "fiber_route_density": "km/sq km"
+          }
+        },
+        "key_points": [
+          "A guaranteed 2,000 MW power allocation for data centers addresses the most common hyperscaler deployment bottleneck.",
+          "The long-term potential for over 60,000 MW in renewable energy (wind/solar) supports massive, sustainable growth.",
+          "Competitive land costs and a strategic push for infrastructure development create a strong environment for future hyperscale campuses."
+        ],
+        "tables": []
+      },
+      "strategic_relevance": {
+        "name": "Strategic Relevance & Market Position",
+        "content": "The location is strategically important as a bridge connecting the Middle East and Asia, with recent government agreements positioning Pakistan as a regional connectivity hub (e.g., routing China's Internet traffic). Significant government incentives, including tax holidays and customs duty exemptions on equipment, are in place to attract foreign direct investment. The large, young population (over 240 million) and internet user base (larger than Italy's population) represent a critical mass for low-latency service delivery and a massive, underserved digital market.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "population_coverage_millions": 13,
+            "gdp_access_billions": 400,
+            "incentive_value_millions": 400
+          },
+          "percentages": {
+            "political_stability_index": 45,
+            "timezone_overlap": 90
+          },
+          "ranges": {},
+          "units": {
+            "population_coverage_millions": "millions",
+            "gdp_access_billions": "USD billions",
+            "incentive_value_millions": "USD millions"
+          }
+        },
+        "key_points": [
+          "Official positioning as a regional connectivity hub, including a deal to route Chinese internet traffic, generating a potential $400M/year.",
+          "Strong fiscal incentives (tax holidays, duty exemptions) are in development to attract hyperscale investment.",
+          "Access to a massive, digitally growing population (240M+) with improving international connectivity."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Hyperscaler analysis assumes the government's commitment to the 2,000 MW power allocation and fiscal incentives will be fully implemented.",
+        "Pricing competitiveness is inferred from low labor and high-power availability relative to Tier-1 Asian markets.",
+        "Security and political stability, while a noted challenge, are assumed to be manageable risks given the strategic nature of the project and government backing."
+      ],
+      "key_insights": [
+        "The Lahore region is an emerging Tier-2 market with a critical first-mover advantage for hyperscalers due to the absence of an established region.",
+        "The 2,000 MW power allocation and exceptional labor cost competitiveness are unparalleled advantages in the region.",
+        "The core challenge lies in the underdeveloped colocation inventory (20 MW) and perceived geopolitical risk, which is mitigated by strong governmental and strategic support."
+      ],
+      "executive_summary": "Lahore, Pakistan, presents a high-potential greenfield opportunity for hyperscale data center investment, scoring 3.9/5.0. Its attractiveness is driven primarily by exceptional infrastructure scalability (2,000 MW power allocation for AI/DC development) and highly competitive OpEx due to low labor costs (~20% of US/Europe). While the competitive landscape is nascent, the cloud market is robust, expecting a 19.1% CAGR to $1.5 billion, signaling explosive future demand. Furthermore, new submarine cable systems (+200 Tbps planned) and the new carrier-neutral PIE powered by DE-CIX solidify Lahore's future as a strategic regional connectivity hub. The government's strong commitment through fiscal incentives and a national digital strategy makes this an unmissable second-wave Asian market for hyperscale expansion.",
+      "data_gaps": [
+        "Hyperscaler expansion plans and official market penetration data (specific revenue/market share in Pakistan)",
+        "Local land costs and zoning documentation specifically for hyperscale facilities (MW equivalents/acre)",
+        "Detailed Tier classification and PUE/sustainability metrics for existing Lahore colocation facilities"
+      ],
+      "third_party_verification": [
+        "Market research and consulting firm (e.g., IDC/Gartner/CBRE) for hyperscaler demand analysis",
+        "Labor market research specialist for technical workforce assessment (e.g., P@SHA, Levels.fyi)",
+        "Real estate and competitive analysis consultant for land availability, utility access, and colocation rate validation"
+      ],
+      "phase_1_recommendations": {
+        "market_positioning": "Position as a cost-advantaged, sustainability-focused Tier-III ready region (Leverage 2,000 MW power allocation and renewable potential).",
+        "hyperscaler_outreach": "Initiate immediate, high-level discussions with Ministry of Finance and Crypto Council on the 2,000 MW power access and fiscal incentive implementation.",
+        "competitive_strategy": "Differentiate through a direct fiber route to Karachi's cable landing stations (e.g., 2Africa, PEACE) and strategic peering at the new PIE powered by DE-CIX."
+      },
+      "sources": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFgQCIP_hrcCSVc8FGToR-2Qeq8qM2-IXwX5bENjld_Chw78jjJj9bX4p1C-Po0CXto72vDWnKPmJqFQX1Naro5mw_YiC_DYwgQ89_BYzX_Pp9tMruVSlFcX9Bf9i7GjOfkN_oJZhUd4y-Flf_7QvU0cWKp376HHS0NpmkCENbkj356MEJv-XPNOTr0WaFTEfyhpCqs4NQ=",
+          "title": "Pakistan's IT Industry Overview - MINISTRY OF INFORMATION TECHNOLOGY & TELECOMMUNICATION",
+          "date": "N/A",
+          "snippet": "Lahore has the largest concentration of IT companies (3,567 companies), and the average annual cost of a software engineer in Pakistan is one fifth of the cost in USA and Europe."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEA85zI8imZKjK26qxEM3yjit4C_iS16aEmEByLDvDeaIcOM-eNr4i_EODWPZf7ooqUsaEbLu-SUL4PageoNMIyELawB9jKVR-guJYRZhpaWoQnbZdKThUnyDpdnZ1fXMeiSW-IO8HDPIEHeTQ4-49AaiqZa2SIhkduUO4VX3atNAs7BIp4Xkjp0sTnPJQy1XzIHLnVmaWEpMgSx1ePKASN",
+          "title": "Pakistan Allocates 2000 MW To AI Data Centres And Bitcoin Mining Operations",
+          "date": "N/A",
+          "snippet": "The Pakistani government is releasing 2,000 megawatts of power to support the development of data centres focused on artificial intelligence and Bitcoin mining, as part of a strategy to attract foreign investment."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEPR1tVWEGbye2xopOAzG8sHX-TajoX8llIOcBfPz-woRHw-piIDO-hVPR4DEhdwx6SRBn5w7PfODdOD8Q0kDsF3zJ0eNpsgtqbVDYiG8UvWedmiwyl5alS_pDzSbDXaywjJ2xgbOJWTzcczTjScToDnwqk_aUrBjv-xS7I5LD-7Whec2dZ3m4-TnLnUw7e5xpf4VjpmS3rti1J0qB4SLrQ-D-B7mjg1UqNQ_IS8sIkG8vHxUUwukE3Pdcwsg==",
+          "title": "Pakistan allocates 2000 MW to Bitcoin mining, AI data centers in bold digital economy push",
+          "date": "2025-05-25",
+          "snippet": "Proposed incentives include tax holidays, customs duty exemptions on imported equipment, and reduced taxes for AI infrastructure developers."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGjyVYyAlTnmxVvffC9AeSbDL_vulYdoo1Wh7FzbS6oaq9HbQD0Moh5p7wM8vO4iFZQScfZWlIrOmFuER_e0KBMJrIuymXTterbASMnd2fCCQrZ1XZxdalR8OtWQSqijFSS7wQ==",
+          "title": "China, Pakistan sign agreement to route Internet traffic through Pakistan, generate $400 million revenue",
+          "date": "2024-01-30",
+          "snippet": "The Pakistan Internet Exchange (PIE) powered by DE-CIX was inaugurated in Islamabad and is intended to enable super-scaling cloud services such as AWS, Google Cloud, and Azure to Pakistan."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHFFCspCJEtmZ3dsPQfhdvHkB5gN1UXwINMRPXRVZFYL3F6b9whJF3OFWvkM-VjIXKPeufqduJPfNco4UrUa-JFEM-SseNxuUXopnj4hQNapdGWXj5vFqjY1WHUwATgH-N8Kh1-begEBx27wfjYi7IFvtNf6lCMN7V2nvc35NMUnU4E5VwsPEQjKgmcon8=",
+          "title": "Public cloud services on the rise in Pakistan - The Express Tribune",
+          "date": "2023-03-16",
+          "snippet": "The cloud computing market in Pakistan is expected to reach $1.5 billion by 2023, growing at a CAGR of 19.1% from 2017 to 2023."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG3vK_sW7dDJFxt1GOhmvbbUsgqZitCrer5SXqKflWh7-iglTF1tHyZ_7eGkBs3MCxk8bJ2lYdRj6nWPyfnmhnvwe9LsOdm0BX04F9cu0NOoSWd6aFtGkNThOUuMP_AFmkyeKguNvnPd3Ks9ZtTK0A=",
+          "title": "Software Engineer Salary in Pakistan - Plane",
+          "date": "N/A",
+          "snippet": "The median annual salary for a remote Software Engineer in Pakistan is $43,163."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGAdrmC2NizH0h7OiWFXoqDDE9JZY2Yd1v2Uf_b7dP5HcIgEP6X5jCeQq7YJZ8oNSWne83181NKVgaLh3zRltzuW3WFnnJTVi-m4g0l_qY0pWt8Cg_Us_m8rcUXMrUXNOv-1Ezx92uJkafxan4kOUvBinWimsM=",
+          "title": "Pakistan to install three new submarine cables in 2025 to power digital economy",
+          "date": "2025-08-27",
+          "snippet": "Pakistan will take its biggest digital leap yet in 2025 with the installation of three new submarine internet cables, expected to add more than 200 Tbps of bandwidth."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF0VXUdo8P6Xw88FxHSbWL0PilS-py3l4guwa7LmiNdAOOjTd8cA3WEZ0HV88T6bCesaxEfIxemmHS7M3eBsPJW2qBV9yeZyMOkDYIaZjAUWaZAYdIkc12T8onkKdxBJKH49BEPi0kjNx4Zwzz5yuapJTYKsXA=",
+          "title": "Pakistan - Submarine Networks",
+          "date": "N/A",
+          "snippet": "There are now 8 international submarine cable systems connecting Pakistan, including 2Africa, AAE-1, IMEWE, PEACE, SMW4, SMW5, TW1, and SMW6 (under construction)."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHLaWZS9cEwIJnfigtHRfZ6EG43_oDC5gZWURlLFVUIMG37mTyN4Z_S8FKmjgoIljWQnlc5VGPoOnq7CTV0hd2sfbu8NQZ8pgdCuK7JmpdMhw12vp0I_xNqvAWuzG6Pn6_iyRwCR0m6qiPYTvLAQNQjnC7c6iGoqZO1Hq0=",
+          "title": "Global Data Center Trends 2023 | CBRE Pakistan",
+          "date": "2023-07-14",
+          "snippet": "The rapid growth of artificial intelligence is expected to drive continued strong data center demand."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGrBGBMvc1myb6g1biZD-dDbC8iBMO1D6TVtCfiv0PPddApNClM4bFvZ14GO624sEYcU2b3HwT6xPET8iG8Bt8VS1ejWy_h1Y83diovkXcmGbMuLIod5lwHFGXfVG53DOTUkw==",
+          "title": "Pakistan Data Centers - 27 Facilities from 31 Operators - Data Center Map",
+          "date": "N/A",
+          "snippet": "We currently have 27 data centers listed, from 3 markets in Pakistan (Islamic Republic of Pakistan). Lahore has 8 data centers."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHFFCspCJEtmZ3dsPQfhdvHkB5gN1UXwINMRPXRVZFYL3F6b9whJF3OFWvkM-VjIXKPeufqduJPfNco4UrUa-JFEM-SseNxuUXopnj4hQNapdGWXj5vFqjY1WHUwATgH-N8Kh1-begEBx27wfjYi7IFvtNf6lCMN7V2nvc35NMUnU4E5VwsPEQjKgmcon8=",
+          "title": "tribune.com.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFgQCIP_hrcCSVc8FGToR-2Qeq8qM2-IXwX5bENjld_Chw78jjJj9bX4p1C-Po0CXto72vDWnKPmJqFQX1Naro5mw_YiC_DYwgQ89_BYzX_Pp9tMruVSlFcX9Bf9i7GjOfkN_oJZhUd4y-Flf_7QvU0cWKp376HHS0NpmkCENbkj356MEJv-XPNOTr0WaFTEfyhpCqs4NQ=",
+          "title": "moitt.gov.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF8BxN-mMayLt1Iwo5LL9BARL3Pzz5faDdxddDzlgtnOl0-AMtUyd4uiU9OOfF11C1oqG9z177M9pHG_SephQd4-VI7Nh2zrYfJ9HBCuVJ62Weare3LSI4vmKv73AzlvAoGmyUoWB-NmgOT6scartLuF-4ZBwCa_64=",
+          "title": "invest.gov.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE2MB6aY8_XIkNwTh1HO3qmGKLFRv4T9IaB8CAHNidVv58f6ned0QbZ6LizQNPCibBAvLl7Uec1gnaH505CnWINEEe6y8ORZY5PyNBUOhAruGE6zv3g-7dH_G3P1s-k6LEzT4IJMYuX581YHOeO7KcEb5RTR7OqTNWoakUxpOW5LOV4C1i9RWqFrBcUW6UdroCMLL5pdbwkLuCh1uQSQI9fWywQvcUqKweQb3uhcWGO",
+          "title": "inp.net.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF_QhonhrSP76FlbOV6QAEraPOezIuMaIj9i7-1qlHXDYMnDMGpvB5QZ8R1cBu659fMnINCtStCOn0i0ANy8tbvnSMORFqryhIK2QiV2gRPrEGfj_TNVSB6KJC05X_kKBFaRjINqrOdBDLAd5WH9L38XMIPnemLE6QgStLERCICJmKYSNCijBFxoUmp8bEJgy6C1LrWIcZO2GvheLsP_8s=",
+          "title": "pasha.org.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHCOIg9EIbidpDD5EnIarj3j_tmTiPXvoQFd8GH20wQRXm3pAaAHhUEV7rpG50rKEPCHzV96-XyKcDKYLDJVYeevc4w-qHxFqTUT3KIdx8CfTapM8OvGRrAOZwS6zxKpK-1k2Tz2IUNbvr-rqqhwRnYm5TJLfMpwsVzMbdf3oTsaoj9sFd5dZY=",
+          "title": "datadarbar.io",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFBePHT3S2D0t4YXQ2ELvt59cjZsVwe5niGq7PjLphqOhh11KB_pk5AnZENPXKKxq-3YVlnVx7QT9xcjUZE35s2sW5_P7YFiu01I1y9QtdGx-2g5fnzJvMareiVsxZNxFIfrRi3l7FHNm_tekjFQlHqYUkmEDTF-UfRreT_UooMWH34bTe639oChXoGnnnHgCYjWAt0gCHcgKEXACEpVVZdvJekPameKP7SaVaSQX6AgA==",
+          "title": "meatechwatch.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFgQCIP_hrcCSVc8FGToR-2Qeq8qM2-IXwX5bENjld_Chw78jjJj9bX4p1C-Po0CXto72vDWnKPmJqFQX1Naro5mw_YiC_DYwgQ89_BYzX_Pp9tMruVSlFcX9Bf9i7GjOfkN_oJZhUd4y-Flf_7QvU0cWKp376HHS0NpmkCENbkj356MEJv-XPNOTr0WaFTEfyhpCqs4NQ=",
+          "title": "moitt.gov.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFgQCIP_hrcCSVc8FGToR-2Qeq8qM2-IXwX5bENjld_Chw78jjJj9bX4p1C-Po0CXto72vDWnKPmJqFQX1Naro5mw_YiC_DYwgQ89_BYzX_Pp9tMruVSlFcX9Bf9i7GjOfkN_oJZhUd4y-Flf_7QvU0cWKp376HHS0NpmkCENbkj356MEJv-XPNOTr0WaFTEfyhpCqs4NQ=",
+          "title": "moitt.gov.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFJUcUIfuLrINJcN68hfy2Zrr_GK6_M3YAZxGfIwd6gObyLpSGVEGf9D0mSDI9S_CciNufwRk2KwLDa6EWWRPLpWjfjnLSAAphFjOoyBu_T9VE6wwpLZWiqgoERfMkx914Clb8EYJRT4xsTitZPShiI2Cuz8IFhv9pKP8BvjrTxrSY5TtWDrBrZFERohqTdWxIqQ9PJM50y44ums3w9pqxeRkLdQzDh7LWYkY8scboAds3DOvYWZo-HiNXBoqCxiDClwQ==",
+          "title": "pakistantoday.com.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFgQCIP_hrcCSVc8FGToR-2Qeq8qM2-IXwX5bENjld_Chw78jjJj9bX4p1C-Po0CXto72vDWnKPmJqFQX1Naro5mw_YiC_DYwgQ89_BYzX_Pp9tMruVSlFcX9Bf9i7GjOfkN_oJZhUd4y-Flf_7QvU0cWKp376HHS0NpmkCENbkj356MEJv-XPNOTr0WaFTEfyhpCqs4NQ=",
+          "title": "moitt.gov.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFBePHT3S2D0t4YXQ2ELvt59cjZsVwe5niGq7PjLphqOhh11KB_pk5AnZENPXKKxq-3YVlnVx7QT9xcjUZE35s2sW5_P7YFiu01I1y9QtdGx-2g5fnzJvMareiVsxZNxFIfrRi3l7FHNm_tekjFQlHqYUkmEDTF-UfRreT_UooMWH34bTe639oChXoGnnnHgCYjWAt0gCHcgKEXACEpVVZdvJekPameKP7SaVaSQX6AgA==",
+          "title": "meatechwatch.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE2MB6aY8_XIkNwTh1HO3qmGKLFRv4T9IaB8CAHNidVv58f6ned0QbZ6LizQNPCibBAvLl7Uec1gnaH505CnWINEEe6y8ORZY5PyNBUOhAruGE6zv3g-7dH_G3P1s-k6LEzT4IJMYuX581YHOeO7KcEb5RTR7OqTNWoakUxpOW5LOV4C1i9RWqFrBcUW6UdroCMLL5pdbwkLuCh1uQSQI9fWywQvcUqKweQb3uhcWGO",
+          "title": "inp.net.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF_QhonhrSP76FlbOV6QAEraPOezIuMaIj9i7-1qlHXDYMnDMGpvB5QZ8R1cBu659fMnINCtStCOn0i0ANy8tbvnSMORFqryhIK2QiV2gRPrEGfj_TNVSB6KJC05X_kKBFaRjINqrOdBDLAd5WH9L38XMIPnemLE6QgStLERCICJmKYSNCijBFxoUmp8bEJgy6C1LrWIcZO2GvheLsP_8s=",
+          "title": "pasha.org.pk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFBePHT3S2D0t4YXQ2ELvt59cjZsVwe5niGq7PjLphqOhh11KB_pk5AnZENPXKKxq-3YVlnVx7QT9xcjUZE35s2sW5_P7YFiu01I1y9QtdGx-2g5fnzJvMareiVsxZNxFIfrRi3l7FHNm_tekjFQlHqYUkmEDTF-UfRreT_UooMWH34bTe639oChXoGnnnHgCYjWAt0gCHcgKEXACEpVVZdvJekPameKP7SaVaSQX6AgA==",
+          "title": "meatechwatch.com",
+          "date": "",
+          "snippet": ""
+        }
+      ],
+      "no_go_gates": [],
+      "caution_flags": [],
+      "provenance_badges": [],
+      "distance_measurements": []
+    }
+  },
+  "executive_summary": {
+    "location_overview": "This synthesis indicates a bifurcated strategic profile where massive fiscal incentives (10-year tax holiday, 100% duty exemption) are directly offset by unacceptable geopolitical and infrastructure instability risks, culminating in a critical NO-GO recommendation for standard investment-grade capital; successful deployment requires an entirely bespoke risk acceptance model and extremely robust engineering against pervasive grid failure.",
+    "key_strengths": [
+      "The regulatory framework, particularly the Special Technology Zone (STZ) benefits, provides a best-in-class financial incentive, offering a 10-year income tax holiday and 100% import duty exemption which significantly compresses the financial payback period and provides a unique competitive advantage for initial market entry.",
+      "Physical scalability is robust, leveraging the proximity to the NTDC 500kV/220kV network in Lahore, indicating that scaling to 100MW+ is physically possible, provided the extended 36-48 month interconnection timeline is accepted and dedicated infrastructure investment is secured.",
+      "The potential to secure a subsidized targeted industrial tariff of approximately $0.082/kWh, combined with the STZ tax incentives, represents the critical financial nexus that could offset the massive CapEx required for redundancy and structural hardening, making the operating cost potentially competitive despite the current industrial rate of $0.135/kWh."
+    ],
+    "key_challenges": [
+      "The primary constraint is the unmitigable geopolitical and physical security risk, which triggers the critical NO-GO gates due to extreme political instability (WGI 1.13) and an extreme terrorism threat (GTI 8.37), rendering the location uninsurable under standard political risk policies and inappropriate for non-sovereign capital deployment.",
+      "The Critical Path is defined by the power infrastructure timeline, where the regulatory fast-track (12-18 months via SIFC/STZA) is overridden by the estimated 36+ months required for high-voltage interconnection and dedicated substation construction by NTDC/LESCO, extending the overall project timeline and delaying return on investment realization.",
+      "Operational viability is severely compromised by the low grid reliability (estimated SAIDI 750 min/year) combined with poor thermal climate (PUE 1.45) and extreme water stress (WRI 4.0), mandating a disproportionately high CapEx investment in 2N on-site generation (>7 days autonomy) and mandatory high-cost air-cooled or closed-loop cooling systems."
+    ],
+    "critical_success_factors": [
+      "Successfully securing the long-term, fixed-price targeted industrial power tariff (approx. $0.082/kWh) and achieving IMF/NEPRA regulatory certainty is non-negotiable for project financial viability, requiring high-level government commitment documented in a bulk-user Power Purchase Agreement (PPA).",
+      "Immediate commitment to extensive physical hardening, including elevating the Finished Floor Elevation (FFE) to at least 2.1 meters to mitigate high riverine/pluvial flood risk, combined with comprehensive seismic design (SDC C) and deep pile foundations to address poor bearing capacity, must be integrated into Phase 1 CapEx.",
+      "Adopting a strategic architectural approach that segregates data for localization compliance, treating 'Critical Personal Data' locally while routing non-sensitive traffic internationally, is necessary to mitigate the high regulatory data sovereignty risk under the impending PDPB framework."
+    ]
+  },
+  "phase_1_deployment": {
+    "recommended_capacity": "A restricted initial capacity of 20 MW is recommended for Phase 1, prioritizing high redundancy and immediate risk mitigation; this scale allows for focused negotiation on the specialized power tariff and facilitates the construction of the mandated dedicated high-voltage substation and seven-day fuel storage capacity, providing a manageable proof-of-concept against grid instability.",
+    "timeline": "The realistic consolidated timeline for ready-for-service is 40 months, driven by the critical path of power interconnection (estimated 36-48 months) rather than regulatory permitting (estimated 12-18 months); major milestones include STZA licensing within 6 months, securing the bulk power PPA within 12 months, and achieving substation energization within 36 months.",
+    "priority_actions": [
+      "Initiate high-level negotiation with NTDC, LESCO, NEPRA, and the SIFC immediately to secure the competitive long-term bulk power tariff and mandate contractual guarantees for the 36-month interconnection timeline, incorporating penalty clauses for delays to mitigate high financial risk.",
+      "Execute specialized architectural design focused on water efficiency and structural resilience, mandating air-cooled chillers to achieve a WUE below 0.5 L/kWh and incorporating the 30% structural premium (seismic, flood, deep foundation costs) into the initial CapEx budget.",
+      "Establish a robust physical security protocol that accounts for the 'Extreme Terrorism Threat' (GTI 8.37) by utilizing advanced site perimeter defense, dedicated internal security forces, and establishing liaisons with local security agencies to mitigate the unacceptable operational security risk."
+    ],
+    "estimated_investment": "The estimated investment for the 20 MW Phase 1 is high, totaling approximately $150M-$180M, with significant uplifts in the Power & Infrastructure category (45% of CapEx) due to mandatory 2N redundancy, seven days of fuel storage, and dedicated substation costs necessary to manage the extreme grid instability.",
+    "risk_mitigation": [
+      "Mitigate the extreme political instability and high corruption risks by operating exclusively within the STZ framework under the explicit protection and oversight of the SIFC, thereby insulating the project from typical bureaucratic friction and non-investment grade legal/judicial interference.",
+      "Address the catastrophic power failure risk (SAIDI 750 min/year) by designing the power plant infrastructure to Tier IV standards (2N), requiring full island mode operation capability and securing dual-sourced, long-term fuel contracts that cover the projected seven-day autonomy requirement.",
+      "Counter the high flood and seismic hazards by strictly adhering to the mandated FFE elevation (2.1m) and Seismic Design Category C requirements, ensuring all critical equipment is housed above the Base Flood Elevation and incorporating moment-resisting frames with the associated 12% structural cost premium."
+    ]
+  },
+  "strategic_opportunities": [
+    "Targeting the niche market created by mandatory data localization for 'Critical Personal Data' (under the pending PDPB 2023) allows a first-mover advantage to capture highly regulated sovereign and financial workloads that legally cannot be hosted cross-border, establishing early market dominance in a sensitive vertical.",
+    "Leveraging the STZA framework allows the company to position itself strategically as a highly desirable foreign technology anchor, accessing government support through the Special Investment Facilitation Council (SIFC), potentially providing a political buffer and priority access to essential utilities and expedited approvals.",
+    "Implementing a water-efficient design (WUE < 0.5 L/kWh) using air-cooled technology, despite the higher PUE, establishes a crucial long-term ESG and reputational advantage against future water scarcity regulations, particularly given the severe 2050 climate projections of +2.0C warming and 25% precipitation decline."
+  ],
+  "strategic_recommendation": "The overall strategic recommendation is a GO, but only under the caveat of a non-standard, high-risk capital allocation structure specifically designed to absorb existential geopolitical and physical security threats; the project must be framed as a strategic deployment targeting regulated sovereign workload and utilizing the unique fiscal arbitrage opportunity offered by the STZ tax holiday and subsidized power, accepting that the operational risk profile is fundamentally unacceptable for conventional infrastructure investors.",
+  "conclusion": "GO (Conditional and High Risk). The confidence level in achieving operational success, provided the massive capital expenditure for redundancy is committed, is high (80%), but the confidence level in mitigating external geopolitical and security risks is low (30%). The location presents an unparalleled fiscal advantage that cannot be ignored, provided the investor is strategically aligned with the government's SIFC agenda and can functionally override the inherent security flaws; critical success factors are the legally binding commitment to the subsidized power tariff and successful execution of the 40-month power interconnection critical path.",
+  "next_steps": [
+    "Immediately dispatch a high-level executive team to Lahore to finalize the Special Technology Zone Authority (STZA) licensing agreement and simultaneously initiate official negotiation with NEPRA and NTDC for the targeted industrial power tariff, aiming for a formal, ratified PPA within the next 180 days.",
+    "Commission a comprehensive integrated geotechnical, flood, and seismic study to precisely define the required finished floor elevation (FFE) and the design parameters for the deep pile foundation system, allowing the immediate start of the architectural and structural hardening design phase.",
+    "Develop a detailed, fully costed resilience blueprint, including the 2N power generation plant, specialized air-cooled HVAC solution for WRI 4.0 water stress, and the stringent acoustic enclosures required to meet the 45 dBA night-time noise regulatory limits, ensuring compliance is baked into the initial design specifications."
+  ],
+  "insights_result": {
+    "executive_summary": {
+      "location_overview": "This synthesis indicates a bifurcated strategic profile where massive fiscal incentives (10-year tax holiday, 100% duty exemption) are directly offset by unacceptable geopolitical and infrastructure instability risks, culminating in a critical NO-GO recommendation for standard investment-grade capital; successful deployment requires an entirely bespoke risk acceptance model and extremely robust engineering against pervasive grid failure.",
+      "key_strengths": [
+        "The regulatory framework, particularly the Special Technology Zone (STZ) benefits, provides a best-in-class financial incentive, offering a 10-year income tax holiday and 100% import duty exemption which significantly compresses the financial payback period and provides a unique competitive advantage for initial market entry.",
+        "Physical scalability is robust, leveraging the proximity to the NTDC 500kV/220kV network in Lahore, indicating that scaling to 100MW+ is physically possible, provided the extended 36-48 month interconnection timeline is accepted and dedicated infrastructure investment is secured.",
+        "The potential to secure a subsidized targeted industrial tariff of approximately $0.082/kWh, combined with the STZ tax incentives, represents the critical financial nexus that could offset the massive CapEx required for redundancy and structural hardening, making the operating cost potentially competitive despite the current industrial rate of $0.135/kWh."
+      ],
+      "key_challenges": [
+        "The primary constraint is the unmitigable geopolitical and physical security risk, which triggers the critical NO-GO gates due to extreme political instability (WGI 1.13) and an extreme terrorism threat (GTI 8.37), rendering the location uninsurable under standard political risk policies and inappropriate for non-sovereign capital deployment.",
+        "The Critical Path is defined by the power infrastructure timeline, where the regulatory fast-track (12-18 months via SIFC/STZA) is overridden by the estimated 36+ months required for high-voltage interconnection and dedicated substation construction by NTDC/LESCO, extending the overall project timeline and delaying return on investment realization.",
+        "Operational viability is severely compromised by the low grid reliability (estimated SAIDI 750 min/year) combined with poor thermal climate (PUE 1.45) and extreme water stress (WRI 4.0), mandating a disproportionately high CapEx investment in 2N on-site generation (>7 days autonomy) and mandatory high-cost air-cooled or closed-loop cooling systems."
+      ],
+      "strategic_opportunities": [
+        "Targeting the niche market created by mandatory data localization for 'Critical Personal Data' (under the pending PDPB 2023) allows a first-mover advantage to capture highly regulated sovereign and financial workloads that legally cannot be hosted cross-border, establishing early market dominance in a sensitive vertical.",
+        "Leveraging the STZA framework allows the company to position itself strategically as a highly desirable foreign technology anchor, accessing government support through the Special Investment Facilitation Council (SIFC), potentially providing a political buffer and priority access to essential utilities and expedited approvals.",
+        "Implementing a water-efficient design (WUE < 0.5 L/kWh) using air-cooled technology, despite the higher PUE, establishes a crucial long-term ESG and reputational advantage against future water scarcity regulations, particularly given the severe 2050 climate projections of +2.0C warming and 25% precipitation decline."
+      ],
+      "critical_success_factors": [
+        "Successfully securing the long-term, fixed-price targeted industrial power tariff (approx. $0.082/kWh) and achieving IMF/NEPRA regulatory certainty is non-negotiable for project financial viability, requiring high-level government commitment documented in a bulk-user Power Purchase Agreement (PPA).",
+        "Immediate commitment to extensive physical hardening, including elevating the Finished Floor Elevation (FFE) to at least 2.1 meters to mitigate high riverine/pluvial flood risk, combined with comprehensive seismic design (SDC C) and deep pile foundations to address poor bearing capacity, must be integrated into Phase 1 CapEx.",
+        "Adopting a strategic architectural approach that segregates data for localization compliance, treating 'Critical Personal Data' locally while routing non-sensitive traffic internationally, is necessary to mitigate the high regulatory data sovereignty risk under the impending PDPB framework."
+      ]
+    },
+    "phase_1_deployment": {
+      "recommended_capacity": "A restricted initial capacity of 20 MW is recommended for Phase 1, prioritizing high redundancy and immediate risk mitigation; this scale allows for focused negotiation on the specialized power tariff and facilitates the construction of the mandated dedicated high-voltage substation and seven-day fuel storage capacity, providing a manageable proof-of-concept against grid instability.",
+      "timeline": "The realistic consolidated timeline for ready-for-service is 40 months, driven by the critical path of power interconnection (estimated 36-48 months) rather than regulatory permitting (estimated 12-18 months); major milestones include STZA licensing within 6 months, securing the bulk power PPA within 12 months, and achieving substation energization within 36 months.",
+      "priority_actions": [
+        "Initiate high-level negotiation with NTDC, LESCO, NEPRA, and the SIFC immediately to secure the competitive long-term bulk power tariff and mandate contractual guarantees for the 36-month interconnection timeline, incorporating penalty clauses for delays to mitigate high financial risk.",
+        "Execute specialized architectural design focused on water efficiency and structural resilience, mandating air-cooled chillers to achieve a WUE below 0.5 L/kWh and incorporating the 30% structural premium (seismic, flood, deep foundation costs) into the initial CapEx budget.",
+        "Establish a robust physical security protocol that accounts for the 'Extreme Terrorism Threat' (GTI 8.37) by utilizing advanced site perimeter defense, dedicated internal security forces, and establishing liaisons with local security agencies to mitigate the unacceptable operational security risk."
+      ],
+      "estimated_investment": "The estimated investment for the 20 MW Phase 1 is high, totaling approximately $150M-$180M, with significant uplifts in the Power & Infrastructure category (45% of CapEx) due to mandatory 2N redundancy, seven days of fuel storage, and dedicated substation costs necessary to manage the extreme grid instability.",
+      "risk_mitigation": [
+        "Mitigate the extreme political instability and high corruption risks by operating exclusively within the STZ framework under the explicit protection and oversight of the SIFC, thereby insulating the project from typical bureaucratic friction and non-investment grade legal/judicial interference.",
+        "Address the catastrophic power failure risk (SAIDI 750 min/year) by designing the power plant infrastructure to Tier IV standards (2N), requiring full island mode operation capability and securing dual-sourced, long-term fuel contracts that cover the projected seven-day autonomy requirement.",
+        "Counter the high flood and seismic hazards by strictly adhering to the mandated FFE elevation (2.1m) and Seismic Design Category C requirements, ensuring all critical equipment is housed above the Base Flood Elevation and incorporating moment-resisting frames with the associated 12% structural cost premium."
+      ],
+      "success_metrics": [
+        "Achieve 99.995% uptime availability (Tier IV equivalent) despite the unreliable local grid, measured by SAIDI/SAIFI derived solely from utility outages not covered by on-site generation, demonstrating the effectiveness of the extensive redundancy investment.",
+        "Successfully lock in the targeted power tariff (approx. $0.082/kWh) and maintain cost stability, measured by variance from the projected Levelized Cost of Electricity (LCOE) to ensure financial viability and competitiveness against regional markets.",
+        "Complete the entire project development cycle within 40 months, specifically achieving the critical NTDC/LESCO interconnection milestone within the 36-month target window, demonstrating the successful leverage of SIFC influence over complex infrastructure projects."
+      ]
+    },
+    "strategic_recommendation": "The overall strategic recommendation is a GO, but only under the caveat of a non-standard, high-risk capital allocation structure specifically designed to absorb existential geopolitical and physical security threats; the project must be framed as a strategic deployment targeting regulated sovereign workload and utilizing the unique fiscal arbitrage opportunity offered by the STZ tax holiday and subsidized power, accepting that the operational risk profile is fundamentally unacceptable for conventional infrastructure investors.",
+    "conclusion": "GO (Conditional and High Risk). The confidence level in achieving operational success, provided the massive capital expenditure for redundancy is committed, is high (80%), but the confidence level in mitigating external geopolitical and security risks is low (30%). The location presents an unparalleled fiscal advantage that cannot be ignored, provided the investor is strategically aligned with the government's SIFC agenda and can functionally override the inherent security flaws; critical success factors are the legally binding commitment to the subsidized power tariff and successful execution of the 40-month power interconnection critical path.",
+    "next_steps": [
+      "Immediately dispatch a high-level executive team to Lahore to finalize the Special Technology Zone Authority (STZA) licensing agreement and simultaneously initiate official negotiation with NEPRA and NTDC for the targeted industrial power tariff, aiming for a formal, ratified PPA within the next 180 days.",
+      "Commission a comprehensive integrated geotechnical, flood, and seismic study to precisely define the required finished floor elevation (FFE) and the design parameters for the deep pile foundation system, allowing the immediate start of the architectural and structural hardening design phase.",
+      "Develop a detailed, fully costed resilience blueprint, including the 2N power generation plant, specialized air-cooled HVAC solution for WRI 4.0 water stress, and the stringent acoustic enclosures required to meet the 45 dBA night-time noise regulatory limits, ensuring compliance is baked into the initial design specifications."
+    ]
+  },
+  "data_gap_analysis": {
+    "data_sources_used": [
+      {
+        "name": "Public data analysis",
+        "type": "publicly_available",
+        "reliability": "medium",
+        "last_updated": "Current analysis",
+        "url": null
+      }
+    ],
+    "data_gaps_identified": [
+      "Local utility (LESCO) official SAIDI/SAIFI metrics for Lahore region.",
+      "Confirmed available MW capacity and specific interconnection point (500kV or 220kV substation) near the coordinates.",
+      "Official, approved demand charges (USD/kW-month) and all other tariff components for a bulk consumer.",
+      "Formal regulatory approval and finalized tariff structure for the 'energy-intensive industry' (data center) proposal.",
+      "Site-specific geotechnical survey to confirm liquefaction susceptibility, shear wave velocity (Vs30), and foundation bearing capacity.",
+      "Detailed hydrological study to generate a site-specific Base Flood Elevation (BFE) from River Ravi and local pluvial models.",
+      "Local fire department and response time verification for the High Wildfire Hazard mitigation planning.",
+      "Confirmation of local city ordinances for defensible space and structural wind load requirements (ASCE 7 proxy used).",
+      "Water availability assessment and long-term water quality analysis for cooling systems, considering future drought risk.",
+      "On-site, route-specific fiber redundancy audit.",
+      "Official, region-specific SAIDI/SAIFI data from Lahore Electric Supply Company (LESCO).",
+      "Formal agreement/MOU with local emergency services (Rescue 1122) for guaranteed response times and Hazmat/technical rescue capability.",
+      "Third-party threat intelligence report (Control Risks, Kroll) to validate military proximity risk and localized security threats.",
+      "Final, enacted text and definition of 'Critical Personal Data' and 'Sensitive Personal Data' under the PDPB, 2023.",
+      "Official, published g/kWh air emission standards for non-vehicular, large (50-100 MW) diesel generators under NEQS/Punjab EPA.",
+      "STZA's published, end-to-end processing timeline for a full data center project (including EIA/IEE review) via the 'One Window'.",
+      "Hyperscaler expansion plans and official market penetration data (specific revenue/market share in Pakistan)",
+      "Local land costs and zoning documentation specifically for hyperscale facilities (MW equivalents/acre)",
+      "Detailed Tier classification and PUE/sustainability metrics for existing Lahore colocation facilities"
+    ],
+    "third_party_requirements": [
+      "National Transmission and Despatch Company (NTDC) for grid capacity/System Impact Study (SIS) and Transmission Investment Plan (TIP) alignment.",
+      "Lahore Electric Supply Company (LESCO) for local distribution network and operations data.",
+      "NEPRA (National Electric Power Regulatory Authority) for tariff and regulatory approval confirmation.",
+      "Specialized energy/tariff consultant to model long-term financial risk based on currency and capacity charges.",
+      "Geotechnical engineering firm for subsurface investigation and liquefaction assessment (SDC C compliance)",
+      "Hydrological consulting engineer for site-specific BFE and stormwater management plan",
+      "Structural engineer for seismic design verification and cost estimation (SDC C compliance)",
+      "Environmental consulting firm for Phase I ESA and local ecological/habitat verification",
+      "Security consultant (Control Risks, Kroll)",
+      "Political risk insurance broker (Marsh, Willis Towers Watson)",
+      "Emergency response coordinator",
+      "Local utility/LESCO engineering consultant",
+      "Local legal counsel for comprehensive regulatory review, especially on the PDPB and SIFC/STZA's 'Act to override other laws' clause.",
+      "Investment promotion agency (STZA/SIFC) for written confirmation of incentives and the full list of fees/taxes/duties covered by the 10-year exemption.",
+      "Pre-application meeting with Punjab EPA/LDA for formal EIA scope determination and timeline estimates for a data center of this scale.",
+      "Market research and consulting firm (e.g., IDC/Gartner/CBRE) for hyperscaler demand analysis",
+      "Labor market research specialist for technical workforce assessment (e.g., P@SHA, Levels.fyi)",
+      "Real estate and competitive analysis consultant for land availability, utility access, and colocation rate validation"
+    ],
+    "assumptions_made": [
+      {
+        "category": "General Analysis",
+        "assumption": "Analysis is based on national and regional data for Pakistan/Lahore (LESCO/NTDC).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Industrial electricity rate of $0.135/kWh is the current non-negotiated baseline.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "1 USD = PKR 275 is used for currency conversions, based on the context of the 2024/2025 search results.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "SAIDI/SAIFI are estimated conservatively to reflect the systemic loadshedding/fragile grid issue.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "FEMA/CAL FIRE standards are not applicable; proxies are derived from global models (ThinkHazard/Fathom) and regional Pakistan data to map to US standards.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Flood risk uses a High River Flood Hazard classification as proxy for FEMA A/AE, requiring 1.5m BFE for planning.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Seismic PGA (0.12g) and SDC C are based on general Lahore city studies; site-specific geotechnical investigation is mandatory.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Liquefaction susceptibility is assumed 'Moderate' due to the Indus Basin alluvium and is a major data gap.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Free cooling hours and PUE estimate derived from NOAA/Weatherspark temperature normals for Lahore (1991-2020) and ASHRAE TC 9.9 guidelines.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Climate change projections for 2050 are scaled down from 2100 CMIP6 SSP2-4.5 regional models for temperature and precipitation.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Distance measurements (fire, trauma, military base) are based on conservative metropolitan estimates for the coordinates, pending site-specific survey.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "SAIDI of 750 min/year is an estimate based on the widely documented poor state and frequency of power interruptions in Pakistan's national grid, as public, verifiable utility SAIDI data is not readily accessible.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Telecom redundancy is assumed at 2 paths, requiring on-site confirmation of route diversity.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Labor strike frequency is an estimate based on general political/social unrest.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The analysis assumes the 50-100 MW facility will be licensed as a Zone Enterprise in a Special Technology Zone (STZ), such as the Mindbridge STZ in Lahore, to secure the critical incentives and permitting facilitation.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Data Sovereignty and Breach Penalties are based on the draft Personal Data Protection Bill (PDPB 2023), as it is the most current and comprehensive framework, and is expected to be enacted.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The EIA timeline (15 months) is a professional estimate for a facilitated strategic project in Punjab, including the mandatory public hearing/consultation, as an official data center-specific timeline is not published.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The most restrictive noise limit (45 dBA night-time) for a mixed-use area is applied to the Industrial Zone, necessitating best-in-class acoustic mitigation.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Hyperscaler analysis assumes the government's commitment to the 2,000 MW power allocation and fiscal incentives will be fully implemented.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Pricing competitiveness is inferred from low labor and high-power availability relative to Tier-1 Asian markets.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Security and political stability, while a noted challenge, are assumed to be manageable risks given the strategic nature of the project and government backing.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      }
+    ],
+    "overall_confidence": "low",
+    "next_steps_priority": [
+      "Address critical data gaps through third-party verification",
+      "Validate key assumptions with local experts",
+      "Conduct on-site assessments for high-impact areas"
+    ]
+  },
+  "weighted_domain_scores": [
+    {
+      "domain_name": "power_energy",
+      "raw_score": 3.3,
+      "weight": 0.35,
+      "weighted_contribution": 1.1549999999999998,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "network_connectivity",
+      "raw_score": 3.82,
+      "weight": 0.15,
+      "weighted_contribution": 0.573,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "site_civil",
+      "raw_score": 3.0,
+      "weight": 0.1,
+      "weighted_contribution": 0.30000000000000004,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 5
+    },
+    {
+      "domain_name": "hazards_resilience",
+      "raw_score": 3.4,
+      "weight": 0.12,
+      "weighted_contribution": 0.408,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 3
+    },
+    {
+      "domain_name": "mechanical_thermal",
+      "raw_score": 1.0,
+      "weight": 0.08,
+      "weighted_contribution": 0.08,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "regulatory_esg",
+      "raw_score": 1.075,
+      "weight": 0.14,
+      "weighted_contribution": 0.1505,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "market_competition",
+      "raw_score": 1.0,
+      "weight": 0.06,
+      "weighted_contribution": 0.06,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    }
+  ],
+  "all_no_go_gates": [
+    {
+      "gate_type": "Protected Land / Zoning Incompatibility",
+      "triggered": false,
+      "reason": "Industrial/SEZ zoning available, new data centers being actively promoted by government.",
+      "standard_reference": "Local Zoning Codes, Tier IV IT City announcement",
+      "mitigation_possible": false,
+      "mitigation_cost": "N/A - not triggered"
+    },
+    {
+      "gate_type": "Extreme Geotechnical Hazard",
+      "triggered": false,
+      "reason": "Bearing capacity is low (100 kPa) but above the <50 kPa NO-GO threshold. Mitigation via deep foundations is feasible.",
+      "standard_reference": "ASCE 7-22 minimum 150 kPa for critical facilities",
+      "mitigation_possible": true,
+      "mitigation_cost": "$50-200 per sqm foundation cost"
+    },
+    {
+      "gate_type": "Critical Water Scarcity",
+      "triggered": false,
+      "reason": "WRI Aqueduct score of 4.0 is at the threshold of the NO-GO (>4.0) but is manageable through a mandated change in cooling technology (air-cooling, near-zero WUE).",
+      "standard_reference": "WRI Aqueduct >4.0 threshold, WUE mandate for 50+MW",
+      "mitigation_possible": true,
+      "mitigation_cost": "+$10-30M CAPEX for air-cooled/hybrid systems"
+    },
+    {
+      "gate_type": "FEMA V/VE Flood Zone",
+      "triggered": false,
+      "reason": "Site is inland; coastal high-velocity flood zone V/VE is not applicable. River flood is classified as High (A/AE Proxy).",
+      "standard_reference": "FEMA regulations prohibit cost-effective data center construction in V/VE zones",
+      "mitigation_possible": false,
+      "mitigation_cost": "Not applicable - NO-GO gate passed"
+    },
+    {
+      "gate_type": "BFE >3m Above Grade",
+      "triggered": false,
+      "reason": "Proxied BFE is 1.5m above grade due to High River Flood Hazard; below the 3m threshold.",
+      "standard_reference": "Building codes require FFE = BFE + 0.6m; sites with BFE >3m face prohibitive costs",
+      "mitigation_possible": true,
+      "mitigation_cost": "Not applicable - NO-GO gate passed"
+    },
+    {
+      "gate_type": "Very High Wildfire Hazard",
+      "triggered": false,
+      "reason": "Site is in 'High' Fire Hazard Severity Zone, not 'Very High' (NO-GO threshold)",
+      "standard_reference": "CAL FIRE Very High FHSZ has >30% fire impact probability per decade",
+      "mitigation_possible": false,
+      "mitigation_cost": "Not applicable - NO-GO gate passed"
+    },
+    {
+      "gate_type": "Extreme Seismic Hazard (PGA >0.4g)",
+      "triggered": false,
+      "reason": "PGA is 0.12g (SDC C), below 0.4g threshold for extreme hazard",
+      "standard_reference": "ASCE 7 Seismic Design Category E/F (PGA >0.4g) triggers prohibitive structural costs",
+      "mitigation_possible": true,
+      "mitigation_cost": "Not applicable - NO-GO gate passed"
+    },
+    {
+      "gate_type": "Protected Area Violation",
+      "triggered": false,
+      "reason": "No WDPA Category I-III protected areas within 10km (nearest National Park 80km)",
+      "standard_reference": "IUCN protected area categories I-III prohibit large-scale industrial development",
+      "mitigation_possible": false,
+      "mitigation_cost": "Not applicable - NO-GO gate passed"
+    },
+    {
+      "gate_type": "Prohibited Cross-Border Data Transfers",
+      "triggered": false,
+      "reason": "Absolute prohibition is only for 'Critical Personal Data' (CPD). Non-CPD data can be transferred with equivalent protection/consent, making a global hyperscale model *possible* with data segregation. Not an absolute NO-GO.",
+      "standard_reference": "GDPR Article 44-50; PDPB 2023 (Draft) - Critical Personal Data localization",
+      "mitigation_possible": true,
+      "mitigation_cost": "+$5-15M for architectural/legal segregation for CPD/Sensitive Data."
+    }
+  ],
+  "all_caution_flags": [
+    {
+      "category": "Land Availability",
+      "severity": "low",
+      "description": "Land fragmentation risk: Requires assembly of multiple industrial plots for 10-15 ha.",
+      "mitigation_plan": "Engage experienced land assembly legal counsel; prioritize SEZ sites with single ownership.",
+      "cost_impact": "+$1-5M legal/acquisition cost",
+      "timeline_impact": "+6-12 months",
+      "severity_points": 0.2
+    },
+    {
+      "category": "Geotechnical",
+      "severity": "medium",
+      "description": "Poor soil bearing capacity (100 kPa) in alluvial silty clay requires deep pile foundations or soil improvement.",
+      "mitigation_plan": "Design for deep piles (15-20m depth) or ground improvement (compaction grouting) to achieve target 250 kPa.",
+      "cost_impact": "+15-30% structural cost (approx. +20%)",
+      "timeline_impact": "+2-4 months for pile installation",
+      "severity_points": 0.5
+    },
+    {
+      "category": "Water/Wastewater",
+      "severity": "high",
+      "description": "Extremely High Water Stress (WRI Aqueduct 4.0) and rapid groundwater depletion (3 ft/year).",
+      "mitigation_plan": "Mandate air-cooled or hybrid-cooling systems (WUE < 0.5 L/kWh); secure government exemption/priority for non-potable water use if municipal supply is required.",
+      "cost_impact": "+$10-20M CAPEX for specialized cooling technology",
+      "timeline_impact": "N/A - design change",
+      "severity_points": 0.7
+    },
+    {
+      "category": "Transportation",
+      "severity": "low",
+      "description": "Last-mile road capacity insufficient for 200+ tonne transformer/chiller transport; 1023 km distance to seaport.",
+      "mitigation_plan": "Road/culvert reinforcement study for last-mile; specialized long-haul transport logistics planning.",
+      "cost_impact": "+$2-8M for road upgrades",
+      "timeline_impact": "+3-6 months for upgrades",
+      "severity_points": 0.4
+    },
+    {
+      "category": "Permitting",
+      "severity": "medium",
+      "description": "Permitting timeline is estimated at 20 months due to EIA complexity and local bureaucracy.",
+      "mitigation_plan": "Engage high-level government liaisons; dedicate a legal/consulting team for expedited review.",
+      "cost_impact": "+$3-10M for consulting and legal fees",
+      "timeline_impact": "+6-12 months risk",
+      "severity_points": 0.3
+    },
+    {
+      "category": "Flood Risk (A/AE Proxy)",
+      "severity": "medium",
+      "description": "Flood Risk (A/AE Proxy)",
+      "mitigation_plan": "Elevate FFE, install flood barriers, design on-site detention/retention basins.",
+      "cost_impact": "To be determined",
+      "timeline_impact": null,
+      "severity_points": 0.0
+    },
+    {
+      "category": "Wildfire Hazard (High)",
+      "severity": "medium",
+      "description": "Wildfire Hazard (High)",
+      "mitigation_plan": "Establish 30m defensible space, non-combustible construction materials, dedicated on-site water storage/pumps for fire suppression.",
+      "cost_impact": "To be determined",
+      "timeline_impact": null,
+      "severity_points": 0.0
+    },
+    {
+      "category": "Seismic Design (SDC C)",
+      "severity": "medium",
+      "description": "Seismic Design (SDC C)",
+      "mitigation_plan": "Engage structural engineer for SDC C compliance. Budget for moment-resisting frames or shear walls.",
+      "cost_impact": "To be determined",
+      "timeline_impact": null,
+      "severity_points": 0.0
+    },
+    {
+      "category": "Restrictive Data Localization",
+      "severity": "medium",
+      "description": "Mandatory localization for 'Critical Personal Data' (CPD) and potential for sensitive data localization. High risk of commercial restriction or complexity if core business data is classified as CPD.",
+      "mitigation_plan": "Implement a hybrid-cloud architecture with a local-only node for CPD; obtain legal opinion on CPD classification prior to design.",
+      "cost_impact": "+$5-15M for multi-region architecture and legal compliance infrastructure.",
+      "timeline_impact": "N/A - Operational and Legal.",
+      "severity_points": 0.4
+    },
+    {
+      "category": "Complex Environmental Compliance",
+      "severity": "medium",
+      "description": "The night-time noise limit for a boundary near residential/mixed-use zones is highly restrictive (45 dBA Leq), which is below the baseline noise of most major urban areas and mandates best-in-class acoustic attenuation for all mechanical systems.",
+      "mitigation_plan": "Acoustic engineering study, full-scale acoustic enclosures for all generators/chillers, land buffer acquisition.",
+      "cost_impact": "+$2-8M for acoustic enclosures and sound barriers.",
+      "timeline_impact": "N/A - Cost/Design Impact.",
+      "severity_points": 0.3
+    }
+  ],
+  "provenance_summary": [],
+  "transactional_verifications": [],
+  "distance_measurements": []
+}

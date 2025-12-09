@@ -1,0 +1,3082 @@
+{
+  "location": "Algiers, Algeria",
+  "coordinates": {
+    "lat": 36.753768,
+    "lng": 3.0587561
+  },
+  "country": "Algeria",
+  "analysis_date": "2025-11-06",
+  "overall_suitability": {
+    "composite_score": 0.0,
+    "rating": "NO-GO",
+    "recommendation": "NO-GO: Single Fiber Route",
+    "no_go_triggered": true,
+    "failed_gates": [
+      "Single Fiber Route"
+    ],
+    "caution_count": 9,
+    "confidence_level": "medium",
+    "verification_percentage": 40.0
+  },
+  "domain_analysis": {
+    "power_infrastructure": {
+      "score": 4.0,
+      "key_findings": [
+        "The primary competitive advantage is the extremely low, subsidized electricity cost (approx. $0.036/kWh), positioning the location as one of the most cost-effective global data center sites.",
+        "The key risk is the overwhelmingly high carbon intensity of the grid (99.1% gas-fired), making it incompatible with immediate 100% renewable energy goals without a large-scale, dedicated PPA and on-site generation strategy.",
+        "Grid capacity and future scalability are strong, supported by Sonelgaz's multi-gigawatt expansion plans and modernization of the transmission and distribution network (SCADA, substations)."
+      ],
+      "summary": "Algeria, particularly the Algiers region, presents a compelling, high-risk, high-reward power infrastructure profile for a hyperscale data center. The dominant strength is the highly competitive, subsidized industrial electricity rate (approx. $0.036/kWh). Technical viability is secured by Sonelgaz's aggressive capacity expansion and grid modernization initiatives (SCADA, new substations). The major long-term challenge is the country's overwhelming reliance on natural gas (99.1% of generation), which necessitates a robust, large-scale, dedicated solar PPA strategy to meet global corporate sustainability targets, a process which is now viable through recent government tenders (3 GW solar)."
+    },
+    "network_connectivity": {
+      "score": 1.0,
+      "key_findings": [],
+      "summary": ""
+    },
+    "climate_environmental": {
+      "score": 3.0,
+      "key_findings": [
+        "VIABILITY: All 5 NO-GO gates are *passed* based on current assumptions, but two major CAUTION FLAGS (Seismic & Wildfire/Flood Proxy) significantly increase capital expenditure and operational risk.",
+        "COST DRIVER: High seismic hazard (PGA 0.25g/SDC D proxy) and moderate liquefaction risk will impose a significant structural cost premium (~30%) for deep foundations and enhanced bracing.",
+        "RISK MANAGEMENT: High Wildfire and recurrent Flood risk (A/AE proxy) necessitate extensive site mitigation (elevation, defensible space, non-combustible construction), raising CapEx/OpEx."
+      ],
+      "summary": "The location in Algiers is feasible from an initial hazards screening perspective, as all five critical NO-GO gates are passed. However, the site falls into a moderate-to-high risk profile for both seismic (PGA 0.25g, SDC D) and wildfire/flood hazards (High FHSZ, A/AE proxy) which collectively trigger significant cost uplifts and require specialized engineering. The core challenge is the combination of high seismic structural premium (~30% CapEx increase) and the need for significant mitigation for flood/fire/water-scarcity risks. The site is a 'Proceed with Caution' requiring immediate initiation of advanced geotechnical and environmental assessments (Phase I Recommendations) to confirm final cost models."
+    },
+    "operational_risk": {
+      "score": 2.2,
+      "key_findings": [
+        "Structural legal/geopolitical constraints (51/49 ownership rule and data localization) are the **primary operational risks**, requiring a mandatory local joint-venture and data residency architecture.",
+        "High corruption (CPI 34) introduces significant project management and regulatory compliance costs (Caution Flag #5).",
+        "Physical security and terrorism risks are low-to-moderate, which is favorable."
+      ],
+      "summary": "Location presents a challenging, yet viable, operational environment. Core risks are primarily legal, regulatory, and economic (foreign ownership, data sovereignty, and corruption), which trigger mandatory Caution Flags and significantly reduce the overall operational risk score from 3.3 to 2.2. These risks necessitate a Joint Venture structure with a local entity and substantial budget allocation for legal compliance, currency hedging, and enhanced data residency infrastructure. Physical and infrastructure risks are manageable with standard hyperscale engineering (2N power, diverse fiber). Investment-Grade decision must weigh the high legal/regulatory friction against the market opportunity, with Phase 1 recommending immediate engagement with local legal and government affairs teams."
+    },
+    "esg_sustainability": {
+      "score": 1.0,
+      "key_findings": [
+        "ESG analysis for Algeria"
+      ],
+      "summary": ""
+    },
+    "regulatory_compliance": {
+      "score": 1.0,
+      "key_findings": [
+        "The location is a **High-Risk/High-Friction** environment for a wholly foreign-owned hyperscale deployment.",
+        "Data sovereignty is severely restrictive due to mandatory localization and prior authorization for cross-border transfer (CAUTION FLAG #1).",
+        "Investment structure requires immediate planning for a Joint Venture with a local Algerian partner due to the likely 49% foreign ownership cap (CAUTION FLAG #2)."
+      ],
+      "summary": "Algeria's regulatory environment is challenging for a typical hyperscale model, forcing a 'Local-Only' strategy due to mandatory data localization and likely ownership restrictions. While the data protection law (Law 18-07) is modern, the requirement for mandatory local data storage and prior ANPDP authorization for all international data flows, combined with the likely 49% foreign ownership cap (CAUTION FLAGS #1 & #2), presents an existential risk to a global business model requiring data mobility and 100% control. The final score is floored at 1.0, indicating the jurisdiction is fundamentally incompatible with the standard TPG/Blackstone hyperscale investment model unless the mandatory localization rule is bypassed (e.g., serving only Algerian data) and a 49% JV structure is acceptable."
+    },
+    "site_civil": {
+      "score": 1.0,
+      "key_findings": [
+        "Site & civil analysis failed: 'NoneType' object has no attribute 'strip'"
+      ],
+      "summary": "Site & civil analysis unavailable"
+    },
+    "mechanical_thermal": {
+      "score": 1.0,
+      "key_findings": [
+        "Mechanical & thermal analysis failed: name 'parse_json_with_repair' is not defined"
+      ],
+      "summary": "Mechanical & thermal analysis unavailable"
+    },
+    "market_competition": {
+      "score": 1.0,
+      "key_findings": [
+        "Market & competition analysis failed: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "summary": "Market analysis unavailable"
+    },
+    "hyperscaler_attractiveness": {
+      "score": 1.0,
+      "key_findings": [
+        "Hyperscaler analysis failed: Unterminated string starting at: line 267 column 14 (char 18727)"
+      ],
+      "summary": "Hyperscaler analysis unavailable"
+    }
+  },
+  "detailed_analysis": {
+    "power_infrastructure": "Algeria, particularly the Algiers region, presents a compelling, high-risk, high-reward power infrastructure profile for a hyperscale data center. The dominant strength is the highly competitive, subsidized industrial electricity rate (approx. $0.036/kWh). Technical viability is secured by Sonelgaz's aggressive capacity expansion and grid modernization initiatives (SCADA, new substations). The major long-term challenge is the country's overwhelming reliance on natural gas (99.1% of generation), which necessitates a robust, large-scale, dedicated solar PPA strategy to meet global corporate sustainability targets, a process which is now viable through recent government tenders (3 GW solar).",
+    "network_connectivity": "",
+    "climate_environmental": "The location in Algiers is feasible from an initial hazards screening perspective, as all five critical NO-GO gates are passed. However, the site falls into a moderate-to-high risk profile for both seismic (PGA 0.25g, SDC D) and wildfire/flood hazards (High FHSZ, A/AE proxy) which collectively trigger significant cost uplifts and require specialized engineering. The core challenge is the combination of high seismic structural premium (~30% CapEx increase) and the need for significant mitigation for flood/fire/water-scarcity risks. The site is a 'Proceed with Caution' requiring immediate initiation of advanced geotechnical and environmental assessments (Phase I Recommendations) to confirm final cost models.",
+    "operational_risk": "Location presents a challenging, yet viable, operational environment. Core risks are primarily legal, regulatory, and economic (foreign ownership, data sovereignty, and corruption), which trigger mandatory Caution Flags and significantly reduce the overall operational risk score from 3.3 to 2.2. These risks necessitate a Joint Venture structure with a local entity and substantial budget allocation for legal compliance, currency hedging, and enhanced data residency infrastructure. Physical and infrastructure risks are manageable with standard hyperscale engineering (2N power, diverse fiber). Investment-Grade decision must weigh the high legal/regulatory friction against the market opportunity, with Phase 1 recommending immediate engagement with local legal and government affairs teams.",
+    "esg_sustainability": "",
+    "regulatory_compliance": "Algeria's regulatory environment is challenging for a typical hyperscale model, forcing a 'Local-Only' strategy due to mandatory data localization and likely ownership restrictions. While the data protection law (Law 18-07) is modern, the requirement for mandatory local data storage and prior ANPDP authorization for all international data flows, combined with the likely 49% foreign ownership cap (CAUTION FLAGS #1 & #2), presents an existential risk to a global business model requiring data mobility and 100% control. The final score is floored at 1.0, indicating the jurisdiction is fundamentally incompatible with the standard TPG/Blackstone hyperscale investment model unless the mandatory localization rule is bypassed (e.g., serving only Algerian data) and a 49% JV structure is acceptable.",
+    "hyperscaler_attractiveness": "Hyperscaler analysis unavailable",
+    "site_civil": "Site & civil analysis unavailable",
+    "mechanical_thermal": "Mechanical & thermal analysis unavailable",
+    "market_competition": "Market analysis unavailable"
+  },
+  "structured_analysis": {
+    "power_infrastructure": {
+      "overall_score": 4.0,
+      "grid_reliability": {
+        "name": "Grid Reliability & Resiliency",
+        "content": "Algeria's grid reliability, primarily managed by Sonelgaz, is undergoing modernization but faces challenges typical of emerging markets, including increased load during peak summer temperatures and delays in network development. While specific SAIDI/SAIFI data for Algiers is not widely public, the national transmission network has reported reliability issues. Crucially, Sonelgaz is implementing a new-generation SCADA system, expected to be operational by 2026, and is partnering to deploy up to 134 new electrical substations by 2028, which directly addresses grid stability and resiliency for large loads.",
+        "sub_score": 3.4,
+        "metrics": {
+          "numerical_values": {
+            "saidi_minutes": 300,
+            "saifi_interruptions": 3.0,
+            "grid_uptime": 99.94
+          },
+          "percentages": {
+            "renewable_penetration_stress": 0.9,
+            "grid_modernization_commitment": 85
+          },
+          "ranges": {
+            "voltage_regulation": {
+              "min": -5.0,
+              "max": 5.0
+            }
+          },
+          "units": {
+            "saidi_minutes": "minutes/year (Estimated)",
+            "saifi_interruptions": "interruptions/year (Estimated)",
+            "grid_uptime": "% (Estimated)"
+          }
+        },
+        "key_points": [
+          "Reliability is an emerging market risk but improving.",
+          "Major SCADA and substation modernization projects underway (operational by 2026/2028).",
+          "High seasonal load (summer) is a known stressor on the system."
+        ],
+        "tables": []
+      },
+      "power_capacity": {
+        "name": "Power Capacity & Scalability",
+        "content": "Algeria's total installed capacity was approximately 24,561 MW in 2021, and the national utility, Sonelgaz, has ambitious expansion plans, including an estimated 18,749 MW in additional domestic production capacity planned for the 2018-2028 period. The proximity to Algiers suggests availability near major transmission corridors. This large-scale generation and transmission development supports the viability of scaling a hyperscale campus (100MW+) within a 3-5 year timeframe, pending detailed local substation studies and connection points.",
+        "sub_score": 4.2,
+        "metrics": {
+          "numerical_values": {
+            "installed_capacity": 24561,
+            "planned_expansion_mw": 18749,
+            "transmission_voltage": 400
+          },
+          "percentages": {
+            "national_capacity_utilization": 70
+          },
+          "ranges": {},
+          "units": {
+            "installed_capacity": "MW (2021)",
+            "planned_expansion_mw": "MW (2018-2028)",
+            "transmission_voltage": "kV (Estimated Max)"
+          }
+        },
+        "key_points": [
+          "Substantial national installed capacity (24.5 GW+).",
+          "Aggressive Sonelgaz expansion plan (18.7 GW addition).",
+          "Scaling to 100MW+ is feasible with new infrastructure commitment."
+        ],
+        "tables": []
+      },
+      "generation_mix": {
+        "name": "Power Generation Mix & Sustainability",
+        "content": "Algeria's electricity generation is heavily dependent on fossil fuels, with approximately 99.1% from natural gas in 2023, resulting in a high grid carbon intensity. Renewable energy sources (solar, wind) accounted for a very low share, around 0.9% of electricity production in 2023. The government has ambitious targets to achieve 15 GW of renewables by 2035 and 22 GW by 2030, with recent tenders for 3 GW of solar PV projects and 25-year PPAs. Baseload stability is high due to reliable, abundant natural gas supply.",
+        "sub_score": 2.8,
+        "metrics": {
+          "numerical_values": {
+            "carbon_intensity_est": 550,
+            "baseload_capacity_factor": 95,
+            "renewable_target_2035": 15000
+          },
+          "percentages": {
+            "natural_gas": 99.1,
+            "renewables": 0.9
+          },
+          "ranges": {},
+          "units": {
+            "carbon_intensity_est": "gCO2/kWh (Estimated for gas-fired)",
+            "baseload_capacity_factor": "%",
+            "renewable_target_2035": "MW"
+          }
+        },
+        "key_points": [
+          "Extremely high reliance on natural gas (99.1%), resulting in high grid carbon intensity.",
+          "Excellent baseload stability due to abundant gas resources.",
+          "Strong PPA options are becoming available for utility-scale solar projects (3 GW tenders)."
+        ],
+        "tables": []
+      },
+      "connection_process": {
+        "name": "Connection Process & Regulatory Framework",
+        "content": "The grid interconnection process is managed by the state-owned utility Sonelgaz. While no specific, standardized timeline for a 50MW+ data center connection is publicly available, the involvement of Sonelgaz in large-scale Independent Power Producer (IPP) tenders (e.g., solar PPAs) suggests a structured but potentially lengthy process. Key regulatory approvals are handled by government bodies like the Ministry of Energy and Mines and the national regulator (CREG, though its role may vary). The GE Vernova joint venture and the massive public investment signal high-level support for grid infrastructure, which should translate to dedicated support for critical foreign investment projects.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "interconnection_timeline_months": 30,
+            "connection_fee_per_mw": 75000
+          },
+          "percentages": {
+            "utility_monopoly": 100
+          },
+          "ranges": {},
+          "units": {
+            "interconnection_timeline_months": "months (Estimated)",
+            "connection_fee_per_mw": "USD/MW (Estimated)"
+          }
+        },
+        "key_points": [
+          "Monopolistic utility (Sonelgaz) handles all connections.",
+          "Estimated 24-36 month timeline for a major load connection, requiring strong governmental support.",
+          "High-level government focus on energy modernization provides a pathway for fast-track critical projects."
+        ],
+        "tables": []
+      },
+      "electricity_costs": {
+        "name": "Electricity Costs & Market Dynamics",
+        "content": "The industrial electricity rate in Algeria is exceptionally competitive, with the price for businesses reported at DZD 4.680/kWh, equivalent to approximately USD 0.036/kWh as of March 2025. This rate is heavily subsidized due to the country's vast natural gas reserves, which power nearly all electricity generation. The average electricity price has been stable, fluctuating between ~$0.028/kWh and ~$0.031/kWh in recent years, demonstrating high cost-competitiveness against global data center hubs like Northern Virginia (~$0.05/kWh) and Singapore (~$0.15/kWh).",
+        "sub_score": 5.0,
+        "metrics": {
+          "numerical_values": {
+            "industrial_rate": 0.036,
+            "demand_charge": 5.0
+          },
+          "percentages": {
+            "cost_competitiveness_vs_us": 140
+          },
+          "ranges": {},
+          "units": {
+            "industrial_rate": "USD/kWh (2025)",
+            "demand_charge": "USD/kW-month (Estimated)"
+          }
+        },
+        "key_points": [
+          "Extremely low and competitive industrial electricity rate ($0.036/kWh).",
+          "Prices are stable but heavily reliant on state subsidies for natural gas.",
+          "Cost is significantly lower than major global data center markets."
+        ],
+        "tables": []
+      },
+      "cost_model": {
+        "name": "Cost Model & Financial Projections",
+        "content": "The primary factor influencing the long-term cost model is the future of the substantial government subsidy on natural gas, which directly underpins the low electricity price. Current long-term projections must account for potential deregulation or phased subsidy reductions, which could lead to significant cost escalation. However, for a 20-year outlook, a contract structure with Sonelgaz based on a long-term fixed-price or inflation-linked PPA for renewable energy (solar PV) offers a strong hedging option to mitigate fossil fuel price volatility risk and secure price stability.",
+        "sub_score": 4.1,
+        "metrics": {
+          "numerical_values": {
+            "projected_escalation": 3.5,
+            "lcoe_20_year": 0.06
+          },
+          "percentages": {
+            "cost_certainty": 65
+          },
+          "ranges": {
+            "price_scenario": {
+              "min": 0.036,
+              "max": 0.1
+            }
+          },
+          "units": {
+            "projected_escalation": "%/year (Estimated)",
+            "lcoe_20_year": "USD/kWh (With PPA Hedge)"
+          }
+        },
+        "key_points": [
+          "Risk of subsidy removal/reduction is the main cost volatility factor.",
+          "Long-term PPA options (25 years) for solar PV projects are available to lock in LCOE.",
+          "Base case (subsidized) offers the most competitive LCOE globally."
+        ],
+        "tables": []
+      },
+      "industrial_heritage": {
+        "name": "Industrial Heritage & Infrastructure",
+        "content": "The location near Algiers places the project close to a major economic and industrial hub, suggesting access to high-voltage transmission lines (e.g., 400kV) and associated industrial zoning benefits. The presence of Sonelgaz's own manufacturing joint venture (GEAT) for substations in Algeria indicates a local supply chain and a skilled workforce familiar with high-voltage electrical systems and industrial operations. Furthermore, the extensive rail and road network around the capital supports heavy equipment delivery and maintenance access.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "industrial_sites_within_10km": 5,
+            "transmission_line_access_km": 5.0
+          },
+          "percentages": {
+            "industrial_zoning": 80,
+            "skilled_workforce_availability": 70
+          },
+          "ranges": {},
+          "units": {
+            "industrial_sites_within_10km": "count (Estimated)",
+            "transmission_line_access_km": "km (Estimated)"
+          }
+        },
+        "key_points": [
+          "Proximity to major industrial and transmission infrastructure in the Algiers region.",
+          "Local manufacturing capabilities for high-voltage equipment (Sonelgaz/GE Vernova JV).",
+          "Skilled workforce available due to established industrial sector."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "The industrial electricity rate (USD 0.036/kWh) is the base case and does not include significant demand charges.",
+        "Specific SAIDI/SAIFI metrics are estimated based on general emerging market status and known grid challenges, not public utility-reported data.",
+        "Algiers region offers high-voltage (400kV) connection feasibility, typical of a capital city and industrial area.",
+        "DZD/USD exchange rate is assumed to be stable for cost conversion based on the search date."
+      ],
+      "key_insights": [
+        "The primary competitive advantage is the extremely low, subsidized electricity cost (approx. $0.036/kWh), positioning the location as one of the most cost-effective global data center sites.",
+        "The key risk is the overwhelmingly high carbon intensity of the grid (99.1% gas-fired), making it incompatible with immediate 100% renewable energy goals without a large-scale, dedicated PPA and on-site generation strategy.",
+        "Grid capacity and future scalability are strong, supported by Sonelgaz's multi-gigawatt expansion plans and modernization of the transmission and distribution network (SCADA, substations).",
+        "The regulatory/connection process is centralized and requires high-level engagement to navigate estimated 24-36 month timelines, but dedicated support for critical foreign investment is likely."
+      ],
+      "executive_summary": "Algeria, particularly the Algiers region, presents a compelling, high-risk, high-reward power infrastructure profile for a hyperscale data center. The dominant strength is the highly competitive, subsidized industrial electricity rate (approx. $0.036/kWh). Technical viability is secured by Sonelgaz's aggressive capacity expansion and grid modernization initiatives (SCADA, new substations). The major long-term challenge is the country's overwhelming reliance on natural gas (99.1% of generation), which necessitates a robust, large-scale, dedicated solar PPA strategy to meet global corporate sustainability targets, a process which is now viable through recent government tenders (3 GW solar).",
+      "data_gaps": [
+        "Local utility (Sonelgaz) substation spare capacity and specific multi-MW load connection point feasibility (MVA/MVAr details).",
+        "Official, published SAIDI/SAIFI reliability metrics for the Algiers Wilaya (province) and historical outage data.",
+        "Formalized cost structure (demand vs. energy charges) and interconnection fee schedules for a 50MW+ customer."
+      ],
+      "third_party_verification": [
+        "Sonelgaz (or CREG) for official grid capacity and connection tariffs/timelines.",
+        "International energy consultancy for a detailed power quality and reliability assessment.",
+        "Electrical engineering firm for site-specific grid interconnection study and infrastructure design."
+      ],
+      "phase_1_recommendations": {
+        "target_capacity": "50 MW initial deployment with clear path to 150 MW+.",
+        "grid_connection": "Initiate discussions with Sonelgaz for a dedicated, dual-fed High-Voltage (e.g., 220kV/400kV) connection and a guaranteed Service Level Agreement (SLA).",
+        "power_strategy": "Secure a long-term Power Purchase Agreement (PPA) for renewable energy (solar PV) to meet initial 50MW capacity, leveraging the national 3 GW tender framework to address sustainability goals and hedge against future gas-subsidy risks."
+      },
+      "sources": [
+        {
+          "url": "https://globalpetrolprices.com/Algeria/electricity_prices_business/",
+          "title": "Algeria electricity prices, March 2025 | GlobalPetrolPrices.com",
+          "date": "March 2025",
+          "snippet": "The electricity price for businesses in Algeria is DZD 4.680 kWh or USD 0.036, collected in March 2025."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG_JZjk_8yW0756zsMQnaHJKWhlbV1f1pu-LbKDYFy8FS-2AxuupmeyZhHLYvRCxkAuR3J2ReVGOl2XTWbI8KzskEu6BLK70qNXtHRlqmg23SVou7HvT-k5VVIiMkFE8z56fRpd9tlZubb-YGAZhg==",
+          "title": "Climatescope 2025 | Algeria - global-climatescope.org",
+          "date": "2024",
+          "snippet": "The average electricity price in Algeria has increased from ~$29/MWh in 2023 to ~$31/MWh in 2024. Installed natural gas capacity was 25,102MW in 2024."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE0ZI4FajZ2zRagAkfo7Z7oOQ75IZE6zcfbzph4qqb28exDszLy-0i1jJDno0QERt2J0BXjmTa79TDumW09OCGEWNU3YxqfiUs8xfXRBGk3j71D2Hp5wsBGTjfZ5awQe1G2qHvvsyEth12YS3GyKPWZd8A87_hDt3LLPw==",
+          "title": "Energy Industry in Algeria - aenert.com",
+          "date": "2025-04-12",
+          "snippet": "In 2023 Algeria produced about 96.30 GWh of electricity, of which 99.1% was by fossil fuels, and 0.9% by other renewable sources. Sonelgaz projected additional domestic production capacity over 2018-2028 is 18,749 MW."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHeiqIy0cOooEKNciNxk2fjVFiAfOspGZQcimO0OyBKo4hj_V_MFHejhdz1GOST7O73l0zPDQX11hUVnF--P-Jif3fHpvqedHdvhGmHBtibvT-bD30CgE9xAKZqouuNDSbmMSokBsJhnT3K",
+          "title": "Energy in Algeria - Wikipedia",
+          "date": "2024",
+          "snippet": "Natural gas was the predominant source of electricity generation, accounting for 99% of the total electricity production (85,390 GWh in 2021). Algeria aims to increase its renewable energy capacity to 15 GW by 2035."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFr8DnFc9u5GxyPsRbY34ZJY6NozyMgQXc4CXIFhT9NmcnlMhOHUMl1gPguvRsm0dBR9RwHxc3mfGv34htF19ASQDJWp__Jqqn_qHSvYR_1q9f6dbwYBgAmUvanRyYxehK_cretK5MiXpbreO9CUxYgAuwDpiiIcoCD1E6l3RFBZwkxjLp2Cjg6cwRuMtsisd0s5P5MfGkESS3qLFPXh4fBvUUpRR7mFA4TXeCOow==",
+          "title": "SAIFI/SAIDI indicators and the growing RES penetration - ERRA",
+          "date": "2024-09-12",
+          "snippet": "Algeria has been working to improve its power grid electricity reliability, but power outages still exist; major causes are summer load, network development delays, and equipment/infringement issues."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGb4vl_lbgtKaxFBy6yM4RweEckcJu2M2pUj2vkNAwV5oU9X6N-RJlX6pN2J4tmSYD4VmfaU0H5idXBBcgKMbB2k4k0rziwxelKo0g2sWbSr-epXN8dKn8L67pXoZzVs4zdvH8D5xO05kKnyF6RjoVwBehYAAuFDgy8c7uVKKSUkbLLTVAmIT1Ffi4I7DTvVm0DrdzevA==",
+          "title": "Algeria SCADA Upgrade: Essential Grid Modernization by 2026 - PVknowhow.com",
+          "date": "2025-11-03",
+          "snippet": "Sonelgaz announced plans for a new-generation SCADA system to be fully operational by 2026 to enhance grid management and stability, especially for renewable energy integration."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHttQOOYUiv5lxVqwHFc7mju2NBFaA843hZBUyRQFvuTpubn1FUH7EBJsbG0LSNFg9GIUNVjreBU108vS6xHQM5pKDmB_gRCc4vD0nbsZq-7-12mG-pW93q3JKqPJVwpBbS-5VctLQ25zqaeU3NvMseTPmktq32shKGtEnbVViaI-RxMR1m7F_TIY8ysU0N5Sl_YjjVl3mc-1gvDLfd1NDJZzEDlZmyFWtkx1QLr8HmnJeLnDPOt3M0Fx4AOY_50GMN_k9XUg==",
+          "title": "GE Vernova and Sonelgaz to Expand Capabilities at GEAT to Enhance Algeria's Grid Infrastructure",
+          "date": "2024-04-16",
+          "snippet": "GE Vernova and Sonelgaz's joint venture (GEAT) is expected to supply up to 134 electrical substations by 2028 to enhance efficient and reliable transmission."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGVvVLe4pB8VfV2Nd0gr7Ep_H_pQPGn5oVZGzX5TtdtK-8rfsu50tKkIdqSF2oT-s3jvUuoJgYC1ue4QzVddSpB8qfmUTASNcakWWPg9CS3FApeu2vPTAMbrnx5hfdHiWO5AMlJaHTBgB3Sl2kGiNmhpKcHkBX7F9AAIzPuoVEZCYFr2NjUoXgwiTf5erk-lCX6g227U7xfaI7Xw2ytjP7cv5y_-4S43acu8HuCh67lhgJKMZU=",
+          "title": "Sonelgaz signs deals for the development of 3 GW of solar capacity in Algeria | Enerdata",
+          "date": "2024-03-19",
+          "snippet": "Sonelgaz signed 19 contracts for the construction of 20 solar projects totalling 3 GW, involving 25-year Power Purchase Agreements (PPAs)."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFr8DnFc9u5GxyPsRbY34ZJY6NozyMgQXc4CXIFhT9NmcnlMhOHUMl1gPguvRsm0dBR9RwHxc3mfGv34htF19ASQDJWp__Jqqn_qHSvYR_1q9f6dbwYBgAmUvanRyYxehK_cretK5MiXpbreO9CUxYgAuwDpiiIcoCD1E6l3RFBZwkxjLp2Cjg6cwRuMtsisd0s5P5MfGkESS3qLFPXh4fBvUUpRR7mFA4TXeCOow==",
+          "title": "erranet.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGb4vl_lbgtKaxFBy6yM4RweEckcJu2M2pUj2vkNAwV5oU9X6N-RJlX6pN2J4tmSYD4VmfaU0H5idXBBcgKMbB2k4k0rziwxelKo0g2sWbSr-epXN8dKn8L67pXoZzVs4zdvH8D5xO05kKnyF6RjoVwBehYAAuFDgy8c7uVKKSUkbLLTVAmIT1Ffi4I7DTvVm0DrdzevA==",
+          "title": "pvknowhow.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHttQOOYUiv5lxVqwHFc7mju2NBFaA843hZBUyRQFvuTpubn1FUH7EBJsbG0LSNFg9GIUNVjreBU108vS6xHQM5pKDmB_gRCc4vD0nbsZq-7-12mG-pW93q3JKqPJVwpBbS-5VctLQ25zqaeU3NvMseTPmktq32shKGtEnbVViaI-RxMR1m7F_TIY8ysU0N5Sl_YjjVl3mc-1gvDLfd1NDJZzEDlZmyFWtkx1QLr8HmnJeLnDPOt3M0Fx4AOY_50GMN_k9XUg==",
+          "title": "gevernova.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE0ZI4FajZ2zRagAkfo7Z7oOQ75IZE6zcfbzph4qqb28exDszLy-0i1jJDno0QERt2J0BXjmTa79TDumW09OCGEWNU3YxqfiUs8xfXRBGk3j71D2Hp5wsBGTjfZ5awQe1G2qHvvsyEth12YS3GyKPWZd8A87_hDt3LLPw==",
+          "title": "aenert.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFpy0kq35LtDWslppQE2w5oQEN-cNqfXq0M3CM8AU_I0_DJnkkrPtQdxnVBobmex5npMQCt-BquHZuEbIJ9mj6MtzWC-k4L9T8Hkfa9IfW2r042Ovd8pzJRdV0XxXNzcQWxuHzrnI3AzCmJq_hGVhJvjgGRSX8j43rDkQ0bgONUcMEut-Z3J_cB7WY-l7YwZgXXo1FnAfQjXJsgWq2GoU6B6Bpxw2YQcgxRzpf9Le7Bcm3_ghmytAYxFX4hRKYDFzYvhDoLRqmRf8gL",
+          "title": "univ-ouargla.dz",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHttQOOYUiv5lxVqwHFc7mju2NBFaA843hZBUyRQFvuTpubn1FUH7EBJsbG0LSNFg9GIUNVjreBU108vS6xHQM5pKDmB_gRCc4vD0nbsZq-7-12mG-pW93q3JKqPJVwpBbS-5VctLQ25zqaeU3NvMseTPmktq32shKGtEnbVViaI-RxMR1m7F_TIY8ysU0N5Sl_YjjVl3mc-1gvDLfd1NDJZzEDlZmyFWtkx1QLr8HmnJeLnDPOt3M0Fx4AOY_50GMN_k9XUg==",
+          "title": "gevernova.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE0ZI4FajZ2zRagAkfo7Z7oOQ75IZE6zcfbzph4qqb28exDszLy-0i1jJDno0QERt2J0BXjmTa79TDumW09OCGEWNU3YxqfiUs8xfXRBGk3j71D2Hp5wsBGTjfZ5awQe1G2qHvvsyEth12YS3GyKPWZd8A87_hDt3LLPw==",
+          "title": "aenert.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFRACWEntrCQS4yRMhK0U_tcn51RvtFgYXO-B9GUcgzFGjUk8cyhxIvAV-EKKGiG-Q4gUHdZ9HxsWxXaK6q2tUt3ti7A8-IyTw9BbA7PrHcu9XsNVTVl1-i8KVTZ1Wzl6DFquN8iWD9t9swurVjedBDxw==",
+          "title": "enerdata.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHeiqIy0cOooEKNciNxk2fjVFiAfOspGZQcimO0OyBKo4hj_V_MFHejhdz1GOST7O73l0zPDQX11hUVnF--P-Jif3fHpvqedHdvhGmHBtibvT-bD30CgE9xAKZqouuNDSbmMSokBsJhnT3K",
+          "title": "wikipedia.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFqmFBQf5uG1Q4Wdh8MNn-wHCYR9XnSbBiwPNRe77jcDM8WmExnG2MA6vvoZh2uAmz_KnypyOnXqXP37g3v0g1HHH3ax-1ruOxDorBnvPdqlPPX2zMmX8hAn3AMrfqgRmYyzdJ691AhjAYQRpOc8g5CzwwnEfD8rQn5f78HC_KBO7E28RIEsbcBxvG3NA53DoTsuBiuEzn3avpKYBypNFe2MeMv-CTTyLWUVdLF-fjArph_jg==",
+          "title": "algeriainvest.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHKuTQt3RYJMC7LwfH3U_ZArEXzfj4IkP1aeSLUvqUEC0w7L5jZhXtAMmvI_QZqXPdH3_UGmifcL7v7sULT603zYrHzU6E5zv5ixdzfEjUVhnI7WFqo3Hb6fDzN3BZ-d6zuml4DWUJaUO_IRDfv8xeqlGwicy7FKVi4MfOEDjtaf_9ALN4SRlw6qQIFSF6vhIkzlfb0cR3jSflw1y-6uaNFSK9kZranSA==",
+          "title": "africa-energy-portal.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGVvVLe4pB8VfV2Nd0gr7Ep_H_pQPGn5oVZGzX5TtdtK-8rfsu50tKkIdqSF2oT-s3jvUuoJgYC1ue4QzVddSpB8qfmUTASNcakWWPg9CS3FApeu2vPTAMbrnx5hfdHiWO5AMlJaHTBgB3Sl2kGiNmhpKcHkBX7F9AAIzPuoVEZCYFr2NjUoXgwiTf5erk-lCX6g227U7xfaI7Xw2ytjP7cv5y_-4S43acu8HuCh67lhgJKMZU=",
+          "title": "enerdata.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHKuTQt3RYJMC7LwfH3U_ZArEXzfj4IkP1aeSLUvqUEC0w7L5jZhXtAMmvI_QZqXPdH3_UGmifcL7v7sULT603zYrHzU6E5zv5ixdzfEjUVhnI7WFqo3Hb6fDzN3BZ-d6zuml4DWUJaUO_IRDfv8xeqlGwicy7FKVi4MfOEDjtaf_9ALN4SRlw6qQIFSF6vhIkzlfb0cR3jSflw1y-6uaNFSK9kZranSA==",
+          "title": "africa-energy-portal.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHttQOOYUiv5lxVqwHFc7mju2NBFaA843hZBUyRQFvuTpubn1FUH7EBJsbG0LSNFg9GIUNVjreBU108vS6xHQM5pKDmB_gRCc4vD0nbsZq-7-12mG-pW93q3JKqPJVwpBbS-5VctLQ25zqaeU3NvMseTPmktq32shKGtEnbVViaI-RxMR1m7F_TIY8ysU0N5Sl_YjjVl3mc-1gvDLfd1NDJZzEDlZmyFWtkx1QLr8HmnJeLnDPOt3M0Fx4AOY_50GMN_k9XUg==",
+          "title": "gevernova.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEjcn_3AMMqM2T0fNgcK0FVc9RNQfZUq0xv5QIUAhDPRijku7A7jN_mwL6OroEaz_lZJAxwEgjEoIfxWgEU6qhMFC03FPX5I8KUvFMD0D108mN_0cmkA7Pc2Aa85bS6S8BeHCCoG8GXSTBlptgumg2R",
+          "title": "cerist.dz",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG_JZjk_8yW0756zsMQnaHJKWhlbV1f1pu-LbKDYFy8FS-2AxuupmeyZhHLYvRCxkAuR3J2ReVGOl2XTWbI8KzskEu6BLK70qNXtHRlqmg23SVou7HvT-k5VVIiMkFE8z56fRpd9tlZubb-YGAZhg==",
+          "title": "global-climatescope.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF0dVKbxIMwFamEmCdgXaEiPFXbNcGQ2MqHDeT3Lxsh1Sydf8-_Ugq1A_LQaC0Eyci6LeWba2WKgpUlbAXY7Hz3wmdeyF55OIWC_3xbf1YXFhJzLQBka5my9KzxpKwzCnTRfFXpBkG4IG594TF5Be0aLvYcz-T0ahFk",
+          "title": "globalpetrolprices.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHeiqIy0cOooEKNciNxk2fjVFiAfOspGZQcimO0OyBKo4hj_V_MFHejhdz1GOST7O73l0zPDQX11hUVnF--P-Jif3fHpvqedHdvhGmHBtibvT-bD30CgE9xAKZqouuNDSbmMSokBsJhnT3K",
+          "title": "wikipedia.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQF0dVKbxIMwFamEmCdgXaEiPFXbNcGQ2MqHDeT3Lxsh1Sydf8-_Ugq1A_LQaC0Eyci6LeWba2WKgpUlbAXY7Hz3wmdeyF55OIWC_3xbf1YXFhJzLQBka5my9KzxpKwzCnTRfFXpBkG4IG594TF5Be0aLvYcz-T0ahFk",
+          "title": "globalpetrolprices.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGrxI_SJk73Pa9nPQKtaFccqiUrBPpKk-t7C5xIx5dWBxn6vGW9QhTv-xr_8u0uq6-ZSMGA4meGm4pAX3FAlunZ4NA5paNglRkw1IgSszFVCO8F9_8bi-4xjedOT6tnnHhASv75sNknRkzeTu4_0wVZF4On7HiAvs-OG1PPsMl4XbdvosTrzCGB",
+          "title": "europa.eu",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHttQOOYUiv5lxVqwHFc7mju2NBFaA843hZBUyRQFvuTpubn1FUH7EBJsbG0LSNFg9GIUNVjreBU108vS6xHQM5pKDmB_gRCc4vD0nbsZq-7-12mG-pW93q3JKqPJVwpBbS-5VctLQ25zqaeU3NvMseTPmktq32shKGtEnbVViaI-RxMR1m7F_TIY8ysU0N5Sl_YjjVl3mc-1gvDLfd1NDJZzEDlZmyFWtkx1QLr8HmnJeLnDPOt3M0Fx4AOY_50GMN_k9XUg==",
+          "title": "gevernova.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEjcn_3AMMqM2T0fNgcK0FVc9RNQfZUq0xv5QIUAhDPRijku7A7jN_mwL6OroEaz_lZJAxwEgjEoIfxWgEU6qhMFC03FPX5I8KUvFMD0D108mN_0cmkA7Pc2Aa85bS6S8BeHCCoG8GXSTBlptgumg2R",
+          "title": "cerist.dz",
+          "date": "",
+          "snippet": ""
+        }
+      ],
+      "no_go_gates": [],
+      "caution_flags": [],
+      "provenance_badges": [],
+      "distance_measurements": []
+    },
+    "network_connectivity": {
+      "overall_score": 1.0,
+      "fiber_infrastructure": null,
+      "last_mile_diversity": null,
+      "subsea_cables": null,
+      "ixp_peering": null,
+      "carrier_diversity": null,
+      "latency_performance": null,
+      "bandwidth_costs": null,
+      "future_proofing": null,
+      "assumptions": [],
+      "key_insights": [],
+      "executive_summary": "",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null,
+      "sources": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGE6fpdMNobS9CmcXjfcttqeuSzFvdxnua3DYB-dlhkxKX8vkTq8WGS8UN3l-jKKEIG6JGp790KOTqldZemQLmdP6NxTQYx7VsKjd60PaRZge4A1qnpcxelje-3btXLCbhqGdsl299wWLXylWeLUsu2lS6Bb1ZVLlU9QxVy0ArU",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtWxxGT-gkjyUsSW3BcvxaLd2Q87cIUhx8hv9M06XlV1Q0Gmd0eUS6CXPGaAVGyGxxxYYFaSBgtfq7xATPC2h_HlHEv_cJ_1zhsR9YSZW5PPijCgvG8rsDHHJ55HpBDVWYl5YXsLj29vO-NVIhN2xBGeqQ3QYwsK3s51VSIHc9b1x2bzPz2CGf7zXGn2pdoLzGGNBmef014U2m1xt0Aq8hRt2KG1P00lQt6bZiK6xVePLd20CgRQtHZj0NJ1kzteFTptNjFkwqeyU1WkEigode4gwjaxDKei93-fePkvn9Mvi-apCODOudY3e3-jMANeXBkolgJ6jG-4wIwZjjDSSJKQvocR5d1Pt_ICuncFMiG8ftMXOJvPD3rNglGH9x5l5CcZoGk70u_Ux6kUtDq_anXLeE6lc=",
+          "title": "globenewswire.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtWxxGT-gkjyUsSW3BcvxaLd2Q87cIUhx8hv9M06XlV1Q0Gmd0eUS6CXPGaAVGyGxxxYYFaSBgtfq7xATPC2h_HlHEv_cJ_1zhsR9YSZW5PPijCgvG8rsDHHJ55HpBDVWYl5YXsLj29vO-NVIhN2xBGeqQ3QYwsK3s51VSIHc9b1x2bzPz2CGf7zXGn2pdoLzGGNBmef014U2m1xt0Aq8hRt2KG1P00lQt6bZiK6xVePLd20CgRQtHZj0NJ1kzteFTptNjFkwqeyU1WkEigode4gwjaxDKei93-fePkvn9Mvi-apCODOudY3e3-jMANeXBkolgJ6jG-4wIwZjjDSSJKQvocR5d1Pt_ICuncFMiG8ftMXOJvPD3rNglGH9x5l5CcZoGk70u_Ux6kUtDq_anXLeE6lc=",
+          "title": "globenewswire.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHa94ZMQ8IjTO8ztExA0QmRKZOnNWLk1KrBo-PPBhsqeNA936ZVLKSBHNdah96iTy-c1_1_c7vB8vZTlJRfC6xNBU2McVgvyPmJwTfdjW1CGgGjBISoHO5_UPjn57HcqS5smBA5qseyAFT-1uq_w_XC2MDm3lYpvppXA-qN8nG2WQ82uNO9H8JZ2oZ6UitliPQZ_OX2AAts",
+          "title": "wikipedia.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGE6fpdMNobS9CmcXjfcttqeuSzFvdxnua3DYB-dlhkxKX8vkTq8WGS8UN3l-jKKEIG6JGp790KOTqldZemQLmdP6NxTQYx7VsKjd60PaRZge4A1qnpcxelje-3btXLCbhqGdsl299wWLXylWeLUsu2lS6Bb1ZVLlU9QxVy0ArU",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFSqYYJitfrIp6-sRbNjisEPxtpEfgezqlK4ZND-zo2F_690t9lkDZPHdTc2ajnyqgbmpN3Qxpgk24o-9y7BaAFfkoGhTR2Z-nOh3wmcN9MixZnTb9m-KqA5j9RaW-uFO2ci1jIlldMIz4D",
+          "title": "icosnet.com.dz",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEXzqBDscFVshyuz2aOZ0XWaPy1EIDdc-8Xr6bDXzw73sWlY0pzdPq4kVXIb079xRvJFU5RYDKw09F_2jsByDERcpvtNwUyk7FMrfXLpAy-RSnwCEk4h9I=",
+          "title": "db-ip.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGi9mS3SbJ3UwFrZsTL2i5qh4f620I_WELIHAq9isIazIP2PNFOx1ex1-WbMCRRJNcwDz8pHhjPW7mIzKYTBU2yCCMNwU797s7gDw-0cuZ5WMQ9AIMc9cNAPF7gFBXajp7a-p4JgV-bkd6KsccHdFOvMt8nwP7GGiaojCqF5ft6s8O_ftsMSA==",
+          "title": "submarinenetworks.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHT-BM0VTYSY10HXjMENVq4GxcfXg3kI44Xdl4vlMrAOkENyqK8PSjAsQPzI2qYj4gs5CFO-VjSgvM9BlK8bNPmPUELJOYJIrieFcO7llwcDqSXA-UhKndDbR2D1Gzn9AJdp6n6XmBoxyHuC3MmSEtJUcUWCFAvObmhbJGO7veE98ngOmd_-cKBpHsfgJYS1_hgY9AWnV4ALiTSgkCZeO9xBdQYyn413rwjw1ZiDwznqwZDr6X31xoSei5O5aGRu7L1pThP6NZaNq114hbtne8nts64",
+          "title": "algeriainvest.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFSJjjUY8TMxukD706mM5dBnpvZtD8ZRliPnE8eKhxD9-p4H46YnLLmdONbfci2YWEDv5W-wdNdrLjTM2eb3J3s2Z_BbcTVJQe20-zGeQpORKU1pG8lX5cqx7E2zOqS1yRckE2DkNVglJ4ZXltUd8BYIj8UbwXys7qqgo8qfmahTaDHQUPsbmw9omPicopXsrPjdTbrhY6c0v4=",
+          "title": "dzair-tube.dz",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG8obA07wRxIxTIEF756JVco--LWHVg8tX5ToM7XxMx1N53ZozlHrQ94KYiI8OlDmYKirdk_8bdtyM5egkWHjNvUOYbAeRsqFrP8fHH6qk1gmD3K4GTdQi5Z6bdtVRxFTaFwE-aVUWT_UwZX_t_OIzlhBn66bAmvUZLfMX9m4GRGV6BkihTJhoV0WzVM_MukrE1LFA1P8vFNZIxFBoxWB-FoTc=",
+          "title": "extensia.tech",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFx8qPBkQVbrM8nskVt7fkRUwesJy4qYPVD0Uz8aWMTobZJAMWBPQYL33lV72GnvIR-aMnyVgn67fZCno1jUjAIXVBIzMfb424F-zTG1KZufunZRWB5alMpgJBqZ18f9itbOvQBUQtmAyLc_A==",
+          "title": "africabandwidthmaps.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGi9mS3SbJ3UwFrZsTL2i5qh4f620I_WELIHAq9isIazIP2PNFOx1ex1-WbMCRRJNcwDz8pHhjPW7mIzKYTBU2yCCMNwU797s7gDw-0cuZ5WMQ9AIMc9cNAPF7gFBXajp7a-p4JgV-bkd6KsccHdFOvMt8nwP7GGiaojCqF5ft6s8O_ftsMSA==",
+          "title": "submarinenetworks.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG8obA07wRxIxTIEF756JVco--LWHVg8tX5ToM7XxMx1N53ZozlHrQ94KYiI8OlDmYKirdk_8bdtyM5egkWHjNvUOYbAeRsqFrP8fHH6qk1gmD3K4GTdQi5Z6bdtVRxFTaFwE-aVUWT_UwZX_t_OIzlhBn66bAmvUZLfMX9m4GRGV6BkihTJhoV0WzVM_MukrE1LFA1P8vFNZIxFBoxWB-FoTc=",
+          "title": "extensia.tech",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFx8qPBkQVbrM8nskVt7fkRUwesJy4qYPVD0Uz8aWMTobZJAMWBPQYL33lV72GnvIR-aMnyVgn67fZCno1jUjAIXVBIzMfb424F-zTG1KZufunZRWB5alMpgJBqZ18f9itbOvQBUQtmAyLc_A==",
+          "title": "africabandwidthmaps.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEfkcXIhjg6oBqEOjcZcIvFLNwNpILfozbXwchD3f3jFSUPkePlTCqQG-vMHxVWxAMaTsN6BUWMp0XMePyElyr3tkj9yFjxAOc3ynVahfbIee710gcrx1WE3UgNHtWlow==",
+          "title": "pch.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGLJmpmXDCRdQEmBswXQu-hO5RBRncuTonw8EsC2uKWjTsYfkRd2kOw_XPLzT980ATkYjrP0XT01vqEbjI1LJ1oPvMPn1KGhEqboATfeUJhY74y7JMBxo3tftTGZZfwakdWv1AbhSpHEqVZ3zlGcFEsdpGEMumU5YrtL3ZTaCiBR8gYAV8B",
+          "title": "anpt.dz",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGapKhA0C3Tg-R05o7lD91mteShyiiPdRmw0B56ZTZA4yLuuksr4Tg0DlyY_ZiOKYNeEVgRrWdA7TXtQYMNmCcxG74YfaGBvL3HKPZU92Bz24OTMR2baX1TtMG08W_Oo2z912u-Vdwrijc=",
+          "title": "datacenters.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGE6fpdMNobS9CmcXjfcttqeuSzFvdxnua3DYB-dlhkxKX8vkTq8WGS8UN3l-jKKEIG6JGp790KOTqldZemQLmdP6NxTQYx7VsKjd60PaRZge4A1qnpcxelje-3btXLCbhqGdsl299wWLXylWeLUsu2lS6Bb1ZVLlU9QxVy0ArU",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGapKhA0C3Tg-R05o7lD91mteShyiiPdRmw0B56ZTZA4yLuuksr4Tg0DlyY_ZiOKYNeEVgRrWdA7TXtQYMNmCcxG74YfaGBvL3HKPZU92Bz24OTMR2baX1TtMG08W_Oo2z912u-Vdwrijc=",
+          "title": "datacenters.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGE6fpdMNobS9CmcXjfcttqeuSzFvdxnua3DYB-dlhkxKX8vkTq8WGS8UN3l-jKKEIG6JGp790KOTqldZemQLmdP6NxTQYx7VsKjd60PaRZge4A1qnpcxelje-3btXLCbhqGdsl299wWLXylWeLUsu2lS6Bb1ZVLlU9QxVy0ArU",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtWxxGT-gkjyUsSW3BcvxaLd2Q87cIUhx8hv9M06XlV1Q0Gmd0eUS6CXPGaAVGyGxxxYYFaSBgtfq7xATPC2h_HlHEv_cJ_1zhsR9YSZW5PPijCgvG8rsDHHJ55HpBDVWYl5YXsLj29vO-NVIhN2xBGeqQ3QYwsK3s51VSIHc9b1x2bzPz2CGf7zXGn2pdoLzGGNBmef014U2m1xt0Aq8hRt2KG1P00lQt6bZiK6xVePLd20CgRQtHZj0NJ1kzteFTptNjFkwqeyU1WkEigode4gwjaxDKei93-fePkvn9Mvi-apCODOudY3e3-jMANeXBkolgJ6jG-4wIwZjjDSSJKQvocR5d1Pt_ICuncFMiG8ftMXOJvPD3rNglGH9x5l5CcZoGk70u_Ux6kUtDq_anXLeE6lc=",
+          "title": "globenewswire.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEXzqBDscFVshyuz2aOZ0XWaPy1EIDdc-8Xr6bDXzw73sWlY0pzdPq4kVXIb079xRvJFU5RYDKw09F_2jsByDERcpvtNwUyk7FMrfXLpAy-RSnwCEk4h9I=",
+          "title": "db-ip.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtWxxGT-gkjyUsSW3BcvxaLd2Q87cIUhx8hv9M06XlV1Q0Gmd0eUS6CXPGaAVGyGxxxYYFaSBgtfq7xATPC2h_HlHEv_cJ_1zhsR9YSZW5PPijCgvG8rsDHHJ55HpBDVWYl5YXsLj29vO-NVIhN2xBGeqQ3QYwsK3s51VSIHc9b1x2bzPz2CGf7zXGn2pdoLzGGNBmef014U2m1xt0Aq8hRt2KG1P00lQt6bZiK6xVePLd20CgRQtHZj0NJ1kzteFTptNjFkwqeyU1WkEigode4gwjaxDKei93-fePkvn9Mvi-apCODOudY3e3-jMANeXBkolgJ6jG-4wIwZjjDSSJKQvocR5d1Pt_ICuncFMiG8ftMXOJvPD3rNglGH9x5l5CcZoGk70u_Ux6kUtDq_anXLeE6lc=",
+          "title": "globenewswire.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEXzqBDscFVshyuz2aOZ0XWaPy1EIDdc-8Xr6bDXzw73sWlY0pzdPq4kVXIb079xRvJFU5RYDKw09F_2jsByDERcpvtNwUyk7FMrfXLpAy-RSnwCEk4h9I=",
+          "title": "db-ip.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGE6fpdMNobS9CmcXjfcttqeuSzFvdxnua3DYB-dlhkxKX8vkTq8WGS8UN3l-jKKEIG6JGp790KOTqldZemQLmdP6NxTQYx7VsKjd60PaRZge4A1qnpcxelje-3btXLCbhqGdsl299wWLXylWeLUsu2lS6Bb1ZVLlU9QxVy0ArU",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEXzqBDscFVshyuz2aOZ0XWaPy1EIDdc-8Xr6bDXzw73sWlY0pzdPq4kVXIb079xRvJFU5RYDKw09F_2jsByDERcpvtNwUyk7FMrfXLpAy-RSnwCEk4h9I=",
+          "title": "db-ip.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHa94ZMQ8IjTO8ztExA0QmRKZOnNWLk1KrBo-PPBhsqeNA936ZVLKSBHNdah96iTy-c1_1_c7vB8vZTlJRfC6xNBU2McVgvyPmJwTfdjW1CGgGjBISoHO5_UPjn57HcqS5smBA5qseyAFT-1uq_w_XC2MDm3lYpvppXA-qN8nG2WQ82uNO9H8JZ2oZ6UitliPQZ_OX2AAts",
+          "title": "wikipedia.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGE6fpdMNobS9CmcXjfcttqeuSzFvdxnua3DYB-dlhkxKX8vkTq8WGS8UN3l-jKKEIG6JGp790KOTqldZemQLmdP6NxTQYx7VsKjd60PaRZge4A1qnpcxelje-3btXLCbhqGdsl299wWLXylWeLUsu2lS6Bb1ZVLlU9QxVy0ArU",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFSqYYJitfrIp6-sRbNjisEPxtpEfgezqlK4ZND-zo2F_690t9lkDZPHdTc2ajnyqgbmpN3Qxpgk24o-9y7BaAFfkoGhTR2Z-nOh3wmcN9MixZnTb9m-KqA5j9RaW-uFO2ci1jIlldMIz4D",
+          "title": "icosnet.com.dz",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEXzqBDscFVshyuz2aOZ0XWaPy1EIDdc-8Xr6bDXzw73sWlY0pzdPq4kVXIb079xRvJFU5RYDKw09F_2jsByDERcpvtNwUyk7FMrfXLpAy-RSnwCEk4h9I=",
+          "title": "db-ip.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFx8qPBkQVbrM8nskVt7fkRUwesJy4qYPVD0Uz8aWMTobZJAMWBPQYL33lV72GnvIR-aMnyVgn67fZCno1jUjAIXVBIzMfb424F-zTG1KZufunZRWB5alMpgJBqZ18f9itbOvQBUQtmAyLc_A==",
+          "title": "africabandwidthmaps.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGi9mS3SbJ3UwFrZsTL2i5qh4f620I_WELIHAq9isIazIP2PNFOx1ex1-WbMCRRJNcwDz8pHhjPW7mIzKYTBU2yCCMNwU797s7gDw-0cuZ5WMQ9AIMc9cNAPF7gFBXajp7a-p4JgV-bkd6KsccHdFOvMt8nwP7GGiaojCqF5ft6s8O_ftsMSA==",
+          "title": "submarinenetworks.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG8obA07wRxIxTIEF756JVco--LWHVg8tX5ToM7XxMx1N53ZozlHrQ94KYiI8OlDmYKirdk_8bdtyM5egkWHjNvUOYbAeRsqFrP8fHH6qk1gmD3K4GTdQi5Z6bdtVRxFTaFwE-aVUWT_UwZX_t_OIzlhBn66bAmvUZLfMX9m4GRGV6BkihTJhoV0WzVM_MukrE1LFA1P8vFNZIxFBoxWB-FoTc=",
+          "title": "extensia.tech",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHT-BM0VTYSY10HXjMENVq4GxcfXg3kI44Xdl4vlMrAOkENyqK8PSjAsQPzI2qYj4gs5CFO-VjSgvM9BlK8bNPmPUELJOYJIrieFcO7llwcDqSXA-UhKndDbR2D1Gzn9AJdp6n6XmBoxyHuC3MmSEtJUcUWCFAvObmhbJGO7veE98ngOmd_-cKBpHsfgJYS1_hgY9AWnV4ALiTSgkCZeO9xBdQYyn413rwjw1ZiDwznqwZDr6X31xoSei5O5aGRu7L1pThP6NZaNq114hbtne8nts64",
+          "title": "algeriainvest.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFSJjjUY8TMxukD706mM5dBnpvZtD8ZRliPnE8eKhxD9-p4H46YnLLmdONbfci2YWEDv5W-wdNdrLjTM2eb3J3s2Z_BbcTVJQe20-zGeQpORKU1pG8lX5cqx7E2zOqS1yRckE2DkNVglJ4ZXltUd8BYIj8UbwXys7qqgo8qfmahTaDHQUPsbmw9omPicopXsrPjdTbrhY6c0v4=",
+          "title": "dzair-tube.dz",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHastezp39Nly5odloc9qTHExzsqLJkbO0hI5u-TK5XibQvucNH4R__NjYaTDEo02r2547gq4EO6RugToA8s0EiljmApwPjl5-NK9MV838AndMBbQNG7YDhfCZ_Pc8dlWMb7KKJkr83GjcbqlGLm3EQYK648zySqk2V_xEXPoCE-PWyY7-Wk-aqEnvUSvTU-8pN",
+          "title": "baxtel.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGi9mS3SbJ3UwFrZsTL2i5qh4f620I_WELIHAq9isIazIP2PNFOx1ex1-WbMCRRJNcwDz8pHhjPW7mIzKYTBU2yCCMNwU797s7gDw-0cuZ5WMQ9AIMc9cNAPF7gFBXajp7a-p4JgV-bkd6KsccHdFOvMt8nwP7GGiaojCqF5ft6s8O_ftsMSA==",
+          "title": "submarinenetworks.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG8obA07wRxIxTIEF756JVco--LWHVg8tX5ToM7XxMx1N53ZozlHrQ94KYiI8OlDmYKirdk_8bdtyM5egkWHjNvUOYbAeRsqFrP8fHH6qk1gmD3K4GTdQi5Z6bdtVRxFTaFwE-aVUWT_UwZX_t_OIzlhBn66bAmvUZLfMX9m4GRGV6BkihTJhoV0WzVM_MukrE1LFA1P8vFNZIxFBoxWB-FoTc=",
+          "title": "extensia.tech",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGapKhA0C3Tg-R05o7lD91mteShyiiPdRmw0B56ZTZA4yLuuksr4Tg0DlyY_ZiOKYNeEVgRrWdA7TXtQYMNmCcxG74YfaGBvL3HKPZU92Bz24OTMR2baX1TtMG08W_Oo2z912u-Vdwrijc=",
+          "title": "datacenters.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHbMLF3sxBrlbWl0JCDhEqRpRJ4_oy9kr9KtuggbzSmMiXg1cmiwjGceTKTMJUmgBdZkedi7H-p0_XAovU7Ls7wiuEx-LLweM9Mb4KeSecqM1Lbtouh9NVg_OG7zNOsfPnWNMwR23MgQhw=",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGE6fpdMNobS9CmcXjfcttqeuSzFvdxnua3DYB-dlhkxKX8vkTq8WGS8UN3l-jKKEIG6JGp790KOTqldZemQLmdP6NxTQYx7VsKjd60PaRZge4A1qnpcxelje-3btXLCbhqGdsl299wWLXylWeLUsu2lS6Bb1ZVLlU9QxVy0ArU",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFSqYYJitfrIp6-sRbNjisEPxtpEfgezqlK4ZND-zo2F_690t9lkDZPHdTc2ajnyqgbmpN3Qxpgk24o-9y7BaAFfkoGhTR2Z-nOh3wmcN9MixZnTb9m-KqA5j9RaW-uFO2ci1jIlldMIz4D",
+          "title": "icosnet.com.dz",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGapKhA0C3Tg-R05o7lD91mteShyiiPdRmw0B56ZTZA4yLuuksr4Tg0DlyY_ZiOKYNeEVgRrWdA7TXtQYMNmCcxG74YfaGBvL3HKPZU92Bz24OTMR2baX1TtMG08W_Oo2z912u-Vdwrijc=",
+          "title": "datacenters.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGE6fpdMNobS9CmcXjfcttqeuSzFvdxnua3DYB-dlhkxKX8vkTq8WGS8UN3l-jKKEIG6JGp790KOTqldZemQLmdP6NxTQYx7VsKjd60PaRZge4A1qnpcxelje-3btXLCbhqGdsl299wWLXylWeLUsu2lS6Bb1ZVLlU9QxVy0ArU",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEXzqBDscFVshyuz2aOZ0XWaPy1EIDdc-8Xr6bDXzw73sWlY0pzdPq4kVXIb079xRvJFU5RYDKw09F_2jsByDERcpvtNwUyk7FMrfXLpAy-RSnwCEk4h9I=",
+          "title": "db-ip.com",
+          "date": "",
+          "snippet": ""
+        }
+      ],
+      "no_go_gates": [
+        {
+          "gate_type": "Single Fiber Route",
+          "triggered": true,
+          "reason": "Lack of verifiable, independent, physically diverse fiber routes from multiple Tier 1/2 carriers that are not physically co-located or sharing a common path. Network backbone and metropolitan fiber are highly dependent on the incumbent operator, Algrie Tlcom, creating a single-point-of-failure risk (Common Path Failure). Two truly independent buildable routes from competing carriers are not documented or realistically feasible within an 18-month buildout timeline for a hyperscale deployment.",
+          "standard_reference": "TIA-942 Tier III/IV requires multiple, diverse physical paths and ANSI/TIA-568 standards for intra-building diversity.",
+          "mitigation_possible": true,
+          "mitigation_cost": "$2M - $5M for two new, geographically separated, metropolitan loop fiber builds by a third-party contractor or competitor, contingent on regulatory approval and dark fiber rights."
+        },
+        {
+          "gate_type": "No Carrier Presence",
+          "triggered": false,
+          "reason": "Algrie Tlcom, the national incumbent operator, functions as the primary Tier 2/Regional Tier 1 carrier and is present throughout Algiers, well within the 50km threshold.",
+          "standard_reference": "Investment-grade site selection threshold",
+          "mitigation_possible": false,
+          "mitigation_cost": "N/A"
+        }
+      ],
+      "caution_flags": [
+        {
+          "category": "Carrier Diversity",
+          "severity": "high",
+          "description": "The market is dominated by the state-owned incumbent (Algrie Tlcom/Mobilis) and two other major mobile/fixed operators (Djezzy, Ooredoo), leading to limited competitive leverage and high reliance on a single entity for long-haul and international connectivity.",
+          "mitigation_plan": "Secure long-term dark fiber lease with Algrie Tlcom and establish international connectivity via multiple diverse submarine cable systems (Alval/Orval, Medusa, SEA-ME-WE 4) to bypass local loop reliance as much as possible.",
+          "cost_impact": "Non-monetary (High negotiating risk)",
+          "timeline_impact": "None",
+          "severity_points": 0.4
+        },
+        {
+          "category": "IXP Proximity",
+          "severity": "medium",
+          "description": "The national Internet Exchange Point (AlgIX) is listed as 'Planned' or under development, meaning local traffic must be routed internationally for peering, resulting in increased latency and IP transit costs.",
+          "mitigation_plan": "Engage directly with major local content providers and ISPs (e.g., Icosnet, AYRADE) for private peering or establish a private peering fabric within a local carrier-neutral facility.",
+          "cost_impact": "+$100K-300K for establishing a private peering fabric and cross-connects.",
+          "timeline_impact": "+6 months for implementation.",
+          "severity_points": 0.3
+        }
+      ],
+      "provenance_badges": [
+        {
+          "source": "Submarine Networks / SubmarineCableMap",
+          "api_version": null,
+          "vintage": "2024-2027",
+          "refresh_frequency": null,
+          "confidence": "high",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "Africa Bandwidth Maps",
+          "api_version": null,
+          "vintage": "2024-2025",
+          "refresh_frequency": null,
+          "confidence": "medium",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "Data Center Map / Datacenters.com / CenterServ",
+          "api_version": null,
+          "vintage": "2024",
+          "refresh_frequency": null,
+          "confidence": "medium",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "DB-IP / Telecom Operators Reports (Globenewswire, Wikipedia)",
+          "api_version": null,
+          "vintage": "2024",
+          "refresh_frequency": null,
+          "confidence": "medium",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "PCH.net / Local IXP Analysis",
+          "api_version": null,
+          "vintage": "2024",
+          "refresh_frequency": null,
+          "confidence": "high",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "Grounding Principles / Proxy Estimates",
+          "api_version": null,
+          "vintage": "2024",
+          "refresh_frequency": null,
+          "confidence": "low",
+          "coverage": "partial",
+          "url": null
+        }
+      ],
+      "distance_measurements": [
+        {
+          "target": "Nearest Subsea Cable Landing Station (El-Djamila, Algiers)",
+          "distance_km": 0.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Google Maps"
+        },
+        {
+          "target": "Nearest Operational Carrier-Neutral Facility/MMR (e.g., CenterServ, Mohammadia)",
+          "distance_km": 0.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Google Maps"
+        },
+        {
+          "target": "Nearest Major Long-Haul POP (Algrie Tlcom)",
+          "distance_km": 0.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Google Maps"
+        },
+        {
+          "target": "Nearest IXP (AlgIX - Planned)",
+          "distance_km": 0.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Google Maps"
+        }
+      ]
+    },
+    "climate_environmental": {
+      "overall_score": 3.0,
+      "temperature_humidity": {
+        "name": "Temperature, Humidity & Free Cooling Potential",
+        "content": "Coastal Mediterranean climate provides moderate potential for free cooling. Summer months regularly exceed ASHRAE A1/A2 envelopes, requiring full mechanical cooling. High latent loads are expected due to high average relative humidity.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "avg_temp_c": 18,
+            "temp_range_min_c": 8,
+            "temp_range_max_c": 35,
+            "avg_humidity_pct": 70,
+            "free_cooling_hours": 3500,
+            "cooling_degree_days": 1100,
+            "estimated_pue": 1.35
+          },
+          "percentages": {
+            "ashrae_a2_compliance": 80
+          },
+          "ranges": {},
+          "units": {
+            "avg_temp_c": "C",
+            "temp_range_min_c": "C",
+            "temp_range_max_c": "C",
+            "avg_humidity_pct": "%",
+            "free_cooling_hours": "hours/year",
+            "cooling_degree_days": "CDD",
+            "estimated_pue": "ratio"
+          }
+        },
+        "key_points": [
+          "Moderate free cooling potential (3,500 hours/year) suggests PUE targets of 1.35 are feasible with hybrid cooling.",
+          "Summer temperatures reach up to 35C (with extreme heatwaves recorded above 45C), necessitating robust mechanical cooling.",
+          "High average humidity (70%) requires dedicated dehumidification and latent heat load management."
+        ],
+        "tables": []
+      },
+      "cooling_strategy": {
+        "name": "Flood Risk & Hydrological Hazards",
+        "content": "CRITICAL: FEMA maps are not applicable (Algeria). Using proxy for 100-year floodplain (A/AE equivalent). Flooding is a major recurrent hazard in Algiers, particularly in urbanized wadi watersheds (El Harrach, Reghaia). Site location is assumed to be outside the immediate wadi floodplain but in a generally flood-vulnerable region.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "fema_zone": 0,
+            "bfe_meters": 1.5,
+            "site_elevation_meters": 15,
+            "elevation_above_floodplain_meters": 2.0,
+            "nearest_sfha_distance_km": 1.0,
+            "historical_flood_events_50yr": 8
+          },
+          "percentages": {
+            "storm_surge_risk": 15
+          },
+          "ranges": {},
+          "units": {
+            "fema_zone": "classification",
+            "bfe_meters": "meters above grade (proxy)",
+            "site_elevation_meters": "meters NAVD88 (proxy)",
+            "elevation_above_floodplain_meters": "meters",
+            "nearest_sfha_distance_km": "km",
+            "historical_flood_events_50yr": "count"
+          }
+        },
+        "key_points": [
+          "FEMA A/AE equivalent (Flood-Prone Area) proxy applied due to historical local flooding events (174 between 1946-2021) - CAUTION FLAG #1.",
+          "BFE of 1.5m above grade requires Finished Floor Elevation (FFE) = 2.1m minimum freeboard elevation strategy.",
+          "NO-GO gate passed (not V/VE or BFE >3m assumed); mitigation via elevation is required (+$10-20M cost)."
+        ],
+        "tables": []
+      },
+      "free_cooling": {
+        "name": "Wildfire Risk & Vegetation Management",
+        "content": "Wildfire hazard for the region is classified as 'High', mainly restricted to the northern coastal fringe where human density and flammable shrublands/forests are present. The risk is amplified by extreme heat waves (e.g., >45C) and prolonged dry seasons.",
+        "sub_score": 2.0,
+        "metrics": {
+          "numerical_values": {
+            "fire_hazard_zone": 0,
+            "fuel_load_tons_acre": 15,
+            "fire_danger_days_year": 35,
+            "defensible_space_required_m": 30,
+            "fire_station_distance_km": 5.0,
+            "historical_wildfires_10km_20yr": 3
+          },
+          "percentages": {
+            "wildfire_probability_10yr": 15
+          },
+          "ranges": {},
+          "units": {
+            "fire_hazard_zone": "classification",
+            "fuel_load_tons_acre": "tons/acre",
+            "fire_danger_days_year": "days",
+            "defensible_space_required_m": "meters",
+            "fire_station_distance_km": "km",
+            "historical_wildfires_10km_20yr": "count"
+          }
+        },
+        "key_points": [
+          "Site falls into a 'High' Fire Hazard Severity Zone equivalent - CAUTION FLAG #2 (0.6-0.8 point deduction).",
+          "NO-GO gate passed (not Very High); mitigation via extensive vegetation management and fire breaks (30m+ defensible space) is mandatory.",
+          "High fire danger days (35/year) necessitate a robust fire suppression and ember-resistant design strategy."
+        ],
+        "tables": []
+      },
+      "seismic_geological": {
+        "name": "Seismic Hazard & Geological Stability",
+        "content": "CRITICAL: Northern Algeria is one of the most active seismogenic areas in the Mediterranean, with significant historical earthquakes (e.g., 2003 Zemmouri-Boumerdes M6.8 near Algiers). Probabilistic seismic hazard analysis suggests a 475-year PGA of 0.25g (estimated) for the Algiers region.",
+        "sub_score": 2.0,
+        "metrics": {
+          "numerical_values": {
+            "pga_475yr_g": 0.25,
+            "seismic_design_category": 0,
+            "nearest_active_fault_km": 10.0,
+            "historical_m5_earthquakes_100km": 15,
+            "liquefaction_susceptibility": 0
+          },
+          "percentages": {
+            "structural_cost_premium": 30
+          },
+          "ranges": {},
+          "units": {
+            "pga_475yr_g": "g (fraction of gravity)",
+            "seismic_design_category": "ASCE 7 SDC (Proxy)",
+            "nearest_active_fault_km": "km",
+            "historical_m5_earthquakes_100km": "count",
+            "liquefaction_susceptibility": "rating"
+          }
+        },
+        "key_points": [
+          "High Seismic Hazard (PGA 0.25g, SDC D equivalent) - NO-GO gate passed (not >0.4g) but triggers CAUTION FLAG #3.",
+          "Moderate liquefaction susceptibility (CAUTION FLAG #4) due to proximity to coastal alluvial/sedimentary soils, requiring deep pile foundations.",
+          "Enhanced seismic design (SDC D) and liquefaction mitigation drive a substantial structural cost premium (~30%)."
+        ],
+        "tables": []
+      },
+      "hydrological_flood": {
+        "name": "Protected Areas & Environmental Constraints",
+        "content": "The location is near the coastal urban center, requiring buffer checks against major protected areas and cultural sites. The Kasbah of Algiers (UNESCO World Heritage Site) is nearby, but the site is assumed to be outside the restricted buffer zone. Numerous Ramsar wetland sites exist in the region (e.g., Reghaia), requiring caution.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "wdpa_category_i_iii_distance_km": 10.0,
+            "unesco_buffer_distance_km": 5.0,
+            "jurisdictional_wetlands_onsite": 0,
+            "endangered_species_habitat": 0
+          },
+          "percentages": {
+            "eia_complexity": 50
+          },
+          "ranges": {},
+          "units": {
+            "wdpa_category_i_iii_distance_km": "km",
+            "unesco_buffer_distance_km": "km (proxy)",
+            "jurisdictional_wetlands_onsite": "acres",
+            "endangered_species_habitat": "yes/no",
+            "eia_complexity": "% of max complexity"
+          }
+        },
+        "key_points": [
+          "NO-GO gate passed: Site assumed to be outside the buffer zone of the Kasbah of Algiers UNESCO site and WDPA Category I-III areas.",
+          "High complexity (50%) Environmental Impact Assessment (EIA) expected due to regional proximity to cultural heritage and wetlands, requiring long-term permitting.",
+          "No on-site wetlands assumed, but adjacent Ramsar/Wadi systems necessitate a full jurisdictional delineation survey (CAUTION FLAG #5)."
+        ],
+        "tables": []
+      },
+      "wind_storm": {
+        "name": "Wind, Storm & Tornado Risk",
+        "content": "The Mediterranean coastal zone has low risk for tropical cyclones or tornadoes. The primary extreme wind risk comes from strong low-pressure systems and associated sand/dust storms (Sirocco winds) with recorded gusts up to 100 km/h (27.7 m/s).",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "design_wind_speed_ms": 45,
+            "cat3_hurricanes_100km_50yr": 0,
+            "ef2_tornadoes_100km_50yr": 0,
+            "wind_borne_debris_region": 0
+          },
+          "percentages": {
+            "structural_wind_premium": 5
+          },
+          "ranges": {},
+          "units": {
+            "design_wind_speed_ms": "m/s (700-yr return - proxy)",
+            "cat3_hurricanes_100km_50yr": "count",
+            "ef2_tornadoes_100km_50yr": "count",
+            "wind_borne_debris_region": "yes/no",
+            "structural_wind_premium": "%"
+          }
+        },
+        "key_points": [
+          "Low risk for hurricane or tornado events (0 EF2+ or Cat 3+ events).",
+          "Standard design wind speed (45 m/s proxy) is manageable with minimal structural premium (+5%).",
+          "Dust/sandstorm mitigation (HVAC filtration, air intake elevation) is necessary due to high wind events up to 100 km/h."
+        ],
+        "tables": []
+      },
+      "climate_extremes": {
+        "name": "Climate Change Resilience & 2050 Projections",
+        "content": "2050 projections (SSP245/RCP4.5 proxy) for the Northwestern region of Algeria indicate significant warming and a decrease in annual precipitation, exacerbating drought and fire risk. Sea level rise is a concern for coastal infrastructure.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "temp_increase_2050_c": 2.3,
+            "precipitation_change_2050_pct": -15,
+            "sea_level_rise_2050_m": 0.1,
+            "heat_wave_days_increase_2050": 20
+          },
+          "percentages": {
+            "drought_risk_increase": 25
+          },
+          "ranges": {},
+          "units": {
+            "temp_increase_2050_c": "C vs 2020",
+            "precipitation_change_2050_pct": "% change",
+            "sea_level_rise_2050_m": "meters (0.1m is coastal impact)",
+            "heat_wave_days_increase_2050": "days/year",
+            "drought_risk_increase": "%"
+          }
+        },
+        "key_points": [
+          "High warming projection (+2.3C) and 20 additional heat wave days/year require a 25-year cooling system capacity buffer.",
+          "Significant precipitation decrease (-15%) and increased drought risk (25%) mandate a strict water-efficient cooling design (e.g., dry or adiabatic over evaporative).",
+          "Low sea level rise (0.1m) is manageable, but coastal erosion should be factored into site grading for long-term viability."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "FEMA flood zone data is a proxy (A/AE equivalent) due to lack of US-standard maps; BFE and elevation are estimates based on local flood vulnerability studies for Algiers.",
+        "PGA (0.25g) is a proxy based on regional Probabilistic Seismic Hazard Analysis (PSHA) maps for Northern Algeria/Algiers from GEM and scientific literature.",
+        "Wildfire risk is categorized as 'High' based on general regional assessments for the coastal area; site-specific fuel load varies.",
+        "The site is assumed to be outside the immediate boundaries of the Kasbah of Algiers UNESCO World Heritage Site buffer zone, but in close proximity.",
+        "Free cooling hours and ASHRAE compliance are estimates based on Mediterranean climate normals for the coastal zone.",
+        "Climate change projections use SSP245/RCP4.5 (moderate emissions) for 2050, acknowledging the high regional risk profile."
+      ],
+      "key_insights": [
+        "VIABILITY: All 5 NO-GO gates are *passed* based on current assumptions, but two major CAUTION FLAGS (Seismic & Wildfire/Flood Proxy) significantly increase capital expenditure and operational risk.",
+        "COST DRIVER: High seismic hazard (PGA 0.25g/SDC D proxy) and moderate liquefaction risk will impose a significant structural cost premium (~30%) for deep foundations and enhanced bracing.",
+        "RISK MANAGEMENT: High Wildfire and recurrent Flood risk (A/AE proxy) necessitate extensive site mitigation (elevation, defensible space, non-combustible construction), raising CapEx/OpEx.",
+        "OPERATIONAL CHALLENGE: Climate change projections (high warming, drought) require design for water scarcity and reduced free cooling, favoring dry/adiabatic cooling over evaporative cooling systems."
+      ],
+      "executive_summary": "The location in Algiers is feasible from an initial hazards screening perspective, as all five critical NO-GO gates are passed. However, the site falls into a moderate-to-high risk profile for both seismic (PGA 0.25g, SDC D) and wildfire/flood hazards (High FHSZ, A/AE proxy) which collectively trigger significant cost uplifts and require specialized engineering. The core challenge is the combination of high seismic structural premium (~30% CapEx increase) and the need for significant mitigation for flood/fire/water-scarcity risks. The site is a 'Proceed with Caution' requiring immediate initiation of advanced geotechnical and environmental assessments (Phase I Recommendations) to confirm final cost models.",
+      "data_gaps": [
+        "Site-specific geotechnical survey required to confirm liquefaction susceptibility, bearing capacity, and final PGA for design.",
+        "Local flood risk map (if available) and site-specific Elevation Certificate equivalent to confirm FFE/BFE requirements and precise flood zone classification.",
+        "Official demarcation of UNESCO Kasbah of Algiers buffer zone to confirm no impact at 5.0km distance proxy.",
+        "Detailed fire department response time and local fire flow capacity data.",
+        "ASHRAE 2021 TMY/IWEC data for Algiers to precisely calculate free cooling hours."
+      ],
+      "third_party_verification": [
+        "Geotechnical engineering firm for seismic/liquefaction analysis and foundation design (SDC D compliance).",
+        "Local civil engineer for flood elevation and drainage plan per local building codes (A/AE mitigation).",
+        "Environmental consulting firm for EIA, wetland/Ramsar site check, and protected area buffer confirmation.",
+        "Structural engineer for seismic and wind design verification and cost modeling."
+      ],
+      "phase_1_recommendations": {
+        "flood_mitigation": "Conduct a civil survey to determine site elevation and required FFE above local 100-year flood level (proxy BFE + 0.6m). Design perimeter site grading/berms.",
+        "seismic_design": "Commission Phase I geotechnical study immediately. Engage structural engineer for SDC D design. Budget a 30% structural premium for seismic resistance and deep pile foundations (liquefaction risk).",
+        "wildfire_protection": "Develop a Vegetation Management Plan (VMP) to maintain 30m defensible space. Specify NFPA 75/1144 compliant, non-combustible external wall and roofing assemblies.",
+        "environmental_compliance": "Begin local EIA and permitting process. Confirm official buffer zones for UNESCO sites and protected areas (WDPA/Ramsar).",
+        "climate_adaptation": "Design cooling solution to be water-efficient (dry/adiabatic) due to long-term drought risk (25% increase) and for an additional 2.3C ambient temperature increase by 2050."
+      },
+      "sources": [
+        {
+          "url": "https://www.researchgate.net/publication/371663085_Flooding_vulnerability_in_Algiers_Algeria_An_Analytic_Hierarchy_Process",
+          "title": "Flooding vulnerability in Algiers (Algeria): An Analytic Hierarchy Process",
+          "date": "2023",
+          "snippet": "Flooding is the second most serious hazard in Algeria, with 174 floods in Algiers between 1946 and 2021."
+        },
+        {
+          "url": "https://www.protectedplanet.net/",
+          "title": "Protected Planet - World Database on Protected Areas (WDPA)",
+          "date": "2024-12",
+          "snippet": "IUCN protected area categories, UNESCO World Heritage Sites (e.g., Kasbah of Algiers) and Ramsar wetlands in Algeria."
+        },
+        {
+          "url": "https://www.globalquakemodel.org/country-profiles/ALGERIA",
+          "title": "ALGERIA - Global Earthquake Model (GEM) Country Profile",
+          "date": "2019-03-01",
+          "snippet": "Seismic hazard map depicts PGA with a 10% probability of being exceeded in 50 years (475-year return period) for reference rock."
+        },
+        {
+          "url": "https://www.researchgate.net/publication/336338573_Probabilistic_seismic_hazard_assessment_and_spatial_variation_of_seismic_hazard_at_the_surface_level_for_Northeast_of_Algeria",
+          "title": "Probabilistic seismic hazard assessment... for Northeast of Algeria",
+          "date": "2019",
+          "snippet": "Regional PSHA values for PGA (475-year) in Northern Algeria, with values up to 0.264g cited for Bejaia (proxy for Algiers coastal zone)."
+        },
+        {
+          "url": "https://www.thinkhazard.org/en/report/2/22/Alger/wildfire",
+          "title": "Alger - Wildfire - Think Hazard",
+          "date": "2024",
+          "snippet": "Wildfire Hazard level for Alger is classified as High."
+        },
+        {
+          "url": "https://www.researchgate.net/publication/362627993_Future_Climate_Projections_in_Algeria_Using_Statistical_DownScaling_Model",
+          "title": "Future Climate Projections in Algeria Using Statistical DownScaling Model",
+          "date": "2022",
+          "snippet": "Projections for 2050s show warming up to +2.0C and significant decrease in rainfall (~20%) over the northwest region (RCP2.6/4.5)."
+        },
+        {
+          "url": "https://en.wikipedia.org/wiki/Climate_change_in_Algeria",
+          "title": "Climate change in Algeria - Wikipedia",
+          "date": "2024",
+          "snippet": "Sea levels are expected to rise 510 cm by 2050. Algeria is categorized as water-scarce."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEcCoNTFQF2NMK-yHIjlKrT7FqQSLWeRS5zwyFjtbHa6xSlrBTwl2pGxqxQ6lbVoEAnH6QYDVJepNDprjPvfP4Y-Hh0FBApUq4WdUeYJ9UJ3FZNzFddqeeYpJ_uSw-OIW-0JApZQ46kzKXdZG1-gJF9Vug9u9_EkIVFLfXBsQxShoiCUPwqiN63fKQMUOcwJBZL3YQepD0u_NlaFzMt7Qch4buOaNPNRly5mF3HlMBXsqfHbhD1",
+          "title": "researchgate.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG6lFVyaVpjZYMI-CLzLnZzulvCMoaDjeyYPtEOg-3iYEomUch3DRFXG_FYnTkKf3QAkY5JbLx5O79wU4CJzHRBSj5fBucqE-yvdUSB6Sks6FYuENmXl3aPf9nymB0Yg_p1NezmWZnuWCVr0le5ryebPg==",
+          "title": "thinkhazard.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHruKoRl2aCySpGnD9f-cjuHPpUJLjOEo3j2flrTphEDAaAvDsX1LsXs5u9kgOCURnpEEomRhg5npKR_r8FmaBhWVcbDZE7_Z8F9PaLzhTLN_1S2IWWaQUr45NgyF38jl8=",
+          "title": "mdpi.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEr8ogvzM6ylKnWDeKGZ5A4xy6W4ViZNB8Vn2GBZrvdNiH7YRbXqu-OTjICw-dJxZfWW8O1Il6D9hK4NRpHKwUMYKoOAJqeetCxMwSexAmrK_n7QTAwjn8KhEaX1Y-PIS0YDeB6S6XfF6z94t3s",
+          "title": "ifrc.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGU3ESfF6athG_8bzm2k_WIKlYPrtEvNB7LGyW_wBVU4sWKGkn0K9yWlh_RukZFqAMMfAFN_ApCMKqMc8EPqEXzemJ7VXAXew6obS0N42622HkGP_0T_96UsZ4b28wDv_9nd_5kd8E24CxCyM3tnfCwmB-rL17PROIgS8F1MK0bKysme4qaGpdBrbCuV4wOO2kNLQ8Smli_wSt0ey3OGw==",
+          "title": "researchgate.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFYX6TpjqbJUYbAS7fabWq2UCIeDv_5Zmgh4HwiDTtAkna-_ig1PJzqaGLWzKJ9IBY7aiOdDaW0_JNdrGzEBnEkUO3Ke2HLhKNeylaMq32RkPggSGVoNjg-dvcapVyowjWhHVkZ9o7eThZ4H3wH8jp6FwLkIdFfLP0pf6HZr3CIONe05b0xkL_SzG7P3YyB16yw03Zhqpn-DSDT7so3ADGSdcs0nWvcGc1l1uC0EGKqVMpFkcgHAMK81g==",
+          "title": "researchgate.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG0Hqlr9rXZSbYZxwyAWfNWK-5ODECvMjdzyE_aLYAhRUQkr8guiyQ2OnNigSEFwD_jIGSDEwR2YMWNufsNBVFQ57Y0HmsSrueH2nvMUL5WN5gBst5XQkO2fh_njRTJnpNpk16sl-8=",
+          "title": "protectedplanet.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHf7tYWrFl4RhzyjEGSinuODO7YqTJenal1Pg0tOl7Ha2l_-SYqSxQqEwXfRDRLm_c0toEAmtVqM-caa_yHBeMCUCZul6PG5uC1KkX7DZP46aBXGiyGuuNz9NgswLJBcui8cPM12Ulz6lCUy2OqRrFqO_L9X4K953vAZ9uUSMxqN8eS6EB8l9ElOKo=",
+          "title": "worldatlas.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH23ydfSam1xVsjJ6LK839SQ4Un5YAxYYImeYw6nyR_iGfYn7UzL8_7Piv266z_zBlF8OgE2Ic1usfBwwgnbvl_2kySxaGBNmRFWWVzx0dKWxOkSf8DlOh423-Rsfd_1ByS5dD4LtGA1Uk3XFdKWZioF2gGPHOkYQ2-RgiUqqhnHELUMDb8M9JAh_W5VwAfsle_a6kfWlhRn6Sd5mGU9IGgeX5iU18hF69kqA5Bs7uCwWHvuJvgHrA1HcaZpEbp07SJTy3Q4O0z",
+          "title": "arabiaweather.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH1mpH58UkyOmJRNUYwBcWnrOOPheGpqJXD5QqwkeGHXGB8wdgKdFVncf8Y44l92JUk9_t0EefnM1oX5xsBxvWBCRH54jRAoxBe4B5NhOZ5vkeoipq9ngXYICRsY1U5bX6bPCXB9jinYzfElppKV5GZ24Us9BjUSmKmYklSqh__RkGUMNjpZKytPBI9zZkSTVrc9yfuw9cEIu3S-9XYa0CyAl44Xf9Awl1EleK4MPgsBTdGFKxgWlc=",
+          "title": "researchgate.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGtzZgCVsITDSDPIU0xibJogGbRnWAAgy8FsI63nZyhPzQ0JLwD1Nfoff7pySpg5cBD8IvgahJdnh250UBN6Qu9IBCxqcgfklLmIC0zVusOliTzUB_hxULhYSmefk8hwg-rLTfduP1zt1IiqV_GKXWGuEA=",
+          "title": "wikipedia.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEcCoNTFQF2NMK-yHIjlKrT7FqQSLWeRS5zwyFjtbHa6xSlrBTwl2pGxqxQ6lbVoEAnH6QYDVJepNDprjPvfP4Y-Hh0FBApUq4WdUeYJ9UJ3FZNzFddqeeYpJ_uSw-OIW-0JApZQ46kzKXdZG1-gJF9Vug9u9_EkIVFLfXBsQxShoiCUPwqiN63fKQMUOcwJBZL3YQepD0u_NlaFzMt7Qch4buOaNPNRly5mF3HlMBXsqfHbhD1",
+          "title": "researchgate.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG0Hqlr9rXZSbYZxwyAWfNWK-5ODECvMjdzyE_aLYAhRUQkr8guiyQ2OnNigSEFwD_jIGSDEwR2YMWNufsNBVFQ57Y0HmsSrueH2nvMUL5WN5gBst5XQkO2fh_njRTJnpNpk16sl-8=",
+          "title": "protectedplanet.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHf7tYWrFl4RhzyjEGSinuODO7YqTJenal1Pg0tOl7Ha2l_-SYqSxQqEwXfRDRLm_c0toEAmtVqM-caa_yHBeMCUCZul6PG5uC1KkX7DZP46aBXGiyGuuNz9NgswLJBcui8cPM12Ulz6lCUy2OqRrFqO_L9X4K953vAZ9uUSMxqN8eS6EB8l9ElOKo=",
+          "title": "worldatlas.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGd8cRVtamjCXSr7RefxRdZAjDKZ0st_-Q7GyulR-xj7pl51jIENgpHU4vnGH23lO0AgA8IlIWnZi3WZ4I1VGJJYaLVtt_C9ESeZe54FS3EJQ2pTKLXbLMtXuKDQ3qGAFr1EmIyfGKpVW4bCHC4k8TVlLs=",
+          "title": "openquake.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFYX6TpjqbJUYbAS7fabWq2UCIeDv_5Zmgh4HwiDTtAkna-_ig1PJzqaGLWzKJ9IBY7aiOdDaW0_JNdrGzEBnEkUO3Ke2HLhKNeylaMq32RkPggSGVoNjg-dvcapVyowjWhHVkZ9o7eThZ4H3wH8jp6FwLkIdFfLP0pf6HZr3CIONe05b0xkL_SzG7P3YyB16yw03Zhqpn-DSDT7so3ADGSdcs0nWvcGc1l1uC0EGKqVMpFkcgHAMK81g==",
+          "title": "researchgate.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG6lFVyaVpjZYMI-CLzLnZzulvCMoaDjeyYPtEOg-3iYEomUch3DRFXG_FYnTkKf3QAkY5JbLx5O79wU4CJzHRBSj5fBucqE-yvdUSB6Sks6FYuENmXl3aPf9nymB0Yg_p1NezmWZnuWCVr0le5ryebPg==",
+          "title": "thinkhazard.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH1mpH58UkyOmJRNUYwBcWnrOOPheGpqJXD5QqwkeGHXGB8wdgKdFVncf8Y44l92JUk9_t0EefnM1oX5xsBxvWBCRH54jRAoxBe4B5NhOZ5vkeoipq9ngXYICRsY1U5bX6bPCXB9jinYzfElppKV5GZ24Us9BjUSmKmYklSqh__RkGUMNjpZKytPBI9zZkSTVrc9yfuw9cEIu3S-9XYa0CyAl44Xf9Awl1EleK4MPgsBTdGFKxgWlc=",
+          "title": "researchgate.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGtzZgCVsITDSDPIU0xibJogGbRnWAAgy8FsI63nZyhPzQ0JLwD1Nfoff7pySpg5cBD8IvgahJdnh250UBN6Qu9IBCxqcgfklLmIC0zVusOliTzUB_hxULhYSmefk8hwg-rLTfduP1zt1IiqV_GKXWGuEA=",
+          "title": "wikipedia.org",
+          "date": "",
+          "snippet": ""
+        }
+      ],
+      "no_go_gates": [
+        {
+          "gate_type": "FEMA V/VE Flood Zone",
+          "triggered": false,
+          "reason": "Proxy analysis suggests FEMA A/AE equivalent (Flood-Prone Area), not the high-velocity coastal V/VE zone.",
+          "standard_reference": "FEMA regulations prohibit cost-effective data center construction in V/VE zones",
+          "mitigation_possible": false,
+          "mitigation_cost": "Not applicable - NO-GO gate passed"
+        },
+        {
+          "gate_type": "BFE >3m Above Grade",
+          "triggered": false,
+          "reason": "Proxy BFE is 1.5m above grade (not >3m), allowing for feasible elevation/fill strategy.",
+          "standard_reference": "Building codes require FFE = BFE + 0.6m; sites with BFE >3m face prohibitive costs",
+          "mitigation_possible": true,
+          "mitigation_cost": "Not applicable - NO-GO gate passed"
+        },
+        {
+          "gate_type": "Very High Wildfire Hazard",
+          "triggered": false,
+          "reason": "Proxy wildfire hazard zone is 'High', below the 'Very High' NO-GO trigger.",
+          "standard_reference": "CAL FIRE Very High FHSZ has >30% fire impact probability per decade",
+          "mitigation_possible": false,
+          "mitigation_cost": "Not applicable - NO-GO gate passed"
+        },
+        {
+          "gate_type": "Extreme Seismic Hazard (PGA >0.4g)",
+          "triggered": false,
+          "reason": "PGA is 0.25g (SDC D equivalent), below 0.4g threshold for extreme hazard.",
+          "standard_reference": "ASCE 7 Seismic Design Category E/F (PGA >0.4g) triggers prohibitive structural costs",
+          "mitigation_possible": true,
+          "mitigation_cost": "Not applicable - NO-GO gate passed (would be $80-150M for seismic isolation if triggered)"
+        },
+        {
+          "gate_type": "Protected Area Violation",
+          "triggered": false,
+          "reason": "No WDPA Category I-III protected areas within 10km, and assumed outside UNESCO buffer zone.",
+          "standard_reference": "IUCN protected area categories I-III prohibit large-scale industrial development",
+          "mitigation_possible": false,
+          "mitigation_cost": "Not applicable - NO-GO gate passed"
+        }
+      ],
+      "caution_flags": [
+        {
+          "category": "High Seismic Hazard (SDC D)",
+          "severity": "high",
+          "description": "High Seismic Hazard (SDC D)",
+          "mitigation_plan": "Mandatory enhanced foundation/structural design (moment frames, bracing, shear walls) and high-cost construction materials.",
+          "cost_impact": "To be determined",
+          "timeline_impact": null,
+          "severity_points": 0.0
+        },
+        {
+          "category": "Liquefaction Risk (Moderate)",
+          "severity": "medium",
+          "description": "Liquefaction Risk (Moderate)",
+          "mitigation_plan": "Deep pile foundations to competent bearing strata, or ground improvement techniques (e.g., stone columns).",
+          "cost_impact": "To be determined",
+          "timeline_impact": null,
+          "severity_points": 0.0
+        },
+        {
+          "category": "High Wildfire Hazard (Proxy)",
+          "severity": "high",
+          "description": "High Wildfire Hazard (Proxy)",
+          "mitigation_plan": "Develop and maintain >30m defensible space (Fire Breaks). Use non-combustible exterior materials. Install enhanced exterior fire suppression and ember-resistant vents.",
+          "cost_impact": "To be determined",
+          "timeline_impact": null,
+          "severity_points": 0.0
+        },
+        {
+          "category": "FEMA A/AE Flood Zone (Proxy)",
+          "severity": "medium",
+          "description": "FEMA A/AE Flood Zone (Proxy)",
+          "mitigation_plan": "Elevate Finished Floor Elevation (FFE) to BFE + 0.6m freeboard. Implement site-wide stormwater drainage improvements and detention ponds.",
+          "cost_impact": "To be determined",
+          "timeline_impact": null,
+          "severity_points": 0.0
+        }
+      ],
+      "provenance_badges": [
+        {
+          "source": "Algeria Local Flood Vulnerability/Risk Assessment (ResearchGate proxy)",
+          "api_version": null,
+          "vintage": "2021",
+          "refresh_frequency": null,
+          "confidence": "low",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "ThinkHazard!/IFRC Wildfire Risk Assessment for Alger",
+          "api_version": null,
+          "vintage": "2023",
+          "refresh_frequency": null,
+          "confidence": "medium",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "Global Earthquake Model (GEM) / Regional PSHA for Northern Algeria",
+          "api_version": null,
+          "vintage": "2018/2024",
+          "refresh_frequency": null,
+          "confidence": "medium",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "Protected Planet (WDPA) / UNESCO World Heritage List for Algeria",
+          "api_version": null,
+          "vintage": "2024",
+          "refresh_frequency": null,
+          "confidence": "medium",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "ASHRAE/NOAA NCEI Mediterranean Coastal Climate Proxy",
+          "api_version": null,
+          "vintage": "2020",
+          "refresh_frequency": null,
+          "confidence": "low",
+          "coverage": "partial",
+          "url": null
+        }
+      ],
+      "distance_measurements": [
+        {
+          "target": "Nearest UNESCO World Heritage Site (Kasbah of Algiers)",
+          "distance_km": 5.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Data center site coordinates (36.753, 3.058)"
+        },
+        {
+          "target": "Nearest Holocene-active fault trace (Algiers region)",
+          "distance_km": 10.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Data center site coordinates"
+        },
+        {
+          "target": "Nearest wadi/urban flood-prone area (El Harrach/Reghaia Watersheds)",
+          "distance_km": 1.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Data center site coordinates"
+        }
+      ]
+    },
+    "operational_risk": {
+      "overall_score": 2.2,
+      "geopolitical_stability": {
+        "name": "Geopolitical Stability & Data Sovereignty",
+        "content": "Assessment indicates moderate political stability risk, primarily due to the country's WGI score and inherent data sovereignty requirements. The retention of the 51/49 foreign ownership rule for critical infrastructure necessitates local partnership/joint venture structures, which is a major commercial constraint. Data transfer limitations (Law No. 18-07) impose significant legal and operational complexity for hyperscale cloud operations (ISO 27001 compliance is difficult).",
+        "sub_score": 3.3,
+        "metrics": {
+          "numerical_values": {
+            "political_stability_index": 3.84,
+            "global_peace_index": 2.42,
+            "data_sovereignty_restrictions": 1
+          },
+          "percentages": {
+            "foreign_ownership_restrictions": 49
+          },
+          "ranges": {},
+          "units": {
+            "political_stability_index": "index 0-10 (converted from WGI -0.58)",
+            "global_peace_index": "GTI 0-10",
+            "data_sovereignty_restrictions": "Yes=1, No=0"
+          }
+        },
+        "key_points": [
+          "Political stability index (3.84/10) places country in moderate risk band (Caution Flag #1).",
+          "Restrictive data localization laws and server hosting mandates (Law No. 18-07).",
+          "49% foreign ownership cap applies to critical infrastructure (major structural constraint)."
+        ],
+        "tables": []
+      },
+      "physical_security": {
+        "name": "Physical Security & Threat Assessment",
+        "content": "The terrorism threat (GTI 2.42) is low. Crime levels are perceived as moderate (52.75/100), but overall crime rate per 1000 residents is likely lower than the caution threshold. The absence of specific local data requires a conservative risk posture, necessitating enhanced physical controls (TIA-942 Tier III/IV standards) including anti-ram barriers, high-resolution CCTV, and redundant access control systems (ISO 27001 Annex A.11).",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "crime_rate_per_1000": 40.0,
+            "global_terrorism_index": 2.42,
+            "distance_to_military_base_km": 20.0
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "crime_rate_per_1000": "crimes per 1000 residents (Est.)",
+            "global_terrorism_index": "GTI index 0-10",
+            "distance_to_military_base_km": "km (Est.)"
+          }
+        },
+        "key_points": [
+          "Low terrorism risk (GTI 2.42/10) - no major threat to trigger a NO-GO.",
+          "Moderate perceived crime levels require enhanced on-site security measures.",
+          "Cybercrime risk is High due to foreign malware and weak national cybersecurity framework (GCI 34/100)."
+        ],
+        "tables": []
+      },
+      "emergency_response": {
+        "name": "Emergency Response & Business Continuity",
+        "content": "Emergency response estimates for Algiers, a major capital city, suggest adequacy, but response times exceed best-practice NFPA 1710 standards (<8 minutes) likely due to traffic and infrastructure. Proximity to trauma and fire services in the central area mitigates the risk, but an on-site first-response team and pre-arranged Mutual Aid Agreements (MAA) (ISO 22301) with local authorities are mandatory.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "fire_response_time_min": 12.0,
+            "distance_to_fire_station_km": 5.0,
+            "medical_response_time_min": 15.0,
+            "distance_to_trauma_center_km": 10.0
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "fire_response_time_min": "minutes (Est.)",
+            "distance_to_fire_station_km": "km (Est.)",
+            "medical_response_time_min": "minutes (Est.)",
+            "distance_to_trauma_center_km": "km (Est.)"
+          }
+        },
+        "key_points": [
+          "Estimated 12-minute fire response time (meets NFPA 1600 requirements for planning but not 1710 best practice).",
+          "Hazmat and specialized rescue capabilities are assumed available in the capital, Algiers."
+        ],
+        "tables": []
+      },
+      "infrastructure_resilience": {
+        "name": "Infrastructure Resilience & Disaster Risk",
+        "content": "Power grid reliability (SAIDI) is estimated in the moderate range (180 min/year), better than the regional average but below Tier IV standards. This mandates a minimum of 2N on-site generation capacity with long-duration fuel storage. Telecommunications infrastructure is assumed to be resilient in the capital, but specific provider diversity checks (NIST SP 800-53) are a priority. Water supply resilience is adequate for the coastal location.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "saidi_minutes_per_year": 180.0,
+            "telecom_fiber_paths": 3.0,
+            "power_outages_per_year": 5.0,
+            "water_supply_interruptions_days": 0.0
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "saidi_minutes_per_year": "minutes/year (Est.)",
+            "telecom_fiber_paths": "count (Est.)",
+            "power_outages_per_year": "count/year (Est.)",
+            "water_supply_interruptions_days": "days/year (Est.)"
+          }
+        },
+        "key_points": [
+          "SAIDI 180 min/year (Moderate reliability) requires robust on-site power redundancy.",
+          "Assumed multiple diverse fiber paths available in the Algiers metro area.",
+          "Water supply is a low risk for the coastal capital site."
+        ],
+        "tables": []
+      },
+      "economic_social_stability": {
+        "name": "Economic, Legal & Social Stability",
+        "content": "The most significant risk in this domain is the legal and corruption environment. The sovereign credit rating is likely speculative grade (Est. BB+), and the Corruption Perceptions Index (CPI) of 34 is classified as highly corrupt. This triggers Caution Flag #5 and impacts long-term contract enforcement, regulatory consistency, and procurement (ASIS International supply chain security). The foreign ownership cap (49%) also falls under this domain.",
+        "sub_score": 2.0,
+        "metrics": {
+          "numerical_values": {
+            "sovereign_credit_rating_numeric": 20.0,
+            "inflation_rate_pct": 5.0,
+            "corruption_index": 34.0,
+            "labor_strikes_days_per_year": 10.0
+          },
+          "percentages": {
+            "inflation_rate_pct": 5.0
+          },
+          "ranges": {},
+          "units": {
+            "sovereign_credit_rating_numeric": "BB+ (S&P scale, BB is 20)",
+            "inflation_rate_pct": "% (Est.)",
+            "corruption_index": "CPI 0-100",
+            "labor_strikes_days_per_year": "days/year (Est.)"
+          }
+        },
+        "key_points": [
+          "High perceived corruption (CPI 34/100) and likely speculative-grade credit rating (BB+ Est.)",
+          "Legal system complexity is a major operational risk due to non-transparent regulatory environment."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Inflation rate (5.0%), SAIDI (180 min), and power outages/fiber paths (3) are estimates based on regional context and 'Green Band' ERI status.",
+        "Crime rate (40/1000) is a conservative estimate based on perceived crime levels in Algiers.",
+        "Emergency response times/distances are estimates for a central Algiers site."
+      ],
+      "key_insights": [
+        "Structural legal/geopolitical constraints (51/49 ownership rule and data localization) are the **primary operational risks**, requiring a mandatory local joint-venture and data residency architecture.",
+        "High corruption (CPI 34) introduces significant project management and regulatory compliance costs (Caution Flag #5).",
+        "Physical security and terrorism risks are low-to-moderate, which is favorable."
+      ],
+      "executive_summary": "Location presents a challenging, yet viable, operational environment. Core risks are primarily legal, regulatory, and economic (foreign ownership, data sovereignty, and corruption), which trigger mandatory Caution Flags and significantly reduce the overall operational risk score from 3.3 to 2.2. These risks necessitate a Joint Venture structure with a local entity and substantial budget allocation for legal compliance, currency hedging, and enhanced data residency infrastructure. Physical and infrastructure risks are manageable with standard hyperscale engineering (2N power, diverse fiber). Investment-Grade decision must weigh the high legal/regulatory friction against the market opportunity, with Phase 1 recommending immediate engagement with local legal and government affairs teams.",
+      "data_gaps": [
+        "Official, site-specific SAIDI/SAIFI data from utility (SONELGAZ/SADEG) is missing (Low Confidence for SAIDI).",
+        "Third-party political risk insurance quote required to confirm cost of legal/sovereign risk.",
+        "Confirmed long-term sovereign credit rating from S&P/Fitch/Moody's (BB+ is an estimate)."
+      ],
+      "third_party_verification": [
+        "Political risk insurance broker (Marsh, Willis Towers Watson)",
+        "Local legal counsel specialized in foreign direct investment and data residency",
+        "Power utility (SADEG) contract for service level agreement (SAIDI/SAIFI)"
+      ],
+      "phase_1_recommendations": {
+        "priority_1": "Engage legal counsel to structure a 49% foreign-owned entity model for critical infrastructure.",
+        "priority_2": "Develop a data residency architecture plan to comply with Law No. 18-07 mandates.",
+        "priority_3": "Secure political risk insurance and a currency hedging strategy."
+      },
+      "sources": [
+        {
+          "url": "https://www.theglobaleconomy.com/Algeria/Political_stability/",
+          "title": "Algeria Political stability - data, chart | TheGlobalEconomy.com",
+          "date": "",
+          "snippet": "Political Stability and Absence of Violence/Terrorism: Estimate in Algeria was reported at --0.57789 in 2023..."
+        },
+        {
+          "url": "https://www.tradingeconomics.com/algeria/terrorism-index",
+          "title": "Algeria Terrorism Index - Trading Economics",
+          "date": "",
+          "snippet": "Terrorism Index in Algeria increased to 2.42 Points in 2024 from 2.20 Points in 2023."
+        },
+        {
+          "url": "https://www.digitalpolicyalert.org/country-report/algeria",
+          "title": "DPA Digital Digest: Algeria [2025 Edition]",
+          "date": "",
+          "snippet": "The Law on Audiovisual Activity... requiring online audiovisual services to be hosted exclusively on servers physically located in the country..."
+        },
+        {
+          "url": "https://www.state.gov/reports/2024-investment-climate-statements/algeria/",
+          "title": "2024 Investment Climate Statements: Algeria - State Department",
+          "date": "",
+          "snippet": "the government eliminated the so-called 51/49 restriction... though it retained the requirement for strategic sectors, identified as energy, mining, defense, transportation, infrastructure..."
+        },
+        {
+          "url": "https://www.tradingeconomics.com/algeria/corruption-index",
+          "title": "Algeria Corruption Index - Trading Economics",
+          "date": "",
+          "snippet": "Algeria scored 34 points out of 100 on the 2024 Corruption Perceptions Index reported by Transparency International."
+        }
+      ],
+      "no_go_gates": [
+        {
+          "gate_type": "Critical Geopolitical Risk",
+          "triggered": false,
+          "reason": "Political Stability Index (3.84/10) is above the 3.0 No-Go threshold. The country is not subject to comprehensive OFAC sanctions.",
+          "standard_reference": "OFAC regulations, World Bank fragile states list",
+          "mitigation_possible": false,
+          "mitigation_cost": "N/A - not triggered"
+        },
+        {
+          "gate_type": "Extreme Physical Security Threat",
+          "triggered": false,
+          "reason": "Global Terrorism Index (2.42) is low, and estimated crime rate (40/1000) is below the 80/1000 threshold.",
+          "standard_reference": "GTI >7.0, Crime rate >80/1000",
+          "mitigation_possible": false,
+          "mitigation_cost": "N/A - not triggered"
+        }
+      ],
+      "caution_flags": [
+        {
+          "category": "Geopolitical/Legal Stability",
+          "severity": "high",
+          "description": "Retention of the 51/49 foreign ownership rule for critical infrastructure and restrictive data localization laws (conditional transfer, hosting mandates).",
+          "mitigation_plan": "Mandatory Joint Venture with domestic partner (51% ownership) and creation of dedicated, on-site data residency infrastructure.",
+          "cost_impact": "+$10-15M for legal, JV overhead, and data residency buildout",
+          "timeline_impact": "+6-12 months for JV establishment and regulatory approval",
+          "severity_points": 0.6
+        },
+        {
+          "category": "Economic/Legal Stability",
+          "severity": "medium",
+          "description": "High perceived public sector corruption (CPI 34) and speculative-grade sovereign credit rating (Est. BB+).",
+          "mitigation_plan": "Robust corporate compliance program, legal insurance, strong anti-bribery/corruption policy, and political risk insurance for asset protection.",
+          "cost_impact": "+$5-8M for enhanced compliance, insurance, and legal counsel fees",
+          "timeline_impact": "Ongoing operational complexity and regulatory risk",
+          "severity_points": 0.5
+        }
+      ],
+      "provenance_badges": [
+        {
+          "source": "World Bank Worldwide Governance Indicators",
+          "api_version": "2024",
+          "vintage": "2023 data",
+          "refresh_frequency": "Annual",
+          "confidence": "medium",
+          "coverage": "National",
+          "url": "https://www.theglobaleconomy.com/Algeria/Political_stability/"
+        },
+        {
+          "source": "Institute for Economics & Peace (IEP)",
+          "api_version": "2024 GTI",
+          "vintage": "2024 data",
+          "refresh_frequency": "Annual",
+          "confidence": "high",
+          "coverage": "National",
+          "url": "https://www.tradingeconomics.com/algeria/terrorism-index"
+        },
+        {
+          "source": "Transparency International",
+          "api_version": "2024 CPI",
+          "vintage": "2024 data",
+          "refresh_frequency": "Annual",
+          "confidence": "high",
+          "coverage": "National",
+          "url": "https://www.tradingeconomics.com/algeria/corruption-index"
+        }
+      ],
+      "distance_measurements": [
+        {
+          "target": "Nearest fire station",
+          "distance_km": 5.0,
+          "distance_mi": 3.1,
+          "method": "aerial",
+          "routing_buffer": 7.0,
+          "source": "Agent Estimate"
+        },
+        {
+          "target": "Nearest trauma center",
+          "distance_km": 10.0,
+          "distance_mi": 6.2,
+          "method": "aerial",
+          "routing_buffer": 5.0,
+          "source": "Agent Estimate"
+        }
+      ]
+    },
+    "esg_sustainability": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "ESG analysis for Algeria"
+      ],
+      "executive_summary": "",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "regulatory_compliance": {
+      "overall_score": 1.0,
+      "data_sovereignty": {
+        "name": "Data Sovereignty & Privacy Compliance",
+        "content": "Algeria's Law No. 18-07 establishes a GDPR-equivalent data protection framework (rights to access, rectification, consent) enforced by the National Authority (ANPDP). However, the government mandates data localization, requiring data to be stored within the country to prevent unauthorized access. Cross-border data transfer is only permitted with ANPDP authorization and if the destination country provides an 'adequate level of protection,' with transfers explicitly forbidden if they affect 'public security or the vital interests of the State'. Penalties are low as a percentage of revenue but include criminal sanctions (imprisonment and fines of up to 1,000,000 DZD).",
+        "sub_score": 2.5,
+        "metrics": {
+          "numerical_values": {
+            "max_breach_penalty_fixed_dzd": 1000000,
+            "government_access_risk": 4
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "max_breach_penalty_fixed_dzd": "DZD (approx $7,300 USD)",
+            "government_access_risk": "risk level 1-5 (5=Highest)"
+          }
+        },
+        "key_points": [
+          "GDPR-equivalent Law No. 18-07 (PDPA-like)",
+          "Data localization is mandatory; data must be stored in Algeria",
+          "Cross-border data transfer requires ANPDP prior authorization",
+          "Government access risk is High due to public security clause and mandatory localization"
+        ],
+        "tables": []
+      },
+      "government_incentives": {
+        "name": "Government Incentives & Investment Climate",
+        "content": "The general Corporate Income Tax (CIT) rate is 26%. While the 51/49 foreign ownership rule was generally lifted in 2020 for non-strategic sectors, it remains in force for 'strategic sectors' including 'infrastructure' and 'transportation'. A 50-100 MW hyperscale facility is conservatively assessed as strategic infrastructure, triggering the 49% foreign ownership cap. Incentives are limited, primarily a VAT exemption on web hosting fees until the end of 2026. No general, long-term tax holiday for data centers is confirmed.",
+        "sub_score": 2.0,
+        "metrics": {
+          "numerical_values": {
+            "corporate_tax_rate": 26,
+            "tax_holiday_years": 0,
+            "import_duty_on_it_equipment": 5,
+            "foreign_ownership_cap": 49
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "corporate_tax_rate": "% (General)",
+            "tax_holiday_years": "years (General DC)",
+            "import_duty_on_it_equipment": "% (Conservative Estimate)",
+            "foreign_ownership_cap": "% (Strategic Infrastructure)"
+          }
+        },
+        "key_points": [
+          "Foreign ownership likely capped at 49% (Strategic Infrastructure)",
+          "Standard Corporate Income Tax rate of 26%",
+          "Zero confirmed tax holiday (limited VAT exemption until 2026)",
+          "High import duty risk (5% on IT equipment, potentially more with other taxes)"
+        ],
+        "tables": []
+      },
+      "operational_compliance": {
+        "name": "Operational & Environmental Compliance",
+        "content": "Construction projects must adhere to building codes and include vulnerability and stability assessments. EIA is required for most large industrial facilities, a designation which applies to a hyperscale data center. The local noise regulation (Decree 93-184) is comparatively permissive, setting the maximum noise limit in industrial areas at 70 dBA during the day, though a much lower limit (45 dBA) applies to rest/residential areas. Specific generator emissions limits (NOx, PM in g/kWh) and a detailed EIA timeline are unconfirmed, requiring further local counsel verification.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "eia_timeline_months": 15,
+            "noise_limit_dba": 70
+          },
+          "percentages": {},
+          "ranges": {
+            "eia_timeline_months": "12-18"
+          },
+          "units": {
+            "eia_timeline_months": "months (Estimated Likely)",
+            "noise_limit_dba": "dBA (Diurnal Industrial Limit)"
+          }
+        },
+        "key_points": [
+          "EIA required for industrial-scale projects",
+          "Favorable industrial noise limit: 70 dBA at property line (diurnal)",
+          "Local/international building standards apply (Tier Certification desired)"
+        ],
+        "tables": []
+      },
+      "permitting_zoning": {
+        "name": "Permitting, Zoning & Execution Friction",
+        "content": "A data center, classified as a strategic facility for 'production, transportation, distribution and storage of energy,' requires a high-level building permit issued by the Wali (Governor). The process involves preparing administrative, architectural, and technical files, including a site stability study validated by the national technical control agency. The urban planning system is generally criticized for being 'outdated and cumbersome,' leading to complexity and bureaucratic friction. A typical permitting timeline is estimated at 18 months.",
+        "sub_score": 2.8,
+        "metrics": {
+          "numerical_values": {
+            "permits_required": 7,
+            "permitting_timeline_months": 18,
+            "permit_fees_usd": 200000
+          },
+          "percentages": {},
+          "ranges": {
+            "permitting_timeline_months": "12-24"
+          },
+          "units": {
+            "permits_required": "count (Estimated)",
+            "permitting_timeline_months": "months (Likely)",
+            "permit_fees_usd": "USD (Estimated Range)"
+          }
+        },
+        "key_points": [
+          "High-level review: Building permit granted by the Wali (Governor)",
+          "Likely a Conditional Use Permit (CUP) or similar high-touch process required (not use-by-right)",
+          "Longer than average permitting timeline (18 months likely) due to bureaucratic friction"
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "50-100 MW data center is classified as 'Strategic Infrastructure' subject to the 51/49 foreign ownership rule.",
+        "Data localization claim from the International Trade Administration is taken as the binding policy position for foreign investors.",
+        "Permitting fees and timelines are estimated based on observed regulatory complexity and required high-level government approvals."
+      ],
+      "key_insights": [
+        "The location is a **High-Risk/High-Friction** environment for a wholly foreign-owned hyperscale deployment.",
+        "Data sovereignty is severely restrictive due to mandatory localization and prior authorization for cross-border transfer (CAUTION FLAG #1).",
+        "Investment structure requires immediate planning for a Joint Venture with a local Algerian partner due to the likely 49% foreign ownership cap (CAUTION FLAG #2).",
+        "The legal framework is characterized by strong government oversight and bureaucratic complexity, extending the execution timeline (CAUTION FLAG #4)."
+      ],
+      "executive_summary": "Algeria's regulatory environment is challenging for a typical hyperscale model, forcing a 'Local-Only' strategy due to mandatory data localization and likely ownership restrictions. While the data protection law (Law 18-07) is modern, the requirement for mandatory local data storage and prior ANPDP authorization for all international data flows, combined with the likely 49% foreign ownership cap (CAUTION FLAGS #1 & #2), presents an existential risk to a global business model requiring data mobility and 100% control. The final score is floored at 1.0, indicating the jurisdiction is fundamentally incompatible with the standard TPG/Blackstone hyperscale investment model unless the mandatory localization rule is bypassed (e.g., serving only Algerian data) and a 49% JV structure is acceptable.",
+      "data_gaps": [
+        "Specific legal definition confirming a 'hyperscale data center' as 'strategic infrastructure' subject to 51/49 rule.",
+        "Official EIA checklist/timeline for a data center and specific genset emissions limits (g/kWh NOx, PM).",
+        "Confirmation of the number of permits and total permit fees from local Wilaya/Municipal authority."
+      ],
+      "third_party_verification": [
+        "Local legal counsel for regulatory compliance review (Localization/Ownership classification).",
+        "Investment Promotion Agency for written incentive and tax confirmation.",
+        "Pre-application meeting with Algiers Wilaya Planning Department for zoning/permitting timeline."
+      ],
+      "phase_1_recommendations": {
+        "priority_1": "Immediate engagement of local legal counsel to confirm the application of the 51/49 ownership rule to the specific data center asset class (critical/telecom infrastructure).",
+        "priority_2": "Develop a 'Local-Only' service model and data-flow architecture as a contingency, assuming mandatory data localization cannot be circumvented.",
+        "priority_3": "Schedule a scoping meeting with the Ministry of the Environment to confirm EIA requirements and timeline, focusing on diesel generator and water discharge compliance."
+      },
+      "sources": [
+        {
+          "url": "https://trade.gov/country-commercial-guides/algeria-digital-economy",
+          "title": "Algeria - Digital Economy - International Trade Administration",
+          "date": "2024-09-19",
+          "snippet": "The government of Algeria, with its law, made the localization of data mandatory. The data must be stored within the country to prevent unauthorized access."
+        },
+        {
+          "url": "https://globaldataalliance.org/global-inventory-of-domestic-rules-on-data-localization-and-data-transfers/",
+          "title": "Global Inventory of Domestic Rules on Data Localization and Data Transfers",
+          "date": "2024",
+          "snippet": "The data controller may only transfer personal data to a foreign State with the authorisation of the national authority in accordance with Law No. 18-07..."
+        },
+        {
+          "url": "https://www.dlapiperdataprotection.com/index.html?t=algeria",
+          "title": "Data protection laws in Algeria: Transfer of personal data in Algeria",
+          "date": "2024",
+          "snippet": "The data controller may only transfer personal data to a foreign State with the authorisation of the national authority... Article 45... In any case, it is forbidden to communicate or transfer personal data to a foreign country, when such transfer is likely to affect public security or the vital interests of the State."
+        },
+        {
+          "url": "https://www.state.gov/reports/2025-investment-climate-statements/algeria/",
+          "title": "2025 Algeria Investment Climate Statement - State Department",
+          "date": "2025",
+          "snippet": "...though it retained the requirement for strategic sectors, identified as: ... energy,  mining,  defense,  transportation,  infrastructure..."
+        },
+        {
+          "url": "https://lexafrica.com/navigating-the-landscape-of-fdi-in-algeria/",
+          "title": "Navigating the Landscape of FDI in Algeria - LEX Africa",
+          "date": "2024-07-08",
+          "snippet": "Five strategic sectors remain subject to the 49/51% rule, mandating the establishment of partnerships with one or more Algerian entities holding at least 51% of the share capital: Railways, ports and airports..."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGATD48Iu-JwrzslA6a85CB-SpPDidMh8GY00Xk548bYScqJtS3s4F6Kwi2-jN4HLBbhDeL-gnbNggf4MZb-Rppky55kzbN88CyUngVtVqpnSDurI9Py2qwQDXEiGKcbyqpEzLOZ4TdNsEF6kEYA4Cc8MAzQ03EVEMquO6PZxi-sHWtZPRnzBoshCbjRX7ycyUxTsve-9tHuABqANVbz29xVvFq9voQVH0_4Z_JpCwWcwZrX-xu9L9WNZA7QMkdxZI=",
+          "title": "Excess of the noise level in relation to the permissible level in the Algerian law",
+          "date": "2024",
+          "snippet": "Algerian executive decree 93-184... 'the maximum noise level in urban areas, industrial areas, public places and roads should be 70 dB at morning...'"
+        },
+        {
+          "url": "https://cerist.dz/index.php?lang=en&option=com_content&view=article&id=325:construction-permit-a-method-to-control-urban-activity&catid=11&Itemid=125",
+          "title": "Constructions permit a method to control urban activity - ASJP",
+          "date": "2022-03-17",
+          "snippet": "As for the cases in which the Wali delivers the planning permission, they are: 'Major buildings and facilities completed for the account of the state and the state. Facilities for production, transportation, distribution and storage of energy and strategic materials.'"
+        },
+        {
+          "url": "https://www.tradingeconomics.com/algeria/corporate-tax-rate",
+          "title": "Algeria Corporate Tax Rate",
+          "date": "2024",
+          "snippet": "The Corporate Tax Rate in Algeria stands at 26 percent."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH0mAKHdFUwDJTTc4vOP9OKtl1g9mId96v7uvL8RM4LqaaV6sHZHnkcYpHDR4Nrmp3ZGXKoY5iYS3vUO8d2HkfLzUrItO3HkO6x5Dyd2yBYMg0TvEg2Jvp7jAzmFQT8HIFuFchtaqp19bK3edncHDeV3rQTvCV5W2sKP--GDoNbcJ7LFlAawgZzWA==",
+          "title": "globaldataalliance.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFXA0f_bx5PsDtLI379f7BE9vRAUyyGNNi-bQid3Cxq4FWJcc_-o-NdMbFS67SIZabwG1xYOPtKErISvYjS4GOGpaNL4tLxn2K4wGV0h5INAIMZ8sRkIhdT3OZtb0KMYLbNK2U4e-GkFPZWlCQxTBu2PKp28L3M",
+          "title": "dlapiperdataprotection.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGoUt8pM05ZRWbQ-nXeSOHI-OUAGW0495a580-r-o0kI7JFGjKvIy9Fxz_jjAJTu0qzqq4Kl4urtaueikmlHWKF0wUbELUQEf8DxX5HotxElrNAMILvpssz18Wn7LsWd0F0W-R4gs5flZUJq7_wjhHf67NVIPBsNRozYENvatTCatk=",
+          "title": "trade.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFXA0f_bx5PsDtLI379f7BE9vRAUyyGNNi-bQid3Cxq4FWJcc_-o-NdMbFS67SIZabwG1xYOPtKErISvYjS4GOGpaNL4tLxn2K4wGV0h5INAIMZ8sRkIhdT3OZtb0KMYLbNK2U4e-GkFPZWlCQxTBu2PKp28L3M",
+          "title": "dlapiperdataprotection.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtGRIwnVuCeu2hAg9HUcYpUb6XKRK7TQwDgadK1Zqer7RnS1BQXMif4RLOoSyNHkqJIXCX4_JO2olJ7qIQQrU2Ulh1kuop0Qwq1ssd8e-enDIpNDWCYmthz4WdhpqoZHMz3VZjJ1GknIq6RlwaoTDm_rk8n4I8XttYjIOXx40wY3WLlm2i_Q0yOQuZjWUT21eP6UWHuUW_JUzpBvZSkHo=",
+          "title": "state.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEwpqrKopz-GQWvVVVx9J9DWQMVactwUrbN3ad5KrYJduehSN_NA6vrCYpPDE1Fo0bD5W5bbMUBiL85cPxS-2qNJ-2CH3BlIoHuyY7m_l1NbFzzoFiLwqHiwVoLUj03c4yPleXPh78P6avFaqVOVHX9Gy-Ny_mqA5LeANyxR5U5GJ-DgA==",
+          "title": "lexafrica.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEwpqrKopz-GQWvVVVx9J9DWQMVactwUrbN3ad5KrYJduehSN_NA6vrCYpPDE1Fo0bD5W5bbMUBiL85cPxS-2qNJ-2CH3BlIoHuyY7m_l1NbFzzoFiLwqHiwVoLUj03c4yPleXPh78P6avFaqVOVHX9Gy-Ny_mqA5LeANyxR5U5GJ-DgA==",
+          "title": "lexafrica.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGyeiuGnxCOtBU3yD9B_S0Dn2s1EgjW0dSuJnpl7K2dSjq14WNHeqruIt7ktrTWwWazhV8og8NzMMUJ4_6Y9VykYtNmn0JaXg6Ry4M0aoYc5Y_SDumgSxAYudNf_ljVnAL4r-5rsf2icbxMoJ65fQ==",
+          "title": "cerist.dz",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGW6h6dmNWZsci6ntlww0UGWh3cyV_GSZ151q7w3XVRfWEysewZToxujh38aeiRa502i3A1Sf7SgvoyGCu2KtVR2TArA_nfdCwE6brwP_MAdjjjuzjQ",
+          "title": "dzwatch.dz",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHRKZsZwPh-WQX6RqvxN6w2vu4hx6Am_xK_EWPeOOVOXjUT9KGwvRYarVodGSaxraAemEL8bmjymiEU6UGQIjp-InnSYTGxbtrVlnR4gyJE-z_DDKYsFHGFpVBqfGmMUDzHpmE7RXyBlDvwuWwkD4QqaswXvRDxTDk1DKyyt7iydtPfSJAI26T1GG0lUQx0ltn7lOpE5Jr9_75i8rZpIMkuqlxT5W6YMohieG5kACFP-Wh4",
+          "title": "researchgate.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGoUt8pM05ZRWbQ-nXeSOHI-OUAGW0495a580-r-o0kI7JFGjKvIy9Fxz_jjAJTu0qzqq4Kl4urtaueikmlHWKF0wUbELUQEf8DxX5HotxElrNAMILvpssz18Wn7LsWd0F0W-R4gs5flZUJq7_wjhHf67NVIPBsNRozYENvatTCatk=",
+          "title": "trade.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFXA0f_bx5PsDtLI379f7BE9vRAUyyGNNi-bQid3Cxq4FWJcc_-o-NdMbFS67SIZabwG1xYOPtKErISvYjS4GOGpaNL4tLxn2K4wGV0h5INAIMZ8sRkIhdT3OZtb0KMYLbNK2U4e-GkFPZWlCQxTBu2PKp28L3M",
+          "title": "dlapiperdataprotection.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH-fB4lnmscBvoCwx6CODlXjkSMbUV453frGgNtmREySdgMhyRJ_pggH9l6uGiojiwJ-Q4X5T1WE8aGmkY0JSs4kqWj6WwJ2OnKJE1A_9PBSlJja5ILs0-0OOqB-WvCiENpKWrSbiGdBMCDV_ToctWz7-IGJZfRnrxMahEe_5iPSdjQbGgrm1NDBVOfC6CSUiAetg==",
+          "title": "algeriainvest.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtGRIwnVuCeu2hAg9HUcYpUb6XKRK7TQwDgadK1Zqer7RnS1BQXMif4RLOoSyNHkqJIXCX4_JO2olJ7qIQQrU2Ulh1kuop0Qwq1ssd8e-enDIpNDWCYmthz4WdhpqoZHMz3VZjJ1GknIq6RlwaoTDm_rk8n4I8XttYjIOXx40wY3WLlm2i_Q0yOQuZjWUT21eP6UWHuUW_JUzpBvZSkHo=",
+          "title": "state.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFfAlYm1EWxNAf7FayDLaBEjhtZmtxdJ3PemuaiZNPDc80XXKypZBwFgKve04nuXAQ6qKmbde6OZEQ4zSSRelqo758swtrpNL4WCna5LgoJ6bJI040QS6ZtBE1P_y7syjgpSxdIP5TlV0vL9ErXXgBwXNR7cuQ6aAs8v_C-U-13he-xPq4btdI7",
+          "title": "jmaterenvironsci.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGyeiuGnxCOtBU3yD9B_S0Dn2s1EgjW0dSuJnpl7K2dSjq14WNHeqruIt7ktrTWwWazhV8og8NzMMUJ4_6Y9VykYtNmn0JaXg6Ry4M0aoYc5Y_SDumgSxAYudNf_ljVnAL4r-5rsf2icbxMoJ65fQ==",
+          "title": "cerist.dz",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGW6h6dmNWZsci6ntlww0UGWh3cyV_GSZ151q7w3XVRfWEysewZToxujh38aeiRa502i3A1Sf7SgvoyGCu2KtVR2TArA_nfdCwE6brwP_MAdjjjuzjQ",
+          "title": "dzwatch.dz",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGoUt8pM05ZRWbQ-nXeSOHI-OUAGW0495a580-r-o0kI7JFGjKvIy9Fxz_jjAJTu0qzqq4Kl4urtaueikmlHWKF0wUbELUQEf8DxX5HotxElrNAMILvpssz18Wn7LsWd0F0W-R4gs5flZUJq7_wjhHf67NVIPBsNRozYENvatTCatk=",
+          "title": "trade.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFXA0f_bx5PsDtLI379f7BE9vRAUyyGNNi-bQid3Cxq4FWJcc_-o-NdMbFS67SIZabwG1xYOPtKErISvYjS4GOGpaNL4tLxn2K4wGV0h5INAIMZ8sRkIhdT3OZtb0KMYLbNK2U4e-GkFPZWlCQxTBu2PKp28L3M",
+          "title": "dlapiperdataprotection.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH0mAKHdFUwDJTTc4vOP9OKtl1g9mId96v7uvL8RM4LqaaV6sHZHnkcYpHDR4Nrmp3ZGXKoY5iYS3vUO8d2HkfLzUrItO3HkO6x5Dyd2yBYMg0TvEg2Jvp7jAzmFQT8HIFuFchtaqp19bK3edncHDeV3rQTvCV5W2sKP--GDoNbcJ7LFlAawgZzWA==",
+          "title": "globaldataalliance.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFXA0f_bx5PsDtLI379f7BE9vRAUyyGNNi-bQid3Cxq4FWJcc_-o-NdMbFS67SIZabwG1xYOPtKErISvYjS4GOGpaNL4tLxn2K4wGV0h5INAIMZ8sRkIhdT3OZtb0KMYLbNK2U4e-GkFPZWlCQxTBu2PKp28L3M",
+          "title": "dlapiperdataprotection.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFXA0f_bx5PsDtLI379f7BE9vRAUyyGNNi-bQid3Cxq4FWJcc_-o-NdMbFS67SIZabwG1xYOPtKErISvYjS4GOGpaNL4tLxn2K4wGV0h5INAIMZ8sRkIhdT3OZtb0KMYLbNK2U4e-GkFPZWlCQxTBu2PKp28L3M",
+          "title": "dlapiperdataprotection.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGoUt8pM05ZRWbQ-nXeSOHI-OUAGW0495a580-r-o0kI7JFGjKvIy9Fxz_jjAJTu0qzqq4Kl4urtaueikmlHWKF0wUbELUQEf8DxX5HotxElrNAMILvpssz18Wn7LsWd0F0W-R4gs5flZUJq7_wjhHf67NVIPBsNRozYENvatTCatk=",
+          "title": "trade.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFXA0f_bx5PsDtLI379f7BE9vRAUyyGNNi-bQid3Cxq4FWJcc_-o-NdMbFS67SIZabwG1xYOPtKErISvYjS4GOGpaNL4tLxn2K4wGV0h5INAIMZ8sRkIhdT3OZtb0KMYLbNK2U4e-GkFPZWlCQxTBu2PKp28L3M",
+          "title": "dlapiperdataprotection.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGwUqrOdDYAQQ5Re7FpWG25UnAEXevzTKRWjmpMtIXpKe0HotaungBcOO3kQSzQVuN9NYI_owrGtfSpQ6z1_F5cws0s7f4_38wYANFWf4SKM3nzeAD4ZeQEFLOsLu09K9UlC34Elg==",
+          "title": "niyel.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH0mAKHdFUwDJTTc4vOP9OKtl1g9mId96v7uvL8RM4LqaaV6sHZHnkcYpHDR4Nrmp3ZGXKoY5iYS3vUO8d2HkfLzUrItO3HkO6x5Dyd2yBYMg0TvEg2Jvp7jAzmFQT8HIFuFchtaqp19bK3edncHDeV3rQTvCV5W2sKP--GDoNbcJ7LFlAawgZzWA==",
+          "title": "globaldataalliance.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH-fB4lnmscBvoCwx6CODlXjkSMbUV453frGgNtmREySdgMhyRJ_pggH9l6uGiojiwJ-Q4X5T1WE8aGmkY0JSs4kqWj6WwJ2OnKJE1A_9PBSlJja5ILs0-0OOqB-WvCiENpKWrSbiGdBMCDV_ToctWz7-IGJZfRnrxMahEe_5iPSdjQbGgrm1NDBVOfC6CSUiAetg==",
+          "title": "algeriainvest.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtGRIwnVuCeu2hAg9HUcYpUb6XKRK7TQwDgadK1Zqer7RnS1BQXMif4RLOoSyNHkqJIXCX4_JO2olJ7qIQQrU2Ulh1kuop0Qwq1ssd8e-enDIpNDWCYmthz4WdhpqoZHMz3VZjJ1GknIq6RlwaoTDm_rk8n4I8XttYjIOXx40wY3WLlm2i_Q0yOQuZjWUT21eP6UWHuUW_JUzpBvZSkHo=",
+          "title": "state.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEwpqrKopz-GQWvVVVx9J9DWQMVactwUrbN3ad5KrYJduehSN_NA6vrCYpPDE1Fo0bD5W5bbMUBiL85cPxS-2qNJ-2CH3BlIoHuyY7m_l1NbFzzoFiLwqHiwVoLUj03c4yPleXPh78P6avFaqVOVHX9Gy-Ny_mqA5LeANyxR5U5GJ-DgA==",
+          "title": "lexafrica.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEwpqrKopz-GQWvVVVx9J9DWQMVactwUrbN3ad5KrYJduehSN_NA6vrCYpPDE1Fo0bD5W5bbMUBiL85cPxS-2qNJ-2CH3BlIoHuyY7m_l1NbFzzoFiLwqHiwVoLUj03c4yPleXPh78P6avFaqVOVHX9Gy-Ny_mqA5LeANyxR5U5GJ-DgA==",
+          "title": "lexafrica.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEtGRIwnVuCeu2hAg9HUcYpUb6XKRK7TQwDgadK1Zqer7RnS1BQXMif4RLOoSyNHkqJIXCX4_JO2olJ7qIQQrU2Ulh1kuop0Qwq1ssd8e-enDIpNDWCYmthz4WdhpqoZHMz3VZjJ1GknIq6RlwaoTDm_rk8n4I8XttYjIOXx40wY3WLlm2i_Q0yOQuZjWUT21eP6UWHuUW_JUzpBvZSkHo=",
+          "title": "state.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH-fB4lnmscBvoCwx6CODlXjkSMbUV453frGgNtmREySdgMhyRJ_pggH9l6uGiojiwJ-Q4X5T1WE8aGmkY0JSs4kqWj6WwJ2OnKJE1A_9PBSlJja5ILs0-0OOqB-WvCiENpKWrSbiGdBMCDV_ToctWz7-IGJZfRnrxMahEe_5iPSdjQbGgrm1NDBVOfC6CSUiAetg==",
+          "title": "algeriainvest.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEwpqrKopz-GQWvVVVx9J9DWQMVactwUrbN3ad5KrYJduehSN_NA6vrCYpPDE1Fo0bD5W5bbMUBiL85cPxS-2qNJ-2CH3BlIoHuyY7m_l1NbFzzoFiLwqHiwVoLUj03c4yPleXPh78P6avFaqVOVHX9Gy-Ny_mqA5LeANyxR5U5GJ-DgA==",
+          "title": "lexafrica.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGoUt8pM05ZRWbQ-nXeSOHI-OUAGW0495a580-r-o0kI7JFGjKvIy9Fxz_jjAJTu0qzqq4Kl4urtaueikmlHWKF0wUbELUQEf8DxX5HotxElrNAMILvpssz18Wn7LsWd0F0W-R4gs5flZUJq7_wjhHf67NVIPBsNRozYENvatTCatk=",
+          "title": "trade.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH-fB4lnmscBvoCwx6CODlXjkSMbUV453frGgNtmREySdgMhyRJ_pggH9l6uGiojiwJ-Q4X5T1WE8aGmkY0JSs4kqWj6WwJ2OnKJE1A_9PBSlJja5ILs0-0OOqB-WvCiENpKWrSbiGdBMCDV_ToctWz7-IGJZfRnrxMahEe_5iPSdjQbGgrm1NDBVOfC6CSUiAetg==",
+          "title": "algeriainvest.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHurkSjZut-AbovI_BHhvoClTjHay956l1-7m2Evikwgey0DfE2E8yFr_iuamx3X0qgg5ZfGa-dqZOyASzi6of5wbwx9NLlGl4QWAyfUKnWd7iiZ1mEBm2mbbxniJC-8zHtBdTUZgNtADuQrdgMGyRznxQwolN4Z2p0",
+          "title": "pvknowhow.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFfAlYm1EWxNAf7FayDLaBEjhtZmtxdJ3PemuaiZNPDc80XXKypZBwFgKve04nuXAQ6qKmbde6OZEQ4zSSRelqo758swtrpNL4WCna5LgoJ6bJI040QS6ZtBE1P_y7syjgpSxdIP5TlV0vL9ErXXgBwXNR7cuQ6aAs8v_C-U-13he-xPq4btdI7",
+          "title": "jmaterenvironsci.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEOFZBrQTOOQsPAfj61FE26jxTPOwp4ZtM63qVPigpk4gQ8Eamt2CarOWPG2Qc9Daj4-7aGBq7kdIatXVrxgUi5peu-UWYjUT_3DDqb8eP6jDPpvRDFz3hG_RfjphU_kjyBg58qeUuJXQ6pGUFkSyaYcf-bHCNJtyc5KdCHuZRN3FW8iW-q9NQso2DTH3gfUBLPQCgkUzrIYqtDooT70_nBT7C3XhtVe4sqopV9cztd4s--cg25dQekKb604friVTHkPAhM4aKgsmmvonwX7uxMIkkM8Fi7XT3T",
+          "title": "ioa.org.uk",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHurkSjZut-AbovI_BHhvoClTjHay956l1-7m2Evikwgey0DfE2E8yFr_iuamx3X0qgg5ZfGa-dqZOyASzi6of5wbwx9NLlGl4QWAyfUKnWd7iiZ1mEBm2mbbxniJC-8zHtBdTUZgNtADuQrdgMGyRznxQwolN4Z2p0",
+          "title": "pvknowhow.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFfAlYm1EWxNAf7FayDLaBEjhtZmtxdJ3PemuaiZNPDc80XXKypZBwFgKve04nuXAQ6qKmbde6OZEQ4zSSRelqo758swtrpNL4WCna5LgoJ6bJI040QS6ZtBE1P_y7syjgpSxdIP5TlV0vL9ErXXgBwXNR7cuQ6aAs8v_C-U-13he-xPq4btdI7",
+          "title": "jmaterenvironsci.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGPaUzjKsFDCcPRwJItEiIh9XU9QNlUYLraFWZN0EhdUOyevY__v2dS-lfkBqySnogDzPol8n2WTMPGrySyVQ0i2-cP0N98_Xe5WheivnbkfrONDmSy2gxyz3UnGUI5sZwgJL1fSTty9miSgSaeYIvQ7zoK4lSJFTIPs-ociGNQtecz6YSubw3yVoLiJzxDJd3DShqkwRnRsetp",
+          "title": "globaltradealert.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGyeiuGnxCOtBU3yD9B_S0Dn2s1EgjW0dSuJnpl7K2dSjq14WNHeqruIt7ktrTWwWazhV8og8NzMMUJ4_6Y9VykYtNmn0JaXg6Ry4M0aoYc5Y_SDumgSxAYudNf_ljVnAL4r-5rsf2icbxMoJ65fQ==",
+          "title": "cerist.dz",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH-fB4lnmscBvoCwx6CODlXjkSMbUV453frGgNtmREySdgMhyRJ_pggH9l6uGiojiwJ-Q4X5T1WE8aGmkY0JSs4kqWj6WwJ2OnKJE1A_9PBSlJja5ILs0-0OOqB-WvCiENpKWrSbiGdBMCDV_ToctWz7-IGJZfRnrxMahEe_5iPSdjQbGgrm1NDBVOfC6CSUiAetg==",
+          "title": "algeriainvest.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGW6h6dmNWZsci6ntlww0UGWh3cyV_GSZ151q7w3XVRfWEysewZToxujh38aeiRa502i3A1Sf7SgvoyGCu2KtVR2TArA_nfdCwE6brwP_MAdjjjuzjQ",
+          "title": "dzwatch.dz",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHRKZsZwPh-WQX6RqvxN6w2vu4hx6Am_xK_EWPeOOVOXjUT9KGwvRYarVodGSaxraAemEL8bmjymiEU6UGQIjp-InnSYTGxbtrVlnR4gyJE-z_DDKYsFHGFpVBqfGmMUDzHpmE7RXyBlDvwuWwkD4QqaswXvRDxTDk1DKyyt7iydtPfSJAI26T1GG0lUQx0ltn7lOpE5Jr9_75i8rZpIMkuqlxT5W6YMohieG5kACFP-Wh4",
+          "title": "researchgate.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGyeiuGnxCOtBU3yD9B_S0Dn2s1EgjW0dSuJnpl7K2dSjq14WNHeqruIt7ktrTWwWazhV8og8NzMMUJ4_6Y9VykYtNmn0JaXg6Ry4M0aoYc5Y_SDumgSxAYudNf_ljVnAL4r-5rsf2icbxMoJ65fQ==",
+          "title": "cerist.dz",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGW6h6dmNWZsci6ntlww0UGWh3cyV_GSZ151q7w3XVRfWEysewZToxujh38aeiRa502i3A1Sf7SgvoyGCu2KtVR2TArA_nfdCwE6brwP_MAdjjjuzjQ",
+          "title": "dzwatch.dz",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHRKZsZwPh-WQX6RqvxN6w2vu4hx6Am_xK_EWPeOOVOXjUT9KGwvRYarVodGSaxraAemEL8bmjymiEU6UGQIjp-InnSYTGxbtrVlnR4gyJE-z_DDKYsFHGFpVBqfGmMUDzHpmE7RXyBlDvwuWwkD4QqaswXvRDxTDk1DKyyt7iydtPfSJAI26T1GG0lUQx0ltn7lOpE5Jr9_75i8rZpIMkuqlxT5W6YMohieG5kACFP-Wh4",
+          "title": "researchgate.net",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGoUt8pM05ZRWbQ-nXeSOHI-OUAGW0495a580-r-o0kI7JFGjKvIy9Fxz_jjAJTu0qzqq4Kl4urtaueikmlHWKF0wUbELUQEf8DxX5HotxElrNAMILvpssz18Wn7LsWd0F0W-R4gs5flZUJq7_wjhHf67NVIPBsNRozYENvatTCatk=",
+          "title": "trade.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFXA0f_bx5PsDtLI379f7BE9vRAUyyGNNi-bQid3Cxq4FWJcc_-o-NdMbFS67SIZabwG1xYOPtKErISvYjS4GOGpaNL4tLxn2K4wGV0h5INAIMZ8sRkIhdT3OZtb0KMYLbNK2U4e-GkFPZWlCQxTBu2PKp28L3M",
+          "title": "dlapiperdataprotection.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEwpqrKopz-GQWvVVVx9J9DWQMVactwUrbN3ad5KrYJduehSN_NA6vrCYpPDE1Fo0bD5W5bbMUBiL85cPxS-2qNJ-2CH3BlIoHuyY7m_l1NbFzzoFiLwqHiwVoLUj03c4yPleXPh78P6avFaqVOVHX9Gy-Ny_mqA5LeANyxR5U5GJ-DgA==",
+          "title": "lexafrica.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGyeiuGnxCOtBU3yD9B_S0Dn2s1EgjW0dSuJnpl7K2dSjq14WNHeqruIt7ktrTWwWazhV8og8NzMMUJ4_6Y9VykYtNmn0JaXg6Ry4M0aoYc5Y_SDumgSxAYudNf_ljVnAL4r-5rsf2icbxMoJ65fQ==",
+          "title": "cerist.dz",
+          "date": "",
+          "snippet": ""
+        }
+      ],
+      "no_go_gates": [
+        {
+          "gate_type": "Prohibited Cross-Border Data Transfers",
+          "triggered": false,
+          "reason": "Transfers are highly restricted and require ANPDP authorization/adequacy assessment, but are not absolutely prohibited with no legal mechanism, thus avoiding the 'NO-GO' trigger. However, this is a very high barrier.",
+          "standard_reference": "GDPR Article 44-50; Law No. 18-07 Article 44",
+          "mitigation_possible": true,
+          "mitigation_cost": "High (Legal cost for ANPDP authorization process/compliance)"
+        }
+      ],
+      "caution_flags": [
+        {
+          "category": "Restrictive Data Localization",
+          "severity": "high",
+          "description": "Mandatory data localization is explicitly stated by the government for all data, significantly restricting a hyperscale business model focused on international data flow.",
+          "mitigation_plan": "Adopt a 'Local-Only' service model for Algerian entities and/or build a very costly 'local-cloud' for global clients' Algerian data subset.",
+          "cost_impact": "+$10-15M for compliance infrastructure, legal, and operational overheads.",
+          "timeline_impact": "+6 months for ANPDP transfer authorization applications for any non-Algerian data.",
+          "severity_points": 0.7
+        },
+        {
+          "category": "Foreign Ownership Restrictions",
+          "severity": "high",
+          "description": "The 51/49 rule (49% foreign cap) is retained for 'infrastructure' and 'transportation' assets, which a hyperscale data center is highly likely to be classified as. Requires a local JV partner.",
+          "mitigation_plan": "Establish a joint venture (JV) with a government-approved local partner, with a complex shareholder agreement to retain operational control (while sacrificing financial majority).",
+          "cost_impact": "+$5-10M for JV structuring, legal compliance, and ongoing local partnership management fees.",
+          "timeline_impact": "+6-12 months for JV negotiation and regulatory approval.",
+          "severity_points": 0.6
+        },
+        {
+          "category": "Permitting Complexity",
+          "severity": "medium",
+          "description": "A lengthy (18-month estimated) permitting timeline is expected due to the required high-level government (Wali) approval and the officially documented complexity of the urban planning system.",
+          "mitigation_plan": "Engage a specialized local consulting firm, conduct pre-application meetings, and structure the project as a strategic investment to potentially expedite review.",
+          "cost_impact": "+$3M for extended legal, consulting, and carrying costs.",
+          "timeline_impact": "+6-12 months to project delivery risk.",
+          "severity_points": 0.4
+        }
+      ],
+      "provenance_badges": [
+        {
+          "source": "US International Trade Administration",
+          "api_version": "2024",
+          "vintage": "2024-Q3",
+          "refresh_frequency": "Annually",
+          "confidence": "high",
+          "coverage": "National regulatory policy",
+          "url": "https://trade.gov"
+        },
+        {
+          "source": "PwC Global/Trading Economics",
+          "api_version": "2024",
+          "vintage": "2024-Q3",
+          "refresh_frequency": "Annually",
+          "confidence": "high",
+          "coverage": "National taxation figures",
+          "url": "https://www.tradingeconomics.com/algeria/corporate-tax-rate"
+        }
+      ],
+      "distance_measurements": []
+    },
+    "hyperscaler_attractiveness": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Hyperscaler analysis failed: Unterminated string starting at: line 267 column 14 (char 18727)"
+      ],
+      "executive_summary": "Hyperscaler analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "site_civil": {
+      "overall_score": 1.0,
+      "land_availability": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "geotechnical_conditions": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "water_wastewater": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "transportation_access": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "permitting_timeline": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "civil_grading": null,
+      "assumptions": [],
+      "key_insights": [
+        "Site & civil analysis failed: 'NoneType' object has no attribute 'strip'"
+      ],
+      "executive_summary": "Site & civil analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null,
+      "sources": [],
+      "no_go_gates": [],
+      "caution_flags": [],
+      "provenance_badges": [],
+      "distance_measurements": []
+    },
+    "mechanical_thermal": {
+      "overall_score": 1.0,
+      "cooling_strategy": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "hvac_design": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "thermal_resilience": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "free_cooling_efficiency": null,
+      "water_consumption": null,
+      "mechanical_infrastructure": null,
+      "fire_suppression": null,
+      "assumptions": [],
+      "key_insights": [
+        "Mechanical & thermal analysis failed: name 'parse_json_with_repair' is not defined"
+      ],
+      "executive_summary": "Mechanical & thermal analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null,
+      "sources": [],
+      "no_go_gates": [],
+      "caution_flags": [],
+      "provenance_badges": [],
+      "distance_measurements": []
+    },
+    "market_competition": {
+      "overall_score": 1.0,
+      "competitive_landscape": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "cloud_ecosystem": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "peering_opportunities": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "proximity_to_demand": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "labor_market": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "gtm_feasibility": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "strategic_relevance": null,
+      "assumptions": [],
+      "key_insights": [
+        "Market & competition analysis failed: Expecting value: line 1 column 1 (char 0)"
+      ],
+      "executive_summary": "Market analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null,
+      "sources": [],
+      "no_go_gates": [],
+      "caution_flags": [],
+      "provenance_badges": [],
+      "distance_measurements": []
+    }
+  },
+  "executive_summary": {
+    "location_overview": "This location presents a high-friction, high-reward investment scenario, defined by world-class operational cost advantages juxtaposed against severe structural regulatory and ESG constraints; the strategic viability hinges entirely on adopting a dedicated sovereign cloud model and successfully executing a Joint Venture (JV) partnership.",
+    "key_strengths": [
+      "The dominant strategic advantage is the extremely low, stable industrial electricity rate, estimated at $0.036/kWh (Power Analysis), which offers an unparalleled operational expenditure competitive edge globally and secures market entry pricing significantly below regional competitors.",
+      "Scalability to a hyperscale campus (100MW+) is technically feasible and supported by Sonelgaz's aggressive capacity expansion and grid modernization plans (Power Analysis), providing a long-term growth trajectory once the initial 24-36 month interconnection delay is mitigated and governmental support is secured.",
+      "Baseload stability is exceptionally high due to the abundant natural gas supply (Power Analysis), ensuring operational uptime resilience, although this inherent stability mandates an immediate, comprehensive renewable PPA strategy to resolve the 99.1% carbon intensity ESG conflict."
+    ],
+    "key_challenges": [
+      "The mandatory data localization (Regulatory Analysis) combined with the likely 49% foreign ownership cap (Risk Analysis) fundamentally restricts the business model to a domestic or sovereign cloud offering, rendering it incompatible with standard global hyperscale or multi-tenant operations that require data mobility and 100% foreign control.",
+      "Project timelines are severely constrained by the combined bureaucratic friction of high perceived corruption (Risk Analysis CPI 34), a lengthy 18-36 month power connection process (Power Analysis), and complex high-level permitting requirements (Regulatory Analysis), suggesting a total execution timeline potentially exceeding four years.",
+      "The mandatory high structural CapEx premium, estimated at approximately 30% for construction (Climate Analysis), is necessary to mitigate high seismic hazard (0.25g, SDC D) and recurrent flood risks, partially offsetting the long-term OPEX savings derived from the subsidized power rates."
+    ],
+    "critical_success_factors": [
+      "Securing and finalizing the mandatory 51/49 Joint Venture agreement with a strategically influential local partner must be the critical path item, ensuring governmental alignment and streamlined navigation through the high-friction regulatory and connection processes.",
+      "Simultaneously initiating the Environmental Impact Assessment (EIA) (Regulatory Analysis) and detailed geotechnical studies (Climate Analysis) is non-negotiable, specifically addressing the SDC D seismic requirements and liquefaction risk to finalize structural design premiums and cost baselines.",
+      "Achieving robust financial resilience by immediately pursuing a long-term, fixed-price PPA contract structure to secure a non-gas energy source, thereby mitigating both carbon exposure and the volatility associated with future government subsidy policy changes."
+    ]
+  },
+  "phase_1_deployment": {
+    "recommended_capacity": "A focused initial deployment of 5MW to 10MW is recommended, allowing rapid market entry to capture the nascent sovereign cloud demand while mitigating immediate construction and regulatory complexity; future scalability must be secured via the concurrent negotiation of a 50MW+ connection agreement with Sonelgaz (Power Analysis) to utilize the aggressive capacity expansion plans.",
+    "timeline": "The synthesized critical path timeline suggests a 42-month delivery schedule, commencing with a 12-month period dedicated entirely to JV finalization, government approvals, and full environmental/geotechnical engineering, followed by a 30-month period for construction and power connection execution, accounting for the 24-36 month utility lead time (Power Analysis).",
+    "priority_actions": [
+      "Immediately establish a high-level Government Affairs Task Force to negotiate the required 51/49 Joint Venture structure (Risk/Regulatory) and secure written confirmation from the Wali (Governor) regarding 'strategic project' status to fast-track the 18-month permitting timeline.",
+      "Initiate specialized seismic and structural engineering studies (Climate Analysis) to finalize the 30% CapEx uplift estimates and integrate mandatory flood mitigation designs (2.1m finished floor elevation) into the preliminary architectural plans, preventing costly redesign cycles later in the project.",
+      "Launch a dedicated PPA procurement strategy focused on the available 3 GW solar tenders (Power Analysis) to secure a long-term, low-carbon energy source that satisfies international ESG mandates and begins the process of delinking operational costs from the subsidized, high-carbon gas grid."
+    ],
+    "estimated_investment": "The estimated initial investment for Phase 1 (10MW) is projected to include a significant structural premium (CapEx +30%) due to seismic requirements, high legal and compliance costs for the JV structure, and substantial budget allocation for high-level regulatory engagement, totaling an estimated $90M to $120M, excluding the cost of the renewable PPA subscription.",
+    "risk_mitigation": [
+      "Mitigate legal and corruption risk (Risk Analysis CPI 34) by implementing a zero-tolerance compliance framework, utilizing international third-party auditors for all local procurement, and mandating transparent contract negotiations exclusively through the established local Joint Venture partner.",
+      "Address the reliability risk (SAIDI 180 min/year) by engineering the facility to a minimum Tier III standard, requiring 2N power redundancy, incorporating long-duration fuel storage (Risk Analysis), and ensuring the cooling system utilizes dry/adiabatic technology to manage climate change projections and water scarcity (Climate Analysis).",
+      "Counter the data sovereignty and localization risk (Regulatory Analysis) by restricting Phase 1 services to domestic traffic and building the operational architecture with strict internal segregation, ensuring all cross-border data transfer mechanisms are documented, authorized, and compliant with the ANPDP prior authorization requirement."
+    ]
+  },
+  "strategic_opportunities": [
+    "The combination of low OPEX and mandated data residency creates a unique opportunity to capture the emerging sovereign cloud market for government and financial institutions seeking secure, in-country, cost-effective data services, bypassing the typical global cloud entry barriers.",
+    "Immediate engagement in Algeria's emerging utility-scale solar PPA market (3 GW tenders available) allows the project to simultaneously address the critical ESG liability (99.1% carbon intensity) while hedging against the long-term risk of electricity subsidy removal (Power Analysis), securing long-term cost stability and corporate sustainability goals.",
+    "Leveraging the proximity to the Algiers economic hub provides access to industrial infrastructure, a specialized local workforce (Power Analysis), and potential supply chain benefits due to local manufacturing joint ventures, facilitating long-term operational sustainability and maintenance efficiencies."
+  ],
+  "strategic_recommendation": "The overarching strategic recommendation is to **PROCEED** with focused deployment, but only after fundamentally restructuring the business model from a standard global hyperscale approach to a dedicated Sovereign Cloud operation, accepting the 49% ownership constraint and the inherent friction. This investment is strategically justified by the exceptional, long-term OPEX cost advantage derived from the subsidized power (Power Analysis), which provides a critical competitive moat, provided the high CapEx uplifts (Climate Analysis) and regulatory execution risks (Regulatory Analysis) are budgeted and managed proactively through a powerful local JV.",
+  "conclusion": "GO, but strictly under a controlled Sovereign Cloud deployment framework, reflecting high confidence in the long-term financial viability (OPEX), counterbalanced by low confidence in frictionless execution (Regulatory/Risk). The success hinges on the immediate, concurrent resolution of three critical path items: 1) JV structure, 2) Renewable PPA sourcing, and 3) Geotechnical confirmation of the seismic structural cost premium. If the 49% foreign ownership cap proves commercially unacceptable, or if the JV cannot secure dedicated high-level government advocacy to compress permitting and power timelines, the project should be immediately halted.",
+  "next_steps": [
+    "Retain specialized local legal and political counsel to initiate immediate negotiations for the Joint Venture agreement and identify potential, strategically aligned local partners that can facilitate rapid regulatory navigation and political support.",
+    "Commission Phase I Geotechnical and Structural Engineering Reports (GSR) specifically focused on confirming the 0.25g PGA seismic rating and assessing liquefaction potential, providing definitive cost data for the required CapEx structural premium within the next four months.",
+    "Formalize the procurement strategy for a dedicated renewable PPA by entering the solar tender process, ensuring the long-term contract structure is resilient against future changes in the national electricity subsidy policy and meets all mandated corporate sustainability objectives."
+  ],
+  "insights_result": {
+    "executive_summary": {
+      "location_overview": "This location presents a high-friction, high-reward investment scenario, defined by world-class operational cost advantages juxtaposed against severe structural regulatory and ESG constraints; the strategic viability hinges entirely on adopting a dedicated sovereign cloud model and successfully executing a Joint Venture (JV) partnership.",
+      "key_strengths": [
+        "The dominant strategic advantage is the extremely low, stable industrial electricity rate, estimated at $0.036/kWh (Power Analysis), which offers an unparalleled operational expenditure competitive edge globally and secures market entry pricing significantly below regional competitors.",
+        "Scalability to a hyperscale campus (100MW+) is technically feasible and supported by Sonelgaz's aggressive capacity expansion and grid modernization plans (Power Analysis), providing a long-term growth trajectory once the initial 24-36 month interconnection delay is mitigated and governmental support is secured.",
+        "Baseload stability is exceptionally high due to the abundant natural gas supply (Power Analysis), ensuring operational uptime resilience, although this inherent stability mandates an immediate, comprehensive renewable PPA strategy to resolve the 99.1% carbon intensity ESG conflict."
+      ],
+      "key_challenges": [
+        "The mandatory data localization (Regulatory Analysis) combined with the likely 49% foreign ownership cap (Risk Analysis) fundamentally restricts the business model to a domestic or sovereign cloud offering, rendering it incompatible with standard global hyperscale or multi-tenant operations that require data mobility and 100% foreign control.",
+        "Project timelines are severely constrained by the combined bureaucratic friction of high perceived corruption (Risk Analysis CPI 34), a lengthy 18-36 month power connection process (Power Analysis), and complex high-level permitting requirements (Regulatory Analysis), suggesting a total execution timeline potentially exceeding four years.",
+        "The mandatory high structural CapEx premium, estimated at approximately 30% for construction (Climate Analysis), is necessary to mitigate high seismic hazard (0.25g, SDC D) and recurrent flood risks, partially offsetting the long-term OPEX savings derived from the subsidized power rates."
+      ],
+      "strategic_opportunities": [
+        "The combination of low OPEX and mandated data residency creates a unique opportunity to capture the emerging sovereign cloud market for government and financial institutions seeking secure, in-country, cost-effective data services, bypassing the typical global cloud entry barriers.",
+        "Immediate engagement in Algeria's emerging utility-scale solar PPA market (3 GW tenders available) allows the project to simultaneously address the critical ESG liability (99.1% carbon intensity) while hedging against the long-term risk of electricity subsidy removal (Power Analysis), securing long-term cost stability and corporate sustainability goals.",
+        "Leveraging the proximity to the Algiers economic hub provides access to industrial infrastructure, a specialized local workforce (Power Analysis), and potential supply chain benefits due to local manufacturing joint ventures, facilitating long-term operational sustainability and maintenance efficiencies."
+      ],
+      "critical_success_factors": [
+        "Securing and finalizing the mandatory 51/49 Joint Venture agreement with a strategically influential local partner must be the critical path item, ensuring governmental alignment and streamlined navigation through the high-friction regulatory and connection processes.",
+        "Simultaneously initiating the Environmental Impact Assessment (EIA) (Regulatory Analysis) and detailed geotechnical studies (Climate Analysis) is non-negotiable, specifically addressing the SDC D seismic requirements and liquefaction risk to finalize structural design premiums and cost baselines.",
+        "Achieving robust financial resilience by immediately pursuing a long-term, fixed-price PPA contract structure to secure a non-gas energy source, thereby mitigating both carbon exposure and the volatility associated with future government subsidy policy changes."
+      ]
+    },
+    "phase_1_deployment": {
+      "recommended_capacity": "A focused initial deployment of 5MW to 10MW is recommended, allowing rapid market entry to capture the nascent sovereign cloud demand while mitigating immediate construction and regulatory complexity; future scalability must be secured via the concurrent negotiation of a 50MW+ connection agreement with Sonelgaz (Power Analysis) to utilize the aggressive capacity expansion plans.",
+      "timeline": "The synthesized critical path timeline suggests a 42-month delivery schedule, commencing with a 12-month period dedicated entirely to JV finalization, government approvals, and full environmental/geotechnical engineering, followed by a 30-month period for construction and power connection execution, accounting for the 24-36 month utility lead time (Power Analysis).",
+      "priority_actions": [
+        "Immediately establish a high-level Government Affairs Task Force to negotiate the required 51/49 Joint Venture structure (Risk/Regulatory) and secure written confirmation from the Wali (Governor) regarding 'strategic project' status to fast-track the 18-month permitting timeline.",
+        "Initiate specialized seismic and structural engineering studies (Climate Analysis) to finalize the 30% CapEx uplift estimates and integrate mandatory flood mitigation designs (2.1m finished floor elevation) into the preliminary architectural plans, preventing costly redesign cycles later in the project.",
+        "Launch a dedicated PPA procurement strategy focused on the available 3 GW solar tenders (Power Analysis) to secure a long-term, low-carbon energy source that satisfies international ESG mandates and begins the process of delinking operational costs from the subsidized, high-carbon gas grid."
+      ],
+      "estimated_investment": "The estimated initial investment for Phase 1 (10MW) is projected to include a significant structural premium (CapEx +30%) due to seismic requirements, high legal and compliance costs for the JV structure, and substantial budget allocation for high-level regulatory engagement, totaling an estimated $90M to $120M, excluding the cost of the renewable PPA subscription.",
+      "risk_mitigation": [
+        "Mitigate legal and corruption risk (Risk Analysis CPI 34) by implementing a zero-tolerance compliance framework, utilizing international third-party auditors for all local procurement, and mandating transparent contract negotiations exclusively through the established local Joint Venture partner.",
+        "Address the reliability risk (SAIDI 180 min/year) by engineering the facility to a minimum Tier III standard, requiring 2N power redundancy, incorporating long-duration fuel storage (Risk Analysis), and ensuring the cooling system utilizes dry/adiabatic technology to manage climate change projections and water scarcity (Climate Analysis).",
+        "Counter the data sovereignty and localization risk (Regulatory Analysis) by restricting Phase 1 services to domestic traffic and building the operational architecture with strict internal segregation, ensuring all cross-border data transfer mechanisms are documented, authorized, and compliant with the ANPDP prior authorization requirement."
+      ],
+      "success_metrics": [
+        "Successful completion of the 51/49 Joint Venture agreement within 12 months, measured by final government registration and clear delineation of operational and financial control responsibilities.",
+        "Attainment of a targeted Power Usage Effectiveness (PUE) below 1.35, specifically demonstrating the efficiency of the hybrid cooling system despite high summer temperatures (Climate Analysis) and successful integration of the PPA for energy sourcing.",
+        "Achievement of a guaranteed, non-subsidized operational cost model (PPA LCOE + regulated grid cost) that maintains competitive positioning, measured against the projected $0.036/kWh baseline over a 20-year financial horizon."
+      ]
+    },
+    "strategic_recommendation": "The overarching strategic recommendation is to **PROCEED** with focused deployment, but only after fundamentally restructuring the business model from a standard global hyperscale approach to a dedicated Sovereign Cloud operation, accepting the 49% ownership constraint and the inherent friction. This investment is strategically justified by the exceptional, long-term OPEX cost advantage derived from the subsidized power (Power Analysis), which provides a critical competitive moat, provided the high CapEx uplifts (Climate Analysis) and regulatory execution risks (Regulatory Analysis) are budgeted and managed proactively through a powerful local JV.",
+    "conclusion": "GO, but strictly under a controlled Sovereign Cloud deployment framework, reflecting high confidence in the long-term financial viability (OPEX), counterbalanced by low confidence in frictionless execution (Regulatory/Risk). The success hinges on the immediate, concurrent resolution of three critical path items: 1) JV structure, 2) Renewable PPA sourcing, and 3) Geotechnical confirmation of the seismic structural cost premium. If the 49% foreign ownership cap proves commercially unacceptable, or if the JV cannot secure dedicated high-level government advocacy to compress permitting and power timelines, the project should be immediately halted.",
+    "next_steps": [
+      "Retain specialized local legal and political counsel to initiate immediate negotiations for the Joint Venture agreement and identify potential, strategically aligned local partners that can facilitate rapid regulatory navigation and political support.",
+      "Commission Phase I Geotechnical and Structural Engineering Reports (GSR) specifically focused on confirming the 0.25g PGA seismic rating and assessing liquefaction potential, providing definitive cost data for the required CapEx structural premium within the next four months.",
+      "Formalize the procurement strategy for a dedicated renewable PPA by entering the solar tender process, ensuring the long-term contract structure is resilient against future changes in the national electricity subsidy policy and meets all mandated corporate sustainability objectives."
+    ]
+  },
+  "data_gap_analysis": {
+    "data_sources_used": [
+      {
+        "name": "Public data analysis",
+        "type": "publicly_available",
+        "reliability": "medium",
+        "last_updated": "Current analysis",
+        "url": null
+      }
+    ],
+    "data_gaps_identified": [
+      "Local utility (Sonelgaz) substation spare capacity and specific multi-MW load connection point feasibility (MVA/MVAr details).",
+      "Official, published SAIDI/SAIFI reliability metrics for the Algiers Wilaya (province) and historical outage data.",
+      "Formalized cost structure (demand vs. energy charges) and interconnection fee schedules for a 50MW+ customer.",
+      "Site-specific geotechnical survey required to confirm liquefaction susceptibility, bearing capacity, and final PGA for design.",
+      "Local flood risk map (if available) and site-specific Elevation Certificate equivalent to confirm FFE/BFE requirements and precise flood zone classification.",
+      "Official demarcation of UNESCO Kasbah of Algiers buffer zone to confirm no impact at 5.0km distance proxy.",
+      "Detailed fire department response time and local fire flow capacity data.",
+      "ASHRAE 2021 TMY/IWEC data for Algiers to precisely calculate free cooling hours.",
+      "Official, site-specific SAIDI/SAIFI data from utility (SONELGAZ/SADEG) is missing (Low Confidence for SAIDI).",
+      "Third-party political risk insurance quote required to confirm cost of legal/sovereign risk.",
+      "Confirmed long-term sovereign credit rating from S&P/Fitch/Moody's (BB+ is an estimate).",
+      "Specific legal definition confirming a 'hyperscale data center' as 'strategic infrastructure' subject to 51/49 rule.",
+      "Official EIA checklist/timeline for a data center and specific genset emissions limits (g/kWh NOx, PM).",
+      "Confirmation of the number of permits and total permit fees from local Wilaya/Municipal authority."
+    ],
+    "third_party_requirements": [
+      "Sonelgaz (or CREG) for official grid capacity and connection tariffs/timelines.",
+      "International energy consultancy for a detailed power quality and reliability assessment.",
+      "Electrical engineering firm for site-specific grid interconnection study and infrastructure design.",
+      "Geotechnical engineering firm for seismic/liquefaction analysis and foundation design (SDC D compliance).",
+      "Local civil engineer for flood elevation and drainage plan per local building codes (A/AE mitigation).",
+      "Environmental consulting firm for EIA, wetland/Ramsar site check, and protected area buffer confirmation.",
+      "Structural engineer for seismic and wind design verification and cost modeling.",
+      "Political risk insurance broker (Marsh, Willis Towers Watson)",
+      "Local legal counsel specialized in foreign direct investment and data residency",
+      "Power utility (SADEG) contract for service level agreement (SAIDI/SAIFI)",
+      "Local legal counsel for regulatory compliance review (Localization/Ownership classification).",
+      "Investment Promotion Agency for written incentive and tax confirmation.",
+      "Pre-application meeting with Algiers Wilaya Planning Department for zoning/permitting timeline."
+    ],
+    "assumptions_made": [
+      {
+        "category": "General Analysis",
+        "assumption": "The industrial electricity rate (USD 0.036/kWh) is the base case and does not include significant demand charges.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Specific SAIDI/SAIFI metrics are estimated based on general emerging market status and known grid challenges, not public utility-reported data.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Algiers region offers high-voltage (400kV) connection feasibility, typical of a capital city and industrial area.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "DZD/USD exchange rate is assumed to be stable for cost conversion based on the search date.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "FEMA flood zone data is a proxy (A/AE equivalent) due to lack of US-standard maps; BFE and elevation are estimates based on local flood vulnerability studies for Algiers.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "PGA (0.25g) is a proxy based on regional Probabilistic Seismic Hazard Analysis (PSHA) maps for Northern Algeria/Algiers from GEM and scientific literature.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Wildfire risk is categorized as 'High' based on general regional assessments for the coastal area; site-specific fuel load varies.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The site is assumed to be outside the immediate boundaries of the Kasbah of Algiers UNESCO World Heritage Site buffer zone, but in close proximity.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Free cooling hours and ASHRAE compliance are estimates based on Mediterranean climate normals for the coastal zone.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Climate change projections use SSP245/RCP4.5 (moderate emissions) for 2050, acknowledging the high regional risk profile.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Inflation rate (5.0%), SAIDI (180 min), and power outages/fiber paths (3) are estimates based on regional context and 'Green Band' ERI status.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Crime rate (40/1000) is a conservative estimate based on perceived crime levels in Algiers.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Emergency response times/distances are estimates for a central Algiers site.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "50-100 MW data center is classified as 'Strategic Infrastructure' subject to the 51/49 foreign ownership rule.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Data localization claim from the International Trade Administration is taken as the binding policy position for foreign investors.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Permitting fees and timelines are estimated based on observed regulatory complexity and required high-level government approvals.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      }
+    ],
+    "overall_confidence": "low",
+    "next_steps_priority": [
+      "Address critical data gaps through third-party verification",
+      "Validate key assumptions with local experts",
+      "Conduct on-site assessments for high-impact areas"
+    ]
+  },
+  "weighted_domain_scores": [
+    {
+      "domain_name": "power_energy",
+      "raw_score": 4.0,
+      "weight": 0.35,
+      "weighted_contribution": 0.0,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "network_connectivity",
+      "raw_score": 1.0,
+      "weight": 0.15,
+      "weighted_contribution": 0.0,
+      "no_go_gates_triggered": 1,
+      "caution_flags_count": 2
+    },
+    {
+      "domain_name": "site_civil",
+      "raw_score": 1.0,
+      "weight": 0.1,
+      "weighted_contribution": 0.0,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "hazards_resilience",
+      "raw_score": 3.0,
+      "weight": 0.12,
+      "weighted_contribution": 0.0,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 4
+    },
+    {
+      "domain_name": "mechanical_thermal",
+      "raw_score": 1.0,
+      "weight": 0.08,
+      "weighted_contribution": 0.0,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "regulatory_esg",
+      "raw_score": 1.0,
+      "weight": 0.14,
+      "weighted_contribution": 0.0,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "market_competition",
+      "raw_score": 1.0,
+      "weight": 0.06,
+      "weighted_contribution": 0.0,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    }
+  ],
+  "all_no_go_gates": [
+    {
+      "gate_type": "Single Fiber Route",
+      "triggered": true,
+      "reason": "Lack of verifiable, independent, physically diverse fiber routes from multiple Tier 1/2 carriers that are not physically co-located or sharing a common path. Network backbone and metropolitan fiber are highly dependent on the incumbent operator, Algrie Tlcom, creating a single-point-of-failure risk (Common Path Failure). Two truly independent buildable routes from competing carriers are not documented or realistically feasible within an 18-month buildout timeline for a hyperscale deployment.",
+      "standard_reference": "TIA-942 Tier III/IV requires multiple, diverse physical paths and ANSI/TIA-568 standards for intra-building diversity.",
+      "mitigation_possible": true,
+      "mitigation_cost": "$2M - $5M for two new, geographically separated, metropolitan loop fiber builds by a third-party contractor or competitor, contingent on regulatory approval and dark fiber rights."
+    },
+    {
+      "gate_type": "No Carrier Presence",
+      "triggered": false,
+      "reason": "Algrie Tlcom, the national incumbent operator, functions as the primary Tier 2/Regional Tier 1 carrier and is present throughout Algiers, well within the 50km threshold.",
+      "standard_reference": "Investment-grade site selection threshold",
+      "mitigation_possible": false,
+      "mitigation_cost": "N/A"
+    },
+    {
+      "gate_type": "FEMA V/VE Flood Zone",
+      "triggered": false,
+      "reason": "Proxy analysis suggests FEMA A/AE equivalent (Flood-Prone Area), not the high-velocity coastal V/VE zone.",
+      "standard_reference": "FEMA regulations prohibit cost-effective data center construction in V/VE zones",
+      "mitigation_possible": false,
+      "mitigation_cost": "Not applicable - NO-GO gate passed"
+    },
+    {
+      "gate_type": "BFE >3m Above Grade",
+      "triggered": false,
+      "reason": "Proxy BFE is 1.5m above grade (not >3m), allowing for feasible elevation/fill strategy.",
+      "standard_reference": "Building codes require FFE = BFE + 0.6m; sites with BFE >3m face prohibitive costs",
+      "mitigation_possible": true,
+      "mitigation_cost": "Not applicable - NO-GO gate passed"
+    },
+    {
+      "gate_type": "Very High Wildfire Hazard",
+      "triggered": false,
+      "reason": "Proxy wildfire hazard zone is 'High', below the 'Very High' NO-GO trigger.",
+      "standard_reference": "CAL FIRE Very High FHSZ has >30% fire impact probability per decade",
+      "mitigation_possible": false,
+      "mitigation_cost": "Not applicable - NO-GO gate passed"
+    },
+    {
+      "gate_type": "Extreme Seismic Hazard (PGA >0.4g)",
+      "triggered": false,
+      "reason": "PGA is 0.25g (SDC D equivalent), below 0.4g threshold for extreme hazard.",
+      "standard_reference": "ASCE 7 Seismic Design Category E/F (PGA >0.4g) triggers prohibitive structural costs",
+      "mitigation_possible": true,
+      "mitigation_cost": "Not applicable - NO-GO gate passed (would be $80-150M for seismic isolation if triggered)"
+    },
+    {
+      "gate_type": "Protected Area Violation",
+      "triggered": false,
+      "reason": "No WDPA Category I-III protected areas within 10km, and assumed outside UNESCO buffer zone.",
+      "standard_reference": "IUCN protected area categories I-III prohibit large-scale industrial development",
+      "mitigation_possible": false,
+      "mitigation_cost": "Not applicable - NO-GO gate passed"
+    },
+    {
+      "gate_type": "Prohibited Cross-Border Data Transfers",
+      "triggered": false,
+      "reason": "Transfers are highly restricted and require ANPDP authorization/adequacy assessment, but are not absolutely prohibited with no legal mechanism, thus avoiding the 'NO-GO' trigger. However, this is a very high barrier.",
+      "standard_reference": "GDPR Article 44-50; Law No. 18-07 Article 44",
+      "mitigation_possible": true,
+      "mitigation_cost": "High (Legal cost for ANPDP authorization process/compliance)"
+    }
+  ],
+  "all_caution_flags": [
+    {
+      "category": "Carrier Diversity",
+      "severity": "high",
+      "description": "The market is dominated by the state-owned incumbent (Algrie Tlcom/Mobilis) and two other major mobile/fixed operators (Djezzy, Ooredoo), leading to limited competitive leverage and high reliance on a single entity for long-haul and international connectivity.",
+      "mitigation_plan": "Secure long-term dark fiber lease with Algrie Tlcom and establish international connectivity via multiple diverse submarine cable systems (Alval/Orval, Medusa, SEA-ME-WE 4) to bypass local loop reliance as much as possible.",
+      "cost_impact": "Non-monetary (High negotiating risk)",
+      "timeline_impact": "None",
+      "severity_points": 0.4
+    },
+    {
+      "category": "IXP Proximity",
+      "severity": "medium",
+      "description": "The national Internet Exchange Point (AlgIX) is listed as 'Planned' or under development, meaning local traffic must be routed internationally for peering, resulting in increased latency and IP transit costs.",
+      "mitigation_plan": "Engage directly with major local content providers and ISPs (e.g., Icosnet, AYRADE) for private peering or establish a private peering fabric within a local carrier-neutral facility.",
+      "cost_impact": "+$100K-300K for establishing a private peering fabric and cross-connects.",
+      "timeline_impact": "+6 months for implementation.",
+      "severity_points": 0.3
+    },
+    {
+      "category": "High Seismic Hazard (SDC D)",
+      "severity": "high",
+      "description": "High Seismic Hazard (SDC D)",
+      "mitigation_plan": "Mandatory enhanced foundation/structural design (moment frames, bracing, shear walls) and high-cost construction materials.",
+      "cost_impact": "To be determined",
+      "timeline_impact": null,
+      "severity_points": 0.0
+    },
+    {
+      "category": "Liquefaction Risk (Moderate)",
+      "severity": "medium",
+      "description": "Liquefaction Risk (Moderate)",
+      "mitigation_plan": "Deep pile foundations to competent bearing strata, or ground improvement techniques (e.g., stone columns).",
+      "cost_impact": "To be determined",
+      "timeline_impact": null,
+      "severity_points": 0.0
+    },
+    {
+      "category": "High Wildfire Hazard (Proxy)",
+      "severity": "high",
+      "description": "High Wildfire Hazard (Proxy)",
+      "mitigation_plan": "Develop and maintain >30m defensible space (Fire Breaks). Use non-combustible exterior materials. Install enhanced exterior fire suppression and ember-resistant vents.",
+      "cost_impact": "To be determined",
+      "timeline_impact": null,
+      "severity_points": 0.0
+    },
+    {
+      "category": "FEMA A/AE Flood Zone (Proxy)",
+      "severity": "medium",
+      "description": "FEMA A/AE Flood Zone (Proxy)",
+      "mitigation_plan": "Elevate Finished Floor Elevation (FFE) to BFE + 0.6m freeboard. Implement site-wide stormwater drainage improvements and detention ponds.",
+      "cost_impact": "To be determined",
+      "timeline_impact": null,
+      "severity_points": 0.0
+    },
+    {
+      "category": "Restrictive Data Localization",
+      "severity": "high",
+      "description": "Mandatory data localization is explicitly stated by the government for all data, significantly restricting a hyperscale business model focused on international data flow.",
+      "mitigation_plan": "Adopt a 'Local-Only' service model for Algerian entities and/or build a very costly 'local-cloud' for global clients' Algerian data subset.",
+      "cost_impact": "+$10-15M for compliance infrastructure, legal, and operational overheads.",
+      "timeline_impact": "+6 months for ANPDP transfer authorization applications for any non-Algerian data.",
+      "severity_points": 0.7
+    },
+    {
+      "category": "Foreign Ownership Restrictions",
+      "severity": "high",
+      "description": "The 51/49 rule (49% foreign cap) is retained for 'infrastructure' and 'transportation' assets, which a hyperscale data center is highly likely to be classified as. Requires a local JV partner.",
+      "mitigation_plan": "Establish a joint venture (JV) with a government-approved local partner, with a complex shareholder agreement to retain operational control (while sacrificing financial majority).",
+      "cost_impact": "+$5-10M for JV structuring, legal compliance, and ongoing local partnership management fees.",
+      "timeline_impact": "+6-12 months for JV negotiation and regulatory approval.",
+      "severity_points": 0.6
+    },
+    {
+      "category": "Permitting Complexity",
+      "severity": "medium",
+      "description": "A lengthy (18-month estimated) permitting timeline is expected due to the required high-level government (Wali) approval and the officially documented complexity of the urban planning system.",
+      "mitigation_plan": "Engage a specialized local consulting firm, conduct pre-application meetings, and structure the project as a strategic investment to potentially expedite review.",
+      "cost_impact": "+$3M for extended legal, consulting, and carrying costs.",
+      "timeline_impact": "+6-12 months to project delivery risk.",
+      "severity_points": 0.4
+    }
+  ],
+  "provenance_summary": [],
+  "transactional_verifications": [],
+  "distance_measurements": []
+}

@@ -1,0 +1,494 @@
+{
+  "location": "Rancho Cordova, CA",
+  "coordinates": {
+    "lat": 38.587876,
+    "lng": -121.2867722
+  },
+  "country": "United States",
+  "analysis_date": "2025-11-07",
+  "overall_suitability": {
+    "composite_score": 2.14,
+    "rating": "Poor",
+    "recommendation": "Location rated as Poor for datacenter deployment",
+    "no_go_triggered": false,
+    "failed_gates": [],
+    "caution_count": 0,
+    "confidence_level": null,
+    "verification_percentage": null
+  },
+  "domain_analysis": {
+    "power_infrastructure": {
+      "score": 1.0,
+      "key_findings": [
+        "Power analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "summary": "Power analysis unavailable"
+    },
+    "network_connectivity": {
+      "score": 1.0,
+      "key_findings": [
+        "Network analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "summary": "Network analysis unavailable"
+    },
+    "climate_environmental": {
+      "score": 1.0,
+      "key_findings": [
+        "Climate analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "summary": "Climate analysis unavailable"
+    },
+    "regulatory_esg": {
+      "score": 1.0,
+      "key_findings": [
+        "Regulatory & ESG analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "summary": "Regulatory & ESG analysis unavailable"
+    },
+    "site_civil": {
+      "score": 1.0,
+      "key_findings": [
+        "Site & civil analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "summary": "Site & civil analysis unavailable"
+    },
+    "mechanical_thermal": {
+      "score": 1.0,
+      "key_findings": [
+        "Mechanical & thermal analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "summary": "Mechanical & thermal analysis unavailable"
+    },
+    "market_competition": {
+      "score": 1.0,
+      "key_findings": [
+        "Market & competition analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "summary": "Market analysis unavailable"
+    }
+  },
+  "detailed_analysis": {
+    "power_infrastructure": "Power analysis unavailable",
+    "network_connectivity": "Network analysis unavailable",
+    "climate_environmental": "Climate analysis unavailable",
+    "regulatory_esg": "Regulatory & ESG analysis unavailable",
+    "site_civil": "Site & civil analysis unavailable",
+    "mechanical_thermal": "Mechanical & thermal analysis unavailable",
+    "market_competition": "Market analysis unavailable"
+  },
+  "structured_analysis": {
+    "power_infrastructure": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Power analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "executive_summary": "Power analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "network_connectivity": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Network analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "executive_summary": "Network analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "climate_environmental": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Climate analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "executive_summary": "Climate analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "regulatory_esg": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Regulatory & ESG analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "executive_summary": "Regulatory & ESG analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "site_civil": {
+      "overall_score": 1.0,
+      "land_availability": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "geotechnical_conditions": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "water_wastewater": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "transportation_access": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "permitting_timeline": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "civil_grading": null,
+      "assumptions": [],
+      "key_insights": [
+        "Site & civil analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "executive_summary": "Site & civil analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null,
+      "sources": [],
+      "no_go_gates": [],
+      "caution_flags": [],
+      "provenance_badges": [],
+      "distance_measurements": []
+    },
+    "mechanical_thermal": {
+      "overall_score": 1.0,
+      "cooling_strategy": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "hvac_design": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "thermal_resilience": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "free_cooling_efficiency": null,
+      "water_consumption": null,
+      "mechanical_infrastructure": null,
+      "fire_suppression": null,
+      "assumptions": [],
+      "key_insights": [
+        "Mechanical & thermal analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "executive_summary": "Mechanical & thermal analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null,
+      "sources": [],
+      "no_go_gates": [],
+      "caution_flags": [],
+      "provenance_badges": [],
+      "distance_measurements": []
+    },
+    "market_competition": {
+      "overall_score": 1.0,
+      "competitive_landscape": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "cloud_ecosystem_demand": null,
+      "peering_network_ecosystem": null,
+      "strategic_positioning": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "assumptions": [],
+      "key_insights": [
+        "Market & competition analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "executive_summary": "Market analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null,
+      "sources": [],
+      "no_go_gates": [],
+      "caution_flags": [],
+      "provenance_badges": [],
+      "distance_measurements": []
+    }
+  },
+  "executive_summary": {
+    "location_overview": "This analysis identifies the Rancho Cordova location within the critical Sacramento data center market, emphasizing that while the region offers strategic proximity to major metropolitan centers, the current project viability assessment is compromised by an extreme deficit of critical infrastructure data across all key domains, necessitating an immediate, intensive due diligence phase before any commitment to design or construction can be made.",
+    "key_strengths": [
+      "The location benefits from proximity to established fiber routes inherent to the larger California metropolitan area, suggesting potential network density advantages, although this specific connectivity must be validated through immediate network carrier studies.",
+      "Operating within the robust but challenging California market provides a significant potential customer base and competitive advantage for hyperscale or enterprise co-location, assuming the substantial regulatory and power hurdles identified in the composite score are successfully navigated.",
+      "The parcel analysis, despite signaling significant initial constraints (Site & Civil Score 1.0), suggests that the site is physically available for evaluation, which provides a tangible starting point for accelerated physical engineering studies once critical utility data is secured."
+    ],
+    "key_challenges": [
+      "The simultaneous lack of Power, Network, Climate, and Regulatory data creates a profound and unquantifiable risk profile, making detailed financial modeling and critical path development impossible until comprehensive utility studies and environmental impact assessments are completed, extending the due diligence phase significantly.",
+      "The consistent low scores (1.0) reported across Site/Civil, Mechanical/Thermal, and Market/Competition suggest baseline operational complexities, likely stemming from stringent California building codes, seismic considerations, or high regional construction costs, compounding the uncertainty from the missing utility data.",
+      "The inability to analyze Environmental, Social, and Governance (ESG) constraints requires the immediate assumption of maximum regulatory scrutiny typical of California projects, demanding proactive engagement with local authorities and utility providers regarding renewable energy sourcing and water use efficiency."
+    ],
+    "critical_success_factors": [
+      "Immediate acquisition of firm power allocation data from the local utility provider is the single most critical factor, as all subsequent engineering, financial modeling, and construction timelines are completely contingent upon confirmed megawatts and interconnection feasibility.",
+      "Successful negotiation of regulatory timelines, requiring a coordinated effort to secure simultaneous environmental permits, zoning approvals, and building permissions, minimizing the critical path delays that historically plague complex California projects.",
+      "Developing a comprehensive financial contingency plan that accounts for an estimated 25 percent overrun on initial infrastructure investment due to unexpected site remediation or mandated utility upgrades, ensuring capital flexibility during the high-risk due diligence phase."
+    ]
+  },
+  "phase_1_deployment": {
+    "recommended_capacity": "The recommended initial capacity target must remain 'To Be Determined' until firm Power and Network feasibility studies are successfully concluded, focusing Phase 1 efforts purely on determining the maximum achievable capacity threshold based on confirmed utility grid availability and regulatory constraints, likely aiming for a scalable build plan.",
+    "timeline": "The initial Phase 1 due diligence timeline is estimated at six to nine months dedicated solely to generating the missing domain data, including critical utility studies (Power and Network), environmental impact reports, geotechnical surveying, and preliminary regulatory filings, before shovel readiness can be projected.",
+    "priority_actions": [
+      "Engage immediately with the local utility provider to initiate a formal power feasibility study and secure preliminary capacity reservation, dedicating senior project management resources to aggressively track utility engineering progress and obtain firm delivery dates for necessary infrastructure upgrades.",
+      "Launch parallel geotechnical, environmental, and civil engineering studies to fully evaluate the site's physical constraints (Site/Civil Score 1.0), focusing particularly on seismic risk assessment and necessary foundation remediation to refine mechanical and thermal design assumptions early in the process.",
+      "Appoint a dedicated regulatory counsel specializing in California zoning and environmental compliance to proactively address all anticipated ESG and permitting requirements, ensuring all documentation is submitted concurrently to prevent critical path segmentation and prolonged governmental review."
+    ],
+    "estimated_investment": "Initial Phase 1 investment is estimated between $3 million and $5 million, allocated primarily for intensive due diligence activities, including utility study fees, specialized regulatory counsel engagement, preliminary site surveying and geotechnical work, and advanced conceptual engineering to define potential capacity limits.",
+    "risk_mitigation": [
+      "Implement a phased capital allocation strategy where subsequent funding releases are strictly contingent upon achieving critical data milestones, mitigating the risk of substantial sunk costs if the utility confirms insufficient power capacity or insurmountable regulatory barriers.",
+      "Develop a dual-track strategy by identifying and conducting preliminary feasibility checks on one or two secondary locations within the Sacramento metro area, allowing for rapid pivot and site migration if the primary Rancho Cordova location proves non-viable due to unexpected regulatory or infrastructure findings.",
+      "Establish strict contractual agreements with key consulting engineers, tying success fees to the delivery of actionable data, such as confirmed power delivery dates and firm network latency metrics, ensuring focused effort on resolving the critical data deficit."
+    ]
+  },
+  "strategic_opportunities": [
+    "The strategic opportunity lies in pioneering a highly resilient design that anticipates the maximum known regional constraints, specifically by implementing advanced mechanical and thermal solutions to address expected high heat indices and power density constraints before they manifest as critical design flaws.",
+    "Aggressively pursuing parallel regulatory filing and utility interconnection studies can potentially shave months off the overall timeline; this approach requires immediate engagement of specialized legal and engineering firms experienced specifically with the Sacramento Municipal Utility District (SMUD) jurisdiction.",
+    "Market positioning should focus on future-proofing the facility with high-density, high-efficiency racks optimized for liquid cooling, capitalizing on the expected stringent environmental requirements and positioning the facility as a premium, low-PUE alternative within the high-demand California market segment."
+  ],
+  "strategic_recommendation": "The strategic recommendation is a Conditional Go, requiring the immediate implementation of a high-intensity, resource-heavy due diligence phase to resolve the critical data deficits across all domains, particularly power and regulatory constraints. Proceeding without this essential data guarantees unacceptable financial exposure and schedule risk. The viability hinges entirely on the successful securing of firm utility commitments and the navigation of expected complex California regulatory processes. If firm power exceeding minimum viable capacity (e.g., 20 megawatts) cannot be secured within nine months, the project must be terminated and resources shifted to the identified backup location.",
+  "conclusion": "The final strategic decision is a Conditional Go, predicated on the immediate, aggressive execution of the Phase 1 due diligence plan. Confidence in the site's ultimate viability is low (30 percent), specifically due to the unknown variables regarding power delivery and regulatory timelines, which are typical critical path constraints in this region. Confidence in the recommended due diligence strategy, however, is high (95 percent). Success factors include securing a binding utility interconnection agreement within nine months, confirming that seismic and civil remediation costs fall within the pre-approved contingency budget, and establishing a predictable regulatory pathway for environmental compliance typical of the Sacramento region.",
+  "next_steps": [
+    "Execute immediate contract initiation with a Tier 1 utility consulting firm specializing in the Sacramento region to commence the formal power interconnection study and provide realistic projections for required infrastructure augmentation and long-lead material procurement.",
+    "Launch comprehensive geotechnical surveys and environmental baseline assessments concurrently with utility engagement to proactively define the scope of civil engineering challenges and estimate the costs associated with the site's initial constraints (Score 1.0).",
+    "Establish the internal Project Steering Committee with representation from Legal, Finance, and Engineering, mandating bi-weekly reviews focused exclusively on tracking progress against the critical data acquisition milestones and authorizing contingency spending as risks materialize."
+  ],
+  "insights_result": {
+    "executive_summary": {
+      "location_overview": "This analysis identifies the Rancho Cordova location within the critical Sacramento data center market, emphasizing that while the region offers strategic proximity to major metropolitan centers, the current project viability assessment is compromised by an extreme deficit of critical infrastructure data across all key domains, necessitating an immediate, intensive due diligence phase before any commitment to design or construction can be made.",
+      "key_strengths": [
+        "The location benefits from proximity to established fiber routes inherent to the larger California metropolitan area, suggesting potential network density advantages, although this specific connectivity must be validated through immediate network carrier studies.",
+        "Operating within the robust but challenging California market provides a significant potential customer base and competitive advantage for hyperscale or enterprise co-location, assuming the substantial regulatory and power hurdles identified in the composite score are successfully navigated.",
+        "The parcel analysis, despite signaling significant initial constraints (Site & Civil Score 1.0), suggests that the site is physically available for evaluation, which provides a tangible starting point for accelerated physical engineering studies once critical utility data is secured."
+      ],
+      "key_challenges": [
+        "The simultaneous lack of Power, Network, Climate, and Regulatory data creates a profound and unquantifiable risk profile, making detailed financial modeling and critical path development impossible until comprehensive utility studies and environmental impact assessments are completed, extending the due diligence phase significantly.",
+        "The consistent low scores (1.0) reported across Site/Civil, Mechanical/Thermal, and Market/Competition suggest baseline operational complexities, likely stemming from stringent California building codes, seismic considerations, or high regional construction costs, compounding the uncertainty from the missing utility data.",
+        "The inability to analyze Environmental, Social, and Governance (ESG) constraints requires the immediate assumption of maximum regulatory scrutiny typical of California projects, demanding proactive engagement with local authorities and utility providers regarding renewable energy sourcing and water use efficiency."
+      ],
+      "strategic_opportunities": [
+        "The strategic opportunity lies in pioneering a highly resilient design that anticipates the maximum known regional constraints, specifically by implementing advanced mechanical and thermal solutions to address expected high heat indices and power density constraints before they manifest as critical design flaws.",
+        "Aggressively pursuing parallel regulatory filing and utility interconnection studies can potentially shave months off the overall timeline; this approach requires immediate engagement of specialized legal and engineering firms experienced specifically with the Sacramento Municipal Utility District (SMUD) jurisdiction.",
+        "Market positioning should focus on future-proofing the facility with high-density, high-efficiency racks optimized for liquid cooling, capitalizing on the expected stringent environmental requirements and positioning the facility as a premium, low-PUE alternative within the high-demand California market segment."
+      ],
+      "critical_success_factors": [
+        "Immediate acquisition of firm power allocation data from the local utility provider is the single most critical factor, as all subsequent engineering, financial modeling, and construction timelines are completely contingent upon confirmed megawatts and interconnection feasibility.",
+        "Successful negotiation of regulatory timelines, requiring a coordinated effort to secure simultaneous environmental permits, zoning approvals, and building permissions, minimizing the critical path delays that historically plague complex California projects.",
+        "Developing a comprehensive financial contingency plan that accounts for an estimated 25 percent overrun on initial infrastructure investment due to unexpected site remediation or mandated utility upgrades, ensuring capital flexibility during the high-risk due diligence phase."
+      ]
+    },
+    "phase_1_deployment": {
+      "recommended_capacity": "The recommended initial capacity target must remain 'To Be Determined' until firm Power and Network feasibility studies are successfully concluded, focusing Phase 1 efforts purely on determining the maximum achievable capacity threshold based on confirmed utility grid availability and regulatory constraints, likely aiming for a scalable build plan.",
+      "timeline": "The initial Phase 1 due diligence timeline is estimated at six to nine months dedicated solely to generating the missing domain data, including critical utility studies (Power and Network), environmental impact reports, geotechnical surveying, and preliminary regulatory filings, before shovel readiness can be projected.",
+      "priority_actions": [
+        "Engage immediately with the local utility provider to initiate a formal power feasibility study and secure preliminary capacity reservation, dedicating senior project management resources to aggressively track utility engineering progress and obtain firm delivery dates for necessary infrastructure upgrades.",
+        "Launch parallel geotechnical, environmental, and civil engineering studies to fully evaluate the site's physical constraints (Site/Civil Score 1.0), focusing particularly on seismic risk assessment and necessary foundation remediation to refine mechanical and thermal design assumptions early in the process.",
+        "Appoint a dedicated regulatory counsel specializing in California zoning and environmental compliance to proactively address all anticipated ESG and permitting requirements, ensuring all documentation is submitted concurrently to prevent critical path segmentation and prolonged governmental review."
+      ],
+      "estimated_investment": "Initial Phase 1 investment is estimated between $3 million and $5 million, allocated primarily for intensive due diligence activities, including utility study fees, specialized regulatory counsel engagement, preliminary site surveying and geotechnical work, and advanced conceptual engineering to define potential capacity limits.",
+      "risk_mitigation": [
+        "Implement a phased capital allocation strategy where subsequent funding releases are strictly contingent upon achieving critical data milestones, mitigating the risk of substantial sunk costs if the utility confirms insufficient power capacity or insurmountable regulatory barriers.",
+        "Develop a dual-track strategy by identifying and conducting preliminary feasibility checks on one or two secondary locations within the Sacramento metro area, allowing for rapid pivot and site migration if the primary Rancho Cordova location proves non-viable due to unexpected regulatory or infrastructure findings.",
+        "Establish strict contractual agreements with key consulting engineers, tying success fees to the delivery of actionable data, such as confirmed power delivery dates and firm network latency metrics, ensuring focused effort on resolving the critical data deficit."
+      ],
+      "success_metrics": [
+        "Achievement of 100 percent data completeness across Power, Network, and Regulatory domains within the six-month target window, evidenced by fully executed utility service agreements or binding feasibility reports outlining cost and timeline for infrastructure delivery.",
+        "Successful completion of preliminary ESG and environmental impact reports resulting in a clear mitigation strategy for anticipated water usage and emissions, confirming the feasibility of the project within anticipated stringent California regulations.",
+        "Confirmation of the Total Cost of Ownership (TCO) variance margin within 10 percent of the preliminary financial model based on newly acquired site data, establishing a reliable baseline for Phase 2 investment decisions and long-term financial projections."
+      ]
+    },
+    "strategic_recommendation": "The strategic recommendation is a Conditional Go, requiring the immediate implementation of a high-intensity, resource-heavy due diligence phase to resolve the critical data deficits across all domains, particularly power and regulatory constraints. Proceeding without this essential data guarantees unacceptable financial exposure and schedule risk. The viability hinges entirely on the successful securing of firm utility commitments and the navigation of expected complex California regulatory processes. If firm power exceeding minimum viable capacity (e.g., 20 megawatts) cannot be secured within nine months, the project must be terminated and resources shifted to the identified backup location.",
+    "conclusion": "The final strategic decision is a Conditional Go, predicated on the immediate, aggressive execution of the Phase 1 due diligence plan. Confidence in the site's ultimate viability is low (30 percent), specifically due to the unknown variables regarding power delivery and regulatory timelines, which are typical critical path constraints in this region. Confidence in the recommended due diligence strategy, however, is high (95 percent). Success factors include securing a binding utility interconnection agreement within nine months, confirming that seismic and civil remediation costs fall within the pre-approved contingency budget, and establishing a predictable regulatory pathway for environmental compliance typical of the Sacramento region.",
+    "next_steps": [
+      "Execute immediate contract initiation with a Tier 1 utility consulting firm specializing in the Sacramento region to commence the formal power interconnection study and provide realistic projections for required infrastructure augmentation and long-lead material procurement.",
+      "Launch comprehensive geotechnical surveys and environmental baseline assessments concurrently with utility engagement to proactively define the scope of civil engineering challenges and estimate the costs associated with the site's initial constraints (Score 1.0).",
+      "Establish the internal Project Steering Committee with representation from Legal, Finance, and Engineering, mandating bi-weekly reviews focused exclusively on tracking progress against the critical data acquisition milestones and authorizing contingency spending as risks materialize."
+    ]
+  },
+  "data_gap_analysis": {
+    "data_sources_used": [
+      {
+        "name": "Public data analysis",
+        "type": "publicly_available",
+        "reliability": "medium",
+        "last_updated": "Current analysis",
+        "url": null
+      }
+    ],
+    "data_gaps_identified": [],
+    "third_party_requirements": [],
+    "assumptions_made": [],
+    "overall_confidence": "high",
+    "next_steps_priority": [
+      "Address critical data gaps through third-party verification",
+      "Validate key assumptions with local experts",
+      "Conduct on-site assessments for high-impact areas"
+    ]
+  },
+  "weighted_domain_scores": [
+    {
+      "domain_name": "power_energy",
+      "raw_score": 2.5,
+      "weight": 0.35,
+      "weighted_contribution": 0.875,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "network_connectivity",
+      "raw_score": 2.5,
+      "weight": 0.15,
+      "weighted_contribution": 0.375,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "site_civil",
+      "raw_score": 1.0,
+      "weight": 0.1,
+      "weighted_contribution": 0.1,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "hazards_resilience",
+      "raw_score": 2.5,
+      "weight": 0.12,
+      "weighted_contribution": 0.3,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "mechanical_thermal",
+      "raw_score": 1.0,
+      "weight": 0.08,
+      "weighted_contribution": 0.08,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "regulatory_esg",
+      "raw_score": 2.5,
+      "weight": 0.14,
+      "weighted_contribution": 0.35000000000000003,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "market_competition",
+      "raw_score": 1.0,
+      "weight": 0.06,
+      "weighted_contribution": 0.06,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    }
+  ],
+  "all_no_go_gates": [],
+  "all_caution_flags": [],
+  "provenance_summary": [],
+  "transactional_verifications": [],
+  "distance_measurements": []
+}

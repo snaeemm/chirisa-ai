@@ -105,7 +105,7 @@ def render_sidebar_for_assistant(session_service: DatabaseSessionService) -> Non
         unsafe_allow_html=True
     )
 
-    if st.button("➕ New Chat", use_container_width=True, type="primary"):
+    if st.button("➕ New Chat", width='stretch', type="primary"):
         new_session_id = create_new_session(session_service)
         st.session_state.current_session_id = new_session_id
         st.rerun()
@@ -140,7 +140,7 @@ def render_sidebar_for_assistant(session_service: DatabaseSessionService) -> Non
                     st.button(
                         f"📍 {full_title}",
                         key=f"current_session_{session_id}",
-                        use_container_width=True,
+                        width='stretch',
                         type="primary",
                         disabled=True
                     )
@@ -148,7 +148,7 @@ def render_sidebar_for_assistant(session_service: DatabaseSessionService) -> Non
                     if st.button(
                         full_title,
                         key=f"session_{session_id}",
-                        use_container_width=True,
+                        width='stretch',
                         type="secondary",
                     ):
                         st.session_state.current_session_id = session_id
@@ -181,7 +181,7 @@ def render_sidebar_for_assistant(session_service: DatabaseSessionService) -> Non
                 icon = file_type_icon.get(ext, "📄")
                 st.caption(f"{icon} {file_data['filename']}")
 
-        if st.button("🗑️ Clear All Files", use_container_width=True, key="sidebar_clear_files"):
+        if st.button("🗑️ Clear All Files", width='stretch', key="sidebar_clear_files"):
             # Clear from session state (Gemini files already cleaned up during extraction)
             st.session_state.processed_files = []
             st.success("Files cleared!")
@@ -191,7 +191,7 @@ def render_sidebar_for_assistant(session_service: DatabaseSessionService) -> Non
 
     st.markdown("---")
 
-    if st.button("🚪 Logout", use_container_width=True, key="logout_assistant"):
+    if st.button("🚪 Logout", width='stretch', key="logout_assistant"):
         from utils.auth import logout
         logout()
 
@@ -340,7 +340,7 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
                     st.button(
                         button_text,
                         key=f"current_report_{report_id}",
-                        use_container_width=True,
+                        width='stretch',
                         type="primary",
                         disabled=True
                     )
@@ -348,7 +348,7 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
                     if st.button(
                         button_text,
                         key=f"report_{report_id}",
-                        use_container_width=True,
+                        width='stretch',
                         type="secondary",
                     ):
                         st.session_state.selected_report_id = report_id
@@ -375,7 +375,7 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
 
     st.markdown("---")
 
-    if st.button("🚪 Logout", use_container_width=True, key="logout_reports"):
+    if st.button("🚪 Logout", width='stretch', key="logout_reports"):
         from utils.auth import logout
         logout()
 
@@ -383,7 +383,7 @@ def render_sidebar_for_reports(session_service: DatabaseSessionService) -> None:
 def render_minimal_sidebar() -> None:
     """Render minimal sidebar with just logout button."""
 
-    if st.button("🚪 Logout", use_container_width=True):
+    if st.button("🚪 Logout", width='stretch'):
         from utils.auth import logout
         logout()
 

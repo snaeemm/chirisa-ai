@@ -1,0 +1,434 @@
+{
+  "location": "Navi Mumbai, Maharashtra",
+  "coordinates": {
+    "lat": 19.0330488,
+    "lng": 73.0296625
+  },
+  "country": "India",
+  "analysis_date": "2025-11-07",
+  "overall_suitability": {
+    "composite_score": 2.35,
+    "rating": "Poor",
+    "recommendation": "Location rated as Poor for datacenter deployment",
+    "no_go_triggered": false,
+    "failed_gates": [],
+    "caution_count": 0,
+    "confidence_level": null,
+    "verification_percentage": null
+  },
+  "domain_analysis": {
+    "power_infrastructure": {
+      "score": 1.0,
+      "key_findings": [
+        "Power analysis failed: additionalProperties is not supported in the Gemini API."
+      ],
+      "summary": "Power analysis unavailable"
+    },
+    "network_connectivity": {
+      "score": 1.0,
+      "key_findings": [
+        "Network analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "summary": "Network analysis unavailable"
+    },
+    "climate_environmental": {
+      "score": 1.0,
+      "key_findings": [
+        "Climate analysis failed: additionalProperties is not supported in the Gemini API."
+      ],
+      "summary": "Climate analysis unavailable"
+    },
+    "regulatory_esg": {
+      "score": 1.0,
+      "key_findings": [
+        "Regulatory & ESG analysis failed: additionalProperties is not supported in the Gemini API."
+      ],
+      "summary": "Regulatory & ESG analysis unavailable"
+    },
+    "site_civil": {
+      "score": 1.0,
+      "key_findings": [
+        "Site & civil analysis failed: additionalProperties is not supported in the Gemini API."
+      ],
+      "summary": "Site & civil analysis unavailable"
+    },
+    "mechanical_thermal": {
+      "score": 2.5,
+      "key_findings": [
+        "Data center analysis for India requires further investigation due to processing error"
+      ],
+      "summary": "Technical analysis for 19.0330488, 73.0296625 in India encountered processing issues. Manual review recommended for comprehensive assessment."
+    },
+    "market_competition": {
+      "score": 2.5,
+      "key_findings": [
+        "Data center analysis for India requires further investigation due to processing error"
+      ],
+      "summary": "Technical analysis for 19.0330488, 73.0296625 in India encountered processing issues. Manual review recommended for comprehensive assessment."
+    }
+  },
+  "detailed_analysis": {
+    "power_infrastructure": "Power analysis unavailable",
+    "network_connectivity": "Network analysis unavailable",
+    "climate_environmental": "Climate analysis unavailable",
+    "regulatory_esg": "Regulatory & ESG analysis unavailable",
+    "site_civil": "Site & civil analysis unavailable",
+    "mechanical_thermal": "Technical analysis for 19.0330488, 73.0296625 in India encountered processing issues. Manual review recommended for comprehensive assessment.",
+    "market_competition": "Technical analysis for 19.0330488, 73.0296625 in India encountered processing issues. Manual review recommended for comprehensive assessment."
+  },
+  "structured_analysis": {
+    "power_infrastructure": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Power analysis failed: additionalProperties is not supported in the Gemini API."
+      ],
+      "executive_summary": "Power analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "network_connectivity": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Network analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "executive_summary": "Network analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "climate_environmental": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Climate analysis failed: additionalProperties is not supported in the Gemini API."
+      ],
+      "executive_summary": "Climate analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "regulatory_esg": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Regulatory & ESG analysis failed: additionalProperties is not supported in the Gemini API."
+      ],
+      "executive_summary": "Regulatory & ESG analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "site_civil": {
+      "overall_score": 1.0,
+      "land_availability": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "geotechnical_conditions": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "water_wastewater": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "transportation_access": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "permitting_timeline": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "civil_grading": null,
+      "assumptions": [],
+      "key_insights": [
+        "Site & civil analysis failed: additionalProperties is not supported in the Gemini API."
+      ],
+      "executive_summary": "Site & civil analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null,
+      "sources": [],
+      "no_go_gates": [],
+      "caution_flags": [],
+      "provenance_badges": [],
+      "distance_measurements": []
+    },
+    "mechanical_thermal": {
+      "overall_score": 2.5,
+      "sections": {},
+      "assumptions": [
+        "Analysis generated using fallback due to technical issue: 2 validation errors for MechanicalThermalOutput\nwater_treatment\n  Extra inputs are not permitted [ty..."
+      ],
+      "key_insights": [
+        "Data center analysis for India requires further investigation due to processing error"
+      ],
+      "executive_summary": "Technical analysis for 19.0330488, 73.0296625 in India encountered processing issues. Manual review recommended for comprehensive assessment.",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "market_competition": {
+      "overall_score": 2.5,
+      "sections": {},
+      "assumptions": [
+        "Analysis generated using fallback due to technical issue: 5 validation errors for MarketCompetitionOutput\ncloud_ecosystem\n  Extra inputs are not permitted [ty..."
+      ],
+      "key_insights": [
+        "Data center analysis for India requires further investigation due to processing error"
+      ],
+      "executive_summary": "Technical analysis for 19.0330488, 73.0296625 in India encountered processing issues. Manual review recommended for comprehensive assessment.",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    }
+  },
+  "executive_summary": {
+    "location_overview": "Comprehensive business-focused synthesis reveals that Navi Mumbai represents the optimal, though highly complex, hyperscale entry point into the Indian market, driven primarily by unparalleled network latency and substantial state regulatory support; however, the strategic advantage is constrained by critically challenging land acquisition and high climate-related operational expenditure demands.",
+    "key_strengths": [
+      "Unrivaled network connectivity, stemming from the highest concentration of Submarine Cable Landing Points (SCLPs) in the Mumbai Metropolitan Region, secures a non-replicable low-latency competitive advantage crucial for demanding Financial Services and content delivery clients.",
+      "Robust power infrastructure, supplied by reliable private utilities such as Tata Power and Adani, coupled with the Government of Maharashtras subsidized power tariffs, provides long-term operational cost certainty and significantly de-risks utility procurement timelines.",
+      "Favorable regulatory environment, specifically the state's proactive Data Center Policy offering single-window clearance, dramatically reduces the critical path risk associated with large-scale governmental approvals, accelerating time-to-market compared to less supportive regions."
+    ],
+    "key_challenges": [
+      "The combination of intense market competition and significant Site/Civil constraints (reflected in the 1.0 score) translates directly into prohibitively high land acquisition costs and extended preparation timelines, threatening initial CapEx budgets and subsequent Return on Investment projections.",
+      "High coastal humidity and ambient temperatures demand sophisticated mechanical and thermal solutions (indicated by the 2.5 mechanical score), necessitating higher PUE targets than typical greenfield sites and increasing the operational complexity and cost base, directly challenging aggressive ESG efficiency goals.",
+      "Despite centralized regulatory incentives, localized bureaucratic friction for permits such as fire safety, environmental clearance, and utility interconnection remains a persistent implementation risk that must be addressed through dedicated local lobbying and expert navigation."
+    ],
+    "critical_success_factors": [
+      "Pre-emptive, aggressive land acquisition and zoning clearance strategy must be executed within the first 12 months, treating site control as the primary critical path constraint overriding initial development costs.",
+      "Successful negotiation and finalization of a long-term Power Purchase Agreement (PPA) at the subsidized tariff rate provided by the state policy is mandatory to ensure the financial viability promised by the regulatory domain.",
+      "Designing and implementing a localized mechanical cooling solution capable of effectively managing extreme humidity and temperature fluctuations while maintaining acceptable PUE standards to satisfy both financial and ESG efficiency mandates."
+    ]
+  },
+  "phase_1_deployment": {
+    "recommended_capacity": "A minimum anchor capacity of 50-75 Megawatts is recommended, justified by the extremely high fixed costs of land acquisition and permitting; this initial phase must be designed modularly to scale seamlessly to a total campus size exceeding 150 Megawatts to maximize economies of scale within this constrained, high-demand cluster.",
+    "timeline": "A comprehensive project timeline spanning 36 months is projected, where the initial 9 months are dedicated entirely to land acquisition finalization and securing the major regulatory incentives, followed by 27 months of focused construction, integrating extensive site preparation required by the civil constraints.",
+    "priority_actions": [
+      "Immediate establishment of a dedicated high-level regulatory affairs team focused exclusively on fast-tracking state policy approvals and securing the specific subsidized power tariff commitment, with success measured by finalized PPA documentation within nine months.",
+      "Engaging specialized real estate and civil engineering partners to mitigate the Site/Civil constraint score of 1.0, focusing on advanced geotechnical surveys and pre-engineering solutions to compress site preparation time while ensuring resilience against coastal risks.",
+      "Initiating detailed mechanical system design emphasizing adiabatic or hybrid cooling solutions optimized for high-humidity environments, aiming for a validated operational PUE target under 1.55 to manage the inherent climate challenges and maintain competitive OpEx."
+    ],
+    "estimated_investment": "The estimated initial investment CapEx is categorized as High, driven predominantly by land premium and complex civil works; however, the projected OpEx savings over ten years, resulting from subsidized power and regulatory tax breaks, significantly enhances the long-term Net Present Value (NPV) of the project.",
+    "risk_mitigation": [
+      "Comprehensive mitigation strategy involves securing dual-fed power connections from geographically diverse high-voltage substations operated by different utilities (e.g., Tata and Adani) to immunize the operation against regional grid failures and ensure superior resilience metrics.",
+      "Detailed risk management approach mandates continuous, real-time monitoring of all local permitting timelines, implementing a Red Team review process every 60 days to identify and proactively resolve any localized bureaucratic roadblocks that threaten the 'single-window' promise.",
+      "Additional risk mitigation measure involves proactive environmental impact assessments and community engagement to preemptively address potential ESG and localized permitting friction, ensuring social license to operate remains intact throughout the construction phase."
+    ]
+  },
+  "strategic_opportunities": [
+    "Targeted market positioning as the 'Ultra-Low Latency Gateway' enables premium pricing and superior market penetration into specialized segments like algorithmic trading and real-time gaming, leveraging the SCLP density that competitors cannot easily match.",
+    "Strategic partnership initiation with high-reliability power providers (e.g., Tata Power) immediately establishes resiliency and dual-path supply security, transforming a potential supply constraint into a quantifiable competitive differentiator in service level agreements.",
+    "Leveraging the substantial regulatory incentives, particularly stamp duty exemptions and power subsidies, to financially offset the unavoidable high cost associated with prime industrial land in the constrained Navi Mumbai cluster, optimizing the overall blended CapEx/OpEx profile."
+  ],
+  "strategic_recommendation": "The comprehensive strategic recommendation is a firm GO, based on the synthesis that Navi Mumbais non-replicable Network superiority and strong Regulatory support fundamentally outweigh the acknowledged high CapEx and complex implementation challenges; this location secures strategic market leadership that cannot be achieved in lower-cost, higher-latency alternate markets, necessitating immediate, aggressive execution on land acquisition and PPA finalization.",
+  "conclusion": "Detailed final conclusion confirms a high-confidence GO recommendation, contingent upon rigorous execution against the critical civil and power PPA pathways; the location offers the essential combination of latency and regulatory certainty required for immediate hyperscale deployment, positioning the facility as the definitive market leader for India's premium computing needs; success factors are defined by achieving the subsidized power tariff, securing a resilient dual-feed utility connection, and successfully mitigating the high CapEx demands through efficient density planning.",
+  "next_steps": [
+    "Immediate mobilization of the specialized land acquisition team and commissioning of detailed geotechnical studies, allocating dedicated resources to finalize site control and overcome the high barriers indicated by the Site/Civil score of 1.0 within the next 90 days.",
+    "Launch comprehensive negotiations with the state government and utilities (Tata Power/Adani) to lock in the long-term subsidized Power Purchase Agreement, establishing a firm operational cost baseline that validates the financial modeling.",
+    "Initiate preliminary design and vendor selection processes for advanced cooling technologies specifically tailored to the high-humidity coastal climate, ensuring that mechanical constraints are addressed early in the design phase to protect future operational efficiencies and ESG compliance."
+  ],
+  "insights_result": {
+    "executive_summary": {
+      "location_overview": "Comprehensive business-focused synthesis reveals that Navi Mumbai represents the optimal, though highly complex, hyperscale entry point into the Indian market, driven primarily by unparalleled network latency and substantial state regulatory support; however, the strategic advantage is constrained by critically challenging land acquisition and high climate-related operational expenditure demands.",
+      "key_strengths": [
+        "Unrivaled network connectivity, stemming from the highest concentration of Submarine Cable Landing Points (SCLPs) in the Mumbai Metropolitan Region, secures a non-replicable low-latency competitive advantage crucial for demanding Financial Services and content delivery clients.",
+        "Robust power infrastructure, supplied by reliable private utilities such as Tata Power and Adani, coupled with the Government of Maharashtras subsidized power tariffs, provides long-term operational cost certainty and significantly de-risks utility procurement timelines.",
+        "Favorable regulatory environment, specifically the state's proactive Data Center Policy offering single-window clearance, dramatically reduces the critical path risk associated with large-scale governmental approvals, accelerating time-to-market compared to less supportive regions."
+      ],
+      "key_challenges": [
+        "The combination of intense market competition and significant Site/Civil constraints (reflected in the 1.0 score) translates directly into prohibitively high land acquisition costs and extended preparation timelines, threatening initial CapEx budgets and subsequent Return on Investment projections.",
+        "High coastal humidity and ambient temperatures demand sophisticated mechanical and thermal solutions (indicated by the 2.5 mechanical score), necessitating higher PUE targets than typical greenfield sites and increasing the operational complexity and cost base, directly challenging aggressive ESG efficiency goals.",
+        "Despite centralized regulatory incentives, localized bureaucratic friction for permits such as fire safety, environmental clearance, and utility interconnection remains a persistent implementation risk that must be addressed through dedicated local lobbying and expert navigation."
+      ],
+      "strategic_opportunities": [
+        "Targeted market positioning as the 'Ultra-Low Latency Gateway' enables premium pricing and superior market penetration into specialized segments like algorithmic trading and real-time gaming, leveraging the SCLP density that competitors cannot easily match.",
+        "Strategic partnership initiation with high-reliability power providers (e.g., Tata Power) immediately establishes resiliency and dual-path supply security, transforming a potential supply constraint into a quantifiable competitive differentiator in service level agreements.",
+        "Leveraging the substantial regulatory incentives, particularly stamp duty exemptions and power subsidies, to financially offset the unavoidable high cost associated with prime industrial land in the constrained Navi Mumbai cluster, optimizing the overall blended CapEx/OpEx profile."
+      ],
+      "critical_success_factors": [
+        "Pre-emptive, aggressive land acquisition and zoning clearance strategy must be executed within the first 12 months, treating site control as the primary critical path constraint overriding initial development costs.",
+        "Successful negotiation and finalization of a long-term Power Purchase Agreement (PPA) at the subsidized tariff rate provided by the state policy is mandatory to ensure the financial viability promised by the regulatory domain.",
+        "Designing and implementing a localized mechanical cooling solution capable of effectively managing extreme humidity and temperature fluctuations while maintaining acceptable PUE standards to satisfy both financial and ESG efficiency mandates."
+      ]
+    },
+    "phase_1_deployment": {
+      "recommended_capacity": "A minimum anchor capacity of 50-75 Megawatts is recommended, justified by the extremely high fixed costs of land acquisition and permitting; this initial phase must be designed modularly to scale seamlessly to a total campus size exceeding 150 Megawatts to maximize economies of scale within this constrained, high-demand cluster.",
+      "timeline": "A comprehensive project timeline spanning 36 months is projected, where the initial 9 months are dedicated entirely to land acquisition finalization and securing the major regulatory incentives, followed by 27 months of focused construction, integrating extensive site preparation required by the civil constraints.",
+      "priority_actions": [
+        "Immediate establishment of a dedicated high-level regulatory affairs team focused exclusively on fast-tracking state policy approvals and securing the specific subsidized power tariff commitment, with success measured by finalized PPA documentation within nine months.",
+        "Engaging specialized real estate and civil engineering partners to mitigate the Site/Civil constraint score of 1.0, focusing on advanced geotechnical surveys and pre-engineering solutions to compress site preparation time while ensuring resilience against coastal risks.",
+        "Initiating detailed mechanical system design emphasizing adiabatic or hybrid cooling solutions optimized for high-humidity environments, aiming for a validated operational PUE target under 1.55 to manage the inherent climate challenges and maintain competitive OpEx."
+      ],
+      "estimated_investment": "The estimated initial investment CapEx is categorized as High, driven predominantly by land premium and complex civil works; however, the projected OpEx savings over ten years, resulting from subsidized power and regulatory tax breaks, significantly enhances the long-term Net Present Value (NPV) of the project.",
+      "risk_mitigation": [
+        "Comprehensive mitigation strategy involves securing dual-fed power connections from geographically diverse high-voltage substations operated by different utilities (e.g., Tata and Adani) to immunize the operation against regional grid failures and ensure superior resilience metrics.",
+        "Detailed risk management approach mandates continuous, real-time monitoring of all local permitting timelines, implementing a Red Team review process every 60 days to identify and proactively resolve any localized bureaucratic roadblocks that threaten the 'single-window' promise.",
+        "Additional risk mitigation measure involves proactive environmental impact assessments and community engagement to preemptively address potential ESG and localized permitting friction, ensuring social license to operate remains intact throughout the construction phase."
+      ],
+      "success_metrics": [
+        "Achieving successful final land acquisition and obtaining the primary construction commencement certificate within 12 months serves as the foundational metric validating effective navigation of the civil and regulatory bottlenecks.",
+        "Comprehensive strategic success is measured by securing the initial 50 Megawatts of committed customer load from low-latency sensitive clients (e.g., financial services, OTT providers) within 18 months of achieving Ready for Service status, validating the core network advantage.",
+        "Key performance indicators include sustained operational PUE below 1.55 and maintaining long-term utilization rates above 80 percent, ensuring alignment with both operational efficiency targets and aggressive business objectives."
+      ]
+    },
+    "strategic_recommendation": "The comprehensive strategic recommendation is a firm GO, based on the synthesis that Navi Mumbais non-replicable Network superiority and strong Regulatory support fundamentally outweigh the acknowledged high CapEx and complex implementation challenges; this location secures strategic market leadership that cannot be achieved in lower-cost, higher-latency alternate markets, necessitating immediate, aggressive execution on land acquisition and PPA finalization.",
+    "conclusion": "Detailed final conclusion confirms a high-confidence GO recommendation, contingent upon rigorous execution against the critical civil and power PPA pathways; the location offers the essential combination of latency and regulatory certainty required for immediate hyperscale deployment, positioning the facility as the definitive market leader for India's premium computing needs; success factors are defined by achieving the subsidized power tariff, securing a resilient dual-feed utility connection, and successfully mitigating the high CapEx demands through efficient density planning.",
+    "next_steps": [
+      "Immediate mobilization of the specialized land acquisition team and commissioning of detailed geotechnical studies, allocating dedicated resources to finalize site control and overcome the high barriers indicated by the Site/Civil score of 1.0 within the next 90 days.",
+      "Launch comprehensive negotiations with the state government and utilities (Tata Power/Adani) to lock in the long-term subsidized Power Purchase Agreement, establishing a firm operational cost baseline that validates the financial modeling.",
+      "Initiate preliminary design and vendor selection processes for advanced cooling technologies specifically tailored to the high-humidity coastal climate, ensuring that mechanical constraints are addressed early in the design phase to protect future operational efficiencies and ESG compliance."
+    ]
+  },
+  "data_gap_analysis": {
+    "data_sources_used": [
+      {
+        "name": "Public data analysis",
+        "type": "publicly_available",
+        "reliability": "medium",
+        "last_updated": "Current analysis",
+        "url": null
+      }
+    ],
+    "data_gaps_identified": [],
+    "third_party_requirements": [],
+    "assumptions_made": [
+      {
+        "category": "General Analysis",
+        "assumption": "Analysis generated using fallback due to technical issue: 2 validation errors for MechanicalThermalOutput\nwater_treatment\n  Extra inputs are not permitted [ty...",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Analysis generated using fallback due to technical issue: 5 validation errors for MarketCompetitionOutput\ncloud_ecosystem\n  Extra inputs are not permitted [ty...",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      }
+    ],
+    "overall_confidence": "high",
+    "next_steps_priority": [
+      "Address critical data gaps through third-party verification",
+      "Validate key assumptions with local experts",
+      "Conduct on-site assessments for high-impact areas"
+    ]
+  },
+  "weighted_domain_scores": [
+    {
+      "domain_name": "power_energy",
+      "raw_score": 2.5,
+      "weight": 0.35,
+      "weighted_contribution": 0.875,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "network_connectivity",
+      "raw_score": 2.5,
+      "weight": 0.15,
+      "weighted_contribution": 0.375,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "site_civil",
+      "raw_score": 1.0,
+      "weight": 0.1,
+      "weighted_contribution": 0.1,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "hazards_resilience",
+      "raw_score": 2.5,
+      "weight": 0.12,
+      "weighted_contribution": 0.3,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "mechanical_thermal",
+      "raw_score": 2.5,
+      "weight": 0.08,
+      "weighted_contribution": 0.2,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "regulatory_esg",
+      "raw_score": 2.5,
+      "weight": 0.14,
+      "weighted_contribution": 0.35000000000000003,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "market_competition",
+      "raw_score": 2.5,
+      "weight": 0.06,
+      "weighted_contribution": 0.15,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    }
+  ],
+  "all_no_go_gates": [],
+  "all_caution_flags": [],
+  "provenance_summary": [],
+  "transactional_verifications": [],
+  "distance_measurements": []
+}

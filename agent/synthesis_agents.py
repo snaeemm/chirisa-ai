@@ -1930,6 +1930,11 @@ class PowerInfrastructureAgentWrapper:
                 if not isinstance(response_data, dict):
                     raise ValueError(f"Power agent returned {type(response_data).__name__} instead of dict. Response: {str(response_data)[:200]}")
 
+                # Unwrap if LLM wrapped response in extra "power_infrastructure_output" key
+                if "power_infrastructure_output" in response_data and len(response_data) == 1:
+                    print(f"🔧 Unwrapping power_infrastructure_output wrapper")
+                    response_data = response_data["power_infrastructure_output"]
+
                 # Normalize response for Pydantic
                 response_data = normalize_pydantic_response(response_data)
                 print(f"✅ Power Agent JSON parsed successfully")
@@ -2099,6 +2104,11 @@ class NetworkConnectivityAgentWrapper:
                 if not isinstance(response_data, dict):
                     raise ValueError(f"Network agent returned {type(response_data).__name__} instead of dict. Response: {str(response_data)[:200]}")
 
+                # Unwrap if LLM wrapped response in extra "network_connectivity_output" key
+                if "network_connectivity_output" in response_data and len(response_data) == 1:
+                    print(f"🔧 Unwrapping network_connectivity_output wrapper")
+                    response_data = response_data["network_connectivity_output"]
+
                 # Normalize response for Pydantic
                 response_data = normalize_pydantic_response(response_data)
                 print(f"✅ Network Agent JSON parsed successfully")
@@ -2255,6 +2265,11 @@ class ClimateSuitabilityAgentWrapper:
                 # Validate response_data is a dict, not a list
                 if not isinstance(response_data, dict):
                     raise ValueError(f"Climate agent returned {type(response_data).__name__} instead of dict. Response: {str(response_data)[:200]}")
+
+                # Unwrap if LLM wrapped response in extra output key
+                if "climate_hazards_output" in response_data and len(response_data) == 1:
+                    print(f"🔧 Unwrapping climate_hazards_output wrapper")
+                    response_data = response_data["climate_hazards_output"]
 
                 # Normalize response for Pydantic
                 response_data = normalize_pydantic_response(response_data)
@@ -2625,6 +2640,11 @@ class RegulatoryESGAgentWrapper:
                 if not isinstance(response_data, dict):
                     raise ValueError(f"Regulatory ESG agent returned {type(response_data).__name__} instead of dict. Response: {str(response_data)[:200]}")
 
+                # Unwrap if LLM wrapped response in extra output key
+                if "regulatory_esg_output" in response_data and len(response_data) == 1:
+                    print(f"🔧 Unwrapping regulatory_esg_output wrapper")
+                    response_data = response_data["regulatory_esg_output"]
+
                 # Normalize response for Pydantic
                 response_data = normalize_pydantic_response(response_data)
                 print(f"✅ Regulatory Agent JSON parsed successfully")
@@ -2874,6 +2894,11 @@ class SiteCivilAgentWrapper:
             if not isinstance(response_data, dict):
                 raise ValueError(f"Site & Civil agent returned {type(response_data).__name__} instead of dict. Response: {str(response_data)[:200]}")
 
+            # Unwrap if LLM wrapped response in extra output key
+            if "site_civil_output" in response_data and len(response_data) == 1:
+                print(f"🔧 Unwrapping site_civil_output wrapper")
+                response_data = response_data["site_civil_output"]
+
             response_data = normalize_pydantic_response(response_data)
             response_data = sanitize_metrics_data(response_data)
 
@@ -2981,6 +3006,11 @@ class MechanicalThermalAgentWrapper:
                 print(f"🔍 Full cleaned response (first 1000 chars): {cleaned_response[:1000]}")
                 raise ValueError(f"Mechanical & Thermal agent returned {type(response_data).__name__} instead of dict. Response: {str(response_data)[:200]}")
 
+            # Unwrap if LLM wrapped response in extra output key
+            if "mechanical_thermal_output" in response_data and len(response_data) == 1:
+                print(f"🔧 Unwrapping mechanical_thermal_output wrapper")
+                response_data = response_data["mechanical_thermal_output"]
+
             response_data = normalize_pydantic_response(response_data)
             response_data = sanitize_metrics_data(response_data)
 
@@ -3071,6 +3101,11 @@ class MarketCompetitionAgentWrapper:
             # Validate response_data is a dict, not a list
             if not isinstance(response_data, dict):
                 raise ValueError(f"Market & Competition agent returned {type(response_data).__name__} instead of dict. Response: {str(response_data)[:200]}")
+
+            # Unwrap if LLM wrapped response in extra output key
+            if "market_competition_output" in response_data and len(response_data) == 1:
+                print(f"🔧 Unwrapping market_competition_output wrapper")
+                response_data = response_data["market_competition_output"]
 
             response_data = normalize_pydantic_response(response_data)
             response_data = sanitize_metrics_data(response_data)

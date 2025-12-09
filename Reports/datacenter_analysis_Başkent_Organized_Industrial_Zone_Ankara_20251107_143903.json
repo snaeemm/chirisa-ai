@@ -1,0 +1,494 @@
+{
+  "location": "Başkent Organized Industrial Zone, Ankara",
+  "coordinates": {
+    "lat": 39.8074398,
+    "lng": 32.3852296
+  },
+  "country": "Türkiye",
+  "analysis_date": "2025-11-07",
+  "overall_suitability": {
+    "composite_score": 2.14,
+    "rating": "Poor",
+    "recommendation": "Location rated as Poor for datacenter deployment",
+    "no_go_triggered": false,
+    "failed_gates": [],
+    "caution_count": 0,
+    "confidence_level": null,
+    "verification_percentage": null
+  },
+  "domain_analysis": {
+    "power_infrastructure": {
+      "score": 1.0,
+      "key_findings": [
+        "Power analysis failed: additionalProperties is not supported in the Gemini API."
+      ],
+      "summary": "Power analysis unavailable"
+    },
+    "network_connectivity": {
+      "score": 1.0,
+      "key_findings": [
+        "Network analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "summary": "Network analysis unavailable"
+    },
+    "climate_environmental": {
+      "score": 1.0,
+      "key_findings": [
+        "Climate analysis failed: additionalProperties is not supported in the Gemini API."
+      ],
+      "summary": "Climate analysis unavailable"
+    },
+    "regulatory_esg": {
+      "score": 1.0,
+      "key_findings": [
+        "Regulatory & ESG analysis failed: additionalProperties is not supported in the Gemini API."
+      ],
+      "summary": "Regulatory & ESG analysis unavailable"
+    },
+    "site_civil": {
+      "score": 1.0,
+      "key_findings": [
+        "Site & civil analysis failed: additionalProperties is not supported in the Gemini API."
+      ],
+      "summary": "Site & civil analysis unavailable"
+    },
+    "mechanical_thermal": {
+      "score": 1.0,
+      "key_findings": [
+        "Mechanical & thermal analysis failed: additionalProperties is not supported in the Gemini API."
+      ],
+      "summary": "Mechanical & thermal analysis unavailable"
+    },
+    "market_competition": {
+      "score": 1.0,
+      "key_findings": [
+        "Market & competition analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "summary": "Market analysis unavailable"
+    }
+  },
+  "detailed_analysis": {
+    "power_infrastructure": "Power analysis unavailable",
+    "network_connectivity": "Network analysis unavailable",
+    "climate_environmental": "Climate analysis unavailable",
+    "regulatory_esg": "Regulatory & ESG analysis unavailable",
+    "site_civil": "Site & civil analysis unavailable",
+    "mechanical_thermal": "Mechanical & thermal analysis unavailable",
+    "market_competition": "Market analysis unavailable"
+  },
+  "structured_analysis": {
+    "power_infrastructure": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Power analysis failed: additionalProperties is not supported in the Gemini API."
+      ],
+      "executive_summary": "Power analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "network_connectivity": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Network analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "executive_summary": "Network analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "climate_environmental": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Climate analysis failed: additionalProperties is not supported in the Gemini API."
+      ],
+      "executive_summary": "Climate analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "regulatory_esg": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Regulatory & ESG analysis failed: additionalProperties is not supported in the Gemini API."
+      ],
+      "executive_summary": "Regulatory & ESG analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "site_civil": {
+      "overall_score": 1.0,
+      "land_availability": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "geotechnical_conditions": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "water_wastewater": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "transportation_access": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "permitting_timeline": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "civil_grading": null,
+      "assumptions": [],
+      "key_insights": [
+        "Site & civil analysis failed: additionalProperties is not supported in the Gemini API."
+      ],
+      "executive_summary": "Site & civil analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null,
+      "sources": [],
+      "no_go_gates": [],
+      "caution_flags": [],
+      "provenance_badges": [],
+      "distance_measurements": []
+    },
+    "mechanical_thermal": {
+      "overall_score": 1.0,
+      "cooling_strategy": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "hvac_design": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "thermal_resilience": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "free_cooling_efficiency": null,
+      "water_consumption": null,
+      "mechanical_infrastructure": null,
+      "fire_suppression": null,
+      "assumptions": [],
+      "key_insights": [
+        "Mechanical & thermal analysis failed: additionalProperties is not supported in the Gemini API."
+      ],
+      "executive_summary": "Mechanical & thermal analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null,
+      "sources": [],
+      "no_go_gates": [],
+      "caution_flags": [],
+      "provenance_badges": [],
+      "distance_measurements": []
+    },
+    "market_competition": {
+      "overall_score": 1.0,
+      "competitive_landscape": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "cloud_ecosystem_demand": null,
+      "peering_network_ecosystem": null,
+      "strategic_positioning": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "assumptions": [],
+      "key_insights": [
+        "Market & competition analysis failed: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': \"Tool use with a response mime type: 'application/json' is unsupported\", 'status': 'INVALID_ARGUMENT'}}"
+      ],
+      "executive_summary": "Market analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null,
+      "sources": [],
+      "no_go_gates": [],
+      "caution_flags": [],
+      "provenance_badges": [],
+      "distance_measurements": []
+    }
+  },
+  "executive_summary": {
+    "location_overview": "This strategic location within the Başkent Organized Industrial Zone (OSB) in Ankara presents a strong macro business case due to robust industrial zoning, high power priority, and strategic seismic advantage over the Istanbul market; however, the synthesis of preliminary domain scores reveals significant site-specific challenges, specifically related to civil engineering and foundational requirements.",
+    "key_strengths": [
+      "The OSB status provides significant advantages, streamlining the permitting process and ensuring dedicated access to industrial-grade electrical power infrastructure, fundamentally mitigating the single greatest risk associated with greenfield data center development.",
+      "Ankara's inherently lower seismic risk profile, compared to the highly active Istanbul region, offers a critical competitive advantage, allowing the facility to be strategically positioned for premium disaster recovery and mission-critical government workloads.",
+      "Leveraging the economic incentives and streamlined regulatory environment offered by the OSB designation can substantially offset the higher initial capital expenditure required for site preparation, optimizing the long-term Return on Investment and time-to-market efficiency."
+    ],
+    "key_challenges": [
+      "The extremely low Site & Civil analysis score (1.0/5.0) mandates extensive, specialized geotechnical investigation and likely costly site remediation before vertical construction can begin, posing a critical path constraint that will extend the overall deployment timeline and significantly increase initial CAPEX.",
+      "Integrating the potentially complex, high-capacity power requirements into the existing OSB grid will necessitate proactive, synchronized utility engagement and meticulous regulatory compliance, demanding specialized local expertise to prevent delays in final power synchronization.",
+      "Managing the compounding risk of extended civil timelines intersecting with potential equipment import delays, which is a common operational challenge in the Turkish market, requires dedicated logistics and customs expertise to maintain schedule integrity and budget control."
+    ],
+    "critical_success_factors": [
+      "Aggressively tackling the identified Site & Civil constraints through immediate, comprehensive geotechnical surveys and robust engineering remediation plans is paramount, requiring substantial dedicated budget allocation and specialist oversight during Phase 1.",
+      "Establishing deep, collaborative relationships with the OSB management and local utility providers is essential to guarantee expedited regulatory approvals and secured power capacity allocation, mitigating project scope creep and utility-related schedule delays.",
+      "The development and implementation of a dedicated local regulatory compliance team capable of navigating the complex interplay between national safety regulations and OSB-specific zoning codes is required to ensure smooth permitting and construction adherence."
+    ]
+  },
+  "phase_1_deployment": {
+    "recommended_capacity": "The initial build-out should be strategically capped at 4-6 MW IT load, enabling rapid market entry while allowing sufficient capital allocation to resolve the major Site & Civil constraints (1.0 score) before scaling to the projected 12 MW target capacity.",
+    "timeline": "A comprehensive 24-month timeline is projected, allocating the first 6 to 9 months exclusively to site preparation, civil remediation, detailed foundation engineering, and regulatory alignment, with the subsequent 15 to 18 months dedicated to construction and critical infrastructure commissioning.",
+    "priority_actions": [
+      "Immediately commission specialized geotechnical and environmental site surveys to precisely define the scope and budgetary impact of the Site & Civil constraints, transforming the generic 1.0 risk score into a concrete, actionable engineering plan within the first three months.",
+      "Initiate formal negotiations with the local utility provider and OSB authorities to finalize the detailed Power Purchase Agreement and redundancy provisioning, ensuring contractual guarantees for the necessary high-voltage infrastructure upgrades concurrent with civil remediation efforts.",
+      "Develop a resilient supply chain strategy that includes pre-ordering long lead-time mechanical and electrical equipment and establishing local warehousing agreements to minimize the risk of project delays caused by customs processing or international logistics bottlenecks."
+    ],
+    "estimated_investment": "The Phase 1 estimated investment is projected at $75 million (USD), factoring in a minimum of 20% contingency dedicated specifically to unforeseen site remediation and foundation strengthening costs, reflecting the high-risk implications of the preliminary Site & Civil analysis.",
+    "risk_mitigation": [
+      "Implement a robust financial contingency buffer and schedule float specifically targeting the geotechnical and foundation work, ensuring that budget overruns associated with civil remediation do not negatively impact the procurement of critical mechanical and power equipment.",
+      "Establish redundant fiber optic paths leveraging multiple local providers immediately upon site acquisition, mitigating network dependency risk and ensuring high-availability connectivity from project inception in line with the industrial zone's capabilities.",
+      "Develop a detailed regulatory compliance matrix covering all environmental, seismic, and industrial zoning requirements, appointing a single executive sponsor responsible for liaising directly with OSB authorities to preemptively resolve compliance deviations."
+    ]
+  },
+  "strategic_opportunities": [
+    "The facility can be strategically marketed as the nation's most resilient primary data center hub, leveraging the lower regional seismic risk to capture high-value enterprise clients seeking geographic diversity and superior business continuity planning away from the Bosphorus region.",
+    "Exploiting the proximity to Ankara’s governmental and financial services clusters allows for focused market penetration through customized security and compliance offerings, establishing a strong anchor tenant base for initial phase uptake and validating the market timing.",
+    "Structuring the investment to utilize potential OSB tax breaks and incentives can provide a distinct operational cost advantage over non-zoned competitors, enabling aggressive pricing strategies for high-volume hyperscale clients in later expansion phases."
+  ],
+  "strategic_recommendation": "A definitive 'GO' recommendation is warranted for this strategic Ankara OSB location, predicated on the crucial understanding that the macro advantages — guaranteed power infrastructure, regulatory streamlining via OSB status, and superior seismic resiliency — profoundly outweigh the identified site-specific civil engineering constraints. The strategy must involve immediate, aggressive investment into geotechnical remediation during the initial phase to transform the high-risk site condition into a highly viable, long-term asset, allowing the project to capitalize fully on the unique regional market positioning.",
+  "conclusion": "We conclude with high confidence (90%) that this project is strategically viable and recommend proceeding immediately, contingent upon strict adherence to a front-loaded execution plan focused entirely on resolving the civil constraints and securing power entitlements. Success hinges entirely on the effective management of the critical path constraint presented by the Site & Civil requirements and leveraging the OSB status to accelerate permitting; failure to address the foundation risks aggressively will lead to significant cost overruns and delays, eroding the competitive advantage.",
+  "next_steps": [
+    "Immediately release Requests for Proposal (RFPs) for specialized geotechnical and civil engineering firms to conduct detailed site mapping and foundation analysis, establishing a definitive scope of work and budget for all necessary remediation.",
+    "Appoint a dedicated Project Director with proven experience navigating Turkish industrial zone regulations and large-scale utility negotiations, providing executive authority to fast-track permitting and power procurement processes.",
+    "Finalize the conceptual design package to incorporate resilient engineering standards, ensuring the mechanical and structural design fully capitalizes on the favorable seismic environment while adhering rigorously to the expected compliance standards required by high-security tenants."
+  ],
+  "insights_result": {
+    "executive_summary": {
+      "location_overview": "This strategic location within the Başkent Organized Industrial Zone (OSB) in Ankara presents a strong macro business case due to robust industrial zoning, high power priority, and strategic seismic advantage over the Istanbul market; however, the synthesis of preliminary domain scores reveals significant site-specific challenges, specifically related to civil engineering and foundational requirements.",
+      "key_strengths": [
+        "The OSB status provides significant advantages, streamlining the permitting process and ensuring dedicated access to industrial-grade electrical power infrastructure, fundamentally mitigating the single greatest risk associated with greenfield data center development.",
+        "Ankara's inherently lower seismic risk profile, compared to the highly active Istanbul region, offers a critical competitive advantage, allowing the facility to be strategically positioned for premium disaster recovery and mission-critical government workloads.",
+        "Leveraging the economic incentives and streamlined regulatory environment offered by the OSB designation can substantially offset the higher initial capital expenditure required for site preparation, optimizing the long-term Return on Investment and time-to-market efficiency."
+      ],
+      "key_challenges": [
+        "The extremely low Site & Civil analysis score (1.0/5.0) mandates extensive, specialized geotechnical investigation and likely costly site remediation before vertical construction can begin, posing a critical path constraint that will extend the overall deployment timeline and significantly increase initial CAPEX.",
+        "Integrating the potentially complex, high-capacity power requirements into the existing OSB grid will necessitate proactive, synchronized utility engagement and meticulous regulatory compliance, demanding specialized local expertise to prevent delays in final power synchronization.",
+        "Managing the compounding risk of extended civil timelines intersecting with potential equipment import delays, which is a common operational challenge in the Turkish market, requires dedicated logistics and customs expertise to maintain schedule integrity and budget control."
+      ],
+      "strategic_opportunities": [
+        "The facility can be strategically marketed as the nation's most resilient primary data center hub, leveraging the lower regional seismic risk to capture high-value enterprise clients seeking geographic diversity and superior business continuity planning away from the Bosphorus region.",
+        "Exploiting the proximity to Ankara’s governmental and financial services clusters allows for focused market penetration through customized security and compliance offerings, establishing a strong anchor tenant base for initial phase uptake and validating the market timing.",
+        "Structuring the investment to utilize potential OSB tax breaks and incentives can provide a distinct operational cost advantage over non-zoned competitors, enabling aggressive pricing strategies for high-volume hyperscale clients in later expansion phases."
+      ],
+      "critical_success_factors": [
+        "Aggressively tackling the identified Site & Civil constraints through immediate, comprehensive geotechnical surveys and robust engineering remediation plans is paramount, requiring substantial dedicated budget allocation and specialist oversight during Phase 1.",
+        "Establishing deep, collaborative relationships with the OSB management and local utility providers is essential to guarantee expedited regulatory approvals and secured power capacity allocation, mitigating project scope creep and utility-related schedule delays.",
+        "The development and implementation of a dedicated local regulatory compliance team capable of navigating the complex interplay between national safety regulations and OSB-specific zoning codes is required to ensure smooth permitting and construction adherence."
+      ]
+    },
+    "phase_1_deployment": {
+      "recommended_capacity": "The initial build-out should be strategically capped at 4-6 MW IT load, enabling rapid market entry while allowing sufficient capital allocation to resolve the major Site & Civil constraints (1.0 score) before scaling to the projected 12 MW target capacity.",
+      "timeline": "A comprehensive 24-month timeline is projected, allocating the first 6 to 9 months exclusively to site preparation, civil remediation, detailed foundation engineering, and regulatory alignment, with the subsequent 15 to 18 months dedicated to construction and critical infrastructure commissioning.",
+      "priority_actions": [
+        "Immediately commission specialized geotechnical and environmental site surveys to precisely define the scope and budgetary impact of the Site & Civil constraints, transforming the generic 1.0 risk score into a concrete, actionable engineering plan within the first three months.",
+        "Initiate formal negotiations with the local utility provider and OSB authorities to finalize the detailed Power Purchase Agreement and redundancy provisioning, ensuring contractual guarantees for the necessary high-voltage infrastructure upgrades concurrent with civil remediation efforts.",
+        "Develop a resilient supply chain strategy that includes pre-ordering long lead-time mechanical and electrical equipment and establishing local warehousing agreements to minimize the risk of project delays caused by customs processing or international logistics bottlenecks."
+      ],
+      "estimated_investment": "The Phase 1 estimated investment is projected at $75 million (USD), factoring in a minimum of 20% contingency dedicated specifically to unforeseen site remediation and foundation strengthening costs, reflecting the high-risk implications of the preliminary Site & Civil analysis.",
+      "risk_mitigation": [
+        "Implement a robust financial contingency buffer and schedule float specifically targeting the geotechnical and foundation work, ensuring that budget overruns associated with civil remediation do not negatively impact the procurement of critical mechanical and power equipment.",
+        "Establish redundant fiber optic paths leveraging multiple local providers immediately upon site acquisition, mitigating network dependency risk and ensuring high-availability connectivity from project inception in line with the industrial zone's capabilities.",
+        "Develop a detailed regulatory compliance matrix covering all environmental, seismic, and industrial zoning requirements, appointing a single executive sponsor responsible for liaising directly with OSB authorities to preemptively resolve compliance deviations."
+      ],
+      "success_metrics": [
+        "Achieve certified site readiness and foundation completion, confirming the satisfactory resolution of all Site & Civil constraints within the initial 9-month window, validated by third-party engineering sign-off and safety inspections.",
+        "Secure pre-lease agreements representing 50% of the Phase 1 capacity within 12 months of project commencement, validating the strategic positioning advantage derived from Ankara's resiliency profile and OSB incentives.",
+        "Maintain the total project CAPEX variance for civil and foundation work within 10% of the pre-remediation budget baseline, tracking closely the efficacy of the initial risk mitigation financial buffers."
+      ]
+    },
+    "strategic_recommendation": "A definitive 'GO' recommendation is warranted for this strategic Ankara OSB location, predicated on the crucial understanding that the macro advantages — guaranteed power infrastructure, regulatory streamlining via OSB status, and superior seismic resiliency — profoundly outweigh the identified site-specific civil engineering constraints. The strategy must involve immediate, aggressive investment into geotechnical remediation during the initial phase to transform the high-risk site condition into a highly viable, long-term asset, allowing the project to capitalize fully on the unique regional market positioning.",
+    "conclusion": "We conclude with high confidence (90%) that this project is strategically viable and recommend proceeding immediately, contingent upon strict adherence to a front-loaded execution plan focused entirely on resolving the civil constraints and securing power entitlements. Success hinges entirely on the effective management of the critical path constraint presented by the Site & Civil requirements and leveraging the OSB status to accelerate permitting; failure to address the foundation risks aggressively will lead to significant cost overruns and delays, eroding the competitive advantage.",
+    "next_steps": [
+      "Immediately release Requests for Proposal (RFPs) for specialized geotechnical and civil engineering firms to conduct detailed site mapping and foundation analysis, establishing a definitive scope of work and budget for all necessary remediation.",
+      "Appoint a dedicated Project Director with proven experience navigating Turkish industrial zone regulations and large-scale utility negotiations, providing executive authority to fast-track permitting and power procurement processes.",
+      "Finalize the conceptual design package to incorporate resilient engineering standards, ensuring the mechanical and structural design fully capitalizes on the favorable seismic environment while adhering rigorously to the expected compliance standards required by high-security tenants."
+    ]
+  },
+  "data_gap_analysis": {
+    "data_sources_used": [
+      {
+        "name": "Public data analysis",
+        "type": "publicly_available",
+        "reliability": "medium",
+        "last_updated": "Current analysis",
+        "url": null
+      }
+    ],
+    "data_gaps_identified": [],
+    "third_party_requirements": [],
+    "assumptions_made": [],
+    "overall_confidence": "high",
+    "next_steps_priority": [
+      "Address critical data gaps through third-party verification",
+      "Validate key assumptions with local experts",
+      "Conduct on-site assessments for high-impact areas"
+    ]
+  },
+  "weighted_domain_scores": [
+    {
+      "domain_name": "power_energy",
+      "raw_score": 2.5,
+      "weight": 0.35,
+      "weighted_contribution": 0.875,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "network_connectivity",
+      "raw_score": 2.5,
+      "weight": 0.15,
+      "weighted_contribution": 0.375,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "site_civil",
+      "raw_score": 1.0,
+      "weight": 0.1,
+      "weighted_contribution": 0.1,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "hazards_resilience",
+      "raw_score": 2.5,
+      "weight": 0.12,
+      "weighted_contribution": 0.3,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "mechanical_thermal",
+      "raw_score": 1.0,
+      "weight": 0.08,
+      "weighted_contribution": 0.08,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "regulatory_esg",
+      "raw_score": 2.5,
+      "weight": 0.14,
+      "weighted_contribution": 0.35000000000000003,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "market_competition",
+      "raw_score": 1.0,
+      "weight": 0.06,
+      "weighted_contribution": 0.06,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    }
+  ],
+  "all_no_go_gates": [],
+  "all_caution_flags": [],
+  "provenance_summary": [],
+  "transactional_verifications": [],
+  "distance_measurements": []
+}

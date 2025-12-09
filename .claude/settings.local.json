@@ -6,7 +6,10 @@
       "Bash(npx:*)",
       "Bash(find:*)",
       "Bash(/Users/julienrecan/.local/bin/ruff check . --select=ALL --ignore=D,ANN,COM,T20,FIX,TD,ERA --output-format=concise)",
-      "Bash(/Users/julienrecan/.local/bin/ruff check . --select=ALL --ignore=D,ANN,COM,T20,FIX,TD,ERA,N999,RUF001 --output-format=concise)"
+      "Bash(/Users/julienrecan/.local/bin/ruff check . --select=ALL --ignore=D,ANN,COM,T20,FIX,TD,ERA,N999,RUF001 --output-format=concise)",
+      "Bash(python:*)",
+      "Bash(git add:*)",
+      "Bash(git reset:*)"
     ],
     "deny": [],
     "ask": []

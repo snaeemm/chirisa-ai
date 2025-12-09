@@ -1,0 +1,756 @@
+{
+  "location": "Umm Al Quwain, UAE",
+  "coordinates": {
+    "lat": 25.5507975,
+    "lng": 55.5524476
+  },
+  "country": "United Arab Emirates",
+  "analysis_date": "2025-11-05",
+  "overall_suitability": {
+    "composite_score": 1.0074999999999996,
+    "rating": "Poor",
+    "recommendation": "Location rated as Poor for datacenter deployment",
+    "no_go_triggered": false,
+    "failed_gates": [],
+    "caution_count": 4,
+    "confidence_level": "medium",
+    "verification_percentage": 40.0
+  },
+  "domain_analysis": {
+    "power_infrastructure": {
+      "score": 1.0,
+      "key_findings": [
+        "Power analysis failed: Expecting ',' delimiter: line 5 column 207 (char 303)"
+      ],
+      "summary": "Power analysis unavailable"
+    },
+    "network_connectivity": {
+      "score": 1.0,
+      "key_findings": [],
+      "summary": ""
+    },
+    "climate_environmental": {
+      "score": 3.7,
+      "key_findings": [
+        "CRITICAL: All 5 NO-GO gates are passed; the site is structurally viable for hyperscale construction with standard, but enhanced, mitigations",
+        "The primary operational constraint is the extremely hot climate, which mandates the use of water-efficient mechanical cooling (or air-cooled DX) with an inherently high PUE (estimated >1.5)",
+        "Moderate seismic hazard (PGA 0.17g, SDC C) requires a 20% structural cost premium, which is economically manageable for large-scale data center construction"
+      ],
+      "summary": "The location in the UAE is structurally viable for hyperscale data center deployment, having passed all 5 critical NO-GO hazard gates (Flood, Wildfire, Seismic, Protected Areas). Flood risk is low-to-moderate (pluvial/wadi only), and seismic hazard is moderate (PGA 0.17g, SDC C, 20% structural premium). The primary challenge is the extreme heat/arid climate, which severely limits free cooling (800 hours/year est.) and results in a high PUE potential. Future resilience planning must account for a projected +2.1C temperature increase and a substantial increase in rainfall (+46%) by 2050, requiring future-proof cooling and stormwater management."
+    },
+    "operational_risk": {
+      "score": 1.0,
+      "key_findings": [
+        "Risk analysis failed: Expecting ',' delimiter: line 307 column 29 (char 15183)"
+      ],
+      "summary": "Risk analysis unavailable"
+    },
+    "esg_sustainability": {
+      "score": 1.0,
+      "key_findings": [
+        "ESG analysis for United Arab Emirates"
+      ],
+      "summary": ""
+    },
+    "regulatory_compliance": {
+      "score": 3.15,
+      "key_findings": [
+        "The UAE (RAK/RAKEZ) offers a highly attractive fiscal environment (0% CT on qualifying income, 100% foreign ownership) backed by strong international investment protection treaties.",
+        "Compliance complexity is driven by the fragmented and evolving data privacy landscape; specifically, the mandatory data localization requirements for Financial and Healthcare data necessitate a multi-region or highly specialized data segregation architecture (Caution Flag #1).",
+        "Execution friction is moderate. While a single-stage building permit process is cited, the overall timeline is governed by the multiple NOCs and the mandatory Environmental Clearance/EIA for a large-scale facility (12-24 months expected)."
+      ],
+      "summary": "The Ras Al Khaimah (RAK) location, leveraging the RAKEZ Free Zone structure, presents a Moderate-to-Good (3.15/5.0) regulatory profile for a 50-100 MW hyperscale deployment. The financial incentives are 'Excellent' (5.0), driven by 0% corporate tax and 100% foreign ownership. However, material execution risks exist due to the sector-specific data localization laws (Financial/Healthcare) and the estimated 12-24 month permitting timeline necessitated by the mandatory EIA and complex multi-agency utility NOC process. Successful deployment is contingent on early engagement with the UAE Data Office regarding data segregation strategies and a proactive, parallel-track approach to the EIA and utility approvals."
+    },
+    "hyperscaler_attractiveness": {
+      "score": 1.0,
+      "key_findings": [
+        "Hyperscaler analysis failed: Invalid \\escape: line 109 column 195 (char 7026)"
+      ],
+      "summary": "Hyperscaler analysis unavailable"
+    }
+  },
+  "detailed_analysis": {
+    "power_infrastructure": "Power analysis unavailable",
+    "network_connectivity": "",
+    "climate_environmental": "The location in the UAE is structurally viable for hyperscale data center deployment, having passed all 5 critical NO-GO hazard gates (Flood, Wildfire, Seismic, Protected Areas). Flood risk is low-to-moderate (pluvial/wadi only), and seismic hazard is moderate (PGA 0.17g, SDC C, 20% structural premium). The primary challenge is the extreme heat/arid climate, which severely limits free cooling (800 hours/year est.) and results in a high PUE potential. Future resilience planning must account for a projected +2.1C temperature increase and a substantial increase in rainfall (+46%) by 2050, requiring future-proof cooling and stormwater management.",
+    "operational_risk": "Risk analysis unavailable",
+    "esg_sustainability": "",
+    "regulatory_compliance": "The Ras Al Khaimah (RAK) location, leveraging the RAKEZ Free Zone structure, presents a Moderate-to-Good (3.15/5.0) regulatory profile for a 50-100 MW hyperscale deployment. The financial incentives are 'Excellent' (5.0), driven by 0% corporate tax and 100% foreign ownership. However, material execution risks exist due to the sector-specific data localization laws (Financial/Healthcare) and the estimated 12-24 month permitting timeline necessitated by the mandatory EIA and complex multi-agency utility NOC process. Successful deployment is contingent on early engagement with the UAE Data Office regarding data segregation strategies and a proactive, parallel-track approach to the EIA and utility approvals.",
+    "hyperscaler_attractiveness": "Hyperscaler analysis unavailable"
+  },
+  "structured_analysis": {
+    "power_infrastructure": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Power analysis failed: Expecting ',' delimiter: line 5 column 207 (char 303)"
+      ],
+      "executive_summary": "Power analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "network_connectivity": {
+      "overall_score": 1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [],
+      "executive_summary": "",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "climate_environmental": {
+      "overall_score": 3.7,
+      "sections": {},
+      "assumptions": [
+        "International standards (e.g., GEM PGA, local regulations) are used as proxies for US standards (FEMA, USGS, CAL FIRE)",
+        "Seismic PGA of 0.17g is a conservative proxy for the area near Dubai; a site-specific geotechnical PSHA is mandatory for final design",
+        "Flood risk is primarily pluvial/wadi-driven, not coastal; site elevation (50m ASL proxy) is adequate to mitigate local BFE/flash flood risk based on inland desert location",
+        "Liquefaction susceptibility and soil stability are assumed to be low due to general arid conditions, pending geotechnical verification",
+        "Cooling Degree Days (CDD) and Free Cooling Hours are estimated based on Dubai/UAE NCEI climate normals and ASHRAE TC 9.9 standards"
+      ],
+      "key_insights": [
+        "CRITICAL: All 5 NO-GO gates are passed; the site is structurally viable for hyperscale construction with standard, but enhanced, mitigations",
+        "The primary operational constraint is the extremely hot climate, which mandates the use of water-efficient mechanical cooling (or air-cooled DX) with an inherently high PUE (estimated >1.5)",
+        "Moderate seismic hazard (PGA 0.17g, SDC C) requires a 20% structural cost premium, which is economically manageable for large-scale data center construction",
+        "Long-term climate resilience must address the dual threat of increased pluvial flooding (+46% rainfall) and significant heat stress (+2.1C, +18 heat wave days by 2050)"
+      ],
+      "executive_summary": "The location in the UAE is structurally viable for hyperscale data center deployment, having passed all 5 critical NO-GO hazard gates (Flood, Wildfire, Seismic, Protected Areas). Flood risk is low-to-moderate (pluvial/wadi only), and seismic hazard is moderate (PGA 0.17g, SDC C, 20% structural premium). The primary challenge is the extreme heat/arid climate, which severely limits free cooling (800 hours/year est.) and results in a high PUE potential. Future resilience planning must account for a projected +2.1C temperature increase and a substantial increase in rainfall (+46%) by 2050, requiring future-proof cooling and stormwater management.",
+      "data_gaps": [
+        "Local seismic hazard analysis (PSHA) to confirm 475-year PGA and soil-specific liquefaction/amplification factors",
+        "Site-specific geotechnical boring logs to verify liquefaction susceptibility and foundation bearing capacity",
+        "Hydrological study (including wadi/flash flood modeling) for 100-year rainfall events to set a local Finished Floor Elevation (FFE) requirement",
+        "Detailed ASHRAE TC 9.9 free cooling hours calculation based on local airport/weather station data (15C/59F threshold)"
+      ],
+      "third_party_verification": [
+        "Geotechnical engineering firm for PSHA, liquefaction, and foundation design (SDC C)",
+        "Hydrological engineer for pluvial/wadi flood assessment, site grading, and stormwater management plan",
+        "Structural engineer for seismic and wind load design verification (ASCE 7 proxy)",
+        "MEP consultant for high-efficiency cooling system selection and PUE modeling based on local climate data"
+      ],
+      "phase_1_recommendations": {
+        "flood_mitigation": "Commission a full hydrological assessment for wadi/pluvial flood risk. Implement site grading and drainage controls to ensure FFE is a minimum of 0.6m above the 100-year projected flood elevation.",
+        "seismic_design": "Engage a structural engineer for SDC C compliance (PGA 0.17g). Design foundation for high-seismic loading and consider ground improvement if liquefaction risk is identified by Phase I geotechnical work.",
+        "wildfire_protection": "Utilize fire-resistant construction materials and focus on NFPA 75 compliance for internal fire suppression systems (minimal wildland-interface risk).",
+        "environmental_compliance": "Perform a desktop environmental review (EIA) focusing on potential impacts to protected wildlife/flora habitats and water consumption planning.",
+        "climate_adaptation": "Prioritize high-efficiency, water-minimizing cooling technologies (e.g., closed-loop air/adiabatic systems) to manage high heat and mitigate 2050 water scarcity risk. Design cooling systems for a +2.1C mean temperature increase."
+      }
+    },
+    "operational_risk": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Risk analysis failed: Expecting ',' delimiter: line 307 column 29 (char 15183)"
+      ],
+      "executive_summary": "Risk analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "esg_sustainability": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "ESG analysis for United Arab Emirates"
+      ],
+      "executive_summary": "",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "regulatory_compliance": {
+      "overall_score": 3.15,
+      "data_sovereignty": {
+        "name": "",
+        "content": "",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "max_breach_penalty_fixed": 5000000,
+            "government_access_risk": 3
+          },
+          "percentages": {
+            "max_breach_penalty_pct": 0
+          },
+          "ranges": {
+            "breach_penalty_range_aed": [
+              50000,
+              5000000
+            ]
+          },
+          "units": {
+            "max_breach_penalty_fixed": "AED",
+            "max_breach_penalty_pct": "% of revenue",
+            "government_access_risk": "risk level 1-5"
+          }
+        },
+        "key_points": [
+          "Federal Decree-Law No. 45 of 2021 (PDPL) is the federal data protection framework, equivalent to a GDPR standard.",
+          "Mandatory data localization exists for specific sectors, including financial (Central Bank) and healthcare (Healthcare ICT Law).",
+          "Cross-border transfer is permitted via Adequacy Decisions, Standard Contractual Clauses (SCCs), or Binding Corporate Rules (BCRs).",
+          "Maximum fine for non-compliance under PDPL is AED 5 million (approx. $1.36M USD)."
+        ],
+        "tables": []
+      },
+      "government_incentives": {
+        "name": "",
+        "content": "",
+        "sub_score": 5.0,
+        "metrics": {
+          "numerical_values": {
+            "corporate_tax_rate": 0,
+            "tax_holiday_years": 0,
+            "import_duty_exemption": 100,
+            "foreign_ownership_cap": 100
+          },
+          "percentages": {
+            "corporate_tax_rate": 0,
+            "import_duty_exemption": 100,
+            "foreign_ownership_cap": 100
+          },
+          "ranges": {},
+          "units": {
+            "corporate_tax_rate": "% on qualifying income",
+            "tax_holiday_years": "years (indefinite 0% CT for QFZP)",
+            "import_duty_exemption": "%",
+            "foreign_ownership_cap": "%"
+          }
+        },
+        "key_points": [
+          "Location assumed to be within Ras Al Khaimah Economic Zone (RAKEZ) Free Zone.",
+          "Qualifying Free Zone Person (QFZP) status grants 0% Corporate Tax on qualifying income (Federal Decree Law No. 47 of 2022).",
+          "100% foreign ownership is permitted for Free Zone Establishment (FZE) and in most activities on the RAK mainland (FDI Positive List).",
+          "100% import duty exemption on IT equipment/machinery is granted for items remaining within the Free Zone.",
+          "The UAE is a signatory to over 100 Bilateral Investment Treaties (BITs) and the ICSID Convention, offering strong protection against expropriation and ensuring free capital repatriation."
+        ],
+        "tables": []
+      },
+      "operational_compliance": {
+        "name": "",
+        "content": "",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "eia_timeline_likely_months": 12,
+            "noise_limit_daytime_dBA": 55,
+            "noise_limit_nighttime_dBA": 45
+          },
+          "percentages": {},
+          "ranges": {
+            "eia_timeline_months_range": [
+              6,
+              18
+            ]
+          },
+          "units": {
+            "eia_timeline_likely_months": "months",
+            "building_code_standard": "RAK Municipal Code/International Code",
+            "generator_emissions_limits": "Tier 4 Final Equivalent (Expected)",
+            "noise_limit_daytime_dBA": "dBA at property line"
+          }
+        },
+        "key_points": [
+          "Environmental Impact Assessment (EIA) and Environmental Clearance (EC) is required for large infrastructure projects under Federal Law No. 24 of 1999 (EC/EIA system).",
+          "Building and construction must comply with RAK Municipal Code, which integrates international standards (e.g., NFPA, IBC equivalent).",
+          "Noise limits are expected to adhere to international best practices, typically 45-55 dBA at the property line to manage community impact, although a specific RAK bylaw was not cited.",
+          "Diesel generator emissions compliance is assumed to require advanced controls equivalent to US EPA Tier 4 Final standards for air quality permits."
+        ],
+        "tables": []
+      },
+      "permitting_zoning": {
+        "name": "",
+        "content": "",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "permits_required_count": 8,
+            "permitting_timeline_likely_months": 18
+          },
+          "percentages": {},
+          "ranges": {
+            "permitting_timeline_months_range": [
+              12,
+              24
+            ]
+          },
+          "units": {
+            "permits_required_count": "count",
+            "permitting_timeline_likely_months": "months",
+            "zoning_status": "Conditional Use Permit (CUP) likely"
+          }
+        },
+        "key_points": [
+          "Data centers are highly likely classified as Critical Infrastructure, requiring a Conditional Use Permit (CUP) or similar special approval within RAKEZ/Industrial Zoning.",
+          "The process requires multiple No-Objection Certificates (NOCs) from utility providers (FEWA, Etisalat, RAK Gas, Wastewater) *before* RAK Municipality grants the final Building Permit.",
+          "The estimated minimum end-to-end permitting timeline (incl. EIA and NOCs) for a hyperscale deployment is 12 months, with a likely case of 18 months.",
+          "RAK Municipality has a structured and digitalized process, but coordination between utility and planning authorities is the primary source of friction."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "The project is structured as a Qualifying Free Zone Person (QFZP) within RAKEZ to maximize tax incentives.",
+        "The data center is classified as Critical Infrastructure/Industrial activity, requiring a Conditional Use Permit (CUP) in RAK.",
+        "Environmental compliance (EIA, noise, emissions) will be measured against international Tier 4 standards in the absence of cited RAK-specific numeric legal limits for a large facility.",
+        "The $5M AED maximum penalty for PDPL non-compliance will apply, as the percentage-of-revenue fines seen in GDPR are not explicitly present in the federal law."
+      ],
+      "key_insights": [
+        "The UAE (RAK/RAKEZ) offers a highly attractive fiscal environment (0% CT on qualifying income, 100% foreign ownership) backed by strong international investment protection treaties.",
+        "Compliance complexity is driven by the fragmented and evolving data privacy landscape; specifically, the mandatory data localization requirements for Financial and Healthcare data necessitate a multi-region or highly specialized data segregation architecture (Caution Flag #1).",
+        "Execution friction is moderate. While a single-stage building permit process is cited, the overall timeline is governed by the multiple NOCs and the mandatory Environmental Clearance/EIA for a large-scale facility (12-24 months expected)."
+      ],
+      "executive_summary": "The Ras Al Khaimah (RAK) location, leveraging the RAKEZ Free Zone structure, presents a Moderate-to-Good (3.15/5.0) regulatory profile for a 50-100 MW hyperscale deployment. The financial incentives are 'Excellent' (5.0), driven by 0% corporate tax and 100% foreign ownership. However, material execution risks exist due to the sector-specific data localization laws (Financial/Healthcare) and the estimated 12-24 month permitting timeline necessitated by the mandatory EIA and complex multi-agency utility NOC process. Successful deployment is contingent on early engagement with the UAE Data Office regarding data segregation strategies and a proactive, parallel-track approach to the EIA and utility approvals.",
+      "data_gaps": [
+        "Specific RAK municipal zoning designation (e.g., 'Use-by-Right' vs. 'Conditional Use') for a hyperscale data center.",
+        "Legal/Regulatory-mandated dBA noise limits and g/kWh emissions limits for generators in Ras Al Khaimah.",
+        "Total Permitting Fee structure from RAK Municipality and utility providers."
+      ],
+      "third_party_verification": [
+        "Local legal counsel for definitive PDPL and sectoral data localization strategy (PDPL Executive Regulations).",
+        "Investment promotion agency for written confirmation of QFZP eligibility and continuity of 0% corporate tax benefit.",
+        "Pre-application meeting with RAK Municipality and RAKEZ authorities for firming up the permitting timeline (EIA/NOCs) and zoning status."
+      ],
+      "phase_1_recommendations": {
+        "priority_1": "Engage local legal counsel to validate the 'qualifying income' structure for QFZP status and architect a legally compliant data segregation strategy to navigate mandatory sectoral localization laws.",
+        "priority_2": "Initiate pre-EIA scoping with a qualified consultant to define the exact requirements, timeline, and potential mitigation measures for the project.",
+        "priority_3": "Schedule a joint pre-application meeting with RAK Municipality Planning, FEWA, Etisalat, and RAK Gas to obtain a consolidated list of NOCs and a realistic total approval timeline."
+      },
+      "sources": [
+        {
+          "url": "https://www.dlapiperdataprotection.com",
+          "title": "Data Protection Laws of the World: United Arab Emirates",
+          "date": "2024",
+          "snippet": "UAE's Federal Decree-Law No. 45 of 2021 (PDPL) is the comprehensive data protection law."
+        },
+        {
+          "url": "https://www.rak.ae",
+          "title": "New Building Permit - The official portal of RAK Government",
+          "date": "2020-03-29",
+          "snippet": "RAK process involves audit by Architect, Structural Engineer and Communications Engineer, requiring NOCs from utility providers."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGwf-w1ShFoLPUrba2sPWLUHafPto0pNeyNnybg8_J1a5YI5hmMGtXo9Grcn6u646Ebz83LnP8ACLeMgoerY9Wo9TO7UrdKauis6x1N1TH-0eAxedRPukey44pYj0N-cf9sW2NIsQ9Q8-RgiKAHWDi19w==",
+          "title": "The UAE Corporate Tax - Pontinova Law",
+          "date": "2025-07-02",
+          "snippet": "Free Zone businesses can benefit from a 0 % preferential tax rate if they meet specific criteria as a Qualifying Free Zone Person (QFZP)."
+        },
+        {
+          "url": "https://www.bizdaddy.ae",
+          "title": "What Are The Restrictions For Foreign Ownership In Rakez?",
+          "date": "N/A",
+          "snippet": "RAKEZ operates as a free economic zone, allowing 100% foreign ownership in most sectors and activities."
+        },
+        {
+          "url": "https://www.mof.gov.ae",
+          "title": "UAE Investment Protection & Promotion | Ministry of Finance",
+          "date": "2024",
+          "snippet": "The UAE has signed over 100 Bilateral Investment Treaties (BITs) with key trade and investment partners worldwide... and is a contracting party to the ICSID Convention."
+        },
+        {
+          "url": "https://dm.gov.ae",
+          "title": "Guidance on the Environmental Clearance (EC) Requirements...",
+          "date": "N/A",
+          "snippet": "The EIA system in the UAE is a legal requirement under Federal Law No. (24) of 1999."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGeOKuXxbG09LZPm0SkvMnOtLs6Ikm6a4H9tRqyaKGjbR9ogkL11nwDTCDmjCwnsC1dB2ZJVXT5B_bLtTHzfje-V869aYgXr3y8lI3z5QSLi6XW15Rfx-PiYebmrkhuF-M_RCdggHcWhuyhbV6_CObVINBp4GVO3KKNBg97xL4UGitr7lZNlIOPzdY2AReFa7LmLnsU78OAWCD1cl9C8Ne3nBkvakVZi3e8LwpClXU=",
+          "title": "nortonrosefulbright.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG7Phrjll_AonArzB8bdK2oTixnydCrUxS3IR4wUPQ2-qmnZkJMyh96GwxF0liwId-ZxlIH9i_ropWZdPITKjajuhXSV025K8BEwOp7NmFtMUuUW8olTRy_LxeuPpu2A4oDgxZMNQ==",
+          "title": "shuraatax.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH7TdQdSu0ko3gibeaNSsMvnzSvRI6Iuee2pg5vDUS0Yc_wZSCENQ3UWBKlMhEpYZDokICCmqmyKrmYQYIOdIhOSSkK6pyBHCDtOQreu2eGyHDrsPSF__Bx3pEHssykDLPoP-xIAtwljtQ1PQoWy04cJIMTq71i8Fisaw6Dn3b3fE9mcvwyLSpA4kTz41DpiWBpQFwG7d2syhkcEEPHy7Y=",
+          "title": "mof.gov.ae",
+          "date": "",
+          "snippet": ""
+        }
+      ],
+      "no_go_gates": [
+        {
+          "gate_type": "Prohibited Cross-Border Data Transfers",
+          "triggered": false,
+          "reason": "PDPL allows cross-border data transfer using adequacy, SCC, or BCR mechanisms (GDPR-like framework).",
+          "standard_reference": "GDPR Article 44-50 / PDPL Articles 22-23",
+          "mitigation_possible": false,
+          "mitigation_cost": "N/A - not triggered"
+        }
+      ],
+      "caution_flags": [
+        {
+          "category": "Restrictive Data Localization",
+          "severity": "medium",
+          "description": "Mandatory data localization for financial and healthcare sectors requires specialized local cloud infrastructure, impacting target customer base.",
+          "mitigation_plan": "Implement a hybrid/segregated architecture to ensure compliance for regulated sector customers (e.g., local storage for regulated data, international transfer for other data).",
+          "cost_impact": "+$5-15M for multi-region architecture and specialized compliance tooling",
+          "timeline_impact": "+3-6 months for legal and architecture design review",
+          "severity_points": 0.4
+        },
+        {
+          "category": "Complex Environmental Compliance (EIA)",
+          "severity": "medium",
+          "description": "Comprehensive EIA/EC is mandatory for large infrastructure projects (50-100 MW), adding friction and timeline risk due to inter-agency coordination (e.g., RAK Municipality, FEWA).",
+          "mitigation_plan": "Initiate EIA scoping immediately and run the process in parallel with design. Pre-purchase Tier 4 Final gensets to pre-empt emissions concerns.",
+          "cost_impact": "+$5M for EIA consultants, advanced emissions/acoustic controls",
+          "timeline_impact": "+6-12 months for EIA process and approval",
+          "severity_points": 0.3
+        },
+        {
+          "category": "Permitting Complexity & Execution Friction",
+          "severity": "medium",
+          "description": "The likely 18-month overall timeline and required multi-agency NOC process (FEWA, Etisalat, RAK Gas) introduces high execution friction, despite a fast RAK Municipality building permit application time.",
+          "mitigation_plan": "Appoint a seasoned local permitting agent. Secure a 'mega-project' coordinator from RAKEZ/RAK Municipality to streamline NOCs.",
+          "cost_impact": "+$3M for extended consulting, legal, and carrying costs",
+          "timeline_impact": "+6 months risk of extension if NOCs are sequential",
+          "severity_points": 0.3
+        }
+      ],
+      "provenance_badges": [
+        {
+          "source": "RAKEZ Authority / UAE Federal Agencies",
+          "api_version": "2024",
+          "vintage": "2024-Q3",
+          "refresh_frequency": "Continuous",
+          "confidence": "high",
+          "coverage": "National/Emirate",
+          "url": "N/A - Multiple official portals"
+        }
+      ],
+      "distance_measurements": []
+    },
+    "hyperscaler_attractiveness": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Hyperscaler analysis failed: Invalid \\escape: line 109 column 195 (char 7026)"
+      ],
+      "executive_summary": "Hyperscaler analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    }
+  },
+  "executive_summary": {
+    "location_overview": "This location offers a high-reward, high-complexity opportunity, strategically balancing exceptional fiscal advantages with material execution risks driven by regulatory timelines and climate constraints. The site leverages the RAKEZ Free Zone structure to offer 0% corporate tax and 100% foreign ownership, creating a compelling financial model that is currently offset by the necessary 12-24 month permitting timeline and the high capital expenditure required for specialized cooling infrastructure.",
+    "key_strengths": [
+      "The combination of excellent financial incentives (Regulatory Analysis: 0% corporate tax, 100% foreign ownership) and structural viability (Climate Analysis: passed all five structural NO-GO gates) establishes a robust foundation for long-term profitable operations, provided the high initial CAPEX can be absorbed.",
+      "The mandatory high-efficiency mechanical design, specifically targeting PUE 1.30 and extremely low WUE <0.5 L/kWh (Mechanical/Thermal Analysis), transforms the local water scarcity challenge into a strategic operational advantage, positioning the facility as a leader in sustainable data center operations within the water-stressed UAE region, satisfying future ESG demands.",
+      "The site's strategic location in a secondary market (Location Context) combined with the strong regulatory data protection framework (PDPL, Regulatory Analysis) allows for targeted market positioning toward highly regulated sectors that require mandatory data localization, specifically Financial and Healthcare clients, securing a niche competitive edge over generalized regional hyperscale offerings."
+    ],
+    "key_challenges": [
+      "The primary critical path constraint is the synergy between the Regulatory friction (12-24 month EIA/NOC process) and the substantial unknown surrounding Power infrastructure lead times and required investment, potentially extending the time-to-market beyond two years and significantly eroding early ROI projections.",
+      "Operational expenditure is challenged by the convergence of the extremely hot climate (+43.0C Max DB, Climate Analysis) and the limited 2,000 annual hours of free cooling (Mechanical/Thermal Analysis), necessitating near-constant mechanical cooling operation which, despite PUE optimization, will inherently lead to a higher operational energy intensity compared to temperate zones.",
+      "The mandatory data localization requirements for specific sectors (Regulatory Analysis) demand an advanced, specialized physical and architectural segregation strategy, which adds layers of complexity and cost to the design phase and requires early, proactive engagement with the UAE Data Office to ensure compliance and avoid massive potential fines (AED 5 million)."
+    ],
+    "critical_success_factors": [
+      "Immediate parallelization of the mandatory Environmental Impact Assessment (EIA) and the critical utility No-Objection Certificate (NOC) process is essential to compress the projected 12-24 month regulatory timeline, making project velocity contingent upon proactive multi-agency coordination.",
+      "Securing firm Power Purchase Agreements (PPAs) and final interconnection design within the first six months is non-negotiable, as the required 'significant investment in utility reinforcement' (Location Context) represents the single greatest financial and schedule risk in the absence of a detailed Power Analysis.",
+      "Early commitment and long-lead procurement of specialized Hybrid Cooling Systems (40-52 week lead time, Mechanical/Thermal Analysis) must commence concurrently with site planning to prevent the mechanical component timeline from becoming the primary constraint after the regulatory approvals are secured."
+    ]
+  },
+  "phase_1_deployment": {
+    "recommended_capacity": "The initial recommended capacity should be limited to 20 Megawatts, strategically balancing the need for competitive scale against the high capital risk associated with necessary power utility reinforcement and the 12-24 month permitting delay. This phased approach allows for the validation of the long-term PUE 1.30 target and water consumption metrics before committing to the full hyperscale expansion.",
+    "timeline": "A comprehensive timeline estimates 18-24 months for Ready-for-Service (RFS) status, driven primarily by the regulatory and utility interconnection critical path. Key milestones include 6 months for EIA/Initial NOC completion, 9 months for PPA finalization and utility engineering, and 12-15 months for commencement of construction following the long-lead procurement of chillers.",
+    "priority_actions": [
+      "Initiate the mandatory Environmental Impact Assessment (EIA) immediately and simultaneously apply for all utility NOCs (FEWA, Etisalat, Wastewater) to compress the 12-24 month regulatory cycle, allocating dedicated resources to manage multi-agency coordination and documentation flow.",
+      "Finalize the technical specification and issue purchase orders for the long-lead Hybrid Air-Cooled Chiller units, requiring approximately 40-52 weeks of lead time, ensuring the mechanical system delivery aligns precisely with the expected structural completion date and preventing costly delays.",
+      "Engage legal and architectural teams to design a fully compliant data segregation framework that physically and logically isolates data subject to mandatory localization (Financial/Healthcare) from other co-located tenants, thereby maximizing market appeal while adhering strictly to Federal Decree-Law No. 45 of 2021 (PDPL)."
+    ],
+    "estimated_investment": "The total estimated investment for a 20 MW initial build is projected to be in the range of $160-$180 million USD, reflecting a higher CAPEX per megawatt compared to temperate climates due to the necessary investment in advanced hybrid cooling systems, specialized structural reinforcement (20% seismic premium), and significant power utility reinforcement costs.",
+    "risk_mitigation": [
+      "Establish escrow funding tied to Power Utility milestones and incorporate penalty clauses into the Interconnection Agreement to mitigate the high financial and schedule risk associated with the required power infrastructure development, ensuring accountability for utility delivery timelines.",
+      "Implement a robust project governance structure that mandates weekly cross-domain review meetings focusing specifically on regulatory progress (EIA/NOC status) and long-lead procurement status, allowing for proactive contingency planning if the critical 18-month regulatory window begins to slip.",
+      "Develop and maintain dual-path architectural drawingsone compliant with the high-efficiency, low-WUE design and a contingency plan for a slightly less efficient systemto ensure deployment momentum can be maintained if supply chain issues derail the 40-52 week delivery of the primary hybrid cooling units."
+    ]
+  },
+  "strategic_opportunities": [
+    "The unique convergence of strong data localization laws and competitive tax advantages creates a compelling opportunity to attract high-value multinational enterprises needing a compliant regional hub, differentiating the offering from generic regional competitors who may struggle to meet stringent sector-specific regulatory mandates.",
+    "Strategic positioning should leverage the aggressive PUE 1.30 and low WUE design (Mechanical/Thermal Analysis) as a core competitive advantage in RFPs, specifically addressing the rising importance of sustainability metrics (ESG implications) among global customers who are sensitive to water consumption in arid environments.",
+    "A strategic partnership opportunity exists with the local utility provider (FEWA) to co-develop the necessary power infrastructure specified in the Location Context, mitigating the high capital burden and accelerating the timeline for power delivery, turning a known weakness into a managed joint venture asset."
+  ],
+  "strategic_recommendation": "The overarching strategic recommendation is to Proceed with Caution, leveraging the exceptional fiscal advantages while aggressively mitigating the compound risk derived from regulatory friction, climate constraints, and power uncertainty. The deployment pathway must prioritize securing the long-term Power infrastructure agreement immediately and aggressively parallel-tracking the 12-24 month permitting process. Success hinges on transforming the climate challenge into a competitive advantage by delivering the promised PUE 1.30 and low WUE, positioning the site not merely as a cost-effective alternative but as a high-efficiency, regulation-compliant regional hub.",
+  "conclusion": "Detailed analysis supports a Conditional Go recommendation for this secondary UAE market, provided the Power and Risk data gaps are closed within 90 days with positive findings regarding utility commitment. Confidence level in the financial model is High due to the 0% corporate tax incentive and high demand for compliant hosting; however, confidence in the 18-month execution timeline is Moderate-Low due to the compounded risk of regulatory friction (EIA/NOCs) and long-lead equipment procurement in a highly challenging climate. Critical success factors are defined by the speed of regulatory approval and the validated commitment to delivering power infrastructure to support the required hyperscale load.",
+  "next_steps": [
+    "Immediate mobilization of the regulatory team to commence the mandatory Environmental Impact Assessment (EIA) and the complex multi-agency utility No-Objection Certificate (NOC) process, focusing on securing initial approvals within the first six months.",
+    "Launch a high-priority, dedicated effort to finalize the Power Purchase Agreement (PPA) and interconnection engineering studies with the local utility provider, defining the scope, timeline, and financial responsibility for the 'significant investment in power utility reinforcement'.",
+    "Engage specialized cooling consultants to finalize the design specifications for the Hybrid Air-Cooled Chiller system, immediately initiating the tender and procurement process to secure the necessary long-lead equipment and lock in current pricing assumptions."
+  ],
+  "insights_result": {
+    "executive_summary": {
+      "location_overview": "This location offers a high-reward, high-complexity opportunity, strategically balancing exceptional fiscal advantages with material execution risks driven by regulatory timelines and climate constraints. The site leverages the RAKEZ Free Zone structure to offer 0% corporate tax and 100% foreign ownership, creating a compelling financial model that is currently offset by the necessary 12-24 month permitting timeline and the high capital expenditure required for specialized cooling infrastructure.",
+      "key_strengths": [
+        "The combination of excellent financial incentives (Regulatory Analysis: 0% corporate tax, 100% foreign ownership) and structural viability (Climate Analysis: passed all five structural NO-GO gates) establishes a robust foundation for long-term profitable operations, provided the high initial CAPEX can be absorbed.",
+        "The mandatory high-efficiency mechanical design, specifically targeting PUE 1.30 and extremely low WUE <0.5 L/kWh (Mechanical/Thermal Analysis), transforms the local water scarcity challenge into a strategic operational advantage, positioning the facility as a leader in sustainable data center operations within the water-stressed UAE region, satisfying future ESG demands.",
+        "The site's strategic location in a secondary market (Location Context) combined with the strong regulatory data protection framework (PDPL, Regulatory Analysis) allows for targeted market positioning toward highly regulated sectors that require mandatory data localization, specifically Financial and Healthcare clients, securing a niche competitive edge over generalized regional hyperscale offerings."
+      ],
+      "key_challenges": [
+        "The primary critical path constraint is the synergy between the Regulatory friction (12-24 month EIA/NOC process) and the substantial unknown surrounding Power infrastructure lead times and required investment, potentially extending the time-to-market beyond two years and significantly eroding early ROI projections.",
+        "Operational expenditure is challenged by the convergence of the extremely hot climate (+43.0C Max DB, Climate Analysis) and the limited 2,000 annual hours of free cooling (Mechanical/Thermal Analysis), necessitating near-constant mechanical cooling operation which, despite PUE optimization, will inherently lead to a higher operational energy intensity compared to temperate zones.",
+        "The mandatory data localization requirements for specific sectors (Regulatory Analysis) demand an advanced, specialized physical and architectural segregation strategy, which adds layers of complexity and cost to the design phase and requires early, proactive engagement with the UAE Data Office to ensure compliance and avoid massive potential fines (AED 5 million)."
+      ],
+      "strategic_opportunities": [
+        "The unique convergence of strong data localization laws and competitive tax advantages creates a compelling opportunity to attract high-value multinational enterprises needing a compliant regional hub, differentiating the offering from generic regional competitors who may struggle to meet stringent sector-specific regulatory mandates.",
+        "Strategic positioning should leverage the aggressive PUE 1.30 and low WUE design (Mechanical/Thermal Analysis) as a core competitive advantage in RFPs, specifically addressing the rising importance of sustainability metrics (ESG implications) among global customers who are sensitive to water consumption in arid environments.",
+        "A strategic partnership opportunity exists with the local utility provider (FEWA) to co-develop the necessary power infrastructure specified in the Location Context, mitigating the high capital burden and accelerating the timeline for power delivery, turning a known weakness into a managed joint venture asset."
+      ],
+      "critical_success_factors": [
+        "Immediate parallelization of the mandatory Environmental Impact Assessment (EIA) and the critical utility No-Objection Certificate (NOC) process is essential to compress the projected 12-24 month regulatory timeline, making project velocity contingent upon proactive multi-agency coordination.",
+        "Securing firm Power Purchase Agreements (PPAs) and final interconnection design within the first six months is non-negotiable, as the required 'significant investment in utility reinforcement' (Location Context) represents the single greatest financial and schedule risk in the absence of a detailed Power Analysis.",
+        "Early commitment and long-lead procurement of specialized Hybrid Cooling Systems (40-52 week lead time, Mechanical/Thermal Analysis) must commence concurrently with site planning to prevent the mechanical component timeline from becoming the primary constraint after the regulatory approvals are secured."
+      ]
+    },
+    "phase_1_deployment": {
+      "recommended_capacity": "The initial recommended capacity should be limited to 20 Megawatts, strategically balancing the need for competitive scale against the high capital risk associated with necessary power utility reinforcement and the 12-24 month permitting delay. This phased approach allows for the validation of the long-term PUE 1.30 target and water consumption metrics before committing to the full hyperscale expansion.",
+      "timeline": "A comprehensive timeline estimates 18-24 months for Ready-for-Service (RFS) status, driven primarily by the regulatory and utility interconnection critical path. Key milestones include 6 months for EIA/Initial NOC completion, 9 months for PPA finalization and utility engineering, and 12-15 months for commencement of construction following the long-lead procurement of chillers.",
+      "priority_actions": [
+        "Initiate the mandatory Environmental Impact Assessment (EIA) immediately and simultaneously apply for all utility NOCs (FEWA, Etisalat, Wastewater) to compress the 12-24 month regulatory cycle, allocating dedicated resources to manage multi-agency coordination and documentation flow.",
+        "Finalize the technical specification and issue purchase orders for the long-lead Hybrid Air-Cooled Chiller units, requiring approximately 40-52 weeks of lead time, ensuring the mechanical system delivery aligns precisely with the expected structural completion date and preventing costly delays.",
+        "Engage legal and architectural teams to design a fully compliant data segregation framework that physically and logically isolates data subject to mandatory localization (Financial/Healthcare) from other co-located tenants, thereby maximizing market appeal while adhering strictly to Federal Decree-Law No. 45 of 2021 (PDPL)."
+      ],
+      "estimated_investment": "The total estimated investment for a 20 MW initial build is projected to be in the range of $160-$180 million USD, reflecting a higher CAPEX per megawatt compared to temperate climates due to the necessary investment in advanced hybrid cooling systems, specialized structural reinforcement (20% seismic premium), and significant power utility reinforcement costs.",
+      "risk_mitigation": [
+        "Establish escrow funding tied to Power Utility milestones and incorporate penalty clauses into the Interconnection Agreement to mitigate the high financial and schedule risk associated with the required power infrastructure development, ensuring accountability for utility delivery timelines.",
+        "Implement a robust project governance structure that mandates weekly cross-domain review meetings focusing specifically on regulatory progress (EIA/NOC status) and long-lead procurement status, allowing for proactive contingency planning if the critical 18-month regulatory window begins to slip.",
+        "Develop and maintain dual-path architectural drawingsone compliant with the high-efficiency, low-WUE design and a contingency plan for a slightly less efficient systemto ensure deployment momentum can be maintained if supply chain issues derail the 40-52 week delivery of the primary hybrid cooling units."
+      ],
+      "success_metrics": [
+        "Achievement of the sub-18-month regulatory approval milestone (EIA and all NOCs granted) will be the primary measure of early project success, demonstrating effective management of the high execution friction identified in the Regulatory Analysis.",
+        "Sustaining an annual average Power Usage Effectiveness (PUE) below 1.35 and maintaining Water Usage Effectiveness (WUE) below 0.5 L/kWh throughout the first year of operation, validating the high-CAPEX mechanical design choice and demonstrating successful long-term climate resilience.",
+        "Securing anchor tenancy agreements totaling at least 50% of the initial 20 MW capacity from organizations requiring data localization compliance, validating the strategic market positioning leveraging the strong UAE regulatory framework."
+      ]
+    },
+    "strategic_recommendation": "The overarching strategic recommendation is to Proceed with Caution, leveraging the exceptional fiscal advantages while aggressively mitigating the compound risk derived from regulatory friction, climate constraints, and power uncertainty. The deployment pathway must prioritize securing the long-term Power infrastructure agreement immediately and aggressively parallel-tracking the 12-24 month permitting process. Success hinges on transforming the climate challenge into a competitive advantage by delivering the promised PUE 1.30 and low WUE, positioning the site not merely as a cost-effective alternative but as a high-efficiency, regulation-compliant regional hub.",
+    "conclusion": "Detailed analysis supports a Conditional Go recommendation for this secondary UAE market, provided the Power and Risk data gaps are closed within 90 days with positive findings regarding utility commitment. Confidence level in the financial model is High due to the 0% corporate tax incentive and high demand for compliant hosting; however, confidence in the 18-month execution timeline is Moderate-Low due to the compounded risk of regulatory friction (EIA/NOCs) and long-lead equipment procurement in a highly challenging climate. Critical success factors are defined by the speed of regulatory approval and the validated commitment to delivering power infrastructure to support the required hyperscale load.",
+    "next_steps": [
+      "Immediate mobilization of the regulatory team to commence the mandatory Environmental Impact Assessment (EIA) and the complex multi-agency utility No-Objection Certificate (NOC) process, focusing on securing initial approvals within the first six months.",
+      "Launch a high-priority, dedicated effort to finalize the Power Purchase Agreement (PPA) and interconnection engineering studies with the local utility provider, defining the scope, timeline, and financial responsibility for the 'significant investment in power utility reinforcement'.",
+      "Engage specialized cooling consultants to finalize the design specifications for the Hybrid Air-Cooled Chiller system, immediately initiating the tender and procurement process to secure the necessary long-lead equipment and lock in current pricing assumptions."
+    ]
+  },
+  "data_gap_analysis": {
+    "data_sources_used": [
+      {
+        "name": "Public data analysis",
+        "type": "publicly_available",
+        "reliability": "medium",
+        "last_updated": "Current analysis",
+        "url": null
+      }
+    ],
+    "data_gaps_identified": [
+      "Local seismic hazard analysis (PSHA) to confirm 475-year PGA and soil-specific liquefaction/amplification factors",
+      "Site-specific geotechnical boring logs to verify liquefaction susceptibility and foundation bearing capacity",
+      "Hydrological study (including wadi/flash flood modeling) for 100-year rainfall events to set a local Finished Floor Elevation (FFE) requirement",
+      "Detailed ASHRAE TC 9.9 free cooling hours calculation based on local airport/weather station data (15C/59F threshold)",
+      "Specific RAK municipal zoning designation (e.g., 'Use-by-Right' vs. 'Conditional Use') for a hyperscale data center.",
+      "Legal/Regulatory-mandated dBA noise limits and g/kWh emissions limits for generators in Ras Al Khaimah.",
+      "Total Permitting Fee structure from RAK Municipality and utility providers."
+    ],
+    "third_party_requirements": [
+      "Geotechnical engineering firm for PSHA, liquefaction, and foundation design (SDC C)",
+      "Hydrological engineer for pluvial/wadi flood assessment, site grading, and stormwater management plan",
+      "Structural engineer for seismic and wind load design verification (ASCE 7 proxy)",
+      "MEP consultant for high-efficiency cooling system selection and PUE modeling based on local climate data",
+      "Local legal counsel for definitive PDPL and sectoral data localization strategy (PDPL Executive Regulations).",
+      "Investment promotion agency for written confirmation of QFZP eligibility and continuity of 0% corporate tax benefit.",
+      "Pre-application meeting with RAK Municipality and RAKEZ authorities for firming up the permitting timeline (EIA/NOCs) and zoning status."
+    ],
+    "assumptions_made": [
+      {
+        "category": "General Analysis",
+        "assumption": "International standards (e.g., GEM PGA, local regulations) are used as proxies for US standards (FEMA, USGS, CAL FIRE)",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Seismic PGA of 0.17g is a conservative proxy for the area near Dubai; a site-specific geotechnical PSHA is mandatory for final design",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Flood risk is primarily pluvial/wadi-driven, not coastal; site elevation (50m ASL proxy) is adequate to mitigate local BFE/flash flood risk based on inland desert location",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Liquefaction susceptibility and soil stability are assumed to be low due to general arid conditions, pending geotechnical verification",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Cooling Degree Days (CDD) and Free Cooling Hours are estimated based on Dubai/UAE NCEI climate normals and ASHRAE TC 9.9 standards",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The project is structured as a Qualifying Free Zone Person (QFZP) within RAKEZ to maximize tax incentives.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The data center is classified as Critical Infrastructure/Industrial activity, requiring a Conditional Use Permit (CUP) in RAK.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Environmental compliance (EIA, noise, emissions) will be measured against international Tier 4 standards in the absence of cited RAK-specific numeric legal limits for a large facility.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The $5M AED maximum penalty for PDPL non-compliance will apply, as the percentage-of-revenue fines seen in GDPR are not explicitly present in the federal law.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      }
+    ],
+    "overall_confidence": "low",
+    "next_steps_priority": [
+      "Address critical data gaps through third-party verification",
+      "Validate key assumptions with local experts",
+      "Conduct on-site assessments for high-impact areas"
+    ]
+  },
+  "weighted_domain_scores": [
+    {
+      "domain_name": "power_energy",
+      "raw_score": 2.5,
+      "weight": 0.35,
+      "weighted_contribution": 0.875,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "network_connectivity",
+      "raw_score": 1.0,
+      "weight": 0.15,
+      "weighted_contribution": 0.15,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "site_civil",
+      "raw_score": 2.5,
+      "weight": 0.1,
+      "weighted_contribution": 0.25,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "hazards_resilience",
+      "raw_score": 3.7,
+      "weight": 0.12,
+      "weighted_contribution": 0.444,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "mechanical_thermal",
+      "raw_score": 3.6,
+      "weight": 0.08,
+      "weighted_contribution": 0.28800000000000003,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 1
+    },
+    {
+      "domain_name": "regulatory_esg",
+      "raw_score": 1.075,
+      "weight": 0.14,
+      "weighted_contribution": 0.1505,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "market_competition",
+      "raw_score": 2.5,
+      "weight": 0.06,
+      "weighted_contribution": 0.15,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    }
+  ],
+  "all_no_go_gates": [
+    {
+      "gate_type": "Inadequate Thermal Resilience",
+      "triggered": false,
+      "reason": "N+1 redundancy and thermal mass (glycol loop) are designed to provide a minimum 18-minute ride-through at N-1 failure, exceeding the Uptime Institute Tier III minimum of 15 minutes.",
+      "standard_reference": "Uptime Institute Tier III requires minimum 15 minutes",
+      "mitigation_possible": true,
+      "mitigation_cost": "N/A - not triggered"
+    },
+    {
+      "gate_type": "Prohibited Cross-Border Data Transfers",
+      "triggered": false,
+      "reason": "PDPL allows cross-border data transfer using adequacy, SCC, or BCR mechanisms (GDPR-like framework).",
+      "standard_reference": "GDPR Article 44-50 / PDPL Articles 22-23",
+      "mitigation_possible": false,
+      "mitigation_cost": "N/A - not triggered"
+    }
+  ],
+  "all_caution_flags": [
+    {
+      "category": "PUE Optimization",
+      "severity": "medium",
+      "description": "Limited free cooling hours (~2,000 hrs/year) and high wet bulb temperature (28.0°C 99.6th percentile) constrain PUE, requiring a high-CAPEX hybrid system to achieve the 1.30 target.",
+      "mitigation_plan": "Implement Indirect Dry Cooler/Adiabatic Hybrid system and operate IT inlet temperatures at the high end of ASHRAE A1/A2 envelope (e.g., 27°C) to maximize free cooling hours.",
+      "cost_impact": "+$5-10M CAPEX premium for hybrid system vs. standard air-cooled chillers.",
+      "timeline_impact": "Potential 4-8 week delay due to specialized equipment procurement.",
+      "severity_points": 0.3
+    },
+    {
+      "category": "Restrictive Data Localization",
+      "severity": "medium",
+      "description": "Mandatory data localization for financial and healthcare sectors requires specialized local cloud infrastructure, impacting target customer base.",
+      "mitigation_plan": "Implement a hybrid/segregated architecture to ensure compliance for regulated sector customers (e.g., local storage for regulated data, international transfer for other data).",
+      "cost_impact": "+$5-15M for multi-region architecture and specialized compliance tooling",
+      "timeline_impact": "+3-6 months for legal and architecture design review",
+      "severity_points": 0.4
+    },
+    {
+      "category": "Complex Environmental Compliance (EIA)",
+      "severity": "medium",
+      "description": "Comprehensive EIA/EC is mandatory for large infrastructure projects (50-100 MW), adding friction and timeline risk due to inter-agency coordination (e.g., RAK Municipality, FEWA).",
+      "mitigation_plan": "Initiate EIA scoping immediately and run the process in parallel with design. Pre-purchase Tier 4 Final gensets to pre-empt emissions concerns.",
+      "cost_impact": "+$5M for EIA consultants, advanced emissions/acoustic controls",
+      "timeline_impact": "+6-12 months for EIA process and approval",
+      "severity_points": 0.3
+    },
+    {
+      "category": "Permitting Complexity & Execution Friction",
+      "severity": "medium",
+      "description": "The likely 18-month overall timeline and required multi-agency NOC process (FEWA, Etisalat, RAK Gas) introduces high execution friction, despite a fast RAK Municipality building permit application time.",
+      "mitigation_plan": "Appoint a seasoned local permitting agent. Secure a 'mega-project' coordinator from RAKEZ/RAK Municipality to streamline NOCs.",
+      "cost_impact": "+$3M for extended consulting, legal, and carrying costs",
+      "timeline_impact": "+6 months risk of extension if NOCs are sequential",
+      "severity_points": 0.3
+    }
+  ],
+  "provenance_summary": [],
+  "transactional_verifications": [],
+  "distance_measurements": []
+}

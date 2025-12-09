@@ -107,14 +107,14 @@ st.markdown("---")
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    if st.button("💬 Go to Assistant", use_container_width=True, type="primary"):
+    if st.button("💬 Go to Assistant", width='stretch', type="primary"):
         st.switch_page("Assistant.py")
 
 with col2:
-    if st.button("📊 View Reports", use_container_width=True, type="secondary"):
+    if st.button("📊 View Reports", width='stretch', type="secondary"):
         st.switch_page("pages/3_Reports.py")
 
 with col3:
-    if st.button("🚪 Logout", use_container_width=True):
+    if st.button("🚪 Logout", width='stretch'):
         from utils.auth import logout
         logout()

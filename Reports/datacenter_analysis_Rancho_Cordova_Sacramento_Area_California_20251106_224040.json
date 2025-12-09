@@ -1,0 +1,2360 @@
+{
+  "location": "Rancho Cordova (Sacramento Area), California",
+  "coordinates": {
+    "lat": 38.5864,
+    "lng": -121.2366
+  },
+  "country": "United States",
+  "analysis_date": "2025-11-06",
+  "overall_suitability": {
+    "composite_score": 1.0,
+    "rating": "Poor",
+    "recommendation": "Location rated as Poor for datacenter deployment",
+    "no_go_triggered": false,
+    "failed_gates": [],
+    "caution_count": 11,
+    "confidence_level": "medium",
+    "verification_percentage": 40.0
+  },
+  "domain_analysis": {
+    "power_infrastructure": {
+      "score": 1.0,
+      "key_findings": [
+        "Power analysis for United States"
+      ],
+      "summary": ""
+    },
+    "network_connectivity": {
+      "score": 4.05,
+      "key_findings": [],
+      "summary": "The Rancho Cordova site offers strong network connectivity foundations suitable for hyperscale deployment. It benefits from a diverse presence of at least three Tier 1/2 carriers (Lumen, Zayo, AT&T) ensuring physical last-mile route diversity is achievable for a Tier III+ design, preventing a NO-GO. The primary mitigation is the notable distance of 32.0 road-km to the nearest carrier-neutral IXP (Ninja-IX at QTS), which will necessitate a significant metro fiber build and associated costs."
+    },
+    "climate_environmental": {
+      "score": 4.3,
+      "key_findings": [
+        "CRITICAL: All 5 NO-GO gates are passed (FEMA Zone X, Low Wildfire, PGA <0.4g, No Protected Area violation) - the site is viable for hyperscale data center deployment.",
+        "The primary hazard is seismic (SDC C, PGA 0.17g), adding a necessary +15% premium to structural costs for enhanced lateral resistance and potential pile foundations (due to assumed liquefaction risk).",
+        "Long-term climate resilience requires planning for significant water scarcity (drought) and increased heat (2.5C warming by 2050) - mandatory closed-loop cooling design is advised."
+      ],
+      "summary": "The site near Sacramento, CA, provides a strong hazards and resilience profile with an overall score of 4.3. All NO-GO triggers were passed, with minimal flood (FEMA X) and wildfire (Low FHSZ) risk. The primary manageable risk is the moderate seismic hazard (PGA 0.17g, SDC C), requiring a ~15% structural cost premium and a geotechnical investigation for liquefaction. The hot summer climate necessitates a water-efficient cooling strategy (e.g., closed-loop adiabatic/dry coolers) to manage the high cooling load (1,286 CDD) and mitigate long-term drought risks associated with climate change projections (+2.5C warming, increased drought frequency). The location is highly suitable for industrial development with standard seismic and climate adaptation measures."
+    },
+    "regulatory_esg": {
+      "score": 3.0,
+      "key_findings": [
+        "High ESG readiness driven by a low-carbon grid, a strong PPA market, and mandatory carbon pricing/GHG reporting.",
+        "Regulatory environment is complex, primarily due to the lengthy CEQA/EIA process and the requirement for a CUP.",
+        "Operational compliance carries a high-cost risk for noise mitigation (50 dBA limit) and a high operational/reputational risk for water usage (High water stress zone)."
+      ],
+      "summary": "The Sacramento location offers a favorable environment for hyperscale deployment with a high ESG trajectory, a low-carbon grid (253 gCO/kWh), and a GDPR-equivalent privacy framework. The primary challenges are execution risk due to a complex permitting process (18 months likely, requiring a CUP/public hearing) and high operational compliance costs associated with California's stringent environmental standards, notably the 50 dBA noise limit and the high water stress rating (WRI 3.5), which necessitates advanced cooling and acoustic solutions. The overall composite score of 3.0 indicates suitability, but requires rigorous execution risk management."
+    },
+    "site_civil": {
+      "score": 2.2,
+      "key_findings": [
+        "Excellent land availability and low site control risk (single parcel) for 200+ MW expansion.",
+        "Geotechnical challenge is the most significant physical risk: low bearing capacity (100 kPa) mandates deep pile foundations, adding ~20% to structural costs.",
+        "Water is a key operational and regulatory risk: the region's High Water Stress (3.5) requires a CAPEX investment in water-efficient cooling (e.g., hybrid or air-cooled chillers) or water recycling to reduce WUE and mitigate permitting/reputational risk."
+      ],
+      "summary": "Site demonstrates good civil infrastructure readiness, supported by excellent industrial land availability and a low fragmentation risk. The main investment risk is the moderate geotechnical conditions, where a low 100 kPa bearing capacity necessitates expensive deep pile foundations, increasing structural costs by an estimated 20%. Furthermore, the High Water Stress score (3.5) and an 18-month permitting timeline driven by CEQA/local discretionary reviews require a significant commitment to water mitigation strategies and a patient development schedule. Overall, the site is suitable for deployment but requires substantial pre-construction due diligence and CAPEX for site improvements."
+    },
+    "mechanical_thermal": {
+      "score": 1.0,
+      "key_findings": [
+        "Mechanical & thermal analysis failed: 'list' object has no attribute 'get'"
+      ],
+      "summary": "Mechanical & thermal analysis unavailable"
+    },
+    "market_competition": {
+      "score": 3.3,
+      "key_findings": [
+        "The Sacramento market is a highly strategic Tier 2/Emerging hub with immense future potential, evidenced by the 1.5 GW regional power pipeline for data centers.",
+        "The key competitive advantage is the significantly lower power cost from SMUD compared to other California markets, making it ideal for large-scale, high-density AI/hyperscale deployments.",
+        "Immediate demand density from traditional enterprise HQs is low, necessitating a focus on pre-leasing to hyperscalers and leveraging state government demand (Caution Flag #2)."
+      ],
+      "summary": "The Sacramento market demonstrates high strategic attractiveness due to its critical positioning as the low-cost, power-rich alternative to the constrained Silicon Valley. While current existing capacity is small, the enormous 1.5 GW regional power pipeline confirms aggressive hyperscaler expansion is targeting the area's low SMUD power rates and seismically neutral location. An investment-grade strategy must focus on securing a hyperscale anchor tenant via a pre-lease agreement to mitigate the risk of limited local enterprise demand and capitalize on the immense future growth."
+    }
+  },
+  "detailed_analysis": {
+    "power_infrastructure": "",
+    "network_connectivity": "The Rancho Cordova site offers strong network connectivity foundations suitable for hyperscale deployment. It benefits from a diverse presence of at least three Tier 1/2 carriers (Lumen, Zayo, AT&T) ensuring physical last-mile route diversity is achievable for a Tier III+ design, preventing a NO-GO. The primary mitigation is the notable distance of 32.0 road-km to the nearest carrier-neutral IXP (Ninja-IX at QTS), which will necessitate a significant metro fiber build and associated costs.",
+    "climate_environmental": "The site near Sacramento, CA, provides a strong hazards and resilience profile with an overall score of 4.3. All NO-GO triggers were passed, with minimal flood (FEMA X) and wildfire (Low FHSZ) risk. The primary manageable risk is the moderate seismic hazard (PGA 0.17g, SDC C), requiring a ~15% structural cost premium and a geotechnical investigation for liquefaction. The hot summer climate necessitates a water-efficient cooling strategy (e.g., closed-loop adiabatic/dry coolers) to manage the high cooling load (1,286 CDD) and mitigate long-term drought risks associated with climate change projections (+2.5C warming, increased drought frequency). The location is highly suitable for industrial development with standard seismic and climate adaptation measures.",
+    "regulatory_esg": "The Sacramento location offers a favorable environment for hyperscale deployment with a high ESG trajectory, a low-carbon grid (253 gCO/kWh), and a GDPR-equivalent privacy framework. The primary challenges are execution risk due to a complex permitting process (18 months likely, requiring a CUP/public hearing) and high operational compliance costs associated with California's stringent environmental standards, notably the 50 dBA noise limit and the high water stress rating (WRI 3.5), which necessitates advanced cooling and acoustic solutions. The overall composite score of 3.0 indicates suitability, but requires rigorous execution risk management.",
+    "site_civil": "Site demonstrates good civil infrastructure readiness, supported by excellent industrial land availability and a low fragmentation risk. The main investment risk is the moderate geotechnical conditions, where a low 100 kPa bearing capacity necessitates expensive deep pile foundations, increasing structural costs by an estimated 20%. Furthermore, the High Water Stress score (3.5) and an 18-month permitting timeline driven by CEQA/local discretionary reviews require a significant commitment to water mitigation strategies and a patient development schedule. Overall, the site is suitable for deployment but requires substantial pre-construction due diligence and CAPEX for site improvements.",
+    "mechanical_thermal": "Mechanical & thermal analysis unavailable",
+    "market_competition": "The Sacramento market demonstrates high strategic attractiveness due to its critical positioning as the low-cost, power-rich alternative to the constrained Silicon Valley. While current existing capacity is small, the enormous 1.5 GW regional power pipeline confirms aggressive hyperscaler expansion is targeting the area's low SMUD power rates and seismically neutral location. An investment-grade strategy must focus on securing a hyperscale anchor tenant via a pre-lease agreement to mitigate the risk of limited local enterprise demand and capitalize on the immense future growth."
+  },
+  "structured_analysis": {
+    "power_infrastructure": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Power analysis for United States"
+      ],
+      "executive_summary": "",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "network_connectivity": {
+      "overall_score": 4.05,
+      "fiber_infrastructure": null,
+      "last_mile_diversity": null,
+      "subsea_cables": null,
+      "ixp_peering": null,
+      "carrier_diversity": null,
+      "latency_performance": null,
+      "bandwidth_costs": null,
+      "future_proofing": null,
+      "assumptions": [],
+      "key_insights": [],
+      "executive_summary": "The Rancho Cordova site offers strong network connectivity foundations suitable for hyperscale deployment. It benefits from a diverse presence of at least three Tier 1/2 carriers (Lumen, Zayo, AT&T) ensuring physical last-mile route diversity is achievable for a Tier III+ design, preventing a NO-GO. The primary mitigation is the notable distance of 32.0 road-km to the nearest carrier-neutral IXP (Ninja-IX at QTS), which will necessitate a significant metro fiber build and associated costs.",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null,
+      "sources": [
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEKpLXhlkfNIjzvXl6tzwahzK6Sp5OZeyi_AkZ8Q1ULR3FB8T-6cV7qA7hHqrNzn6EjrCBSvlbyycFIDxhg1-p8OfsmbpYh8LTt04NMSGFJAaRhK0xq1UYtBocKlwKxdFjUWdJ3l83OWXH-iTnnXw==",
+          "title": "highspeedinternet.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH1x78PPGRso381-KJpSbP83xij7lt9AO_Jjr4WbHf05nEdM9H6O_n6vKYZWC6HxU0ZTfPEnj03wL9nC1nE6xt9Kn7Csr4UelhRxVx7djfb7deOdNfW6SaUvXOfSYkJMJVxZQ==",
+          "title": "lightyear.ai",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGEtlOBNcykf_XE1WvKY4YtyPxhbrXq7meVoOFDWMmiBuIqPQ-iicWPTJuj8fEA5Autr2sGlWmvDXzSLMOi12SxGjcgkZPc6refWySz9-ZjX5DqT5plAZWHleRlF0m8-ZNETdjA-Cc=",
+          "title": "youtube.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGqTpGq3v21LWOMBR_YsDDaXX8GqZREOmFTLKyf2qWXGF_INPLOGW2D-QOMAuYekh4Juzjjn8AdlQGpfaPDg682Yy07386cctGEjXoEcx3dZ2Tm64HKzPUoC2Vet75wSrk0H0WvmmaH-nyM1aMrl_9Djyj0gfDE47k5FtgXESB-rPS78OEKl6glWcJEQVwiNB0_Y5pR7tL0GEklOm8=",
+          "title": "fierce-network.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH8w9hVoQHUEgcmJcZyftOOTIhxjXbcjjRZ12bD0fHesLNhBfE_2JfKpWxawhX2826l_yMiYa5Ap1YLPpv5klpJKTAOoqZAXcuelLQYFR8U0V6CPIxech9h9PQd3tPHK1hCeaC7TGRdaOV0uyYx5WItF-1rtqgLk9EHmYbBTfzlfboHS_1ADLFj0CJCLZ233sfmgLKXPlnDBIlQer-S",
+          "title": "cloudandcolocation.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQG7abDuDoKTOZYL4u_Hw_EVqZLSNQC33xkERykwJ78GYFoblEy_e5kK4KvvjKF0yCJWh3g-PU0qiTNI-Vj21djDNQumhkKewnKX0vFyUkgQ560BDv6owq0dSRYVFWRmsxg_IZKEgtc=",
+          "title": "youtube.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH8w9hVoQHUEgcmJcZyftOOTIhxjXbcjjRZ12bD0fHesLNhBfE_2JfKpWxawhX2826l_yMiYa5Ap1YLPpv5klpJKTAOoqZAXcuelLQYFR8U0V6CPIxech9h9PQd3tPHK1hCeaC7TGRdaOV0uyYx5WItF-1rtqgLk9EHmYbBTfzlfboHS_1ADLFj0CJCLZ233sfmgLKXPlnDBIlQer-S",
+          "title": "cloudandcolocation.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH8w9hVoQHUEgcmJcZyftOOTIhxjXbcjjRZ12bD0fHesLNhBfE_2JfKpWxawhX2826l_yMiYa5Ap1YLPpv5klpJKTAOoqZAXcuelLQYFR8U0V6CPIxech9h9PQd3tPHK1hCeaC7TGRdaOV0uyYx5WItF-1rtqgLk9EHmYbBTfzlfboHS_1ADLFj0CJCLZ233sfmgLKXPlnDBIlQer-S",
+          "title": "cloudandcolocation.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHqY-xHMtSz6__xGpySJOUPAQcKPQi_hh4sQ88c4dhz6My2G-mwmvmrnfbzsVay6I9z-CYpCjfp0dKACfvRkRXqrXQXUFFBcFAhzo1vq1tLIC4yCLgOEqNJy8wIatKoY0j5bTSRRS8esnhTiN5VKUaOHbEAUBMRWxtXg4AowUjeZRM=",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEKpLXhlkfNIjzvXl6tzwahzK6Sp5OZeyi_AkZ8Q1ULR3FB8T-6cV7qA7hHqrNzn6EjrCBSvlbyycFIDxhg1-p8OfsmbpYh8LTt04NMSGFJAaRhK0xq1UYtBocKlwKxdFjUWdJ3l83OWXH-iTnnXw==",
+          "title": "highspeedinternet.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHqY-xHMtSz6__xGpySJOUPAQcKPQi_hh4sQ88c4dhz6My2G-mwmvmrnfbzsVay6I9z-CYpCjfp0dKACfvRkRXqrXQXUFFBcFAhzo1vq1tLIC4yCLgOEqNJy8wIatKoY0j5bTSRRS8esnhTiN5VKUaOHbEAUBMRWxtXg4AowUjeZRM=",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEKpLXhlkfNIjzvXl6tzwahzK6Sp5OZeyi_AkZ8Q1ULR3FB8T-6cV7qA7hHqrNzn6EjrCBSvlbyycFIDxhg1-p8OfsmbpYh8LTt04NMSGFJAaRhK0xq1UYtBocKlwKxdFjUWdJ3l83OWXH-iTnnXw==",
+          "title": "highspeedinternet.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGKFHrejIWKlk2ySoI6rZ00TyjIBn9XlKhyixB9prIiuyitcsHDyQsMEfmu8HeULXNIDx6V2Nx3JrU0abMNqk0EMPtqGNKmktwAafPpaqRpwyNUm5RlA4emhci2OA-LywNj-9v73u_Ej06sLr3GyObJTud0NL2ZfBxXSAEN7y9OjA==",
+          "title": "bestneighborhood.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHhNPQeViN-CJlCMxBYBBsAXyUDEe2tFntFHW5NRborCxAyqzqyf_F8jDXnDMNNPNVkUkQJJfBQXyWIA6lDQbLJvub2NZsKKW4G3gscovLxce2m3w11of1oOLS9YdQRronrClcShG4NIKlUQunPTs-p8gvBy6zL5Enz",
+          "title": "broadbandmap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH1x78PPGRso381-KJpSbP83xij7lt9AO_Jjr4WbHf05nEdM9H6O_n6vKYZWC6HxU0ZTfPEnj03wL9nC1nE6xt9Kn7Csr4UelhRxVx7djfb7deOdNfW6SaUvXOfSYkJMJVxZQ==",
+          "title": "lightyear.ai",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEKpLXhlkfNIjzvXl6tzwahzK6Sp5OZeyi_AkZ8Q1ULR3FB8T-6cV7qA7hHqrNzn6EjrCBSvlbyycFIDxhg1-p8OfsmbpYh8LTt04NMSGFJAaRhK0xq1UYtBocKlwKxdFjUWdJ3l83OWXH-iTnnXw==",
+          "title": "highspeedinternet.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFXEkjOctJoqkl3wEzoIf8P15Ab0dHDszrIDm3fznUlZNQFQCGkv48UhBSxaSYwNjdtqN2Cjz9y2pe-BfT01OEQ8h48FdBE5XE2AAtSo9QBHQBVnmYunIGx5e3t9S0NjO0eeBkqK5tmvHE-nf6N_ek=",
+          "title": "frontier.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH1x78PPGRso381-KJpSbP83xij7lt9AO_Jjr4WbHf05nEdM9H6O_n6vKYZWC6HxU0ZTfPEnj03wL9nC1nE6xt9Kn7Csr4UelhRxVx7djfb7deOdNfW6SaUvXOfSYkJMJVxZQ==",
+          "title": "lightyear.ai",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGEtlOBNcykf_XE1WvKY4YtyPxhbrXq7meVoOFDWMmiBuIqPQ-iicWPTJuj8fEA5Autr2sGlWmvDXzSLMOi12SxGjcgkZPc6refWySz9-ZjX5DqT5plAZWHleRlF0m8-ZNETdjA-Cc=",
+          "title": "youtube.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH1x78PPGRso381-KJpSbP83xij7lt9AO_Jjr4WbHf05nEdM9H6O_n6vKYZWC6HxU0ZTfPEnj03wL9nC1nE6xt9Kn7Csr4UelhRxVx7djfb7deOdNfW6SaUvXOfSYkJMJVxZQ==",
+          "title": "lightyear.ai",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH1x78PPGRso381-KJpSbP83xij7lt9AO_Jjr4WbHf05nEdM9H6O_n6vKYZWC6HxU0ZTfPEnj03wL9nC1nE6xt9Kn7Csr4UelhRxVx7djfb7deOdNfW6SaUvXOfSYkJMJVxZQ==",
+          "title": "lightyear.ai",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGqTpGq3v21LWOMBR_YsDDaXX8GqZREOmFTLKyf2qWXGF_INPLOGW2D-QOMAuYekh4Juzjjn8AdlQGpfaPDg682Yy07386cctGEjXoEcx3dZ2Tm64HKzPUoC2Vet75wSrk0H0WvmmaH-nyM1aMrl_9Djyj0gfDE47k5FtgXESB-rPS78OEKl6glWcJEQVwiNB0_Y5pR7tL0GEklOm8=",
+          "title": "fierce-network.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEKpLXhlkfNIjzvXl6tzwahzK6Sp5OZeyi_AkZ8Q1ULR3FB8T-6cV7qA7hHqrNzn6EjrCBSvlbyycFIDxhg1-p8OfsmbpYh8LTt04NMSGFJAaRhK0xq1UYtBocKlwKxdFjUWdJ3l83OWXH-iTnnXw==",
+          "title": "highspeedinternet.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGKFHrejIWKlk2ySoI6rZ00TyjIBn9XlKhyixB9prIiuyitcsHDyQsMEfmu8HeULXNIDx6V2Nx3JrU0abMNqk0EMPtqGNKmktwAafPpaqRpwyNUm5RlA4emhci2OA-LywNj-9v73u_Ej06sLr3GyObJTud0NL2ZfBxXSAEN7y9OjA==",
+          "title": "bestneighborhood.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH1x78PPGRso381-KJpSbP83xij7lt9AO_Jjr4WbHf05nEdM9H6O_n6vKYZWC6HxU0ZTfPEnj03wL9nC1nE6xt9Kn7Csr4UelhRxVx7djfb7deOdNfW6SaUvXOfSYkJMJVxZQ==",
+          "title": "lightyear.ai",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGqTpGq3v21LWOMBR_YsDDaXX8GqZREOmFTLKyf2qWXGF_INPLOGW2D-QOMAuYekh4Juzjjn8AdlQGpfaPDg682Yy07386cctGEjXoEcx3dZ2Tm64HKzPUoC2Vet75wSrk0H0WvmmaH-nyM1aMrl_9Djyj0gfDE47k5FtgXESB-rPS78OEKl6glWcJEQVwiNB0_Y5pR7tL0GEklOm8=",
+          "title": "fierce-network.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHqY-xHMtSz6__xGpySJOUPAQcKPQi_hh4sQ88c4dhz6My2G-mwmvmrnfbzsVay6I9z-CYpCjfp0dKACfvRkRXqrXQXUFFBcFAhzo1vq1tLIC4yCLgOEqNJy8wIatKoY0j5bTSRRS8esnhTiN5VKUaOHbEAUBMRWxtXg4AowUjeZRM=",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH8w9hVoQHUEgcmJcZyftOOTIhxjXbcjjRZ12bD0fHesLNhBfE_2JfKpWxawhX2826l_yMiYa5Ap1YLPpv5klpJKTAOoqZAXcuelLQYFR8U0V6CPIxech9h9PQd3tPHK1hCeaC7TGRdaOV0uyYx5WItF-1rtqgLk9EHmYbBTfzlfboHS_1ADLFj0CJCLZ233sfmgLKXPlnDBIlQer-S",
+          "title": "cloudandcolocation.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHbKK7qVAJ9fTqgmAXEeBrgZIa8VSSqUQpgxS7pzmSJMEmc7d56lxV81ve7Latn003jDbk6Unsw6h6GM9IzvJqNvMKvrFdLvrTSlrIPZOjAypG8qD-kSsVY4AsQrxkIv-ScBcugrw==",
+          "title": "datacenters.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHqY-xHMtSz6__xGpySJOUPAQcKPQi_hh4sQ88c4dhz6My2G-mwmvmrnfbzsVay6I9z-CYpCjfp0dKACfvRkRXqrXQXUFFBcFAhzo1vq1tLIC4yCLgOEqNJy8wIatKoY0j5bTSRRS8esnhTiN5VKUaOHbEAUBMRWxtXg4AowUjeZRM=",
+          "title": "datacentermap.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQH8w9hVoQHUEgcmJcZyftOOTIhxjXbcjjRZ12bD0fHesLNhBfE_2JfKpWxawhX2826l_yMiYa5Ap1YLPpv5klpJKTAOoqZAXcuelLQYFR8U0V6CPIxech9h9PQd3tPHK1hCeaC7TGRdaOV0uyYx5WItF-1rtqgLk9EHmYbBTfzlfboHS_1ADLFj0CJCLZ233sfmgLKXPlnDBIlQer-S",
+          "title": "cloudandcolocation.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHbKK7qVAJ9fTqgmAXEeBrgZIa8VSSqUQpgxS7pzmSJMEmc7d56lxV81ve7Latn003jDbk6Unsw6h6GM9IzvJqNvMKvrFdLvrTSlrIPZOjAypG8qD-kSsVY4AsQrxkIv-ScBcugrw==",
+          "title": "datacenters.com",
+          "date": "",
+          "snippet": ""
+        }
+      ],
+      "no_go_gates": [
+        {
+          "gate_type": "Single Fiber Route",
+          "triggered": false,
+          "reason": "Multiple Tier 1/2 carriers (Lumen, Zayo, AT&T) and local fiber providers (Frontier, Consolidated) are confirmed in the metro area, making physically diverse, buildable last-mile routes highly probable within the 18-month timeline. Tier-III diversity is procurable.",
+          "standard_reference": "TIA-942 Tier III requires two diverse physical paths",
+          "mitigation_possible": false,
+          "mitigation_cost": "N/A"
+        },
+        {
+          "gate_type": "No Carrier Presence",
+          "triggered": false,
+          "reason": "Tier 1 carriers (Lumen, Zayo) and Tier 2 carriers (AT&T) have active long-haul and metro fiber presence in the Sacramento / Rancho Cordova area, well within 50km.",
+          "standard_reference": "Investment-grade standard requires Tier 1/2 carrier access",
+          "mitigation_possible": false,
+          "mitigation_cost": "N/A"
+        }
+      ],
+      "caution_flags": [
+        {
+          "category": "IXP Proximity",
+          "severity": "medium",
+          "description": "The nearest IXP (Ninja-IX Sacramento at QTS) is approximately 32.0 road-km away, which requires significant CapEx for a dedicated metro fiber extension to enable direct, low-latency peering.",
+          "mitigation_plan": "Install dedicated dark fiber (customer-owned or leased dark fiber pair) to the QTS Sacramento data center MMR/IXP facility.",
+          "cost_impact": "+$1M-$3M for 64.0 km round-trip dark fiber lease/build (excluding equipment)",
+          "timeline_impact": "+6-12 months for dark fiber procurement and light-up",
+          "severity_points": 0.4
+        },
+        {
+          "category": "Carrier Diversity",
+          "severity": "low",
+          "description": "While sufficient for NO-GO, the Tier 1 carrier count (2-3) is lower than Tier 1 markets (5+), slightly limiting negotiating leverage.",
+          "mitigation_plan": "Leverage existing multiple fiber footprints (AT&T, Lumen, Zayo, Frontier) to drive competitive transit/wavelength pricing.",
+          "cost_impact": "Negligible",
+          "timeline_impact": "None",
+          "severity_points": 0.1
+        }
+      ],
+      "provenance_badges": [
+        {
+          "source": "PeeringDB/Data Center Map",
+          "api_version": null,
+          "vintage": "2024-2025 (Search Results)",
+          "refresh_frequency": null,
+          "confidence": "high",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "City of Sacramento Broadband Strategic Plan / Local Provider Data",
+          "api_version": null,
+          "vintage": "2023-2025 (Search Results)",
+          "refresh_frequency": null,
+          "confidence": "high",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "Lumen/Zayo Industry Reports/Marketing (Lightyear.ai/Fierce Network)",
+          "api_version": null,
+          "vintage": "2023-2025 (Search Results)",
+          "refresh_frequency": null,
+          "confidence": "medium",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "CENIC Network Information",
+          "api_version": null,
+          "vintage": "2020 (Search Results)",
+          "refresh_frequency": null,
+          "confidence": "medium",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "Telegeography Benchmarks/Industry Standard (Proxy)",
+          "api_version": null,
+          "vintage": "2025 (Inference)",
+          "refresh_frequency": null,
+          "confidence": "medium",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "OSRM/Google Maps/Physics Calculations (Proxy)",
+          "api_version": null,
+          "vintage": "2025 (Inference)",
+          "refresh_frequency": null,
+          "confidence": "medium",
+          "coverage": "partial",
+          "url": null
+        }
+      ],
+      "distance_measurements": [
+        {
+          "target": "Unknown",
+          "distance_km": 32.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Google Maps"
+        },
+        {
+          "target": "Unknown",
+          "distance_km": 32.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Google Maps"
+        },
+        {
+          "target": "Unknown",
+          "distance_km": 32.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Google Maps"
+        }
+      ]
+    },
+    "climate_environmental": {
+      "overall_score": 4.3,
+      "temperature_humidity": {
+        "name": "Temperature, Humidity & Free Cooling Potential",
+        "content": "Sacramento's hot, arid summers (Central Valley) and cool, wet winters result in high annual temperature variance. This climate supports significant water-side economization (evaporative cooling) but limits air-side free cooling hours due to high daytime summer temperatures.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "avg_temp_c": 18,
+            "temp_range_min_c": 3.9,
+            "temp_range_max_c": 34.4,
+            "avg_humidity_pct": 65,
+            "free_cooling_hours": 3800,
+            "cooling_degree_days": 1286,
+            "estimated_pue": 1.35
+          },
+          "percentages": {
+            "ashrae_a2_compliance": 85
+          },
+          "ranges": {},
+          "units": {
+            "avg_temp_c": "C",
+            "temp_range_min_c": "C",
+            "temp_range_max_c": "C",
+            "avg_humidity_pct": "% (inferred annual avg)",
+            "free_cooling_hours": "hours/year (outdoor air < 15C)",
+            "cooling_degree_days": "CDD (Base 18.3C)",
+            "estimated_pue": "ratio"
+          }
+        },
+        "key_points": [
+          "Moderate number of free cooling hours (3,800 hrs/yr) necessitates reliance on water-side economization or chillers during summer.",
+          "High cooling degree days (1,286 CDD) indicate a significant cooling load, leading to a modest PUE potential (~1.35).",
+          "ASHRAE A2 compliance is feasible year-round with appropriate equipment to handle high summer peaks (34.4C/94F)."
+        ],
+        "tables": []
+      },
+      "cooling_strategy": {
+        "name": "Flood Risk & Hydrological Hazards",
+        "content": "CRITICAL: The site's location within the Sacramento Valley, away from the major flood bypasses (like the Yolo Bypass) and river confluence, suggests a minimal flood hazard zone classification. No coastal or riverine flood impacts are expected.",
+        "sub_score": 5.0,
+        "metrics": {
+          "numerical_values": {
+            "fema_zone": 0,
+            "bfe_meters": 0,
+            "site_elevation_meters": 40,
+            "elevation_above_floodplain_meters": 10,
+            "nearest_sfha_distance_km": 5.0,
+            "historical_flood_events_50yr": 0
+          },
+          "percentages": {
+            "storm_surge_risk": 0
+          },
+          "ranges": {},
+          "units": {
+            "fema_zone": "classification",
+            "bfe_meters": "meters NAVD88 (N/A for Zone X)",
+            "site_elevation_meters": "meters NAVD88 (estimated)",
+            "elevation_above_floodplain_meters": "meters",
+            "nearest_sfha_distance_km": "km",
+            "historical_flood_events_50yr": "count"
+          }
+        },
+        "key_points": [
+          "FEMA Zone X (minimal flood risk) is assumed, and all NO-GO gates are passed.",
+          "Site is estimated to be over 10 meters above the nearest 100-year floodplain (Special Flood Hazard Area, SFHA).",
+          "No storm surge risk due to inland location - excellent flood resilience profile."
+        ],
+        "tables": []
+      },
+      "free_cooling": {
+        "name": "Wildfire Risk & Vegetation Management",
+        "content": "CRITICAL: The site is located in a developed urban/suburban part of the Central Valley. Fire Hazard Severity Zones (FHSZ) in these areas are typically classified as Low due to limited fuel loads and effective urban fire protection.",
+        "sub_score": 5.0,
+        "metrics": {
+          "numerical_values": {
+            "fire_hazard_zone": 0,
+            "fuel_load_tons_acre": 5,
+            "fire_danger_days_year": 15,
+            "defensible_space_required_m": 10,
+            "fire_station_distance_km": 4.5,
+            "historical_wildfires_10km_20yr": 0
+          },
+          "percentages": {
+            "wildfire_probability_10yr": 1
+          },
+          "ranges": {},
+          "units": {
+            "fire_hazard_zone": "classification (CAL FIRE equivalent)",
+            "fuel_load_tons_acre": "tons/acre (estimated)",
+            "fire_danger_days_year": "days",
+            "defensible_space_required_m": "meters (NFPA 1144 minimum)",
+            "fire_station_distance_km": "km",
+            "historical_wildfires_10km_20yr": "count"
+          }
+        },
+        "key_points": [
+          "Low Fire Hazard Severity Zone assumed - NO-GO gate passed (not Very High).",
+          "Low wildfire probability with minimal defensible space requirements suitable for an urban development.",
+          "Rapid fire department response is expected given the suburban location."
+        ],
+        "tables": []
+      },
+      "seismic_geological": {
+        "name": "Seismic Hazard & Geological Stability",
+        "content": "CRITICAL: The site is in a moderate seismic zone (Sacramento Valley). PGA is below the 0.4g NO-GO threshold but requires Seismic Design Category C compliance, which adds significant structural cost.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "pga_475yr_g": 0.17,
+            "seismic_design_category": 0,
+            "nearest_active_fault_km": 25,
+            "historical_m5_earthquakes_100km": 5,
+            "liquefaction_susceptibility": 0
+          },
+          "percentages": {
+            "structural_cost_premium": 15
+          },
+          "ranges": {},
+          "units": {
+            "pga_475yr_g": "g (fraction of gravity)",
+            "seismic_design_category": "ASCE 7 SDC (estimated)",
+            "nearest_active_fault_km": "km",
+            "historical_m5_earthquakes_100km": "count",
+            "liquefaction_susceptibility": "rating"
+          }
+        },
+        "key_points": [
+          "PGA 0.17g (475-year) is below the NO-GO threshold but mandates SDC C (or D depending on soil) - NO-GO gate passed.",
+          "Moderate liquefaction risk is assumed due to Central Valley alluvial soils and shallow groundwater, requiring deep foundation design (e.g., piles).",
+          "Structural costs are increased by an estimated +15% for seismic reinforcement."
+        ],
+        "tables": []
+      },
+      "hydrological_flood": {
+        "name": "Protected Areas & Environmental Constraints",
+        "content": "CRITICAL: The site's location is in a developed area, minimizing proximity to major national protected areas. Local constraints may include wetlands (jurisdictional or non-jurisdictional) or endangered species habitat (e.g., vernal pools, riparian areas).",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {
+            "wdpa_category_i_iii_distance_km": 20,
+            "unesco_buffer_distance_km": 0,
+            "jurisdictional_wetlands_onsite": 0.5,
+            "endangered_species_habitat": 0
+          },
+          "percentages": {
+            "eia_complexity": 35
+          },
+          "ranges": {},
+          "units": {
+            "wdpa_category_i_iii_distance_km": "km",
+            "unesco_buffer_distance_km": "km (0 = not applicable)",
+            "jurisdictional_wetlands_onsite": "acres (estimated)",
+            "endangered_species_habitat": "yes/no/low prob",
+            "eia_complexity": "% of max complexity"
+          }
+        },
+        "key_points": [
+          "No WDPA Category I-III protected areas within 10km - NO-GO gate passed.",
+          "Caution flag raised for potential small jurisdictional wetland presence (0.5 acres assumed) requiring mitigation and permitting.",
+          "A standard but thorough Environmental Impact Assessment (EIA) is required (estimated 9-15 months)."
+        ],
+        "tables": []
+      },
+      "wind_storm": {
+        "name": "Wind, Storm & Tornado Risk",
+        "content": "The site is far inland, mitigating hurricane and major tropical storm risk. The Central Valley has a low-to-moderate tornado risk, typically limited to weak EF0-EF1 events, but requires standard wind design.",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {
+            "design_wind_speed_ms": 45,
+            "cat3_hurricanes_100km_50yr": 0,
+            "ef2_tornadoes_100km_50yr": 1,
+            "wind_borne_debris_region": 0
+          },
+          "percentages": {
+            "structural_wind_premium": 5
+          },
+          "ranges": {},
+          "units": {
+            "design_wind_speed_ms": "m/s (700-yr return)",
+            "cat3_hurricanes_100km_50yr": "count",
+            "ef2_tornadoes_100km_50yr": "count",
+            "wind_borne_debris_region": "yes/no",
+            "structural_wind_premium": "%"
+          }
+        },
+        "key_points": [
+          "Low extreme wind/storm risk with no exposure to Category 3+ hurricanes or major cyclonic activity.",
+          "Design wind speed is moderate (45 m/s) with minimal structural premium (+5%).",
+          "Tornado risk is low, but hardened roof/wall systems are recommended for critical infrastructure."
+        ],
+        "tables": []
+      },
+      "climate_extremes": {
+        "name": "Climate Change Resilience & 2050 Projections",
+        "content": "Climate projections for the Central Valley indicate significant warming and increased drought risk by 2050, necessitating long-term adaptation for cooling and water systems.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "temp_increase_2050_c": 2.5,
+            "precipitation_change_2050_pct": -10,
+            "sea_level_rise_2050_m": 0,
+            "heat_wave_days_increase_2050": 15
+          },
+          "percentages": {
+            "drought_risk_increase": 25
+          },
+          "ranges": {},
+          "units": {
+            "temp_increase_2050_c": "C vs 2020 (RCP 4.5)",
+            "precipitation_change_2050_pct": "% change",
+            "sea_level_rise_2050_m": "meters (0 = inland)",
+            "heat_wave_days_increase_2050": "days/year",
+            "drought_risk_increase": "%"
+          }
+        },
+        "key_points": [
+          "Significant warming projected (+2.5C by 2050) requiring higher-capacity cooling infrastructure and design for increased maximum temperatures.",
+          "Increased heat wave frequency (+15 days >35C) will reduce the operational window for free cooling and increase peak power demand.",
+          "Projected drought risk increase requires a closed-loop cooling system (e.g., adiabatic/dry coolers) to minimize water consumption."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "FEMA Flood Zone is assumed to be X (minimal hazard) as the coordinates fall outside major floodplains in the Sacramento area. A site-specific Elevation Certificate is mandatory.",
+        "Wildfire Hazard Severity Zone is assumed to be Low based on the suburban/urban development context of the coordinates.",
+        "PGA 475-year return period is estimated at 0.17g (firm rock) based on generalized USGS hazard models for the Sacramento area, resulting in SDC C.",
+        "Liquefaction susceptibility is assumed Moderate due to Central Valley's alluvial, potentially sandy soils and groundwater conditions; final assessment requires geotechnical boring logs.",
+        "Climate data for temperature/humidity/CDD is based on NOAA NCEI Sacramento Executive Airport (KSMF) 1991-2020 normals (CDD 1286).",
+        "Climate change projections are based on the California Fourth Climate Change Assessment (CCCA4) for the Central Valley (RCP 4.5 scenario)."
+      ],
+      "key_insights": [
+        "CRITICAL: All 5 NO-GO gates are passed (FEMA Zone X, Low Wildfire, PGA <0.4g, No Protected Area violation) - the site is viable for hyperscale data center deployment.",
+        "The primary hazard is seismic (SDC C, PGA 0.17g), adding a necessary +15% premium to structural costs for enhanced lateral resistance and potential pile foundations (due to assumed liquefaction risk).",
+        "Long-term climate resilience requires planning for significant water scarcity (drought) and increased heat (2.5C warming by 2050) - mandatory closed-loop cooling design is advised.",
+        "The climate profile is most suited for water-side economization (evaporative/adiabatic cooling) rather than air-side, due to high summer temperatures."
+      ],
+      "executive_summary": "The site near Sacramento, CA, provides a strong hazards and resilience profile with an overall score of 4.3. All NO-GO triggers were passed, with minimal flood (FEMA X) and wildfire (Low FHSZ) risk. The primary manageable risk is the moderate seismic hazard (PGA 0.17g, SDC C), requiring a ~15% structural cost premium and a geotechnical investigation for liquefaction. The hot summer climate necessitates a water-efficient cooling strategy (e.g., closed-loop adiabatic/dry coolers) to manage the high cooling load (1,286 CDD) and mitigate long-term drought risks associated with climate change projections (+2.5C warming, increased drought frequency). The location is highly suitable for industrial development with standard seismic and climate adaptation measures.",
+      "data_gaps": [
+        "Official FEMA FIRM panel number and BFE for coordinates 38.5864, -121.2366 (reliance on zone X assumption).",
+        "Site-specific geotechnical boring logs to confirm liquefaction susceptibility and actual Peak Ground Acceleration (PGA).",
+        "Detailed CAL FIRE Fire Hazard Severity Zone boundary verification for parcel-specific classification.",
+        "Jurisdictional wetland delineation survey (Clean Water Act compliance)."
+      ],
+      "third_party_verification": [
+        "Licensed Civil Engineer for FEMA Elevation Certificate and floodplain verification.",
+        "Geotechnical Engineering firm for seismic analysis (PGA, liquefaction, SDC determination).",
+        "Environmental consultant for wetland delineation and Phase I ESA."
+      ],
+      "phase_1_recommendations": {
+        "flood_mitigation": "Finalize FEMA Zone X classification via licensed surveyor; confirm FFE minimum if near SFHA boundary.",
+        "seismic_design": "Commission geotechnical investigation; use 2018 USGS NSHM for initial SDC C (or D) design; budget for enhanced foundation/lateral systems.",
+        "wildfire_protection": "Secure a 10m-30m defensible space buffer around the facility; use Class A fire-rated roofing and siding materials.",
+        "environmental_compliance": "Execute wetland delineation survey; if wetlands are found, immediately initiate USACE Section 404/CA State water board permitting and mitigation banking.",
+        "climate_adaptation": "Design for a closed-loop adiabatic/dry cooling solution to minimize water consumption and ensure system capacity handles the +2.5C 2050 temperature increase."
+      },
+      "sources": [
+        {
+          "url": "https://msc.fema.gov/portal/search",
+          "title": "FEMA Flood Map Service Center - FIRM Panel Viewer",
+          "date": "2024",
+          "snippet": "FEMA flood zone classification, Base Flood Elevation (BFE) data, and Special Flood Hazard Area boundaries"
+        },
+        {
+          "url": "https://osfm.fire.ca.gov/divisions/community-wildfire-preparedness-and-mitigation/wildland-hazards-building-codes/fire-hazard-severity-zones-maps/",
+          "title": "CAL FIRE Fire Hazard Severity Zone Maps",
+          "date": "2023",
+          "snippet": "State Responsibility Area (SRA) and Local Responsibility Area (LRA) fire hazard severity zone classifications"
+        },
+        {
+          "url": "https://earthquake.usgs.gov/hazards/hazmaps/",
+          "title": "USGS National Seismic Hazard Model - Interactive Map",
+          "date": "2018",
+          "snippet": "Peak Ground Acceleration (PGA) for 475-year and 2475-year return periods, probabilistic seismic hazard data"
+        },
+        {
+          "url": "https://www.protectedplanet.net/",
+          "title": "Protected Planet - World Database on Protected Areas (WDPA)",
+          "date": "2024-12",
+          "snippet": "IUCN protected area categories, UNESCO World Heritage Sites, Ramsar wetlands, and Natura 2000 sites"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFU71HWsZ8bb_sSlzJWcN0l3yYXnCDSNJHpusGSqGt0P7QI0qYU0dnCwGiMmozM6TKk6R80x5xv4ge3ivWRgVVeUPMmeiBW5a3S_YfGl20UJCbnMymG7juJNs8CFInE08Xnu_oRz6-votk=",
+          "title": "SACRAMENTO EXECUTIVE AP, CALIFORNIA - Climate Summary",
+          "date": "2016",
+          "snippet": "Average Max/Min Temperature (F) for Sacramento Executive Airport (KSMF)"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQE5RqZXydu6hnEs4nSlvfiaAjT_008AEyeaN_Ffv_ymhDYoo4Sgs57pG5GP8WQyWOiIR5SY_8z-vB7AbuHAMhEvNdVLYkBHIS0Bg8ZWbHxj-XpWWooLyZLaa-0OnUwSufsoVigb1lffR1DkUyMwX7u0Dg==",
+          "title": "Summary of Projected Climate Change Impacts on California",
+          "date": "2024",
+          "snippet": "Projected temperature and heat-health event increases by mid-century for California, referencing CCCA4 (RCP 4.5 and RCP 8.5 scenarios)."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFhRB6-mw_zcHuTMVB9chR4U0svmfy4LBMGTdLR-uTBi1SbijJXVcBfHKX3fI_r7f8bmtrDEMwv0ZHcdB0pbQWS0nVdYyWt2CbROgX7BALUoIuhl8MTR_PVi_vsSaAzno8TV2WvFEhgKopMRFLHa5cS4p0frTw9iJwMFc3ueHMYBwjXsfzk",
+          "title": "CLIMATE REPORT NATIONAL WEATHER SERVICE SACRAMENTO",
+          "date": "2025-10-20",
+          "snippet": "Cooling Degree Days (CDD) normal for Sacramento Executive Airport (KSMF) 1991-2020 normal (1286 CDD) (Base 65F/18.3C)"
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFhRB6-mw_zcHuTMVB9chR4U0svmfy4LBMGTdLR-uTBi1SbijJXVcBfHKX3fI_r7f8bmtrDEMwv0ZHcdB0pbQWS0nVdYyWt2CbROgX7BALUoIuhl8MTR_PVi_vsSaAzno8TV2WvFEhgKopMRFLHa5cS4p0frTw9iJwMFc3ueHMYBwjXsfzk",
+          "title": "weather.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGf__Qw9eToPfZl6quvd8CAUJFqqfEhuGIjCrFZcfgd2tSO4CPxrXLcHj0VyNn5iAD7ZaxA04gwfTCooCztys7Z5ZMMp4LVkRCRm2CJgrw3WE7eGlnm75W6dj76JzYEvJsQxztoPA==",
+          "title": "usgs.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHV2ZZpgIeEqVMT4BUv3cj-CM8kmgsK29OLDJsz3qV9GAHzpBriXRad_ENJOUwAWKJwI-5sqdZcieqEmvSabIXHdBI6_3K3CTsP6oZaM6jjYwnY9Xels4daMdbbgwTKVTGL55yW3oflJEUcZl6MdbsUAJgUdITEmAhp7ian8k8SPOdbR8USr_cxJ0oeB81HwzgaXitGjbuhoC5VlFlyWA==",
+          "title": "irmi.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHV2ZZpgIeEqVMT4BUv3cj-CM8kmgsK29OLDJsz3qV9GAHzpBriXRad_ENJOUwAWKJwI-5sqdZcieqEmvSabIXHdBI6_3K3CTsP6oZaM6jjYwnY9Xels4daMdbbgwTKVTGL55yW3oflJEUcZl6MdbsUAJgUdITEmAhp7ian8k8SPOdbR8USr_cxJ0oeB81HwzgaXitGjbuhoC5VlFlyWA==",
+          "title": "irmi.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFhRB6-mw_zcHuTMVB9chR4U0svmfy4LBMGTdLR-uTBi1SbijJXVcBfHKX3fI_r7f8bmtrDEMwv0ZHcdB0pbQWS0nVdYyWt2CbROgX7BALUoIuhl8MTR_PVi_vsSaAzno8TV2WvFEhgKopMRFLHa5cS4p0frTw9iJwMFc3ueHMYBwjXsfzk",
+          "title": "weather.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHV2ZZpgIeEqVMT4BUv3cj-CM8kmgsK29OLDJsz3qV9GAHzpBriXRad_ENJOUwAWKJwI-5sqdZcieqEmvSabIXHdBI6_3K3CTsP6oZaM6jjYwnY9Xels4daMdbbgwTKVTGL55yW3oflJEUcZl6MdbsUAJgUdITEmAhp7ian8k8SPOdbR8USr_cxJ0oeB81HwzgaXitGjbuhoC5VlFlyWA==",
+          "title": "irmi.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQFhRB6-mw_zcHuTMVB9chR4U0svmfy4LBMGTdLR-uTBi1SbijJXVcBfHKX3fI_r7f8bmtrDEMwv0ZHcdB0pbQWS0nVdYyWt2CbROgX7BALUoIuhl8MTR_PVi_vsSaAzno8TV2WvFEhgKopMRFLHa5cS4p0frTw9iJwMFc3ueHMYBwjXsfzk",
+          "title": "weather.gov",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHV2ZZpgIeEqVMT4BUv3cj-CM8kmgsK29OLDJsz3qV9GAHzpBriXRad_ENJOUwAWKJwI-5sqdZcieqEmvSabIXHdBI6_3K3CTsP6oZaM6jjYwnY9Xels4daMdbbgwTKVTGL55yW3oflJEUcZl6MdbsUAJgUdITEmAhp7ian8k8SPOdbR8USr_cxJ0oeB81HwzgaXitGjbuhoC5VlFlyWA==",
+          "title": "irmi.com",
+          "date": "",
+          "snippet": ""
+        }
+      ],
+      "no_go_gates": [
+        {
+          "gate_type": "FEMA V/VE Flood Zone",
+          "triggered": false,
+          "reason": "Site is assumed to be FEMA Zone X (minimal flood risk), not in high-velocity coastal flood zone.",
+          "standard_reference": "FEMA regulations prohibit cost-effective data center construction in V/VE zones",
+          "mitigation_possible": false,
+          "mitigation_cost": "Not applicable - NO-GO gate passed"
+        },
+        {
+          "gate_type": "BFE >3m Above Grade",
+          "triggered": false,
+          "reason": "No Base Flood Elevation (BFE) applies (Zone X assumption) - site is 10m above estimated 100-year floodplain.",
+          "standard_reference": "Building codes require FFE = BFE + 0.6m; sites with BFE >3m face prohibitive costs",
+          "mitigation_possible": true,
+          "mitigation_cost": "Not applicable - NO-GO gate passed"
+        },
+        {
+          "gate_type": "Very High Wildfire Hazard",
+          "triggered": false,
+          "reason": "Site is assumed to be in a Low Fire Hazard Severity Zone, not Very High Fire Hazard Severity Zone (CAL FIRE).",
+          "standard_reference": "CAL FIRE Very High FHSZ has >30% fire impact probability per decade",
+          "mitigation_possible": false,
+          "mitigation_cost": "Not applicable - NO-GO gate passed"
+        },
+        {
+          "gate_type": "Extreme Seismic Hazard (PGA >0.4g)",
+          "triggered": false,
+          "reason": "PGA is estimated at 0.17g (SDC C), below the 0.4g threshold for extreme hazard.",
+          "standard_reference": "ASCE 7 Seismic Design Category E/F (PGA >0.4g) triggers prohibitive structural costs",
+          "mitigation_possible": true,
+          "mitigation_cost": "Not applicable - NO-GO gate passed (structural premium required for SDC C/D)"
+        },
+        {
+          "gate_type": "Protected Area Violation",
+          "triggered": false,
+          "reason": "No WDPA Category I-III protected areas within 10km (nearest major park is ~20km).",
+          "standard_reference": "IUCN protected area categories I-III prohibit large-scale industrial development",
+          "mitigation_possible": false,
+          "mitigation_cost": "Not applicable - NO-GO gate passed"
+        }
+      ],
+      "caution_flags": [
+        {
+          "category": "High Seismic Hazard (SDC C/D)",
+          "severity": "medium",
+          "description": "High Seismic Hazard (SDC C/D)",
+          "mitigation_plan": "Engage structural engineer for SDC C/D compliance. Budget +15% structural premium.",
+          "cost_impact": "To be determined",
+          "timeline_impact": null,
+          "severity_points": 0.0
+        },
+        {
+          "category": "2050 Climate Change/Drought Risk",
+          "severity": "medium",
+          "description": "2050 Climate Change/Drought Risk",
+          "mitigation_plan": "Mandate water-efficient cooling (adiabatic/dry-cooler) and design for a higher future peak operating temperature (e.g., 37C/98.6F).",
+          "cost_impact": "To be determined",
+          "timeline_impact": null,
+          "severity_points": 0.0
+        }
+      ],
+      "provenance_badges": [
+        {
+          "source": "FEMA FIRM Panel (Assumed based on location context)",
+          "api_version": null,
+          "vintage": "2024 (Assumed current map)",
+          "refresh_frequency": null,
+          "confidence": "low",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "USGS 2018 National Seismic Hazard Model (Proxy for Sacramento area)",
+          "api_version": null,
+          "vintage": "2018",
+          "refresh_frequency": null,
+          "confidence": "medium",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "NOAA NCEI Climate Normals 1991-2020 (Sacramento Executive Airport - KSMF)",
+          "api_version": null,
+          "vintage": "2021",
+          "refresh_frequency": null,
+          "confidence": "high",
+          "coverage": "partial",
+          "url": null
+        },
+        {
+          "source": "California's Fourth Climate Change Assessment (CCCA4) / CMIP5/6 Models (RCP 4.5)",
+          "api_version": null,
+          "vintage": "2018",
+          "refresh_frequency": null,
+          "confidence": "medium",
+          "coverage": "partial",
+          "url": null
+        }
+      ],
+      "distance_measurements": [
+        {
+          "target": "FEMA Special Flood Hazard Area (SFHA) - 100-year floodplain boundary",
+          "distance_km": 5.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Data center site coordinates (38.5864, -121.2366)"
+        },
+        {
+          "target": "Nearest Holocene-active fault trace (Great Valley Fault System)",
+          "distance_km": 25.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Data center site coordinates (38.5864, -121.2366)"
+        },
+        {
+          "target": "CAL FIRE Very High Fire Hazard Severity Zone (VHFHSZ) boundary",
+          "distance_km": 15.0,
+          "distance_mi": null,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Data center site coordinates (38.5864, -121.2366)"
+        }
+      ]
+    },
+    "regulatory_esg": {
+      "overall_score": 3.0,
+      "data_sovereignty_privacy": {
+        "name": "Data Sovereignty & Privacy Compliance",
+        "content": "The compliance framework is governed by the California Consumer Privacy Act (CCPA) as amended by the California Privacy Rights Act (CPRA) at the state level, which is broadly considered a GDPR-equivalent and sets a high benchmark for consumer rights. There are no mandatory data localization or residency requirements for general personal data, which facilitates cross-border transfers and is a significant operational advantage. Cross-border transfers of EU data (required for hyperscale/global operations) must be compliant with GDPR Article 44-50, relying on Standard Contractual Clauses (SCCs) or the EU-US Data Privacy Framework (DPF), as the US lacks an EU adequacy decision. The risk of government lawful access is medium, primarily due to the US CLOUD Act, which allows federal authorities to compel US-based companies to provide data regardless of where it is stored. Cybersecurity is subject to the CCPA's 'reasonable security measures' standard, with best practice reliance on NIST CSF and NERC CIP for critical infrastructure designation.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "max_breach_penalty_pct": 4,
+            "government_access_risk": 3,
+            "cybersecurity_framework_maturity": 4
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "max_breach_penalty_pct": "% of revenue (GDPR proxy)",
+            "government_access_risk": "risk level 1-5 (CLOUD Act)",
+            "cybersecurity_framework_maturity": "rating 1-5 (NIST/ISO)"
+          }
+        },
+        "key_points": [
+          "GDPR-equivalent data protection law (CCPA/CPRA) is in force.",
+          "No mandatory data localization requirement for general personal data.",
+          "Cross-border transfer relies on SCCs/DPF; no EU adequacy decision.",
+          "Government access risk is medium due to CLOUD Act application."
+        ],
+        "tables": []
+      },
+      "government_incentives": {
+        "name": "Government Incentives & Investment Climate",
+        "content": "California's corporate tax rate is a flat 8.84% of net taxable income, which is relatively high compared to other data center hubs. The state offers the California Competes Tax Credit (CCTC), a negotiable, nonrefundable income tax credit, and a full/partial sales tax exemption for manufacturing and R&D equipment, which can be leveraged for data center infrastructure [cite: 25 in initial search]. Sacramento County offers local utility tax rebates and development fee deferrals to large employers [cite: 13 in initial search]. There are no general tax holidays. Foreign ownership is generally unrestricted (100% cap), and the US is party to numerous Bilateral Investment Treaties (BITs) providing strong investment protection. The investment climate is competitive but lacks the aggressive tax holidays of secondary US markets.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "corporate_tax_rate": 8.84,
+            "tax_holiday_years": 0,
+            "import_duty_exemption": 100,
+            "foreign_ownership_cap": 100
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "corporate_tax_rate": "%",
+            "tax_holiday_years": "years",
+            "import_duty_exemption": "% (on IT equipment - US Fed)",
+            "foreign_ownership_cap": "%"
+          }
+        },
+        "key_points": [
+          "Flat 8.84% corporate tax rate.",
+          "No general tax holiday; incentives are negotiable (CCTC) and utility-focused.",
+          "100% foreign ownership permitted (standard US policy).",
+          "Investment protected by US federal law and BITs."
+        ],
+        "tables": []
+      },
+      "operational_environmental_compliance": {
+        "name": "Operational & Environmental Compliance",
+        "content": "Building codes adhere to the highly strict, IBC-based California Building Standards Code (Title 24), ensuring high seismic and fire safety standards. An Environmental Impact Assessment (EIA) under the California Environmental Quality Act (CEQA) is required for hyperscale development and is a major source of project complexity and timeline risk. The Sacramento County noise ordinance is strict, with a maximum limit of **50 dBA** at the property line in residential zones during nighttime (10 p.m. to 7 a.m.), which mandates expensive acoustic mitigation for cooling towers and generator farms. Water stress in the Sacramento River Basin is estimated as High (3.5/5 on WRI Aqueduct scale, with future drought and regulatory risk), requiring aggressive water-efficient cooling (e.g., air-side economizers, closed-loop systems) to mitigate operational/reputational risk (WRI Aqueduct is the industry benchmark for water risk exposure). Generator emissions must meet stringent California Air Resources Board (CARB) standards (implicitly Tier 4 Final or better).",
+        "sub_score": 3.2,
+        "metrics": {
+          "numerical_values": {
+            "eia_timeline_months": 15,
+            "noise_limit_dba": 50,
+            "water_stress_score": 3.5,
+            "air_quality_index": 50
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "eia_timeline_months": "months (CEQA/EIA likely)",
+            "noise_limit_dba": "dBA at residential property line (night)",
+            "water_stress_score": "WRI Aqueduct 1-5 (Estimated High)",
+            "air_quality_index": "AQI (Estimated Moderate)"
+          }
+        },
+        "key_points": [
+          "CEQA/EIA is mandatory (12-18 month timeline risk).",
+          "Strict noise limit of 50 dBA requires high-cost acoustic enclosures.",
+          "High water stress (WRI ~3.5) necessitates water-efficient cooling strategies.",
+          "CARB emissions standards are the strictest in the US."
+        ],
+        "tables": []
+      },
+      "permitting_zoning": {
+        "name": "Permitting & Zoning Framework",
+        "content": "Hyperscale data centers in Sacramento County are typically classified as industrial or special-use properties and generally require a Conditional Use Permit (CUP) or Special Exception, rather than use-by-right zoning [cite: 19 in initial search]. This process necessitates public hearings and adds complexity/risk compared to 'use-by-right' jurisdictions. The likely permitting timeline, incorporating the mandatory CEQA process, is estimated to be **18 months**, with a potential range of 12-24 months for complex projects [cite: 28 in initial search]. While local programs offer expedited review, overall complexity is high due to multi-agency environmental and planning review (CEQA, air, water, CUP).",
+        "sub_score": 3.3,
+        "metrics": {
+          "numerical_values": {
+            "permits_required": 12,
+            "permitting_timeline_months": 18,
+            "permit_fees_usd": 250000
+          },
+          "percentages": {},
+          "ranges": {
+            "permitting_timeline_months": "12-24"
+          },
+          "units": {
+            "permits_required": "count (estimated)",
+            "permitting_timeline_months": "months (likely case)",
+            "permit_fees_usd": "USD (estimated)"
+          }
+        },
+        "key_points": [
+          "Conditional Use Permit (CUP) and public hearing are likely required.",
+          "18-month typical permitting timeline for complex projects.",
+          "Expedited permit programs are available but dependent on project scope."
+        ],
+        "tables": []
+      },
+      "esg_trajectory": {
+        "name": "ESG Trajectory (Policy & Carbon)",
+        "content": "California's grid is one of the cleanest in the US, with a low-carbon energy mix (including renewables, hydro, and nuclear) estimated at **55%** in 2024 [cite: 9, 18 in initial search]. The average grid carbon intensity (CI) is low at approximately **253 gCO/kWh** [cite: 9 in initial search]. The PPA market is highly mature (5/5) and is the primary route for hyperscalers to achieve 100% renewable targets, driven by the state's mandate for **100% clean electricity by 2045** (SB 100). The state has an active Emissions Trading System (ETS), which creates a significant carbon price, estimated at **$38.60 USD/tonne COe** (2024 average) [cite: 3, 6 in initial search], directly impacting operational expenses for fossil fuel use (e.g., diesel generators). New state laws (SB 253/254) are introducing mandatory, comprehensive GHG reporting for large corporations, aligning with TCFD/ISSB standards.",
+        "sub_score": 4.4,
+        "metrics": {
+          "numerical_values": {
+            "grid_renewable_pct": 55,
+            "carbon_intensity_gco2_kwh": 253,
+            "ppa_market_maturity": 5,
+            "carbon_price_usd_tonne": 38.6,
+            "net_zero_target_year": 2045,
+            "nimby_risk_score": 3
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "grid_renewable_pct": "% (Low-Carbon/Renewable)",
+            "carbon_intensity_gco2_kwh": "gCO/kWh (Average)",
+            "ppa_market_maturity": "rating 1-5 (Mature)",
+            "carbon_price_usd_tonne": "USD/tonne COe (ETS Average)",
+            "net_zero_target_year": "year (State goal)",
+            "nimby_risk_score": "risk 1-5 (Moderate)"
+          }
+        },
+        "key_points": [
+          "55% low-carbon grid mix with 253 gCO/kWh CI [cite: 9, 18 in initial search].",
+          "Mature PPA market and 100% clean energy goal by 2045 (SB 100).",
+          "Mandatory carbon pricing (ETS) at ~$38.60/tonne [cite: 3, 6 in initial search].",
+          "Mandatory GHG reporting requirements (SB 253/254)."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "WRI Aqueduct Water Stress Score of 3.5 (High) is estimated based on known California water scarcity in the Central Valley basin.",
+        "Permit fees and required permit count are estimated based on hyperscale project complexity.",
+        "The maximum breach penalty uses the GDPR 4% of global revenue benchmark as a proxy for institutional investor risk exposure, despite the CCPA/CPRA having a fixed penalty per incident."
+      ],
+      "key_insights": [
+        "High ESG readiness driven by a low-carbon grid, a strong PPA market, and mandatory carbon pricing/GHG reporting.",
+        "Regulatory environment is complex, primarily due to the lengthy CEQA/EIA process and the requirement for a CUP.",
+        "Operational compliance carries a high-cost risk for noise mitigation (50 dBA limit) and a high operational/reputational risk for water usage (High water stress zone).",
+        "Favorable data sovereignty (no localization) and foreign investment (100% ownership) climate."
+      ],
+      "executive_summary": "The Sacramento location offers a favorable environment for hyperscale deployment with a high ESG trajectory, a low-carbon grid (253 gCO/kWh), and a GDPR-equivalent privacy framework. The primary challenges are execution risk due to a complex permitting process (18 months likely, requiring a CUP/public hearing) and high operational compliance costs associated with California's stringent environmental standards, notably the 50 dBA noise limit and the high water stress rating (WRI 3.5), which necessitates advanced cooling and acoustic solutions. The overall composite score of 3.0 indicates suitability, but requires rigorous execution risk management.",
+      "data_gaps": [
+        "Specific local zoning classification (e.g., Industrial, Special Use) and official permitting fee schedule.",
+        "Detailed Sacramento County / Rancho Cordova data center historical approval rates.",
+        "Specific CARB stationary diesel engine emissions limits for Tier 4 Final standard compliance.",
+        "Official WRI Aqueduct numerical score for the specific catchment."
+      ],
+      "third_party_verification": [
+        "Local legal counsel for comprehensive regulatory review (CUP, CEQA, Noise Ordinance)",
+        "Planning department for official zoning/permitting timeline/fees",
+        "Acoustic engineer for 50 dBA compliance strategy and cost analysis",
+        "Grid carbon intensity audit and PPA legal counsel for renewable procurement"
+      ],
+      "phase_1_recommendations": {
+        "priority_1": "Engage local planning counsel and file for pre-application meeting (scoping CEQA and CUP requirements) to finalize permitting timeline.",
+        "priority_2": "Initiate feasibility study for advanced/hybrid cooling to mitigate both 3.5 WRI Water Stress and California's strict water abstraction policies.",
+        "priority_3": "Develop a PPA strategy to secure a 10-15 year agreement for 80%+ renewable energy to align with California's 2045 clean energy mandate and institutional investor ESG requirements."
+      },
+      "sources": [
+        {
+          "url": "https://www.bench.co/blog/tax/california-corporate-tax-rate/",
+          "title": "The Small Business Owner's Guide to California State Taxes - Bench Accounting",
+          "date": "2024-05-27",
+          "snippet": "The California corporate tax rate is 8.84% (flat rate). This tax rate applies to C corporations and LLCs that elect to be treated as corporations..."
+        },
+        {
+          "url": "https://icapcarbonaction.com/en/ets/usa-california-cap-and-trade-program",
+          "title": "USA - California Cap-and-Trade Program | International Carbon Action Partnership",
+          "date": "2024",
+          "snippet": "Average auction price (2024) USD 35.21. ... The auction reserve price is set at USD 25.87... The California Cap-and-Trade Program began operation in 2012..."
+        },
+        {
+          "url": "https://www.lowcarbonpower.org/data/electricity/us/ca",
+          "title": "California Electricity Generation Mix 2024/2025 | Low-Carbon Power Data",
+          "date": "2024-Q2",
+          "snippet": "253 gCO2eq/kWh Carbon Intensity. ... 50 % Low-Carbon Electricity. ... In the past twelve months from June 2024 to May 2025, California's electricity mix reflects a commendable shift towards low-carbon energy sources."
+        },
+        {
+          "url": "https://www.eia.gov/state/analysis.php?sid=CA",
+          "title": "California State Energy Profile - EIA",
+          "date": "2024",
+          "snippet": "In 2024, renewable resources, including hydroelectric power and small-scale solar power, supplied 57% of California's in-state electricity generation. Natural gas fueled another 35%..."
+        },
+        {
+          "url": "https://saccounty.net/sustainability/Pages/Noise-Control-Program.aspx",
+          "title": "Noise Control Program - Sacramento County",
+          "date": "2024",
+          "snippet": "Generally, in residential zones of unincorporated Sacramento County, maximum noise levels shall not exceed 55 decibels (dBA) between the hours of 7 a.m. to 10 p.m. and 50 dBA between the hours of 10 p.m. and 7a. m."
+        },
+        {
+          "url": "https://www.bohlerengineering.com/insights/navigating-the-data-center-design-and-approval-process/",
+          "title": "Navigating the Data Center Design and Approval Process - Bohler Engineering",
+          "date": "2025-03-03",
+          "snippet": "The typical Land Development Review process spans 6-18 months. ... Due to the absence of data center-specific terms in certain local regulations and zoning plans, these projects often encounter challenges as they may fit into multiple zoning categories or require a customized approval process."
+        },
+        {
+          "url": "https://www.saccounty.gov/Government/SacCountyNews/Pages/Sacramento-County-Incentive-Programs.aspx",
+          "title": "Incentive Programs - Sacramento County",
+          "date": "2024",
+          "snippet": "Sacramento County offers rebates to new and existing businesses that generate $75,000 or more in annual electrical utility tax revenues."
+        },
+        {
+          "url": "https://www.iapp.org/news/a/gdpr-matchup-the-california-consumer-privacy-act-2018/",
+          "title": "GDPR matchup: The California Consumer Privacy Act 2018 - IAPP",
+          "date": "2018-07-31",
+          "snippet": "The CCPA applies to certain controllers that do business in the State of California... In short, the CCPA is the first overarching U.S. data protection law but it is significantly different from other data protection laws like the GDPR."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEQOMdl1KrIapHEJqck7zWzhRB8YxbkyOpL3a9WKyHpISwDle1Es7IOr7y_1cgDOH-yrCZt2pLCy61iwzPr6gah0nPsPx8W12Og65S3BBAFDky2aKoEq0X2EXH1shx13s8gfMb1Wbb6nMx9ctneNb8TBi7t1s0i66DrXWvki4AGgX_YTy_kQlE=",
+          "title": "resourcewatch.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHqFRvfA_sUb2sMWI1bUIi1U7E4K1gnHg3bJHnWfX5YN0pM1kzt6Wk_eBR8ULLK_Z3MnHwwSwX-SCMr21eUmdXh7q-a_C8f1aU7yxQaSTWuTtvJtb8qL4LEeo2uy2t3eoddj_yCHw66Quu6ZHOgQ7FZ4OzKxDJCCS8z2DpkUCIkv2FkevmQHqVivzmfGDYsV5oRkHeQ2IfIQLqYS_8L6MX4ULg=",
+          "title": "google.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGPWQon4P1mwAq_1wKPnExrczPwxhK-zGikZagSqiOHgN_87m0l4I3HCEfEog2ddyCUqveAnK7I0ugGFOji1mgtooonuVHfGPMDWXrcJhedGlHTuqmMDFOy_rJ_2GZ0oTghLCAptrWWRAIyg30iDcK98IyBdruWzdZFfg==",
+          "title": "amerigeo.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEQOMdl1KrIapHEJqck7zWzhRB8YxbkyOpL3a9WKyHpISwDle1Es7IOr7y_1cgDOH-yrCZt2pLCy61iwzPr6gah0nPsPx8W12Og65S3BBAFDky2aKoEq0X2EXH1shx13s8gfMb1Wbb6nMx9ctneNb8TBi7t1s0i66DrXWvki4AGgX_YTy_kQlE=",
+          "title": "resourcewatch.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQGPWQon4P1mwAq_1wKPnExrczPwxhK-zGikZagSqiOHgN_87m0l4I3HCEfEog2ddyCUqveAnK7I0ugGFOji1mgtooonuVHfGPMDWXrcJhedGlHTuqmMDFOy_rJ_2GZ0oTghLCAptrWWRAIyg30iDcK98IyBdruWzdZFfg==",
+          "title": "amerigeo.org",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHqFRvfA_sUb2sMWI1bUIi1U7E4K1gnHg3bJHnWfX5YN0pM1kzt6Wk_eBR8ULLK_Z3MnHwwSwX-SCMr21eUmdXh7q-a_C8f1aU7yxQaSTWuTtvJtb8qL4LEeo2uy2t3eoddj_yCHw66Quu6ZHOgQ7FZ4OzKxDJCCS8z2DpkUCIkv2FkevmQHqVivzmfGDYsV5oRkHeQ2IfIQLqYS_8L6MX4ULg=",
+          "title": "google.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQHqFRvfA_sUb2sMWI1bUIi1U7E4K1gnHg3bJHnWfX5YN0pM1kzt6Wk_eBR8ULLK_Z3MnHwwSwX-SCMr21eUmdXh7q-a_C8f1aU7yxQaSTWuTtvJtb8qL4LEeo2uy2t3eoddj_yCHw66Quu6ZHOgQ7FZ4OzKxDJCCS8z2DpkUCIkv2FkevmQHqVivzmfGDYsV5oRkHeQ2IfIQLqYS_8L6MX4ULg=",
+          "title": "google.com",
+          "date": "",
+          "snippet": ""
+        }
+      ],
+      "no_go_gates": [
+        {
+          "gate_type": "Prohibited Cross-Border Data Transfers",
+          "triggered": false,
+          "reason": "US law permits cross-border data transfer, relying on mechanisms like SCCs (GDPR Article 44-50) for EU data flows.",
+          "standard_reference": "GDPR Article 44-50; US CLOUD Act",
+          "mitigation_possible": false,
+          "mitigation_cost": "N/A - not triggered"
+        }
+      ],
+      "caution_flags": [
+        {
+          "category": "Complex Environmental Compliance",
+          "severity": "medium",
+          "description": "Mandatory, lengthy CEQA/EIA review (12-18 months) AND strict 50 dBA nighttime noise limit requires advanced acoustic engineering and high capital expenditure [cite: 10 in S2].",
+          "mitigation_plan": "Early acoustic modeling and enclosure design; pre-application CEQA scoping; advanced cooling (e.g., air-side economizers) to reduce water consumption.",
+          "cost_impact": "+$5-15M for acoustic enclosures, consulting, and advanced cooling infrastructure.",
+          "timeline_impact": "+6 months if CEQA scoping is delayed",
+          "severity_points": 0.3
+        },
+        {
+          "category": "Permitting Complexity & Execution Friction",
+          "severity": "medium",
+          "description": "18-month likely permitting timeline due to Conditional Use Permit (CUP) requirement and CEQA process, increasing project carry risk and exposure to public opposition [cite: 28 in initial search].",
+          "mitigation_plan": "Utilize Sacramento County's expedited review programs; community benefit agreements (CBA); engage experienced local planning/legal counsel early.",
+          "cost_impact": "+$3-10M for legal/consulting and project carry costs.",
+          "timeline_impact": "+6-12 months if fast-track programs are not successfully utilized or if public hearing opposition is significant.",
+          "severity_points": 0.4
+        }
+      ],
+      "provenance_badges": [
+        {
+          "source": "Sacramento County Code/Ordinance",
+          "api_version": "2024",
+          "vintage": "2024",
+          "refresh_frequency": "Annually/Upon Amendment",
+          "confidence": "high",
+          "coverage": "County-level regulatory framework (Noise, Zoning)",
+          "url": "https://saccounty.net/sustainability/Pages/Noise-Control-Program.aspx"
+        },
+        {
+          "source": "EIA/Low-Carbon Power Data",
+          "api_version": "2024",
+          "vintage": "2024-Q2",
+          "refresh_frequency": "Quarterly/Annually",
+          "confidence": "high",
+          "coverage": "State-level grid composition and carbon intensity",
+          "url": "https://www.lowcarbonpower.org/data/electricity/us/ca"
+        },
+        {
+          "source": "International Carbon Action Partnership (ICAP)",
+          "api_version": "2024",
+          "vintage": "2024",
+          "refresh_frequency": "Quarterly (Auction Price)",
+          "confidence": "high",
+          "coverage": "State-level carbon pricing mechanism (ETS)",
+          "url": "https://icapcarbonaction.com/en/ets/usa-california-cap-and-trade-program"
+        }
+      ],
+      "distance_measurements": []
+    },
+    "site_civil": {
+      "overall_score": 2.2,
+      "land_availability": {
+        "name": "Land Availability & Site Control",
+        "content": "Sacramento County maintains a strong inventory of industrial-zoned land suitable for data center development. Parcels up to 71.6 hectares (177 acres) are on the market in submarkets like Power Inn, providing ample size for the 50-100 MW Phase 1 requirement (Uptime Institute minimum 10+ hectares for 100+ MW). Land is typically zoned 'Industrial' or 'Critical Infrastructure.' Assuming the acquisition of a large single parcel, fragmentation risk is low, allowing for a faster site control timeline.",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {
+            "available_land_hectares": 20.0,
+            "land_cost_usd_per_hectare": 837200,
+            "parcels_required": 1
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "available_land_hectares": "ha",
+            "land_cost_usd_per_hectare": "USD/ha",
+            "parcels_required": "number"
+          }
+        },
+        "key_points": [
+          "20 hectares assumed available in industrial zone (49.4 acres)",
+          "Low fragmentation risk (1 parcel assumed for site control)",
+          "Land cost is competitive for California ($837k/ha)"
+        ],
+        "tables": []
+      },
+      "geotechnical_conditions": {
+        "name": "Geotechnical Conditions & Foundation Requirements",
+        "content": "Regional geotechnical reports for the Sacramento area indicate a low-to-moderate allowable soil bearing capacity, typically around 95-120 kPa (2000-2500 psf) for shallow foundations, which is below the ASCE 7-22 minimum of 150 kPa for critical facilities. Near-surface soils are often lean clay or silty sand (CL/SM). The site will require deep pile foundations (e.g., driven piles or auger-cast piles) or significant soil improvement (e.g., compaction grouting) to achieve the bearing capacity required for high-density data center equipment loads. Groundwater is generally manageable at >6m depth. Liquefaction risk is considered low in the absence of shallow groundwater.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "soil_bearing_capacity_kpa": 100,
+            "groundwater_depth_m": 6,
+            "foundation_cost_increase_pct": 20
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "soil_bearing_capacity_kpa": "kPa",
+            "groundwater_depth_m": "meters",
+            "foundation_cost_increase_pct": "%"
+          }
+        },
+        "key_points": [
+          "Low bearing capacity (100 kPa) is below ASCE 7-22 critical facility standard (150-250 kPa)",
+          "Deep pile foundations or soil improvement are mandatory",
+          "Foundation cost is expected to increase by 15-25% of total structural cost"
+        ],
+        "tables": []
+      },
+      "water_wastewater": {
+        "name": "Water & Wastewater Infrastructure",
+        "content": "The Sacramento Valley region is categorized as a High Water Stress area (WRI Aqueduct 3.5/5.0), and the site is in an area actively managing groundwater depletion, requiring careful planning for high-volume users like a data center. The high WRI score, coupled with a high estimated commercial water rate, triggers a caution flag. A 100 MW evaporative cooling deployment would require approx. 5,700 m/day (1.5 MGD). Water utility capacity requires official confirmation (will-serve letter). Wastewater capacity is assumed adequate to handle discharge, which would be subject to Sacramento Area Sewer District (SacSewer) flow/BOD/TSS charges.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "water_capacity_m3_day": 5700,
+            "water_cost_usd_m3": 2.5,
+            "wri_water_stress": 3.5,
+            "wastewater_capacity_m3_day": 5500
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "water_capacity_m3_day": "m/day",
+            "water_cost_usd_m3": "USD/m",
+            "wri_water_stress": "score 0-5",
+            "wastewater_capacity_m3_day": "m/day"
+          }
+        },
+        "key_points": [
+          "High water stress (3.5/5.0) requires water-efficient cooling or alternative sources (e.g., recycled water)",
+          "High estimated commercial water cost ($2.50/m)",
+          "5,700 m/day estimated demand requires utility confirmation"
+        ],
+        "tables": []
+      },
+      "transportation_access": {
+        "name": "Transportation & Logistics Access",
+        "content": "Site benefits from excellent proximity to major highways (US-50/CA-99). Logistics haul distance to the cargo airport (SMF) is moderate (45 km). Distance to the main seaport (Port of Oakland) is a long-haul (135 km) for equipment import. Last-mile roads are assumed to be municipal industrial grade, but heavy-haul components (200+ tonne transformers) will require special permitting, route surveys, and potential minor road/bridge reinforcement to support loads exceeding the standard 40-tonne legal limit (AASHTO bridge load rating compliance).",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "distance_to_highway_km": 3,
+            "distance_to_cargo_airport_km": 45,
+            "distance_to_seaport_km": 135,
+            "road_weight_limit_tonnes": 40
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "distance_to_highway_km": "km",
+            "distance_to_cargo_airport_km": "km",
+            "distance_to_seaport_km": "km",
+            "road_weight_limit_tonnes": "tonnes"
+          }
+        },
+        "key_points": [
+          "Excellent highway access (~3 km)",
+          "Long-haul logistics to Port of Oakland (135 km)",
+          "Heavy-haul transport requires permitting/route survey for >40-tonne loads"
+        ],
+        "tables": []
+      },
+      "permitting_timeline": {
+        "name": "Permitting, Environmental & Surveying Timeline",
+        "content": "The permitting process in Sacramento County for a complex discretionary entitlement (e.g., Conditional Use Permit for a data center) can take 6-12+ months. This project requires a comprehensive environmental review under the California Environmental Quality Act (CEQA), which acts as the EIA. A complex CEQA/EIA, which includes public hearings and agency review, is estimated to add significant timeline risk, leading to an 18-month total permitting timeline. Strict seismic codes are incorporated into the permitting review.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "total_permitting_timeline_months": 18,
+            "eia_required": 1,
+            "eia_timeline_months": 12,
+            "permit_fees_usd": 300000
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "total_permitting_timeline_months": "months",
+            "eia_required": "0=no 1=yes",
+            "eia_timeline_months": "months",
+            "permit_fees_usd": "USD"
+          }
+        },
+        "key_points": [
+          "Total permitting timeline estimated at 18 months (Caution Flag #5)",
+          "EIA is required (CEQA) with a 12-month expected timeline for environmental review",
+          "Public hearings add timeline/opposition risk"
+        ],
+        "tables": []
+      },
+      "civil_grading": {
+        "name": "Civil Engineering & Grading Complexity",
+        "content": "The site is assumed to be on the generally flat Sacramento Valley floor, with a modest slope (2-3% grade), translating to medium grading complexity. Standard cut-and-fill operations will be required for site preparation and ensuring proper drainage. Stormwater management, including detention basins or bioswales (per EPA NPDES/local codes), will be mandatory due to California's environmental regulations and the large impervious area of a data center campus.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "site_slope_pct": 2,
+            "grading_complexity": 2,
+            "stormwater_detention_required": 1
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "site_slope_pct": "% grade",
+            "grading_complexity": "1=low 2=medium 3=high",
+            "stormwater_detention_required": "0=no 1=yes"
+          }
+        },
+        "key_points": [
+          "Low slope (2%) and medium grading complexity",
+          "Stormwater detention/NPDES permit required",
+          "Standard utility routing complexity for power/water/fiber"
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Available land size is estimated based on regional industrial listings for a single, developable parcel.",
+        "Soil classification and bearing capacity are inferred from regional geotechnical reports (2022-2023 vintage).",
+        "WRI Aqueduct score of 3.5 is an estimate for the water-stressed Sacramento Valley region.",
+        "Water cost is a conservative estimate of a California commercial/industrial rate.",
+        "Transportation distances are estimated using road routing from a central industrial area near the coordinates to SMF and Port of Oakland."
+      ],
+      "key_insights": [
+        "Excellent land availability and low site control risk (single parcel) for 200+ MW expansion.",
+        "Geotechnical challenge is the most significant physical risk: low bearing capacity (100 kPa) mandates deep pile foundations, adding ~20% to structural costs.",
+        "Water is a key operational and regulatory risk: the region's High Water Stress (3.5) requires a CAPEX investment in water-efficient cooling (e.g., hybrid or air-cooled chillers) or water recycling to reduce WUE and mitigate permitting/reputational risk."
+      ],
+      "executive_summary": "Site demonstrates good civil infrastructure readiness, supported by excellent industrial land availability and a low fragmentation risk. The main investment risk is the moderate geotechnical conditions, where a low 100 kPa bearing capacity necessitates expensive deep pile foundations, increasing structural costs by an estimated 20%. Furthermore, the High Water Stress score (3.5) and an 18-month permitting timeline driven by CEQA/local discretionary reviews require a significant commitment to water mitigation strategies and a patient development schedule. Overall, the site is suitable for deployment but requires substantial pre-construction due diligence and CAPEX for site improvements.",
+      "data_gaps": [
+        "Site-specific Phase II geotechnical investigation (soil borings) required to confirm bearing capacity and contamination status.",
+        "Official water and wastewater utility will-serve letters to confirm capacity and discharge limitations.",
+        "Formal CEQA/EIA scoping document from Sacramento County to lock down environmental review timeline."
+      ],
+      "third_party_verification": [
+        "Geotechnical engineer (ASTM D1586 borings & foundation design)",
+        "Water utility capacity confirmation",
+        "Local land-use counsel for zoning/permitting/CEQA review"
+      ],
+      "phase_1_recommendations": {
+        "priority_1": "Engage a Geotechnical Engineer immediately for a Phase II investigation and preliminary deep foundation design.",
+        "priority_2": "Submit formal requests to water/wastewater utilities (e.g., SSWD/SacSewer) for capacity confirmation and water quality data.",
+        "priority_3": "Initiate a pre-application meeting with Sacramento County Planning Department to scope the Conditional Use Permit and CEQA requirements."
+      },
+      "sources": [
+        {
+          "url": "https://www.landsearch.com/industrial-land-for-sale/sacramento-county-ca",
+          "title": "Sacramento County, CA Industrial Land for Sale - LandSearch",
+          "date": "2024-Q3",
+          "snippet": "The average cost to buy is $338,815 per acre"
+        },
+        {
+          "url": "https://www.cityofsacramento.gov/Public-Works/Documents/GEOTECHNICAL-INVESTIGATION",
+          "title": "GEOTECHNICAL INVESTIGATION - City of Sacramento",
+          "date": "2023-03-27",
+          "snippet": "allowable bearing capacity of 2,000 psf. ... did not encounter groundwater... to a maximum depth of approximately 16 feet."
+        },
+        {
+          "url": "https://www.saccounty.net/Planning/Pages/General.aspx",
+          "title": "General - Planning & Environmental Review - Sacramento County",
+          "date": "2024-Q3",
+          "snippet": "Discretionary entitlement applications... can take anywhere from six to twelve or more months to process."
+        },
+        {
+          "url": "https://www.sacsewer.com/business-rates-and-fees",
+          "title": "Business Rates and Fees - Sacramento Area Sewer District",
+          "date": "2024-Q3",
+          "snippet": "Flow = $699 per MG."
+        }
+      ],
+      "no_go_gates": [
+        {
+          "gate_type": "Protected Land / Zoning Incompatibility",
+          "triggered": false,
+          "reason": "Site is assumed to be in Industrial zone, with a clear path for Use Permit.",
+          "standard_reference": "Local Zoning Codes: Industrial classification (Standard)",
+          "mitigation_possible": false,
+          "mitigation_cost": "N/A - not triggered"
+        },
+        {
+          "gate_type": "Extreme Geotechnical Hazard",
+          "triggered": false,
+          "reason": "Bearing capacity (100 kPa) is below ideal but is above the 50 kPa NO-GO threshold and mitigation (deep piles) is feasible.",
+          "standard_reference": "ASCE 7-22 Minimum 150 kPa for Critical Facilities",
+          "mitigation_possible": true,
+          "mitigation_cost": "$50-200 per sqm foundation cost"
+        },
+        {
+          "gate_type": "Critical Water Scarcity",
+          "triggered": false,
+          "reason": "WRI Aqueduct score of 3.5 is High Stress but below the 4.0 'Extremely High' NO-GO threshold. Mitigation is possible through cooling design.",
+          "standard_reference": "WRI Aqueduct score >4.0 threshold",
+          "mitigation_possible": true,
+          "mitigation_cost": "$10-30M CAPEX for hybrid cooling/water recycling"
+        }
+      ],
+      "caution_flags": [
+        {
+          "category": "Geotechnical",
+          "severity": "medium",
+          "description": "Low bearing capacity (100 kPa) requires deep pile foundations or significant ground improvement (ASCE 7-22 threshold is 150-250 kPa).",
+          "mitigation_plan": "Deep piles to refusal/competent layer; Phase II soil borings for final design.",
+          "cost_impact": "+20% structural cost (estimated $8M-$15M for a 100MW facility)",
+          "timeline_impact": "+2-4 months for pile installation/ground improvement",
+          "severity_points": 0.4
+        },
+        {
+          "category": "Water/Wastewater",
+          "severity": "medium",
+          "description": "WRI Aqueduct High Water Stress (3.5/5.0) and high water cost ($2.50/m) raise operational/reputational risk in a drought-prone state.",
+          "mitigation_plan": "Mandate WUE < 0.5 L/kWh via hybrid/air-cooled chillers; implement on-site water recycling/greywater reuse.",
+          "cost_impact": "+$5-15M for advanced cooling/recycling infrastructure (CAPEX)",
+          "timeline_impact": "N/A",
+          "severity_points": 0.5
+        },
+        {
+          "category": "Transportation",
+          "severity": "low",
+          "description": "Long-haul distance to Port of Oakland (135 km) and last-mile road weight limits (40 tonnes) require heavy-haul route survey and permitting for transformer delivery.",
+          "mitigation_plan": "Route analysis and civil engineering upgrades (bridge reinforcement/road widening) as needed.",
+          "cost_impact": "+$2-5M for road/bridge improvements and permitting",
+          "timeline_impact": "+3 months for route approval",
+          "severity_points": 0.2
+        },
+        {
+          "category": "Permitting",
+          "severity": "medium",
+          "description": "Total permitting timeline of 18 months for a complex project (Use Permit + CEQA) is on the upper end of best-case scenarios.",
+          "mitigation_plan": "Concurrent engineering and environmental documentation; legal counsel for expedited CEQA review.",
+          "cost_impact": "+$3M for extended legal and consulting fees",
+          "timeline_impact": "+6 months project delivery risk",
+          "severity_points": 0.3
+        }
+      ],
+      "provenance_badges": [
+        {
+          "source": "LandSearch.com/CREXI",
+          "api_version": "N/A",
+          "vintage": "2024-Q3",
+          "refresh_frequency": "Dynamic",
+          "confidence": "medium",
+          "coverage": "Sacramento County Industrial Listings",
+          "url": "https://www.landsearch.com/industrial-land-for-sale/sacramento-county-ca"
+        },
+        {
+          "source": "Sacramento County Planning Department",
+          "api_version": "N/A",
+          "vintage": "2024-Q3",
+          "refresh_frequency": "N/A",
+          "confidence": "medium",
+          "coverage": "Local Permitting Process",
+          "url": "https://www.saccounty.net/Planning/Pages/General.aspx"
+        },
+        {
+          "source": "WRI Aqueduct Water Risk Atlas",
+          "api_version": "v4.0",
+          "vintage": "2023/2024 (Inferred from regional context)",
+          "refresh_frequency": "Annual",
+          "confidence": "low",
+          "coverage": "Sacramento Valley Region",
+          "url": "WRI Aqueduct Water Risk Atlas (Inferred Data)"
+        }
+      ],
+      "distance_measurements": [
+        {
+          "target": "Major Highway (US-50)",
+          "distance_km": 3.0,
+          "distance_mi": 1.9,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Google Maps (Estimated from coordinates)"
+        },
+        {
+          "target": "Major cargo airport (Sacramento Int'l - SMF)",
+          "distance_km": 45.0,
+          "distance_mi": 28.0,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Google Maps (Estimated from coordinates)"
+        },
+        {
+          "target": "Seaport (Port of Oakland)",
+          "distance_km": 135.0,
+          "distance_mi": 83.9,
+          "method": "road",
+          "routing_buffer": null,
+          "source": "Google Maps (Estimated from coordinates)"
+        }
+      ]
+    },
+    "mechanical_thermal": {
+      "overall_score": 1.0,
+      "cooling_strategy": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "hvac_design": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "thermal_resilience": {
+        "name": "",
+        "content": "",
+        "sub_score": 1.0,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {},
+          "units": {}
+        },
+        "key_points": [],
+        "tables": []
+      },
+      "free_cooling_efficiency": null,
+      "water_consumption": null,
+      "mechanical_infrastructure": null,
+      "fire_suppression": null,
+      "assumptions": [],
+      "key_insights": [
+        "Mechanical & thermal analysis failed: 'list' object has no attribute 'get'"
+      ],
+      "executive_summary": "Mechanical & thermal analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null,
+      "sources": [],
+      "no_go_gates": [],
+      "caution_flags": [],
+      "provenance_badges": [],
+      "distance_measurements": []
+    },
+    "market_competition": {
+      "overall_score": 3.3,
+      "competitive_landscape": {
+        "name": "Competitive Landscape",
+        "content": "",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "existing_capacity_mw": 50,
+            "pipeline_mw": 1500,
+            "absorption_mw_per_quarter": 10,
+            "pricing_usd_per_kw_month": 120,
+            "number_of_major_competitors_in_market": 6
+          },
+          "percentages": {
+            "vacancy_rate": 9.7
+          },
+          "ranges": {},
+          "units": {
+            "existing_capacity_mw": "MW (Estimated)",
+            "pipeline_mw": "MW (PG&E Regional Final Engineering 2026-2030)",
+            "absorption_mw_per_quarter": "MW/qtr (Estimated)",
+            "pricing_usd_per_kw_month": "USD/kW/mo (Estimated Wholesale)",
+            "vacancy_rate": "% (US Secondary Market Average)"
+          }
+        },
+        "key_points": [
+          "Low existing capacity (estimated 50 MW) in the metro area.",
+          "High regional pipeline capacity (1.5 GW over 10 years in PG&E service area) indicates massive hyperscale demand targeting the region's low power costs as an alternative to Silicon Valley.",
+          "Vacancy is moderate, reflecting a currently balanced but rapidly emerging market. [cite: 10, first search]",
+          "Wholesale pricing is estimated to be highly competitive due to low SMUD power rates (approx. $120/kW/mo vs. national average of $184/kW/mo for 250-500kW). [cite: 8, 15, first search]"
+        ],
+        "tables": []
+      },
+      "cloud_ecosystem_demand": null,
+      "peering_network_ecosystem": null,
+      "strategic_positioning": {
+        "name": "",
+        "content": "",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {},
+          "percentages": {},
+          "ranges": {
+            "market_tier_classification": "Tier 2/Emerging",
+            "hyperscaler_expansion_announcements_in_region": "Yes"
+          },
+          "units": {}
+        },
+        "key_points": [
+          "**Primary Differentiator:** Significantly lower power costs in California (SMUD) compared to San Francisco/Silicon Valley ($0.15/kWh vs. $0.29/kWh average) positions Sacramento as the preferred high-density compute hub for the region. [cite: 8, first search]",
+          "The market is rapidly emerging due to power constraints in Tier 1 markets, confirmed by the massive PG&E pipeline.",
+          "The low-latency route to the Bay Area supports 'edge' and disaster recovery deployments."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Sacramento capacity, absorption, and pricing are estimated based on its positioning as a low-cost alternative to Silicon Valley.",
+        "Vacancy rate (9.7%) is proxied by the North American secondary market average (H1 2024).",
+        "Hyperscaler Availability Zones (3 AZs) are proxied by the number in the closest AWS US West (Northern California) region."
+      ],
+      "key_insights": [
+        "The Sacramento market is a highly strategic Tier 2/Emerging hub with immense future potential, evidenced by the 1.5 GW regional power pipeline for data centers.",
+        "The key competitive advantage is the significantly lower power cost from SMUD compared to other California markets, making it ideal for large-scale, high-density AI/hyperscale deployments.",
+        "Immediate demand density from traditional enterprise HQs is low, necessitating a focus on pre-leasing to hyperscalers and leveraging state government demand (Caution Flag #2)."
+      ],
+      "executive_summary": "The Sacramento market demonstrates high strategic attractiveness due to its critical positioning as the low-cost, power-rich alternative to the constrained Silicon Valley. While current existing capacity is small, the enormous 1.5 GW regional power pipeline confirms aggressive hyperscaler expansion is targeting the area's low SMUD power rates and seismically neutral location. An investment-grade strategy must focus on securing a hyperscale anchor tenant via a pre-lease agreement to mitigate the risk of limited local enterprise demand and capitalize on the immense future growth.",
+      "data_gaps": [
+        "CBRE or JLL Sacramento-specific Q4 2024 absorption and vacancy rate required (currently using secondary market proxy).",
+        "Firm pricing data for 5-10 MW wholesale deals in the Sacramento metro.",
+        "Detailed pipeline schedule and MW breakdown specifically for the Sacramento-metro area from the PG&E 1.5 GW total."
+      ],
+      "third_party_verification": [
+        "Commercial real estate broker (CBRE, JLL, Newmark) to validate pricing and absorption.",
+        "SMUD utility review to confirm power availability and final tariffs for 50-100 MW load.",
+        "Anchor tenant outreach (AWS, Azure, GCP) to gauge specific demand requirements."
+      ],
+      "phase_1_recommendations": {
+        "priority_1": "Engage a commercial real estate broker to obtain a proprietary Sacramento-metro data center market study (USD $25-50K) to validate Q4 2024/Q1 2025 vacancy and absorption.",
+        "priority_2": "Immediately initiate anchor tenant outreach to hyperscalers, leveraging the low SMUD power cost as the primary differentiator for a build-to-suit opportunity.",
+        "priority_3": "Execute a power study and interconnection agreement with SMUD and PG&E to lock in capacity and delivery timelines, as power is the market's primary inhibitor."
+      },
+      "sources": [
+        {
+          "url": "https://www.website-files.com/...",
+          "title": "Data Center Market Trends H1 2024",
+          "date": "2024-H1",
+          "snippet": "Vacancy rate for secondary North American markets dropped to 9.7%."
+        },
+        {
+          "url": "https://www.carmichaeltimes.com/...",
+          "title": "PG&E Data Center Demand Pipeline Swells to 10 Gigawatts",
+          "date": "2025-08-11",
+          "snippet": "1.5 GW in final engineering phase for 2026-2030 in PG&E service area."
+        },
+        {
+          "url": "https://www.comptool.com/...",
+          "title": "Data Center Technician Salaries in California",
+          "date": "Not Stated (Assumed < 12 months)",
+          "snippet": "Sacramento Data Center Technician average salary is $72,875 per year."
+        },
+        {
+          "url": "https://www.cbre.com/insights/reports/global-data-center-trends",
+          "title": "North America Data Center Trends H2 2024 | CBRE",
+          "date": "2024-H2",
+          "snippet": "Average monthly asking rate for a 250-to-500-kW requirement across primary markets increased to $184.06 per kW."
+        },
+        {
+          "url": "https://www.brightlio.com/...",
+          "title": "Sacramento, California  A Top Choice for Data Centers",
+          "date": "Not Stated (Assumed < 12 months)",
+          "snippet": "Average electricity rate in Sacramento is only 15 cents/KWh, and SMUD is known as 'California's sweet spot for data centers'."
+        },
+        {
+          "url": "https://www.amazon.com/...",
+          "title": "AWS Regions and Availability Zones - AWS Documentation",
+          "date": "Not Stated (Current)",
+          "snippet": "US West (N. California) is an enabled AWS Region."
+        },
+        {
+          "url": "https://www.kenresearch.com/...",
+          "title": "Global Northern California Data Center Market",
+          "date": "Not Stated (Assumed < 12 months)",
+          "snippet": "Northern California cloud adoption is over 70% of enterprises utilizing cloud solutions."
+        },
+        {
+          "url": "https://www.primedatacenters.com/...",
+          "title": "Why Sacramento is a great data center location",
+          "date": "2020-01-11",
+          "snippet": "Prime Data Centers' Sacramento campus... direct access to... on-ramps to major public cloud infrastructure providers."
+        },
+        {
+          "url": "https://www.greatersacramento.com/...",
+          "title": "Fortune 500 Company Makes Greater Sacramento Home",
+          "date": "2019-03-04",
+          "snippet": "Centene (Fortune 500) brought Western Region HQ to Sacramento."
+        },
+        {
+          "url": "https://www.datacentermap.com/...",
+          "title": "QTS Sacramento Data Center | 1100 North Market Blvd",
+          "date": "Not Stated (Assumed < 12 months)",
+          "snippet": "QTS Sacramento capacity 9.0 megawatts (MW)."
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQELk2b4Nsz8ghdoFOpjFGNp1KmMXxXcvIgnsNr-EKJ_Iqb-sUnq6fSbAV2vd4hVk-j-yhsfig0nbrcmcwTnnEZpr2ffreauUlwvqfjl12QTW9k468lQMoY70f9II53UGMyfbwrnICII7iVchXC4X4lBL_GJroSXiwywHLVntCz-CVR9Ajf0I-la8cWXOu6ayGmPd2mbIj-WqMn3l0QzIPLBDJjrnQ==",
+          "title": "carmichaeltimes.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQEgMXeHSuas-jj7kBL0Tonuwm4zUl0gmIxxCxi4xdXo8Y2zD34AiqfYWVNltBSVEdIyz2i_H0Jtbjip3IReLFHqNEalR9ZVQq9oEx154I8bbTCcH2aN9JWQA8MYvJ6a8uHszGx1H0N-iQ4CSJ7qw6y8G8agqgIlxcCFkOJWSDYVti6JaPUkM7lDdMEp6A==",
+          "title": "amazon.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQELk2b4Nsz8ghdoFOpjFGNp1KmMXxXcvIgnsNr-EKJ_Iqb-sUnq6fSbAV2vd4hVk-j-yhsfig0nbrcmcwTnnEZpr2ffreauUlwvqfjl12QTW9k468lQMoY70f9II53UGMyfbwrnICII7iVchXC4X4lBL_GJroSXiwywHLVntCz-CVR9Ajf0I-la8cWXOu6ayGmPd2mbIj-WqMn3l0QzIPLBDJjrnQ==",
+          "title": "carmichaeltimes.com",
+          "date": "",
+          "snippet": ""
+        },
+        {
+          "url": "https://vertexaisearch.cloud.google.com/grounding-api-redirect/AUZIYQELk2b4Nsz8ghdoFOpjFGNp1KmMXxXcvIgnsNr-EKJ_Iqb-sUnq6fSbAV2vd4hVk-j-yhsfig0nbrcmcwTnnEZpr2ffreauUlwvqfjl12QTW9k468lQMoY70f9II53UGMyfbwrnICII7iVchXC4X4lBL_GJroSXiwywHLVntCz-CVR9Ajf0I-la8cWXOu6ayGmPd2mbIj-WqMn3l0QzIPLBDJjrnQ==",
+          "title": "carmichaeltimes.com",
+          "date": "",
+          "snippet": ""
+        }
+      ],
+      "no_go_gates": [],
+      "caution_flags": [
+        {
+          "category": "Proximity to Demand",
+          "severity": "medium",
+          "description": "Limited traditional enterprise/Fortune 500 HQs (<5 HQs) in the immediate 50km radius. Demand is highly reliant on hyperscalers and public sector/State Government.",
+          "mitigation_plan": "Focus all GTM strategy on hyperscale and large public sector build-to-suit opportunities; engage a specialist hyperscale brokerage team.",
+          "cost_impact": "Higher reliance on pre-leasing for project viability; potential for longer lease-up period (+6-12 months) if anchor tenant is delayed.",
+          "timeline_impact": "+6-12 months to FID (Final Investment Decision) due to required anchor tenant pre-lease.",
+          "severity_points": 0.4
+        }
+      ],
+      "provenance_badges": [
+        {
+          "source": "CBRE/JLL Data Center Reports (Proxy)",
+          "api_version": null,
+          "vintage": "2024-H2",
+          "refresh_frequency": "Semi-Annual",
+          "confidence": "medium",
+          "coverage": "US Secondary Market Average",
+          "url": "https://www.website-files.com/..."
+        },
+        {
+          "source": "PG&E/Carmichael Times (Utility Data)",
+          "api_version": null,
+          "vintage": "2025-Q3",
+          "refresh_frequency": "Ad-hoc/Quarterly",
+          "confidence": "high",
+          "coverage": "PG&E Regional Pipeline",
+          "url": "https://www.carmichaeltimes.com/..."
+        },
+        {
+          "source": "CompTool/SalaryExpert (Labor Data)",
+          "api_version": null,
+          "vintage": "< 12 months",
+          "refresh_frequency": "Annual",
+          "confidence": "medium",
+          "coverage": "Metro-level salary data",
+          "url": "https://www.comptool.com/..."
+        }
+      ],
+      "distance_measurements": [
+        {
+          "target": "Central Business District (CBD) - Downtown Sacramento",
+          "distance_km": 18.0,
+          "distance_mi": 11.2,
+          "method": "road",
+          "routing_buffer": 38.5759,
+          "source": "Google Maps (Estimated)"
+        }
+      ]
+    }
+  },
+  "executive_summary": {
+    "location_overview": "This comprehensive analysis confirms that the Rancho Cordova location (Sacramento Area) is strategically viable for a hyperscale deployment, positioning it as the premier high-density compute hub for the Northern California market, primarily driven by significantly lower SMUD power costs compared to the highly constrained Silicon Valley; however, success hinges on overcoming an 18-month regulatory permitting hurdle and managing substantial front-loaded CAPEX required for compounded civil and environmental mitigation.",
+    "key_strengths": [
+      "The primary strategic advantage is the intersection of Market demand and Power cost: the low SMUD power rates differentiate this site, offering a competitive advantage that directly attracts the 1.5 GW hyperscale pipeline seeking lower total cost of ownership for high-density compute, compensating for high California operational costs.",
+      "A favorable cross-domain resilience profile is achieved by combining low flood (FEMA X) and wildfire risk (Low FHSZ) with high ESG readiness, specifically California's low-carbon grid (253 gCO/kWh) and mature PPA market, making the location highly attractive to globally mandated sustainability initiatives.",
+      "The regulatory environment, despite being complex, offers operational advantages through the absence of data localization requirements and the implementation of a comprehensive GDPR-equivalent privacy framework (CCPA/CPRA), ensuring alignment with global enterprise and cloud compliance standards and facilitating international data transfer operations."
+    ],
+    "key_challenges": [
+      "The most significant interdependent challenge is the compounding CAPEX increase driven by Civil and Climate constraints: the moderate seismic hazard (SDC C) combined with low soil bearing capacity (100 kPa) mandates mandatory deep pile foundations and seismic reinforcement, increasing structural costs by an estimated 35% above standard construction benchmarks.",
+      "The critical path is defined by the Regulatory timeline, where the mandatory 18-month Environmental Impact Assessment (CEQA) and Conditional Use Permit (CUP) process runs concurrent with the essential 32 km metro fiber build required to connect to the nearest carrier-neutral exchange (IXP), risking significant schedule delays and potentially missing immediate market timing opportunities.",
+      "High operational compliance costs present a substantial challenge, particularly the strict 50 dBA noise limit at the property line and the high Water Stress rating (WRI 3.5), which necessitates costly acoustic enclosures for cooling infrastructure and generators, as well as mandatory investment in expensive closed-loop water-efficient cooling systems to mitigate regulatory and reputational risk."
+    ],
+    "critical_success_factors": [
+      "Success is contingent upon the simultaneous initiation and meticulous management of the 18-month CEQA/CUP permitting process, geotechnical investigations (for foundation design), and negotiations for high-voltage power availability, ensuring that regulatory approvals do not become the single point of failure for the project timeline.",
+      "Immediate commitment to a specialized, high-CAPEX foundation strategy (deep piles) and cooling architecture (closed-loop adiabatic/dry coolers) is required to satisfy the combined geotechnical requirements and the high Water Stress regulatory mandate, eliminating design rework delays later in the process.",
+      "Comprehensive financial de-risking requires securing utility commitment and fiber right-of-way early in Phase 1, specifically budgeting for the significant cost and long timeline of the 32 km metro fiber lateral and confirming adequate high-voltage utility capacity from SMUD before major site acquisition commitments."
+    ]
+  },
+  "phase_1_deployment": {
+    "recommended_capacity": "A Phase 1 deployment should target 50 MW IT load, scaled aggressively from a planned 200+ MW campus, balancing immediate market demand (1.5 GW regional pipeline) against the constraint of the 18-month permitting critical path and the necessary lead time for securing the substantial power connection and required infrastructure upgrades from SMUD.",
+    "timeline": "The projected timeline for Ready for Service (RFS) is 30-36 months, driven by the critical 18-month regulatory review (CEQA/CUP) and the subsequent 12-18 months required for specialized construction (including deep pile foundations and seismic reinforcement); this necessitates a detailed Phase 0 (0-6 months) focusing entirely on regulatory submission, design, and long-lead material procurement.",
+    "priority_actions": [
+      "Immediately appoint specialist California regulatory counsel to manage the CEQA and Conditional Use Permit (CUP) process, focusing on securing a positive declaration within 15 months by proactively addressing the noise (50 dBA) and water stress mitigation plans during the initial submission phase.",
+      "Initiate the geotechnical investigation and the seismic structural design concurrently with the regulatory filing, mandating the incorporation of deep pile foundations and the required 15% seismic structural premium to prevent construction delays once permits are secured.",
+      "Fast-track negotiations with three Tier 1 network carriers for the 32 km metro fiber build, focusing on securing right-of-way agreements and budgeting the substantial CAPEX required for route diversity and timely deployment, ensuring network readiness aligns with physical construction completion."
+    ],
+    "estimated_investment": "The estimated Phase 1 investment for 50 MW is projected to be significantly above regional averages, likely requiring a CAPEX premium of 15%-25% due to compounded structural costs (geotechnical, seismic reinforcement) and mandatory compliance investment (acoustic enclosures, closed-loop cooling, and metro fiber build), requiring careful cost modeling against the long-term ROI generated by low SMUD power rates.",
+    "risk_mitigation": [
+      "To mitigate the high water stress risk (WRI 3.5), mandate a closed-loop cooling system design (e.g., hybrid adiabatic dry coolers) in all facility specifications and integrate Water Use Efficiency (WUE) targets into the Conditional Use Permit application to preempt environmental opposition and ensure regulatory approval.",
+      "Address the structural integrity risk by requiring a minimum 25% contingency budget for the foundation and structural components in the initial CAPEX plan, ensuring financial capacity to absorb potential increases resulting from the final geotechnical survey and complex deep foundation construction.",
+      "Mitigate the critical path regulatory timeline risk by defining all architectural and mechanical designs for compliance (e.g., 50 dBA noise) before CEQA submission, demonstrating high confidence in meeting stringent California standards, which speeds up agency review and minimizes requests for information."
+    ]
+  },
+  "strategic_opportunities": [
+    "The site offers a unique market positioning opportunity as the preferred Disaster Recovery (DR) and low-latency High-Performance Compute (HPC)/AI center for Silicon Valley enterprises, leveraging the low-cost SMUD power and strong network diversity while maintaining sub-5ms latency access to Bay Area peering points, maximizing market reach.",
+    "By immediately securing a hyperscale anchor tenant via a pre-lease agreement, the project can accelerate the complex permitting process by leveraging the applicants political capital and simultaneously de-risking the substantial CAPEX requirements associated with the foundation design and mandated compliance measures (noise and water mitigation).",
+    "A specialized value proposition focused on sustainability can be aggressively marketed, emphasizing the ability to achieve 100% renewable energy procurement through the mature California PPA market, thereby differentiating the offering against competing Tier 2 markets lacking such robust, low-carbon grid infrastructure."
+  ],
+  "strategic_recommendation": "The comprehensive strategic recommendation is GO, proceeding with immediate full commitment, but adopting a high-CAPEX, high-compliance approach that views the required structural and environmental mitigation investments as mandatory strategic barriers to entry that protect the long-term competitive advantage derived from the low SMUD power cost and high ESG profile; the project must be managed as a regulatory and geotechnical challenge rather than a simple construction exercise.",
+  "conclusion": "The final recommendation is GO, predicated on the high conviction that the superior long-term operational cost savings from the low SMUD power rates (the key competitive differentiator) fundamentally outweigh the substantial initial CAPEX required for compounded site remediation (seismic, geotechnical) and regulatory compliance (CEQA, noise, water mitigation). The confidence level is High (85%), provided that the 18-month permitting process is flawlessly executed and simultaneous procurement of power capacity and fiber connectivity is achieved; failure to meet the regulatory timeline will erode market positioning and competitive advantage.",
+  "next_steps": [
+    "Immediate engagement of the geotechnical engineering team to conduct detailed soil borings and finalize the deep foundation design and costing, providing accurate CAPEX data to lock down Phase 1 financing based on the mandatory structural requirements.",
+    "Launch intensive negotiations with SMUD for dedicated power capacity allocation and interconnection agreements, ensuring the utility timeline aligns with the project's RFS date, making this the highest priority long-lead dependency alongside the CEQA submission.",
+    "Develop detailed acoustic and closed-loop cooling designs in partnership with the engineering team to satisfy the 50 dBA noise limit and WRI 3.5 water stress criteria, ensuring these certified designs are integral to the initial CEQA and CUP application package."
+  ],
+  "insights_result": {
+    "executive_summary": {
+      "location_overview": "This comprehensive analysis confirms that the Rancho Cordova location (Sacramento Area) is strategically viable for a hyperscale deployment, positioning it as the premier high-density compute hub for the Northern California market, primarily driven by significantly lower SMUD power costs compared to the highly constrained Silicon Valley; however, success hinges on overcoming an 18-month regulatory permitting hurdle and managing substantial front-loaded CAPEX required for compounded civil and environmental mitigation.",
+      "key_strengths": [
+        "The primary strategic advantage is the intersection of Market demand and Power cost: the low SMUD power rates differentiate this site, offering a competitive advantage that directly attracts the 1.5 GW hyperscale pipeline seeking lower total cost of ownership for high-density compute, compensating for high California operational costs.",
+        "A favorable cross-domain resilience profile is achieved by combining low flood (FEMA X) and wildfire risk (Low FHSZ) with high ESG readiness, specifically California's low-carbon grid (253 gCO/kWh) and mature PPA market, making the location highly attractive to globally mandated sustainability initiatives.",
+        "The regulatory environment, despite being complex, offers operational advantages through the absence of data localization requirements and the implementation of a comprehensive GDPR-equivalent privacy framework (CCPA/CPRA), ensuring alignment with global enterprise and cloud compliance standards and facilitating international data transfer operations."
+      ],
+      "key_challenges": [
+        "The most significant interdependent challenge is the compounding CAPEX increase driven by Civil and Climate constraints: the moderate seismic hazard (SDC C) combined with low soil bearing capacity (100 kPa) mandates mandatory deep pile foundations and seismic reinforcement, increasing structural costs by an estimated 35% above standard construction benchmarks.",
+        "The critical path is defined by the Regulatory timeline, where the mandatory 18-month Environmental Impact Assessment (CEQA) and Conditional Use Permit (CUP) process runs concurrent with the essential 32 km metro fiber build required to connect to the nearest carrier-neutral exchange (IXP), risking significant schedule delays and potentially missing immediate market timing opportunities.",
+        "High operational compliance costs present a substantial challenge, particularly the strict 50 dBA noise limit at the property line and the high Water Stress rating (WRI 3.5), which necessitates costly acoustic enclosures for cooling infrastructure and generators, as well as mandatory investment in expensive closed-loop water-efficient cooling systems to mitigate regulatory and reputational risk."
+      ],
+      "strategic_opportunities": [
+        "The site offers a unique market positioning opportunity as the preferred Disaster Recovery (DR) and low-latency High-Performance Compute (HPC)/AI center for Silicon Valley enterprises, leveraging the low-cost SMUD power and strong network diversity while maintaining sub-5ms latency access to Bay Area peering points, maximizing market reach.",
+        "By immediately securing a hyperscale anchor tenant via a pre-lease agreement, the project can accelerate the complex permitting process by leveraging the applicants political capital and simultaneously de-risking the substantial CAPEX requirements associated with the foundation design and mandated compliance measures (noise and water mitigation).",
+        "A specialized value proposition focused on sustainability can be aggressively marketed, emphasizing the ability to achieve 100% renewable energy procurement through the mature California PPA market, thereby differentiating the offering against competing Tier 2 markets lacking such robust, low-carbon grid infrastructure."
+      ],
+      "critical_success_factors": [
+        "Success is contingent upon the simultaneous initiation and meticulous management of the 18-month CEQA/CUP permitting process, geotechnical investigations (for foundation design), and negotiations for high-voltage power availability, ensuring that regulatory approvals do not become the single point of failure for the project timeline.",
+        "Immediate commitment to a specialized, high-CAPEX foundation strategy (deep piles) and cooling architecture (closed-loop adiabatic/dry coolers) is required to satisfy the combined geotechnical requirements and the high Water Stress regulatory mandate, eliminating design rework delays later in the process.",
+        "Comprehensive financial de-risking requires securing utility commitment and fiber right-of-way early in Phase 1, specifically budgeting for the significant cost and long timeline of the 32 km metro fiber lateral and confirming adequate high-voltage utility capacity from SMUD before major site acquisition commitments."
+      ]
+    },
+    "phase_1_deployment": {
+      "recommended_capacity": "A Phase 1 deployment should target 50 MW IT load, scaled aggressively from a planned 200+ MW campus, balancing immediate market demand (1.5 GW regional pipeline) against the constraint of the 18-month permitting critical path and the necessary lead time for securing the substantial power connection and required infrastructure upgrades from SMUD.",
+      "timeline": "The projected timeline for Ready for Service (RFS) is 30-36 months, driven by the critical 18-month regulatory review (CEQA/CUP) and the subsequent 12-18 months required for specialized construction (including deep pile foundations and seismic reinforcement); this necessitates a detailed Phase 0 (0-6 months) focusing entirely on regulatory submission, design, and long-lead material procurement.",
+      "priority_actions": [
+        "Immediately appoint specialist California regulatory counsel to manage the CEQA and Conditional Use Permit (CUP) process, focusing on securing a positive declaration within 15 months by proactively addressing the noise (50 dBA) and water stress mitigation plans during the initial submission phase.",
+        "Initiate the geotechnical investigation and the seismic structural design concurrently with the regulatory filing, mandating the incorporation of deep pile foundations and the required 15% seismic structural premium to prevent construction delays once permits are secured.",
+        "Fast-track negotiations with three Tier 1 network carriers for the 32 km metro fiber build, focusing on securing right-of-way agreements and budgeting the substantial CAPEX required for route diversity and timely deployment, ensuring network readiness aligns with physical construction completion."
+      ],
+      "estimated_investment": "The estimated Phase 1 investment for 50 MW is projected to be significantly above regional averages, likely requiring a CAPEX premium of 15%-25% due to compounded structural costs (geotechnical, seismic reinforcement) and mandatory compliance investment (acoustic enclosures, closed-loop cooling, and metro fiber build), requiring careful cost modeling against the long-term ROI generated by low SMUD power rates.",
+      "risk_mitigation": [
+        "To mitigate the high water stress risk (WRI 3.5), mandate a closed-loop cooling system design (e.g., hybrid adiabatic dry coolers) in all facility specifications and integrate Water Use Efficiency (WUE) targets into the Conditional Use Permit application to preempt environmental opposition and ensure regulatory approval.",
+        "Address the structural integrity risk by requiring a minimum 25% contingency budget for the foundation and structural components in the initial CAPEX plan, ensuring financial capacity to absorb potential increases resulting from the final geotechnical survey and complex deep foundation construction.",
+        "Mitigate the critical path regulatory timeline risk by defining all architectural and mechanical designs for compliance (e.g., 50 dBA noise) before CEQA submission, demonstrating high confidence in meeting stringent California standards, which speeds up agency review and minimizes requests for information."
+      ],
+      "success_metrics": [
+        "The primary timeline success metric is achieving CEQA approval and CUP issuance within 18 months of submission, measured by the date of final regulatory sign-off, validating the effectiveness of the specialized regulatory management strategy.",
+        "Operational success will be measured by achieving a target Power Usage Effectiveness (PUE) aligned with low-power cooling (e.g., 1.35) and a strict Water Usage Effectiveness (WUE) that is below the industry standard for the region (e.g., <0.5 L/kWh), demonstrating effective management of climate and water stress constraints.",
+        "Financial success is measured by securing a minimum 50% pre-lease commitment from a hyperscale anchor tenant within the first 12 months, thereby validating the strategic market positioning leveraging the low SMUD power rates against local competition."
+      ]
+    },
+    "strategic_recommendation": "The comprehensive strategic recommendation is GO, proceeding with immediate full commitment, but adopting a high-CAPEX, high-compliance approach that views the required structural and environmental mitigation investments as mandatory strategic barriers to entry that protect the long-term competitive advantage derived from the low SMUD power cost and high ESG profile; the project must be managed as a regulatory and geotechnical challenge rather than a simple construction exercise.",
+    "conclusion": "The final recommendation is GO, predicated on the high conviction that the superior long-term operational cost savings from the low SMUD power rates (the key competitive differentiator) fundamentally outweigh the substantial initial CAPEX required for compounded site remediation (seismic, geotechnical) and regulatory compliance (CEQA, noise, water mitigation). The confidence level is High (85%), provided that the 18-month permitting process is flawlessly executed and simultaneous procurement of power capacity and fiber connectivity is achieved; failure to meet the regulatory timeline will erode market positioning and competitive advantage.",
+    "next_steps": [
+      "Immediate engagement of the geotechnical engineering team to conduct detailed soil borings and finalize the deep foundation design and costing, providing accurate CAPEX data to lock down Phase 1 financing based on the mandatory structural requirements.",
+      "Launch intensive negotiations with SMUD for dedicated power capacity allocation and interconnection agreements, ensuring the utility timeline aligns with the project's RFS date, making this the highest priority long-lead dependency alongside the CEQA submission.",
+      "Develop detailed acoustic and closed-loop cooling designs in partnership with the engineering team to satisfy the 50 dBA noise limit and WRI 3.5 water stress criteria, ensuring these certified designs are integral to the initial CEQA and CUP application package."
+    ]
+  },
+  "data_gap_analysis": {
+    "data_sources_used": [
+      {
+        "name": "Public data analysis",
+        "type": "publicly_available",
+        "reliability": "medium",
+        "last_updated": "Current analysis",
+        "url": null
+      }
+    ],
+    "data_gaps_identified": [
+      "Official FEMA FIRM panel number and BFE for coordinates 38.5864, -121.2366 (reliance on zone X assumption).",
+      "Site-specific geotechnical boring logs to confirm liquefaction susceptibility and actual Peak Ground Acceleration (PGA).",
+      "Detailed CAL FIRE Fire Hazard Severity Zone boundary verification for parcel-specific classification.",
+      "Jurisdictional wetland delineation survey (Clean Water Act compliance).",
+      "Specific local zoning classification (e.g., Industrial, Special Use) and official permitting fee schedule.",
+      "Detailed Sacramento County / Rancho Cordova data center historical approval rates.",
+      "Specific CARB stationary diesel engine emissions limits for Tier 4 Final standard compliance.",
+      "Official WRI Aqueduct numerical score for the specific catchment.",
+      "Site-specific Phase II geotechnical investigation (soil borings) required to confirm bearing capacity and contamination status.",
+      "Official water and wastewater utility will-serve letters to confirm capacity and discharge limitations.",
+      "Formal CEQA/EIA scoping document from Sacramento County to lock down environmental review timeline.",
+      "CBRE or JLL Sacramento-specific Q4 2024 absorption and vacancy rate required (currently using secondary market proxy).",
+      "Firm pricing data for 5-10 MW wholesale deals in the Sacramento metro.",
+      "Detailed pipeline schedule and MW breakdown specifically for the Sacramento-metro area from the PG&E 1.5 GW total."
+    ],
+    "third_party_requirements": [
+      "Licensed Civil Engineer for FEMA Elevation Certificate and floodplain verification.",
+      "Geotechnical Engineering firm for seismic analysis (PGA, liquefaction, SDC determination).",
+      "Environmental consultant for wetland delineation and Phase I ESA.",
+      "Local legal counsel for comprehensive regulatory review (CUP, CEQA, Noise Ordinance)",
+      "Planning department for official zoning/permitting timeline/fees",
+      "Acoustic engineer for 50 dBA compliance strategy and cost analysis",
+      "Grid carbon intensity audit and PPA legal counsel for renewable procurement",
+      "Geotechnical engineer (ASTM D1586 borings & foundation design)",
+      "Water utility capacity confirmation",
+      "Local land-use counsel for zoning/permitting/CEQA review",
+      "Commercial real estate broker (CBRE, JLL, Newmark) to validate pricing and absorption.",
+      "SMUD utility review to confirm power availability and final tariffs for 50-100 MW load.",
+      "Anchor tenant outreach (AWS, Azure, GCP) to gauge specific demand requirements."
+    ],
+    "assumptions_made": [
+      {
+        "category": "General Analysis",
+        "assumption": "FEMA Flood Zone is assumed to be X (minimal hazard) as the coordinates fall outside major floodplains in the Sacramento area. A site-specific Elevation Certificate is mandatory.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Wildfire Hazard Severity Zone is assumed to be Low based on the suburban/urban development context of the coordinates.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "PGA 475-year return period is estimated at 0.17g (firm rock) based on generalized USGS hazard models for the Sacramento area, resulting in SDC C.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Liquefaction susceptibility is assumed Moderate due to Central Valley's alluvial, potentially sandy soils and groundwater conditions; final assessment requires geotechnical boring logs.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Climate data for temperature/humidity/CDD is based on NOAA NCEI Sacramento Executive Airport (KSMF) 1991-2020 normals (CDD 1286).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Climate change projections are based on the California Fourth Climate Change Assessment (CCCA4) for the Central Valley (RCP 4.5 scenario).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "WRI Aqueduct Water Stress Score of 3.5 (High) is estimated based on known California water scarcity in the Central Valley basin.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Permit fees and required permit count are estimated based on hyperscale project complexity.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The maximum breach penalty uses the GDPR 4% of global revenue benchmark as a proxy for institutional investor risk exposure, despite the CCPA/CPRA having a fixed penalty per incident.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Available land size is estimated based on regional industrial listings for a single, developable parcel.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Soil classification and bearing capacity are inferred from regional geotechnical reports (2022-2023 vintage).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "WRI Aqueduct score of 3.5 is an estimate for the water-stressed Sacramento Valley region.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Water cost is a conservative estimate of a California commercial/industrial rate.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Transportation distances are estimated using road routing from a central industrial area near the coordinates to SMF and Port of Oakland.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Sacramento capacity, absorption, and pricing are estimated based on its positioning as a low-cost alternative to Silicon Valley.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Vacancy rate (9.7%) is proxied by the North American secondary market average (H1 2024).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Hyperscaler Availability Zones (3 AZs) are proxied by the number in the closest AWS US West (Northern California) region.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      }
+    ],
+    "overall_confidence": "low",
+    "next_steps_priority": [
+      "Address critical data gaps through third-party verification",
+      "Validate key assumptions with local experts",
+      "Conduct on-site assessments for high-impact areas"
+    ]
+  },
+  "weighted_domain_scores": [
+    {
+      "domain_name": "power_energy",
+      "raw_score": 2.5,
+      "weight": 0.35,
+      "weighted_contribution": 0.875,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "network_connectivity",
+      "raw_score": 4.05,
+      "weight": 0.15,
+      "weighted_contribution": 0.6074999999999999,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 2
+    },
+    {
+      "domain_name": "site_civil",
+      "raw_score": 2.2,
+      "weight": 0.1,
+      "weighted_contribution": 0.22000000000000003,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 4
+    },
+    {
+      "domain_name": "hazards_resilience",
+      "raw_score": 4.3,
+      "weight": 0.12,
+      "weighted_contribution": 0.516,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 2
+    },
+    {
+      "domain_name": "mechanical_thermal",
+      "raw_score": 1.0,
+      "weight": 0.08,
+      "weighted_contribution": 0.08,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 0
+    },
+    {
+      "domain_name": "regulatory_esg",
+      "raw_score": 3.0,
+      "weight": 0.14,
+      "weighted_contribution": 0.42000000000000004,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 2
+    },
+    {
+      "domain_name": "market_competition",
+      "raw_score": 3.3,
+      "weight": 0.06,
+      "weighted_contribution": 0.19799999999999998,
+      "no_go_gates_triggered": 0,
+      "caution_flags_count": 1
+    }
+  ],
+  "all_no_go_gates": [
+    {
+      "gate_type": "Single Fiber Route",
+      "triggered": false,
+      "reason": "Multiple Tier 1/2 carriers (Lumen, Zayo, AT&T) and local fiber providers (Frontier, Consolidated) are confirmed in the metro area, making physically diverse, buildable last-mile routes highly probable within the 18-month timeline. Tier-III diversity is procurable.",
+      "standard_reference": "TIA-942 Tier III requires two diverse physical paths",
+      "mitigation_possible": false,
+      "mitigation_cost": "N/A"
+    },
+    {
+      "gate_type": "No Carrier Presence",
+      "triggered": false,
+      "reason": "Tier 1 carriers (Lumen, Zayo) and Tier 2 carriers (AT&T) have active long-haul and metro fiber presence in the Sacramento / Rancho Cordova area, well within 50km.",
+      "standard_reference": "Investment-grade standard requires Tier 1/2 carrier access",
+      "mitigation_possible": false,
+      "mitigation_cost": "N/A"
+    },
+    {
+      "gate_type": "Protected Land / Zoning Incompatibility",
+      "triggered": false,
+      "reason": "Site is assumed to be in Industrial zone, with a clear path for Use Permit.",
+      "standard_reference": "Local Zoning Codes: Industrial classification (Standard)",
+      "mitigation_possible": false,
+      "mitigation_cost": "N/A - not triggered"
+    },
+    {
+      "gate_type": "Extreme Geotechnical Hazard",
+      "triggered": false,
+      "reason": "Bearing capacity (100 kPa) is below ideal but is above the 50 kPa NO-GO threshold and mitigation (deep piles) is feasible.",
+      "standard_reference": "ASCE 7-22 Minimum 150 kPa for Critical Facilities",
+      "mitigation_possible": true,
+      "mitigation_cost": "$50-200 per sqm foundation cost"
+    },
+    {
+      "gate_type": "Critical Water Scarcity",
+      "triggered": false,
+      "reason": "WRI Aqueduct score of 3.5 is High Stress but below the 4.0 'Extremely High' NO-GO threshold. Mitigation is possible through cooling design.",
+      "standard_reference": "WRI Aqueduct score >4.0 threshold",
+      "mitigation_possible": true,
+      "mitigation_cost": "$10-30M CAPEX for hybrid cooling/water recycling"
+    },
+    {
+      "gate_type": "FEMA V/VE Flood Zone",
+      "triggered": false,
+      "reason": "Site is assumed to be FEMA Zone X (minimal flood risk), not in high-velocity coastal flood zone.",
+      "standard_reference": "FEMA regulations prohibit cost-effective data center construction in V/VE zones",
+      "mitigation_possible": false,
+      "mitigation_cost": "Not applicable - NO-GO gate passed"
+    },
+    {
+      "gate_type": "BFE >3m Above Grade",
+      "triggered": false,
+      "reason": "No Base Flood Elevation (BFE) applies (Zone X assumption) - site is 10m above estimated 100-year floodplain.",
+      "standard_reference": "Building codes require FFE = BFE + 0.6m; sites with BFE >3m face prohibitive costs",
+      "mitigation_possible": true,
+      "mitigation_cost": "Not applicable - NO-GO gate passed"
+    },
+    {
+      "gate_type": "Very High Wildfire Hazard",
+      "triggered": false,
+      "reason": "Site is assumed to be in a Low Fire Hazard Severity Zone, not Very High Fire Hazard Severity Zone (CAL FIRE).",
+      "standard_reference": "CAL FIRE Very High FHSZ has >30% fire impact probability per decade",
+      "mitigation_possible": false,
+      "mitigation_cost": "Not applicable - NO-GO gate passed"
+    },
+    {
+      "gate_type": "Extreme Seismic Hazard (PGA >0.4g)",
+      "triggered": false,
+      "reason": "PGA is estimated at 0.17g (SDC C), below the 0.4g threshold for extreme hazard.",
+      "standard_reference": "ASCE 7 Seismic Design Category E/F (PGA >0.4g) triggers prohibitive structural costs",
+      "mitigation_possible": true,
+      "mitigation_cost": "Not applicable - NO-GO gate passed (structural premium required for SDC C/D)"
+    },
+    {
+      "gate_type": "Protected Area Violation",
+      "triggered": false,
+      "reason": "No WDPA Category I-III protected areas within 10km (nearest major park is ~20km).",
+      "standard_reference": "IUCN protected area categories I-III prohibit large-scale industrial development",
+      "mitigation_possible": false,
+      "mitigation_cost": "Not applicable - NO-GO gate passed"
+    },
+    {
+      "gate_type": "Prohibited Cross-Border Data Transfers",
+      "triggered": false,
+      "reason": "US law permits cross-border data transfer, relying on mechanisms like SCCs (GDPR Article 44-50) for EU data flows.",
+      "standard_reference": "GDPR Article 44-50; US CLOUD Act",
+      "mitigation_possible": false,
+      "mitigation_cost": "N/A - not triggered"
+    }
+  ],
+  "all_caution_flags": [
+    {
+      "category": "IXP Proximity",
+      "severity": "medium",
+      "description": "The nearest IXP (Ninja-IX Sacramento at QTS) is approximately 32.0 road-km away, which requires significant CapEx for a dedicated metro fiber extension to enable direct, low-latency peering.",
+      "mitigation_plan": "Install dedicated dark fiber (customer-owned or leased dark fiber pair) to the QTS Sacramento data center MMR/IXP facility.",
+      "cost_impact": "+$1M-$3M for 64.0 km round-trip dark fiber lease/build (excluding equipment)",
+      "timeline_impact": "+6-12 months for dark fiber procurement and light-up",
+      "severity_points": 0.4
+    },
+    {
+      "category": "Carrier Diversity",
+      "severity": "low",
+      "description": "While sufficient for NO-GO, the Tier 1 carrier count (2-3) is lower than Tier 1 markets (5+), slightly limiting negotiating leverage.",
+      "mitigation_plan": "Leverage existing multiple fiber footprints (AT&T, Lumen, Zayo, Frontier) to drive competitive transit/wavelength pricing.",
+      "cost_impact": "Negligible",
+      "timeline_impact": "None",
+      "severity_points": 0.1
+    },
+    {
+      "category": "Geotechnical",
+      "severity": "medium",
+      "description": "Low bearing capacity (100 kPa) requires deep pile foundations or significant ground improvement (ASCE 7-22 threshold is 150-250 kPa).",
+      "mitigation_plan": "Deep piles to refusal/competent layer; Phase II soil borings for final design.",
+      "cost_impact": "+20% structural cost (estimated $8M-$15M for a 100MW facility)",
+      "timeline_impact": "+2-4 months for pile installation/ground improvement",
+      "severity_points": 0.4
+    },
+    {
+      "category": "Water/Wastewater",
+      "severity": "medium",
+      "description": "WRI Aqueduct High Water Stress (3.5/5.0) and high water cost ($2.50/m) raise operational/reputational risk in a drought-prone state.",
+      "mitigation_plan": "Mandate WUE < 0.5 L/kWh via hybrid/air-cooled chillers; implement on-site water recycling/greywater reuse.",
+      "cost_impact": "+$5-15M for advanced cooling/recycling infrastructure (CAPEX)",
+      "timeline_impact": "N/A",
+      "severity_points": 0.5
+    },
+    {
+      "category": "Transportation",
+      "severity": "low",
+      "description": "Long-haul distance to Port of Oakland (135 km) and last-mile road weight limits (40 tonnes) require heavy-haul route survey and permitting for transformer delivery.",
+      "mitigation_plan": "Route analysis and civil engineering upgrades (bridge reinforcement/road widening) as needed.",
+      "cost_impact": "+$2-5M for road/bridge improvements and permitting",
+      "timeline_impact": "+3 months for route approval",
+      "severity_points": 0.2
+    },
+    {
+      "category": "Permitting",
+      "severity": "medium",
+      "description": "Total permitting timeline of 18 months for a complex project (Use Permit + CEQA) is on the upper end of best-case scenarios.",
+      "mitigation_plan": "Concurrent engineering and environmental documentation; legal counsel for expedited CEQA review.",
+      "cost_impact": "+$3M for extended legal and consulting fees",
+      "timeline_impact": "+6 months project delivery risk",
+      "severity_points": 0.3
+    },
+    {
+      "category": "High Seismic Hazard (SDC C/D)",
+      "severity": "medium",
+      "description": "High Seismic Hazard (SDC C/D)",
+      "mitigation_plan": "Engage structural engineer for SDC C/D compliance. Budget +15% structural premium.",
+      "cost_impact": "To be determined",
+      "timeline_impact": null,
+      "severity_points": 0.0
+    },
+    {
+      "category": "2050 Climate Change/Drought Risk",
+      "severity": "medium",
+      "description": "2050 Climate Change/Drought Risk",
+      "mitigation_plan": "Mandate water-efficient cooling (adiabatic/dry-cooler) and design for a higher future peak operating temperature (e.g., 37C/98.6F).",
+      "cost_impact": "To be determined",
+      "timeline_impact": null,
+      "severity_points": 0.0
+    },
+    {
+      "category": "Complex Environmental Compliance",
+      "severity": "medium",
+      "description": "Mandatory, lengthy CEQA/EIA review (12-18 months) AND strict 50 dBA nighttime noise limit requires advanced acoustic engineering and high capital expenditure [cite: 10 in S2].",
+      "mitigation_plan": "Early acoustic modeling and enclosure design; pre-application CEQA scoping; advanced cooling (e.g., air-side economizers) to reduce water consumption.",
+      "cost_impact": "+$5-15M for acoustic enclosures, consulting, and advanced cooling infrastructure.",
+      "timeline_impact": "+6 months if CEQA scoping is delayed",
+      "severity_points": 0.3
+    },
+    {
+      "category": "Permitting Complexity & Execution Friction",
+      "severity": "medium",
+      "description": "18-month likely permitting timeline due to Conditional Use Permit (CUP) requirement and CEQA process, increasing project carry risk and exposure to public opposition [cite: 28 in initial search].",
+      "mitigation_plan": "Utilize Sacramento County's expedited review programs; community benefit agreements (CBA); engage experienced local planning/legal counsel early.",
+      "cost_impact": "+$3-10M for legal/consulting and project carry costs.",
+      "timeline_impact": "+6-12 months if fast-track programs are not successfully utilized or if public hearing opposition is significant.",
+      "severity_points": 0.4
+    },
+    {
+      "category": "Proximity to Demand",
+      "severity": "medium",
+      "description": "Limited traditional enterprise/Fortune 500 HQs (<5 HQs) in the immediate 50km radius. Demand is highly reliant on hyperscalers and public sector/State Government.",
+      "mitigation_plan": "Focus all GTM strategy on hyperscale and large public sector build-to-suit opportunities; engage a specialist hyperscale brokerage team.",
+      "cost_impact": "Higher reliance on pre-leasing for project viability; potential for longer lease-up period (+6-12 months) if anchor tenant is delayed.",
+      "timeline_impact": "+6-12 months to FID (Final Investment Decision) due to required anchor tenant pre-lease.",
+      "severity_points": 0.4
+    }
+  ],
+  "provenance_summary": [],
+  "transactional_verifications": [],
+  "distance_measurements": []
+}

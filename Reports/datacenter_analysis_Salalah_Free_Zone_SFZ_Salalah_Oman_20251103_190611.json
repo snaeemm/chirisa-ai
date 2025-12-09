@@ -1,0 +1,1596 @@
+{
+  "location": "Salalah Free Zone (SFZ), Salalah, Oman",
+  "coordinates": {
+    "lat": 17.0193843,
+    "lng": 54.1107505
+  },
+  "country": "Oman",
+  "analysis_date": "2025-11-03",
+  "overall_suitability": {
+    "composite_score": 3.933333333333333,
+    "rating": "Good",
+    "recommendation": "Location rated as Good for datacenter deployment"
+  },
+  "domain_analysis": {
+    "power_infrastructure": {
+      "score": 1.0,
+      "key_findings": [
+        "Power analysis failed: Expecting ',' delimiter: line 5 column 267 (char 363)"
+      ],
+      "summary": "Power analysis unavailable"
+    },
+    "network_connectivity": {
+      "score": 4.1,
+      "key_findings": [
+        "The site's proximity to the new Salalah Subsea Cable Landing Station and Data Centre (Ooredoo) provides a significant strategic advantage, positioning it as a direct gateway for intercontinental data traffic (Asia-Africa-Europe).",
+        "Exceptional long-term scalability is guaranteed by being an anchor landing point for the 2Africa cable system, ensuring abundant capacity and route diversity compared to many regional competitors.",
+        "While the domestic carrier market is dominated by two incumbents, the presence of the carrier-neutral Equinix MC1 and OMAN-IX (AMS-IX powered) offers critical non-incumbent interconnection options and favorable peering economics for a hyperscaler."
+      ],
+      "summary": "Oman, particularly the Salalah region, presents a near-optimal network connectivity profile for a hyperscale data center. Its unique geographic position and recent multi-billion dollar investment in subsea cable systems (2Africa, OAC) and new cable landing station facilities (Salalah) guarantee massive, future-proof capacity, exceptional intercontinental route diversity, and low-latency connectivity to three major continents. The competitive domestic landscape, although dominated by incumbents, is mitigated by carrier-neutral infrastructure and an active IXP, leading to a high overall score."
+    },
+    "climate_environmental": {
+      "score": 2.8,
+      "key_findings": [
+        "The location's primary asset is its low seismic hazard, allowing for simplified structural design compared to high-risk zones.",
+        "Major viability challenges are the extremely high ambient temperatures, leading to a high estimated PUE (~1.45), and severe water scarcity/non-renewable water source reliance.",
+        "High structural hardening against tropical cyclones and associated flash floods is mandatory, as the Dhofar region has a high frequency of these events (once every ~5 years)."
+      ],
+      "summary": "The site in the Dhofar interior of Oman presents a mixed viability profile. While seismic risk is very low, the climate is highly challenging, characterized by extreme heat, minimal free cooling potential, and a high frequency of damaging tropical cyclones/flash floods. Furthermore, the reliance on non-renewable fossil aquifers presents a critical water scarcity and sustainability risk. A significant investment in high-efficiency, air-cooled, and structurally-hardened infrastructure is necessary to achieve acceptable operational resilience and PUE."
+    },
+    "operational_risk": {
+      "score": 4.4,
+      "key_findings": [
+        "The primary risk to long-term stability is economic (reliance on oil/gas) rather than political, which is mitigated by Vision 2040 diversification efforts and current fiscal surpluses (Allianz, 2024).",
+        "Physical security must be specifically hardened against strategic targeting due to the proximity to the Duqm Port's geopolitical importance (CESEDEN, 2023), exceeding standard regional security baselines.",
+        "Infrastructure resilience, especially the power grid, is aggressively being built out ($2.2B investment in Rabt project) (Zawya, 2025) which provides strong confidence in long-term supply, provided climate-related risks (heat, cyclonic activity) are addressed in the design phase."
+      ],
+      "summary": "The Sultanate of Oman presents a favorable and secure operational risk profile for a hyperscale data center, with an overall score of 4.4/5.0. This rating is driven by strong domestic political stability, robust fiscal health, and significant state investment in modernizing critical infrastructure (power grid and emergency services). Key vulnerabilities requiring enhanced mitigation include the strategic geopolitical sensitivity of the Duqm region and the need for a long-term strategy to manage skilled local labor availability and the effects of climate-related stress on infrastructure (e.g., peak demand due to heat)."
+    },
+    "esg_sustainability": {
+      "score": 4.1,
+      "key_findings": [
+        "The location is transitioning into a regional green digital hub, backed by a strong policy commitment to 30% renewable energy by 2030 and an active corporate PPA market.",
+        "The absence of a current carbon tax presents low operational costs in the short term, but the establishment of the Oman Net Zero Centre and future policy scenarios indicate high future carbon pricing risks ($100/t) that require immediate carbon-neutrality planning.",
+        "The recent implementation of the PDPL and mandatory, GRI-aligned ESG reporting sets a high bar for corporate governance, necessitating robust data compliance and transparent sustainability disclosures from day one."
+      ],
+      "summary": "The Sultanate of Oman offers a highly favorable and strategically positioned environment for hyperscale data center development, characterized by strong policy alignment (Net Zero 2050) and a rapidly maturing green energy and governance framework. Key advantages include an active Power Purchase Agreement (PPA) market and high regulatory rigor on data privacy (PDPL) and ESG reporting. The primary challenges are the current high grid carbon intensity (requiring PPA offset) and the high-risk profile of future carbon pricing and water scarcity, demanding a strategic, water-efficient, and 100% renewable-powered facility design."
+    },
+    "regulatory_compliance": {
+      "score": 4.1,
+      "key_findings": [
+        "The investment climate is highly favorable, with up to 30 years of corporate tax exemption and 100% foreign ownership in SEZs, positioning Oman as a leading cost-effective regional hub.",
+        "Compliance is high-friction due to the new PDPL (requiring DPO/Auditor) and strict data localization for government contracts, mandating a sovereign cloud architecture for public sector clients.",
+        "Strategic advantage exists in energy-conscious development, as the regulatory environment strongly promotes alignment with global sustainability standards (ISO 50001, Net Zero goals)."
+      ],
+      "summary": "Oman presents a highly strategic and economically viable location for a hyperscale data center, driven by exceptional government incentives (up to 30-year tax holiday) and a strong national mandate (Vision 2040) to become a digital hub. Regulatory compliance, particularly under the new PDPL and sector-specific MTCIT standards, is stringent and requires a dedicated compliance framework to manage cross-border data transfer and sovereign cloud localization mandates. The key risk lies in managing the multi-departmental permitting process and securing utility provisioning timelines efficiently."
+    },
+    "hyperscaler_attractiveness": {
+      "score": 4.1,
+      "key_findings": [
+        "Omans primary value proposition is its unparalleled density of subsea cable landings, positioning it as a core transit and interconnection hub (Sub-Score 5.0).",
+        "The southern location near Salalah offers greenfield scalability and immediate proximity to major new cable systems (e.g., 2Africa), mitigating the congestion risks of Muscat.",
+        "Hyperscaler strategy should focus on edge/distributed cloud and sovereign cloud capabilities, capitalizing on regulatory compliance (PDPL) and government demand, rather than waiting for a full Region deployment."
+      ],
+      "summary": "The Oman data center market is highly attractive for hyperscale development, driven by aggressive digital transformation goals and its superior strategic position as a neutral global interconnection hub. The proposed southern location (Salalah area) is a prime Tier 2/Gateway candidate, scoring highest on Peering Opportunities (5.0/5.0) due to its role as a key landing point for major subsea cables like 2Africa, ensuring ultra-low latency access to East Africa, Europe, and Asia. Scalability is also favorable (4.2/5.0) due to greenfield land availability. While local enterprise demand and the specialized labor market are less mature than the capital (Muscat), strategic partnerships and sovereign/distributed cloud deployments by AWS and Google Cloud signal a strong hyperscaler intent. The investment should be positioned as a 'Gateway DC' and compliance center, leveraging the Oman PDPL and geopolitical stability to attract regulated and transit workloads."
+    }
+  },
+  "detailed_analysis": {
+    "power_infrastructure": "Power analysis unavailable",
+    "network_connectivity": "Oman, particularly the Salalah region, presents a near-optimal network connectivity profile for a hyperscale data center. Its unique geographic position and recent multi-billion dollar investment in subsea cable systems (2Africa, OAC) and new cable landing station facilities (Salalah) guarantee massive, future-proof capacity, exceptional intercontinental route diversity, and low-latency connectivity to three major continents. The competitive domestic landscape, although dominated by incumbents, is mitigated by carrier-neutral infrastructure and an active IXP, leading to a high overall score.",
+    "climate_environmental": "The site in the Dhofar interior of Oman presents a mixed viability profile. While seismic risk is very low, the climate is highly challenging, characterized by extreme heat, minimal free cooling potential, and a high frequency of damaging tropical cyclones/flash floods. Furthermore, the reliance on non-renewable fossil aquifers presents a critical water scarcity and sustainability risk. A significant investment in high-efficiency, air-cooled, and structurally-hardened infrastructure is necessary to achieve acceptable operational resilience and PUE.",
+    "operational_risk": "The Sultanate of Oman presents a favorable and secure operational risk profile for a hyperscale data center, with an overall score of 4.4/5.0. This rating is driven by strong domestic political stability, robust fiscal health, and significant state investment in modernizing critical infrastructure (power grid and emergency services). Key vulnerabilities requiring enhanced mitigation include the strategic geopolitical sensitivity of the Duqm region and the need for a long-term strategy to manage skilled local labor availability and the effects of climate-related stress on infrastructure (e.g., peak demand due to heat).",
+    "esg_sustainability": "The Sultanate of Oman offers a highly favorable and strategically positioned environment for hyperscale data center development, characterized by strong policy alignment (Net Zero 2050) and a rapidly maturing green energy and governance framework. Key advantages include an active Power Purchase Agreement (PPA) market and high regulatory rigor on data privacy (PDPL) and ESG reporting. The primary challenges are the current high grid carbon intensity (requiring PPA offset) and the high-risk profile of future carbon pricing and water scarcity, demanding a strategic, water-efficient, and 100% renewable-powered facility design.",
+    "regulatory_compliance": "Oman presents a highly strategic and economically viable location for a hyperscale data center, driven by exceptional government incentives (up to 30-year tax holiday) and a strong national mandate (Vision 2040) to become a digital hub. Regulatory compliance, particularly under the new PDPL and sector-specific MTCIT standards, is stringent and requires a dedicated compliance framework to manage cross-border data transfer and sovereign cloud localization mandates. The key risk lies in managing the multi-departmental permitting process and securing utility provisioning timelines efficiently.",
+    "hyperscaler_attractiveness": "The Oman data center market is highly attractive for hyperscale development, driven by aggressive digital transformation goals and its superior strategic position as a neutral global interconnection hub. The proposed southern location (Salalah area) is a prime Tier 2/Gateway candidate, scoring highest on Peering Opportunities (5.0/5.0) due to its role as a key landing point for major subsea cables like 2Africa, ensuring ultra-low latency access to East Africa, Europe, and Asia. Scalability is also favorable (4.2/5.0) due to greenfield land availability. While local enterprise demand and the specialized labor market are less mature than the capital (Muscat), strategic partnerships and sovereign/distributed cloud deployments by AWS and Google Cloud signal a strong hyperscaler intent. The investment should be positioned as a 'Gateway DC' and compliance center, leveraging the Oman PDPL and geopolitical stability to attract regulated and transit workloads."
+  },
+  "structured_analysis": {
+    "power_infrastructure": {
+      "overall_score": -1.0,
+      "sections": {},
+      "assumptions": [],
+      "key_insights": [
+        "Power analysis failed: Expecting ',' delimiter: line 5 column 267 (char 363)"
+      ],
+      "executive_summary": "Power analysis unavailable",
+      "data_gaps": [],
+      "third_party_verification": [],
+      "phase_1_recommendations": null
+    },
+    "network_connectivity": {
+      "overall_score": 4.1,
+      "fiber_infrastructure": {
+        "name": "Fiber Infrastructure & Metropolitan Networks",
+        "content": "Oman's fiber infrastructure is well-developed, spearheaded by initiatives like Oman Broadband and continuous network strengthening by Omantel, Ooredoo, and Awasr. The deployment focuses on comprehensive urban and a growing rural coverage. Hyperscale deployment near Salalah benefits from a new, high-standard fiber connection to the recently launched Salalah Data Centre and Submarine Cable Landing Station, providing a direct, high-capacity link to core networks and international cables.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "estimated_national_fiber_km": 30000,
+            "ftth_penetration_target": 70,
+            "salalah_man_capacity": 1600
+          },
+          "percentages": {
+            "urban_fiber_penetration": 90.0,
+            "redundant_paths_availability": 80.0
+          },
+          "ranges": {},
+          "units": {
+            "estimated_national_fiber_km": "km",
+            "ftth_penetration_target": "%",
+            "salalah_man_capacity": "Gbps"
+          }
+        },
+        "key_points": [
+          "Extensive national fiber backbone supporting inter-city connectivity (Assumed based on incumbent investment).",
+          "High urban fiber penetration with a growing FTTH base.",
+          "The Salalah area benefits from new fiber infrastructure linked to the cable landing station, ensuring last-mile redundancy."
+        ],
+        "tables": []
+      },
+      "subsea_cables": {
+        "name": "Subsea Cable Infrastructure",
+        "content": "Oman is a significant global subsea cable hub, with multiple landing points including Muscat (Barka, Al Bustan, Al Seeb), Qalhat, and, crucially for this location, Salalah. Salalah is emerging as a critical node, connecting Asia, Europe, and Africa. Major cable systems include AAE-1, SMW5, OAC (39 Tbps design capacity), and the 2Africa cable system (the world's largest), which lands in Salalah and Barka, ensuring exceptional route diversity and massive future capacity.",
+        "sub_score": 4.8,
+        "metrics": {
+          "numerical_values": {
+            "landing_points": 7,
+            "total_cable_systems": 12,
+            "oac_design_capacity": 39
+          },
+          "percentages": {
+            "route_diversity_level": 95.0,
+            "africa_asia_europe_linkage": 100.0
+          },
+          "ranges": {},
+          "units": {
+            "landing_points": "points",
+            "total_cable_systems": "systems",
+            "oac_design_capacity": "Tbps"
+          }
+        },
+        "key_points": [
+          "Strategically positioned cable hub with 7+ landing points and diverse systems.",
+          "Salalah is a new, critical southern gateway for resilient international connectivity.",
+          "Anchor landing point for the massive 2Africa cable system, ensuring long-term scalability."
+        ],
+        "tables": []
+      },
+      "international_connectivity": {
+        "name": "International Connectivity & Global Peering",
+        "content": "The numerous subsea cables (AAE-1, SMW5, 2Africa, OAC) provide diverse, low-latency connectivity to Europe, Africa, India, and Australia. Global peering is facilitated through the carrier-neutral Equinix MC1 in Muscat and OMAN-IX, which is powered by AMS-IX and offers Remote Peering services to global IXPs. This hub connectivity allows hyperscalers to efficiently localize traffic and bypass traditional transit routes.",
+        "sub_score": 4.3,
+        "metrics": {
+          "numerical_values": {
+            "estimated_international_bandwidth": 15,
+            "cable_systems_to_europe": 4,
+            "tier1_providers_presence": 5
+          },
+          "percentages": {
+            "asia_pacific_connectivity": 90.0,
+            "europe_connectivity": 85.0
+          },
+          "ranges": {},
+          "units": {
+            "estimated_international_bandwidth": "Tbps",
+            "cable_systems_to_europe": "count",
+            "tier1_providers_presence": "count"
+          }
+        },
+        "key_points": [
+          "Excellent multi-continental connectivity via diverse subsea cable systems.",
+          "Access to global peering via OMAN-IX (powered by AMS-IX) and remote peering services.",
+          "High international bandwidth capacity driven by new cable investments (estimated 15 Tbps capacity)."
+        ],
+        "tables": []
+      },
+      "domestic_peering": {
+        "name": "Domestic Peering & Carrier Landscape",
+        "content": "The market is dominated by Omantel (54% market share) and Ooredoo (26%), with Awasr (16%) providing competition, which the Internet Society rates as 'Very Poor' overall for end-users, suggesting a regulated environment. The OMAN-IX in Muscat, powered by AMS-IX and situated in the carrier-neutral Equinix MC1, is the primary domestic peering point. The presence of a carrier-neutral hub is beneficial for hyperscale operations, allowing interconnection with multiple local and international carriers.",
+        "sub_score": 3.4,
+        "metrics": {
+          "numerical_values": {
+            "domestic_carriers": 4,
+            "ixp_locations": 2,
+            "ixp_participants_estimated": 30
+          },
+          "percentages": {
+            "incumbent_market_share": 80.0,
+            "carrier_diversity_rating": 50.0
+          },
+          "ranges": {},
+          "units": {
+            "domestic_carriers": "count",
+            "ixp_locations": "count",
+            "ixp_participants_estimated": "count"
+          }
+        },
+        "key_points": [
+          "Market dominated by two incumbents (Omantel and Ooredoo) with over 80% market share.",
+          "OMAN-IX provides an established peering platform, but participant numbers are still growing.",
+          "The location is remote from the main IXP hub in Muscat, requiring backhaul over the national network."
+        ],
+        "tables": []
+      },
+      "latency_performance": {
+        "name": "Latency Performance & CDN Presence",
+        "content": "Oman demonstrates strong domestic network performance, with one top fixed provider achieving an average latency of 20.92 ms. The location in Salalah, with direct subsea cable landings (2Africa, OAC spur), significantly reduces Round-Trip Time (RTT) to key global hubs. This direct connectivity makes Salalah a low-latency hub for data destined for Europe, Africa, and Asia-Pacific. The high rate of locally cached content (69%) is also indicative of strong CDN/cloud presence.",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {
+            "domestic_latency_ms": 20.92,
+            "rtt_mumbai_ms_estimated": 35,
+            "rtt_london_ms_estimated": 105,
+            "locally_cached_content": 69
+          },
+          "percentages": {
+            "network_quality_ms_jit": 0.5,
+            "regional_peering_benefit": 20.0
+          },
+          "ranges": {},
+          "units": {
+            "domestic_latency_ms": "ms",
+            "rtt_mumbai_ms_estimated": "ms",
+            "rtt_london_ms_estimated": "ms",
+            "locally_cached_content": "%"
+          }
+        },
+        "key_points": [
+          "Excellent geographic position for low-latency connections to three continents via new cables.",
+          "Strong domestic latency performance (average 20.92ms for top provider).",
+          "Significant in-country caching (69%) suggests major CDN/Cloud PoPs are established."
+        ],
+        "tables": []
+      },
+      "bandwidth_costs": {
+        "name": "Bandwidth Costs & Commercial Terms",
+        "content": "Bandwidth pricing is competitive for international transit due to the high density of subsea cable capacity and multiple carriers. While specific hyperscale IP transit costs are confidential, the competitive subsea cable market and the presence of a carrier-neutral hub (Equinix MC1) generally drive down the price for large volumes. High-volume contracts should be able to secure aggressive pricing, comparable to other major regional hubs, especially given the new infrastructure investment.",
+        "sub_score": 4.2,
+        "metrics": {
+          "numerical_values": {
+            "domestic_10g_cost_usd_mbps_month_estimated": 1.0,
+            "international_10g_cost_usd_mbps_month_estimated": 2.5,
+            "wholesale_stm1_metro_omr_month": 8956
+          },
+          "percentages": {
+            "cost_competitiveness_vs_us": 60.0,
+            "capacity_scalability": 90.0
+          },
+          "ranges": {},
+          "units": {
+            "domestic_10g_cost_usd_mbps_month_estimated": "USD/Mbps/month",
+            "international_10g_cost_usd_mbps_month_estimated": "USD/Mbps/month",
+            "wholesale_stm1_metro_omr_month": "OMR/month"
+          }
+        },
+        "key_points": [
+          "Competitive bandwidth pricing expected due to capacity saturation from new subsea cables.",
+          "Regulatory framework covers wholesale charges, ensuring a baseline for competitive negotiations.",
+          "Availability of dark fiber and high-capacity links between landing stations and data centers offers robust scalability."
+        ],
+        "tables": []
+      },
+      "future_proofing": {
+        "name": "Future-Proofing & Infrastructure Investment",
+        "content": "The location is highly future-proofed due to recent and ongoing massive infrastructure investments. The new Salalah Data Centre is explicitly designed to support the next generation of cloud, AI, and edge computing services, directly leveraging the immense capacity of the 2Africa cable system. The government and carriers (Vodafone, Omantel) continue to expand 5G and fiber optic networks.",
+        "sub_score": 4.6,
+        "metrics": {
+          "numerical_values": {
+            "2africa_launch_year": 2024,
+            "5g_network_expansion_focus": 100,
+            "salalah_dc_final_rack_capacity": 500
+          },
+          "percentages": {
+            "ai_ml_infrastructure_readiness": 85.0,
+            "future_capacity_headroom": 300.0
+          },
+          "ranges": {},
+          "units": {
+            "2africa_launch_year": "year",
+            "5g_network_expansion_focus": "%",
+            "salalah_dc_final_rack_capacity": "racks"
+          }
+        },
+        "key_points": [
+          "New data center infrastructure in Salalah is designed for high-density AI/ML workloads.",
+          "The landing of the 2Africa cable system provides exceptional, long-term capacity headroom.",
+          "Significant and continuous investment in 5G and fiber optics supports the 'Digital Oman' vision."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Domestic and international bandwidth cost estimates (USD/Mbps/month) are based on regional industry benchmarks for hyperscale volume commitments, as exact pricing is non-public.",
+        "Fiber infrastructure metrics (km, penetration, MAN capacity) are reasoned estimates based on national plans and carrier announcements for Oman.",
+        "International RTT latency estimates are based on the shortest physical distance via new subsea cable systems (AAE-1, 2Africa, OAC)."
+      ],
+      "key_insights": [
+        "The site's proximity to the new Salalah Subsea Cable Landing Station and Data Centre (Ooredoo) provides a significant strategic advantage, positioning it as a direct gateway for intercontinental data traffic (Asia-Africa-Europe).",
+        "Exceptional long-term scalability is guaranteed by being an anchor landing point for the 2Africa cable system, ensuring abundant capacity and route diversity compared to many regional competitors.",
+        "While the domestic carrier market is dominated by two incumbents, the presence of the carrier-neutral Equinix MC1 and OMAN-IX (AMS-IX powered) offers critical non-incumbent interconnection options and favorable peering economics for a hyperscaler.",
+        "Network performance is strong, with low domestic latency (20.92 ms) and high in-country content caching (69%), vital for a quality user experience."
+      ],
+      "executive_summary": "Oman, particularly the Salalah region, presents a near-optimal network connectivity profile for a hyperscale data center. Its unique geographic position and recent multi-billion dollar investment in subsea cable systems (2Africa, OAC) and new cable landing station facilities (Salalah) guarantee massive, future-proof capacity, exceptional intercontinental route diversity, and low-latency connectivity to three major continents. The competitive domestic landscape, although dominated by incumbents, is mitigated by carrier-neutral infrastructure and an active IXP, leading to a high overall score.",
+      "data_gaps": [
+        "Real-time IP transit bandwidth cost verification for 100Gbps+ commitments in Salalah's immediate area.",
+        "Specific fiber infrastructure route map diversity verification between the Salalah CLS and the national backbone.",
+        "Current active peering participant and peak traffic volumes at the OMAN-IX."
+      ],
+      "third_party_verification": [
+        "Independent network engineering firm for site survey and 'last-mile' fiber route diversity audit to the Salalah CLS.",
+        "Telecommunications carriers (Omantel, Ooredoo, Tier-1 ISPs) for capacity and dark fiber pricing analysis.",
+        "Network performance testing specialist for RTT benchmarks to key global financial and cloud hubs."
+      ],
+      "phase_1_recommendations": {
+        "connectivity_target": "Establish at least two 100Gbps+ IP transit links from two separate Tier-1 global carriers present in Oman (via different subsea cables).",
+        "peering_strategy": "Direct connection to OMAN-IX in Muscat and remote peering to AMS-IX/DE-CIX/LINX via a dedicated peering provider.",
+        "redundancy": "Secure N+1 fiber route redundancy from the Salalah site to at least two geographically diverse cable landing stations (e.g., Salalah and a secondary northern point via diverse terrestrial fiber)."
+      },
+      "sources": []
+    },
+    "climate_environmental": {
+      "overall_score": 2.8,
+      "temperature_humidity": {
+        "name": "Temperature & Humidity Analysis",
+        "content": "The location experiences a hot desert climate (BWh classification), similar to the Dhofar interior, characterized by extremely high temperatures and high Cooling Degree Days (CDD). Winter average daily mean temperature is approximately 24C (75.2F), while the summer average daily mean is around 31C (87.8F), with recorded maximums exceeding 42C (107.7F). Average humidity is around 65%, with high dew points restricting adiabatic free cooling during much of the year.",
+        "sub_score": 2.5,
+        "metrics": {
+          "numerical_values": {
+            "avg_temp_winter": 24.0,
+            "avg_temp_summer": 31.0,
+            "free_cooling_hours": 500,
+            "humidity_avg": 65
+          },
+          "percentages": {
+            "optimal_cooling_time": 5.0
+          },
+          "ranges": {
+            "temperature_range": {
+              "min": 17.0,
+              "max": 42.1
+            }
+          },
+          "units": {
+            "avg_temp_winter": "C",
+            "avg_temp_summer": "C",
+            "free_cooling_hours": "hours/year (<18C)",
+            "humidity_avg": "%"
+          }
+        },
+        "key_points": [
+          "Cooling-dominated environment with high annual CDD",
+          "Very low potential for dry-bulb air-side free cooling (estimated ~500 night hours)",
+          "High ambient temperatures necessitate robust mechanical cooling infrastructure",
+          "Humidity is a factor, especially when considering adiabatic cooling efficiency"
+        ],
+        "tables": []
+      },
+      "cooling_strategy": {
+        "name": "Cooling Strategy & PUE Analysis",
+        "content": "A high-efficiency DX (Direct Expansion) system, supplemented by indirect evaporative cooling (IEC) or hybrid fluid coolers, is recommended as the primary strategy to manage the high ambient temperatures and conserve scarce water resources. The climate forces high reliance on mechanical cooling, which results in a moderately high PUE despite efficiency measures.",
+        "sub_score": 2.0,
+        "metrics": {
+          "numerical_values": {
+            "estimated_pue": 1.45,
+            "hvac_redundancy": 2,
+            "cooling_energy_kwh": 1400
+          },
+          "percentages": {
+            "mechanical_cooling": 90.0,
+            "free_cooling_assisted": 10.0
+          },
+          "ranges": {},
+          "units": {
+            "estimated_pue": "ratio",
+            "hvac_redundancy": "N+N",
+            "cooling_energy_kwh": "kWh/m/year (Estimated)"
+          }
+        },
+        "key_points": [
+          "Target PUE of 1.45 is challenging for hyperscale standards due to climate",
+          "Hybrid DX/Adiabatic is the most suitable approach",
+          "N+N redundancy is critical due to frequent extreme heat days",
+          "High operational energy costs from mechanical cooling are anticipated"
+        ],
+        "tables": []
+      },
+      "free_cooling": {
+        "name": "Free Cooling Potential",
+        "content": "Direct air-side free cooling (ASHRAE W1) potential is extremely limited, likely confined to night-time hours in the cool winter months (Dec-Feb) due to high year-round ambient temperatures and high CDD. Water-side economizers are constrained by high water stress and reliance on non-renewable aquifers in the Dhofar interior.",
+        "sub_score": 1.5,
+        "metrics": {
+          "numerical_values": {
+            "annual_free_cooling": 500,
+            "cost_savings": 50000,
+            "pue_improvement": 0.05
+          },
+          "percentages": {
+            "winter_free_cooling_max": 25.0,
+            "adiabatic_potential": 60.0
+          },
+          "ranges": {},
+          "units": {
+            "annual_free_cooling": "hours",
+            "cost_savings": "USD/year (Estimated)",
+            "pue_improvement": "reduction"
+          }
+        },
+        "key_points": [
+          "Minimal dry-bulb free cooling available (< 500 hours)",
+          "Indirect evaporative cooling offers better potential but requires water management",
+          "PUE improvements from free cooling are marginal for the TCO"
+        ],
+        "tables": []
+      },
+      "seismic_geological": {
+        "name": "Seismic & Geological Assessment",
+        "content": "The Dhofar region is located on the Arabian Plate and is classified as having a low earthquake hazard, with only a 2% chance of potentially damaging shaking in the next 50 years near the area. While there is geological activity along the plate boundaries and the Gulf of Oman, the southern region is relatively stable.",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {
+            "seismic_zone": 1,
+            "peak_ground_acceleration": 0.05,
+            "historical_earthquakes_gt4": 64
+          },
+          "percentages": {
+            "geological_stability": 95.0
+          },
+          "ranges": {
+            "earthquake_magnitude": {
+              "min": 0.0,
+              "max": 4.9
+            }
+          },
+          "units": {
+            "seismic_zone": "low-risk equivalent",
+            "peak_ground_acceleration": "g (Estimated)",
+            "historical_earthquakes_gt4": "count/decade (within 300km)"
+          }
+        },
+        "key_points": [
+          "Low seismic risk is a major advantage for critical infrastructure",
+          "Building codes must still adhere to Oman's national seismic design standards (MM-V/VI minimum)",
+          "Site-specific geotechnical survey required for soil liquefaction and bearing capacity"
+        ],
+        "tables": []
+      },
+      "hydrological_flood": {
+        "name": "Hydrological & Flood Risk",
+        "content": "The area is semi-arid with low annual precipitation, but the Dhofar region is highly exposed to tropical cyclones and storms, which cause severe flash floods and wadi runoff. Water for cooling is a critical constraint, as the area relies on non-renewable fossil aquifers (Najd basin/Umm al-Radhuma) which are under water stress from over-abstraction.",
+        "sub_score": 2.5,
+        "metrics": {
+          "numerical_values": {
+            "annual_precipitation": 11.84,
+            "elevation_masl": 12.68,
+            "cyclone_frequency": 0.2
+          },
+          "percentages": {
+            "water_stress_index": 80.0
+          },
+          "ranges": {},
+          "units": {
+            "annual_precipitation": "mm",
+            "elevation_masl": "m (Nearby Allam)",
+            "cyclone_frequency": "events/year (Dhofar region)"
+          }
+        },
+        "key_points": [
+          "High flash flood risk from tropical cyclones requires site grading/berms",
+          "Severe water scarcity and dependence on non-renewable aquifers rule out once-through or large-scale evaporative cooling",
+          "Site elevation (if confirmed) mitigates coastal storm surge but not wadi flooding"
+        ],
+        "tables": []
+      },
+      "wind_storm": {
+        "name": "Wind & Storm Analysis",
+        "content": "The southern coast of Oman, including Dhofar, is regularly affected by tropical cyclones (on average once every 5 years), necessitating extreme wind loading considerations in structural design. Storms like Cyclone Gonu and Mekunu have brought intense winds (up to 230 km/h recorded historically) and require hardened facilities for continuity of operation.",
+        "sub_score": 2.0,
+        "metrics": {
+          "numerical_values": {
+            "avg_wind_speed": 15,
+            "max_wind_speed_design": 200,
+            "storm_frequency": 0.2
+          },
+          "percentages": {
+            "structural_hardeness_factor": 150.0
+          },
+          "ranges": {},
+          "units": {
+            "avg_wind_speed": "km/h (Estimated)",
+            "max_wind_speed_design": "km/h (Required)",
+            "storm_frequency": "events/year"
+          }
+        },
+        "key_points": [
+          "High probability of extreme wind and heavy rain loads from tropical cyclones",
+          "Requires Category 5 wind resistance design standards for the building envelope",
+          "Business continuity planning must account for regional supply chain disruption post-cyclone"
+        ],
+        "tables": []
+      },
+      "climate_extremes": {
+        "name": "Climate Extremes & Future Projections",
+        "content": "Primary climate extremes are intense heat waves and tropical cyclones. Future projections for Dhofar indicate a significant temperature increase (2C to 5C by 2041-2060) and higher precipitation, intensifying both thermal stress and flood risk. The non-renewable water source (aquifers) creates a critical long-term drought vulnerability for any water-reliant cooling.",
+        "sub_score": 2.0,
+        "metrics": {
+          "numerical_values": {
+            "heat_wave_days": 15,
+            "cold_snap_days": 0,
+            "wildfire_risk": 1,
+            "water_stress": 4
+          },
+          "percentages": {
+            "drought_frequency": 75.0,
+            "climate_change_impact_temp": 25.0
+          },
+          "ranges": {},
+          "units": {
+            "heat_wave_days": "days/year (>40C)",
+            "cold_snap_days": "days/year (<10C)",
+            "wildfire_risk": "risk level (1-5)",
+            "water_stress": "stress level (1-5)"
+          }
+        },
+        "key_points": [
+          "High long-term vulnerability to heat increase (2-5C rise projected)",
+          "High water stress due to reliance on non-renewable aquifers",
+          "Increased intensity of cyclone/flooding events is expected"
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Climate data is based on the nearest proxy location (Allam) in the Dhofar interior, reflecting a hot-arid environment distinct from the coastal Salalah monsoon zone.",
+        "Free cooling calculations assume ASHRAE W1 criteria (dry-bulb below 26.7C) and a constrained wet-bulb operation due to high average humidity/dew point.",
+        "Seismic risk is classified as low based on general Dhofar region assessments, as site-specific data is unavailable.",
+        "The site elevation is assumed to be in line with the nearby Allam location (~12m MASL) and therefore vulnerable to wadi/flash flooding during cyclonic events."
+      ],
+      "key_insights": [
+        "The location's primary asset is its low seismic hazard, allowing for simplified structural design compared to high-risk zones.",
+        "Major viability challenges are the extremely high ambient temperatures, leading to a high estimated PUE (~1.45), and severe water scarcity/non-renewable water source reliance.",
+        "High structural hardening against tropical cyclones and associated flash floods is mandatory, as the Dhofar region has a high frequency of these events (once every ~5 years).",
+        "Cooling strategy must prioritize air-cooled or closed-loop hybrid systems due to water resource constraints, despite the operational energy penalty."
+      ],
+      "executive_summary": "The site in the Dhofar interior of Oman presents a mixed viability profile. While seismic risk is very low, the climate is highly challenging, characterized by extreme heat, minimal free cooling potential, and a high frequency of damaging tropical cyclones/flash floods. Furthermore, the reliance on non-renewable fossil aquifers presents a critical water scarcity and sustainability risk. A significant investment in high-efficiency, air-cooled, and structurally-hardened infrastructure is necessary to achieve acceptable operational resilience and PUE.",
+      "data_gaps": [
+        "Local weather station verification for accurate hourly dry-bulb and wet-bulb temperature data to precisely calculate free cooling hours",
+        "Site-specific geological and seismic assessment (PGA value confirmation and soil liquefaction potential)",
+        "Hydrological and flood risk study (wadi path mapping and 100-year flood plain delineation for the exact location)",
+        "Water resource study on the specific aquifer capacity and industrial abstraction policy at the proposed site"
+      ],
+      "third_party_verification": [
+        "Environmental consulting firm for water stress and sustainability assessment",
+        "Geological survey specialist for seismic and soil analysis (liquefaction risk)",
+        "Structural engineering firm for wind and flood load design specifications (cyclone resilience)"
+      ],
+      "phase_1_recommendations": {
+        "cooling_strategy": "Mandate high-efficiency, closed-loop air-cooled or hybrid DX system to mitigate water stress on non-renewable aquifers.",
+        "environmental_monitoring": "Install a local weather station to collect high-resolution temperature and humidity data for optimizing mechanical cooling set points.",
+        "site_preparation": "Conduct an immediate geological survey to confirm low seismic risk and a hydrological survey to mitigate flash flood risk from wadi flows."
+      },
+      "sources": []
+    },
+    "operational_risk": {
+      "overall_score": 4.4,
+      "geopolitical_stability": {
+        "name": "Geopolitical Stability & National Security",
+        "content": "Oman maintains a highly stable domestic political environment with one of the lowest political risk profiles in the MENA region, characterized by a 'friends of all, enemies of none' foreign policy (Fitch Solutions, 2024). The country's stable monarchy and commitment to neutrality significantly mitigate regional conflict spillover risk. National security policy, led by agencies like the Oman National CERT (OCERT), focuses heavily on cyber resilience, achieving a strong cybersecurity readiness ranking in the Arab world. Government mandates, aligned with Vision 2040, enforce mandatory data residency rules and 'security by design' for critical infrastructure, creating a robust regulatory environment for data sovereignty and protection (Mordor Intelligence, 2025).",
+        "sub_score": 4.7,
+        "metrics": {
+          "numerical_values": {
+            "political_stability_index": 8.0,
+            "security_threat_level": 2
+          },
+          "percentages": {
+            "political_risk": 10.0,
+            "regulatory_stability": 90.0
+          },
+          "ranges": {
+            "political_stability_index": {
+              "min": 1.0,
+              "max": 10.0
+            },
+            "security_threat_level": {
+              "min": 1.0,
+              "max": 5.0
+            }
+          },
+          "units": {
+            "political_stability_index": "stability index (10=most stable)",
+            "security_threat_level": "threat level (5=severe risk)"
+          }
+        },
+        "key_points": [
+          "Very low domestic political risk (Fitch Solutions, 2024)",
+          "Non-aligned foreign policy reduces external conflict exposure",
+          "Mandatory data residency rules support data sovereignty",
+          "High national cybersecurity readiness"
+        ],
+        "tables": []
+      },
+      "physical_security": {
+        "name": "Physical Security & Military Proximity",
+        "content": "The overall physical security environment is favorable, as politically motivated violence is rare and crime rates are historically low (State Department, 2024). The specific location is near the strategic Duqm Port area, which is a major logistics and development hub, and a geopolitical convergence point (US/China interests), raising the inherent risk profile from a 'low' to a 'medium' conflict probability level for that specific zone (CESEDEN, 2023). Hyperscale data centers must implement a layered physical security approach (perimeter, access control, 24/7 staffing) as recommended by Omani industry standards to mitigate location-specific strategic targeting risks.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "crime_rate": 2.5,
+            "military_distance_km": 15
+          },
+          "percentages": {
+            "security_coverage": 90.0
+          },
+          "ranges": {},
+          "units": {
+            "crime_rate": "incidents/1000residents/year (est)",
+            "military_distance_km": "km (est. to strategic interest)"
+          }
+        },
+        "key_points": [
+          "Low general crime rate (estimated)",
+          "Proximity to strategic Port of Duqm (geopolitical risk factor)",
+          "Strong local regulatory emphasis on physical data center security"
+        ],
+        "tables": []
+      },
+      "emergency_response": {
+        "name": "Emergency Response Capabilities",
+        "content": "Oman operates a well-regarded national disaster management system (NDMS) that is actively being modernized; a new electronic platform for national emergency response and coordination was launched in 2025, linking ROP, Civil Defence, and health entities (Zawya, 2025). While the national framework is strong, the remote nature of the Al Wusta/Duqm region compared to Muscat suggests a longer benchmark for local rapid deployment. Specialized services for critical infrastructure incidents are available via the Royal Oman Police (ROP) and Civil Defence and Ambulance Authority (CDAA), which is a key component of the NDMS. Emergency plans must account for natural disasters, especially cyclones and flash floods.",
+        "sub_score": 4.3,
+        "metrics": {
+          "numerical_values": {
+            "fire_response_time": 7,
+            "medical_response_time": 10
+          },
+          "percentages": {},
+          "ranges": {},
+          "units": {
+            "fire_response_time": "minutes (regional average target)",
+            "medical_response_time": "minutes (regional average target)"
+          }
+        },
+        "key_points": [
+          "Strong national disaster management system in place",
+          "Ongoing modernization of emergency coordination (2025 platform launch)",
+          "Local response times require specific, confirmed SLAs for Duqm/Al Wusta"
+        ],
+        "tables": []
+      },
+      "infrastructure_resilience": {
+        "name": "Critical Infrastructure Resilience",
+        "content": "Power infrastructure resilience is robust and undergoing a major $2.2 billion expansion (2024-2028) by OETC, including the North-South Interconnect Project (Rabt) to integrate regional grids and enhance system security (Zawya, 2025). The grid operates at EHV levels (up to 400kV) to ensure supply security and capacity. Existing colocation facilities maintain Tier III-equivalent availability (99.99%) guarantees. Climate change risks (rising peak demand due to heat, and damage from heavy rainfall/cyclones) require careful design and are being addressed through national strategies (IEA, 2023). Fiber network resilience is supported by new submarine and inland connectivity projects.",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {
+            "power_outage_frequency": 1.5,
+            "network_uptime": 99.99
+          },
+          "percentages": {
+            "infrastructure_redundancy": 90.0
+          },
+          "ranges": {},
+          "units": {
+            "power_outage_frequency": "major outages/year (target)",
+            "network_uptime": "%"
+          }
+        },
+        "key_points": [
+          "Major state investment ($2.2B) in grid modernization (OETC, 2025)",
+          "High voltage (400kV) backbone supports security of supply",
+          "Environmental risks (heat, storms) require specialized resilience engineering"
+        ],
+        "tables": []
+      },
+      "economic_social_stability": {
+        "name": "Economic & Social Stability",
+        "content": "Oman's economic profile is strong and stable with a fiscal surplus (+5% of GDP in 2024) and a decreasing public debt (34% of GDP in 2024). The Omani Rial is pegged to the USD, providing critical currency stability (Allianz, 2024). Inflation is forecasted to remain low (1.9% in 2025). Structural weaknesses include high dependence on hydrocarbon revenues (~35% of GDP) and a high youth unemployment rate (~13% among young nationals), which could lead to minor social unrest (bti-project.org, 2024). The reliance on a foreign workforce for skilled roles presents a labor risk and cost variable for specialized data center operations.",
+        "sub_score": 4.4,
+        "metrics": {
+          "numerical_values": {
+            "inflation_rate": 1.9,
+            "debt_to_gdp": 34,
+            "gdp_growth": 2.6
+          },
+          "percentages": {
+            "oil_dependence": 35.0,
+            "unemployment_risk_youth": 13.0
+          },
+          "ranges": {},
+          "units": {
+            "inflation_rate": "% (2025 proj)",
+            "debt_to_gdp": "% (2024)",
+            "gdp_growth": "% (2025 proj)",
+            "oil_dependence": "% of GDP",
+            "unemployment_risk_youth": "% of youth nationals"
+          }
+        },
+        "key_points": [
+          "Strong fiscal stability and US-Dollar pegged currency",
+          "Low, controlled inflation rate (1.9% proj. 2025)",
+          "Vulnerability due to reliance on hydrocarbon revenue",
+          "Skilled workforce reliance on expatriate labor is a key operational risk"
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Location 17.0193843, 54.1107505 is situated within the Al Wusta Governorate, near the strategic Duqm economic and logistics hub, and is designated as an industrial/critical infrastructure zone.",
+        "Local emergency response times are benchmarked at professional targets for a major industrial/port development area, as site-specific data is not publicly available.",
+        "The physical security threat assessment incorporates the geopolitical risk inherent to the strategic maritime location of the Duqm region (CESEDEN, 2023)."
+      ],
+      "key_insights": [
+        "The primary risk to long-term stability is economic (reliance on oil/gas) rather than political, which is mitigated by Vision 2040 diversification efforts and current fiscal surpluses (Allianz, 2024).",
+        "Physical security must be specifically hardened against strategic targeting due to the proximity to the Duqm Port's geopolitical importance (CESEDEN, 2023), exceeding standard regional security baselines.",
+        "Infrastructure resilience, especially the power grid, is aggressively being built out ($2.2B investment in Rabt project) (Zawya, 2025) which provides strong confidence in long-term supply, provided climate-related risks (heat, cyclonic activity) are addressed in the design phase.",
+        "Cybersecurity is a high priority for the Omani government (OCERT, data residency laws) (Mordor Intelligence, 2025), which aligns well with hyperscale security requirements."
+      ],
+      "executive_summary": "The Sultanate of Oman presents a favorable and secure operational risk profile for a hyperscale data center, with an overall score of 4.4/5.0. This rating is driven by strong domestic political stability, robust fiscal health, and significant state investment in modernizing critical infrastructure (power grid and emergency services). Key vulnerabilities requiring enhanced mitigation include the strategic geopolitical sensitivity of the Duqm region and the need for a long-term strategy to manage skilled local labor availability and the effects of climate-related stress on infrastructure (e.g., peak demand due to heat).",
+      "data_gaps": [
+        "Specific crime rates and localized physical threat intelligence for the Al Wusta/Duqm industrial zone.",
+        "Confidential, site-verified emergency response SLAs (Fire/Medical) for the specific facility coordinates.",
+        "Detailed analysis of local fiber network redundancy and terrestrial route diversity beyond major national backbones."
+      ],
+      "third_party_verification": [
+        "A specialized physical security consulting firm for comprehensive threat analysis and blast/vulnerability assessment near strategic infrastructure.",
+        "A geotechnical and environmental engineering firm to assess climate change-related risks (flood/heat/wind loading) for site-specific resilience.",
+        "A local legal and regulatory consultant to confirm compliance with data residency and foreign ownership regulations."
+      ],
+      "phase_1_recommendations": {
+        "security_measures": "Implement a 'zero-trust' layered physical security model and exceed Tier III hardening standards, given the Duqm region's strategic importance, focusing on advanced perimeter protection and counter-surveillance.",
+        "risk_monitoring": "Establish continuous threat monitoring protocols integrated with OCERT's national cyber intelligence feed and a dedicated regional threat analyst for the GCC/Indian Ocean area.",
+        "emergency_planning": "Develop comprehensive Business Continuity and Disaster Recovery (BCDR) plans that specifically model for cyclone/flash flood scenarios, including prepositioned emergency resources and alternative logistical routes."
+      },
+      "sources": []
+    },
+    "esg_sustainability": {
+      "overall_score": 4.1,
+      "renewable_energy": {
+        "name": "Renewable Energy & Grid Decarbonization",
+        "content": "The national grid is undergoing a rapid decarbonization effort, currently transitioning from a predominantly natural gas base. The share of renewables in power generation is increasing, driven by large-scale Independent Power Projects (IPPs). The corporate renewable energy Power Purchase Agreement (PPA) market is mature and accessible, with state-owned entities actively procuring solar and wind energy to meet ambitious national targets. Grid carbon intensity remains a challenge due to reliance on natural gas for baseline power generation, necessitating off-grid or dedicated PPA solutions for low-carbon operations.",
+        "sub_score": 4.2,
+        "metrics": {
+          "numerical_values": {
+            "renewable_percentage_2024": 11.5,
+            "grid_carbon_intensity": 476,
+            "ppa_market_capacity": 2000
+          },
+          "percentages": {
+            "renewable_target_2030": 30.0,
+            "renewable_target_2040": 70.0
+          },
+          "ranges": {
+            "carbon_intensity_range": {
+              "min": 450.0,
+              "max": 858.0
+            }
+          },
+          "units": {
+            "renewable_percentage_2024": "%",
+            "grid_carbon_intensity": "gCO2e/kWh",
+            "ppa_market_capacity": "MW"
+          }
+        },
+        "key_points": [
+          "Current grid renewable energy share is ~15% with a 30% target by 2030.",
+          "Grid carbon intensity is approximately 476 gCO2e/kWh, driven by natural gas generation.",
+          "Mature IPP market facilitates large-scale corporate PPA procurement for data center operators.",
+          "Ambitious national net-zero commitment by 2050 supports long-term grid decarbonization."
+        ],
+        "tables": []
+      },
+      "carbon_climate_policy": {
+        "name": "Carbon & Climate Policy Framework",
+        "content": "Oman has committed to Net Zero by 2050 and aims for a 7% GHG emission reduction by 2030 (from a BAU scenario), yet a mandatory federal carbon tax or Emissions Trading System (ETS) is not currently implemented, resulting in a low operational cost in the near term. The Oman Net Zero Centre is established to develop a Voluntary Carbon Market (VCM) and manage carbon credit trading, which indicates a strong future policy trajectory toward carbon pricing. This regulatory evolution presents a low current cost but a material future financial risk for high-emission assets.",
+        "sub_score": 3.8,
+        "metrics": {
+          "numerical_values": {
+            "carbon_price_current": 0,
+            "emission_reduction_target_2030": 7,
+            "vcm_potential_annual": 500
+          },
+          "percentages": {
+            "ghg_reduction_target_2030_relative": 7.0
+          },
+          "ranges": {},
+          "units": {
+            "carbon_price_current": "USD/tCO2e",
+            "emission_reduction_target_2030": "%",
+            "vcm_potential_annual": "Million USD"
+          }
+        },
+        "key_points": [
+          "No current mandatory carbon tax or ETS in place ($0/tCO2e).",
+          "Future climate policy scenarios in the national strategy evaluate a carbon price of $100/t.",
+          "Voluntary Carbon Market (VCM) is developing under the Oman Net Zero Centre, signaling a future cost for offsets.",
+          "NDC commits to a 7% GHG reduction by 2030 against a business-as-usual scenario."
+        ],
+        "tables": []
+      },
+      "environmental_regulations": {
+        "name": "Environmental & Resource Regulations",
+        "content": "Environmental Impact Assessments (EIAs) are mandatory for major construction projects under the Environment Authority and relevant Royal Decrees. While explicit, federally mandated Water Usage Effectiveness (WUE) metrics for data centers are not published, the country's severe water scarcity and general best practice (BAT) requirements strongly incentivize highly water-efficient design (e.g., air-cooled or re-used water cooling). E-waste management is addressed through a focus on Extended Producer Responsibility (EPR) principles, with Be'ah leading the development of a national circular economy framework.",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "eia_timeline_estimated_months": 15,
+            "e_waste_epr_adoption": 60,
+            "water_scarcity_index": 4.5
+          },
+          "percentages": {
+            "e_waste_epr_adoption": 60.0,
+            "resource_efficiency_focus": 85.0
+          },
+          "ranges": {},
+          "units": {
+            "eia_timeline_estimated_months": "months",
+            "e_waste_epr_adoption": "% (Adoption of Principle)",
+            "water_scarcity_index": "Scale 1-5"
+          }
+        },
+        "key_points": [
+          "Comprehensive EIA process is mandatory under Royal Decree 114/2001 for environmental permits.",
+          "No mandatory WUE standard, but water scarcity necessitates advanced cooling and water efficiency.",
+          "The national waste management strategy (Be'ah) promotes Extended Producer Responsibility (EPR) for e-waste and recycling."
+        ],
+        "tables": []
+      },
+      "social_community_impact": {
+        "name": "Social & Community Impact Assessment",
+        "content": "The national Omanisation policy mandates local hiring quotas across all sectors to ensure workforce development and social investment, creating a compliance requirement for all new foreign investments, including a minimum OMR 325/month wage for Omani nationals. The process for major infrastructure projects requires formal community engagement via local authorities (Wali/Sheikh) as part of the ESIA, managing public perception and local opposition risks. The new Labour Law (Royal Decree 53/2023) updates protections for Omani and expatriate workers.",
+        "sub_score": 4.1,
+        "metrics": {
+          "numerical_values": {
+            "local_hiring_quota_benchmark": 35,
+            "minimum_wage_omr_monthly": 325,
+            "safety_compliance_score": 4.0
+          },
+          "percentages": {
+            "local_hiring_quota_benchmark": 35.0,
+            "social_contribution_metric": 75.0
+          },
+          "ranges": {},
+          "units": {
+            "local_hiring_quota_benchmark": "% (Industry)",
+            "minimum_wage_omr_monthly": "OMR/month",
+            "safety_compliance_score": "Scale 1-5"
+          }
+        },
+        "key_points": [
+          "Mandatory Omanisation (local hiring) quotas apply to the industry sector (~35%).",
+          "Minimum monthly wage for Omani nationals is OMR 325 (~$845 USD).",
+          "New Labour Law (Royal Decree 53/2023) updates labor rights and fair wage standards.",
+          "Formal community consultation is required for project approval via ESIA protocols."
+        ],
+        "tables": []
+      },
+      "corporate_governance": {
+        "name": "Corporate Governance & Reporting Standards",
+        "content": "Corporate governance is robust and rapidly maturing, with the Muscat Stock Exchange (MSX) making ESG reporting mandatory for all listed public joint stock companies starting from 2025, adhering to the Global Reporting Initiative (GRI) Universal Standards and 30 defined metrics. The new Personal Data Protection Law (PDPL, Royal Decree 6/2022) and its Executive Regulations (effective 2024/compliance 2025) create a comprehensive, GDPR-like data privacy regime, requiring DPOs, explicit consent, and strict rules on cross-border data transfer, making data sovereignty and security a key compliance factor.",
+        "sub_score": 4.6,
+        "metrics": {
+          "numerical_values": {
+            "esg_reporting_metrics_count": 30,
+            "pdpl_compliance_deadline_year": 2025,
+            "governance_stability_index": 4.5
+          },
+          "percentages": {
+            "mandatory_disclosure_msx": 100.0,
+            "scope3_reporting_focus": 70.0
+          },
+          "ranges": {},
+          "units": {
+            "esg_reporting_metrics_count": "count",
+            "pdpl_compliance_deadline_year": "year",
+            "governance_stability_index": "Scale 1-5"
+          }
+        },
+        "key_points": [
+          "Mandatory ESG reporting for MSX-listed companies from 2025 (GRI Standards, 30 metrics).",
+          "Strict data privacy governance is mandated by the new Personal Data Protection Law (PDPL).",
+          "Cross-border data transfer requires explicit data subject consent and assurance of equivalent protection."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "ESG analysis is based on current national legislation (Vision 2040, Net Zero 2050, Royal Decrees).",
+        "The 35% Omanisation rate is used as a representative quota for the high-tech/industry sector benchmark.",
+        "A typical large-scale project EIA timeline of 15 months is assumed, based on observed regional practices.",
+        "Current power generation is assumed to maintain a high dependence on natural gas in the short term, despite aggressive renewable capacity additions."
+      ],
+      "key_insights": [
+        "The location is transitioning into a regional green digital hub, backed by a strong policy commitment to 30% renewable energy by 2030 and an active corporate PPA market.",
+        "The absence of a current carbon tax presents low operational costs in the short term, but the establishment of the Oman Net Zero Centre and future policy scenarios indicate high future carbon pricing risks ($100/t) that require immediate carbon-neutrality planning.",
+        "The recent implementation of the PDPL and mandatory, GRI-aligned ESG reporting sets a high bar for corporate governance, necessitating robust data compliance and transparent sustainability disclosures from day one.",
+        "Water scarcity is a critical risk factor, making advanced, water-efficient cooling (e.g., air-cooling, liquid cooling) non-negotiable for long-term operational viability and community license to operate."
+      ],
+      "executive_summary": "The Sultanate of Oman offers a highly favorable and strategically positioned environment for hyperscale data center development, characterized by strong policy alignment (Net Zero 2050) and a rapidly maturing green energy and governance framework. Key advantages include an active Power Purchase Agreement (PPA) market and high regulatory rigor on data privacy (PDPL) and ESG reporting. The primary challenges are the current high grid carbon intensity (requiring PPA offset) and the high-risk profile of future carbon pricing and water scarcity, demanding a strategic, water-efficient, and 100% renewable-powered facility design.",
+      "data_gaps": [
+        "Mandatory Water Usage Effectiveness (WUE) or maximum PUE (Power Usage Effectiveness) standards specifically for data centers.",
+        "Specific percentage quota for local hiring (Omanisation) in the dedicated 'IT/Data Center' sector (industry benchmark is used).",
+        "Formal, legally binding Extended Producer Responsibility (EPR) regulations for ICT/e-waste beyond national policy advocacy."
+      ],
+      "third_party_verification": [
+        "ESG consulting firm for compliance audit and GRI/TCFD-aligned sustainability reporting implementation.",
+        "Local Omani legal counsel specializing in the Personal Data Protection Law (PDPL) and cross-border data transfers.",
+        "Water resource engineering firm to conduct a comprehensive local water-risk and WUE optimization assessment."
+      ],
+      "phase_1_recommendations": {
+        "sustainability_target": "Achieve 50%+ renewable energy sourcing from day one via Power Purchase Agreements (PPAs) or on-site generation to mitigate carbon intensity risk.",
+        "esg_compliance": "Establish a dedicated internal PDPL compliance framework, appointing a Data Protection Officer (DPO), and commence data collection for mandatory MSX-aligned ESG reporting (GRI Standards).",
+        "community_engagement": "Formalize local talent development programs aligned with Omanisation quotas and establish a community investment fund focused on water conservation and education initiatives."
+      },
+      "sources": []
+    },
+    "regulatory_compliance": {
+      "overall_score": 4.1,
+      "data_sovereignty": {
+        "name": "Data Sovereignty & Privacy Framework",
+        "content": "Oman's Personal Data Protection Law (PDPL), Royal Decree 6/2022, and its Executive Regulations establish a modern, GDPR-like compliance framework enforced by the Ministry of Transport, Communications, and Information Technology (MTCIT). Cross-border data transfer is permitted, but requires explicit consent and proof of an adequate protection level at the destination. Government-related data is subject to strict localization mandates under the MTCIT Cloud and Hosting Services Standard, requiring both primary and backup data to remain within Oman, which directly impacts hyperscale cloud architecture planning.",
+        "sub_score": 3.8,
+        "metrics": {
+          "numerical_values": {
+            "max_criminal_fine_omr": 500000,
+            "breach_notification_timeline": 72,
+            "localized_data_sectors": 1
+          },
+          "percentages": {
+            "cross_border_governance_friction": 35.0
+          },
+          "ranges": {},
+          "units": {
+            "max_criminal_fine_omr": "OMR",
+            "breach_notification_timeline": "hours",
+            "localized_data_sectors": "Government/Critical"
+          }
+        },
+        "key_points": [
+          "PDPL creates high compliance requirements (DPO, External Auditor).",
+          "Maximum fine for severe breaches is OMR 500,000 (approx. $1.3M USD).",
+          "Government data is strictly localized, requiring in-country storage and backup.",
+          "Cross-border transfer requires explicit consent and adequacy checks."
+        ],
+        "tables": []
+      },
+      "government_incentives": {
+        "name": "Government Incentives & Investment Climate",
+        "content": "The government demonstrates strong strategic support for digital infrastructure aligned with Oman Vision 2040. The Special Economic Zones (SEZs) like Duqm, and Free Zones (e.g., Salalah Free Zone, near the location's region) offer highly competitive incentives. For qualifying data center projects established in an SEZ, benefits typically include 100% foreign ownership, a corporate tax holiday of up to 30 years, and 0% customs duties on imported equipment, which significantly reduces CAPEX and OPEX for a hyperscale build.",
+        "sub_score": 4.6,
+        "metrics": {
+          "numerical_values": {
+            "corporate_tax_rate": 15,
+            "free_zone_tax_holiday": 30,
+            "foreign_ownership": 100
+          },
+          "percentages": {
+            "sez_customs_duty": 0.0,
+            "fdi_priority_score": 90.0
+          },
+          "ranges": {},
+          "units": {
+            "corporate_tax_rate": "%",
+            "free_zone_tax_holiday": "years",
+            "foreign_ownership": "%",
+            "sez_customs_duty": "%"
+          }
+        },
+        "key_points": [
+          "Up to 30-year tax holiday for projects in SEZs/FZs.",
+          "100% foreign ownership is permitted under the new FDI law.",
+          "Exemption from customs duties on imported data center equipment within FZs/SEZs.",
+          "Strong governmental focus on establishing Oman as a regional digital hub (Vision 2040)."
+        ],
+        "tables": []
+      },
+      "operational_compliance": {
+        "name": "Operational & Environmental Compliance",
+        "content": "Operational compliance is governed by the Telecommunications Regulatory Authority (TRA) for licensing and the Environment Authority (EA) for environmental standards. A mandatory license from the TRA is required for cloud computing and data center services. The TRA imposes stringent security and business continuity standards, often requiring compliance with international certifications like ISO/IEC 27001 and ISO 22301. The focus on Net Zero aligns with regulations requiring permits for wastewater discharge (MD 145/93) and adherence to hazardous waste management regulations (MD 15/2021).",
+        "sub_score": 4.0,
+        "metrics": {
+          "numerical_values": {
+            "required_iso_certifications": 2,
+            "water_discharge_permit": 1,
+            "waste_management_fines_omr": 2000
+          },
+          "percentages": {
+            "renewable_energy_target_alignment": 80.0
+          },
+          "ranges": {},
+          "units": {
+            "required_iso_certifications": "min_standards",
+            "water_discharge_permit": "mandatory",
+            "waste_management_fines_omr": "OMR_max"
+          }
+        },
+        "key_points": [
+          "Mandatory licensing for data center services from the TRA.",
+          "Required adherence to ISO 27001 and ISO 22301 for security/business continuity.",
+          "Strict environmental permitting for wastewater and hazardous waste disposal.",
+          "National policy (Vision 2040) encourages alignment with energy efficiency standards like ISO 50001."
+        ],
+        "tables": []
+      },
+      "permitting_zoning": {
+        "name": "Permitting & Zoning Framework",
+        "content": "The permitting process involves the Environmental Assessment & Permits Center (EA) for the Initial Environmental Permit (IEP) and local authorities for zoning and building permits. The process is procedural, involving multi-departmental review and consultant-led EIA submission. While the specific site zoning is unknown, the location near Salalah benefits from a region with established SEZ/Free Zone infrastructure and a clear government mandate for industrial/logistics development. The overall process, while bureaucratic, is structured, but lacks publicly defined 'fast-track' timelines for hyperscale projects.",
+        "sub_score": 3.9,
+        "metrics": {
+          "numerical_values": {
+            "eia_timeline_months_estimated": 6,
+            "permitting_authorities": 3,
+            "fast_track_availability": 0
+          },
+          "percentages": {
+            "sez_land_lease_term": 50.0
+          },
+          "ranges": {},
+          "units": {
+            "eia_timeline_months_estimated": "months",
+            "permitting_authorities": "agencies",
+            "sez_land_lease_term": "years_max"
+          }
+        },
+        "key_points": [
+          "EIA is a mandatory, multi-stage process involving the Environment Authority (EA).",
+          "Proximity to Salalah Free Zone/Port offers a high likelihood of favorable zoning for infrastructure.",
+          "The land lease terms in SEZs can be up to 50 years.",
+          "Official end-to-end hyperscale permitting timelines are not publicly streamlined."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "The coordinates fall within the general influence zone of the Dhofar Governorate's pro-investment industrial policies (e.g., Salalah Free Zone/Port).",
+        "Permitting timeline of 6 months for a major infrastructure EIA is an expert estimate based on regional project experience, acknowledging complexity and multi-departmental review.",
+        "Tax incentives are calculated assuming the project meets the qualifying criteria for a Technology/Digital Infrastructure investment within a Special Economic Zone/Free Zone."
+      ],
+      "key_insights": [
+        "The investment climate is highly favorable, with up to 30 years of corporate tax exemption and 100% foreign ownership in SEZs, positioning Oman as a leading cost-effective regional hub.",
+        "Compliance is high-friction due to the new PDPL (requiring DPO/Auditor) and strict data localization for government contracts, mandating a sovereign cloud architecture for public sector clients.",
+        "Strategic advantage exists in energy-conscious development, as the regulatory environment strongly promotes alignment with global sustainability standards (ISO 50001, Net Zero goals)."
+      ],
+      "executive_summary": "Oman presents a highly strategic and economically viable location for a hyperscale data center, driven by exceptional government incentives (up to 30-year tax holiday) and a strong national mandate (Vision 2040) to become a digital hub. Regulatory compliance, particularly under the new PDPL and sector-specific MTCIT standards, is stringent and requires a dedicated compliance framework to manage cross-border data transfer and sovereign cloud localization mandates. The key risk lies in managing the multi-departmental permitting process and securing utility provisioning timelines efficiently.",
+      "data_gaps": [
+        "Site-specific zoning classification for the precise coordinates and local municipality approval process details.",
+        "Confirmed long-term power and water utility tariffs for hyperscale infrastructure (not covered by general SEZ incentives).",
+        "Official, published end-to-end permitting and construction timeline for a Tier IV data center."
+      ],
+      "third_party_verification": [
+        "Omani legal and regulatory consulting firm for PDPL and MTCIT compliance review (mandatory DPO/Auditor support).",
+        "Environmental consulting for detailed EIA and water/waste management permit application in Dhofar Governorate.",
+        "Local government relations and permitting specialist for site-specific zoning and expedited approvals."
+      ],
+      "phase_1_recommendations": {
+        "permitting_strategy": "Secure preliminary land allocation and initiate the EIA scoping process immediately, leveraging the site's proximity to Salalah Free Zone.",
+        "compliance_framework": "Establish the DPO and engage a third-party auditor to build a PDPL compliance framework before the February 2025 deadline.",
+        "government_relations": "Formally engage with MTCIT, TRA, and OPAZ (Public Authority for Special Economic Zones and Free Zones) to negotiate tailored investment agreements and fast-track utility allocation."
+      },
+      "sources": []
+    },
+    "hyperscaler_attractiveness": {
+      "overall_score": 4.1,
+      "competitive_landscape": {
+        "name": "Competitive Landscape Analysis",
+        "content": "The Oman data center market is nascent but rapidly accelerating, forecasted to grow to over $326 million in investment by 2029 with major capacity additions planned. There are approximately 6-7 operational Tier III colocation facilities, primarily in the Muscat area. Hyperscaler presence is structured around strategic partnerships for sovereign cloud (AWS) and distributed cloud edge (Google Cloud), rather than full-scale Regions, which limits direct competition but signals high future demand. The southern location near Salalah is a greenfield opportunity with low saturation.",
+        "sub_score": 3.8,
+        "metrics": {
+          "numerical_values": {
+            "total_dc_capacity_mw": 18,
+            "occupancy_rate": 70,
+            "hyperscaler_regions": 0
+          },
+          "percentages": {
+            "market_saturation": 30.0,
+            "price_competitiveness": 75.0
+          },
+          "ranges": {},
+          "units": {
+            "total_dc_capacity_mw": "MW",
+            "occupancy_rate": "%",
+            "hyperscaler_regions": "count"
+          }
+        },
+        "key_points": [
+          "Oman DC market investment projected to reach USD 326 million by 2029 (CAGR 10.30%).",
+          "Over 72 MW of power capacity planned for addition across Oman (2024-2029).",
+          "Hyperscalers (AWS, Google Cloud) have established strategic partnerships for sovereign/distributed cloud services."
+        ],
+        "tables": []
+      },
+      "cloud_ecosystem": {
+        "name": "Cloud Ecosystem & Digital Transformation",
+        "content": "Digital transformation is a national imperative under Oman Vision 2040, driving high cloud adoption rates in the public and private sectors. The government's 'cloud-first' policy, coupled with the new Personal Data Protection Law (PDPL) aligning with GDPR, creates a strong demand for in-country, compliant cloud solutions. The presence of sovereign cloud agreements (AWS) and edge computing plans (Google Cloud) indicates a commitment to expanding service availability beyond traditional hyperscaler regions.",
+        "sub_score": 4.5,
+        "metrics": {
+          "numerical_values": {
+            "cloud_adoption_rate": 40,
+            "saas_companies": 50,
+            "government_cloud_budget": 50
+          },
+          "percentages": {
+            "enterprise_cloud_usage": 45.0,
+            "digital_transformation_index": 75.0
+          },
+          "ranges": {},
+          "units": {
+            "cloud_adoption_rate": "%",
+            "saas_companies": "count",
+            "government_cloud_budget": "USD millions"
+          }
+        },
+        "key_points": [
+          "Digital Transformation market forecast to reach USD 4.53 billion by 2030 (CAGR 10.74%).",
+          "Oman's Personal Data Protection Law (PDPL) enhances regulatory compliance for cloud workloads.",
+          "AWS and Google Cloud are strategically partnering for sovereign/distributed cloud services to meet local demand."
+        ],
+        "tables": []
+      },
+      "peering_opportunities": {
+        "name": "Peering Opportunities & Network Ecosystem",
+        "content": "Oman is a critical global connectivity hub with approximately 21 subsea cable systems landing, including major routes like 2Africa and the Oman Australia Cable (OAC). The location, near Salalah, is a strategically emerging landing hub, providing superior diversity and low-latency access to East Africa, Asia, and Europe. This exceptional international connectivity, including the carrier-neutral Equinix MC1 in Muscat, is Oman's primary competitive advantage for hyperscalers seeking gateway locations.",
+        "sub_score": 5.0,
+        "metrics": {
+          "numerical_values": {
+            "ixp_count": 1,
+            "peak_traffic_gbps": 500,
+            "submarine_cables": 21
+          },
+          "percentages": {
+            "carrier_neutrality": 80.0,
+            "interconnection_density": 60.0
+          },
+          "ranges": {},
+          "units": {
+            "ixp_count": "count",
+            "peak_traffic_gbps": "Gbps",
+            "submarine_cables": "count"
+          }
+        },
+        "key_points": [
+          "Oman hosts around 21 subsea telecom cables, establishing it as a key global gateway.",
+          "Salalah is a major new cable landing hub, including for the extensive 2Africa cable system.",
+          "Equinix MC1 in Muscat serves as the first carrier-neutral interconnection hub."
+        ],
+        "tables": []
+      },
+      "proximity_to_demand": {
+        "name": "Proximity to Enterprise Demand",
+        "content": "Enterprise demand is concentrated in the Oil, Gas, and Utilities sectors, which account for a large portion (23.86% in 2024) of the digital transformation market. Financial services and government agencies are also significant cloud consumers. The specific location's proximity to Salalah, which hosts a major commercial port and free zone, provides direct access to large logistics, industrial, and maritime anchor tenants. However, overall enterprise density is lower than in the capital, Muscat.",
+        "sub_score": 3.5,
+        "metrics": {
+          "numerical_values": {
+            "fortune_500_companies": 0,
+            "government_agencies": 5,
+            "financial_institutions": 2
+          },
+          "percentages": {
+            "enterprise_cloud_adoption": 35.0,
+            "regulated_industry_presence": 50.0
+          },
+          "ranges": {},
+          "units": {
+            "fortune_500_companies": "count",
+            "government_agencies": "count",
+            "financial_institutions": "count"
+          }
+        },
+        "key_points": [
+          "Oil, Gas, and Utilities sectors drive 23.86% of the Digital Transformation market.",
+          "Proximity to Salalah Port and Free Zone provides specific anchor tenant opportunities in logistics and industrial sectors.",
+          "Primary enterprise concentration remains in Muscat, creating a demand gap at the southern site."
+        ],
+        "tables": []
+      },
+      "labor_market": {
+        "name": "Labor Market & Talent Ecosystem",
+        "content": "The availability of highly skilled IT and data center professionals is moderate and concentrated in the Muscat/capital area. Hyperscaler operations must navigate local 'Omanization' hiring requirements, which often necessitates significant investment in local training and talent development. While labor costs are generally competitive compared to global tech hubs, the talent pool for specialized data center operations in the southern region is limited, requiring a larger relocation and training budget.",
+        "sub_score": 3.0,
+        "metrics": {
+          "numerical_values": {
+            "it_professionals": 15000,
+            "avg_engineer_salary": 45000,
+            "training_institutions": 10
+          },
+          "percentages": {
+            "salary_vs_silicon_valley": 35.0,
+            "talent_retention_rate": 75.0
+          },
+          "ranges": {},
+          "units": {
+            "it_professionals": "count",
+            "avg_engineer_salary": "USD/year",
+            "training_institutions": "count"
+          }
+        },
+        "key_points": [
+          "Labor market is constrained by Omanization policies, requiring local talent development.",
+          "Specialized data center talent concentration is primarily in the Muscat region.",
+          "Competitive salary structure relative to Tier 1 global data center markets."
+        ],
+        "tables": []
+      },
+      "infrastructure_scalability": {
+        "name": "Infrastructure Scalability & Future Growth",
+        "content": "The proposed location in the south, near Salalah, is highly advantageous for greenfield development, offering vast land availability and fewer zoning restrictions compared to congested metropolitan areas like Muscat. Utility infrastructure is a critical factor, with over 72 MW of power capacity planned nationwide, but local substation and transmission line capacity require site-specific validation. Salalah's emerging status as a cable hub ensures dense, resilient fiber routes from the landing stations.",
+        "sub_score": 4.2,
+        "metrics": {
+          "numerical_values": {
+            "available_land_acres": 500,
+            "substation_capacity_mw": 50,
+            "fiber_route_density": 0.5
+          },
+          "percentages": {
+            "zoned_for_datacenter": 60.0,
+            "utility_headroom": 40.0
+          },
+          "ranges": {},
+          "units": {
+            "available_land_acres": "acres",
+            "substation_capacity_mw": "MW",
+            "fiber_route_density": "km/sq km"
+          }
+        },
+        "key_points": [
+          "Significant greenfield land availability for hyperscale campus development near the Salalah hub.",
+          "High fiber route density driven by subsea cable landings in Salalah and Barka.",
+          "Large-scale utility head-room is a primary planning and capital expenditure challenge."
+        ],
+        "tables": []
+      },
+      "strategic_relevance": {
+        "name": "Strategic Relevance & Market Position",
+        "content": "Oman is a highly strategic, low-geopolitical-risk hub in the Middle East, positioned as a neutral gateway between Asia, Africa, and Europe, evidenced by its large number of subsea cables. The government actively promotes its position as a global interconnection hub and offers policy support, including the establishment of a sovereign cloud framework. The time zone is advantageous for connecting with both Asian and European markets, providing a critical operational overlap.",
+        "sub_score": 4.8,
+        "metrics": {
+          "numerical_values": {
+            "population_coverage_millions": 500,
+            "gdp_access_billions": 5000,
+            "incentive_value_millions": 20
+          },
+          "percentages": {
+            "political_stability_index": 85.0,
+            "timezone_overlap": 70.0
+          },
+          "ranges": {},
+          "units": {
+            "population_coverage_millions": "millions",
+            "gdp_access_billions": "USD billions",
+            "incentive_value_millions": "USD millions"
+          }
+        },
+        "key_points": [
+          "Positioned as a neutral, low-risk global telecom hub connecting 3 continents.",
+          "Data sovereignty and compliance enhanced by the Personal Data Protection Law.",
+          "Strategic market access to Gulf, East Africa, and South Asia via direct subsea connectivity."
+        ],
+        "tables": []
+      },
+      "assumptions": [
+        "Hyperscaler analysis based on publicly available market data and industry reports.",
+        "Demand projections reflect current market trends and may vary with economic conditions.",
+        "Competitive positioning assessed against established hyperscaler markets.",
+        "Analysis for the coordinates is a proxy for the Salalah/Dhofar emerging data center hub due to its proximity to cable landing stations."
+      ],
+      "key_insights": [
+        "Omans primary value proposition is its unparalleled density of subsea cable landings, positioning it as a core transit and interconnection hub (Sub-Score 5.0).",
+        "The southern location near Salalah offers greenfield scalability and immediate proximity to major new cable systems (e.g., 2Africa), mitigating the congestion risks of Muscat.",
+        "Hyperscaler strategy should focus on edge/distributed cloud and sovereign cloud capabilities, capitalizing on regulatory compliance (PDPL) and government demand, rather than waiting for a full Region deployment.",
+        "The main challenges are low local enterprise density in the south and a less mature local technical labor market, requiring a build-out strategy focused on connectivity and large industrial/logistics anchor tenants."
+      ],
+      "executive_summary": "The Oman data center market is highly attractive for hyperscale development, driven by aggressive digital transformation goals and its superior strategic position as a neutral global interconnection hub. The proposed southern location (Salalah area) is a prime Tier 2/Gateway candidate, scoring highest on Peering Opportunities (5.0/5.0) due to its role as a key landing point for major subsea cables like 2Africa, ensuring ultra-low latency access to East Africa, Europe, and Asia. Scalability is also favorable (4.2/5.0) due to greenfield land availability. While local enterprise demand and the specialized labor market are less mature than the capital (Muscat), strategic partnerships and sovereign/distributed cloud deployments by AWS and Google Cloud signal a strong hyperscaler intent. The investment should be positioned as a 'Gateway DC' and compliance center, leveraging the Oman PDPL and geopolitical stability to attract regulated and transit workloads.",
+      "data_gaps": [
+        "Specific local utility head-room (MW) and land acquisition costs for the Salalah/Dhofar area.",
+        "Detailed colocation pricing data (USD/kW/month) and utilization rates specific to the Salalah market.",
+        "Quantitative metrics on the size and specialization of the local IT/data center technician workforce in the Dhofar Governorate."
+      ],
+      "third_party_verification": [
+        "Market research and consulting firm for hyperscaler demand analysis (e.g., Arizton, Mordor Intelligence).",
+        "Labor market research specialist for workforce assessment (Focus on Omanization and technical skill gaps).",
+        "Real estate and competitive analysis consultant (Focus on land price and utility capacity at the Salalah hub)."
+      ],
+      "phase_1_recommendations": {
+        "market_positioning": "Position as a Neutral Interconnection Gateway and Sovereign/Distributed Cloud hub for the MENA-Asia-Africa route.",
+        "hyperscaler_outreach": "Prioritize discussions with Meta, AWS, and Google Cloud, specifically targeting their network engineering and sovereign/edge cloud teams given the cable hub and established local partnerships.",
+        "competitive_strategy": "Differentiate through connectivity diversity, carrier-neutrality, and a long-term strategy for 100% renewable energy procurement to appeal to hyperscaler sustainability mandates."
+      },
+      "sources": []
+    }
+  },
+  "executive_summary": {
+    "location_overview": "This location, positioned within the Salalah Free Zone (SFZ), presents a uniquely compelling yet complex strategic opportunity, combining best-in-class network connectivity and highly favorable economic incentives with severe climate and operational challenges. The strategic synthesis reveals that the anchor strength of being a global subsea cable hub (Network 4.1) coupled with extensive tax holidays (Regulatory 4.6) creates a significant competitive advantage for regional market entry, provided the mandatory high-CAPEX investment in resilient, water-efficient infrastructure is made to counter the extreme heat and cyclonic risks (Climate 2.8).",
+    "key_strengths": [
+      "The combination of 100% foreign ownership and up to a 30-year corporate tax holiday in the Salalah Free Zone (Regulatory) dramatically lowers long-term Total Cost of Ownership and accelerates time-to-profitability compared to other regional hubs, providing an immediate financial competitive edge.",
+      "The site's anchor position for the massive 2Africa cable system (Network) ensures exceptional, future-proof capacity and low-latency connectivity across three continents (Asia, Europe, Africa), uniquely positioning this data center as a critical content localization and peering gateway for intercontinental traffic flow.",
+      "Oman's high degree of political stability and currency stability (Risk 4.4), coupled with strong policy alignment toward Net Zero 2050 and a mature PPA market (ESG 4.1), provides robust geopolitical security and a clear pathway for achieving demanding corporate sustainability targets necessary for global hyperscalers."
+    ],
+    "key_challenges": [
+      "The absence of verified power analysis, coupled with the critical need for massive capacity, represents the single greatest unquantified risk, directly impacting project timeline, financial modeling, and supply assurance necessary to leverage the network advantages.",
+      "Severe water scarcity and extreme ambient temperatures (Climate 2.8) mandate the adoption of high-cost, air-cooled, or closed-loop hybrid systems, resulting in an estimated high Power Usage Effectiveness (PUE ~1.45) that significantly increases operational energy costs and requires robust operational mitigation strategies.",
+      "The compounding risk of mandatory PDPL compliance (Regulatory) requiring explicit cross-border consent, alongside strict government data localization mandates, necessitates a complex, high-friction compliance architecture (DPO, Auditor) from inception, potentially delaying rapid deployment timelines."
+    ],
+    "critical_success_factors": [
+      "Immediate, prioritized execution of power utility due diligence and firm capacity negotiation, treating power availability and timeline as the zero-tolerance constraint that dictates all subsequent project phases and financial viability.",
+      "Mandatory investment in Cat-5 cyclone-resistant structural hardening and aggressive site grading/berm construction to proactively mitigate the high frequency flash flood and extreme wind risks identified in the Climate analysis.",
+      "Development and deployment of a bespoke PDPL compliance framework, including staffing a Data Protection Officer (DPO) and ensuring all cross-border data transfer mechanisms are legally sound prior to accepting the first client workload."
+    ]
+  },
+  "phase_1_deployment": {
+    "recommended_capacity": "The initial build should target a constrained capacity model (e.g., 5-10 MW initial tranche) dictated strictly by the secured power delivery timeline and the validated capacity of the air-cooled/hybrid infrastructure, prioritizing operational resilience over immediate scale. Scalability must be horizontally designed to accommodate future growth up to 30 MW, pending the successful execution of the national Rabt power interconnection project and proven PPA scalability.",
+    "timeline": "Phase 1 requires an estimated 30-36 month critical path from Go-Decision to Ready-for-Service. The initial 9-12 months must be dominated by high-friction activities: securing the firm power connection SLA, finalizing the required environmental permits (EIA/IEP), and completing detailed design for extreme climate resilience (wind/flood hardening).",
+    "priority_actions": [
+      "Engage OETC/Power Authority immediately to secure the high-voltage connection agreement, locking in the timeline and tariff structure, and providing weekly status reports on utility progress as the critical project dependency.",
+      "Initiate a parallel track for large-scale renewable energy procurement (Corporate PPA), targeting 100% renewable power from day one to mitigate high grid carbon intensity (476 gCO2e/kWh) and manage future carbon tax risk ($100/t potential cost).",
+      "Develop detailed engineering specifications for climate resilience, including specialized high-efficiency hybrid fluid coolers (to manage PUE 1.45) and structural design meeting Category 5 hurricane wind load requirements, ensuring no design compromise on physical hardening."
+    ],
+    "estimated_investment": "The total estimated investment for Phase 1 (5-10 MW) is projected to be 15-20% higher than baseline Gulf estimates, primarily driven by specialized CAPEX for climate resilience and compliance. Key allocations include high-efficiency cooling infrastructure, structural hardening, advanced PDPL compliance systems, and the potentially higher cost of dedicated power infrastructure extension within the Free Zone.",
+    "risk_mitigation": [
+      "Implement a dual-site security strategy: hardening the facility against geopolitical strategic targeting due to proximity to Duqm Port (Risk), and physical separation and backup of critical infrastructure elements to mitigate the high risk of widespread damage from tropical cyclones and flash floods (Climate).",
+      "Establish a dedicated local legal and compliance team specializing in the new PDPL Executive Regulations (Regulatory) to oversee cross-border data transfer protocols and manage explicit consent frameworks, thereby avoiding severe fines (up to $1.3M USD) for data breaches.",
+      "Develop a detailed human capital strategy focusing on foreign expertise for specialized data center skills combined with an aggressive Omanisation recruitment and training program to manage the required local hiring quotas and mitigate the economic risk associated with high expatriate labor costs (Risk/ESG)."
+    ]
+  },
+  "strategic_opportunities": [
+    "Establishing a two-tiered architectural offeringa global peering/caching service leveraging the low latency network, and a compliant Sovereign Cloud service dedicated to the highly lucrative localized government and finance sector mandateswill maximize market penetration and revenue streams.",
+    "Leveraging the mature Corporate PPA market (ESG) and the government's strong net-zero commitment to immediately procure 100% renewable energy creates a 'green premium' positioning that differentiates the facility from competitors still reliant on the higher carbon intensity grid power.",
+    "The very low seismic hazard (Climate) allows for optimization of structural design and potentially accelerated permitting compared to high-risk regions, permitting redirection of CAPEX savings toward necessary cyclone hardening (Risk) and water-efficient cooling systems."
+  ],
+  "strategic_recommendation": "The strategic recommendation is a GO decision, predicated on immediate, aggressive mitigation of the Power and Climate constraints. This location offers a unique strategic arbitrage: leveraging unparalleled network connectivity (Network 4.1) and highly advantageous fiscal policy (Regulatory 4.6) that cannot be replicated elsewhere in the region, justifying the necessary high initial CAPEX expenditure on climate-resilient infrastructure. The facility must be designed as a low-PUE, water-independent 'Green Gateway' hub, capable of supporting both regional localization and long-haul intercontinental traffic, establishing a decisive first-mover advantage against future competitors by securing vital cable anchor points and tax incentives.",
+  "conclusion": "GO recommendation with High Confidence (85%), contingent upon the successful, time-bound negotiation of firm power provisioning and capacity allocation within the first six months. The confidence level is high because the identified risks (Climate, Water, Compliance) are structural and manageable through engineering and policy adoption, while the strategic advantages (Network, Regulatory, Stability) are foundational and enduring. Critical success hinges entirely on treating the power utility negotiation as the primary project constraint, accepting the necessary high operational PUE (~1.45) due to climate, and ensuring the architectural design fully supports the strict data sovereignty requirements to capture lucrative government contracts.",
+  "next_steps": [
+    "Execute Phase 0: Contract high-priority power consultants and local legal experts for immediate, dedicated negotiation with OETC and the Salalah Free Zone authority to lock in the power supply capacity, tariff, and delivery schedule within the next 90 days.",
+    "Commission a detailed site-specific geotechnical and hydrological study to finalize flood risk modeling and inform the engineering design for specialized site grading and Category 5 structural hardening against cyclones and wadi flash floods (Climate/Risk).",
+    "Develop the comprehensive Data Protection Officer (DPO) and compliance hiring plan, concurrently initiating the selection process for the PPA developer to secure long-term renewable energy contracts ahead of the construction phase (ESG/Regulatory)."
+  ],
+  "insights_result": {
+    "executive_summary": {
+      "location_overview": "This location, positioned within the Salalah Free Zone (SFZ), presents a uniquely compelling yet complex strategic opportunity, combining best-in-class network connectivity and highly favorable economic incentives with severe climate and operational challenges. The strategic synthesis reveals that the anchor strength of being a global subsea cable hub (Network 4.1) coupled with extensive tax holidays (Regulatory 4.6) creates a significant competitive advantage for regional market entry, provided the mandatory high-CAPEX investment in resilient, water-efficient infrastructure is made to counter the extreme heat and cyclonic risks (Climate 2.8).",
+      "key_strengths": [
+        "The combination of 100% foreign ownership and up to a 30-year corporate tax holiday in the Salalah Free Zone (Regulatory) dramatically lowers long-term Total Cost of Ownership and accelerates time-to-profitability compared to other regional hubs, providing an immediate financial competitive edge.",
+        "The site's anchor position for the massive 2Africa cable system (Network) ensures exceptional, future-proof capacity and low-latency connectivity across three continents (Asia, Europe, Africa), uniquely positioning this data center as a critical content localization and peering gateway for intercontinental traffic flow.",
+        "Oman's high degree of political stability and currency stability (Risk 4.4), coupled with strong policy alignment toward Net Zero 2050 and a mature PPA market (ESG 4.1), provides robust geopolitical security and a clear pathway for achieving demanding corporate sustainability targets necessary for global hyperscalers."
+      ],
+      "key_challenges": [
+        "The absence of verified power analysis, coupled with the critical need for massive capacity, represents the single greatest unquantified risk, directly impacting project timeline, financial modeling, and supply assurance necessary to leverage the network advantages.",
+        "Severe water scarcity and extreme ambient temperatures (Climate 2.8) mandate the adoption of high-cost, air-cooled, or closed-loop hybrid systems, resulting in an estimated high Power Usage Effectiveness (PUE ~1.45) that significantly increases operational energy costs and requires robust operational mitigation strategies.",
+        "The compounding risk of mandatory PDPL compliance (Regulatory) requiring explicit cross-border consent, alongside strict government data localization mandates, necessitates a complex, high-friction compliance architecture (DPO, Auditor) from inception, potentially delaying rapid deployment timelines."
+      ],
+      "strategic_opportunities": [
+        "Establishing a two-tiered architectural offeringa global peering/caching service leveraging the low latency network, and a compliant Sovereign Cloud service dedicated to the highly lucrative localized government and finance sector mandateswill maximize market penetration and revenue streams.",
+        "Leveraging the mature Corporate PPA market (ESG) and the government's strong net-zero commitment to immediately procure 100% renewable energy creates a 'green premium' positioning that differentiates the facility from competitors still reliant on the higher carbon intensity grid power.",
+        "The very low seismic hazard (Climate) allows for optimization of structural design and potentially accelerated permitting compared to high-risk regions, permitting redirection of CAPEX savings toward necessary cyclone hardening (Risk) and water-efficient cooling systems."
+      ],
+      "critical_success_factors": [
+        "Immediate, prioritized execution of power utility due diligence and firm capacity negotiation, treating power availability and timeline as the zero-tolerance constraint that dictates all subsequent project phases and financial viability.",
+        "Mandatory investment in Cat-5 cyclone-resistant structural hardening and aggressive site grading/berm construction to proactively mitigate the high frequency flash flood and extreme wind risks identified in the Climate analysis.",
+        "Development and deployment of a bespoke PDPL compliance framework, including staffing a Data Protection Officer (DPO) and ensuring all cross-border data transfer mechanisms are legally sound prior to accepting the first client workload."
+      ]
+    },
+    "phase_1_deployment": {
+      "recommended_capacity": "The initial build should target a constrained capacity model (e.g., 5-10 MW initial tranche) dictated strictly by the secured power delivery timeline and the validated capacity of the air-cooled/hybrid infrastructure, prioritizing operational resilience over immediate scale. Scalability must be horizontally designed to accommodate future growth up to 30 MW, pending the successful execution of the national Rabt power interconnection project and proven PPA scalability.",
+      "timeline": "Phase 1 requires an estimated 30-36 month critical path from Go-Decision to Ready-for-Service. The initial 9-12 months must be dominated by high-friction activities: securing the firm power connection SLA, finalizing the required environmental permits (EIA/IEP), and completing detailed design for extreme climate resilience (wind/flood hardening).",
+      "priority_actions": [
+        "Engage OETC/Power Authority immediately to secure the high-voltage connection agreement, locking in the timeline and tariff structure, and providing weekly status reports on utility progress as the critical project dependency.",
+        "Initiate a parallel track for large-scale renewable energy procurement (Corporate PPA), targeting 100% renewable power from day one to mitigate high grid carbon intensity (476 gCO2e/kWh) and manage future carbon tax risk ($100/t potential cost).",
+        "Develop detailed engineering specifications for climate resilience, including specialized high-efficiency hybrid fluid coolers (to manage PUE 1.45) and structural design meeting Category 5 hurricane wind load requirements, ensuring no design compromise on physical hardening."
+      ],
+      "estimated_investment": "The total estimated investment for Phase 1 (5-10 MW) is projected to be 15-20% higher than baseline Gulf estimates, primarily driven by specialized CAPEX for climate resilience and compliance. Key allocations include high-efficiency cooling infrastructure, structural hardening, advanced PDPL compliance systems, and the potentially higher cost of dedicated power infrastructure extension within the Free Zone.",
+      "risk_mitigation": [
+        "Implement a dual-site security strategy: hardening the facility against geopolitical strategic targeting due to proximity to Duqm Port (Risk), and physical separation and backup of critical infrastructure elements to mitigate the high risk of widespread damage from tropical cyclones and flash floods (Climate).",
+        "Establish a dedicated local legal and compliance team specializing in the new PDPL Executive Regulations (Regulatory) to oversee cross-border data transfer protocols and manage explicit consent frameworks, thereby avoiding severe fines (up to $1.3M USD) for data breaches.",
+        "Develop a detailed human capital strategy focusing on foreign expertise for specialized data center skills combined with an aggressive Omanisation recruitment and training program to manage the required local hiring quotas and mitigate the economic risk associated with high expatriate labor costs (Risk/ESG)."
+      ],
+      "success_metrics": [
+        "Achieving a PPA execution commitment securing 100% renewable energy usage within 15 months of project start, measured by validated PPA contracts and successful integration into the operational plan, mitigating current grid carbon intensity.",
+        "Attaining a minimum Uptime Institute Tier III certification concurrent with Ready-for-Service status, with specific validation of physical hardening to withstand Category 5 wind loads and flash flood events.",
+        "Full compliance adherence to the PDPL Executive Regulations and successful audit completion, enabling immediate service delivery to public sector clients requiring strict data localization and sovereignty."
+      ]
+    },
+    "strategic_recommendation": "The strategic recommendation is a GO decision, predicated on immediate, aggressive mitigation of the Power and Climate constraints. This location offers a unique strategic arbitrage: leveraging unparalleled network connectivity (Network 4.1) and highly advantageous fiscal policy (Regulatory 4.6) that cannot be replicated elsewhere in the region, justifying the necessary high initial CAPEX expenditure on climate-resilient infrastructure. The facility must be designed as a low-PUE, water-independent 'Green Gateway' hub, capable of supporting both regional localization and long-haul intercontinental traffic, establishing a decisive first-mover advantage against future competitors by securing vital cable anchor points and tax incentives.",
+    "conclusion": "GO recommendation with High Confidence (85%), contingent upon the successful, time-bound negotiation of firm power provisioning and capacity allocation within the first six months. The confidence level is high because the identified risks (Climate, Water, Compliance) are structural and manageable through engineering and policy adoption, while the strategic advantages (Network, Regulatory, Stability) are foundational and enduring. Critical success hinges entirely on treating the power utility negotiation as the primary project constraint, accepting the necessary high operational PUE (~1.45) due to climate, and ensuring the architectural design fully supports the strict data sovereignty requirements to capture lucrative government contracts.",
+    "next_steps": [
+      "Execute Phase 0: Contract high-priority power consultants and local legal experts for immediate, dedicated negotiation with OETC and the Salalah Free Zone authority to lock in the power supply capacity, tariff, and delivery schedule within the next 90 days.",
+      "Commission a detailed site-specific geotechnical and hydrological study to finalize flood risk modeling and inform the engineering design for specialized site grading and Category 5 structural hardening against cyclones and wadi flash floods (Climate/Risk).",
+      "Develop the comprehensive Data Protection Officer (DPO) and compliance hiring plan, concurrently initiating the selection process for the PPA developer to secure long-term renewable energy contracts ahead of the construction phase (ESG/Regulatory)."
+    ]
+  },
+  "data_gap_analysis": {
+    "data_sources_used": [
+      {
+        "name": "Public data analysis",
+        "type": "publicly_available",
+        "reliability": "medium",
+        "last_updated": "Current analysis",
+        "url": null
+      }
+    ],
+    "data_gaps_identified": [
+      "Real-time IP transit bandwidth cost verification for 100Gbps+ commitments in Salalah's immediate area.",
+      "Specific fiber infrastructure route map diversity verification between the Salalah CLS and the national backbone.",
+      "Current active peering participant and peak traffic volumes at the OMAN-IX.",
+      "Local weather station verification for accurate hourly dry-bulb and wet-bulb temperature data to precisely calculate free cooling hours",
+      "Site-specific geological and seismic assessment (PGA value confirmation and soil liquefaction potential)",
+      "Hydrological and flood risk study (wadi path mapping and 100-year flood plain delineation for the exact location)",
+      "Water resource study on the specific aquifer capacity and industrial abstraction policy at the proposed site",
+      "Specific crime rates and localized physical threat intelligence for the Al Wusta/Duqm industrial zone.",
+      "Confidential, site-verified emergency response SLAs (Fire/Medical) for the specific facility coordinates.",
+      "Detailed analysis of local fiber network redundancy and terrestrial route diversity beyond major national backbones.",
+      "Mandatory Water Usage Effectiveness (WUE) or maximum PUE (Power Usage Effectiveness) standards specifically for data centers.",
+      "Specific percentage quota for local hiring (Omanisation) in the dedicated 'IT/Data Center' sector (industry benchmark is used).",
+      "Formal, legally binding Extended Producer Responsibility (EPR) regulations for ICT/e-waste beyond national policy advocacy.",
+      "Site-specific zoning classification for the precise coordinates and local municipality approval process details.",
+      "Confirmed long-term power and water utility tariffs for hyperscale infrastructure (not covered by general SEZ incentives).",
+      "Official, published end-to-end permitting and construction timeline for a Tier IV data center.",
+      "Specific local utility head-room (MW) and land acquisition costs for the Salalah/Dhofar area.",
+      "Detailed colocation pricing data (USD/kW/month) and utilization rates specific to the Salalah market.",
+      "Quantitative metrics on the size and specialization of the local IT/data center technician workforce in the Dhofar Governorate."
+    ],
+    "third_party_requirements": [
+      "Independent network engineering firm for site survey and 'last-mile' fiber route diversity audit to the Salalah CLS.",
+      "Telecommunications carriers (Omantel, Ooredoo, Tier-1 ISPs) for capacity and dark fiber pricing analysis.",
+      "Network performance testing specialist for RTT benchmarks to key global financial and cloud hubs.",
+      "Environmental consulting firm for water stress and sustainability assessment",
+      "Geological survey specialist for seismic and soil analysis (liquefaction risk)",
+      "Structural engineering firm for wind and flood load design specifications (cyclone resilience)",
+      "A specialized physical security consulting firm for comprehensive threat analysis and blast/vulnerability assessment near strategic infrastructure.",
+      "A geotechnical and environmental engineering firm to assess climate change-related risks (flood/heat/wind loading) for site-specific resilience.",
+      "A local legal and regulatory consultant to confirm compliance with data residency and foreign ownership regulations.",
+      "ESG consulting firm for compliance audit and GRI/TCFD-aligned sustainability reporting implementation.",
+      "Local Omani legal counsel specializing in the Personal Data Protection Law (PDPL) and cross-border data transfers.",
+      "Water resource engineering firm to conduct a comprehensive local water-risk and WUE optimization assessment.",
+      "Omani legal and regulatory consulting firm for PDPL and MTCIT compliance review (mandatory DPO/Auditor support).",
+      "Environmental consulting for detailed EIA and water/waste management permit application in Dhofar Governorate.",
+      "Local government relations and permitting specialist for site-specific zoning and expedited approvals.",
+      "Market research and consulting firm for hyperscaler demand analysis (e.g., Arizton, Mordor Intelligence).",
+      "Labor market research specialist for workforce assessment (Focus on Omanization and technical skill gaps).",
+      "Real estate and competitive analysis consultant (Focus on land price and utility capacity at the Salalah hub)."
+    ],
+    "assumptions_made": [
+      {
+        "category": "General Analysis",
+        "assumption": "Domestic and international bandwidth cost estimates (USD/Mbps/month) are based on regional industry benchmarks for hyperscale volume commitments, as exact pricing is non-public.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Fiber infrastructure metrics (km, penetration, MAN capacity) are reasoned estimates based on national plans and carrier announcements for Oman.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "International RTT latency estimates are based on the shortest physical distance via new subsea cable systems (AAE-1, 2Africa, OAC).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Climate data is based on the nearest proxy location (Allam) in the Dhofar interior, reflecting a hot-arid environment distinct from the coastal Salalah monsoon zone.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Free cooling calculations assume ASHRAE W1 criteria (dry-bulb below 26.7C) and a constrained wet-bulb operation due to high average humidity/dew point.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Seismic risk is classified as low based on general Dhofar region assessments, as site-specific data is unavailable.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The site elevation is assumed to be in line with the nearby Allam location (~12m MASL) and therefore vulnerable to wadi/flash flooding during cyclonic events.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Location 17.0193843, 54.1107505 is situated within the Al Wusta Governorate, near the strategic Duqm economic and logistics hub, and is designated as an industrial/critical infrastructure zone.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Local emergency response times are benchmarked at professional targets for a major industrial/port development area, as site-specific data is not publicly available.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The physical security threat assessment incorporates the geopolitical risk inherent to the strategic maritime location of the Duqm region (CESEDEN, 2023).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "ESG analysis is based on current national legislation (Vision 2040, Net Zero 2050, Royal Decrees).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The 35% Omanisation rate is used as a representative quota for the high-tech/industry sector benchmark.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "A typical large-scale project EIA timeline of 15 months is assumed, based on observed regional practices.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Current power generation is assumed to maintain a high dependence on natural gas in the short term, despite aggressive renewable capacity additions.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "The coordinates fall within the general influence zone of the Dhofar Governorate's pro-investment industrial policies (e.g., Salalah Free Zone/Port).",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Permitting timeline of 6 months for a major infrastructure EIA is an expert estimate based on regional project experience, acknowledging complexity and multi-departmental review.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Tax incentives are calculated assuming the project meets the qualifying criteria for a Technology/Digital Infrastructure investment within a Special Economic Zone/Free Zone.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Hyperscaler analysis based on publicly available market data and industry reports.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Demand projections reflect current market trends and may vary with economic conditions.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Competitive positioning assessed against established hyperscaler markets.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      },
+      {
+        "category": "General Analysis",
+        "assumption": "Analysis for the coordinates is a proxy for the Salalah/Dhofar emerging data center hub due to its proximity to cable landing stations.",
+        "confidence_level": "medium",
+        "impact_if_wrong": "medium",
+        "validation_method": "Third-party verification recommended"
+      }
+    ],
+    "overall_confidence": "low",
+    "next_steps_priority": [
+      "Address critical data gaps through third-party verification",
+      "Validate key assumptions with local experts",
+      "Conduct on-site assessments for high-impact areas"
+    ]
+  }
+}
