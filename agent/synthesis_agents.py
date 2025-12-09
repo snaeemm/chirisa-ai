@@ -749,6 +749,70 @@ def sanitize_sources(sources: list) -> list:
 
     return sanitized
 
+def backfill_source_names_in_verification_metadata(response_data: dict) -> dict:
+    """
+    Backfill source names for verification_metadata entries that only have level strings.
+
+    When LLM outputs verification_metadata as "verified_by_public_source" (string) instead of
+    {"level": "verified_by_public_source", "source": "EIA.gov 2024"} (dict), this function
+    tries to find the source name from the sources array and convert to dict format.
+    """
+    if not isinstance(response_data, dict):
+        return response_data
+
+    sources = response_data.get("sources", [])
+    if not sources or not isinstance(sources, list):
+        return response_data
+
+    # Extract source titles for matching (e.g., "EIA.gov", "World Bank", etc.)
+    source_titles = []
+    for source in sources:
+        if isinstance(source, dict) and "title" in source:
+            title = source["title"]
+            date = source.get("date", "")
+            source_titles.append((title, date))
+
+    # Process all subsections
+    for key, value in response_data.items():
+        if isinstance(value, dict) and "verification_metadata" in value:
+            verification_metadata = value["verification_metadata"]
+            if not isinstance(verification_metadata, dict):
+                continue
+
+            updated_metadata = {}
+            for metric_key, verification_value in verification_metadata.items():
+                # If it's already a dict, keep it
+                if isinstance(verification_value, dict):
+                    updated_metadata[metric_key] = verification_value
+                # If it's "verified_by_public_source" string, try to find source name
+                elif verification_value == "verified_by_public_source":
+                    # Try to find a matching source from sources array
+                    # Strategy: Use the first source (most relevant) or try to match by keywords
+                    if source_titles:
+                        # Use first source as default
+                        title, date = source_titles[0]
+                        # Simple heuristic: extract source name (e.g., "EIA.gov Electric Power" -> "EIA.gov")
+                        source_name_parts = title.split(" ")
+                        source_name = source_name_parts[0] if source_name_parts else title
+                        if date and date != "Unknown":
+                            source_name = f"{source_name} {date}"
+
+                        updated_metadata[metric_key] = {
+                            "level": "verified_by_public_source",
+                            "source": source_name
+                        }
+                    else:
+                        # No sources available, keep as string
+                        updated_metadata[metric_key] = verification_value
+                else:
+                    # Other levels (verified_by_osm, model_inference, etc.) keep as string
+                    updated_metadata[metric_key] = verification_value
+
+            value["verification_metadata"] = updated_metadata
+
+    return response_data
+
+
 def sanitize_metrics_data(data: dict) -> dict:
     """Sanitize metrics data to ensure all percentages and numerical values are valid numbers"""
     import re
@@ -1873,6 +1937,9 @@ class PowerInfrastructureAgentWrapper:
                 # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
                 response_data = sanitize_metrics_data(response_data)
 
+                # Backfill source names for verification_metadata (convert string "verified_by_public_source" to dict with source name)
+                response_data = backfill_source_names_in_verification_metadata(response_data)
+
                 # Inject grounding sources and sanitize
                 if grounding_sources:
                     existing_sources = response_data.get("sources", [])
@@ -2039,6 +2106,9 @@ class NetworkConnectivityAgentWrapper:
                 # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
                 response_data = sanitize_metrics_data(response_data)
 
+                # Backfill source names for verification_metadata (convert string "verified_by_public_source" to dict with source name)
+                response_data = backfill_source_names_in_verification_metadata(response_data)
+
                 # Post-process: Enrich with PeeringDB data
                 if peeringdb_data:
                     response_data = enrich_network_output_with_peeringdb(response_data, peeringdb_data)
@@ -2193,6 +2263,9 @@ class ClimateSuitabilityAgentWrapper:
                 # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
                 response_data = sanitize_metrics_data(response_data)
 
+                # Backfill source names for verification_metadata (convert string "verified_by_public_source" to dict with source name)
+                response_data = backfill_source_names_in_verification_metadata(response_data)
+
                 # Inject grounding sources and sanitize
                 if grounding_sources:
                     existing_sources = response_data.get("sources", [])
@@ -2307,6 +2380,9 @@ class OperationalRiskAgentWrapper:
                 # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
                 response_data = sanitize_metrics_data(response_data)
 
+                # Backfill source names for verification_metadata (convert string "verified_by_public_source" to dict with source name)
+                response_data = backfill_source_names_in_verification_metadata(response_data)
+
                 # Inject grounding sources and sanitize
                 if grounding_sources:
                     existing_sources = response_data.get("sources", [])
@@ -2419,6 +2495,9 @@ class SustainabilityESGAgentWrapper:
 
                 # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
                 response_data = sanitize_metrics_data(response_data)
+
+                # Backfill source names for verification_metadata (convert string "verified_by_public_source" to dict with source name)
+                response_data = backfill_source_names_in_verification_metadata(response_data)
 
                 # Inject grounding sources and sanitize
                 if grounding_sources:
@@ -2553,6 +2632,9 @@ class RegulatoryESGAgentWrapper:
                 # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
                 response_data = sanitize_metrics_data(response_data)
 
+                # Backfill source names for verification_metadata (convert string "verified_by_public_source" to dict with source name)
+                response_data = backfill_source_names_in_verification_metadata(response_data)
+
                 # Inject grounding sources and sanitize
                 if grounding_sources:
                     existing_sources = response_data.get("sources", [])
@@ -2666,6 +2748,9 @@ class HyperscalerAttractivenessAgentWrapper:
 
                 # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
                 response_data = sanitize_metrics_data(response_data)
+
+                # Backfill source names for verification_metadata (convert string "verified_by_public_source" to dict with source name)
+                response_data = backfill_source_names_in_verification_metadata(response_data)
 
                 # Inject grounding sources and sanitize
                 if grounding_sources:
