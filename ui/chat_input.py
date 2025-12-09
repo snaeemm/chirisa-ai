@@ -275,7 +275,7 @@ def handle_chat_input(current_session: SessionDict, runner: Runner) -> None:
                                  f"Size: {len(file_data['text'])} chars")
 
                     with col2:
-                        if st.button("✕", key=f"remove_{file_data['filename']}", use_container_width=True):
+                        if st.button("✕", key=f"remove_{file_data['filename']}", width='stretch'):
                             # Remove from session state (Gemini file already cleaned up during extraction)
                             st.session_state.processed_files.remove(file_data)
                             st.rerun()

@@ -5,7 +5,7 @@ import pandas as pd
 import json
 import sys
 import os
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 
 # Add the parent directory to the path so we can import our modules
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -61,6 +61,8 @@ def _get_verification_badge(verification_level: str) -> str:
     """Get HTML badge for verification level"""
     badge_styles = {
         "verified_by_public_source": '<span style="background-color: #28a745; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">✓ Verified by Public Source</span>',
+        "verified_by_osm": '<span style="background-color: #17a2b8; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">🗺️ Verified by API</span>',
+        "verified_by_peeringdb": '<span style="background-color: #17a2b8; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">🌐 Verified by API</span>',
         "verified_by_transactional": '<span style="background-color: #007bff; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">✓✓ Investment-Grade</span>',
         "model_inference": '<span style="background-color: #ffc107; color: black; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">⚠ Model Inference - Needs Validation</span>',
         "unknown_requires_utility_letter": '<span style="background-color: #dc3545; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">⚠ Unknown - Requires Utility Letter</span>',
@@ -85,10 +87,111 @@ def load_report_details(report_id: int) -> Optional[Dict[str, Any]]:
         st.error(f"Error loading report details: {e}")
         return None
 
-def render_metrics_table(metrics: Dict[str, Any], section_name: str) -> None:
-    """Render metrics data as comprehensive tables"""
+def render_metrics_table(metrics: Dict[str, Any], section_name: str, verification_metadata: Dict[str, Any] = None, domain_sources: List[Dict[str, str]] = None) -> None:
+    """Render metrics data as comprehensive tables with source attribution"""
     if not metrics:
         return
+
+    # Extract OSM date from domain sources
+    osm_date = None
+    if domain_sources:
+        for source in domain_sources:
+            if isinstance(source, dict):
+                title = source.get("title", "")
+                if "OpenInfraMap" in title or "openinframap.org" in source.get("url", ""):
+                    osm_date = source.get("date")
+                    break
+
+    # Prepare verification source lookup and level lookup
+    verification_sources = {}
+    verification_levels = {}
+    if verification_metadata:
+        for claim, verification_data in verification_metadata.items():
+            if isinstance(verification_data, dict):
+                source_name = verification_data.get("source", "")
+                level = verification_data.get("level", "")
+                if source_name:
+                    verification_sources[claim] = source_name
+                if level:
+                    verification_levels[claim] = level
+            else:
+                # Store the level even if it's just a string
+                verification_levels[claim] = verification_data
+
+    def get_source_for_metric(key: str) -> str:
+        """Helper function to get source info for any metric key"""
+        source_badge = ""
+        source_text = ""
+
+        # Priority 1: Check for API prefixes (osm_, peeringdb_)
+        if key.startswith("osm_"):
+            source_badge = "🗺️"
+            if osm_date and osm_date != "Unknown":
+                source_text = f"OpenInfraMap ({osm_date})"
+            else:
+                source_text = "OpenInfraMap"
+            return f"{source_badge} {source_text}".strip()
+
+        if key.startswith("peeringdb_"):
+            source_badge = "🌐"
+            source_text = "PeeringDB"
+            return f"{source_badge} {source_text}".strip()
+
+        # Priority 2: Look for ALL possible verification entries for this metric
+        # Try multiple matching strategies
+        found_source = None
+        found_level = None
+
+        # Strategy 1: Exact match
+        if key in verification_sources:
+            found_source = verification_sources[key]
+        if key in verification_levels:
+            found_level = verification_levels[key]
+
+        # Strategy 2: Try all verification keys - look for partial matches
+        if not found_source or not found_level:
+            key_lower = key.lower()
+            key_parts = set(key_lower.split("_"))
+
+            # Check ALL verification keys (sources and levels)
+            all_ver_keys = set(verification_sources.keys()) | set(verification_levels.keys())
+
+            for ver_key in all_ver_keys:
+                ver_key_lower = ver_key.lower()
+                ver_parts = set(ver_key_lower.split("_"))
+
+                # Check if keys share significant words
+                common_parts = key_parts & ver_parts
+                if len(common_parts) >= 1:  # At least one word in common
+                    if not found_source and ver_key in verification_sources:
+                        found_source = verification_sources[ver_key]
+                    if not found_level and ver_key in verification_levels:
+                        found_level = verification_levels[ver_key]
+                    if found_source and found_level:
+                        break
+
+        # If we found a source, use it
+        if found_source:
+            source_text = found_source
+            source_badge = "✓"
+        elif found_level:
+            # No explicit source, but we have a level - use default text
+            if found_level == "verified_by_public_source":
+                source_text = "Public Source"
+                source_badge = "✓"
+            elif found_level == "verified_by_osm":
+                source_badge = "🗺️"
+                if osm_date and osm_date != "Unknown":
+                    source_text = f"OpenInfraMap ({osm_date})"
+                else:
+                    source_text = "OpenInfraMap"
+            elif found_level == "verified_by_peeringdb":
+                source_text = "PeeringDB"
+                source_badge = "🌐"
+
+        # Combine badge and text for source column
+        result = f"{source_badge} {source_text}".strip() if source_text else source_badge
+        return result if result else ""
 
     # Create tabs for different metric types
     tabs_to_create = []
@@ -106,8 +209,19 @@ def render_metrics_table(metrics: Dict[str, Any], section_name: str) -> None:
             else:
                 formatted_value = str(value)
 
+            # Get display name
+            display_name = key.replace("_", " ").title()
+            if key.startswith("osm_"):
+                display_name = key.replace("osm_", "").replace("_", " ").title()
+            elif key.startswith("peeringdb_"):
+                display_name = key.replace("peeringdb_", "").replace("_", " ").title()
+
+            # Get source info using helper function
+            source_display = get_source_for_metric(key)
+
             numerical_data.append({
-                "Metric": key.replace("_", " ").title(),
+                "Source": source_display,
+                "Metric": display_name,
                 "Value": formatted_value,
                 "Unit": unit
             })
@@ -120,8 +234,20 @@ def render_metrics_table(metrics: Dict[str, Any], section_name: str) -> None:
         percentage_data = []
         for key, value in metrics["percentages"].items():
             formatted_value = f"{value:.1f}%" if isinstance(value, float) else f"{value}%"
+
+            # Get display name
+            display_name = key.replace("_", " ").title()
+            if key.startswith("osm_"):
+                display_name = key.replace("osm_", "").replace("_", " ").title()
+            elif key.startswith("peeringdb_"):
+                display_name = key.replace("peeringdb_", "").replace("_", " ").title()
+
+            # Get source info using helper function
+            source_display = get_source_for_metric(key)
+
             percentage_data.append({
-                "Metric": key.replace("_", " ").title(),
+                "Source": source_display,
+                "Metric": display_name,
                 "Percentage": formatted_value
             })
         if percentage_data:
@@ -137,8 +263,20 @@ def render_metrics_table(metrics: Dict[str, Any], section_name: str) -> None:
                 unit = units.get(key, "")
                 min_val = f"{value['min']:.2f}" if isinstance(value['min'], float) else str(value['min'])
                 max_val = f"{value['max']:.2f}" if isinstance(value['max'], float) else str(value['max'])
+
+                # Get display name
+                display_name = key.replace("_", " ").title()
+                if key.startswith("osm_"):
+                    display_name = key.replace("osm_", "").replace("_", " ").title()
+                elif key.startswith("peeringdb_"):
+                    display_name = key.replace("peeringdb_", "").replace("_", " ").title()
+
+                # Get source info using helper function
+                source_display = get_source_for_metric(key)
+
                 range_data.append({
-                    "Metric": key.replace("_", " ").title(),
+                    "Source": source_display,
+                    "Metric": display_name,
                     "Min": min_val,
                     "Max": max_val,
                     "Unit": unit
@@ -243,15 +381,28 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
                         # Verification badges (for power capacity section)
                         if verification_metadata:
                             st.write("**🔍 Verification Status:**")
-                            for claim, verification_level in verification_metadata.items():
+                            for claim, verification_data in verification_metadata.items():
+                                # Handle both string format and dict format with source
+                                if isinstance(verification_data, dict):
+                                    verification_level = verification_data.get("level", "unknown")
+                                    source_name = verification_data.get("source", "")
+                                else:
+                                    verification_level = verification_data
+                                    source_name = ""
+
                                 badge = _get_verification_badge(verification_level)
                                 claim_display = claim.replace("_", " ").title()
-                                st.markdown(f"• **{claim_display}**: {badge}", unsafe_allow_html=True)
+
+                                # Add source name if available
+                                source_display = f" <span style='color: #666; font-size: 0.9em;'>(Source: {source_name})</span>" if source_name else ""
+                                st.markdown(f"• **{claim_display}**: {badge}{source_display}", unsafe_allow_html=True)
 
                         # Render metrics tables if available
                         if metrics and any(metrics.get(key, {}) for key in ['numerical_values', 'percentages', 'ranges']):
                             st.write("**📊 Metrics & Data:**")
-                            render_metrics_table(metrics, section_name)
+                            # Get domain-level sources for OSM date extraction
+                            domain_sources = domain_structured.get('sources', [])
+                            render_metrics_table(metrics, section_name, verification_metadata, domain_sources)
 
         # Show assumptions if available
         if domain_structured and 'assumptions' in domain_structured:
@@ -277,8 +428,15 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
                             distance_km = source.get("distance_from_site_km")
                             spatial_precision = source.get("spatial_precision", "")
 
+                            # Add visual indicator for API-sourced data
+                            source_badge = ""
+                            if "OpenInfraMap" in title or "openinframap.org" in url:
+                                source_badge = "🗺️ **[OpenInfraMap Ground Truth]** "
+                            elif "PeeringDB" in title or "peeringdb.com" in url:
+                                source_badge = "🌐 **[PeeringDB Direct API]** "
+
                             st.markdown(f"""
-                            **{idx}. {title}**
+                            **{idx}. {source_badge}{title}**
                             {f"📅 {date}  " if date else ""}
                             {f"📍 **{distance_km} km from site**  " if distance_km is not None else ""}
                             {f"🎯 {spatial_precision}  " if spatial_precision else ""}
@@ -291,6 +449,87 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
                             st.write(f"{idx}. {source}")
             else:
                 st.info("📚 **Sources & References:** No sources available - data collection pending")
+
+        # Show distance measurements if available (OSM data, routing data, etc.)
+        if domain_structured and 'distance_measurements' in domain_structured:
+            distance_measurements = domain_structured['distance_measurements']
+            if distance_measurements and isinstance(distance_measurements, list) and len(distance_measurements) > 0:
+                st.divider()
+                st.write(f"**📏 Infrastructure Distance Measurements ({len(distance_measurements)} measurements)**")
+                with st.expander("View all distance measurements", expanded=False):
+                    for idx, measurement in enumerate(distance_measurements, 1):
+                        if isinstance(measurement, dict):
+                            target = measurement.get("target", "Unknown Target")
+                            distance_km = measurement.get("distance_km", "?")
+                            distance_mi = measurement.get("distance_mi", "?")
+                            method = measurement.get("method", "unknown")
+                            source = measurement.get("source", "")
+
+                            # Add visual indicator for data source
+                            source_badge = ""
+                            if source == "OpenInfraMap":
+                                source_badge = "🗺️ "
+                            elif source == "PeeringDB":
+                                source_badge = "🌐 "
+                            elif source == "Google Maps":
+                                source_badge = "📍 "
+
+                            method_display = {
+                                "aerial": "📐 Aerial (straight-line)",
+                                "road": "🚗 Road distance",
+                                "rail": "🚂 Rail distance",
+                                "fiber_route": "🔌 Fiber route"
+                            }.get(method, f"📊 {method}")
+
+                            st.markdown(f"""
+                            **{idx}. {source_badge}{target}**
+                            📏 **{distance_km} km** ({distance_mi} mi)
+                            {method_display}
+                            {f"📊 Source: {source}" if source else ""}
+                            """)
+                            if idx < len(distance_measurements):
+                                st.divider()
+
+        # Show data provenance badges if available
+        if domain_structured and 'provenance_badges' in domain_structured:
+            provenance_badges = domain_structured['provenance_badges']
+            if provenance_badges and isinstance(provenance_badges, list) and len(provenance_badges) > 0:
+                st.divider()
+                st.write(f"**🏷️ Data Provenance ({len(provenance_badges)} sources)**")
+                with st.expander("View data source quality tracking", expanded=False):
+                    for idx, badge in enumerate(provenance_badges, 1):
+                        if isinstance(badge, dict):
+                            source = badge.get("source", "Unknown Source")
+                            vintage = badge.get("vintage", "Unknown")
+                            confidence = badge.get("confidence", "unknown")
+                            coverage = badge.get("coverage", "")
+                            refresh_freq = badge.get("refresh_frequency", "")
+                            url = badge.get("url", "")
+
+                            # Confidence badge styling
+                            confidence_badge = {
+                                "high": "🟢 High",
+                                "medium": "🟡 Medium",
+                                "low": "🔴 Low"
+                            }.get(confidence.lower(), confidence)
+
+                            # Source icon
+                            source_icon = ""
+                            if "OpenStreetMap" in source or "OpenInfraMap" in source:
+                                source_icon = "🗺️ "
+                            elif "PeeringDB" in source:
+                                source_icon = "🌐 "
+
+                            st.markdown(f"""
+                            **{idx}. {source_icon}{source}**
+                            📅 Data Vintage: {vintage}
+                            {f"🔄 Refresh: {refresh_freq}  " if refresh_freq else ""}
+                            🎯 Confidence: {confidence_badge}
+                            📋 Coverage: {coverage}
+                            {f"🔗 [{url}]({url})" if url else ""}
+                            """)
+                            if idx < len(provenance_badges):
+                                st.divider()
 
 def render_report_viewer(report_id: int) -> None:
     """Render the complete report viewer for a given report ID"""
