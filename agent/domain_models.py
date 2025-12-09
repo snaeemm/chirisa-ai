@@ -1,6 +1,6 @@
 # domain_models.py - Domain-Specific Pydantic Models for Data Center Analysis
 from typing import Dict, List, Optional, Any, Union
-from pydantic import BaseModel, Field, field_validator, model_validator
+from pydantic import BaseModel, Field, field_validator, model_validator, ConfigDict
 from datetime import datetime
 # Import investment-grade models
 from .models import NoGoGate, CautionFlag, ProvenanceBadge, DistanceMeasurement, VerificationLevel
@@ -18,16 +18,45 @@ class MetricsData(BaseModel):
 
 class RichSection(BaseModel):
     """Enhanced section model that preserves structured data"""
+    model_config = ConfigDict(validate_assignment=True, arbitrary_types_allowed=True)
+
     name: str = Field("", description="Section display name")
     content: str = Field("", description="Detailed textual analysis")
     sub_score: float = Field(1.0, ge=-1.0, le=5.0, description="Section scoring (-1 for not found/failed, 1.0-5.0 for scored)")
     metrics: MetricsData = Field(default_factory=MetricsData, description="Structured quantitative data")
     key_points: List[str] = Field(default_factory=list, description="Key findings for this section")
     tables: List[Dict[str, Any]] = Field(default_factory=list, description="Structured table data")
-    verification_metadata: Dict[str, str] = Field(
+    verification_metadata: Dict[str, Union[str, Dict[str, str]]] = Field(
         default_factory=dict,
-        description="Maps statement keys to verification levels (verified_by_public_source, model_inference, unknown_requires_utility_letter, etc.)"
+        description="Maps statement keys to verification levels. Can be string ('verified_by_public_source') or dict ({'level': 'verified_by_public_source', 'source': 'EIA.gov'})"
     )
+
+    @field_validator('verification_metadata', mode='before')
+    @classmethod
+    def validate_verification_metadata(cls, v):
+        """Ensure verification_metadata accepts both string and dict formats"""
+        if not isinstance(v, dict):
+            return {}
+
+        validated = {}
+        for key, value in v.items():
+            # Accept strings directly
+            if isinstance(value, str):
+                validated[key] = value
+            # Accept dicts with 'level' and optionally 'source'
+            elif isinstance(value, dict):
+                if 'level' not in value:
+                    raise ValueError(f"Dict format for verification_metadata must have 'level' key. Got: {value}")
+                # Ensure only 'level' and 'source' keys exist
+                allowed_keys = {'level', 'source'}
+                if not set(value.keys()).issubset(allowed_keys):
+                    extra_keys = set(value.keys()) - allowed_keys
+                    raise ValueError(f"verification_metadata dict can only have 'level' and 'source' keys. Extra keys found: {extra_keys}")
+                validated[key] = value
+            else:
+                raise ValueError(f"verification_metadata values must be string or dict, got {type(value)}: {value}")
+
+        return validated
 
     @field_validator('sub_score')
     @classmethod
