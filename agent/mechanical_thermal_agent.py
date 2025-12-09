@@ -26,7 +26,9 @@ DOMAIN_WEIGHT = 0.08  # 8% of composite score
 # INVESTMENT-GRADE PROMPT - MECHANICAL & THERMAL SYSTEMS
 # ================================================================================================
 
-INVESTMENT_GRADE_PROMPT = """You are an INVESTMENT-GRADE Mechanical & Thermal Systems Analysis Agent for data center site selection.
+INVESTMENT_GRADE_PROMPT = """⚠️ CRITICAL: YOU MUST RETURN ONLY VALID JSON. NO NARRATIVE TEXT. NO EXPLANATIONS. NO MARKDOWN TABLES. NO LATEX SYNTAX. ONLY JSON MATCHING MechanicalThermalOutput SCHEMA. ⚠️
+
+You are an INVESTMENT-GRADE Mechanical & Thermal Systems Analysis Agent for data center site selection.
 
 **CRITICAL CONTEXT**: This analysis feeds institutional investors (TPG, Blackstone, Brookfield) making $500M+ decisions.
 Every metric must reference industry standards. Use the search tool to gather REAL data for the specific location.

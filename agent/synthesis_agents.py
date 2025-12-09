@@ -1011,6 +1011,732 @@ def create_fallback_response(agent_name: str, lat: float, lng: float, country: s
     )
 
 # --------------------------------------------------------------------------------
+# OSM Power Infrastructure Integration Helpers
+# --------------------------------------------------------------------------------
+
+def format_osm_for_prompt(osm_data: dict) -> str:
+    """Format OSM infrastructure data for LLM prompt"""
+    if not osm_data or not osm_data.get("nearest_substation_name"):
+        return """
+## OpenInfraMap Ground Truth: NO SUBSTATIONS FOUND
+⚠️ WARNING: OpenStreetMap/OpenInfraMap found NO transmission substations within 100km search radius.
+This indicates either:
+1. Remote location with limited transmission infrastructure
+2. Incomplete mapping in OpenStreetMap (common in some regions)
+3. Genuine infrastructure gap
+
+**REQUIRED ACTION**: Flag this as a CautionFlag with high severity for infrastructure availability.
+"""
+
+    # Format substation info
+    sub_name = osm_data["nearest_substation_name"]
+    latin = osm_data.get("latin_name", "N/A")
+    voltages = osm_data.get("substation_voltages_kV", [])
+    voltage_str = "/".join([f"{int(v)}" if v.is_integer() else f"{v}" for v in voltages]) if voltages else "Unknown"
+    dist = osm_data.get("substation_distance_km", "?")
+    voltage_src = osm_data.get("voltage_source", "unknown")
+    last_updated = osm_data.get("substation_last_updated", "Unknown")
+
+    # Format transmission lines
+    lines = osm_data.get("nearest_lines", [])
+    lines_text = ""
+    if lines:
+        for i, line in enumerate(lines[:3], 1):
+            line_v = line.get("voltage_kV", [])
+            line_v_str = "/".join([f"{int(v)}" if v.is_integer() else f"{v}" for v in line_v])
+            circuits = line.get("circuit_count")
+            circ_str = f" ({circuits} circuits)" if circuits else ""
+            lines_text += f"  {i}. {line['name']}: {line_v_str} kV{circ_str} at {line['distance_km']} km (updated: {line.get('last_updated', 'Unknown')})\n"
+    else:
+        lines_text = "  None found with voltage data\n"
+
+    # Build complete context
+    return f"""
+## OpenInfraMap Ground Truth Data (Verified Infrastructure)
+**Source**: OpenStreetMap/OpenInfraMap via Overpass API
+**Search Radius**: {osm_data.get('search_radius_km', '?')} km
+**Data Vintage**: {last_updated}
+
+### Nearest Substation
+- **Name**: {sub_name} (Latin: {latin})
+- **Voltages**: {voltage_str} kV (Source: {voltage_src})
+- **Distance**: {dist} km from site
+- **Last Updated**: {last_updated}
+
+### Transmission Lines (≥69 kV)
+{lines_text}
+
+**CRITICAL INSTRUCTIONS FOR USING THIS DATA:**
+1. **Substation Distance**: Use the OSM-verified distance ({dist} km) as ground truth in your power_capacity analysis and MENTION it in your content text
+2. **Voltage Verification**: Tag substation voltages as "verified_by_osm" in verification_metadata (NOT verified_by_public_source)
+3. **Cross-Validation**: If you find different substation distances from web search, FLAG the discrepancy
+4. **Capacity vs Infrastructure**: Remember - OSM shows INFRASTRUCTURE presence, NOT available capacity (capacity = "unknown_requires_utility_letter")
+5. **Data Quality**: {'Voltage data missing in OSM - note as data gap' if voltage_src == 'not_available_in_osm' else 'Voltage confirmed from OSM tags - tag as verified_by_osm'}
+6. **Distance Measurements**: Add this to your distance_measurements array with source="OpenInfraMap"
+7. **Reference in Text**: In your power_capacity content, write something like: "OpenInfraMap confirms a {voltage_str} kV substation at {dist} km from the site."
+8. **Add to Metrics**: Include these values in power_capacity.metrics.numerical_values with appropriate units
+"""
+
+
+def enrich_power_output_with_osm(response_data: dict, osm_data: dict) -> dict:
+    """Post-process LLM output to inject OSM-derived structured data"""
+    if not osm_data or not osm_data.get("nearest_substation_name"):
+        return response_data
+
+    # 1. Add OSM to sources
+    if "sources" not in response_data:
+        response_data["sources"] = []
+
+    osm_source = {
+        "url": f"https://openinframap.org/#9/{osm_data.get('substation_distance_km', 0)}/power",
+        "title": "OpenInfraMap - Open Power Infrastructure Database",
+        "date": osm_data.get("last_updated", "Unknown"),
+        "snippet": f"Nearest substation: {osm_data['nearest_substation_name']} at {osm_data.get('substation_distance_km')} km"
+    }
+    response_data["sources"].append(osm_source)
+
+    # 2. Add distance measurements
+    if "distance_measurements" not in response_data:
+        response_data["distance_measurements"] = []
+
+    # Substation distance
+    voltages = osm_data.get("substation_voltages_kV", [])
+    voltage_str = "/".join([f"{int(v)}" if v.is_integer() else f"{v}" for v in voltages]) + " kV" if voltages else ""
+
+    response_data["distance_measurements"].append({
+        "target": f"{osm_data['nearest_substation_name']} ({voltage_str})".strip(),
+        "distance_km": osm_data.get("substation_distance_km", 0),
+        "distance_mi": round(osm_data.get("substation_distance_km", 0) * 0.621371, 2),
+        "method": "aerial",
+        "source": "OpenInfraMap"
+    })
+
+    # Transmission line distances
+    for line in osm_data.get("nearest_lines", [])[:3]:
+        line_v = line.get("voltage_kV", [])
+        line_v_str = "/".join([f"{int(v)}" if v.is_integer() else f"{v}" for v in line_v]) + " kV"
+        response_data["distance_measurements"].append({
+            "target": f"{line['name']} ({line_v_str})",
+            "distance_km": line["distance_km"],
+            "distance_mi": round(line["distance_km"] * 0.621371, 2),
+            "method": "aerial",
+            "source": "OpenInfraMap"
+        })
+
+    # 3. Add provenance badge
+    if "provenance_badges" not in response_data:
+        response_data["provenance_badges"] = []
+
+    response_data["provenance_badges"].append({
+        "source": "OpenStreetMap / OpenInfraMap",
+        "api_version": "Overpass API 0.7",
+        "vintage": osm_data.get("last_updated", "Unknown"),
+        "refresh_frequency": "Continuous (community-updated)",
+        "confidence": "high" if osm_data.get("voltage_source") == "osm_tag" else "medium",
+        "coverage": "HV/EHV transmission substations and lines ≥69 kV",
+        "url": "https://openinframap.org"
+    })
+
+    # 4. Enhance power_capacity metrics (if section exists)
+    if "power_capacity" in response_data and isinstance(response_data["power_capacity"], dict):
+        capacity_section = response_data["power_capacity"]
+        if "metrics" not in capacity_section:
+            capacity_section["metrics"] = {
+                "numerical_values": {},
+                "percentages": {},
+                "ranges": {},
+                "units": {}
+            }
+
+        # Add OSM-derived metrics
+        metrics = capacity_section["metrics"]
+        metrics["numerical_values"]["osm_nearest_substation_distance_km"] = osm_data.get("substation_distance_km", 0)
+        metrics["units"]["osm_nearest_substation_distance_km"] = "km"
+
+        if voltages:
+            metrics["numerical_values"]["osm_substation_max_voltage_kv"] = max(voltages)
+            metrics["units"]["osm_substation_max_voltage_kv"] = "kV"
+
+        line_count = len(osm_data.get("nearest_lines", []))
+        if line_count > 0:
+            metrics["numerical_values"]["osm_transmission_lines_nearby"] = line_count
+            metrics["units"]["osm_transmission_lines_nearby"] = "count"
+
+    return response_data
+
+
+def detect_osm_llm_conflicts(response_data: dict, osm_data: dict) -> dict:
+    """Detect conflicts between OSM ground truth and LLM findings, generate CautionFlags"""
+    if not osm_data:
+        return response_data
+
+    if "caution_flags" not in response_data:
+        response_data["caution_flags"] = []
+
+    # CONFLICT 1: No substations found in OSM
+    if not osm_data.get("nearest_substation_name"):
+        response_data["caution_flags"].append({
+            "category": "infrastructure_availability",
+            "severity": "high",
+            "description": f"OpenInfraMap found NO transmission substations within {osm_data.get('search_radius_km', 100)} km search radius",
+            "mitigation_plan": "Verify with regional grid operator if infrastructure exists but is unmapped in OSM. May require extended transmission line construction.",
+            "cost_impact": "Potentially +$5-15M for extended transmission infrastructure if no nearby substations confirmed",
+            "timeline_impact": "+12-24 months for transmission line construction and utility approvals",
+            "severity_points": 0.8
+        })
+
+    # CONFLICT 2: Missing voltage data in OSM
+    if osm_data.get("voltage_source") == "not_available_in_osm" and osm_data.get("nearest_substation_name"):
+        if "data_gaps" not in response_data:
+            response_data["data_gaps"] = []
+        response_data["data_gaps"].append(
+            "OSM substation voltage data unavailable - requires utility schematic or site visit for voltage confirmation"
+        )
+
+    # CONFLICT 3: Distance discrepancy (compare OSM vs LLM metrics)
+    osm_dist = osm_data.get("substation_distance_km")
+    if osm_dist and "power_capacity" in response_data:
+        capacity = response_data.get("power_capacity", {})
+        if isinstance(capacity, dict) and "metrics" in capacity:
+            metrics = capacity["metrics"]
+            numerical = metrics.get("numerical_values", {})
+
+            # Look for LLM-estimated substation distance
+            llm_dist_keys = ["substation_distance_km", "nearest_substation_km", "distance_to_substation_km"]
+            for key in llm_dist_keys:
+                if key in numerical:
+                    llm_dist = numerical[key]
+                    if isinstance(llm_dist, (int, float)):
+                        diff = abs(llm_dist - osm_dist)
+                        pct_diff = (diff / osm_dist) * 100 if osm_dist > 0 else 0
+
+                        if diff > 5 and pct_diff > 50:  # >5km AND >50% difference
+                            response_data["caution_flags"].append({
+                                "category": "data_quality",
+                                "severity": "medium",
+                                "description": f"Substation distance discrepancy: LLM estimate {llm_dist} km vs OSM ground truth {osm_dist} km (difference: {diff:.1f} km)",
+                                "mitigation_plan": f"Use OpenInfraMap distance ({osm_dist} km) as more reliable. Verify with site survey and utility maps.",
+                                "cost_impact": "No direct cost impact, but affects infrastructure routing planning",
+                                "timeline_impact": None,
+                                "severity_points": 0.2
+                            })
+                            break
+
+    # CONFLICT 4: Voltage discrepancy
+    osm_voltages = osm_data.get("substation_voltages_kV", [])
+    if osm_voltages and "power_capacity" in response_data:
+        capacity = response_data.get("power_capacity", {})
+        if isinstance(capacity, dict) and "metrics" in capacity:
+            metrics = capacity["metrics"]
+            numerical = metrics.get("numerical_values", {})
+
+            # Look for LLM-estimated voltage
+            llm_voltage_keys = ["transmission_voltage_kv", "max_transmission_voltage_kv", "grid_voltage_kv"]
+            for key in llm_voltage_keys:
+                if key in numerical:
+                    llm_voltage = numerical[key]
+                    osm_max_voltage = max(osm_voltages)
+                    if isinstance(llm_voltage, (int, float)):
+                        diff = abs(llm_voltage - osm_max_voltage)
+
+                        if diff > 10:  # >10 kV difference is significant
+                            response_data["caution_flags"].append({
+                                "category": "data_quality",
+                                "severity": "high",
+                                "description": f"Substation voltage discrepancy: LLM estimate {llm_voltage} kV vs OSM {osm_max_voltage} kV (difference: {diff} kV). Voltage affects transformer specifications.",
+                                "mitigation_plan": f"Use OpenInfraMap voltage ({osm_max_voltage} kV) as baseline. Confirm with utility grid schematic before equipment procurement.",
+                                "cost_impact": "Transformer specifications depend on voltage - incorrect estimates may require re-procurement (+$500K-2M)",
+                                "timeline_impact": "+3-6 months if equipment re-procurement needed",
+                                "severity_points": 0.5
+                            })
+                            break
+
+    # CONFLICT 5: Old OSM data warning
+    last_updated = osm_data.get("last_updated", "Unknown")
+    if last_updated != "Unknown":
+        try:
+            from datetime import datetime
+            update_date = datetime.strptime(last_updated, "%Y-%m-%d")
+            age_years = (datetime.now() - update_date).days / 365.25
+
+            if age_years > 2:
+                if "assumptions" not in response_data:
+                    response_data["assumptions"] = []
+                response_data["assumptions"].append(
+                    f"OpenInfraMap data last updated {last_updated} ({age_years:.1f} years ago) - may not reflect recent grid expansions or upgrades"
+                )
+        except Exception:
+            pass
+
+    return response_data
+
+
+# ---- Network API Helper Functions (PeeringDB) ----
+
+def format_peeringdb_for_prompt(peeringdb_data: dict) -> str:
+    """Format PeeringDB infrastructure data for LLM prompt"""
+    if not peeringdb_data:
+        return """
+## PeeringDB Ground Truth: API QUERY FAILED
+⚠️ WARNING: PeeringDB API query failed or returned no data.
+This may indicate network connectivity issues or PeeringDB service disruption.
+
+**REQUIRED ACTION**: Note this as a data gap. Rely on web search for network infrastructure.
+"""
+
+    facilities = peeringdb_data.get("facilities", [])
+    ixps = peeringdb_data.get("ixps", [])
+    carriers = peeringdb_data.get("carriers", [])
+    last_updated = peeringdb_data.get("last_updated", "Unknown")
+
+    # Check if no infrastructure found
+    if not facilities and not ixps:
+        return """
+## PeeringDB Ground Truth: NO NETWORK INFRASTRUCTURE FOUND
+⚠️ WARNING: PeeringDB found NO colocation facilities or Internet Exchange Points within 200 km search radius.
+This indicates either:
+1. Remote location with limited network infrastructure
+2. Incomplete mapping in PeeringDB (less common for major metro areas)
+3. Genuine infrastructure gap requiring extensive fiber builds
+
+**REQUIRED ACTION**: Flag this as a CautionFlag with high severity for infrastructure_availability.
+"""
+
+    # Format facilities
+    fac_text = ""
+    if facilities:
+        fac_text = "### Colocation Facilities (within 200 km)\n"
+        for i, fac in enumerate(facilities[:5], 1):
+            operator = fac.get("operator", "Unknown Operator")
+            city = fac.get("city", "Unknown")
+            country = fac.get("country", "")
+            dist = fac.get("distance_km", "?")
+            method = fac.get("distance_method", "unknown")
+            quality_flags = fac.get("data_quality_flag", [])
+            flag_str = f" ⚠️ Data Quality Issues: {', '.join(quality_flags)}" if quality_flags else ""
+            fac_text += f"  {i}. **{fac['name']}** (Operator: {operator})\n"
+            fac_text += f"     Location: {city}, {country} | Distance: {dist} km ({method}){flag_str}\n"
+    else:
+        fac_text = "### Colocation Facilities\n  None found within 200 km\n"
+
+    # Format IXPs
+    ixp_text = ""
+    if ixps:
+        ixp_text = "### Internet Exchange Points (within 500 km)\n"
+        for i, ixp in enumerate(ixps[:3], 1):
+            city = ixp.get("city", "Unknown")
+            country = ixp.get("country", "")
+            dist = ixp.get("distance_km", "?")
+            asn_count = ixp.get("asn_count")
+            asn_str = f"{asn_count} networks" if asn_count else "ASN count unknown"
+            ixp_type = ixp.get("ixp_type", "unknown")
+            quality_flags = ixp.get("data_quality_flag", [])
+            flag_str = f" ⚠️ Data Quality Issues: {', '.join(quality_flags)}" if quality_flags else ""
+            ixp_text += f"  {i}. **{ixp['name']}** ({asn_str})\n"
+            ixp_text += f"     Location: {city}, {country} | Distance: {dist} km | Type: {ixp_type}{flag_str}\n"
+    else:
+        ixp_text = "### Internet Exchange Points\n  None found within 500 km\n"
+
+    # Format carriers
+    carrier_text = ""
+    if carriers:
+        carrier_text = f"### Network Carriers Present ({len(carriers)} carriers)\n"
+        carrier_text += "  " + ", ".join(carriers[:15])
+        if len(carriers) > 15:
+            carrier_text += f" ... and {len(carriers) - 15} more"
+        carrier_text += "\n"
+    else:
+        carrier_text = "### Network Carriers\n  None identified in facilities\n"
+
+    # Build complete context
+    return f"""
+## PeeringDB Ground Truth Data (Verified Infrastructure)
+**Source**: PeeringDB - Global Network Infrastructure Database
+**Data Vintage**: {last_updated if last_updated != "Unknown" else "Not available"}
+
+{fac_text}
+{ixp_text}
+{carrier_text}
+
+**CRITICAL INSTRUCTIONS FOR USING THIS DATA:**
+1. **Facility Distances**: Use PeeringDB-verified distances as ground truth for fiber_infrastructure and last_mile_diversity
+2. **IXP Verification**: Tag IXP data as "verified_by_peeringdb" in verification_metadata
+3. **Carrier Diversity**: Use carrier list for carrier_diversity analysis - tag as "verified_by_peeringdb"
+4. **Cross-Validation**: If web search finds different facilities/distances, FLAG the discrepancy
+5. **Data Quality Flags**: Pay attention to data_quality_flag warnings (suspect coordinates, distributed locations)
+6. **Distance Measurements**: Add all facilities and IXPs to distance_measurements array with source="PeeringDB"
+7. **No Facilities Warning**: If PeeringDB returns "NO FACILITIES FOUND", add high-severity CautionFlag for infrastructure_availability
+8. **IXP Types**:
+   - "domestic" = same country
+   - "regional_cross_border" = different country but ≤500 km
+   - "international" = different country and >500 km
+
+**PEERINGDB VERIFICATION TAGGING:**
+- Facility existence: "verified_by_peeringdb" (if found in PeeringDB)
+- IXP existence: "verified_by_peeringdb" (if found in PeeringDB)
+- Carrier presence: "verified_by_peeringdb" (if in PeeringDB carrier list)
+- Distance measurements: "verified_by_peeringdb" (from PeeringDB coordinates)
+- Latency estimates: "model_inference" (PeeringDB doesn't provide latency)
+- Bandwidth costs: "unknown_requires_isp_quote" (PeeringDB doesn't show pricing)
+"""
+
+
+def enrich_network_output_with_peeringdb(response_data: dict, peeringdb_data: dict) -> dict:
+    """Post-process LLM output to inject PeeringDB-derived structured data"""
+    if not peeringdb_data:
+        return response_data
+
+    facilities = peeringdb_data.get("facilities", [])
+    ixps = peeringdb_data.get("ixps", [])
+    carriers = peeringdb_data.get("carriers", [])
+    last_updated = peeringdb_data.get("last_updated", "Unknown")
+
+    # Parse last_updated timestamp to display format
+    formatted_date = "Unknown"
+    if last_updated and last_updated != "Unknown":
+        try:
+            from datetime import datetime
+            # PeeringDB returns ISO format: "2024-12-08T10:30:00Z"
+            dt = datetime.fromisoformat(last_updated.replace('Z', '+00:00'))
+            formatted_date = dt.strftime("%Y-%m-%d")
+        except Exception:
+            formatted_date = last_updated[:10] if len(last_updated) >= 10 else last_updated
+
+    # 1. Add PeeringDB to sources
+    if "sources" not in response_data:
+        response_data["sources"] = []
+
+    peeringdb_source = {
+        "url": "https://www.peeringdb.com/",
+        "title": "PeeringDB - Global Network Infrastructure Database",
+        "date": last_updated if last_updated != "Unknown" else "Unknown",
+        "snippet": f"Found {len(facilities)} facilities, {len(ixps)} IXPs, {len(carriers)} carriers"
+    }
+    response_data["sources"].append(peeringdb_source)
+
+    # 2. Add distance measurements
+    if "distance_measurements" not in response_data:
+        response_data["distance_measurements"] = []
+
+    # Facility distances
+    for fac in facilities[:5]:
+        response_data["distance_measurements"].append({
+            "target": f"{fac['name']} (Colo Facility)",
+            "distance_km": fac.get("distance_km", 0),
+            "distance_mi": round(fac.get("distance_km", 0) * 0.621371, 2),
+            "method": "aerial",
+            "source": "PeeringDB"
+        })
+
+    # IXP distances
+    for ixp in ixps[:3]:
+        ixp_type_label = {
+            "domestic": "Domestic IXP",
+            "regional_cross_border": "Regional IXP",
+            "international": "International IXP"
+        }.get(ixp.get("ixp_type", "domestic"), "IXP")
+
+        response_data["distance_measurements"].append({
+            "target": f"{ixp['name']} ({ixp_type_label})",
+            "distance_km": ixp.get("distance_km", 0),
+            "distance_mi": round(ixp.get("distance_km", 0) * 0.621371, 2),
+            "method": "aerial",
+            "source": "PeeringDB"
+        })
+
+    # 3. Add provenance badge
+    if "provenance_badges" not in response_data:
+        response_data["provenance_badges"] = []
+
+    response_data["provenance_badges"].append({
+        "source": "PeeringDB",
+        "api_version": "PeeringDB API 2.0",
+        "vintage": last_updated if last_updated != "Unknown" else "Unknown",
+        "refresh_frequency": "Community-updated (real-time)",
+        "confidence": "high" if (facilities or ixps) else "low",
+        "coverage": f"{len(facilities)} facilities, {len(ixps)} IXPs, {len(carriers)} carriers within search radius",
+        "url": "https://www.peeringdb.com"
+    })
+
+    # 4. Enhance network subsection metrics (if sections exist)
+    # Add PeeringDB-derived metrics to relevant subsections
+    subsection_enhancements = {
+        "fiber_infrastructure": {
+            "peeringdb_facilities_within_200km": len(facilities),
+        },
+        "ixp_peering": {
+            "peeringdb_ixps_within_500km": len(ixps),
+            "peeringdb_nearest_ixp_distance_km": ixps[0]["distance_km"] if ixps else None,
+        },
+        "carrier_diversity": {
+            "peeringdb_carrier_count": len(carriers),
+        }
+    }
+
+    for subsection_name, peeringdb_metrics in subsection_enhancements.items():
+        if subsection_name in response_data and isinstance(response_data[subsection_name], dict):
+            subsection = response_data[subsection_name]
+            if "metrics" not in subsection:
+                subsection["metrics"] = {
+                    "numerical_values": {},
+                    "percentages": {},
+                    "ranges": {},
+                    "units": {}
+                }
+
+            # Add PeeringDB metrics
+            metrics = subsection["metrics"]
+            for metric_key, metric_value in peeringdb_metrics.items():
+                if metric_value is not None:
+                    metrics["numerical_values"][metric_key] = metric_value
+                    # Add unit
+                    if "distance_km" in metric_key:
+                        metrics["units"][metric_key] = "km"
+                    elif "count" in metric_key:
+                        metrics["units"][metric_key] = "count"
+
+    # 5. Add structured tables for facilities, IXPs, carriers
+    # Facilities table
+    if facilities:
+        facilities_table = {
+            "title": "PeeringDB Colocation Facilities (Within 200km)",
+            "headers": ["Facility Name", "Operator", "City/Country", "Distance (km)", "Data Quality", "Last Updated"],
+            "rows": []
+        }
+        for fac in facilities[:10]:  # Top 10 closest
+            data_quality = ", ".join(fac.get("data_quality_flag", [])) if fac.get("data_quality_flag") else "✓ Verified"
+            facilities_table["rows"].append([
+                fac.get("name", "Unknown"),
+                fac.get("operator", "Unknown"),
+                f"{fac.get('city', 'Unknown')}, {fac.get('country', 'Unknown')}",
+                f"{fac.get('distance_km', 0):.1f}",
+                data_quality,
+                formatted_date
+            ])
+
+        # Inject facilities table into fiber_infrastructure subsection
+        if "fiber_infrastructure" in response_data and isinstance(response_data["fiber_infrastructure"], dict):
+            if "tables" not in response_data["fiber_infrastructure"]:
+                response_data["fiber_infrastructure"]["tables"] = []
+            response_data["fiber_infrastructure"]["tables"].append(facilities_table)
+
+    # IXPs table
+    if ixps:
+        ixps_table = {
+            "title": "PeeringDB Internet Exchange Points (Within 500km)",
+            "headers": ["IXP Name", "City/Country", "ASN Count", "Type", "Distance (km)", "Data Quality", "Last Updated"],
+            "rows": []
+        }
+        for ixp in ixps[:10]:
+            data_quality = ", ".join(ixp.get("data_quality_flag", [])) if ixp.get("data_quality_flag") else "✓ Verified"
+            ixp_type_display = ixp.get("ixp_type", "domestic").replace("_", " ").title()
+            ixps_table["rows"].append([
+                ixp.get("name", "Unknown"),
+                f"{ixp.get('city', 'Unknown')}, {ixp.get('country', 'Unknown')}",
+                str(ixp.get("asn_count", "N/A")),
+                ixp_type_display,
+                f"{ixp.get('distance_km', 0):.1f}",
+                data_quality,
+                formatted_date
+            ])
+
+        # Inject IXPs table into ixp_peering subsection
+        if "ixp_peering" in response_data and isinstance(response_data["ixp_peering"], dict):
+            if "tables" not in response_data["ixp_peering"]:
+                response_data["ixp_peering"]["tables"] = []
+            response_data["ixp_peering"]["tables"].append(ixps_table)
+
+    # Carriers table
+    if carriers:
+        carriers_table = {
+            "title": "PeeringDB Network Carriers (Present in Nearby Facilities)",
+            "headers": ["Carrier Name"],
+            "rows": [[carrier] for carrier in sorted(carriers)[:30]]  # Top 30
+        }
+
+        # Inject carriers table into carrier_diversity subsection
+        if "carrier_diversity" in response_data and isinstance(response_data["carrier_diversity"], dict):
+            if "tables" not in response_data["carrier_diversity"]:
+                response_data["carrier_diversity"]["tables"] = []
+            response_data["carrier_diversity"]["tables"].append(carriers_table)
+
+    # 6. Update verification_metadata to include source names with dates
+    peeringdb_date = last_updated if last_updated != "Unknown" else "2024-12"
+    peeringdb_source_name = f"PeeringDB {peeringdb_date[:10] if len(peeringdb_date) > 10 else peeringdb_date}"
+
+    subsection_verifications = {
+        "fiber_infrastructure": ["peeringdb_facilities_within_200km"],
+        "ixp_peering": ["peeringdb_ixps_within_500km", "peeringdb_nearest_ixp_distance_km"],
+        "carrier_diversity": ["peeringdb_carrier_count"]
+    }
+
+    for subsection_name, metric_keys in subsection_verifications.items():
+        if subsection_name in response_data and isinstance(response_data[subsection_name], dict):
+            subsection = response_data[subsection_name]
+            if "verification_metadata" not in subsection:
+                subsection["verification_metadata"] = {}
+
+            for metric_key in metric_keys:
+                subsection["verification_metadata"][metric_key] = {
+                    "level": "verified_by_peeringdb",
+                    "source": peeringdb_source_name
+                }
+
+    return response_data
+
+
+def detect_peeringdb_llm_conflicts(response_data: dict, peeringdb_data: dict) -> dict:
+    """Detect conflicts between PeeringDB ground truth and LLM findings, generate CautionFlags"""
+    if not peeringdb_data:
+        return response_data
+
+    if "caution_flags" not in response_data:
+        response_data["caution_flags"] = []
+
+    facilities = peeringdb_data.get("facilities", [])
+    ixps = peeringdb_data.get("ixps", [])
+    carriers = peeringdb_data.get("carriers", [])
+
+    # CONFLICT 1: No facilities found in PeeringDB
+    if not facilities:
+        response_data["caution_flags"].append({
+            "category": "infrastructure_availability",
+            "severity": "high",
+            "description": "PeeringDB found NO colocation facilities within 200 km search radius",
+            "mitigation_plan": "Verify with regional fiber providers if facilities exist but are unmapped in PeeringDB. May require custom colocation build or long fiber runs to nearest facility.",
+            "cost_impact": "Potentially +$2-10M for extended fiber infrastructure or custom colocation build if no nearby facilities confirmed",
+            "timeline_impact": "+6-18 months for fiber construction and facility build-out",
+            "severity_points": 0.8
+        })
+
+    # CONFLICT 2: No IXPs found in PeeringDB
+    if not ixps:
+        response_data["caution_flags"].append({
+            "category": "infrastructure_availability",
+            "severity": "medium",
+            "description": "PeeringDB found NO Internet Exchange Points within 500 km search radius",
+            "mitigation_plan": "Direct carrier peering may be required. Explore private peering options or remote IX port via dark fiber.",
+            "cost_impact": "Higher transit costs without IX peering access (+$1-3M/year in transit costs)",
+            "timeline_impact": "+3-6 months for private peering negotiations",
+            "severity_points": 0.5
+        })
+
+    # CONFLICT 3: Limited carrier diversity
+    if len(carriers) < 3 and facilities:
+        response_data["caution_flags"].append({
+            "category": "carrier_diversity",
+            "severity": "medium",
+            "description": f"PeeringDB shows only {len(carriers)} carriers in nearby facilities (minimum 3 recommended for redundancy)",
+            "mitigation_plan": "Verify carrier availability directly with colocation facilities. May need to pre-qualify carrier diversity before site selection.",
+            "cost_impact": "Limited carrier options may increase costs (+10-20% for transit/cross-connects)",
+            "timeline_impact": "+2-4 months for carrier on-boarding if new builds required",
+            "severity_points": 0.3
+        })
+
+    # CONFLICT 4: Data quality flags from PeeringDB
+    quality_flagged_facilities = [f for f in facilities if f.get("data_quality_flag")]
+    if quality_flagged_facilities:
+        flag_summary = {}
+        for fac in quality_flagged_facilities:
+            for flag in fac.get("data_quality_flag", []):
+                flag_summary[flag] = flag_summary.get(flag, 0) + 1
+
+        response_data["caution_flags"].append({
+            "category": "data_quality",
+            "severity": "low",
+            "description": f"PeeringDB data quality issues detected: {dict(flag_summary)}. This may indicate suspect coordinates, distributed locations, or missing operator data.",
+            "mitigation_plan": "Verify facility coordinates and operator details directly with facility providers. Use city-level fallback distances where coordinates are suspect.",
+            "cost_impact": "No direct cost impact, but affects distance/latency planning accuracy",
+            "timeline_impact": None,
+            "severity_points": 0.1
+        })
+
+    # CONFLICT 5: Distance discrepancy (compare PeeringDB vs LLM metrics)
+    if facilities and "fiber_infrastructure" in response_data:
+        fiber = response_data.get("fiber_infrastructure", {})
+        if isinstance(fiber, dict) and "metrics" in fiber:
+            metrics = fiber["metrics"]
+            numerical = metrics.get("numerical_values", {})
+
+            peeringdb_nearest_dist = facilities[0]["distance_km"]
+
+            # Look for LLM-estimated facility distance
+            llm_dist_keys = ["nearest_facility_km", "facility_distance_km", "colocation_distance_km"]
+            for key in llm_dist_keys:
+                if key in numerical:
+                    llm_dist = numerical[key]
+                    if isinstance(llm_dist, (int, float)):
+                        diff = abs(llm_dist - peeringdb_nearest_dist)
+                        pct_diff = (diff / peeringdb_nearest_dist) * 100 if peeringdb_nearest_dist > 0 else 0
+
+                        if diff > 10 and pct_diff > 50:  # >10km AND >50% difference
+                            response_data["caution_flags"].append({
+                                "category": "data_quality",
+                                "severity": "medium",
+                                "description": f"Facility distance discrepancy: LLM estimate {llm_dist} km vs PeeringDB ground truth {peeringdb_nearest_dist} km (difference: {diff:.1f} km)",
+                                "mitigation_plan": f"Use PeeringDB distance ({peeringdb_nearest_dist} km) as more reliable. Verify with fiber route survey.",
+                                "cost_impact": "Distance affects fiber build costs (~$50K-150K per km)",
+                                "timeline_impact": None,
+                                "severity_points": 0.2
+                            })
+                            break
+
+    # CONFLICT 6: IXP distance discrepancy
+    if ixps and "ixp_peering" in response_data:
+        ixp_section = response_data.get("ixp_peering", {})
+        if isinstance(ixp_section, dict) and "metrics" in ixp_section:
+            metrics = ixp_section["metrics"]
+            numerical = metrics.get("numerical_values", {})
+
+            peeringdb_nearest_ixp_dist = ixps[0]["distance_km"]
+
+            # Look for LLM-estimated IXP distance
+            llm_ixp_dist_keys = ["nearest_ixp_km", "ixp_distance_km", "exchange_distance_km"]
+            for key in llm_ixp_dist_keys:
+                if key in numerical:
+                    llm_ixp_dist = numerical[key]
+                    if isinstance(llm_ixp_dist, (int, float)):
+                        diff = abs(llm_ixp_dist - peeringdb_nearest_ixp_dist)
+                        pct_diff = (diff / peeringdb_nearest_ixp_dist) * 100 if peeringdb_nearest_ixp_dist > 0 else 0
+
+                        if diff > 20 and pct_diff > 50:  # >20km AND >50% difference
+                            response_data["caution_flags"].append({
+                                "category": "data_quality",
+                                "severity": "low",
+                                "description": f"IXP distance discrepancy: LLM estimate {llm_ixp_dist} km vs PeeringDB {peeringdb_nearest_ixp_dist} km (difference: {diff:.1f} km)",
+                                "mitigation_plan": f"Use PeeringDB distance ({peeringdb_nearest_ixp_dist} km) as baseline. Consider remote IX ports if local presence not available.",
+                                "cost_impact": "Remote IX ports may require additional fiber costs",
+                                "timeline_impact": None,
+                                "severity_points": 0.1
+                            })
+                            break
+
+    # CONFLICT 7: Old PeeringDB data warning
+    last_updated = peeringdb_data.get("last_updated", "Unknown")
+    if last_updated != "Unknown":
+        try:
+            from datetime import datetime
+            # PeeringDB returns ISO timestamps like "2024-01-15T10:30:00Z"
+            if "T" in last_updated:
+                update_date = datetime.fromisoformat(last_updated.replace("Z", "+00:00"))
+            else:
+                update_date = datetime.strptime(last_updated, "%Y-%m-%d")
+
+            age_years = (datetime.now() - update_date.replace(tzinfo=None)).days / 365.25
+
+            if age_years > 1:  # PeeringDB data >1 year old is concerning
+                if "assumptions" not in response_data:
+                    response_data["assumptions"] = []
+                response_data["assumptions"].append(
+                    f"PeeringDB data last updated {last_updated[:10]} ({age_years:.1f} years ago) - may not reflect recent facility additions or carrier expansions"
+                )
+        except Exception:
+            pass
+
+    return response_data
+
+
+# --------------------------------------------------------------------------------
 # Old-Style Agent Wrappers - Match Original Pattern Exactly
 # --------------------------------------------------------------------------------
 
@@ -1024,8 +1750,31 @@ class PowerInfrastructureAgentWrapper:
         try:
             # Note: context parameter kept for compatibility but not used
 
+            # Step 1: Query OpenInfraMap for ground truth power infrastructure
+            osm_data = None
+            osm_error = None
+            try:
+                from agent.apis.power.power_infra_query import find_power_assets
+                import json
+                print(f"🔌 Querying OpenInfraMap for power infrastructure at {lat}, {lng}...")
+                osm_data = find_power_assets(lat, lng)
+                print(f"✅ OSM Query: Found {osm_data.get('nearest_substation_name', 'N/A')}")
+                print(f"📊 OSM API Full Response:")
+                print(json.dumps(osm_data, indent=2, ensure_ascii=False))
+            except Exception as e:
+                osm_error = str(e)
+                print(f"⚠️ OSM Query Failed: {e}")
+                # Continue without OSM data - not critical failure
+
             # Use the ADK agent's instruction as the prompt base (like old code)
             prompt = f"{self.adk_agent.instruction}\n\nAnalyze power infrastructure for data center at {lat}, {lng} in {country}.\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis. Search for electricity costs, grid capacity, utility information, renewable energy availability, and infrastructure data for this specific location.**\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
+
+            # Inject OSM ground truth data
+            if osm_data:
+                osm_context = format_osm_for_prompt(osm_data)
+                prompt = prompt + "\n\n" + osm_context
+            elif osm_error:
+                prompt = prompt + f"\n\n⚠️ Note: OpenInfraMap query failed ({osm_error}). Proceed with web search only."
 
             # Use Google GenAI client with Search grounding
             try:
@@ -1103,6 +1852,11 @@ class PowerInfrastructureAgentWrapper:
                     if "sources" in response_data:
                         response_data["sources"] = sanitize_sources(response_data.get("sources", []))
 
+                # Post-process: Enrich with OSM data and detect conflicts
+                if osm_data:
+                    response_data = enrich_power_output_with_osm(response_data, osm_data)
+                    response_data = detect_osm_llm_conflicts(response_data, osm_data)
+
                 # Try to create PowerInfrastructureOutput first (new format)
                 try:
                     result = PowerInfrastructureOutput(**response_data)
@@ -1146,8 +1900,38 @@ class NetworkConnectivityAgentWrapper:
     async def analyze_network_connectivity(self, lat, lng, country, context=None):
         """Match old agent signature exactly"""
         try:
+            # Import model locally (match power agent pattern)
+            from .domain_models import NetworkConnectivityOutput
+
+            # Note: context parameter kept for compatibility but not used
+
+            # Step 1: Query PeeringDB for ground truth network infrastructure
+            peeringdb_data = None
+            peeringdb_error = None
+            try:
+                from agent.apis.network.network_query import query_peeringdb
+                import json
+                print(f"🌐 Querying PeeringDB for network infrastructure at {lat}, {lng}...")
+                peeringdb_data = query_peeringdb(lat, lng, verbose=True)
+                print(f"✅ PeeringDB Query: Found {len(peeringdb_data.get('facilities', []))} facilities, {len(peeringdb_data.get('ixps', []))} IXPs, {len(peeringdb_data.get('carriers', []))} carriers")
+                print(f"📊 PeeringDB API Full Response:")
+                print(json.dumps(peeringdb_data, indent=2, ensure_ascii=False))
+            except Exception as e:
+                peeringdb_error = str(e)
+                print(f"⚠️ PeeringDB Query Failed: {e}")
+                # Continue without PeeringDB data - not critical failure
+
+            # Step 2: Build prompt with PeeringDB context
             prompt = f"{self.adk_agent.instruction}\n\nAnalyze network connectivity for data center at {lat}, {lng} in {country}.\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis. Search for fiber infrastructure, internet exchange points, carrier presence, latency data, and network connectivity information for this specific location.**\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
-            # Use Google GenAI client with Search grounding
+
+            # Inject PeeringDB ground truth data
+            if peeringdb_data:
+                peeringdb_context = format_peeringdb_for_prompt(peeringdb_data)
+                prompt = prompt + "\n\n" + peeringdb_context
+            elif peeringdb_error:
+                prompt = prompt + f"\n\n⚠️ Note: PeeringDB query failed ({peeringdb_error}). Proceed with web search only."
+
+            # Step 3: Use Google GenAI client with Search grounding
             try:
                 from google.genai import Client, types
                 from google.genai.types import Tool, GoogleSearch
@@ -1181,6 +1965,11 @@ class NetworkConnectivityAgentWrapper:
 
             # Parse JSON response from agent into NetworkConnectivityOutput
 
+            # Debug: Check response status
+            print(f"🔍 Network Agent Response Status: text={'present' if response.text else 'NONE'}, candidates={len(response.candidates) if hasattr(response, 'candidates') else 'N/A'}")
+            if hasattr(response, 'prompt_feedback'):
+                print(f"🔍 Prompt Feedback: {response.prompt_feedback}")
+
             # Extract grounding sources from Google Search
             grounding_sources = extract_grounding_sources(response)
             if grounding_sources:
@@ -1188,6 +1977,13 @@ class NetworkConnectivityAgentWrapper:
 
             try:
                 import json
+                # Check if response has text content
+                if not response.text:
+                    error_msg = "Network agent returned empty response (response.text is None or empty)"
+                    if hasattr(response, 'prompt_feedback') and response.prompt_feedback:
+                        error_msg += f" - Prompt feedback: {response.prompt_feedback}"
+                    raise ValueError(error_msg)
+
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response.text)
 
@@ -1209,6 +2005,14 @@ class NetworkConnectivityAgentWrapper:
 
                 # Sanitize metrics data to ensure all percentages and numerical values are valid numbers
                 response_data = sanitize_metrics_data(response_data)
+
+                # Post-process: Enrich with PeeringDB data
+                if peeringdb_data:
+                    response_data = enrich_network_output_with_peeringdb(response_data, peeringdb_data)
+
+                # Detect conflicts between PeeringDB and LLM
+                if peeringdb_data:
+                    response_data = detect_peeringdb_llm_conflicts(response_data, peeringdb_data)
 
                 # Inject grounding sources and sanitize
                 if grounding_sources:
@@ -1667,6 +2471,11 @@ class RegulatoryESGAgentWrapper:
 
             # Parse JSON response from agent into RegulatoryComplianceOutput
 
+            # Debug: Check response status
+            print(f"🔍 Regulatory & ESG Agent Response Status: text={'present' if response.text else 'NONE'}, candidates={len(response.candidates) if hasattr(response, 'candidates') else 'N/A'}")
+            if hasattr(response, 'prompt_feedback'):
+                print(f"🔍 Prompt Feedback: {response.prompt_feedback}")
+
             # Extract grounding sources from Google Search
             grounding_sources = extract_grounding_sources(response)
             if grounding_sources:
@@ -1674,6 +2483,13 @@ class RegulatoryESGAgentWrapper:
 
             try:
                 import json
+                # Check if response has text content
+                if not response.text:
+                    error_msg = "Regulatory & ESG agent returned empty response (response.text is None or empty)"
+                    if hasattr(response, 'prompt_feedback') and response.prompt_feedback:
+                        error_msg += f" - Prompt feedback: {response.prompt_feedback}"
+                    raise ValueError(error_msg)
+
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response.text)
 
@@ -2010,18 +2826,31 @@ class MechanicalThermalAgentWrapper:
 
             # Parse JSON response
             import json
+
+            # Check if response has text
+            if not response.text:
+                raise ValueError("Mechanical & Thermal agent returned empty response")
+
             cleaned_response = clean_agent_response(response.text)
+
+            # Check if cleaned response starts with valid JSON dict marker
+            if not cleaned_response.strip().startswith('{'):
+                print(f"⚠️ WARNING: Mechanical agent response doesn't start with '{{'. First 500 chars: {cleaned_response[:500]}")
 
             # Try to parse JSON, with repair if needed
             try:
                 response_data = json.loads(cleaned_response)
             except json.JSONDecodeError as first_error:
                 print(f"⚠️ Initial JSON parse failed, attempting repair...")
+                print(f"🔍 First 300 chars of cleaned response: {cleaned_response[:300]}")
                 repaired_response = repair_json_response(cleaned_response)
+                print(f"🔍 First 300 chars after repair: {repaired_response[:300]}")
                 response_data = json.loads(repaired_response)
 
             # Validate response_data is a dict, not a list
             if not isinstance(response_data, dict):
+                print(f"❌ ERROR: Mechanical agent returned {type(response_data).__name__}")
+                print(f"🔍 Full cleaned response (first 1000 chars): {cleaned_response[:1000]}")
                 raise ValueError(f"Mechanical & Thermal agent returned {type(response_data).__name__} instead of dict. Response: {str(response_data)[:200]}")
 
             response_data = normalize_pydantic_response(response_data)
