@@ -148,21 +148,15 @@ def render_metrics_table(metrics: Dict[str, Any], section_name: str, verificatio
         if key in verification_levels:
             found_level = verification_levels[key]
 
-        # Strategy 2: Try all verification keys - look for partial matches
+        # Strategy 2: Try prefix matching (prevents partial word collisions)
         if not found_source or not found_level:
-            key_lower = key.lower()
-            key_parts = set(key_lower.split("_"))
-
             # Check ALL verification keys (sources and levels)
             all_ver_keys = set(verification_sources.keys()) | set(verification_levels.keys())
 
+            # First, try suffix matching (e.g., "peeringdb_nearest_ixp_distance_km" matches if key ends with it)
             for ver_key in all_ver_keys:
-                ver_key_lower = ver_key.lower()
-                ver_parts = set(ver_key_lower.split("_"))
-
-                # Check if keys share significant words
-                common_parts = key_parts & ver_parts
-                if len(common_parts) >= 1:  # At least one word in common
+                # Only match if metric key is exactly the verification key OR a suffix of it
+                if key == ver_key or ver_key.endswith(f"_{key}"):
                     if not found_source and ver_key in verification_sources:
                         found_source = verification_sources[ver_key]
                     if not found_level and ver_key in verification_levels:
@@ -470,6 +464,7 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
                             distance_mi = measurement.get("distance_mi", "?")
                             method = measurement.get("method", "unknown")
                             source = measurement.get("source", "")
+                            quality_flags = measurement.get("data_quality_flag", [])
 
                             # Add visual indicator for data source
                             source_badge = ""
@@ -487,11 +482,17 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
                                 "fiber_route": "🔌 Fiber route"
                             }.get(method, f"📊 {method}")
 
+                            # Build quality warning if flags present
+                            quality_warning = ""
+                            if quality_flags:
+                                flag_text = ", ".join(quality_flags)
+                                quality_warning = f"\n⚠️ *Data Quality: {flag_text}*"
+
                             st.markdown(f"""
                             **{idx}. {source_badge}{target}**
                             📏 **{distance_km} km** ({distance_mi} mi)
                             {method_display}
-                            {f"📊 Source: {source}" if source else ""}
+                            {f"📊 Source: {source}" if source else ""}{quality_warning}
                             """)
                             if idx < len(distance_measurements):
                                 st.divider()

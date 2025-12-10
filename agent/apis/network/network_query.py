@@ -422,6 +422,7 @@ def query_peeringdb(lat, lon, verbose=False):
                     # else: stays "domestic" (same country or unknown)
 
                     out_ixps.append({
+                        "id": ix.get("id"),  # Store ID for deduplication
                         "name": ix.get("name"),
                         "city": ix.get("city"),
                         "country": ix.get("country"),
@@ -435,6 +436,77 @@ def query_peeringdb(lat, lon, verbose=False):
                     upd(ix.get("updated"))
 
     out_ixps = sorted(out_ixps, key=lambda x: x["distance_km"])[:3]
+
+    # NEW FALLBACK: Check if any facilities in top 5 host IXPs not yet found
+    # This catches cases like Bridge IX Columbia at DartPoints Columbia
+    if out_fac:  # Only run if we have facilities
+        # Track which IXP IDs we already have
+        existing_ixp_ids = set()
+        for ixp in out_ixps:
+            # Try to extract ID from any stored reference (future-proofing)
+            if "id" in ixp:
+                existing_ixp_ids.add(ixp["id"])
+
+        for fac in out_fac[:5]:  # Check top 5 closest facilities
+            fac_id = fac.get("id")
+            if not fac_id:
+                continue
+
+            # Query ixfac for this specific facility
+            q_ixfac_fallback = f"{base}ixfac?fac_id={fac_id}"
+            js_ixfac_fb = get_cached_or_fetch(q_ixfac_fallback, timeout=10)
+
+            if js_ixfac_fb and "data" in js_ixfac_fb:
+                for ixfac in js_ixfac_fb["data"]:
+                    ix_id = ixfac.get("ix_id")
+                    if not ix_id:
+                        continue
+
+                    # Check if this IXP already in out_ixps by ID
+                    if ix_id in existing_ixp_ids:
+                        continue
+
+                    # Get IXP details
+                    q_ix = f"{base}ix/{ix_id}"
+                    js_ix = get_cached_or_fetch(q_ix, timeout=10)
+
+                    if js_ix and "data" in js_ix and len(js_ix["data"]) > 0:
+                        ix = js_ix["data"][0]
+
+                        # Apply same filters as main IXP query
+                        city = ix.get("city", "")
+                        if any(sep in city for sep in [',', ';', '/', '|']):
+                            continue  # Skip virtual IXPs
+
+                        # Determine IXP type
+                        ixp_type = "domestic"
+                        if local_country and ix.get("country") != local_country:
+                            if fac["distance_km"] <= 500:
+                                ixp_type = "regional_cross_border"
+                            else:
+                                ixp_type = "international"
+
+                        # Add to out_ixps
+                        out_ixps.append({
+                            "id": ix["id"],
+                            "name": ix.get("name", "Unknown IXP"),
+                            "city": ix.get("city"),
+                            "country": ix.get("country"),
+                            "asn_count": ix.get("net_count"),
+                            "distance_km": fac["distance_km"],  # Use facility distance
+                            "distance_method": "facility_coords",
+                            "ixp_type": ixp_type,
+                            "data_quality_flag": detect_ixp_quality_issues(ix, fac["distance_km"], 1),
+                        })
+                        existing_ixp_ids.add(ix_id)
+
+                        upd(ix.get("updated"))
+
+        # Re-sort after fallback additions and take top 3
+        out_ixps = sorted(out_ixps, key=lambda x: x["distance_km"])[:3]
+
+        if verbose:
+            print(f"  IXPs after facility-based fallback: {len(out_ixps)}")
 
     # Smart fallback: detect IXP operators in facilities and move them to IXPs
     # This handles cases where IXP query failed but facility with IXP operator shows up
@@ -492,6 +564,8 @@ def query_peeringdb(lat, lon, verbose=False):
     # Clean up facilities and IXPs - remove internal IDs
     for fac in out_fac:
         fac.pop("id", None)
+    for ixp in out_ixps:
+        ixp.pop("id", None)
 
     return {
         "ixps": out_ixps,

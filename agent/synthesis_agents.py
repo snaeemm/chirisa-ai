@@ -637,9 +637,13 @@ def normalize_pydantic_response(data: dict) -> dict:
                             item['target'] = item.pop('to_location')
                         if 'destination' in item and 'target' not in item:
                             item['target'] = item.pop('destination')
+                        # Also check for 'location' as a target field
+                        if 'location' in item and 'target' not in item:
+                            item['target'] = item.pop('location')
                         # Ensure required fields exist with defaults
                         if 'target' not in item:
-                            item['target'] = item.get('destination', 'Unknown')
+                            # Check if there's a name field that could be used
+                            item['target'] = item.get('name', item.get('facility_name', 'Unknown Location'))
                         if 'distance_km' not in item and 'distance' in item:
                             # Try to extract distance_km from generic 'distance' field
                             item['distance_km'] = item.pop('distance')
@@ -1513,7 +1517,8 @@ def enrich_network_output_with_peeringdb(response_data: dict, peeringdb_data: di
             "distance_km": fac.get("distance_km", 0),
             "distance_mi": round(fac.get("distance_km", 0) * 0.621371, 2),
             "method": "aerial",
-            "source": "PeeringDB"
+            "source": "PeeringDB",
+            "data_quality_flag": fac.get("data_quality_flag", [])
         })
 
     # IXP distances
@@ -1529,7 +1534,8 @@ def enrich_network_output_with_peeringdb(response_data: dict, peeringdb_data: di
             "distance_km": ixp.get("distance_km", 0),
             "distance_mi": round(ixp.get("distance_km", 0) * 0.621371, 2),
             "method": "aerial",
-            "source": "PeeringDB"
+            "source": "PeeringDB",
+            "data_quality_flag": ixp.get("data_quality_flag", [])
         })
 
     # 3. Add provenance badge
@@ -1555,6 +1561,7 @@ def enrich_network_output_with_peeringdb(response_data: dict, peeringdb_data: di
         "ixp_peering": {
             "peeringdb_ixps_within_500km": len(ixps),
             "peeringdb_nearest_ixp_distance_km": ixps[0]["distance_km"] if ixps else None,
+            "peeringdb_nearest_ixp_member_count": ixps[0]["asn_count"] if ixps else None,
         },
         "carrier_diversity": {
             "peeringdb_carrier_count": len(carriers),
@@ -1659,7 +1666,7 @@ def enrich_network_output_with_peeringdb(response_data: dict, peeringdb_data: di
 
     subsection_verifications = {
         "fiber_infrastructure": ["peeringdb_facilities_within_200km"],
-        "ixp_peering": ["peeringdb_ixps_within_500km", "peeringdb_nearest_ixp_distance_km"],
+        "ixp_peering": ["peeringdb_ixps_within_500km", "peeringdb_nearest_ixp_distance_km", "peeringdb_nearest_ixp_member_count"],
         "carrier_diversity": ["peeringdb_carrier_count"]
     }
 

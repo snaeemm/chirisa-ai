@@ -184,7 +184,7 @@ Sub-Score: X.X/5.0
 Standards: Industry competitive analysis
 
 Analyze:
-- Number of Tier 1 carriers (e.g., Level3/Lumen, Cogent, NTT, Telia)
+- Number of Tier 1 carriers (e.g., Level3/Lumen, Cogent, NTT, Telia) - NOTE: Tier classification is model inference based on industry knowledge, not from API
 - Number of Tier 2/3 carriers and regional providers
 - Carrier redundancy and negotiating leverage
 - Carrier financial stability and track record
@@ -394,7 +394,7 @@ JSON Structure Example:
       "percentages": {"coverage": 85, "fiber_to_premises": 72},
       "units": {"fiber_density_km": "km", "diverse_routes": "count", "carrier_count": "count"}
     },
-    "key_points": ["Fiber infrastructure present: Yes (verified by public sources)", "Number of carriers: 7 (verified by PeeringDB)", "Diverse routes available: Requires site survey for confirmation"],
+    "key_points": ["Fiber infrastructure present: Yes (verified by public sources)", "Number of carriers at nearby facilities: 7 (verified by PeeringDB)", "Diverse routes available: Requires site survey for confirmation"],
     "verification_metadata": {
       "fiber_density_km": "model_inference",
       "diverse_routes": "unknown_requires_utility_letter",
@@ -454,10 +454,10 @@ JSON Structure Example:
       "percentages": {"market_concentration_top3": 45},
       "units": {"tier1_carrier_count": "count", "total_carrier_count": "count", "hhi_index": "index"}
     },
-    "key_points": ["5 Tier-1 carriers present", "Competitive carrier market"],
+    "key_points": ["5 Tier-1 carriers present (based on industry knowledge)", "Total carrier count: 12 carriers in regional market (model estimate)", "Competitive carrier market"],
     "verification_metadata": {
-      "tier1_carrier_count": "verified_by_peeringdb",
-      "total_carrier_count": "verified_by_peeringdb",
+      "tier1_carrier_count": "model_inference",
+      "total_carrier_count": "model_inference",
       "market_concentration_top3": "model_inference"
     }
   },
