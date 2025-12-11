@@ -204,21 +204,27 @@ def render_metrics_table(metrics: Dict[str, Any], section_name: str, verificatio
         for key, value in metrics["numerical_values"].items():
             unit = units.get(key, "")
 
-            # Check if this is a capacity metric with unknown status
-            is_unknown_capacity = False
-            if key in ["available_capacity", "capacity_mw"] and verification_metadata:
+            # Check if this metric has an "unknown_requires_*" verification status
+            # This covers: unknown_requires_utility_letter, unknown_requires_isp_quote, etc.
+            is_unknown_value = False
+            if verification_metadata:
                 ver_data = verification_metadata.get(key)
-                if ver_data == "unknown_requires_utility_letter":
-                    is_unknown_capacity = True
-                elif isinstance(ver_data, dict) and ver_data.get("level") == "unknown_requires_utility_letter":
-                    is_unknown_capacity = True
+                ver_level = None
 
-                # Also check if value is 0 for capacity metrics - treat as unknown
-                if value == 0 or value == 0.0:
-                    is_unknown_capacity = True
+                # Extract verification level from dict or string format
+                if isinstance(ver_data, dict):
+                    ver_level = ver_data.get("level", "")
+                elif isinstance(ver_data, str):
+                    ver_level = ver_data
+
+                # Check if verification level indicates unknown/requires confirmation
+                if ver_level and ver_level.startswith("unknown_requires"):
+                    # If tagged as unknown AND value is 0, treat as unknown
+                    if value == 0 or value == 0.0:
+                        is_unknown_value = True
 
             # Format value based on type
-            if is_unknown_capacity:
+            if is_unknown_value:
                 formatted_value = "Unknown"
             elif isinstance(value, float):
                 formatted_value = f"{value:.2f}" if value != int(value) else f"{int(value)}"
