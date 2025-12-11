@@ -203,9 +203,23 @@ def render_metrics_table(metrics: Dict[str, Any], section_name: str, verificatio
         units = metrics.get("units", {})
         for key, value in metrics["numerical_values"].items():
             unit = units.get(key, "")
+
+            # Check if this is a capacity metric with unknown status
+            is_unknown_capacity = False
+            if key in ["available_capacity", "capacity_mw"] and verification_metadata:
+                ver_data = verification_metadata.get(key)
+                if ver_data == "unknown_requires_utility_letter":
+                    is_unknown_capacity = True
+                elif isinstance(ver_data, dict) and ver_data.get("level") == "unknown_requires_utility_letter":
+                    is_unknown_capacity = True
+
             # Format value based on type
-            if isinstance(value, float):
+            if is_unknown_capacity:
+                formatted_value = "Unknown"
+            elif isinstance(value, float):
                 formatted_value = f"{value:.2f}" if value != int(value) else f"{int(value)}"
+            elif value is None or str(value).lower() == "none":
+                formatted_value = "Unknown"  # Generic fallback for null values
             else:
                 formatted_value = str(value)
 

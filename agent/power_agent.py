@@ -82,6 +82,14 @@ You will receive verified infrastructure data from OpenStreetMap/OpenInfraMap sh
 1. Detailed dict (REQUIRED for public sources): `{"level": "verified_by_public_source", "source": "EIA.gov 2024"}`
 2. Simple string (only for OSM/unknown/inference): `"verified_by_osm"`
 
+**FINANCIAL ESTIMATE PRECISION GUIDELINES:**
+- For model-inferred financial metrics (LCOE, carbon intensity, industrial rates), prefer RANGES over single-point estimates to reflect uncertainty
+- Example: Use "0.08–0.12" in numerical_values instead of "0.10" for USD/kWh estimates
+- Example: Use "40–60" instead of "50" for USD/tCO2 carbon intensity estimates
+- Single-point estimates may only be used when you have high confidence from multiple corroborating sources
+- When using ranges, store as string format "min–max" in numerical_values (e.g., "0.08–0.12")
+- Ranges should still include unit in metrics.units dictionary
+
 **Source name requirements:**
 - `verified_by_public_source` → **MANDATORY** dict format with source (e.g., `{"level": "verified_by_public_source", "source": "EIA.gov Electric Power Monthly 2024"}`)
 - `verified_by_osm` → String format OK: `"verified_by_osm"` (source implied)

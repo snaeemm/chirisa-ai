@@ -1124,6 +1124,7 @@ This indicates either:
 **Source**: OpenStreetMap/OpenInfraMap via Overpass API
 **Search Radius**: {osm_data.get('search_radius_km', '?')} km
 **Data Vintage**: {last_updated}
+**Note**: Grid topology based on OpenStreetMap as of {last_updated[:10] if last_updated != 'Unknown' else 'last available update'} — recent grid expansions or upgrades may not yet be reflected in OSM data.
 
 ### Nearest Substation
 - **Name**: {sub_name} (Latin: {latin})
@@ -1224,6 +1225,20 @@ def enrich_power_output_with_osm(response_data: dict, osm_data: dict) -> dict:
         if voltages:
             metrics["numerical_values"]["osm_substation_max_voltage_kv"] = max(voltages)
             metrics["units"]["osm_substation_max_voltage_kv"] = "kV"
+
+        # Add voltage source clarification to key_points
+        if "key_points" not in capacity_section:
+            capacity_section["key_points"] = []
+
+        voltage_src = osm_data.get("voltage_source", "unknown")
+        if voltage_src == "osm_tag":
+            capacity_section["key_points"].append(
+                "Substation voltage confirmed from OpenStreetMap infrastructure tags (verified by OSM)"
+            )
+        elif voltage_src == "not_available_in_osm":
+            capacity_section["key_points"].append(
+                "Substation voltage data unavailable in OpenStreetMap — voltage confirmation requires utility schematic"
+            )
 
         line_count = len(osm_data.get("nearest_lines", []))
         if line_count > 0:
@@ -1848,7 +1863,10 @@ class PowerInfrastructureAgentWrapper:
     async def analyze_power_infrastructure(self, lat, lng, country, context=None):
         """Match old agent signature exactly"""
         try:
-            # Note: context parameter kept for compatibility but not used
+            # Extract location name from context if available
+            location_name = None
+            if context and isinstance(context, dict):
+                location_name = context.get('location')
 
             # Step 1: Query OpenInfraMap for ground truth power infrastructure
             osm_data = None
@@ -1866,8 +1884,16 @@ class PowerInfrastructureAgentWrapper:
                 print(f"⚠️ OSM Query Failed: {e}")
                 # Continue without OSM data - not critical failure
 
+            # Build location descriptor with location name if available
+            if location_name:
+                location_descriptor = f"{location_name} (coordinates: {lat}, {lng})"
+                location_context_note = f'\n\n**LOCATION CONTEXT:** When referencing this site in summaries and key insights, use "{location_name}" as the canonical location name for consistency.'
+            else:
+                location_descriptor = f"coordinates {lat}, {lng}"
+                location_context_note = ""
+
             # Use the ADK agent's instruction as the prompt base (like old code)
-            prompt = f"{self.adk_agent.instruction}\n\nAnalyze power infrastructure for data center at {lat}, {lng} in {country}.\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis. Search for electricity costs, grid capacity, utility information, renewable energy availability, and infrastructure data for this specific location.**\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
+            prompt = f"{self.adk_agent.instruction}\n\nAnalyze power infrastructure for data center at {location_descriptor} in {country}.{location_context_note}\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis. Search for electricity costs, grid capacity, utility information, renewable energy availability, and infrastructure data for this specific location.**\n\nIMPORTANT: Provide all analysis and insights in clear, professional English only. Ensure all text is properly formatted and readable."
 
             # Inject OSM ground truth data
             if osm_data:
