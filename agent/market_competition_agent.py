@@ -9,9 +9,10 @@ from google.adk.tools import AgentTool
 from .domain_models import MarketCompetitionOutput
 from .models import AgentInput
 from .search_agent import search_agent
+from .model_config import gemini_model, built_in_planner
 
-# Configuration
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+# Configuration - Keep for backwards compatibility
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
 
 # Create search tool for web intelligence
 search_tool = AgentTool(agent=search_agent)
@@ -407,7 +408,8 @@ You MUST populate ALL 4 subsections (supply_demand_dynamics, cloud_ecosystem_dem
 # Create the Market & Competition Agent
 market_competition_agent = LlmAgent(
     name="MarketCompetitionAgent",
-    model=GEMINI_MODEL,
+    model=gemini_model,
+    planner=built_in_planner,
     instruction=INVESTMENT_GRADE_PROMPT,
     description="Analyzes market dynamics and competitive landscape for data center sites with INVESTMENT-GRADE assessment of supply-demand balance, cloud ecosystem maturity, customer proximity, and hyperscaler attractiveness. 6% of composite score. Receives LocationContext as structured input.",
     tools=[search_tool],

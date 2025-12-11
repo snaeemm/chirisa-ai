@@ -16,9 +16,10 @@ from .database import (
     get_reports_tool, delete_tool
 )
 from .search_agent import search_agent
+from .model_config import gemini_model, built_in_planner
 
 # Database configuration is handled by database.py
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
 
 # Create function tools - streamlined and combined
 intelligent_json_parser_tool = FunctionTool(func=intelligent_json_parser)
@@ -40,7 +41,8 @@ search_tool = AgentTool(agent=search_agent)
 # Smart Database Intelligence Agent
 database_agent = LlmAgent(
     name="SmartDatabaseIntelligence",
-    model=GEMINI_MODEL,
+    model=gemini_model,
+    planner=built_in_planner,
     instruction="""You blazing fast/efficient smart database agent that can extract and compare ANY data from datacenter analysis reports.
 
 **PRIORITY WORKFLOW - Use FASTEST tools first:**

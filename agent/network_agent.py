@@ -5,9 +5,10 @@ from google.adk.tools import AgentTool
 from .models import AgentInput
 from .domain_models import NetworkConnectivityOutput
 from .search_agent import search_agent
+from .model_config import gemini_model, built_in_planner
 
-# Configuration
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+# Configuration - Keep for backwards compatibility
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
 
 # Create search tool for web intelligence
 search_tool = AgentTool(agent=search_agent)
@@ -639,7 +640,8 @@ You MUST populate ALL 8 subsections (fiber_infrastructure, last_mile_diversity, 
 # Create the Network Connectivity Agent
 network_agent = LlmAgent(
     name="NetworkConnectivityAgent",
-    model=GEMINI_MODEL,
+    model=gemini_model,
+    planner=built_in_planner,
     instruction=NETWORK_AGENT_INSTRUCTION,
     description="Analyzes network connectivity infrastructure for data center sites with INVESTMENT-GRADE fiber diversity, carrier presence, IXP access, and bandwidth cost assessment. NO-GO gates for single fiber routes and lack of carrier presence. Receives LocationContext as structured input.",
     tools=[search_tool],

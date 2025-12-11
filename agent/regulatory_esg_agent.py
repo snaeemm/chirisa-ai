@@ -8,9 +8,10 @@ from google.adk.tools import AgentTool
 from .domain_models import RegulatoryESGOutput
 from .models import AgentInput
 from .search_agent import search_agent
+from .model_config import gemini_model, built_in_planner
 
-# Configuration
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+# Configuration - Keep for backwards compatibility
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
 
 # Create search tool for web intelligence
 search_tool = AgentTool(agent=search_agent)
@@ -523,7 +524,8 @@ Return a VALID JSON object with this structure (matching RegulatoryESGOutput mod
 # Create the Regulatory & ESG Agent
 regulatory_esg_agent = LlmAgent(
     name="RegulatoryESGAgent",
-    model=GEMINI_MODEL,
+    model=gemini_model,
+    planner=built_in_planner,
     instruction=INVESTMENT_GRADE_PROMPT,
     description="Analyzes regulatory compliance and ESG sustainability factors for data center sites with INVESTMENT-GRADE assessment covering data protection, permitting, tax incentives, renewable energy, carbon intensity, and climate policy. Represents 14% of composite score (MERGED regulatory + ESG domain). Receives LocationContext as structured input.",
     tools=[search_tool],

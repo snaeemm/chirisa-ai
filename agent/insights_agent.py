@@ -9,16 +9,17 @@ from .domain_models import (
     SiteCivilInfrastructureOutput, MechanicalThermalOutput,
     RegulatoryESGOutput, MarketCompetitionOutput
 )
+from .model_config import gemini_model, built_in_planner
 from typing import Any
 
 # Configuration
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
 
 # Create the Cross-Domain Insights Agent
 insights_agent = LlmAgent(
     name="CrossDomainInsightsAgent",
-    model=GEMINI_MODEL,
-
+    model=gemini_model,
+    planner=built_in_planner,
     instruction="""You are a senior data center strategy consultant specializing in cross-domain synthesis and business intelligence.
 
 You will receive structured data from 6 completed domain analyses (power, network, climate, risk, ESG, regulatory) for a specific location. Each domain has already provided detailed technical analysis, scores, and insights.

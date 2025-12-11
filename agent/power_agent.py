@@ -5,9 +5,10 @@ from google.adk.tools import AgentTool
 from .models import AgentInput
 from .domain_models import PowerInfrastructureOutput
 from .search_agent import search_agent
+from .model_config import gemini_model, built_in_planner
 
-# Configuration
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+# Configuration - Keep for backwards compatibility
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
 
 # Create search tool for web intelligence
 search_tool = AgentTool(agent=search_agent)
@@ -15,7 +16,8 @@ search_tool = AgentTool(agent=search_agent)
 # Create the Power Infrastructure Agent with comprehensive enhanced prompt
 power_agent = LlmAgent(
     name="PowerInfrastructureAgent",
-    model=GEMINI_MODEL,
+    model=gemini_model,
+    planner=built_in_planner,
     instruction="""⚠️ CRITICAL INSTRUCTION: YOU MUST RETURN ONLY VALID JSON. NO NARRATIVE TEXT. NO EXPLANATIONS. ONLY JSON. ⚠️
 
 You are a senior energy and infrastructure consultant specializing in powering hyperscale data center projects.

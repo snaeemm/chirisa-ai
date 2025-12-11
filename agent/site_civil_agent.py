@@ -8,9 +8,10 @@ from google.adk.tools import AgentTool
 from .domain_models import SiteCivilInfrastructureOutput
 from .models import AgentInput
 from .search_agent import search_agent
+from .model_config import gemini_model, built_in_planner
 
-# Configuration
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+# Configuration - Keep for backwards compatibility
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
 
 # Create search tool for web intelligence
 search_tool = AgentTool(agent=search_agent)
@@ -583,7 +584,8 @@ Return a VALID JSON object with this structure (matching SiteCivilInfrastructure
 # Create the Site & Civil Infrastructure Agent
 site_civil_agent = LlmAgent(
     name="SiteCivilInfrastructureAgent",
-    model=GEMINI_MODEL,
+    model=gemini_model,
+    planner=built_in_planner,
     instruction=INVESTMENT_GRADE_PROMPT,
     description="Analyzes site and civil infrastructure for data center sites with INVESTMENT-GRADE assessment of land availability, geotechnical conditions, water infrastructure, transportation access, and permitting. 10% of composite score. Receives LocationContext as structured input.",
     tools=[search_tool],

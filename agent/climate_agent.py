@@ -5,9 +5,10 @@ from google.adk.tools import AgentTool
 from .models import AgentInput
 from .domain_models import ClimateAnalysisOutput
 from .search_agent import search_agent
+from .model_config import gemini_model, built_in_planner
 
-# Configuration
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+# Configuration - Keep for backwards compatibility
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
 
 # Create search tool for web intelligence
 search_tool = AgentTool(agent=search_agent)
@@ -15,7 +16,8 @@ search_tool = AgentTool(agent=search_agent)
 # Create the Hazards & Resilience Agent (INVESTMENT-GRADE)
 climate_agent = LlmAgent(
     name="HazardsResilienceAgent",
-    model=GEMINI_MODEL,
+    model=gemini_model,
+    planner=built_in_planner,
     instruction="""⚠️⚠️⚠️ CRITICAL OUTPUT REQUIREMENT ⚠️⚠️⚠️
 
 YOU MUST START YOUR RESPONSE WITH THE JSON OBJECT IMMEDIATELY.
