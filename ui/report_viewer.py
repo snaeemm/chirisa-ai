@@ -213,6 +213,10 @@ def render_metrics_table(metrics: Dict[str, Any], section_name: str, verificatio
                 elif isinstance(ver_data, dict) and ver_data.get("level") == "unknown_requires_utility_letter":
                     is_unknown_capacity = True
 
+                # Also check if value is 0 for capacity metrics - treat as unknown
+                if value == 0 or value == 0.0:
+                    is_unknown_capacity = True
+
             # Format value based on type
             if is_unknown_capacity:
                 formatted_value = "Unknown"
