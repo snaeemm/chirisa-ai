@@ -92,6 +92,12 @@ You will receive verified infrastructure data from OpenStreetMap/OpenInfraMap sh
 - When using ranges, store as string format "min–max" in numerical_values (e.g., "0.08–0.12")
 - Ranges should still include unit in metrics.units dictionary
 
+**INTERCONNECTION COST LANGUAGE PRECISION:**
+- NEVER use "guarantees" or "guaranteeing" when discussing interconnection costs or substation proximity
+- Substation proximity helps but does NOT guarantee spare transformer bays, breaker positions, protection capacity, or queue outcomes
+- Use conservative language: "materially reduces", "significantly reduces risk of", "improves likelihood of lower"
+- Example: "Proximity to substation materially reduces interconnection cost risk" NOT "guaranteeing minimal interconnection cost"
+
 **Source name requirements:**
 - `verified_by_public_source` → **MANDATORY** dict format with source (e.g., `{"level": "verified_by_public_source", "source": "EIA.gov Electric Power Monthly 2024"}`)
 - `verified_by_osm` → String format OK: `"verified_by_osm"` (source implied)
