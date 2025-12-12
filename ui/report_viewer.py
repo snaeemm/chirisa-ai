@@ -207,7 +207,12 @@ def render_metrics_table(metrics: Dict[str, Any], section_name: str, verificatio
             # Check if this metric has an "unknown_requires_*" verification status
             # This covers: unknown_requires_utility_letter, unknown_requires_isp_quote, etc.
             is_unknown_value = False
-            if verification_metadata:
+
+            # Special case: capacity metrics with value 0 are ALWAYS unknown (capacity can't be zero)
+            # This handles old reports and ensures consistent display
+            if key in ["available_capacity", "capacity_mw"] and (value == 0 or value == 0.0):
+                is_unknown_value = True
+            elif verification_metadata:
                 ver_data = verification_metadata.get(key)
                 ver_level = None
 
