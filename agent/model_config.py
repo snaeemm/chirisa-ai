@@ -16,10 +16,13 @@ from google.genai import types
 MODEL_NAME = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
 
 # Retry configuration for API resilience
+# Note: attempts=1 means try once with no retries (saves quota while maintaining quality)
+# Retry attempts are for network failures only - they do NOT affect thinking quality
+# Thinking quality is controlled by THINKING_CONFIG.thinking_budget (10048 tokens)
 RETRY_OPTIONS = types.HttpRetryOptions(
     initial_delay=1,      # Start with 1 second delay
-    max_delay=10,         # Cap at 10 seconds between retries
-    attempts=3            # Total of 3 attempts before failing
+    max_delay=10,         # Cap at 10 seconds between retries (not used with attempts=1)
+    attempts=1            # Single attempt - no retries (was 3, reduced to save paid tier quota)
 )
 
 # Thinking configuration for Gemini 2.5 built-in planner
