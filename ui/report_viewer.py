@@ -204,14 +204,24 @@ def render_metrics_table(metrics: Dict[str, Any], section_name: str, verificatio
         for key, value in metrics["numerical_values"].items():
             unit = units.get(key, "")
 
+            # DEBUG: Log all capacity-related metrics
+            if "capacity" in key.lower():
+                print(f"🔍 DEBUG: Processing {key}={value} (type: {type(value).__name__})")
+
             # Check if this metric has an "unknown_requires_*" verification status
             # This covers: unknown_requires_utility_letter, unknown_requires_isp_quote, etc.
             is_unknown_value = False
 
-            # Special case: capacity metrics with value 0 are ALWAYS unknown (capacity can't be zero)
-            # This handles old reports and ensures consistent display
-            if key in ["available_capacity", "capacity_mw"] and (value == 0 or value == 0.0):
+            # Special case: capacity-like metrics with value 0 are ALWAYS unknown (Fix 11)
+            # These metrics cannot truly be zero - zero indicates missing data
+            capacity_like_keys = [
+                "available_capacity", "capacity_mw",
+                "route_separation_meters", "diverse_routes", "diverse_entry_points",
+                "planned_fiber_expansion_km"
+            ]
+            if key in capacity_like_keys and (value == 0 or value == 0.0):
                 is_unknown_value = True
+                print(f"🔍 DEBUG: Converted {key}={value} to 'Unknown' (zero-to-unknown fix applied)")
             elif verification_metadata:
                 ver_data = verification_metadata.get(key)
                 ver_level = None
@@ -504,24 +514,49 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
                             elif source == "Google Maps":
                                 source_badge = "📍 "
 
-                            method_display = {
-                                "aerial": "📐 Aerial (straight-line)",
-                                "road": "🚗 Road distance",
-                                "rail": "🚂 Rail distance",
-                                "fiber_route": "🔌 Fiber route"
-                            }.get(method, f"📊 {method}")
+                            # Handle method display for routing buffer (Fix 3)
+                            routing_buffer = measurement.get("routing_buffer")
+                            if method == "aerial" and routing_buffer:
+                                method_display = f"📐 Estimated road distance (aerial + {routing_buffer:.0f}%)"
+                            elif method == "road":
+                                method_display = "🚗 Road distance"
+                            elif method == "aerial":
+                                method_display = "📐 Aerial (straight-line)"
+                            elif method == "rail":
+                                method_display = "🚂 Rail distance"
+                            elif method == "fiber_route":
+                                method_display = "🔌 Fiber route"
+                            else:
+                                method_display = f"📊 {method}"
 
-                            # Build quality warning if flags present
+                            # Build quality warning with user-friendly descriptions (Fix 2)
                             quality_warning = ""
                             if quality_flags:
-                                flag_text = ", ".join(quality_flags)
+                                flag_messages = {
+                                    "coordinates_suspect": "Coordinates may be inaccurate (>100km from listed city)",
+                                    "distributed_location": "Facility spans multiple locations",
+                                    "distributed_ixp": "IXP distributed across multiple cities",
+                                    "many_facilities": "IXP spans many facilities",
+                                    "distant_location": "Unusually distant (>400km)",
+                                    "missing_asn_count": "Member count unavailable",
+                                    "missing_operator": "Operator information missing"
+                                }
+                                flag_descriptions = [flag_messages.get(f, f) for f in quality_flags]
+                                flag_text = "; ".join(flag_descriptions)
                                 quality_warning = f"\n⚠️ *Data Quality: {flag_text}*"
+
+                            # Adjust source display for routing buffer (Fix 3)
+                            display_source = source
+                            if routing_buffer and source in ["PeeringDB", "OpenInfraMap"]:
+                                display_source = f"{source} coordinates + Model Estimate ({routing_buffer:.0f}% buffer)"
+                            elif routing_buffer:
+                                display_source = "Model Estimate"
 
                             st.markdown(f"""
                             **{idx}. {source_badge}{target}**
                             📏 **{distance_km} km** ({distance_mi} mi)
                             {method_display}
-                            {f"📊 Source: {source}" if source else ""}{quality_warning}
+                            {f"📊 Source: {display_source}" if display_source else ""}{quality_warning}
                             """)
                             if idx < len(distance_measurements):
                                 st.divider()
@@ -537,10 +572,16 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
                         if isinstance(badge, dict):
                             source = badge.get("source", "Unknown Source")
                             vintage = badge.get("vintage", "Unknown")
+                            fetch_date = badge.get("fetch_date")  # Fix 12
                             confidence = badge.get("confidence", "unknown")
                             coverage = badge.get("coverage", "")
                             refresh_freq = badge.get("refresh_frequency", "")
                             url = badge.get("url", "")
+
+                            # Build vintage display with fetch_date clarity (Fix 12)
+                            vintage_display = f"📅 Data Vintage: {vintage}"
+                            if fetch_date and fetch_date != vintage:
+                                vintage_display += f" (fetched {fetch_date})"
 
                             # Confidence badge styling
                             confidence_badge = {
@@ -558,7 +599,7 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
 
                             st.markdown(f"""
                             **{idx}. {source_icon}{source}**
-                            📅 Data Vintage: {vintage}
+                            {vintage_display}
                             {f"🔄 Refresh: {refresh_freq}  " if refresh_freq else ""}
                             🎯 Confidence: {confidence_badge}
                             📋 Coverage: {coverage}

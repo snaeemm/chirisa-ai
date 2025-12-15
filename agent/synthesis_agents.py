@@ -1525,6 +1525,26 @@ def enrich_network_output_with_peeringdb(response_data: dict, peeringdb_data: di
     if "distance_measurements" not in response_data:
         response_data["distance_measurements"] = []
 
+    # Clean up existing LLM-generated distance measurements (Fixes 1 & 3)
+    for measurement in response_data.get("distance_measurements", []):
+        # Fix missing miles conversion
+        if measurement.get("distance_mi") is None and measurement.get("distance_km"):
+            measurement["distance_mi"] = round(measurement["distance_km"] * 0.621371, 2)
+
+        # Fix "Unknown" targets
+        if measurement.get("target") == "Unknown" or not measurement.get("target"):
+            source = measurement.get("source", "")
+            km = measurement.get("distance_km", "?")
+            measurement["target"] = f"Unspecified location ({source} reference)"
+
+        # Fix method labeling for aerial + routing buffer
+        if measurement.get("method") == "road":
+            source = measurement.get("source", "")
+            if source in ["Google Maps", "Model Estimate"] and measurement.get("routing_buffer") is None:
+                measurement["method"] = "aerial"
+                measurement["routing_buffer"] = 30.0
+                measurement["source"] = "Model Estimate"
+
     # Facility distances
     for fac in facilities[:5]:
         response_data["distance_measurements"].append({
@@ -1557,10 +1577,15 @@ def enrich_network_output_with_peeringdb(response_data: dict, peeringdb_data: di
     if "provenance_badges" not in response_data:
         response_data["provenance_badges"] = []
 
+    # Add fetch_date for clarity (Fix 12)
+    from datetime import datetime
+    fetch_date = datetime.now().strftime("%Y-%m-%d")
+
     response_data["provenance_badges"].append({
         "source": "PeeringDB",
         "api_version": "PeeringDB API 2.0",
         "vintage": last_updated if last_updated != "Unknown" else "Unknown",
+        "fetch_date": fetch_date,  # When we queried the API
         "refresh_frequency": "Community-updated (real-time)",
         "confidence": "high" if (facilities or ixps) else "low",
         "coverage": f"{len(facilities)} facilities, {len(ixps)} IXPs, {len(carriers)} carriers within search radius",
@@ -1692,6 +1717,20 @@ def enrich_network_output_with_peeringdb(response_data: dict, peeringdb_data: di
                 subsection["verification_metadata"] = {}
 
             for metric_key in metric_keys:
+                # Special case: distance metrics with routing buffer are model inference (Fix 4)
+                if "distance" in metric_key:
+                    has_routing_buffer = any(
+                        m.get("routing_buffer") is not None
+                        for m in response_data.get("distance_measurements", [])
+                    )
+                    if has_routing_buffer:
+                        subsection["verification_metadata"][metric_key] = {
+                            "level": "model_inference",
+                            "source": "PeeringDB coordinates + routing heuristic (aerial + 30%)"
+                        }
+                        continue
+
+                # Default: verified by PeeringDB
                 subsection["verification_metadata"][metric_key] = {
                     "level": "verified_by_peeringdb",
                     "source": peeringdb_source_name

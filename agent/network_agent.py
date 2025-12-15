@@ -101,6 +101,18 @@ Check these FIRST. If triggered, still complete analysis but flag NO-GO:
 1. **Single Fiber Route**: Only one buildable physical fiber route within 18 months → NO-GO
 2. **No Carrier Presence**: No Tier 1 or 2 carriers within 50km → NO-GO
 
+**CRITICAL: NO-GO FRAMING LANGUAGE** (Fix 13)
+- Use "NO-GO until confirmed" for data gaps (emphasizes verification gap, not proven negative)
+- Use "NO-GO due to confirmed limitation" for verified constraints
+- Examples:
+  - DATA GAP: "NO-GO until diverse routes confirmed" (requires carrier site survey)
+  - PROVEN NEGATIVE: "NO-GO due to single carrier monopoly" (confirmed via multiple sources)
+
+**DISTANCE THRESHOLD LANGUAGE GUIDANCE** (Fix 5)
+- Distances at or near thresholds (49-51 km for 50km threshold) should use "~50 km" or "at the 50km threshold"
+- Do NOT describe 50.21 km as "< 50km" or 49.8 km as "> 50km"
+- Be precise for clearly inside/outside thresholds (e.g., "45 km, well within 50km threshold")
+
 Output NO-GO gates in `no_go_gates` array with:
 ```json
 {
@@ -173,7 +185,9 @@ Standards: PeeringDB, BGP best practices
 Analyze:
 - Nearest IXP locations (name, road-km distance)
 - IXP traffic volume (Gbps peak traffic if available)
-- Number of IXP members/peers (peering ecosystem size)
+- Number of IXP members/peers (peering ecosystem size) - **CRITICAL (Fix 6)**: Report member count PER IXP, do not sum across IXPs
+  - Example: "MegaIX (5 members), Ninja-IX (3 members)" NOT "8 members across 2 IXPs"
+  - If reporting aggregate, explicitly state: "8 total members across 2 IXPs (MegaIX: 5, Ninja-IX: 3)"
 - Direct peering opportunities (major content/cloud providers present)
 - Private peering options (dedicated interconnects to major networks)
 - Remote peering services (if local IXP not available)
@@ -185,8 +199,15 @@ Sub-Score: X.X/5.0
 Standards: Industry competitive analysis
 
 Analyze:
-- Number of Tier 1 carriers (e.g., Level3/Lumen, Cogent, NTT, Telia) - NOTE: Tier classification is model inference based on industry knowledge, not from API
+- Number of Tier 1 carriers (e.g., Level3/Lumen, Cogent, NTT, Telia)
+  - **CRITICAL (Fix 8)**: Tier 1/2/3 classification is ALWAYS "model_inference" - PeeringDB does NOT classify carriers by tier
+  - Carrier presence verification can be "verified_by_peeringdb" but tier level is inference
 - Number of Tier 2/3 carriers and regional providers
+- **CRITICAL (Fix 7)**: When reporting carrier counts, DISTINGUISH between:
+  - "X PeeringDB-verified carriers at nearby facilities" (confirmed in PeeringDB data)
+  - "Y total estimated carriers including regional" (PeeringDB + inferred regional carriers from other sources)
+  - Example in key_points: "7 PeeringDB-verified carriers, 14 total including regional/national carriers"
+  - Use separate metrics: peeringdb_carrier_count (7), total_estimated_carrier_count (14)
 - Carrier redundancy and negotiating leverage
 - Carrier financial stability and track record
 - Metro fiber providers (for dark fiber and wavelength services)
@@ -217,6 +238,9 @@ Analyze:
 - Jitter and packet loss (ms variance, % loss)
 - Network performance benchmarks (RIPE Atlas data if available)
 - Latency-sensitive application suitability (HFT, real-time, gaming)
+- **FIBER PROPAGATION LATENCY** (Fix 10): If reporting per-km latency:
+  - CORRECT unit: μs/km (microseconds per kilometer) - typical value ~5 μs/km for single-mode fiber
+  - INCORRECT: "s/km" (seconds) - this is 1,000,000x too large and physically wrong!
 
 Sub-Score: X.X/5.0
 
@@ -225,6 +249,9 @@ Standards: SubmarineCableMap, ITU data
 
 Analyze:
 - **MANDATORY**: Subsea cable landing stations - If coastal (within 100km of ocean), list specific cable systems (e.g., "MAREA, TAT-14, etc.") with capacity in Tbps. If inland, state distance to nearest landing station (e.g., "850 km to [City] landing station via [Cable System Name]").
+  - **SOURCE ATTRIBUTION** (Fix 9): Subsea cable data comes from SubmarineCableMap.com OR vendor websites, NOT PeeringDB
+  - **VERIFICATION**: Use dict format {"level": "verified_by_public_source", "source": "SubmarineCableMap 2025"}
+  - Do NOT tag subsea cable metrics as "verified_by_peeringdb" - PeeringDB does not provide subsea cable information
 - International gateway access (terrestrial cross-border routes)
 - Diversity of international paths (number of diverse routes to key regions: Europe, Asia-Pacific, Americas)
 - Cross-border data flow regulations (if relevant - GDPR, data localization laws)
@@ -374,6 +401,15 @@ CRITICAL: VERIFICATION METADATA FORMAT WITH SOURCE TRACKING (READ CAREFULLY)
 - `unknown_requires_isp_quote` - Critical data gap requiring ISP/carrier pricing quote
 - `unknown_requires_utility_letter` - Critical data gap requiring formal carrier/telco engagement
 - `assumption_based_on_region` - Regional standard applied, not site-specific data
+
+**ZERO VS UNKNOWN VALUE HANDLING** (Fix 11):
+For these network metrics, NEVER use 0 when value is unknown - zero should mean a confirmed measurement of zero:
+- `route_separation_meters`: If unknown, omit from numerical_values OR set verification to "unknown_requires_utility_letter"
+- `diverse_routes` / `diverse_entry_points`: If unknown, omit OR set to null with "unknown_requires_utility_letter" verification
+- `planned_fiber_expansion_km`: If unknown, omit entirely (this is optional future data)
+
+RULE: 0 is only valid when it represents a confirmed measurement of zero (e.g., "zero diverse routes confirmed by carrier survey").
+If you don't know the value, use verification_metadata to indicate the gap - the UI will display this as "Unknown" rather than "0".
 
 **CRITICAL: In key_points, separate what you KNOW from what you DON'T KNOW:**
 Example:
