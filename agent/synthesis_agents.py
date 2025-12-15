@@ -2113,15 +2113,27 @@ class NetworkConnectivityAgentWrapper:
 
             try:
                 import json
-                # Check if response has text content
-                if not response.text:
-                    error_msg = "Network agent returned empty response (response.text is None or empty)"
+                # Extract text from response - handle both .text and candidates[0] formats
+                response_text = None
+                if response.text:
+                    response_text = response.text
+                elif hasattr(response, 'candidates') and response.candidates:
+                    # Try to extract from candidates[0].content
+                    candidate = response.candidates[0]
+                    if hasattr(candidate, 'content'):
+                        if hasattr(candidate.content, 'parts') and candidate.content.parts:
+                            response_text = candidate.content.parts[0].text
+                        elif hasattr(candidate.content, 'text'):
+                            response_text = candidate.content.text
+
+                if not response_text:
+                    error_msg = "Network agent returned empty response (no text in response.text or candidates)"
                     if hasattr(response, 'prompt_feedback') and response.prompt_feedback:
                         error_msg += f" - Prompt feedback: {response.prompt_feedback}"
                     raise ValueError(error_msg)
 
                 # Clean the response to remove markdown wrapper
-                cleaned_response = clean_agent_response(response.text)
+                cleaned_response = clean_agent_response(response_text)
 
                 # Try to parse JSON, with repair if needed
                 try:
