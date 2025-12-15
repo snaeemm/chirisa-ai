@@ -1526,24 +1526,33 @@ def enrich_network_output_with_peeringdb(response_data: dict, peeringdb_data: di
         response_data["distance_measurements"] = []
 
     # Clean up existing LLM-generated distance measurements (Fixes 1 & 3)
-    for measurement in response_data.get("distance_measurements", []):
+    print(f"🔍 DEBUG: Found {len(response_data.get('distance_measurements', []))} distance measurements to clean")
+    for i, measurement in enumerate(response_data.get("distance_measurements", [])):
+        print(f"🔍 DEBUG: Measurement {i+1}: target={measurement.get('target')}, method={measurement.get('method')}, source={measurement.get('source')}, km={measurement.get('distance_km')}, mi={measurement.get('distance_mi')}, routing_buffer={measurement.get('routing_buffer')}")
+
         # Fix missing miles conversion
         if measurement.get("distance_mi") is None and measurement.get("distance_km"):
             measurement["distance_mi"] = round(measurement["distance_km"] * 0.621371, 2)
+            print(f"  ✅ Fixed missing mi conversion: {measurement['distance_mi']} mi")
 
         # Fix "Unknown" targets
         if measurement.get("target") == "Unknown" or not measurement.get("target"):
             source = measurement.get("source", "")
             km = measurement.get("distance_km", "?")
             measurement["target"] = f"Unspecified location ({source} reference)"
+            print(f"  ✅ Fixed Unknown target: {measurement['target']}")
 
         # Fix method labeling for aerial + routing buffer
         if measurement.get("method") == "road":
             source = measurement.get("source", "")
+            print(f"  🔍 DEBUG: Road distance found, source='{source}', checking if in ['Google Maps', 'Model Estimate']")
             if source in ["Google Maps", "Model Estimate"] and measurement.get("routing_buffer") is None:
                 measurement["method"] = "aerial"
                 measurement["routing_buffer"] = 30.0
                 measurement["source"] = "Model Estimate"
+                print(f"  ✅ Fixed routing buffer: method=aerial, routing_buffer=30.0")
+            else:
+                print(f"  ⚠️ Routing buffer NOT fixed: source not in list or routing_buffer already set")
 
     # Facility distances
     for fac in facilities[:5]:
@@ -1580,8 +1589,9 @@ def enrich_network_output_with_peeringdb(response_data: dict, peeringdb_data: di
     # Add fetch_date for clarity (Fix 12)
     from datetime import datetime
     fetch_date = datetime.now().strftime("%Y-%m-%d")
+    print(f"🔍 DEBUG: Adding PeeringDB provenance badge with fetch_date={fetch_date}, vintage={last_updated}")
 
-    response_data["provenance_badges"].append({
+    new_badge = {
         "source": "PeeringDB",
         "api_version": "PeeringDB API 2.0",
         "vintage": last_updated if last_updated != "Unknown" else "Unknown",
@@ -1590,7 +1600,9 @@ def enrich_network_output_with_peeringdb(response_data: dict, peeringdb_data: di
         "confidence": "high" if (facilities or ixps) else "low",
         "coverage": f"{len(facilities)} facilities, {len(ixps)} IXPs, {len(carriers)} carriers within search radius",
         "url": "https://www.peeringdb.com"
-    })
+    }
+    response_data["provenance_badges"].append(new_badge)
+    print(f"✅ Added PeeringDB provenance badge: {new_badge}")
 
     # 4. Enhance network subsection metrics (if sections exist)
     # Add PeeringDB-derived metrics to relevant subsections
@@ -3365,7 +3377,9 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
                 raise Exception("GEMINI_API_KEY not found")
 
             genai.configure(api_key=api_key)
-            model = genai.GenerativeModel(insights_agent.model)
+            # Get model name from environment or use default
+            model_name = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
+            model = genai.GenerativeModel(model_name)
 
             # Create prompt with insights input data
             prompt = f"{insights_agent.instruction}\n\nAnalyze the following cross-domain data and provide intelligent insights:\n\n{json.dumps(insights_input.model_dump(), indent=2)}"
