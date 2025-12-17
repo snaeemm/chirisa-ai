@@ -25,10 +25,10 @@ TITLE_GENERATION_MODEL = "gemini-2.5-flash"
 TITLE_MAX_TOKENS = 20
 TITLE_TEMPERATURE = 0.7
 
-# Database settings - use environment variable or default to local PostgreSQL (Unix socket)
+# Database settings - use environment variable or default to local PostgreSQL
 DATABASE_URL = os.getenv(
     "DATABASE_URL",
-    "postgresql:///chirisa?host=/tmp"
+    "postgresql://localhost:5432/chirisa"
 )
 
 
