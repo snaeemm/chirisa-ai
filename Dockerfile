@@ -1,32 +1,42 @@
-# Use official Python 3.12 slim image
-FROM python:3.12.7-slim
+# Hugging Face Spaces Docker configuration for Streamlit
+FROM python:3.12-slim
 
 # Set working directory
 WORKDIR /app
 
-# Install system dependencies
+# Create non-root user (required by HF Spaces)
+RUN useradd -m -u 1000 user
+USER user
+ENV HOME=/home/user \
+    PATH=/home/user/.local/bin:$PATH
+
+# Set working directory for user
+WORKDIR $HOME/app
+
+# Install system dependencies as root temporarily
+USER root
 RUN apt-get update && apt-get install -y \
     libffi-dev \
     build-essential \
+    curl \
     && rm -rf /var/lib/apt/lists/*
+USER user
 
-# Install uv package manager
-RUN pip install --no-cache-dir uv
+# Copy requirements first for caching
+COPY --chown=user:user requirements.txt .
 
-# Copy dependency files
-COPY pyproject.toml uv.lock ./
-
-# Install Python dependencies using uv
-RUN uv sync --frozen
+# Install Python dependencies
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY . .
+COPY --chown=user:user . .
 
-# Expose Streamlit default port
-EXPOSE 8501
+# Expose Hugging Face Spaces port (7860)
+EXPOSE 7860
 
 # Health check
-HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health || exit 1
+HEALTHCHECK CMD curl --fail http://localhost:7860/_stcore/health || exit 1
 
-# Run Streamlit app
-ENTRYPOINT ["uv", "run", "streamlit", "run", "Assistant.py", "--server.port=8501", "--server.address=0.0.0.0"]
+# Run Streamlit app on HF Spaces port
+CMD ["streamlit", "run", "Assistant.py", "--server.port=7860", "--server.address=0.0.0.0", "--server.enableCORS=false", "--server.enableXsrfProtection=false"]
