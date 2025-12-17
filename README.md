@@ -1,6 +1,6 @@
 ---
 title: Chirisa AI
-emoji: <â
+emoji: "\U0001F3E2"
 colorFrom: blue
 colorTo: purple
 sdk: docker
