@@ -26,9 +26,9 @@ class RichSection(BaseModel):
     metrics: MetricsData = Field(default_factory=MetricsData, description="Structured quantitative data")
     key_points: List[str] = Field(default_factory=list, description="Key findings for this section")
     tables: List[Dict[str, Any]] = Field(default_factory=list, description="Structured table data")
-    verification_metadata: Dict[str, Union[str, Dict[str, str]]] = Field(
+    verification_metadata: Dict[str, Union[str, Dict[str, Any]]] = Field(
         default_factory=dict,
-        description="Maps statement keys to verification levels. Can be string ('verified_by_public_source') or dict ({'level': 'verified_by_public_source', 'source': 'EIA.gov'})"
+        description="Maps statement keys to verification levels. Can be string ('verified_by_public_source') or dict with level, source, data_confidence, data_quality_flag (list)"
     )
 
     @field_validator('verification_metadata', mode='before')
@@ -43,15 +43,15 @@ class RichSection(BaseModel):
             # Accept strings directly
             if isinstance(value, str):
                 validated[key] = value
-            # Accept dicts with 'level' and optionally 'source'
+            # Accept dicts with 'level' and optionally 'source', 'data_confidence', 'data_quality_flag', 'comparable_across_regions'
             elif isinstance(value, dict):
                 if 'level' not in value:
                     raise ValueError(f"Dict format for verification_metadata must have 'level' key. Got: {value}")
-                # Ensure only 'level' and 'source' keys exist
-                allowed_keys = {'level', 'source'}
+                # Ensure only allowed keys exist (expanded to support API metadata)
+                allowed_keys = {'level', 'source', 'data_confidence', 'data_quality_flag', 'comparable_across_regions'}
                 if not set(value.keys()).issubset(allowed_keys):
                     extra_keys = set(value.keys()) - allowed_keys
-                    raise ValueError(f"verification_metadata dict can only have 'level' and 'source' keys. Extra keys found: {extra_keys}")
+                    raise ValueError(f"verification_metadata dict can only have {allowed_keys} keys. Extra keys found: {extra_keys}")
                 validated[key] = value
             else:
                 raise ValueError(f"verification_metadata values must be string or dict, got {type(value)}: {value}")
