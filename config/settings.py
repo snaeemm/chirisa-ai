@@ -1,4 +1,5 @@
 """Application configuration and constants."""
+import os
 
 # Application settings
 APP_NAME = "shaz"
@@ -19,13 +20,16 @@ USERS = {
 }
 
 # Model settings
-DEFAULT_MODEL = "gemini-2.5-flash-preview-09-2025"
-TITLE_GENERATION_MODEL = "gemini-2.5-flash-preview-09-2025"
+DEFAULT_MODEL = "gemini-2.5-flash"
+TITLE_GENERATION_MODEL = "gemini-2.5-flash"
 TITLE_MAX_TOKENS = 20
 TITLE_TEMPERATURE = 0.7
 
-# Database settings
-DATABASE_URL = "postgresql://neondb_owner:npg_oBalGu5gF4Ij@ep-lingering-hall-a8sevpqf-pooler.eastus2.azure.neon.tech/neondb?sslmode=require&channel_binding=require"
+# Database settings - use environment variable or default to local PostgreSQL
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    "postgresql://user@localhost:5432/chirisa"
+)
 
 
 # UI settings
