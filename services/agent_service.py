@@ -21,8 +21,16 @@ def init_agent() -> tuple[Runner, DatabaseSessionService]:
     # Use the real datacenter analysis agent
     agent = root_agent
 
-    # Initialize database session service with SQLite
-    session_service = DatabaseSessionService(db_url=DATABASE_URL)
+    # Initialize database session service with connection pool settings
+    # pool_pre_ping=True: Test connections before use (handles stale SSL connections)
+    # pool_recycle=300: Recycle connections after 5 minutes to prevent stale connections
+    session_service = DatabaseSessionService(
+        db_url=DATABASE_URL,
+        pool_pre_ping=True,
+        pool_recycle=300,
+        pool_size=5,
+        max_overflow=10
+    )
 
     # Create runner
     runner = Runner(

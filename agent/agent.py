@@ -271,7 +271,16 @@ root_agent = LlmAgent(
 # Initialize PostgreSQL session service for persistent conversations
 DATABASE_URL = os.getenv('DATABASE_URL')
 if DATABASE_URL:
-    session_service = DatabaseSessionService(db_url=DATABASE_URL)
+    # Connection pool settings to handle Neon's connection timeouts
+    # pool_pre_ping=True: Test connections before use (handles stale SSL connections)
+    # pool_recycle=300: Recycle connections after 5 minutes to prevent stale connections
+    session_service = DatabaseSessionService(
+        db_url=DATABASE_URL,
+        pool_pre_ping=True,
+        pool_recycle=300,
+        pool_size=5,
+        max_overflow=10
+    )
     print("✅ PostgreSQL session persistence enabled (Neon)")
 else:
     session_service = None
