@@ -63,9 +63,18 @@ def _get_verification_badge(verification_level: str) -> str:
         "verified_by_public_source": '<span style="background-color: #28a745; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">✓ Verified by Public Source</span>',
         "verified_by_osm": '<span style="background-color: #17a2b8; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">🗺️ Verified by API</span>',
         "verified_by_peeringdb": '<span style="background-color: #17a2b8; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">🌐 Verified by API</span>',
+        # Climate/Site Civil/ESG API verification tags
+        "verified_by_usgs": '<span style="background-color: #17a2b8; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">🌍 Verified by USGS</span>',
+        "verified_by_gem": '<span style="background-color: #17a2b8; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">🌍 Verified by GEM</span>',
+        "verified_by_glofas": '<span style="background-color: #17a2b8; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">🌊 Verified by GloFAS</span>',
+        "verified_by_wdpa": '<span style="background-color: #17a2b8; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">🌿 Verified by WDPA</span>',
+        "verified_by_wri_aqueduct": '<span style="background-color: #17a2b8; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">💧 Verified by WRI</span>',
+        "verified_by_thinkhazard": '<span style="background-color: #17a2b8; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">⚠️ Verified by ThinkHazard</span>',
+        # Other verification levels
         "verified_by_transactional": '<span style="background-color: #007bff; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">✓✓ Investment-Grade</span>',
         "model_inference": '<span style="background-color: #ffc107; color: black; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">⚠ Model Inference - Needs Validation</span>',
         "unknown_requires_utility_letter": '<span style="background-color: #dc3545; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">⚠ Unknown - Requires Utility Letter</span>',
+        "unknown_requires_site_survey": '<span style="background-color: #dc3545; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">⚠ Unknown - Requires Site Survey</span>',
         "assumption_based_on_region": '<span style="background-color: #6c757d; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">~ Regional Assumption</span>'
     }
     return badge_styles.get(verification_level, f'<span style="background-color: #6c757d; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.85em;">{verification_level}</span>')
@@ -123,7 +132,7 @@ def render_metrics_table(metrics: Dict[str, Any], section_name: str, verificatio
         source_badge = ""
         source_text = ""
 
-        # Priority 1: Check for API prefixes (osm_, peeringdb_)
+        # Priority 1: Check for API prefixes (osm_, peeringdb_, api_)
         if key.startswith("osm_"):
             source_badge = "🗺️"
             if osm_date and osm_date != "Unknown":
@@ -137,10 +146,39 @@ def render_metrics_table(metrics: Dict[str, Any], section_name: str, verificatio
             source_text = "PeeringDB"
             return f"{source_badge} {source_text}".strip()
 
+        if key.startswith("api_water") or key.startswith("api_wri"):
+            source_badge = "💧"
+            source_text = "WRI Aqueduct"
+            return f"{source_badge} {source_text}".strip()
+
+        if key.startswith("api_usgs") or key.startswith("api_gem"):
+            source_badge = "🌍"
+            source_text = "USGS/GEM"
+            return f"{source_badge} {source_text}".strip()
+
+        if key.startswith("api_eia") or key.startswith("api_grid"):
+            source_badge = "⚡"
+            source_text = "EIA Grid Data"
+            return f"{source_badge} {source_text}".strip()
+
+        if key.startswith("api_wdpa") or key.startswith("api_protected"):
+            source_badge = "🌿"
+            source_text = "WDPA Protected Areas"
+            return f"{source_badge} {source_text}".strip()
+
         # Priority 2: Look for ALL possible verification entries for this metric
         # Try multiple matching strategies
         found_source = None
         found_level = None
+
+        # Helper function to normalize keys for comparison
+        def normalize_key(k: str) -> str:
+            """Convert any key format to snake_case for comparison"""
+            # "Drought Risk Increase" -> "drought_risk_increase"
+            # "drought_risk_increase" -> "drought_risk_increase"
+            return k.lower().replace(" ", "_").replace("-", "_")
+
+        key_normalized = normalize_key(key)
 
         # Strategy 1: Exact match
         if key in verification_sources:
@@ -148,15 +186,26 @@ def render_metrics_table(metrics: Dict[str, Any], section_name: str, verificatio
         if key in verification_levels:
             found_level = verification_levels[key]
 
-        # Strategy 2: Try prefix matching (prevents partial word collisions)
+        # Strategy 2: Try normalized key matching (handles Title Case vs snake_case)
+        if not found_source or not found_level:
+            for ver_key in verification_sources:
+                if normalize_key(ver_key) == key_normalized:
+                    found_source = verification_sources[ver_key]
+                    break
+            for ver_key in verification_levels:
+                if normalize_key(ver_key) == key_normalized:
+                    found_level = verification_levels[ver_key]
+                    break
+
+        # Strategy 3: Try suffix matching (prevents partial word collisions)
         if not found_source or not found_level:
             # Check ALL verification keys (sources and levels)
             all_ver_keys = set(verification_sources.keys()) | set(verification_levels.keys())
 
-            # First, try suffix matching (e.g., "peeringdb_nearest_ixp_distance_km" matches if key ends with it)
             for ver_key in all_ver_keys:
-                # Only match if metric key is exactly the verification key OR a suffix of it
-                if key == ver_key or ver_key.endswith(f"_{key}"):
+                ver_key_normalized = normalize_key(ver_key)
+                # Match if normalized keys are equal OR one is a suffix of the other
+                if key_normalized == ver_key_normalized or ver_key_normalized.endswith(f"_{key_normalized}") or key_normalized.endswith(f"_{ver_key_normalized}"):
                     if not found_source and ver_key in verification_sources:
                         found_source = verification_sources[ver_key]
                     if not found_level and ver_key in verification_levels:
@@ -167,31 +216,91 @@ def render_metrics_table(metrics: Dict[str, Any], section_name: str, verificatio
         # If we found a source, use it with appropriate emoji
         if found_source:
             source_text = found_source
-            # Determine badge based on source content
-            if "PeeringDB" in source_text:
+            # Determine badge based on source content - check BOTH source text AND level
+            source_and_level = f"{source_text} {found_level or ''}".lower()
+
+            if "peeringdb" in source_and_level:
                 source_badge = "🌐"
-            elif "OpenInfraMap" in source_text or "OSM" in source_text:
+            elif "openinframap" in source_and_level or "osm" in source_and_level:
                 source_badge = "🗺️"
-            else:
+            elif "wri" in source_and_level or "aqueduct" in source_and_level:
+                source_badge = "💧"
+            elif "usgs" in source_and_level or "gem" in source_and_level:
+                source_badge = "🌍"
+            elif "eia" in source_and_level:
+                source_badge = "⚡"
+            elif "wdpa" in source_and_level or "protected" in source_and_level:
+                source_badge = "🌿"
+            # Climate/hazard APIs
+            elif "thinkhazard" in source_and_level or "think hazard" in source_and_level:
+                source_badge = "🌡️"
+            elif "glofas" in source_and_level or "open-meteo" in source_and_level or "flood api" in source_and_level:
+                source_badge = "🌊"
+            elif "noaa" in source_and_level:
+                source_badge = "🌊"
+            elif "gee" in source_and_level or "earth engine" in source_and_level:
+                source_badge = "🛰️"
+            # Generic API detection - if source mentions "verified_by_" it's from an API
+            elif "verified_by_" in source_and_level:
                 source_badge = "✓"
+            else:
+                # Only show badge with text, not badge alone for unknown sources
+                source_badge = "📊"
         elif found_level:
             # No explicit source, but we have a level - use default text
+            level_lower = found_level.lower()
             if found_level == "verified_by_public_source":
                 source_text = "Public Source"
                 source_badge = "✓"
-            elif found_level == "verified_by_osm":
+            elif found_level == "model_inference":
+                source_text = "Model Inference"
+                source_badge = "📊"
+            elif found_level == "assumption_based_on_region":
+                source_text = "Regional Assumption"
+                source_badge = "📊"
+            elif found_level == "verified_by_osm" or "osm" in level_lower:
                 source_badge = "🗺️"
                 if osm_date and osm_date != "Unknown":
                     source_text = f"OpenInfraMap ({osm_date})"
                 else:
                     source_text = "OpenInfraMap"
-            elif found_level == "verified_by_peeringdb":
+            elif found_level == "verified_by_peeringdb" or "peeringdb" in level_lower:
                 source_text = "PeeringDB"
                 source_badge = "🌐"
+            elif "wri" in level_lower or "aqueduct" in level_lower:
+                source_text = "WRI Aqueduct"
+                source_badge = "💧"
+            elif "usgs" in level_lower or "gem" in level_lower:
+                source_text = "USGS/GEM"
+                source_badge = "🌍"
+            elif "wdpa" in level_lower:
+                source_text = "WDPA"
+                source_badge = "🌿"
+            # Climate/hazard APIs
+            elif "thinkhazard" in level_lower:
+                source_text = "ThinkHazard"
+                source_badge = "🌡️"
+            elif "glofas" in level_lower:
+                source_text = "GloFAS Flood"
+                source_badge = "🌊"
+            elif "noaa" in level_lower:
+                source_text = "NOAA"
+                source_badge = "🌊"
+            elif "gee" in level_lower or "earth_engine" in level_lower:
+                source_text = "Google Earth Engine"
+                source_badge = "🛰️"
+            # Generic verified_by_ patterns
+            elif level_lower.startswith("verified_by_"):
+                # Extract the source name from the level
+                source_name = found_level.replace("verified_by_", "").replace("_", " ").title()
+                source_text = source_name
+                source_badge = "✓"
 
         # Combine badge and text for source column
-        result = f"{source_badge} {source_text}".strip() if source_text else source_badge
-        return result if result else ""
+        # Only return badge+text if we have actual source text, otherwise return empty
+        if source_text:
+            return f"{source_badge} {source_text}".strip()
+        return ""
 
     # Create tabs for different metric types
     tabs_to_create = []
@@ -425,16 +534,59 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
                                 if isinstance(verification_data, dict):
                                     verification_level = verification_data.get("level", "unknown")
                                     source_name = verification_data.get("source", "")
+                                    data_confidence = verification_data.get("data_confidence", "")
+                                    data_quality_flags = verification_data.get("data_quality_flag", [])
                                 else:
                                     verification_level = verification_data
                                     source_name = ""
+                                    data_confidence = ""
+                                    data_quality_flags = []
+
+                                # OVERRIDE: If source contains API tags but level is wrong, fix the level
+                                # This handles cases where LLM sets "model_inference" but source has [verified_by_thinkhazard]
+                                source_lower = source_name.lower() if source_name else ""
+                                if "verified_by_thinkhazard" in source_lower or "thinkhazard" in source_lower:
+                                    verification_level = "verified_by_thinkhazard"
+                                elif "verified_by_glofas" in source_lower or "glofas" in source_lower:
+                                    verification_level = "verified_by_glofas"
+                                elif "verified_by_wdpa" in source_lower or "wdpa" in source_lower:
+                                    verification_level = "verified_by_wdpa"
+                                elif "verified_by_wri" in source_lower or "aqueduct" in source_lower:
+                                    verification_level = "verified_by_wri_aqueduct"
+                                elif "verified_by_usgs" in source_lower or "usgs" in source_lower:
+                                    verification_level = "verified_by_usgs"
+                                elif "verified_by_gem" in source_lower:
+                                    verification_level = "verified_by_gem"
+                                elif "open-meteo" in source_lower or "flood api" in source_lower:
+                                    verification_level = "verified_by_glofas"
+                                elif "peeringdb" in source_lower:
+                                    verification_level = "verified_by_peeringdb"
+                                elif "openinframap" in source_lower or "osm" in source_lower:
+                                    verification_level = "verified_by_osm"
 
                                 badge = _get_verification_badge(verification_level)
                                 claim_display = claim.replace("_", " ").title()
 
-                                # Add source name if available
+                                # Add source name if available (already shown in badge, but show full source)
                                 source_display = f" <span style='color: #666; font-size: 0.9em;'>(Source: {source_name})</span>" if source_name else ""
                                 st.markdown(f"• **{claim_display}**: {badge}{source_display}", unsafe_allow_html=True)
+
+                                # Show quality flags if present
+                                if data_quality_flags and isinstance(data_quality_flags, list) and len(data_quality_flags) > 0:
+                                    flag_messages = {
+                                        "regional_model_variation": "Regional seismic model - may differ from adjacent regions",
+                                        "fallback_estimate": "Fallback estimate used (exact data unavailable)",
+                                        "no_nearby_river": "No significant river nearby - flood risk from local drainage",
+                                        "small_drainage": "Small drainage area - limited flood model coverage",
+                                        "active_flood_warning": "Active flood warning in effect",
+                                        "inside_protected_area": "Site is inside a protected area",
+                                        "marine_protected_area": "Marine protected area nearby",
+                                        "used_nearby_search": "Used nearby basin data (exact point unavailable)",
+                                        "extreme_water_stress": "Extreme water stress zone (score ≥4.0)"
+                                    }
+                                    for flag in data_quality_flags:
+                                        flag_text = flag_messages.get(flag, flag.replace("_", " ").title())
+                                        st.caption(f"  ⚠️ {flag_text}")
 
                         # Render metrics tables if available
                         if metrics and any(metrics.get(key, {}) for key in ['numerical_values', 'percentages', 'ranges']):
@@ -531,9 +683,15 @@ def render_domain_analysis(domain_name: str, domain_data: Dict[str, Any], struct
 
                             # Build quality warning with user-friendly descriptions (Fix 2)
                             quality_warning = ""
+                            # Ensure quality_flags is always a list (defensive handling)
+                            if quality_flags is None:
+                                quality_flags = []
+                            elif not isinstance(quality_flags, list):
+                                quality_flags = [quality_flags] if quality_flags else []
+
                             if quality_flags:
                                 flag_messages = {
-                                    "coordinates_suspect": "Coordinates may be inaccurate (>100km from listed city)",
+                                    "coordinates_suspect": "⚠️ Coordinates may be inaccurate (>100km from listed city)",
                                     "distributed_location": "Facility spans multiple locations",
                                     "distributed_ixp": "IXP distributed across multiple cities",
                                     "many_facilities": "IXP spans many facilities",
