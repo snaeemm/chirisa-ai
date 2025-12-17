@@ -23,9 +23,10 @@ if [ ! -f "$PGDATA/PG_VERSION" ]; then
     echo "Initializing PostgreSQL database..."
     "$PG_BIN/initdb" -D "$PGDATA" --auth=trust --no-locale --encoding=UTF8
 
-    # Configure for TCP connections on localhost:5432
+    # Configure for TCP and Unix socket connections
     echo "listen_addresses = 'localhost'" >> "$PGDATA/postgresql.conf"
     echo "port = 5432" >> "$PGDATA/postgresql.conf"
+    echo "unix_socket_directories = '/tmp'" >> "$PGDATA/postgresql.conf"
 fi
 
 # Start PostgreSQL on port 5432
