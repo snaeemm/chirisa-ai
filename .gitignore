@@ -18,4 +18,6 @@ shaz_sessions.db
 
 # Environment and secrets
 .env
+*.env
+test-gemini-key.env
 .streamlit/secrets.toml
