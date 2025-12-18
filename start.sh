@@ -54,6 +54,34 @@ fi
 echo "=========================================="
 echo ""
 
+# Check GEE credentials
+echo "=========================================="
+echo "CHECKING GEE CREDENTIALS"
+echo "=========================================="
+if [ -z "$GEE_SERVICE_ACCOUNT_EMAIL" ]; then
+    echo "⚠️ GEE_SERVICE_ACCOUNT_EMAIL is NOT set"
+else
+    echo "GEE_SERVICE_ACCOUNT_EMAIL is set: $GEE_SERVICE_ACCOUNT_EMAIL"
+fi
+
+if [ -z "$GEE_PRIVATE_KEY" ]; then
+    echo "⚠️ GEE_PRIVATE_KEY is NOT set"
+else
+    echo "GEE_PRIVATE_KEY is set (length: ${#GEE_PRIVATE_KEY} chars)"
+fi
+
+if [ -z "$GEE_PROJECT_ID" ]; then
+    echo "⚠️ GEE_PROJECT_ID is NOT set (optional)"
+else
+    echo "GEE_PROJECT_ID is set: $GEE_PROJECT_ID"
+fi
+
+# Check DATABASE_URL
+echo ""
+echo "DATABASE_URL: ${DATABASE_URL:-postgresql://localhost:5432/chirisa (default)}"
+echo "=========================================="
+echo ""
+
 # Find PostgreSQL bin directory (version may vary)
 PG_BIN=$(find /usr/lib/postgresql -name "bin" -type d 2>/dev/null | head -1)
 if [ -z "$PG_BIN" ]; then
