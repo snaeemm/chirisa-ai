@@ -128,6 +128,10 @@ done
 echo "Creating database 'chirisa' if not exists..."
 "$PG_BIN/createdb" -h localhost -p 5432 chirisa 2>/dev/null || echo "Database already exists"
 
+# Initialize database tables (reports, sessions, etc.)
+echo "Initializing database tables..."
+python -c "from agent.database import init_database; init_database()" 2>/dev/null || echo "⚠️ Could not initialize tables (will be created on first use)"
+
 # Start Streamlit
 echo "Starting Streamlit application..."
 exec streamlit run Assistant.py \
