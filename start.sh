@@ -2,6 +2,58 @@
 
 echo "Starting Chirisa AI with local PostgreSQL..."
 
+# ============================================
+# API KEY VALIDATION
+# ============================================
+echo ""
+echo "=========================================="
+echo "VALIDATING API KEYS FROM ENVIRONMENT"
+echo "=========================================="
+
+# Check if GEMINI_API_KEY is set
+if [ -z "$GEMINI_API_KEY" ]; then
+    echo "ERROR: GEMINI_API_KEY is NOT set in environment!"
+else
+    echo "GEMINI_API_KEY is set: ${GEMINI_API_KEY:0:15}..."
+
+    # Test Gemini API
+    echo "Testing Gemini API..."
+    GEMINI_RESPONSE=$(curl -s "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=$GEMINI_API_KEY" \
+        -H 'Content-Type: application/json' \
+        -d '{"contents":[{"parts":[{"text":"Say OK"}]}]}')
+
+    if echo "$GEMINI_RESPONSE" | grep -q "candidates"; then
+        echo "✅ Gemini API key is VALID and working!"
+    elif echo "$GEMINI_RESPONSE" | grep -q "leaked"; then
+        echo "❌ ERROR: Gemini API key was REPORTED AS LEAKED!"
+        echo "Response: $GEMINI_RESPONSE"
+    else
+        echo "❌ ERROR: Gemini API key test failed!"
+        echo "Response: $GEMINI_RESPONSE"
+    fi
+fi
+
+# Check if GOOGLE_MAPS_API_KEY is set
+if [ -z "$GOOGLE_MAPS_API_KEY" ]; then
+    echo "ERROR: GOOGLE_MAPS_API_KEY is NOT set in environment!"
+else
+    echo "GOOGLE_MAPS_API_KEY is set: ${GOOGLE_MAPS_API_KEY:0:15}..."
+
+    # Test Google Maps Geocoding API
+    echo "Testing Google Maps Geocoding API..."
+    MAPS_RESPONSE=$(curl -s "https://maps.googleapis.com/maps/api/geocode/json?address=New+York&key=$GOOGLE_MAPS_API_KEY")
+
+    if echo "$MAPS_RESPONSE" | grep -q '"status" : "OK"'; then
+        echo "✅ Google Maps API key is VALID and working!"
+    else
+        echo "❌ ERROR: Google Maps API key test failed!"
+        echo "Response: $(echo "$MAPS_RESPONSE" | head -10)"
+    fi
+fi
+
+echo "=========================================="
+echo ""
+
 # Find PostgreSQL bin directory (version may vary)
 PG_BIN=$(find /usr/lib/postgresql -name "bin" -type d 2>/dev/null | head -1)
 if [ -z "$PG_BIN" ]; then
