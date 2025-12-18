@@ -36,13 +36,8 @@ class ReportSchema(BaseModel):
     # Add other fields as needed for your full report structure
 
 # Database configuration - PostgreSQL only
-DATABASE_URL = os.getenv('DATABASE_URL')
-
-if not DATABASE_URL:
-    raise ValueError(
-        "DATABASE_URL environment variable is required. "
-        "Set it in your .env file with your PostgreSQL connection string."
-    )
+# Default to local PostgreSQL if DATABASE_URL not set (for HuggingFace Docker deployment)
+DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://localhost:5432/chirisa')
 
 if not PSYCOPG2_AVAILABLE:
     raise ImportError("psycopg2 is required but not installed")
