@@ -46,6 +46,10 @@ GOOGLE_MAPS_API_KEY = os.getenv('GOOGLE_MAPS_API_KEY')
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
 GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
+# Debug: Log which API key is being used (first 15 chars only for security)
+print(f"[DEBUG] GEMINI_API_KEY loaded: {GEMINI_API_KEY[:15] if GEMINI_API_KEY else 'None'}...")
+print(f"[DEBUG] GOOGLE_MAPS_API_KEY loaded: {GOOGLE_MAPS_API_KEY[:15] if GOOGLE_MAPS_API_KEY else 'None'}...")
+
 # Validate required environment variables
 if not GOOGLE_MAPS_API_KEY:
     raise ValueError("GOOGLE_MAPS_API_KEY environment variable is required")
