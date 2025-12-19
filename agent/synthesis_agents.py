@@ -3693,10 +3693,7 @@ class PowerInfrastructureAgentWrapper:
 
             if osm_data and "error" not in osm_data:
                 import json
-                print(f"🔌 Using pre-fetched OpenInfraMap data for power infrastructure...")
-                print(f"✅ OSM Data: Found {osm_data.get('nearest_substation_name', 'N/A')}")
-                print(f"📊 OSM API Full Response:")
-                print(json.dumps(osm_data, indent=2, ensure_ascii=False))
+                print(f"🔌 Using pre-fetched OpenInfraMap data: {osm_data.get('nearest_substation_name', 'N/A')} at {osm_data.get('substation_distance_km', '?')}km")
             elif osm_data and "error" in osm_data:
                 osm_error = osm_data.get("error")
                 osm_data = None
@@ -3888,10 +3885,7 @@ class NetworkConnectivityAgentWrapper:
 
             if peeringdb_data and "error" not in peeringdb_data:
                 import json
-                print(f"🌐 Using pre-fetched PeeringDB data for network infrastructure...")
-                print(f"✅ PeeringDB Data: Found {len(peeringdb_data.get('facilities', []))} facilities, {len(peeringdb_data.get('ixps', []))} IXPs, {len(peeringdb_data.get('carriers', []))} carriers")
-                print(f"📊 PeeringDB API Full Response:")
-                print(json.dumps(peeringdb_data, indent=2, ensure_ascii=False))
+                print(f"🌐 Using pre-fetched PeeringDB data: {len(peeringdb_data.get('facilities', []))} facilities, {len(peeringdb_data.get('ixps', []))} IXPs, {len(peeringdb_data.get('carriers', []))} carriers")
             elif peeringdb_data and "error" in peeringdb_data:
                 peeringdb_error = peeringdb_data.get("error")
                 peeringdb_data = None
@@ -5087,27 +5081,47 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
         from agent.apis.climate.combined_hazard_query import query_all_climate_hazards
         from agent.apis.resource_stress.water_stress_query import query_water_stress
 
-        # Prepare API fetch tasks
+        # Prepare API fetch tasks WITH TIMING
         async def fetch_power_api():
+            start = timing_module.time()
             try:
-                return await asyncio.to_thread(find_power_assets, lat, lng)
+                result = await asyncio.to_thread(find_power_assets, lat, lng)
+                print(f"   ✅ Power API: {timing_module.time() - start:.1f}s")
+                return result
             except Exception as e:
-                print(f"   ⚠️ Power API failed: {e}")
+                print(f"   ❌ Power API failed after {timing_module.time() - start:.1f}s: {e}")
                 return {"error": str(e)}
 
         async def fetch_network_api():
+            start = timing_module.time()
             try:
-                return await asyncio.to_thread(query_peeringdb, lat, lng, True)
+                result = await asyncio.to_thread(query_peeringdb, lat, lng, True)
+                print(f"   ✅ Network API: {timing_module.time() - start:.1f}s")
+                return result
             except Exception as e:
-                print(f"   ⚠️ Network API failed: {e}")
+                print(f"   ❌ Network API failed after {timing_module.time() - start:.1f}s: {e}")
                 return {"error": str(e)}
 
         async def fetch_water_api():
+            start = timing_module.time()
             try:
-                return await asyncio.to_thread(query_water_stress, lat, lng)
+                result = await asyncio.to_thread(query_water_stress, lat, lng)
+                print(f"   ✅ Water API: {timing_module.time() - start:.1f}s")
+                return result
             except Exception as e:
-                print(f"   ⚠️ Water Stress API failed: {e}")
+                print(f"   ❌ Water API failed after {timing_module.time() - start:.1f}s: {e}")
                 return {"error": str(e)}
+
+        # Climate API wrapper with timing
+        async def fetch_climate_api():
+            start = timing_module.time()
+            try:
+                result = await query_all_climate_hazards(lat, lng)
+                print(f"   ✅ Climate APIs: {timing_module.time() - start:.1f}s")
+                return result
+            except Exception as e:
+                print(f"   ❌ Climate APIs failed after {timing_module.time() - start:.1f}s: {e}")
+                return {"errors": {"all": str(e)}}
 
         # Execute ALL API queries in PARALLEL
         print(f"   🔌 Power: OpenInfraMap...")
@@ -5118,7 +5132,7 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
         power_data, network_data, climate_data, water_data = await asyncio.gather(
             fetch_power_api(),
             fetch_network_api(),
-            query_all_climate_hazards(lat, lng),  # Already async
+            fetch_climate_api(),
             fetch_water_api(),
             return_exceptions=True
         )
@@ -5312,6 +5326,7 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
         )
 
         print(f"🧠 Calling insights agent for intelligent synthesis...")
+        insights_start = timing_module.time()
         try:
             # Call insights agent using direct Gemini API (like other wrappers)
             import google.generativeai as genai
@@ -5340,9 +5355,12 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
             # Convert to InsightsOutput model
             from .models import InsightsOutput
             insights_result = InsightsOutput(**insights_data)
-            print(f"✅ Insights agent completed successfully")
+            insights_elapsed = timing_module.time() - insights_start
+            print(f"✅ Insights agent completed in {insights_elapsed:.1f}s")
 
         except Exception as e:
+            insights_elapsed = timing_module.time() - insights_start
+            print(f"❌ Insights agent failed after {insights_elapsed:.1f}s")
             print(f"⚠️ Insights agent failed, using fallback: {e}")
             print(f"🔍 Error type: {type(e).__name__}")
             # Log more details for debugging
@@ -5516,6 +5534,13 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
                 return f"✅ Analysis complete for {report.location} - Overall Score: {rounded_score}/5.0 ({report.overall_suitability.rating})"
 
         final_message = generate_executive_response(report_schema)
+
+        # FINAL TIMING SUMMARY
+        total_elapsed = timing_module.time() - api_start_time
+        print(f"\n{'='*60}")
+        print(f"⏱️ TOTAL REPORT GENERATION TIME: {total_elapsed:.1f}s ({total_elapsed/60:.1f} minutes)")
+        print(f"{'='*60}\n")
+
         return final_message
 
     except Exception as e:

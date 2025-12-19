@@ -1526,7 +1526,23 @@ def render_report_viewer(report_id: int) -> None:
                 for i, step in enumerate(priority_steps, 1):
                     st.write(f"**{i}.** {step}")
 
-    if st.button("📄 Download Professional Report (PDF)", width='stretch', type="primary"):
+    # Download buttons - JSON always available, PDF requires button click
+    import json
+    json_str = json.dumps(raw_data, indent=2, ensure_ascii=False, default=str)
+    col_json, col_pdf = st.columns(2)
+    with col_json:
+        st.download_button(
+            label="📦 Download Raw JSON",
+            data=json_str,
+            file_name=f"datacenter_report_{raw_data.get('location', 'unknown').replace(' ', '_').replace(',', '')}.json",
+            mime="application/json",
+            help="Download raw JSON data for debugging missing fields"
+        )
+
+    with col_pdf:
+        generate_pdf = st.button("📄 Generate PDF Report", type="primary")
+
+    if generate_pdf:
         try:
             from xhtml2pdf import pisa
             import io
