@@ -396,6 +396,128 @@ def extract_grounding_sources(response) -> list:
 
     return grounding_sources
 
+
+async def call_gemini_with_streaming(
+    client,
+    model: str,
+    prompt: str,
+    config,
+    agent_name: str,
+    max_attempts: int = 3
+) -> tuple:
+    """
+    Call Gemini API with streaming to reduce RECITATION errors.
+
+    Per Google docs: "Stream the response... it will detect way less recitation than if you get it all at once."
+
+    Returns:
+        tuple: (response_text, grounding_sources)
+    """
+    import uuid
+
+    response_text = None
+    grounding_sources = []
+
+    for attempt in range(max_attempts):
+        temperature = [1.0, 1.5, 2.0][attempt]  # Progressive temp increase
+
+        # Add uniqueness on retries to break RECITATION pattern
+        current_prompt = prompt
+        if attempt > 0:
+            uniqueness_id = uuid.uuid4().hex[:8]
+            current_prompt = prompt + f"\n\n[Analysis #{uniqueness_id}] Provide unique, location-specific insights for this exact site."
+
+        # Update config with current temperature
+        current_config = type(config)(
+            tools=config.tools,
+            response_modalities=config.response_modalities,
+            thinking_config=config.thinking_config if hasattr(config, 'thinking_config') else None,
+            temperature=temperature,
+        )
+
+        try:
+            # PRIMARY: Use STREAMING to reduce RECITATION detection
+            response_chunks = []
+            finish_reason_detected = None
+
+            stream = client.models.generate_content_stream(
+                model=model,
+                contents=current_prompt,
+                config=current_config
+            )
+
+            # Collect chunks from stream
+            for chunk in stream:
+                if chunk.text:
+                    response_chunks.append(chunk.text)
+                # Capture grounding sources from any chunk
+                chunk_sources = extract_grounding_sources(chunk)
+                if chunk_sources:
+                    grounding_sources.extend(chunk_sources)
+                # Check for finish reason in chunk candidates
+                if hasattr(chunk, 'candidates') and chunk.candidates:
+                    fr = getattr(chunk.candidates[0], 'finish_reason', None)
+                    if fr:
+                        finish_reason_detected = str(fr)
+
+            response_text = "".join(response_chunks) if response_chunks else None
+
+            if response_text:
+                print(f"✅ {agent_name}: Streaming response received ({len(response_text)} chars)")
+                break  # SUCCESS
+
+            # Check if RECITATION was detected
+            if finish_reason_detected and 'RECITATION' in finish_reason_detected:
+                print(f"⚠️ {agent_name}: RECITATION on attempt {attempt+1}/{max_attempts}, retrying with temp={[1.0,1.5,2.0][min(attempt+1,2)]}...")
+                continue
+
+            # Empty response without RECITATION - still retry
+            print(f"⚠️ {agent_name}: Empty response on attempt {attempt+1}/{max_attempts} (finish_reason={finish_reason_detected}), retrying...")
+
+        except Exception as stream_error:
+            error_str = str(stream_error)
+            if 'RECITATION' in error_str:
+                print(f"⚠️ {agent_name}: RECITATION exception on attempt {attempt+1}/{max_attempts}, retrying...")
+                continue
+
+            # For non-RECITATION streaming errors, fall back to non-streaming
+            print(f"⚠️ {agent_name}: Streaming failed ({stream_error}), trying non-streaming fallback...")
+            try:
+                response = await asyncio.to_thread(
+                    client.models.generate_content,
+                    model=model,
+                    contents=current_prompt,
+                    config=current_config
+                )
+
+                grounding_sources = extract_grounding_sources(response)
+
+                if response.text:
+                    response_text = response.text
+                    print(f"✅ {agent_name}: Non-streaming fallback succeeded")
+                    break
+                elif hasattr(response, 'candidates') and response.candidates:
+                    candidate = response.candidates[0]
+                    finish_reason = getattr(candidate, 'finish_reason', None)
+
+                    # Check RECITATION on ALL attempts
+                    if 'RECITATION' in str(finish_reason):
+                        print(f"⚠️ {agent_name}: RECITATION (fallback) on attempt {attempt+1}/{max_attempts}, retrying...")
+                        continue
+
+                    if hasattr(candidate, 'content') and candidate.content:
+                        if hasattr(candidate.content, 'parts') and candidate.content.parts:
+                            response_text = candidate.content.parts[0].text
+                            break
+                        elif hasattr(candidate.content, 'text'):
+                            response_text = candidate.content.text
+                            break
+            except Exception as fallback_error:
+                print(f"⚠️ {agent_name}: Fallback also failed on attempt {attempt+1}/{max_attempts}: {fallback_error}")
+
+    return response_text, grounding_sources
+
+
 def normalize_pydantic_response(data: dict) -> dict:
     """
     Normalize LLM JSON responses to match Pydantic model requirements:
@@ -3638,62 +3760,27 @@ class PowerInfrastructureAgentWrapper:
                 thinking_budget=10048
             )
 
-            # RECITATION retry logic - try up to 2 times with higher temperature on retry
-            response_text = None
-            grounding_sources = []
-            for attempt in range(3):  # 3 attempts for RECITATION prevention
-                temperature = [1.0, 1.5, 2.0][attempt]  # Progressive temp increase for paraphrasing
+            # Use streaming helper for RECITATION-resistant calls
+            config = types.GenerateContentConfig(
+                tools=[grounding_tool],
+                response_modalities=["TEXT"],
+                thinking_config=thinking_config,
+                temperature=1.0,  # Will be adjusted by helper
+            )
 
-                response = await asyncio.to_thread(
-                    client.models.generate_content,
-                    model=self.model,
-                    contents=prompt,
-                    config=types.GenerateContentConfig(
-                        tools=[grounding_tool],
-                        response_modalities=["TEXT"],
-                        thinking_config=thinking_config,
-                        temperature=temperature,
-                    )
-                )
-
-                # Extract grounding sources from Google Search
-                grounding_sources = extract_grounding_sources(response)
-
-                # Extract response text - handle both .text and candidates[0] formats
-                if response.text:
-                    response_text = response.text
-                    break
-                elif hasattr(response, 'candidates') and response.candidates:
-                    candidate = response.candidates[0]
-                    finish_reason = getattr(candidate, 'finish_reason', None)
-
-                    # Check if RECITATION - retry with higher temp
-                    if 'RECITATION' in str(finish_reason) and attempt == 0:
-                        print(f"⚠️ Power: RECITATION on attempt {attempt+1}, retrying with temperature=1.5...")
-                        continue
-
-                    print(f"⚠️ Power: response.text is None, finish_reason={finish_reason}")
-
-                    if hasattr(candidate, 'content') and candidate.content:
-                        if hasattr(candidate.content, 'parts') and candidate.content.parts:
-                            response_text = candidate.content.parts[0].text
-                            break
-                        elif hasattr(candidate.content, 'text'):
-                            response_text = candidate.content.text
-                            break
-
-                if attempt == 0 and not response_text:
-                    print(f"⚠️ Power: No response on attempt 1, retrying with higher temperature...")
+            response_text, grounding_sources = await call_gemini_with_streaming(
+                client=client,
+                model=self.model,
+                prompt=prompt,
+                config=config,
+                agent_name=self.name
+            )
 
             try:
                 import json
 
                 if not response_text:
-                    error_msg = "Power agent returned empty response after 3 attempts"
-                    if hasattr(response, 'candidates') and response.candidates:
-                        finish_reason = getattr(response.candidates[0], 'finish_reason', 'unknown')
-                        error_msg += f" (finish_reason: {finish_reason})"
-                    raise ValueError(error_msg)
+                    raise ValueError("Power agent returned empty response after 3 attempts")
 
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response_text)
@@ -3851,59 +3938,27 @@ class NetworkConnectivityAgentWrapper:
                 thinking_budget=10048
             )
 
-            # RECITATION retry logic - try up to 2 times with higher temperature on retry
-            response_text = None
-            grounding_sources = []
-            for attempt in range(3):  # 3 attempts for RECITATION prevention
-                temperature = [1.0, 1.5, 2.0][attempt]  # Progressive temp increase for paraphrasing
+            # Use streaming helper for RECITATION-resistant calls
+            config = types.GenerateContentConfig(
+                tools=[grounding_tool],
+                response_modalities=["TEXT"],
+                thinking_config=thinking_config,
+                temperature=1.0,  # Will be adjusted by helper
+            )
 
-                response = await asyncio.to_thread(
-                    client.models.generate_content,
-                    model=self.model,
-                    contents=prompt,
-                    config=types.GenerateContentConfig(
-                        tools=[grounding_tool],
-                        response_modalities=["TEXT"],
-                        thinking_config=thinking_config,
-                        temperature=temperature,
-                    )
-                )
-
-                # Extract grounding sources from Google Search
-                grounding_sources = extract_grounding_sources(response)
-
-                # Extract response text - handle both .text and candidates[0] formats
-                if response.text:
-                    response_text = response.text
-                    break
-                elif hasattr(response, 'candidates') and response.candidates:
-                    candidate = response.candidates[0]
-                    finish_reason = getattr(candidate, 'finish_reason', None)
-
-                    # Check if RECITATION - retry with higher temp
-                    if 'RECITATION' in str(finish_reason) and attempt == 0:
-                        print(f"⚠️ Network: RECITATION on attempt {attempt+1}, retrying with temperature=1.5...")
-                        continue
-
-                    if hasattr(candidate, 'content') and candidate.content:
-                        if hasattr(candidate.content, 'parts') and candidate.content.parts:
-                            response_text = candidate.content.parts[0].text
-                            break
-                        elif hasattr(candidate.content, 'text'):
-                            response_text = candidate.content.text
-                            break
-
-                if attempt == 0 and not response_text:
-                    print(f"⚠️ Network: No response on attempt 1, retrying with higher temperature...")
+            response_text, grounding_sources = await call_gemini_with_streaming(
+                client=client,
+                model=self.model,
+                prompt=prompt,
+                config=config,
+                agent_name=self.name
+            )
 
             try:
                 import json
 
                 if not response_text:
-                    error_msg = "Network agent returned empty response after 3 attempts"
-                    if hasattr(response, 'prompt_feedback') and response.prompt_feedback:
-                        error_msg += f" - Prompt feedback: {response.prompt_feedback}"
-                    raise ValueError(error_msg)
+                    raise ValueError("Network agent returned empty response after 3 attempts")
 
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response_text)
@@ -4083,62 +4138,27 @@ class ClimateSuitabilityAgentWrapper:
                 thinking_budget=10048
             )
 
-            # RECITATION retry logic - try up to 2 times with higher temperature on retry
-            response_text = None
-            grounding_sources = []
-            for attempt in range(3):  # 3 attempts for RECITATION prevention
-                temperature = [1.0, 1.5, 2.0][attempt]  # Progressive temp increase for paraphrasing
+            # Use streaming helper for RECITATION-resistant calls
+            config = types.GenerateContentConfig(
+                tools=[grounding_tool],
+                response_modalities=["TEXT"],
+                thinking_config=thinking_config,
+                temperature=1.0,  # Will be adjusted by helper
+            )
 
-                response = await asyncio.to_thread(
-                    client.models.generate_content,
-                    model=self.model,
-                    contents=prompt,
-                    config=types.GenerateContentConfig(
-                        tools=[grounding_tool],
-                        response_modalities=["TEXT"],
-                        thinking_config=thinking_config,
-                        temperature=temperature,
-                    )
-                )
-
-                # Extract grounding sources from Google Search
-                grounding_sources = extract_grounding_sources(response)
-
-                # Extract response text - handle both .text and candidates[0] formats
-                if response.text:
-                    response_text = response.text
-                    break
-                elif hasattr(response, 'candidates') and response.candidates:
-                    candidate = response.candidates[0]
-                    finish_reason = getattr(candidate, 'finish_reason', None)
-
-                    # Check if RECITATION - retry with higher temp
-                    if 'RECITATION' in str(finish_reason) and attempt == 0:
-                        print(f"⚠️ Climate: RECITATION on attempt {attempt+1}, retrying with temperature=1.5...")
-                        continue
-
-                    print(f"⚠️ Climate: response.text is None, finish_reason={finish_reason}")
-
-                    if hasattr(candidate, 'content') and candidate.content:
-                        if hasattr(candidate.content, 'parts') and candidate.content.parts:
-                            response_text = candidate.content.parts[0].text
-                            break
-                        elif hasattr(candidate.content, 'text'):
-                            response_text = candidate.content.text
-                            break
-
-                if attempt == 0 and not response_text:
-                    print(f"⚠️ Climate: No response on attempt 1, retrying with higher temperature...")
+            response_text, grounding_sources = await call_gemini_with_streaming(
+                client=client,
+                model=self.model,
+                prompt=prompt,
+                config=config,
+                agent_name=self.name
+            )
 
             try:
                 import json
 
                 if not response_text:
-                    error_msg = "Climate agent returned empty response after 3 attempts"
-                    if hasattr(response, 'candidates') and response.candidates:
-                        finish_reason = getattr(response.candidates[0], 'finish_reason', 'unknown')
-                        error_msg += f" (finish_reason: {finish_reason})"
-                    raise ValueError(error_msg)
+                    raise ValueError("Climate agent returned empty response after 3 attempts")
 
                 # Clean the response to remove markdown wrapper
                 cleaned_response = clean_agent_response(response_text)
@@ -4247,8 +4267,8 @@ class RegulatoryESGAgentWrapper:
                 location_descriptor = f"coordinates {lat}, {lng}"
                 location_context_note = ""
 
-            # Build base prompt
-            prompt = f"{self.adk_agent.instruction}\n\nAnalyze regulatory compliance AND ESG sustainability for data center at {location_descriptor} in {country}.{location_context_note}\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis. Search for: 1) Data protection laws, data residency requirements, government incentives, SEZ/FTZ benefits, permitting timelines, zoning requirements; 2) Grid renewable energy %, carbon intensity (gCO2/kWh), PPA market, carbon pricing, net-zero targets, ESG reporting requirements for this specific location.**\n\n**CRITICAL - API DATA IS NOT COPYRIGHTED:** The structured data provided below comes from PRE-FETCHED public APIs (WRI Aqueduct, WDPA, GloFAS, ThinkHazard, OpenInfraMap, PeeringDB). This is PUBLIC DOMAIN data - you MUST include ALL of it in your analysis. PARAPHRASE naturally but include every metric. Do NOT truncate, omit, or refuse to output any data due to similarity concerns. If you encounter any safety triggers, REPHRASE the content creatively but never omit data. This is internal investment analysis requiring COMPLETE output.\n\n**CRITICAL SOURCE ATTRIBUTION:** For EVERY numerical metric, include verification_metadata with: 1) 'level' = one of 'verified_by_public_source', 'model_inference', 'assumption_based_on_region'; 2) 'source' = MUST be a SPECIFIC source name with organization (e.g., 'EPA eGRID 2023', 'EIA State Electricity Profiles', 'Duke Energy FL Rate Schedule 2024', 'Florida DEP Regulations'). NEVER use generic text like 'Data 2025' or 'Public Source' - always name the actual database, report, agency, or organization.\n\n**PROVENANCE BADGES REQUIRED FORMAT:** Each provenance_badge MUST include ALL of these fields: 'source' (organization name), 'vintage' (date like '2024-Q4'), 'confidence' (must be 'high', 'medium', or 'low'), 'coverage' (what data it covers). Missing any field will cause validation failure."
+            # Build base prompt - COMPLIANT version (no adversarial instructions that trigger RECITATION)
+            prompt = f"{self.adk_agent.instruction}\n\nAnalyze regulatory compliance AND ESG sustainability for data center at {location_descriptor} in {country}.{location_context_note}\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis. Search for: 1) Data protection laws, data residency requirements, government incentives, SEZ/FTZ benefits, permitting timelines, zoning requirements; 2) Grid renewable energy %, carbon intensity (gCO2/kWh), PPA market, carbon pricing, net-zero targets, ESG reporting requirements for this specific location.**\n\n**SYNTHESIS INSTRUCTIONS:** The pre-fetched API data below (WRI Aqueduct water stress, WDPA protected areas) provides verified environmental metrics. Incorporate these metrics into your analysis by explaining what they MEAN for data center investment decisions. Use your own analytical voice to contextualize the data. Focus on site-specific insights rather than generic regulatory summaries.\n\n**CRITICAL SOURCE ATTRIBUTION:** For EVERY numerical metric, include verification_metadata with: 1) 'level' = one of 'verified_by_public_source', 'model_inference', 'assumption_based_on_region'; 2) 'source' = MUST be a SPECIFIC source name with organization (e.g., 'EPA eGRID 2023', 'EIA State Electricity Profiles', 'Duke Energy FL Rate Schedule 2024', 'Florida DEP Regulations'). NEVER use generic text like 'Data 2025' or 'Public Source' or just a state name - always name the actual database, report, agency, or organization.\n\n**PROVENANCE BADGES REQUIRED FORMAT:** Each provenance_badge MUST include ALL of these fields: 'source' (organization name), 'vintage' (date like '2024-Q4'), 'confidence' (must be 'high', 'medium', or 'low'), 'coverage' (what data it covers). Missing any field will cause validation failure."
 
             # Inject pre-fetched ESG compliance data into prompt
             esg_api_data = {
@@ -4296,52 +4316,109 @@ class RegulatoryESGAgentWrapper:
                 thinking_budget=10048
             )
 
-            # RECITATION retry logic - try up to 2 times with higher temperature on retry
+            # RECITATION-resistant retry logic with streaming + temperature progression + prompt uniqueness
+            import uuid
             response_text = None
             grounding_sources = []
+
             for attempt in range(3):  # 3 attempts for RECITATION prevention
-                temperature = [1.0, 1.5, 2.0][attempt]  # Progressive temp increase for paraphrasing to force unique output
+                temperature = [1.0, 1.5, 2.0][attempt]  # Progressive temp increase
 
-                response = await asyncio.to_thread(
-                    client.models.generate_content,
-                    model=self.model,
-                    contents=prompt,
-                    config=types.GenerateContentConfig(
-                        tools=[grounding_tool],
-                        response_modalities=["TEXT"],
-                        thinking_config=thinking_config,
-                        temperature=temperature,
+                # Add uniqueness on retries to break RECITATION pattern
+                current_prompt = prompt
+                if attempt > 0:
+                    uniqueness_id = uuid.uuid4().hex[:8]
+                    current_prompt = prompt + f"\n\n[Analysis #{uniqueness_id}] Provide unique, location-specific insights for this exact site. Focus on what distinguishes THIS location from others."
+
+                try:
+                    # PRIMARY: Use STREAMING to reduce RECITATION detection
+                    # Per Google docs: "Stream the response... it will detect way less recitation"
+                    response_chunks = []
+                    finish_reason_detected = None
+
+                    stream = client.models.generate_content_stream(
+                        model=self.model,
+                        contents=current_prompt,
+                        config=types.GenerateContentConfig(
+                            tools=[grounding_tool],
+                            response_modalities=["TEXT"],
+                            thinking_config=thinking_config,
+                            temperature=temperature,
+                        )
                     )
-                )
 
-                # Extract grounding sources from Google Search
-                grounding_sources = extract_grounding_sources(response)
+                    # Collect chunks from stream
+                    for chunk in stream:
+                        if chunk.text:
+                            response_chunks.append(chunk.text)
+                        # Capture grounding sources from any chunk
+                        chunk_sources = extract_grounding_sources(chunk)
+                        if chunk_sources:
+                            grounding_sources.extend(chunk_sources)
+                        # Check for finish reason in chunk candidates
+                        if hasattr(chunk, 'candidates') and chunk.candidates:
+                            fr = getattr(chunk.candidates[0], 'finish_reason', None)
+                            if fr:
+                                finish_reason_detected = str(fr)
 
-                # Extract response text - handle both .text and candidates[0] formats
-                if response.text:
-                    response_text = response.text
-                    break
-                elif hasattr(response, 'candidates') and response.candidates:
-                    candidate = response.candidates[0]
-                    finish_reason = getattr(candidate, 'finish_reason', None)
+                    response_text = "".join(response_chunks) if response_chunks else None
 
-                    # Check if RECITATION - retry with higher temp
-                    if 'RECITATION' in str(finish_reason) and attempt == 0:
-                        print(f"⚠️ Regulatory ESG: RECITATION on attempt {attempt+1}, retrying with temperature=1.5...")
+                    if response_text:
+                        print(f"✅ Regulatory ESG: Streaming response received ({len(response_text)} chars)")
+                        break  # SUCCESS
+
+                    # Check if RECITATION was detected
+                    if finish_reason_detected and 'RECITATION' in finish_reason_detected:
+                        print(f"⚠️ Regulatory ESG: RECITATION on attempt {attempt+1}/3, retrying with temp={[1.0,1.5,2.0][min(attempt+1,2)]}...")
                         continue
 
-                    print(f"⚠️ Regulatory ESG: response.text is None, finish_reason={finish_reason}")
+                    # Empty response without RECITATION - still retry
+                    print(f"⚠️ Regulatory ESG: Empty response on attempt {attempt+1}/3 (finish_reason={finish_reason_detected}), retrying...")
 
-                    if hasattr(candidate, 'content') and candidate.content:
-                        if hasattr(candidate.content, 'parts') and candidate.content.parts:
-                            response_text = candidate.content.parts[0].text
-                            break
-                        elif hasattr(candidate.content, 'text'):
-                            response_text = candidate.content.text
-                            break
+                except Exception as stream_error:
+                    error_str = str(stream_error)
+                    if 'RECITATION' in error_str:
+                        print(f"⚠️ Regulatory ESG: RECITATION exception on attempt {attempt+1}/3, retrying...")
+                        continue
 
-                if attempt == 0 and not response_text:
-                    print(f"⚠️ Regulatory ESG: No response on attempt 1, retrying with higher temperature...")
+                    # For non-RECITATION streaming errors, fall back to non-streaming
+                    print(f"⚠️ Regulatory ESG: Streaming failed ({stream_error}), trying non-streaming...")
+                    try:
+                        response = await asyncio.to_thread(
+                            client.models.generate_content,
+                            model=self.model,
+                            contents=current_prompt,
+                            config=types.GenerateContentConfig(
+                                tools=[grounding_tool],
+                                response_modalities=["TEXT"],
+                                thinking_config=thinking_config,
+                                temperature=temperature,
+                            )
+                        )
+
+                        grounding_sources = extract_grounding_sources(response)
+
+                        if response.text:
+                            response_text = response.text
+                            break
+                        elif hasattr(response, 'candidates') and response.candidates:
+                            candidate = response.candidates[0]
+                            finish_reason = getattr(candidate, 'finish_reason', None)
+
+                            # Check RECITATION on ALL attempts (not just attempt 0)
+                            if 'RECITATION' in str(finish_reason):
+                                print(f"⚠️ Regulatory ESG: RECITATION (fallback) on attempt {attempt+1}/3, retrying...")
+                                continue
+
+                            if hasattr(candidate, 'content') and candidate.content:
+                                if hasattr(candidate.content, 'parts') and candidate.content.parts:
+                                    response_text = candidate.content.parts[0].text
+                                    break
+                                elif hasattr(candidate.content, 'text'):
+                                    response_text = candidate.content.text
+                                    break
+                    except Exception as fallback_error:
+                        print(f"⚠️ Regulatory ESG: Fallback also failed on attempt {attempt+1}/3: {fallback_error}")
 
             try:
                 import json
@@ -4518,62 +4595,27 @@ class SiteCivilAgentWrapper:
                 thinking_budget=10048
             )
 
-            # RECITATION retry logic - try up to 2 times with higher temperature on retry
-            response_text = None
-            grounding_sources = []
-            for attempt in range(3):  # 3 attempts for RECITATION prevention
-                temperature = [1.0, 1.5, 2.0][attempt]  # Progressive temp increase for paraphrasing to force unique output
+            # Use streaming helper for RECITATION-resistant calls
+            config = types.GenerateContentConfig(
+                tools=[grounding_tool],
+                response_modalities=["TEXT"],
+                thinking_config=thinking_config,
+                temperature=1.0,  # Will be adjusted by helper
+            )
 
-                response = await asyncio.to_thread(
-                    client.models.generate_content,
-                    model=self.model,
-                    contents=prompt,
-                    config=types.GenerateContentConfig(
-                        tools=[grounding_tool],
-                        response_modalities=["TEXT"],
-                        thinking_config=thinking_config,
-                        temperature=temperature,
-                    )
-                )
-
-                # Extract grounding sources
-                grounding_sources = extract_grounding_sources(response)
-
-                # Extract response text - handle both .text and candidates[0] formats
-                if response.text:
-                    response_text = response.text
-                    break
-                elif hasattr(response, 'candidates') and response.candidates:
-                    candidate = response.candidates[0]
-                    finish_reason = getattr(candidate, 'finish_reason', None)
-
-                    # Check if RECITATION - retry with higher temp
-                    if 'RECITATION' in str(finish_reason) and attempt == 0:
-                        print(f"⚠️ Site Civil: RECITATION on attempt {attempt+1}, retrying with temperature=1.5...")
-                        continue
-
-                    print(f"⚠️ Site Civil: response.text is None, finish_reason={finish_reason}")
-
-                    if hasattr(candidate, 'content') and candidate.content:
-                        if hasattr(candidate.content, 'parts') and candidate.content.parts:
-                            response_text = candidate.content.parts[0].text
-                            break
-                        elif hasattr(candidate.content, 'text'):
-                            response_text = candidate.content.text
-                            break
-
-                if attempt == 0 and not response_text:
-                    print(f"⚠️ Site Civil: No response on attempt 1, retrying with higher temperature...")
+            response_text, grounding_sources = await call_gemini_with_streaming(
+                client=client,
+                model=self.model,
+                prompt=prompt,
+                config=config,
+                agent_name=self.name
+            )
 
             # Parse JSON response
             import json
 
             if not response_text:
-                error_msg = "Site Civil agent returned empty response after 3 attempts"
-                if hasattr(response, 'candidates') and response.candidates:
-                    finish_reason = getattr(response.candidates[0], 'finish_reason', 'unknown')
-                    error_msg += f" (finish_reason: {finish_reason})"
-                raise ValueError(error_msg)
+                raise ValueError("Site Civil agent returned empty response after 3 attempts")
 
             cleaned_response = clean_agent_response(response_text)
 
@@ -4706,62 +4748,27 @@ class MechanicalThermalAgentWrapper:
                 thinking_budget=10048
             )
 
-            # RECITATION retry logic - try up to 2 times with higher temperature on retry
-            response_text = None
-            grounding_sources = []
-            for attempt in range(3):  # 3 attempts for RECITATION prevention
-                temperature = [1.0, 1.5, 2.0][attempt]  # Progressive temp increase for paraphrasing
+            # Use streaming helper for RECITATION-resistant calls
+            config = types.GenerateContentConfig(
+                tools=[grounding_tool],
+                response_modalities=["TEXT"],
+                thinking_config=thinking_config,
+                temperature=1.0,  # Will be adjusted by helper
+            )
 
-                response = await asyncio.to_thread(
-                    client.models.generate_content,
-                    model=self.model,
-                    contents=prompt,
-                    config=types.GenerateContentConfig(
-                        tools=[grounding_tool],
-                        response_modalities=["TEXT"],
-                        thinking_config=thinking_config,
-                        temperature=temperature,
-                    )
-                )
-
-                # Extract grounding sources
-                grounding_sources = extract_grounding_sources(response)
-
-                # Extract response text - handle both .text and candidates[0] formats
-                if response.text:
-                    response_text = response.text
-                    break
-                elif hasattr(response, 'candidates') and response.candidates:
-                    candidate = response.candidates[0]
-                    finish_reason = getattr(candidate, 'finish_reason', None)
-
-                    # Check if RECITATION - retry with higher temp
-                    if 'RECITATION' in str(finish_reason) and attempt == 0:
-                        print(f"⚠️ Mechanical & Thermal: RECITATION on attempt {attempt+1}, retrying with temperature=1.5...")
-                        continue
-
-                    print(f"⚠️ Mechanical & Thermal: response.text is None, finish_reason={finish_reason}")
-
-                    if hasattr(candidate, 'content') and candidate.content:
-                        if hasattr(candidate.content, 'parts') and candidate.content.parts:
-                            response_text = candidate.content.parts[0].text
-                            break
-                        elif hasattr(candidate.content, 'text'):
-                            response_text = candidate.content.text
-                            break
-
-                if attempt == 0 and not response_text:
-                    print(f"⚠️ Mechanical & Thermal: No response on attempt 1, retrying with higher temperature...")
+            response_text, grounding_sources = await call_gemini_with_streaming(
+                client=client,
+                model=self.model,
+                prompt=prompt,
+                config=config,
+                agent_name=self.name
+            )
 
             # Parse JSON response
             import json
 
             if not response_text:
-                error_msg = "Mechanical & Thermal agent returned empty response after 3 attempts"
-                if hasattr(response, 'candidates') and response.candidates:
-                    finish_reason = getattr(response.candidates[0], 'finish_reason', 'unknown')
-                    error_msg += f" (finish_reason: {finish_reason})"
-                raise ValueError(error_msg)
+                raise ValueError("Mechanical & Thermal agent returned empty response after 3 attempts")
 
             cleaned_response = clean_agent_response(response_text)
 
@@ -4883,62 +4890,27 @@ class MarketCompetitionAgentWrapper:
                 thinking_budget=10048
             )
 
-            # RECITATION retry logic - try up to 2 times with higher temperature on retry
-            response_text = None
-            grounding_sources = []
-            for attempt in range(3):  # 3 attempts for RECITATION prevention
-                temperature = [1.0, 1.5, 2.0][attempt]  # Progressive temp increase for paraphrasing
+            # Use streaming helper for RECITATION-resistant calls
+            config = types.GenerateContentConfig(
+                tools=[grounding_tool],
+                response_modalities=["TEXT"],
+                thinking_config=thinking_config,
+                temperature=1.0,  # Will be adjusted by helper
+            )
 
-                response = await asyncio.to_thread(
-                    client.models.generate_content,
-                    model=self.model,
-                    contents=prompt,
-                    config=types.GenerateContentConfig(
-                        tools=[grounding_tool],
-                        response_modalities=["TEXT"],
-                        thinking_config=thinking_config,
-                        temperature=temperature,
-                    )
-                )
-
-                # Extract grounding sources
-                grounding_sources = extract_grounding_sources(response)
-
-                # Extract response text - handle both .text and candidates[0] formats
-                if response.text:
-                    response_text = response.text
-                    break
-                elif hasattr(response, 'candidates') and response.candidates:
-                    candidate = response.candidates[0]
-                    finish_reason = getattr(candidate, 'finish_reason', None)
-
-                    # Check if RECITATION - retry with higher temp
-                    if 'RECITATION' in str(finish_reason) and attempt == 0:
-                        print(f"⚠️ Market Competition: RECITATION on attempt {attempt+1}, retrying with temperature=1.5...")
-                        continue
-
-                    print(f"⚠️ Market Competition: response.text is None, finish_reason={finish_reason}")
-
-                    if hasattr(candidate, 'content') and candidate.content:
-                        if hasattr(candidate.content, 'parts') and candidate.content.parts:
-                            response_text = candidate.content.parts[0].text
-                            break
-                        elif hasattr(candidate.content, 'text'):
-                            response_text = candidate.content.text
-                            break
-
-                if attempt == 0 and not response_text:
-                    print(f"⚠️ Market Competition: No response on attempt 1, retrying with higher temperature...")
+            response_text, grounding_sources = await call_gemini_with_streaming(
+                client=client,
+                model=self.model,
+                prompt=prompt,
+                config=config,
+                agent_name=self.name
+            )
 
             # Parse JSON response
             import json
 
             if not response_text:
-                error_msg = "Market & Competition agent returned empty response after 3 attempts"
-                if hasattr(response, 'candidates') and response.candidates:
-                    finish_reason = getattr(response.candidates[0], 'finish_reason', 'unknown')
-                    error_msg += f" (finish_reason: {finish_reason})"
-                raise ValueError(error_msg)
+                raise ValueError("Market & Competition agent returned empty response after 3 attempts")
 
             cleaned_response = clean_agent_response(response_text)
 

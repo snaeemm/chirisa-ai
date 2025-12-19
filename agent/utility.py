@@ -24,16 +24,76 @@ from .domain_models import (
 # TEXT PROCESSING UTILITIES
 # ================================================================================================
 
-def _get_verification_badge_text(verification_level: str) -> str:
-    """Get text representation of verification level for PDF"""
-    badge_text = {
+def _get_badge_for_level(level: str) -> str:
+    """Get badge text for a verification level - handles core levels and dynamic API tags.
+
+    Uses the API registry for dynamic lookup of API-specific verification tags.
+    """
+    # Core verification levels from VerificationLevel enum
+    CORE_BADGES = {
         "verified_by_public_source": "✓ Verified by Public Source",
-        "verified_by_transactional": "✓✓ Investment-Grade",
+        "verified_by_transactional": "✓✓ Investment-Grade (Transactional)",
         "model_inference": "⚠ Model Inference - Needs Validation",
         "unknown_requires_utility_letter": "⚠ Unknown - Requires Utility Letter",
-        "assumption_based_on_region": "~ Regional Assumption"
+        "assumption_based_on_region": "~ Regional Assumption",
     }
-    return badge_text.get(verification_level, verification_level)
+
+    # Check core badges first
+    if level in CORE_BADGES:
+        return CORE_BADGES[level]
+
+    # Dynamic API badge generation from registry
+    # Format: "verified_by_xxx" -> look up API name "xxx" in registry
+    if level.startswith("verified_by_"):
+        api_suffix = level.replace("verified_by_", "")
+
+        # Try to import and use registry for dynamic lookup
+        try:
+            from .apis.registry import API_AGENT_MAPPINGS
+
+            # Find matching API in registry by verification_tag
+            for api_name, api_info in API_AGENT_MAPPINGS.items():
+                if api_info.get("verification_tag") == level:
+                    # Use API name properly formatted
+                    display_name = api_name.replace("_", " ").title()
+                    return f"✓ Verified by {display_name}"
+        except ImportError:
+            pass  # Registry not available, use fallback
+
+        # Fallback for unregistered APIs - still format nicely
+        display_name = api_suffix.replace("_", " ").title()
+        return f"✓ Verified by {display_name}"
+
+    # Unknown level - return as-is with question mark
+    return f"? {level}"
+
+
+def _get_verification_badge_text(verification_value: Union[str, Dict]) -> str:
+    """Get text representation of verification level for PDF.
+
+    Handles both formats:
+    - String format: "verified_by_osm", "model_inference", etc.
+    - Dict format: {"level": "verified_by_public_source", "source": "EPA eGRID 2023"}
+
+    For dict format with "verified_by_public_source" or "verified_by_transactional",
+    appends the source name if provided.
+    """
+    # Extract level and source from either format
+    if isinstance(verification_value, dict):
+        level = verification_value.get("level", "unknown")
+        source = verification_value.get("source")
+    else:
+        level = str(verification_value) if verification_value else "unknown"
+        source = None
+
+    # Get base badge text dynamically
+    badge = _get_badge_for_level(level)
+
+    # Append source if present and level supports it
+    if source and level in ("verified_by_public_source", "verified_by_transactional"):
+        return f"{badge} (Source: {source})"
+
+    return badge
 
 def clean_markdown_text(text: str) -> str:
     """Remove markdown formatting artifacts from text"""

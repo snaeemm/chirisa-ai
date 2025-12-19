@@ -375,22 +375,45 @@ For EVERY metric from API data, include verification_metadata with source:
 
 **FORMAT**: The `verification_metadata` field must be a dictionary where:
 - **Keys**: Metric names (e.g., "data_protection_law", "corporate_tax_rate", "grid_renewable_pct")
-- **Values**: Verification level strings (see available levels below)
+- **Values**: Either a string OR a dict with 'level' and 'source' (see formats below)
+
+**🚨 CRITICAL SOURCE NAMING RULES:**
+
+For "verified_by_public_source" level, you MUST use dict format with SPECIFIC source names:
+
+**✅ VALID SOURCE EXAMPLES:**
+- `{"level": "verified_by_public_source", "source": "EPA eGRID 2023 Florida Subregion"}`
+- `{"level": "verified_by_public_source", "source": "Florida DEP Industrial Permit Database 2024"}`
+- `{"level": "verified_by_public_source", "source": "Duke Energy FL Rate Schedule IS-1 2024"}`
+- `{"level": "verified_by_public_source", "source": "California Energy Commission 2024 IEPR"}`
+- `{"level": "verified_by_public_source", "source": "IRS Section 48 Investment Tax Credit 2024"}`
+
+**❌ INVALID SOURCE EXAMPLES (DO NOT USE):**
+- `"verified_by_public_source"` (string only - missing source name)
+- `{"level": "verified_by_public_source", "source": "Florida"}` (too vague - just a state name)
+- `{"level": "verified_by_public_source", "source": "Data 2025"}` (meaningless)
+- `{"level": "verified_by_public_source", "source": "Public Source"}` (generic)
+- `{"level": "verified_by_public_source", "source": "11-02-25"}` (just a date)
+
+**SOURCE NAME FORMULA:** Organization + Dataset/Report Name + Year
+Example: "EPA" + "eGRID" + "2023" = "EPA eGRID 2023"
 
 **MANDATORY TAGGING RULES:**
-- **Data Sovereignty Laws**: "verified_by_public_source" if from government websites/legal databases
-- **Tax Incentives**: "verified_by_public_source" if from official government sources
-- **Permitting Timelines**: "model_inference" unless you have actual permit data
-- **ESG Metrics**: "verified_by_public_source" if from official grid/environmental data
-- **Compliance Requirements**: "verified_by_public_source" if from regulatory websites
+- **Data Sovereignty Laws**: `{"level": "verified_by_public_source", "source": "[Government Agency] [Law/Statute Name] [Year]"}`
+- **Tax Incentives**: `{"level": "verified_by_public_source", "source": "[IRS/Treasury/State Agency] [Specific Program] [Year]"}`
+- **Permitting Timelines**: `"model_inference"` unless you have actual permit data with specific source
+- **ESG Metrics**: `{"level": "verified_by_public_source", "source": "[EPA/EIA/State Agency] [Report Name] [Year]"}`
+- **Water Stress**: `"verified_by_wri_aqueduct"` (string format OK for API data)
+- **Protected Areas**: `"verified_by_wdpa"` (string format OK for API data)
 
-**Available levels:** verified_by_public_source, verified_by_transactional, model_inference, unknown_requires_utility_letter, assumption_based_on_region
+**Available levels:** verified_by_public_source, verified_by_transactional, model_inference, unknown_requires_utility_letter, assumption_based_on_region, verified_by_wri_aqueduct, verified_by_wdpa
 
-**EXAMPLE**:
+**EXAMPLE WITH PROPER SOURCES**:
 ```json
 "verification_metadata": {
-  "corporate_tax_rate": "verified_by_public_source",
-  "tax_holiday": "verified_by_public_source",
+  "corporate_tax_rate": {"level": "verified_by_public_source", "source": "IRS Corporate Tax Rate Schedule 2024"},
+  "tax_holiday": {"level": "verified_by_public_source", "source": "Florida Enterprise Zone Act 2024"},
+  "water_stress_score": "verified_by_wri_aqueduct",
   "permitting_timeline": "model_inference"
 }
 ```
@@ -415,11 +438,11 @@ Return a VALID JSON object with this structure (matching RegulatoryESGOutput mod
     "tables": [],
     "sub_score": 4.5,
     "verification_metadata": {
-      "data_protection_law": "verified_by_public_source",
-      "data_localization": "verified_by_public_source",
-      "cross_border_transfers": "verified_by_public_source",
+      "data_protection_law": {"level": "verified_by_public_source", "source": "EU GDPR Regulation 2016/679"},
+      "data_localization": {"level": "verified_by_public_source", "source": "DLA Piper Data Protection Laws 2024"},
+      "cross_border_transfers": {"level": "verified_by_public_source", "source": "EU Adequacy Decisions 2024"},
       "government_access_risk": "model_inference",
-      "cybersecurity_framework": "verified_by_public_source"
+      "cybersecurity_framework": {"level": "verified_by_public_source", "source": "ENISA Cybersecurity Framework 2024"}
     }
   },
   "government_incentives": {
@@ -435,11 +458,11 @@ Return a VALID JSON object with this structure (matching RegulatoryESGOutput mod
     "tables": [],
     "sub_score": 4.8,
     "verification_metadata": {
-      "corporate_tax_rate": "verified_by_public_source",
-      "tax_holiday": "verified_by_public_source",
-      "import_duty": "verified_by_public_source",
-      "foreign_ownership": "verified_by_public_source",
-      "investment_protection": "verified_by_public_source"
+      "corporate_tax_rate": {"level": "verified_by_public_source", "source": "IRS Corporate Tax Rate Schedule 2024"},
+      "tax_holiday": {"level": "verified_by_public_source", "source": "Florida Enterprise Zone Act 2024"},
+      "import_duty": {"level": "verified_by_public_source", "source": "US Customs Harmonized Tariff Schedule 2024"},
+      "foreign_ownership": {"level": "verified_by_public_source", "source": "CFIUS Foreign Investment Regulations 2024"},
+      "investment_protection": {"level": "verified_by_public_source", "source": "US Bilateral Investment Treaties 2024"}
     }
   },
   "operational_environmental_compliance": {
@@ -455,12 +478,12 @@ Return a VALID JSON object with this structure (matching RegulatoryESGOutput mod
     "tables": [],
     "sub_score": 3.9,
     "verification_metadata": {
-      "building_codes": "verified_by_public_source",
-      "eia_requirements": "verified_by_public_source",
+      "building_codes": {"level": "verified_by_public_source", "source": "International Building Code IBC 2024"},
+      "eia_requirements": {"level": "verified_by_public_source", "source": "US EPA NEPA Regulations 2024"},
       "eia_timeline": "model_inference",
-      "noise_limits": "verified_by_public_source",
-      "water_stress": "verified_by_public_source",
-      "air_quality": "verified_by_public_source"
+      "noise_limits": {"level": "verified_by_public_source", "source": "Local Zoning Ordinance 2024"},
+      "water_stress": "verified_by_wri_aqueduct",
+      "air_quality": {"level": "verified_by_public_source", "source": "US EPA Air Quality Index 2024"}
     }
   },
   "permitting_zoning": {
@@ -476,11 +499,11 @@ Return a VALID JSON object with this structure (matching RegulatoryESGOutput mod
     "tables": [],
     "sub_score": 3.5,
     "verification_metadata": {
-      "zoning_classification": "verified_by_public_source",
+      "zoning_classification": {"level": "verified_by_public_source", "source": "County Zoning Map GIS Portal 2024"},
       "permits_required": "model_inference",
       "permitting_timeline": "model_inference",
       "permit_fees": "model_inference",
-      "public_hearing": "verified_by_public_source"
+      "public_hearing": {"level": "verified_by_public_source", "source": "County Board of Zoning Appeals Rules 2024"}
     }
   },
   "esg_trajectory": {
@@ -496,11 +519,11 @@ Return a VALID JSON object with this structure (matching RegulatoryESGOutput mod
     "tables": [],
     "sub_score": 4.3,
     "verification_metadata": {
-      "grid_renewable_pct": "verified_by_public_source",
-      "carbon_intensity": "verified_by_public_source",
+      "grid_renewable_pct": {"level": "verified_by_public_source", "source": "EIA State Electricity Profiles 2024"},
+      "carbon_intensity": {"level": "verified_by_public_source", "source": "EPA eGRID 2023 Florida Subregion"},
       "ppa_market": "model_inference",
-      "carbon_price": "verified_by_public_source",
-      "net_zero_target": "verified_by_public_source",
+      "carbon_price": {"level": "verified_by_public_source", "source": "World Bank Carbon Pricing Dashboard 2024"},
+      "net_zero_target": {"level": "verified_by_public_source", "source": "National Climate Action Plan 2024"},
       "nimby_risk": "model_inference"
     }
   },
