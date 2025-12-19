@@ -515,6 +515,10 @@ async def call_gemini_with_streaming(
             except Exception as fallback_error:
                 print(f"⚠️ {agent_name}: Fallback also failed on attempt {attempt+1}/{max_attempts}: {fallback_error}")
 
+    # Log final result
+    if not response_text:
+        print(f"❌ {agent_name}: ALL {max_attempts} attempts failed - returning None")
+
     return response_text, grounding_sources
 
 
@@ -4770,6 +4774,7 @@ class MechanicalThermalAgentWrapper:
                 temperature=1.0,  # Will be adjusted by helper
             )
 
+            print(f"📤 Mechanical & Thermal: Sending request (prompt length: {len(prompt)} chars)")
             response_text, grounding_sources = await call_gemini_with_streaming(
                 client=client,
                 model=self.model,
@@ -4781,7 +4786,9 @@ class MechanicalThermalAgentWrapper:
             # Parse JSON response
             import json
 
-            if not response_text:
+            if not response_text or not response_text.strip():
+                print(f"❌ Mechanical & Thermal: Empty response received")
+                print(f"🔍 response_text type: {type(response_text)}, value: {repr(response_text)[:100] if response_text else 'None'}")
                 raise ValueError("Mechanical & Thermal agent returned empty response after 3 attempts")
 
             cleaned_response = clean_agent_response(response_text)
