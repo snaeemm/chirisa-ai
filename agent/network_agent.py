@@ -8,7 +8,7 @@ from .search_agent import search_agent
 from .model_config import gemini_model, built_in_planner
 
 # Configuration - Keep for backwards compatibility
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Create search tool for web intelligence
 search_tool = AgentTool(agent=search_agent)
@@ -124,6 +124,15 @@ Output NO-GO gates in `no_go_gates` array with:
   "mitigation_cost": "$500K-2M for new fiber build"
 }
 ```
+
+═══════════════════════════════════════════════════════════════════════════════
+🌐 CROSS-DOMAIN DATA (If Provided)
+═══════════════════════════════════════════════════════════════════════════════
+
+**Protected Areas (WDPA)**: If inside protected area, fiber routes restricted - affects last_mile_diversity
+**Seismic (USGS)**: If PGA >0.1g, underground conduit requires seismic joints - affects fiber_infrastructure costs
+
+Tag as: "verified_by_wdpa", "verified_by_usgs"
 
 ═══════════════════════════════════════════════════════════════════════════════
 CAUTION FLAGS (YELLOW FLAGS - MITIGATE THEN PROCEED)
@@ -628,28 +637,32 @@ JSON Structure Example:
   ],
   "distance_measurements": [
     {
-      "description": "Road distance to nearest major IXP",
+      "target": "Amsterdam Internet Exchange (AMS-IX)",
       "distance_km": 45.2,
-      "drive_time_minutes": 38,
-      "infrastructure_type": "Internet Exchange Point"
+      "distance_mi": 28.09,
+      "method": "road",
+      "source": "Google Maps"
     },
     {
-      "description": "Road distance to nearest Tier-1 carrier POP",
+      "target": "Equinix AM7 (Colo Facility)",
       "distance_km": 2.3,
-      "drive_time_minutes": 8,
-      "infrastructure_type": "Carrier Point of Presence"
+      "distance_mi": 1.43,
+      "method": "aerial",
+      "source": "PeeringDB"
     },
     {
-      "description": "Road distance to nearest subsea cable landing station",
+      "target": "MAREA Subsea Cable Landing (Landing Station)",
       "distance_km": 45.0,
-      "drive_time_minutes": 42,
-      "infrastructure_type": "Landing Station"
+      "distance_mi": 27.96,
+      "method": "road",
+      "source": "TeleGeography"
     },
     {
-      "description": "Road distance to nearest carrier-neutral facility",
+      "target": "NTT Amsterdam POP (Carrier POP)",
       "distance_km": 2.3,
-      "drive_time_minutes": 8,
-      "infrastructure_type": "Carrier Hotel"
+      "distance_mi": 1.43,
+      "method": "aerial",
+      "source": "PeeringDB"
     }
   ]
 }
@@ -669,7 +682,7 @@ JSON Structure Example:
 
 4. **provenance_badges**: Document EVERY major data source used with vintage date, refresh frequency, and confidence level. This ensures data auditability for investment decisions.
 
-5. **distance_measurements**: Include road-km distances to critical infrastructure (IXPs, carrier POPs, landing stations, carrier hotels) with drive times. Use actual mapping data, not straight-line distance.
+5. **distance_measurements**: Include distances to critical infrastructure (IXPs, carrier POPs, landing stations, carrier hotels). Each entry MUST have: `target` (facility name with type in parentheses), `distance_km`, `distance_mi`, `method` (aerial or road), `source` (e.g., PeeringDB, Google Maps). Use PeeringDB distances as ground truth.
 
 You MUST populate ALL 8 subsections (fiber_infrastructure, last_mile_diversity, subsea_cables, ixp_peering, carrier_diversity, latency_performance, bandwidth_costs, future_proofing) with the exact structure shown above."""
 

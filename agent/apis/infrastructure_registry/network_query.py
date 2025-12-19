@@ -46,9 +46,13 @@ def hav(lat1, lon1, lat2, lon2):
     return 2 * R * math.asin(math.sqrt(a))
 
 
-def safe_json(url, timeout=30, retry_count=0, max_retries=3):
+def safe_json(url, timeout=30, retry_count=0, max_retries=3, warn_on_empty=True):
     """
     Fetch JSON from URL with exponential backoff for rate limiting.
+
+    Args:
+        warn_on_empty: If False, don't print warning for 0 results (useful for ixfac queries
+                       where most facilities don't host IXPs)
     """
     try:
         # Progressive delay: 2s, 3s, 5s, 8s based on retry count
@@ -60,8 +64,8 @@ def safe_json(url, timeout=30, retry_count=0, max_retries=3):
         r.raise_for_status()
         data = r.json()
 
-        # Log empty results (potential issue)
-        if isinstance(data, dict) and "data" in data:
+        # Log empty results only if warn_on_empty is True
+        if warn_on_empty and isinstance(data, dict) and "data" in data:
             if len(data["data"]) == 0:
                 print(f"  [Warning: Query returned 0 results] {url[:80]}...")
 
@@ -85,7 +89,7 @@ def safe_json(url, timeout=30, retry_count=0, max_retries=3):
         return None
 
 
-def get_cached_or_fetch(url, timeout=30):
+def get_cached_or_fetch(url, timeout=30, warn_on_empty=True):
     """Get from cache if available and not expired, otherwise fetch and cache."""
     now = time.time()
 
@@ -95,7 +99,7 @@ def get_cached_or_fetch(url, timeout=30):
             return cached_data
 
     # Not cached or expired - fetch fresh
-    data = safe_json(url, timeout)
+    data = safe_json(url, timeout, warn_on_empty=warn_on_empty)
     if data:
         REQUEST_CACHE[url] = (data, now)
     return data
@@ -166,7 +170,7 @@ def validate_facility_distance(query_lat, query_lon, facility_lat, facility_lon,
 def detect_facility_quality_issues(facility_data, distance_km, city, country):
     """
     Detect data quality issues in facility data.
-    Returns list of flags or None if no issues detected.
+    Returns list of flags (always returns a list, never None).
     """
     flags = []
 
@@ -177,6 +181,7 @@ def detect_facility_quality_issues(facility_data, distance_km, city, country):
         city_dist = hav(city_lat, city_lon, facility_data["latitude"], facility_data["longitude"])
         if city_dist > 100:  # >100km from city center is suspicious
             flags.append("coordinates_suspect")
+            print(f"🚩 Quality flag: {facility_data.get('name')} has coordinates_suspect (>100km from {city})")
 
     # Flag 2: Multiple city names (distributed facility)
     if any(sep in city for sep in [',', ';', '/', '|']):
@@ -186,13 +191,13 @@ def detect_facility_quality_issues(facility_data, distance_km, city, country):
     if not facility_data.get("org_name"):
         flags.append("missing_operator")
 
-    return flags if flags else None
+    return flags  # Always return list, never None
 
 
 def detect_ixp_quality_issues(ix_data, distance_km, facility_count):
     """
     Detect data quality issues in IXP data.
-    Returns list of flags or None if no issues detected.
+    Returns list of flags (always returns a list, never None).
     """
     flags = []
 
@@ -213,7 +218,7 @@ def detect_ixp_quality_issues(ix_data, distance_km, facility_count):
     if ix_data.get("net_count") is None:
         flags.append("missing_asn_count")
 
-    return flags if flags else None
+    return flags  # Always return list, never None
 
 
 # ----------------------------------------------------
@@ -439,68 +444,77 @@ def query_peeringdb(lat, lon, verbose=False):
 
     # NEW FALLBACK: Check if any facilities in top 5 host IXPs not yet found
     # This catches cases like Bridge IX Columbia at DartPoints Columbia
+    # OPTIMIZED: Use batched query instead of per-facility queries to avoid rate limiting
     if out_fac:  # Only run if we have facilities
         # Track which IXP IDs we already have
         existing_ixp_ids = set()
         for ixp in out_ixps:
-            # Try to extract ID from any stored reference (future-proofing)
             if "id" in ixp:
                 existing_ixp_ids.add(ixp["id"])
 
-        for fac in out_fac[:5]:  # Check top 5 closest facilities
-            fac_id = fac.get("id")
-            if not fac_id:
-                continue
+        # Collect facility IDs for batch query
+        fallback_fac_ids = [fac.get("id") for fac in out_fac[:5] if fac.get("id")]
 
-            # Query ixfac for this specific facility
-            q_ixfac_fallback = f"{base}ixfac?fac_id={fac_id}"
-            js_ixfac_fb = get_cached_or_fetch(q_ixfac_fallback, timeout=10)
+        if fallback_fac_ids:
+            # Single batched query for all facility IXP relationships (suppress empty warnings)
+            fac_id_str = ",".join(map(str, fallback_fac_ids))
+            q_ixfac_batch = f"{base}ixfac?fac_id__in={fac_id_str}"
+            js_ixfac_fb = get_cached_or_fetch(q_ixfac_batch, timeout=10, warn_on_empty=False)
 
             if js_ixfac_fb and "data" in js_ixfac_fb:
+                # Build fac_id -> distance lookup
+                fac_dist_lookup = {fac.get("id"): fac["distance_km"] for fac in out_fac[:5] if fac.get("id")}
+
+                # Collect unique IX IDs we haven't seen yet
+                new_ix_ids = set()
+                ix_to_fac_dist = {}  # Track closest facility distance for each IX
                 for ixfac in js_ixfac_fb["data"]:
                     ix_id = ixfac.get("ix_id")
-                    if not ix_id:
-                        continue
+                    fac_id = ixfac.get("fac_id")
+                    if ix_id and ix_id not in existing_ixp_ids and fac_id in fac_dist_lookup:
+                        new_ix_ids.add(ix_id)
+                        # Track minimum distance
+                        fac_dist = fac_dist_lookup[fac_id]
+                        if ix_id not in ix_to_fac_dist or fac_dist < ix_to_fac_dist[ix_id]:
+                            ix_to_fac_dist[ix_id] = fac_dist
 
-                    # Check if this IXP already in out_ixps by ID
-                    if ix_id in existing_ixp_ids:
-                        continue
+                # Batch query for IX details
+                if new_ix_ids:
+                    ix_id_str = ",".join(map(str, new_ix_ids))
+                    q_ix_batch = f"{base}ix?id__in={ix_id_str}"
+                    js_ix = get_cached_or_fetch(q_ix_batch, timeout=10)
 
-                    # Get IXP details
-                    q_ix = f"{base}ix/{ix_id}"
-                    js_ix = get_cached_or_fetch(q_ix, timeout=10)
+                    if js_ix and "data" in js_ix:
+                        for ix in js_ix["data"]:
+                            # Apply same filters as main IXP query
+                            city = ix.get("city", "")
+                            if any(sep in city for sep in [',', ';', '/', '|']):
+                                continue  # Skip virtual IXPs
 
-                    if js_ix and "data" in js_ix and len(js_ix["data"]) > 0:
-                        ix = js_ix["data"][0]
+                            ix_id = ix["id"]
+                            fac_dist = ix_to_fac_dist.get(ix_id, 0)
 
-                        # Apply same filters as main IXP query
-                        city = ix.get("city", "")
-                        if any(sep in city for sep in [',', ';', '/', '|']):
-                            continue  # Skip virtual IXPs
+                            # Determine IXP type
+                            ixp_type = "domestic"
+                            if local_country and ix.get("country") != local_country:
+                                if fac_dist <= 500:
+                                    ixp_type = "regional_cross_border"
+                                else:
+                                    ixp_type = "international"
 
-                        # Determine IXP type
-                        ixp_type = "domestic"
-                        if local_country and ix.get("country") != local_country:
-                            if fac["distance_km"] <= 500:
-                                ixp_type = "regional_cross_border"
-                            else:
-                                ixp_type = "international"
-
-                        # Add to out_ixps
-                        out_ixps.append({
-                            "id": ix["id"],
-                            "name": ix.get("name", "Unknown IXP"),
-                            "city": ix.get("city"),
-                            "country": ix.get("country"),
-                            "asn_count": ix.get("net_count"),
-                            "distance_km": fac["distance_km"],  # Use facility distance
-                            "distance_method": "facility_coords",
-                            "ixp_type": ixp_type,
-                            "data_quality_flag": detect_ixp_quality_issues(ix, fac["distance_km"], 1),
-                        })
-                        existing_ixp_ids.add(ix_id)
-
-                        upd(ix.get("updated"))
+                            out_ixps.append({
+                                "id": ix_id,
+                                "name": ix.get("name", "Unknown IXP"),
+                                "city": ix.get("city"),
+                                "country": ix.get("country"),
+                                "asn_count": ix.get("net_count"),
+                                "distance_km": fac_dist,
+                                "distance_method": "facility_coords",
+                                "ixp_type": ixp_type,
+                                "data_quality_flag": detect_ixp_quality_issues(ix, fac_dist, 1),
+                            })
+                            existing_ixp_ids.add(ix_id)
+                            upd(ix.get("updated"))
 
         # Re-sort after fallback additions and take top 3
         out_ixps = sorted(out_ixps, key=lambda x: x["distance_km"])[:3]

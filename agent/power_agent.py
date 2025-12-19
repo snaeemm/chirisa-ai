@@ -8,7 +8,7 @@ from .search_agent import search_agent
 from .model_config import gemini_model, built_in_planner
 
 # Configuration - Keep for backwards compatibility
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Create search tool for web intelligence
 search_tool = AgentTool(agent=search_agent)
@@ -73,6 +73,18 @@ You will receive verified infrastructure data from OpenStreetMap/OpenInfraMap sh
 - Available capacity (MW): "unknown_requires_utility_letter" (OSM doesn't show capacity)
 - Line circuit counts: "verified_by_osm" (if in OSM tags)
 - Transmission line presence: "verified_by_osm" (if found in OSM)
+
+═══════════════════════════════════════════════════════════════════════════════
+🌐 CROSS-DOMAIN DATA (If Provided)
+═══════════════════════════════════════════════════════════════════════════════
+
+**Water Stress (WRI Aqueduct)**: If score >3, evaporative cooling is limited - affects power_capacity section
+**Seismic (USGS)**: If PGA >0.1g, transformers need seismic bracing - affects grid_reliability costs
+
+Use these cross-domain data points to:
+1. Adjust cooling-related power capacity estimates based on water availability
+2. Include seismic hardening costs in transformer/switchgear cost estimates
+3. Tag as: "verified_by_wri_aqueduct", "verified_by_usgs"
 
 **VERIFICATION METADATA FORMAT WITH SOURCE TRACKING (CRITICAL - READ CAREFULLY):**
 

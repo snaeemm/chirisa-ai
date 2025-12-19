@@ -11,7 +11,7 @@ from .search_agent import search_agent
 from .model_config import gemini_model, built_in_planner
 
 # Configuration - Keep for backwards compatibility
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Create search tool for web intelligence
 search_tool = AgentTool(agent=search_agent)
@@ -54,6 +54,17 @@ thermal resilience, and mechanical infrastructure requirements for 50-100 MW hyp
 **DOMAIN WEIGHT**: 8% of composite score
 
 **OUTPUT STRUCTURE**: You MUST return a valid JSON object matching the MechanicalThermalOutput Pydantic model with these sections:
+
+---
+
+═══════════════════════════════════════════════════════════════════════════════
+🌐 CROSS-DOMAIN DATA (If Provided)
+═══════════════════════════════════════════════════════════════════════════════
+
+**Water Stress (WRI Aqueduct)**: CRITICAL - If score >3, evaporative/water-cooled options limited
+**Seismic (USGS)**: If PGA >0.1g, HVAC equipment needs seismic bracing (+5-15% cost)
+
+Tag as: "verified_by_wri_aqueduct", "verified_by_usgs"
 
 ---
 

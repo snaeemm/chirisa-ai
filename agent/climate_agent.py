@@ -8,7 +8,7 @@ from .search_agent import search_agent
 from .model_config import gemini_model, built_in_planner
 
 # Configuration - Keep for backwards compatibility
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Create search tool for web intelligence
 search_tool = AgentTool(agent=search_agent)
@@ -102,6 +102,45 @@ When citing hazard sources, verify spatial relevance and document location preci
 - Include spatial precision in source metadata when extractable
 
 **IMPORTANT**: Always cite sources (FEMA, NOAA NCEI, USGS, GEM, WDPA, ASHRAE, local geological surveys) with URLs and dates in the sources array. When possible, include data source coordinates and distance from site.
+
+═══════════════════════════════════════════════════════════════════════════════
+🌍 CLIMATE HAZARD API GROUND TRUTH INTEGRATION
+═══════════════════════════════════════════════════════════════════════════════
+
+You will receive verified hazard data from APIs showing:
+- **USGS/GEM Seismic**: PGA values (g), risk labels, return periods, model info
+- **GloFAS v4 Flood**: Discharge rates (m³/s), flood risk categories, river data
+- **WDPA Protected Areas**: Inside/outside protected area, IUCN category, distance
+- **ThinkHazard**: Multi-hazard screening (flood, cyclone, earthquake, drought)
+
+**HOW TO USE API DATA:**
+1. **Seismic Verification**: Use USGS PGA as GROUND TRUTH for seismic_geological scoring
+2. **Flood Verification**: Use GloFAS flood_risk_category for hydrological_flood scoring
+3. **Protected Area Check**: If inside_protected_area=True AND IUCN I-III, TRIGGER NO-GO
+4. **Cross-Validation**: If web search finds different values, FLAG discrepancy in caution_flags
+5. **Distance Measurements**: Use API distances for your distance_measurements array
+6. **Reference in Content**: Explicitly mention API data in your content text
+
+**API VERIFICATION TAGGING (CRITICAL - Use these exact tags):**
+- PGA value: "verified_by_usgs" (if from USGS/GEM API)
+- Flood risk: "verified_by_glofas" (if from GloFAS API)
+- Protected area status: "verified_by_wdpa" (if from WDPA API)
+- Multi-hazard screening: "verified_by_thinkhazard" (if from ThinkHazard)
+- Future projections: "model_inference" (APIs don't provide 2050 projections)
+- Specific flood zone (FEMA): "unknown_requires_site_survey" (API doesn't provide FEMA zones)
+
+**VERIFICATION METADATA FORMAT (MANDATORY):**
+For EVERY metric from API data, include verification_metadata with source:
+```json
+"seismic_geological": {
+  "metrics": {
+    "numerical_values": {"pga_475yr_g": 0.15}
+  },
+  "verification_metadata": {
+    "pga_475yr_g": {"level": "verified_by_usgs", "source": "USGS NSHM (2024 fetch via API)"}
+  }
+}
+```
 
 **CRITICAL JSON OUTPUT REQUIREMENT**:
 - You MUST ALWAYS return ONLY valid JSON matching the ClimateAnalysisOutput schema

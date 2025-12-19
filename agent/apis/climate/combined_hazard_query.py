@@ -34,10 +34,11 @@ async def query_all_climate_hazards(lat: float, lon: float) -> Dict[str, Any]:
         Dict with keys: seismic_hazard, flood_hazard, protected_areas,
         thinkhazard, query_timestamp, errors
     """
-    from .seismic_hazard_query import query_seismic_hazard
-    from .flood_hazard_query import query_flood_hazard
-    from agent.apis.climate_site_civil_regulatory_esg.protected_area_query import query_protected_area
-    from .thinkhazard_query import query_thinkhazard
+    # Import from domain-based folders
+    from agent.apis.geospatial_hazards.seismic_hazard_query import query_seismic_hazard
+    from agent.apis.geospatial_hazards.flood_hazard_query import query_flood_hazard
+    from agent.apis.geospatial_hazards.protected_area_query import query_protected_area
+    from agent.apis.geospatial_hazards.thinkhazard_query import query_thinkhazard
 
     results = {
         "query_timestamp": datetime.utcnow().isoformat(),

@@ -11,7 +11,7 @@ from .search_agent import search_agent
 from .model_config import gemini_model, built_in_planner
 
 # Configuration - Keep for backwards compatibility
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Create search tool for web intelligence
 search_tool = AgentTool(agent=search_agent)
@@ -54,6 +54,17 @@ and civil engineering feasibility for 50-100 MW Phase 1 data center deployment.
 **DOMAIN WEIGHT**: 10% of composite score
 
 **OUTPUT STRUCTURE**: You MUST return a valid JSON object matching the SiteCivilInfrastructureOutput Pydantic model with these sections:
+
+---
+
+═══════════════════════════════════════════════════════════════════════════════
+🌐 CROSS-DOMAIN DATA (If Provided)
+═══════════════════════════════════════════════════════════════════════════════
+
+**Power Infrastructure (OSM)**: Substation proximity affects site layout planning
+**Seismic (USGS)**: PGA affects foundation design requirements and costs
+
+Tag as: "verified_by_osm", "verified_by_usgs"
 
 ---
 
@@ -394,6 +405,42 @@ The enhanced water stress query in Example #4 includes "catchment", "basin", and
 - `verified_by_transactional` - Geotechnical report, title search, water letter
 - `model_inference` - Estimated from regional data
 - `unknown_requires_utility_letter` - Needs formal utility/municipal engagement
+
+═══════════════════════════════════════════════════════════════════════════════
+💧 WATER STRESS & PROTECTED AREAS API GROUND TRUTH INTEGRATION
+═══════════════════════════════════════════════════════════════════════════════
+
+You will receive verified data from APIs showing:
+- **WRI Aqueduct**: Baseline water stress score (0-5), category labels, basin ID, data vintage
+- **WDPA Protected Areas**: Inside/outside protected area, IUCN category, distance, area details
+
+**HOW TO USE API DATA:**
+1. **Water Stress Verification**: Use WRI Aqueduct score as GROUND TRUTH for Section C water analysis
+2. **Protected Area Check**: If inside_protected_area=True AND IUCN I-III, TRIGGER NO-GO Gate #1
+3. **Cross-Validation**: If web search finds different water stress, FLAG discrepancy in caution_flags
+4. **Distance Measurements**: Add protected area distance to distance_measurements array
+5. **Reference in Content**: Explicitly cite API values in your content text
+
+**API VERIFICATION TAGGING (CRITICAL - Use these exact tags):**
+- Water stress score: "verified_by_wri_aqueduct" (if from WRI API)
+- Water stress category: "verified_by_wri_aqueduct"
+- Protected area status: "verified_by_wdpa" (if from WDPA API)
+- Protected area distance: "verified_by_wdpa" (from API coordinates)
+- Water utility capacity: "unknown_requires_utility_letter" (API doesn't show utility capacity)
+- Geotechnical data: "unknown_requires_utility_letter" (requires geotech report)
+
+**VERIFICATION METADATA FORMAT (MANDATORY):**
+For EVERY metric from API data, include verification_metadata with source:
+```json
+"water_wastewater": {
+  "metrics": {
+    "numerical_values": {"water_stress_score": 3.2}
+  },
+  "verification_metadata": {
+    "water_stress_score": {"level": "verified_by_wri_aqueduct", "source": "WRI Aqueduct V4 (2024 via GEE)"}
+  }
+}
+```
 
 ## RESPONSE FORMAT
 

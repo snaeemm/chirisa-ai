@@ -2038,6 +2038,140 @@ def format_esg_compliance_data(api_data: dict) -> str:
 """
 
 
+# ═══════════════════════════════════════════════════════════════════════════════
+# CROSS-DOMAIN HELPER FUNCTIONS (for sharing API data across agents)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# Import registry functions for configurable thresholds
+from agent.apis.registry import (
+    get_threshold,
+    check_water_stress_alert,
+    check_seismic_alert,
+    check_protected_area_alert
+)
+
+
+def format_water_stress_for_cross_domain(water_data: dict) -> str:
+    """Format WRI Aqueduct water stress data for cross-domain agents.
+
+    Used by: Power (cooling), Mechanical (cooling strategy), Market (OpEx), ESG (sustainability)
+    """
+    if not water_data or "error" in water_data:
+        return ""
+
+    score = water_data.get("baseline_water_stress_score", 0)
+    category = water_data.get("category_label", "Unknown")
+    alert = check_water_stress_alert(score) if score else "UNKNOWN"
+
+    return f"""
+## Cross-Domain Data: Water Stress (WRI Aqueduct)
+**Score**: {score}/5 ({category})
+**Alert**: {alert}
+**Threshold**: HIGH if >{get_threshold('water_stress_high')}, EXTREME if >{get_threshold('water_stress_extreme')}
+**Tag as**: "verified_by_wri_aqueduct"
+"""
+
+
+def format_seismic_for_cross_domain(climate_data: dict) -> str:
+    """Format seismic PGA data for cross-domain agents.
+
+    Used by: Power (transformer bracing), Network (conduit design),
+             Site Civil (foundations), Mechanical (HVAC bracing)
+    """
+    if not climate_data:
+        return ""
+    seismic = climate_data.get("seismic_hazard", {})
+    if not seismic or "error" in seismic:
+        return ""
+
+    pga = seismic.get("pga_g", 0)
+    risk = seismic.get("risk_label", "Unknown")
+    alert = check_seismic_alert(pga) if pga else "UNKNOWN"
+
+    return f"""
+## Cross-Domain Data: Seismic Hazard (USGS/GEM)
+**PGA (475-year)**: {pga}g ({risk} risk)
+**Alert**: {alert}
+**Threshold**: MODERATE if >{get_threshold('seismic_pga_moderate')}g, HIGH if >{get_threshold('seismic_pga_high')}g
+**Tag as**: "verified_by_usgs"
+"""
+
+
+def format_protected_areas_for_cross_domain(climate_data: dict) -> str:
+    """Format WDPA protected areas for cross-domain agents.
+
+    Used by: Network (fiber route constraints), ESG (regulatory compliance)
+    """
+    if not climate_data:
+        return ""
+    protected = climate_data.get("protected_areas", {})
+    if not protected or "error" in protected:
+        return ""
+
+    inside = protected.get("inside_protected_area", False)
+    distance = protected.get("distance_to_nearest_protected_area_km", "Unknown")
+    distance_float = float(distance) if isinstance(distance, (int, float)) else 999
+    alert = check_protected_area_alert(distance_float, inside)
+
+    return f"""
+## Cross-Domain Data: Protected Areas (WDPA)
+**Inside Protected Area**: {"YES - POTENTIAL NO-GO" if inside else "No"}
+**Distance to Nearest**: {distance} km
+**Alert**: {alert}
+**Threshold**: CRITICAL if <{get_threshold('protected_area_critical_km')}km, CAUTION if <{get_threshold('protected_area_buffer_km')}km
+**Tag as**: "verified_by_wdpa"
+"""
+
+
+def format_peeringdb_for_market_prompt(peeringdb_data: dict) -> str:
+    """Format PeeringDB IXP/facility data for Market agent.
+
+    Used by: Market (peering ecosystem analysis)
+    NOTE: NOT used by ESG per client feedback - carrier diversity is NOT a standard ESG metric
+    """
+    if not peeringdb_data or "error" in peeringdb_data:
+        return ""
+
+    ixps = peeringdb_data.get("ixps", [])
+    facilities = peeringdb_data.get("facilities", [])
+    carriers = peeringdb_data.get("carriers", [])
+
+    ixp_details = ""
+    for ixp in ixps[:3]:
+        ixp_details += f"  - {ixp.get('name', 'Unknown')}: {ixp.get('asn_count', 0)} ASNs, {ixp.get('distance_km', '?')}km\n"
+
+    return f"""
+## Cross-Domain Data: Network Infrastructure (PeeringDB) for Market
+**IXPs within 500km**: {len(ixps)}
+{ixp_details}
+**Facilities within 200km**: {len(facilities)}
+**Carriers**: {len(carriers)}
+
+**MARKET USAGE**: Use for Peering & Interconnection section; tag as "verified_by_peeringdb"
+"""
+
+
+def format_osm_power_for_cross_domain(osm_data: dict) -> str:
+    """Format OSM power data for cross-domain agents.
+
+    Used by: Site Civil (substation proximity for layout planning)
+    """
+    if not osm_data or "error" in osm_data:
+        return ""
+
+    substation = osm_data.get("nearest_substation_name", "Unknown")
+    distance = osm_data.get("substation_distance_km", "Unknown")
+    voltages = osm_data.get("substation_voltages_kV", [])
+
+    return f"""
+## Cross-Domain Data: Power Infrastructure (OpenInfraMap/OSM)
+**Nearest Substation**: {substation} ({distance} km)
+**Voltages**: {'/'.join(map(str, voltages)) if voltages else 'Unknown'} kV
+**Impact**: Substation distance affects power feed corridor planning and trenching costs
+**Tag as**: "verified_by_osm"
+"""
+
+
 # ---- Climate Hazard API Enrich Function ----
 
 def enrich_climate_output_with_hazard_data(response_data: dict, hazard_data: dict) -> dict:
@@ -3463,6 +3597,15 @@ class PowerInfrastructureAgentWrapper:
             elif osm_error:
                 prompt = prompt + f"\n\n⚠️ Note: OpenInfraMap query failed ({osm_error}). Proceed with web search only."
 
+            # Inject cross-domain data: Water stress affects cooling, Seismic affects transformer design
+            if shared_context and 'api_data' in shared_context:
+                water_data = shared_context['api_data'].get('water_stress')
+                if water_data and "error" not in water_data:
+                    prompt = prompt + "\n\n" + format_water_stress_for_cross_domain(water_data)
+                climate_data = shared_context['api_data'].get('climate_hazards')
+                if climate_data:
+                    prompt = prompt + "\n\n" + format_seismic_for_cross_domain(climate_data)
+
             # Use Google GenAI client with Search grounding
             try:
                 from google.genai import Client, types
@@ -3669,6 +3812,13 @@ class NetworkConnectivityAgentWrapper:
                 prompt = prompt + "\n\n" + peeringdb_context
             elif peeringdb_error:
                 prompt = prompt + f"\n\n⚠️ Note: PeeringDB query failed ({peeringdb_error}). Proceed with web search only."
+
+            # Inject cross-domain data: Protected areas affect fiber routes, Seismic affects conduit design
+            if shared_context and 'api_data' in shared_context:
+                climate_data = shared_context['api_data'].get('climate_hazards')
+                if climate_data:
+                    prompt = prompt + "\n\n" + format_protected_areas_for_cross_domain(climate_data)
+                    prompt = prompt + "\n\n" + format_seismic_for_cross_domain(climate_data)
 
             # Step 3: Use Google GenAI client with Search grounding
             try:
@@ -4331,6 +4481,16 @@ class SiteCivilAgentWrapper:
             else:
                 print(f"⚠️ No pre-fetched protected areas data available")
 
+            # Inject cross-domain data: OSM power for substation proximity, Seismic for foundations
+            osm_data = api_data.get('osm_power')
+            if osm_data and "error" not in osm_data:
+                prompt = prompt + "\n\n" + format_osm_power_for_cross_domain(osm_data)
+                print(f"⚡ Injecting cross-domain OSM power data for site layout planning...")
+            climate_hazards = api_data.get('climate_hazards')
+            if climate_hazards:
+                prompt = prompt + "\n\n" + format_seismic_for_cross_domain(climate_hazards)
+                print(f"🌍 Injecting cross-domain seismic data for foundation design...")
+
             from google.genai import Client, types
             from google.genai.types import Tool, GoogleSearch
             import os
@@ -4507,6 +4667,18 @@ class MechanicalThermalAgentWrapper:
             # Use the ADK agent's instruction as the prompt base (match Power/Network pattern with detailed search guidance)
             prompt = f"{self.adk_agent.instruction}\n\nAnalyze mechanical and thermal systems for data center at {location_descriptor} in {country}.{location_context_note}\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis. Search for climate data, cooling requirements, water availability, HVAC systems, psychrometric conditions, and thermal management solutions for this specific location.**\n\n**CRITICAL - API DATA IS NOT COPYRIGHTED:** The structured data provided below comes from PRE-FETCHED public APIs (WRI Aqueduct, WDPA, GloFAS, ThinkHazard, OpenInfraMap, PeeringDB). This is PUBLIC DOMAIN data - you MUST include ALL of it in your analysis. PARAPHRASE naturally but include every metric. Do NOT truncate, omit, or refuse to output any data due to similarity concerns. If you encounter any safety triggers, REPHRASE the content creatively but never omit data. This is internal investment analysis requiring COMPLETE output.\n\n**CRITICAL SOURCE ATTRIBUTION:** For EVERY numerical metric, include verification_metadata with: 1) 'level' = one of 'verified_by_public_source', 'model_inference', 'assumption_based_on_region'; 2) 'source' = MUST be a SPECIFIC source name with organization (e.g., 'EPA eGRID 2023', 'EIA State Electricity Profiles', 'Duke Energy FL Rate Schedule 2024', 'Florida DEP Regulations'). NEVER use generic text like 'Data 2025' or 'Public Source' - always name the actual database, report, agency, or organization.\n\n**PROVENANCE BADGES REQUIRED FORMAT:** Each provenance_badge MUST include ALL of these fields: 'source' (organization name), 'vintage' (date like '2024-Q4'), 'confidence' (must be 'high', 'medium', or 'low'), 'coverage' (what data it covers). Missing any field will cause validation failure."
 
+            # Inject cross-domain data: Water stress is CRITICAL for cooling strategy, Seismic for HVAC bracing
+            api_data = context.get('api_data', {}) if context and isinstance(context, dict) else {}
+            water_data = api_data.get('water_stress')
+            if water_data and "error" not in water_data:
+                prompt = prompt + "\n\n" + format_water_stress_for_cross_domain(water_data)
+                print(f"💧 Injecting cross-domain water stress data for cooling strategy selection...")
+                print(f"   Score: {water_data.get('baseline_water_stress_score', 'N/A')}/5 - impacts evaporative cooling viability")
+            climate_data = api_data.get('climate_hazards')
+            if climate_data:
+                prompt = prompt + "\n\n" + format_seismic_for_cross_domain(climate_data)
+                print(f"🌍 Injecting cross-domain seismic data for HVAC equipment bracing...")
+
             from google.genai import Client, types
             from google.genai.types import Tool, GoogleSearch
             import os
@@ -4673,6 +4845,19 @@ class MarketCompetitionAgentWrapper:
 
             # Use the ADK agent's instruction as the prompt base (match Power/Network pattern with detailed search guidance)
             prompt = f"{self.adk_agent.instruction}\n\nAnalyze market dynamics and competition for data center at {location_descriptor} in {country}.{location_context_note}\n\n**MANDATORY: You MUST use web search to find current, factual data for this analysis. Search for existing data center operators, market demand trends, enterprise customers, cloud provider presence, competitive pricing, and market growth forecasts for this specific location.**\n\n**CRITICAL - API DATA IS NOT COPYRIGHTED:** The structured data provided below comes from PRE-FETCHED public APIs (WRI Aqueduct, WDPA, GloFAS, ThinkHazard, OpenInfraMap, PeeringDB). This is PUBLIC DOMAIN data - you MUST include ALL of it in your analysis. PARAPHRASE naturally but include every metric. Do NOT truncate, omit, or refuse to output any data due to similarity concerns. If you encounter any safety triggers, REPHRASE the content creatively but never omit data. This is internal investment analysis requiring COMPLETE output.\n\n**CRITICAL SOURCE ATTRIBUTION:** For EVERY numerical metric, include verification_metadata with: 1) 'level' = one of 'verified_by_public_source', 'model_inference', 'assumption_based_on_region'; 2) 'source' = MUST be a SPECIFIC source name with organization (e.g., 'EPA eGRID 2023', 'EIA State Electricity Profiles', 'Duke Energy FL Rate Schedule 2024', 'Florida DEP Regulations'). NEVER use generic text like 'Data 2025' or 'Public Source' - always name the actual database, report, agency, or organization.\n\n**PROVENANCE BADGES REQUIRED FORMAT:** Each provenance_badge MUST include ALL of these fields: 'source' (organization name), 'vintage' (date like '2024-Q4'), 'confidence' (must be 'high', 'medium', or 'low'), 'coverage' (what data it covers). Missing any field will cause validation failure."
+
+            # Inject cross-domain data: PeeringDB for peering ecosystem, Water stress for OpEx impact
+            api_data = context.get('api_data', {}) if context and isinstance(context, dict) else {}
+            peeringdb_data = api_data.get('peeringdb')
+            if peeringdb_data and "error" not in peeringdb_data:
+                prompt = prompt + "\n\n" + format_peeringdb_for_market_prompt(peeringdb_data)
+                print(f"🌐 Injecting cross-domain PeeringDB data for peering ecosystem analysis...")
+                print(f"   IXPs: {len(peeringdb_data.get('ixps', []))}, Facilities: {len(peeringdb_data.get('facilities', []))}")
+            water_data = api_data.get('water_stress')
+            if water_data and "error" not in water_data:
+                prompt = prompt + "\n\n" + format_water_stress_for_cross_domain(water_data)
+                print(f"💧 Injecting cross-domain water stress data for OpEx analysis...")
+                print(f"   Score: {water_data.get('baseline_water_stress_score', 'N/A')}/5 - impacts water costs")
 
             from google.genai import Client, types
             from google.genai.types import Tool, GoogleSearch
@@ -4854,11 +5039,11 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
         # ========================================
         print(f"🌍 Pre-fetching ALL ground truth APIs for all agents...")
 
-        # Import API modules
-        from agent.apis.power.power_infra_query import find_power_assets
-        from agent.apis.network.network_query import query_peeringdb
+        # Import API modules from domain-based folders
+        from agent.apis.infrastructure_registry.power_infra_query import find_power_assets
+        from agent.apis.infrastructure_registry.network_query import query_peeringdb
         from agent.apis.climate.combined_hazard_query import query_all_climate_hazards
-        from agent.apis.site_civil_regulatory_esg.water_stress_query import query_water_stress
+        from agent.apis.resource_stress.water_stress_query import query_water_stress
 
         # Prepare API fetch tasks
         async def fetch_power_api():

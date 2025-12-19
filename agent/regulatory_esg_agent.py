@@ -11,7 +11,7 @@ from .search_agent import search_agent
 from .model_config import gemini_model, built_in_planner
 
 # Configuration - Keep for backwards compatibility
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Create search tool for web intelligence
 search_tool = AgentTool(agent=search_agent)
@@ -53,6 +53,19 @@ Assess data sovereignty laws, government incentives, operational compliance, per
 **DOMAIN WEIGHT**: 14% of composite score (MERGED Regulatory + ESG)
 
 **OUTPUT STRUCTURE**: You MUST return a valid JSON object matching the RegulatoryESGOutput Pydantic model with these 5 sections:
+
+---
+
+═══════════════════════════════════════════════════════════════════════════════
+🌐 CROSS-DOMAIN DATA (If Provided)
+═══════════════════════════════════════════════════════════════════════════════
+
+**Water Stress (WRI Aqueduct)**: ESG water sustainability metrics for GRI/SASB disclosure
+**Protected Areas (WDPA)**: Regulatory compliance for environmental constraints; IUCN categories I-II are NO-GO
+
+NOTE: PeeringDB NOT included - carrier diversity is NOT a standard TCFD/CDP/SASB/GRI metric
+
+Tag as: "verified_by_wri_aqueduct", "verified_by_wdpa"
 
 ---
 
@@ -162,6 +175,41 @@ Assess data sovereignty laws, government incentives, operational compliance, per
 - Generator emissions limits (g/kWh NOx, PM)
 - Water stress score (WRI Aqueduct 1-5)
 - Air quality index (AQI)
+
+═══════════════════════════════════════════════════════════════════════════════
+🌱 ESG COMPLIANCE API GROUND TRUTH INTEGRATION
+═══════════════════════════════════════════════════════════════════════════════
+
+You will receive verified data from APIs showing:
+- **WRI Aqueduct**: Baseline water stress score (0-5) for sustainability assessment
+- **WDPA Protected Areas**: Biodiversity constraints, protected area proximity
+
+**HOW TO USE API DATA:**
+1. **Water Sustainability**: Use WRI Aqueduct for Section C environmental compliance metrics
+2. **Biodiversity Assessment**: Use WDPA for protected area constraints in Section C
+3. **ESG Disclosure**: Water stress impacts ESG ratings - document API source for investor transparency
+4. **Cross-Validation**: If LLM claims "low water risk" but API shows High stress, add caution_flag
+
+**API VERIFICATION TAGGING (CRITICAL - Use these exact tags):**
+- Water stress for ESG: "verified_by_wri_aqueduct" (WRI Aqueduct V4)
+- Biodiversity constraints: "verified_by_wdpa" (WDPA Protected Planet)
+- Carbon intensity: "model_inference" (no direct API)
+- Renewable energy availability: "requires_utility_quote" or "model_inference"
+
+**VERIFICATION METADATA FORMAT (MANDATORY):**
+For EVERY metric from API data, include verification_metadata with source:
+```json
+"environmental_compliance": {
+  "metrics": {
+    "numerical_values": {"water_stress_score": 3.2}
+  },
+  "verification_metadata": {
+    "water_stress_score": {"level": "verified_by_wri_aqueduct", "source": "WRI Aqueduct V4 (2024 via GEE)"}
+  }
+}
+```
+
+**IMPORTANT**: ESG investors require auditable data provenance. Always include API source in verification_metadata.
 
 **CAUTION FLAG #3**: Complex Environmental Compliance
 - **TRIGGER**: Comprehensive EIA required (>12 months) OR strict emissions limits requiring advanced controls OR noise limits <45 dBA requiring acoustic enclosures

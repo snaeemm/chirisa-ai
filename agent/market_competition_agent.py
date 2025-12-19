@@ -12,7 +12,7 @@ from .search_agent import search_agent
 from .model_config import gemini_model, built_in_planner
 
 # Configuration - Keep for backwards compatibility
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Create search tool for web intelligence
 search_tool = AgentTool(agent=search_agent)
@@ -40,6 +40,17 @@ and go-to-market feasibility for 50-100 MW hyperscale data center deployment.
 **DOMAIN WEIGHT**: 6% of composite score
 
 **OUTPUT STRUCTURE**: You MUST return a valid JSON object matching the MarketCompetitionOutput Pydantic model with these sections:
+
+---
+
+═══════════════════════════════════════════════════════════════════════════════
+🌐 CROSS-DOMAIN DATA (If Provided)
+═══════════════════════════════════════════════════════════════════════════════
+
+**Network (PeeringDB)**: IXP ASN counts, facility density for peering ecosystem analysis
+**Water Stress (WRI Aqueduct)**: Regional water costs affecting OpEx competitiveness
+
+Tag as: "verified_by_peeringdb", "verified_by_wri_aqueduct"
 
 ---
 
