@@ -44,13 +44,25 @@ and go-to-market feasibility for 50-100 MW hyperscale data center deployment.
 ---
 
 ═══════════════════════════════════════════════════════════════════════════════
-🌐 CROSS-DOMAIN DATA (If Provided)
+🌐 CROSS-DOMAIN DATA (If Provided) - STRICT API SOURCE RULES
 ═══════════════════════════════════════════════════════════════════════════════
+
+**🚨 CRITICAL: Only use "verified_by_[api]" tags for data ACTUALLY from that API:**
+
+| API Source | What It Provides | Correct Tag |
+|------------|------------------|-------------|
+| **PeeringDB** | IXP count, ASN counts, facility names ONLY | `verified_by_peeringdb` |
+| **WRI Aqueduct** | Water stress score (0-5) ONLY | `verified_by_wri_aqueduct` |
+
+**❌ NEVER attribute these to API sources - use "model_inference" instead:**
+- Market size (MW inventory) → `model_inference`
+- Vacancy rates → `model_inference`
+- Pricing ($/kW/month) → `model_inference`
+- Absorption rates → `model_inference`
+- Competitor market share → `model_inference`
 
 **Network (PeeringDB)**: IXP ASN counts, facility density for peering ecosystem analysis
 **Water Stress (WRI Aqueduct)**: Regional water costs affecting OpEx competitiveness
-
-Tag as: "verified_by_peeringdb", "verified_by_wri_aqueduct"
 
 ---
 

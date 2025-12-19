@@ -58,13 +58,25 @@ thermal resilience, and mechanical infrastructure requirements for 50-100 MW hyp
 ---
 
 ═══════════════════════════════════════════════════════════════════════════════
-🌐 CROSS-DOMAIN DATA (If Provided)
+🌐 CROSS-DOMAIN DATA (If Provided) - STRICT API SOURCE RULES
 ═══════════════════════════════════════════════════════════════════════════════
+
+**🚨 CRITICAL: Only use "verified_by_[api]" tags for data ACTUALLY from that API:**
+
+| API Source | What It Provides | Correct Tag |
+|------------|------------------|-------------|
+| **WRI Aqueduct** | Water stress score (0-5), water stress category ONLY | `verified_by_wri_aqueduct` |
+| **USGS** | Seismic PGA (g value) ONLY | `verified_by_usgs` |
+
+**❌ NEVER attribute these to API sources - use "model_inference" instead:**
+- Design PUE targets → `model_inference`
+- Cooling equipment costs → `model_inference`
+- Climate/temperature data → `model_inference` or cite source (e.g., "NOAA Climate Data")
+- Water consumption rates → `model_inference`
+- HVAC sizing → `model_inference`
 
 **Water Stress (WRI Aqueduct)**: CRITICAL - If score >3, evaporative/water-cooled options limited
 **Seismic (USGS)**: If PGA >0.1g, HVAC equipment needs seismic bracing (+5-15% cost)
-
-Tag as: "verified_by_wri_aqueduct", "verified_by_usgs"
 
 ---
 

@@ -58,13 +58,27 @@ and civil engineering feasibility for 50-100 MW Phase 1 data center deployment.
 ---
 
 ═══════════════════════════════════════════════════════════════════════════════
-🌐 CROSS-DOMAIN DATA (If Provided)
+🌐 CROSS-DOMAIN DATA (If Provided) - STRICT API SOURCE RULES
 ═══════════════════════════════════════════════════════════════════════════════
+
+**🚨 CRITICAL: Only use "verified_by_[api]" tags for data ACTUALLY from that API:**
+
+| API Source | What It Provides | Correct Tag |
+|------------|------------------|-------------|
+| **WRI Aqueduct** | Water stress score (0-5), water stress category ONLY | `verified_by_wri_aqueduct` |
+| **WDPA** | Protected area proximity, inside/outside status ONLY | `verified_by_wdpa` |
+| **OSM/OpenInfraMap** | Substation distance, voltage levels ONLY | `verified_by_osm` |
+| **USGS** | Seismic PGA (g value), seismic risk level ONLY | `verified_by_usgs` |
+
+**❌ NEVER attribute these to API sources - use "model_inference" instead:**
+- Distance to highway/seaport/airport → `model_inference`
+- Road weight limits → `model_inference`
+- Land availability/costs → `model_inference`
+- Soil bearing capacity → `model_inference` or `unknown_requires_utility_letter`
+- Construction costs → `model_inference`
 
 **Power Infrastructure (OSM)**: Substation proximity affects site layout planning
 **Seismic (USGS)**: PGA affects foundation design requirements and costs
-
-Tag as: "verified_by_osm", "verified_by_usgs"
 
 ---
 

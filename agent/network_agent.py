@@ -126,13 +126,25 @@ Output NO-GO gates in `no_go_gates` array with:
 ```
 
 ═══════════════════════════════════════════════════════════════════════════════
-🌐 CROSS-DOMAIN DATA (If Provided)
+🌐 CROSS-DOMAIN DATA (If Provided) - STRICT API SOURCE RULES
 ═══════════════════════════════════════════════════════════════════════════════
+
+**🚨 CRITICAL: Only use "verified_by_[api]" tags for data ACTUALLY from that API:**
+
+| API Source | What It Provides | Correct Tag |
+|------------|------------------|-------------|
+| **PeeringDB** | IXP locations, ASN counts, facility names, carrier presence ONLY | `verified_by_peeringdb` |
+| **WDPA** | Protected area proximity, inside/outside status ONLY | `verified_by_wdpa` |
+| **USGS** | Seismic PGA (g value) ONLY | `verified_by_usgs` |
+
+**❌ NEVER attribute these to API sources - use "model_inference" instead:**
+- Bandwidth costs ($/Mbps) → `model_inference`
+- Fiber route distances → `model_inference` (unless from OSRM)
+- Latency estimates → `model_inference`
+- Carrier pricing → `model_inference`
 
 **Protected Areas (WDPA)**: If inside protected area, fiber routes restricted - affects last_mile_diversity
 **Seismic (USGS)**: If PGA >0.1g, underground conduit requires seismic joints - affects fiber_infrastructure costs
-
-Tag as: "verified_by_wdpa", "verified_by_usgs"
 
 ═══════════════════════════════════════════════════════════════════════════════
 CAUTION FLAGS (YELLOW FLAGS - MITIGATE THEN PROCEED)

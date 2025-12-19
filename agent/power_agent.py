@@ -75,8 +75,22 @@ You will receive verified infrastructure data from OpenStreetMap/OpenInfraMap sh
 - Transmission line presence: "verified_by_osm" (if found in OSM)
 
 ═══════════════════════════════════════════════════════════════════════════════
-🌐 CROSS-DOMAIN DATA (If Provided)
+🌐 CROSS-DOMAIN DATA (If Provided) - STRICT API SOURCE RULES
 ═══════════════════════════════════════════════════════════════════════════════
+
+**🚨 CRITICAL: Only use "verified_by_[api]" tags for data ACTUALLY from that API:**
+
+| API Source | What It Provides | Correct Tag |
+|------------|------------------|-------------|
+| **OSM/OpenInfraMap** | Substation name, distance, voltage levels ONLY | `verified_by_osm` |
+| **WRI Aqueduct** | Water stress score (0-5) ONLY | `verified_by_wri_aqueduct` |
+| **USGS** | Seismic PGA (g value) ONLY | `verified_by_usgs` |
+
+**❌ NEVER attribute these to API sources - use "model_inference" instead:**
+- Electricity costs ($/kWh) → `model_inference` or cite actual utility (e.g., "Duke Energy 2024")
+- Available grid capacity (MW) → `unknown_requires_utility_letter`
+- Renewable energy % → `model_inference` or cite source (e.g., "EIA 2024")
+- Transformer costs → `model_inference`
 
 **Water Stress (WRI Aqueduct)**: If score >3, evaporative cooling is limited - affects power_capacity section
 **Seismic (USGS)**: If PGA >0.1g, transformers need seismic bracing - affects grid_reliability costs
@@ -84,7 +98,6 @@ You will receive verified infrastructure data from OpenStreetMap/OpenInfraMap sh
 Use these cross-domain data points to:
 1. Adjust cooling-related power capacity estimates based on water availability
 2. Include seismic hardening costs in transformer/switchgear cost estimates
-3. Tag as: "verified_by_wri_aqueduct", "verified_by_usgs"
 
 **VERIFICATION METADATA FORMAT WITH SOURCE TRACKING (CRITICAL - READ CAREFULLY):**
 

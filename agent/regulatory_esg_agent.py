@@ -57,15 +57,27 @@ Assess data sovereignty laws, government incentives, operational compliance, per
 ---
 
 ═══════════════════════════════════════════════════════════════════════════════
-🌐 CROSS-DOMAIN DATA (If Provided)
+🌐 CROSS-DOMAIN DATA (If Provided) - STRICT API SOURCE RULES
 ═══════════════════════════════════════════════════════════════════════════════
 
-**Water Stress (WRI Aqueduct)**: ESG water sustainability metrics for GRI/SASB disclosure
-**Protected Areas (WDPA)**: Regulatory compliance for environmental constraints; IUCN categories I-II are NO-GO
+**🚨 CRITICAL: Only use "verified_by_[api]" tags for data ACTUALLY from that API:**
+
+| API Source | What It Provides | Correct Tag |
+|------------|------------------|-------------|
+| **WRI Aqueduct** | Water stress score (0-5), water stress category ONLY | `verified_by_wri_aqueduct` |
+| **WDPA** | Protected area proximity, IUCN category, inside/outside status ONLY | `verified_by_wdpa` |
+
+**❌ NEVER attribute these to API sources - use "model_inference" instead:**
+- Carbon intensity (gCO2/kWh) → `model_inference` or cite source (e.g., "EPA eGRID 2024")
+- Renewable energy % → `model_inference` or cite source
+- Tax incentives/rates → `model_inference` or cite source
+- Permitting timelines → `model_inference`
+- Data protection law details → `model_inference`
 
 NOTE: PeeringDB NOT included - carrier diversity is NOT a standard TCFD/CDP/SASB/GRI metric
 
-Tag as: "verified_by_wri_aqueduct", "verified_by_wdpa"
+**Water Stress (WRI Aqueduct)**: ESG water sustainability metrics for GRI/SASB disclosure
+**Protected Areas (WDPA)**: Regulatory compliance for environmental constraints; IUCN categories I-II are NO-GO
 
 ---
 
