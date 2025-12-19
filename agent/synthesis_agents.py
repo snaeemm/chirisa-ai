@@ -3598,13 +3598,15 @@ class PowerInfrastructureAgentWrapper:
                 prompt = prompt + f"\n\n⚠️ Note: OpenInfraMap query failed ({osm_error}). Proceed with web search only."
 
             # Inject cross-domain data: Water stress affects cooling, Seismic affects transformer design
-            if shared_context and 'api_data' in shared_context:
-                water_data = shared_context['api_data'].get('water_stress')
-                if water_data and "error" not in water_data:
-                    prompt = prompt + "\n\n" + format_water_stress_for_cross_domain(water_data)
-                climate_data = shared_context['api_data'].get('climate_hazards')
-                if climate_data:
-                    prompt = prompt + "\n\n" + format_seismic_for_cross_domain(climate_data)
+            # Note: api_data is already extracted at line 3562 from context parameter
+            water_data = api_data.get('water_stress')
+            if water_data and "error" not in water_data:
+                prompt = prompt + "\n\n" + format_water_stress_for_cross_domain(water_data)
+                print(f"💧 Injecting cross-domain water stress data for cooling strategy...")
+            climate_data = api_data.get('climate_hazards')
+            if climate_data:
+                prompt = prompt + "\n\n" + format_seismic_for_cross_domain(climate_data)
+                print(f"🌍 Injecting cross-domain seismic data for transformer design...")
 
             # Use Google GenAI client with Search grounding
             try:
@@ -3814,11 +3816,13 @@ class NetworkConnectivityAgentWrapper:
                 prompt = prompt + f"\n\n⚠️ Note: PeeringDB query failed ({peeringdb_error}). Proceed with web search only."
 
             # Inject cross-domain data: Protected areas affect fiber routes, Seismic affects conduit design
-            if shared_context and 'api_data' in shared_context:
-                climate_data = shared_context['api_data'].get('climate_hazards')
-                if climate_data:
-                    prompt = prompt + "\n\n" + format_protected_areas_for_cross_domain(climate_data)
-                    prompt = prompt + "\n\n" + format_seismic_for_cross_domain(climate_data)
+            # Note: api_data is already extracted at line 3790 from context parameter
+            climate_data = api_data.get('climate_hazards')
+            if climate_data:
+                prompt = prompt + "\n\n" + format_protected_areas_for_cross_domain(climate_data)
+                prompt = prompt + "\n\n" + format_seismic_for_cross_domain(climate_data)
+                print(f"🌲 Injecting cross-domain protected areas data for fiber route planning...")
+                print(f"🌍 Injecting cross-domain seismic data for conduit design...")
 
             # Step 3: Use Google GenAI client with Search grounding
             try:
