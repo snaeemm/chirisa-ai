@@ -19,7 +19,7 @@ from .search_agent import search_agent
 from .model_config import gemini_model, built_in_planner
 
 # Database configuration is handled by database.py
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Create function tools - streamlined and combined
 intelligent_json_parser_tool = FunctionTool(func=intelligent_json_parser)

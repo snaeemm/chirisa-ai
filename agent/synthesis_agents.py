@@ -3759,9 +3759,10 @@ class PowerInfrastructureAgentWrapper:
             from .domain_models import PowerInfrastructureOutput
 
             # Call with grounding, schema enforcement, AND thinking config
+            # Dynamic (-1) lets model balance thinking vs output tokens
             thinking_config = types.ThinkingConfig(
                 include_thoughts=False,
-                thinking_budget=10048
+                thinking_budget=-1
             )
 
             # Use streaming helper for RECITATION-resistant calls
@@ -3940,9 +3941,10 @@ class NetworkConnectivityAgentWrapper:
             print(f"🔍 {self.name} calling with Google Search grounding enabled (NO schema enforcement - too restrictive)")
 
             # Call with grounding AND thinking config
+            # Dynamic (-1) lets model balance thinking vs output tokens
             thinking_config = types.ThinkingConfig(
                 include_thoughts=False,
-                thinking_budget=10048
+                thinking_budget=-1
             )
 
             # Use streaming helper for RECITATION-resistant calls
@@ -4140,9 +4142,10 @@ class ClimateSuitabilityAgentWrapper:
             from .domain_models import ClimateAnalysisOutput
 
             # Call with grounding, schema enforcement, AND thinking config for complex reasoning
+            # Dynamic (-1) lets model balance thinking vs output tokens
             thinking_config = types.ThinkingConfig(
                 include_thoughts=False,
-                thinking_budget=10048
+                thinking_budget=-1
             )
 
             # Use streaming helper for RECITATION-resistant calls
@@ -4321,9 +4324,10 @@ class RegulatoryESGAgentWrapper:
             from .domain_models import RegulatoryESGOutput
 
             # Call with grounding, schema enforcement, AND thinking config
+            # Dynamic (-1) lets model balance thinking vs output tokens
             thinking_config = types.ThinkingConfig(
                 include_thoughts=False,
-                thinking_budget=10048
+                thinking_budget=-1
             )
 
             # RECITATION-resistant retry logic with streaming + temperature progression + prompt uniqueness
@@ -4603,9 +4607,10 @@ class SiteCivilAgentWrapper:
             from .domain_models import SiteCivilInfrastructureOutput
 
             # Call with grounding, schema enforcement, AND thinking config for complex reasoning
+            # Dynamic (-1) lets model balance thinking vs output tokens
             thinking_config = types.ThinkingConfig(
                 include_thoughts=False,
-                thinking_budget=10048
+                thinking_budget=-1
             )
 
             # Use streaming helper for RECITATION-resistant calls
@@ -4761,9 +4766,10 @@ class MechanicalThermalAgentWrapper:
             from .domain_models import MechanicalThermalOutput
 
             # Call with grounding, schema enforcement, AND thinking config for complex reasoning
+            # Dynamic (-1) lets model balance thinking vs output tokens
             thinking_config = types.ThinkingConfig(
                 include_thoughts=False,
-                thinking_budget=10048
+                thinking_budget=-1
             )
 
             # Use streaming helper for RECITATION-resistant calls
@@ -4937,9 +4943,10 @@ class MarketCompetitionAgentWrapper:
             print(f"🔍 {self.name} executing analysis (NO schema enforcement - too restrictive)")
 
             # Call with grounding, thinking config for complex reasoning
+            # Dynamic (-1) lets model balance thinking vs output tokens
             thinking_config = types.ThinkingConfig(
                 include_thoughts=False,
-                thinking_budget=10048
+                thinking_budget=-1
             )
 
             # Use streaming helper for RECITATION-resistant calls

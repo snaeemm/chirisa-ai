@@ -13,7 +13,7 @@ from .model_config import gemini_model, built_in_planner
 from typing import Any
 
 # Configuration
-GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash-preview-09-2025')
+GEMINI_MODEL = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
 
 # Create the Cross-Domain Insights Agent
 insights_agent = LlmAgent(
