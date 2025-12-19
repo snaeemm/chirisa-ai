@@ -3812,15 +3812,18 @@ class PowerInfrastructureAgentWrapper:
                 # Backfill source names for verification_metadata (convert string "verified_by_public_source" to dict with source name)
                 response_data = backfill_source_names_in_verification_metadata(response_data)
 
-                # Inject grounding sources and sanitize
+                # Inject grounding sources (ALWAYS ensure sources key exists)
+                existing_sources = response_data.get("sources", [])
                 if grounding_sources:
-                    existing_sources = response_data.get("sources", [])
                     combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
                     response_data["sources"] = sanitize_sources(combined_sources)
+                    print(f"✅ Power Agent: Injected {len(grounding_sources)} grounding sources + {len(existing_sources if isinstance(existing_sources, list) else [])} agent sources = {len(response_data['sources'])} total")
+                elif existing_sources:
+                    response_data["sources"] = sanitize_sources(existing_sources)
+                    print(f"✅ Power Agent: Using {len(response_data['sources'])} agent-provided sources (no grounding sources)")
                 else:
-                    # Still sanitize existing sources even if no grounding sources
-                    if "sources" in response_data:
-                        response_data["sources"] = sanitize_sources(response_data.get("sources", []))
+                    print(f"⚠️ WARNING: Power Agent has NO sources - neither grounding nor agent-provided")
+                    response_data["sources"] = []
 
                 # Post-process: Enrich with OSM data and detect conflicts
                 if osm_data:
@@ -4190,15 +4193,18 @@ class ClimateSuitabilityAgentWrapper:
                 # Backfill source names for verification_metadata (convert string "verified_by_public_source" to dict with source name)
                 response_data = backfill_source_names_in_verification_metadata(response_data)
 
-                # Inject grounding sources and sanitize
+                # Inject grounding sources (ALWAYS ensure sources key exists)
+                existing_sources = response_data.get("sources", [])
                 if grounding_sources:
-                    existing_sources = response_data.get("sources", [])
                     combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
                     response_data["sources"] = sanitize_sources(combined_sources)
+                    print(f"✅ Climate Agent: Injected {len(grounding_sources)} grounding sources + {len(existing_sources if isinstance(existing_sources, list) else [])} agent sources = {len(response_data['sources'])} total")
+                elif existing_sources:
+                    response_data["sources"] = sanitize_sources(existing_sources)
+                    print(f"✅ Climate Agent: Using {len(response_data['sources'])} agent-provided sources (no grounding sources)")
                 else:
-                    # Still sanitize existing sources even if no grounding sources
-                    if "sources" in response_data:
-                        response_data["sources"] = sanitize_sources(response_data.get("sources", []))
+                    print(f"⚠️ WARNING: Climate Agent has NO sources - neither grounding nor agent-provided")
+                    response_data["sources"] = []
 
                 # Post-process: Enrich with climate hazard API data (sources, provenance badges, verified metrics)
                 if climate_hazards and (climate_hazards.get('seismic_hazard') or climate_hazards.get('flood_hazard') or climate_hazards.get('protected_areas') or climate_hazards.get('thinkhazard')):
@@ -4458,15 +4464,18 @@ class RegulatoryESGAgentWrapper:
                 # Backfill source names for verification_metadata (convert string "verified_by_public_source" to dict with source name)
                 response_data = backfill_source_names_in_verification_metadata(response_data)
 
-                # Inject grounding sources and sanitize
+                # Inject grounding sources (ALWAYS ensure sources key exists)
+                existing_sources = response_data.get("sources", [])
                 if grounding_sources:
-                    existing_sources = response_data.get("sources", [])
                     combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
                     response_data["sources"] = sanitize_sources(combined_sources)
+                    print(f"✅ Regulatory ESG Agent: Injected {len(grounding_sources)} grounding sources + {len(existing_sources if isinstance(existing_sources, list) else [])} agent sources = {len(response_data['sources'])} total")
+                elif existing_sources:
+                    response_data["sources"] = sanitize_sources(existing_sources)
+                    print(f"✅ Regulatory ESG Agent: Using {len(response_data['sources'])} agent-provided sources (no grounding sources)")
                 else:
-                    # Still sanitize existing sources even if no grounding sources
-                    if "sources" in response_data:
-                        response_data["sources"] = sanitize_sources(response_data.get("sources", []))
+                    print(f"⚠️ WARNING: Regulatory ESG Agent has NO sources - neither grounding nor agent-provided")
+                    response_data["sources"] = []
 
                 # Post-process: Enrich with water stress and protected areas API data
                 if (water_data and "error" not in water_data) or (protected_data and "error" not in protected_data):
@@ -4639,13 +4648,18 @@ class SiteCivilAgentWrapper:
             response_data = normalize_pydantic_response(response_data)
             response_data = sanitize_metrics_data(response_data)
 
-            # Inject grounding sources
+            # Inject grounding sources (ALWAYS ensure sources key exists)
+            existing_sources = response_data.get("sources", [])
             if grounding_sources:
-                existing_sources = response_data.get("sources", [])
                 combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
                 response_data["sources"] = sanitize_sources(combined_sources)
-            elif "sources" in response_data:
-                response_data["sources"] = sanitize_sources(response_data.get("sources", []))
+                print(f"✅ Site Civil Agent: Injected {len(grounding_sources)} grounding sources + {len(existing_sources if isinstance(existing_sources, list) else [])} agent sources = {len(response_data['sources'])} total")
+            elif existing_sources:
+                response_data["sources"] = sanitize_sources(existing_sources)
+                print(f"✅ Site Civil Agent: Using {len(response_data['sources'])} agent-provided sources (no grounding sources)")
+            else:
+                print(f"⚠️ WARNING: Site Civil Agent has NO sources - neither grounding nor agent-provided")
+                response_data["sources"] = []
 
             # Post-process: Enrich with water stress API data (sources, provenance badges, verified metrics)
             if water_data and "error" not in water_data:
@@ -4800,13 +4814,19 @@ class MechanicalThermalAgentWrapper:
             response_data = normalize_pydantic_response(response_data)
             response_data = sanitize_metrics_data(response_data)
 
-            # Inject grounding sources
+            # Inject grounding sources (ALWAYS ensure sources key exists)
+            existing_sources = response_data.get("sources", [])
             if grounding_sources:
-                existing_sources = response_data.get("sources", [])
                 combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
                 response_data["sources"] = sanitize_sources(combined_sources)
-            elif "sources" in response_data:
-                response_data["sources"] = sanitize_sources(response_data.get("sources", []))
+                print(f"✅ Mechanical & Thermal Agent: Injected {len(grounding_sources)} grounding sources + {len(existing_sources if isinstance(existing_sources, list) else [])} agent sources = {len(response_data['sources'])} total")
+            elif existing_sources:
+                response_data["sources"] = sanitize_sources(existing_sources)
+                print(f"✅ Mechanical & Thermal Agent: Using {len(response_data['sources'])} agent-provided sources (no grounding sources)")
+            else:
+                # No sources from either grounding or agent - log warning
+                print(f"⚠️ WARNING: Mechanical & Thermal Agent has NO sources - neither grounding nor agent-provided")
+                response_data["sources"] = []
 
             from .domain_models import MechanicalThermalOutput
             return MechanicalThermalOutput(**response_data)
@@ -4819,8 +4839,10 @@ class MechanicalThermalAgentWrapper:
                 cooling_strategy={},
                 hvac_design={},
                 thermal_resilience={},
-                water_treatment={},
-                mechanical_systems={},
+                free_cooling_efficiency={},
+                water_consumption={},
+                mechanical_infrastructure={},
+                fire_suppression={},
                 no_go_gates=[],
                 caution_flags=[],
                 sources=[],
@@ -4934,13 +4956,18 @@ class MarketCompetitionAgentWrapper:
             response_data = normalize_pydantic_response(response_data)
             response_data = sanitize_metrics_data(response_data)
 
-            # Inject grounding sources
+            # Inject grounding sources (ALWAYS ensure sources key exists)
+            existing_sources = response_data.get("sources", [])
             if grounding_sources:
-                existing_sources = response_data.get("sources", [])
                 combined_sources = (existing_sources if isinstance(existing_sources, list) else []) + grounding_sources
                 response_data["sources"] = sanitize_sources(combined_sources)
-            elif "sources" in response_data:
-                response_data["sources"] = sanitize_sources(response_data.get("sources", []))
+                print(f"✅ Market Competition Agent: Injected {len(grounding_sources)} grounding sources + {len(existing_sources if isinstance(existing_sources, list) else [])} agent sources = {len(response_data['sources'])} total")
+            elif existing_sources:
+                response_data["sources"] = sanitize_sources(existing_sources)
+                print(f"✅ Market Competition Agent: Using {len(response_data['sources'])} agent-provided sources (no grounding sources)")
+            else:
+                print(f"⚠️ WARNING: Market Competition Agent has NO sources - neither grounding nor agent-provided")
+                response_data["sources"] = []
 
             from .domain_models import MarketCompetitionOutput
             return MarketCompetitionOutput(**response_data)
@@ -5134,16 +5161,16 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
                 await asyncio.sleep(delay_seconds)
             return await call_agent_with_retry(agent, method_name, lat, lng, country, shared_context)
 
-        # Step 3: Execute agents with 3-second staggered starts to avoid rate limits (429/503)
-        # Longer delays help prevent overwhelming the Gemini API when running 7 parallel agents
+        # Step 3: Execute agents with 1.5-second staggered starts to avoid rate limits (429/503)
+        # Reduced from 3s to 1.5s for faster execution while still preventing API overload
         agent_configs = [
             ("power", agents["power"], "analyze_power_infrastructure", 0),
-            ("network", agents["network"], "analyze_network_connectivity", 3),
-            ("climate", agents["climate"], "analyze_climate_suitability", 6),
-            ("regulatory_esg", agents["regulatory_esg"], "analyze_regulatory_esg", 9),
-            ("site_civil", agents["site_civil"], "analyze_site_civil", 12),
-            ("mechanical_thermal", agents["mechanical_thermal"], "analyze_mechanical_thermal", 15),
-            ("market_competition", agents["market_competition"], "analyze_market_competition", 18)
+            ("network", agents["network"], "analyze_network_connectivity", 1.5),
+            ("climate", agents["climate"], "analyze_climate_suitability", 3),
+            ("regulatory_esg", agents["regulatory_esg"], "analyze_regulatory_esg", 4.5),
+            ("site_civil", agents["site_civil"], "analyze_site_civil", 6),
+            ("mechanical_thermal", agents["mechanical_thermal"], "analyze_mechanical_thermal", 7.5),
+            ("market_competition", agents["market_competition"], "analyze_market_competition", 9)
         ]
 
         agent_tasks = {
