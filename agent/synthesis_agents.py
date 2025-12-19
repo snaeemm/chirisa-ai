@@ -5213,100 +5213,10 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
 
         agent_results = processed_results
 
-        print(f"🔄 Parallel analysis completed. Starting parallel post-processing...")
+        print(f"🔄 Parallel analysis completed. Generating intelligent insights...")
 
-        # ============================================================================
-        # PARALLEL POST-PROCESSING: Insights + Score Calculation run simultaneously
-        # ============================================================================
-        from .insights_agent import insights_agent, prepare_insights_input
-        from google.genai import types as genai_types
-
-        # Helper function to call insights agent with thinking (runs in parallel)
-        async def call_insights_with_thinking():
-            """Call insights agent with thinking config for complex cross-domain synthesis"""
-            try:
-                from google.genai import Client
-                import json
-
-                api_key = os.getenv('GEMINI_API_KEY')
-                if not api_key:
-                    raise Exception("GEMINI_API_KEY not found")
-
-                client = Client(api_key=api_key)
-                model_name = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
-
-                # Prepare insights input (uses placeholder score, will be enriched later)
-                insights_input = prepare_insights_input(
-                    location_context=location_context,
-                    composite_score=0.0,  # Placeholder - insights doesn't need exact score to synthesize
-                    power_result=agent_results['power_result'],
-                    network_result=agent_results['network_result'],
-                    climate_result=agent_results['climate_result'],
-                    regulatory_esg_result=agent_results['regulatory_esg_result'],
-                    site_civil_result=agent_results.get('site_civil_result'),
-                    mechanical_thermal_result=agent_results.get('mechanical_thermal_result'),
-                    market_competition_result=agent_results.get('market_competition_result')
-                )
-
-                # Create prompt with insights input data
-                prompt = f"{insights_agent.instruction}\n\nAnalyze the following cross-domain data and provide intelligent insights:\n\n{json.dumps(insights_input.model_dump(), indent=2)}"
-
-                print(f"🧠 Insights agent starting with thinking (parallel)...")
-
-                # Add thinking config for complex cross-domain reasoning
-                thinking_config = genai_types.ThinkingConfig(
-                    include_thoughts=False,
-                    thinking_budget=8192  # Slightly lower than domain agents
-                )
-
-                config = genai_types.GenerateContentConfig(
-                    thinking_config=thinking_config,
-                    temperature=1.0,
-                )
-
-                # Use streaming for RECITATION resistance (like domain agents)
-                response_text, _ = await call_gemini_with_streaming(
-                    client=client,
-                    model=model_name,
-                    prompt=prompt,
-                    config=config,
-                    agent_name="Insights Agent"
-                )
-
-                if not response_text:
-                    raise ValueError("Insights agent returned empty response")
-
-                # Parse JSON response with robust error handling
-                insights_data = robust_json_parse(response_text, "insights agent response")
-
-                # Convert to InsightsOutput model
-                from .models import InsightsOutput
-                result = InsightsOutput(**insights_data)
-                print(f"✅ Insights agent completed successfully (parallel)")
-                return result
-
-            except Exception as e:
-                print(f"⚠️ Insights agent failed (parallel): {e}")
-                return None
-
-        # Helper function to calculate scores (runs in parallel)
-        async def calculate_scores():
-            """Calculate weighted composite score - runs in parallel with insights"""
-            print(f"📊 Calculating weighted composite score (parallel)...")
-            result = calculate_weighted_composite_score(agent_results)
-            print(f"✅ Score calculation completed (parallel)")
-            return result
-
-        # Run BOTH in parallel - insights doesn't need the exact score to synthesize
-        print(f"⚡ Starting parallel: Insights Agent + Score Calculation")
-        insights_task = asyncio.create_task(call_insights_with_thinking())
-        scores_task = asyncio.create_task(calculate_scores())
-
-        # Wait for both to complete
-        insights_result, score_result = await asyncio.gather(insights_task, scores_task)
-
-        # Unpack score results
-        composite_score, weighted_scores, all_no_go_gates, all_caution_flags = score_result
+        # Step 2: Calculate weighted composite score with NO-GO gate checks (INVESTMENT-GRADE)
+        composite_score, weighted_scores, all_no_go_gates, all_caution_flags = calculate_weighted_composite_score(agent_results)
 
         print(f"🎯 Investment-Grade Composite Score: {composite_score:.2f}/5.0")
         if all_no_go_gates:
@@ -5314,6 +5224,61 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
             print(f"🚫 NO-GO Gates: {len(triggered)} triggered, {len(all_no_go_gates)-len(triggered)} passed")
         if all_caution_flags:
             print(f"⚠️  Caution Flags: {len(all_caution_flags)} requiring mitigation")
+
+        # Step 3: Generate intelligent insights using cross-domain synthesis
+        from .insights_agent import insights_agent, prepare_insights_input
+
+        insights_input = prepare_insights_input(
+            location_context=location_context,
+            composite_score=composite_score,
+            power_result=agent_results['power_result'],
+            network_result=agent_results['network_result'],
+            climate_result=agent_results['climate_result'],
+            regulatory_esg_result=agent_results['regulatory_esg_result'],  # MERGED regulatory + ESG domain (14% weight)
+            # Include remaining 3 domain agents
+            site_civil_result=agent_results.get('site_civil_result'),
+            mechanical_thermal_result=agent_results.get('mechanical_thermal_result'),
+            market_competition_result=agent_results.get('market_competition_result')
+        )
+
+        print(f"🧠 Calling insights agent for intelligent synthesis...")
+        try:
+            # Call insights agent using direct Gemini API (like other wrappers)
+            import google.generativeai as genai
+            import os
+            import json
+
+            api_key = os.getenv('GEMINI_API_KEY')
+            if not api_key:
+                raise Exception("GEMINI_API_KEY not found")
+
+            genai.configure(api_key=api_key)
+            # Get model name from environment or use default
+            model_name = os.getenv('GEMINI_MODEL', 'gemini-2.5-flash')
+            model = genai.GenerativeModel(model_name)
+
+            # Create prompt with insights input data
+            prompt = f"{insights_agent.instruction}\n\nAnalyze the following cross-domain data and provide intelligent insights:\n\n{json.dumps(insights_input.model_dump(), indent=2)}"
+
+            print(f"📤 Sending prompt to insights agent (length: {len(prompt)} chars)")
+            response = await asyncio.to_thread(model.generate_content, prompt)
+            print(f"📥 Received response from insights agent (length: {len(response.text)} chars)")
+
+            # Parse JSON response with robust error handling
+            insights_data = robust_json_parse(response.text, "insights agent response")
+
+            # Convert to InsightsOutput model
+            from .models import InsightsOutput
+            insights_result = InsightsOutput(**insights_data)
+            print(f"✅ Insights agent completed successfully")
+
+        except Exception as e:
+            print(f"⚠️ Insights agent failed, using fallback: {e}")
+            print(f"🔍 Error type: {type(e).__name__}")
+            # Log more details for debugging
+            if hasattr(e, 'response'):
+                print(f"📄 Response that failed: {e.response[:1000]}...")
+            insights_result = None
 
         # Step 4: Create ReportSchema with intelligent insights and INVESTMENT-GRADE data
         report_schema = ReportSchema.from_location_and_agents(

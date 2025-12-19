@@ -7,7 +7,7 @@ import os
 from google.adk.agents import LlmAgent
 from google.adk.tools import google_search
 from dotenv import load_dotenv
-from .model_config import gemini_model  # No planner needed - web search coordination only
+from .model_config import gemini_model, built_in_planner
 
 load_dotenv()
 
@@ -154,10 +154,10 @@ Structure your responses with:
 You are called by other agents (root agent, domain agents) when they need web intelligence. Execute searches thoroughly and return complete, actionable insights that can be directly integrated into domain analyses.
 """
 
-# No planner/thinking - this agent coordinates web searches, doesn't do complex analysis
 search_agent = LlmAgent(
     name="web_search_specialist",
     model=gemini_model,
+    planner=built_in_planner,
     instruction=SEARCH_AGENT_PROMPT,
     tools=[google_search],
     description="Web search specialist providing real-time intelligence for data center site analysis with source attribution"
