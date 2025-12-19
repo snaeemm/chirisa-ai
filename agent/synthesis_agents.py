@@ -5077,6 +5077,8 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
         # Fetch ALL ground truth APIs ONCE before agents run
         # This ensures APIs are called only once even if shared
         # ========================================
+        import time as timing_module
+        api_start_time = timing_module.time()
         print(f"🌍 Pre-fetching ALL ground truth APIs for all agents...")
 
         # Import API modules from domain-based folders
@@ -5135,8 +5137,9 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
             print(f"   ⚠️ Water API exception: {water_data}")
             water_data = {"error": str(water_data)}
 
-        # Log API results summary
-        print(f"✅ ALL Ground Truth APIs Pre-fetched:")
+        # Log API results summary with timing
+        api_elapsed = timing_module.time() - api_start_time
+        print(f"✅ ALL Ground Truth APIs Pre-fetched in {api_elapsed:.1f}s:")
         if power_data and "error" not in power_data:
             print(f"   🔌 Power: {power_data.get('nearest_substation_name', 'N/A')} at {power_data.get('substation_distance_km', '?')}km")
         else:
@@ -5190,13 +5193,34 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
         # Step 1: Run all 7 domain agents with staggered starts to avoid rate limits
         print(f"🚀 Starting staggered analysis with 7 domain agents for {location_context.location}")
 
-        # Step 2: Helper to add staggered delay before agent call
+        # Step 2: Helper to add staggered delay before agent call WITH TIMING
+        import time as timing_module
         async def staggered_agent_call(agent_key, agent, method_name, delay_seconds):
             """Wrap agent call with initial delay to stagger API requests"""
             if delay_seconds > 0:
                 print(f"⏳ {agent_key}: waiting {delay_seconds}s before starting...")
                 await asyncio.sleep(delay_seconds)
-            return await call_agent_with_retry(agent, method_name, lat, lng, country, shared_context)
+
+            # TIME THE AGENT CALL
+            start_time = timing_module.time()
+            print(f"🔄 {agent_key}: STARTING at {start_time:.1f}s")
+
+            try:
+                result = await call_agent_with_retry(agent, method_name, lat, lng, country, shared_context)
+                elapsed = timing_module.time() - start_time
+
+                # Check if result has required fields
+                has_summary = bool(getattr(result, 'executive_summary', None) if hasattr(result, 'executive_summary') else (result.get('executive_summary') if isinstance(result, dict) else False))
+                has_insights = bool(getattr(result, 'key_insights', None) if hasattr(result, 'key_insights') else (result.get('key_insights') if isinstance(result, dict) else False))
+
+                status = "✅" if (has_summary and has_insights) else "⚠️ MISSING FIELDS"
+                print(f"{status} {agent_key}: COMPLETED in {elapsed:.1f}s (summary={has_summary}, insights={has_insights})")
+
+                return result
+            except Exception as e:
+                elapsed = timing_module.time() - start_time
+                print(f"❌ {agent_key}: FAILED after {elapsed:.1f}s - {str(e)[:100]}")
+                raise
 
         # Step 3: Execute agents with 1.5-second staggered starts to avoid rate limits (429/503)
         # Reduced from 3s to 1.5s for faster execution while still preventing API overload
@@ -5215,8 +5239,17 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
             for config in agent_configs
         }
 
+        agents_start_time = timing_module.time()
         results = await asyncio.gather(*agent_tasks.values(), return_exceptions=True)
+        agents_elapsed = timing_module.time() - agents_start_time
         agent_results = dict(zip(agent_tasks.keys(), results))
+
+        print(f"\n{'='*60}")
+        print(f"⏱️ TIMING SUMMARY:")
+        print(f"   APIs pre-fetch: {api_elapsed:.1f}s")
+        print(f"   All 7 agents: {agents_elapsed:.1f}s")
+        print(f"   TOTAL so far: {api_elapsed + agents_elapsed:.1f}s")
+        print(f"{'='*60}\n")
 
         # Process results - convert old format to AgentOutput for compatibility
         processed_results = {}
