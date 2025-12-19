@@ -54,6 +54,29 @@ fi
 echo "=========================================="
 echo ""
 
+# Check thinking_budget configuration
+echo "=========================================="
+echo "CHECKING GEMINI THINKING BUDGET CONFIG"
+echo "=========================================="
+if grep -q "thinking_budget=-1" agent/model_config.py; then
+    echo "✅ thinking_budget=-1 (dynamic mode) - CORRECT"
+elif grep -q "thinking_budget=10048" agent/model_config.py; then
+    echo "❌ ERROR: thinking_budget=10048 (OLD CONFIG - causes missing fields!)"
+else
+    echo "⚠️ thinking_budget value unclear - check agent/model_config.py"
+fi
+
+if grep -q "thinking_budget=-1" agent/synthesis_agents.py | head -1; then
+    echo "✅ synthesis_agents.py uses thinking_budget=-1 - CORRECT"
+elif grep -q "thinking_budget=10048" agent/synthesis_agents.py; then
+    echo "❌ ERROR: synthesis_agents.py still has thinking_budget=10048!"
+fi
+
+echo "Model config:"
+grep "MODEL_NAME\|thinking_budget" agent/model_config.py | head -5
+echo "=========================================="
+echo ""
+
 # Check GEE credentials
 echo "=========================================="
 echo "CHECKING GEE CREDENTIALS"
