@@ -392,6 +392,23 @@ The enhanced water stress query in Example #4 includes "catchment", "basin", and
 
 **EVERY subsection MUST include `verification_metadata`** that tags each site/civil claim with its verification level.
 
+**🚨 CRITICAL FORMAT RULES - verification_metadata MUST be a flat dict mapping metric names to verification levels:**
+```json
+"verification_metadata": {
+  "land_availability": "model_inference",
+  "zoning_status": "verified_by_public_source",
+  "soil_bearing_capacity": "unknown_requires_utility_letter"
+}
+```
+
+**❌ NEVER nest objects or add extra keys like "name":**
+```json
+// WRONG - will cause validation error:
+"verification_metadata": {
+  "land_availability": {"name": "Land", "level": "model_inference"}
+}
+```
+
 **MANDATORY TAGGING RULES:**
 - **Land Availability**: "model_inference" unless you have actual land registry/listing data
 - **Soil Bearing Capacity**: "verified_by_public_source" if from USGS/geological survey, "unknown_requires_utility_letter" if needs geotech report
@@ -400,7 +417,7 @@ The enhanced water stress query in Example #4 includes "catchment", "basin", and
 - **Transportation Access**: "verified_by_public_source" if measured from public maps
 - **Zoning**: "verified_by_public_source" if from municipal zoning maps
 
-**Available verification levels:**
+**Available verification levels (use these EXACT strings):**
 - `verified_by_public_source` - From USGS, municipal records, utility websites
 - `verified_by_transactional` - Geotechnical report, title search, water letter
 - `model_inference` - Estimated from regional data
