@@ -469,8 +469,14 @@ Return a VALID JSON object with this structure (matching MechanicalThermalOutput
     }
   },
   "assumptions": ["Climate data from ASHRAE climate zone database", "PUE calculation based on hybrid cooling strategy"],
-  "key_insights": ["Excellent free cooling potential (3500 hrs/year)", "Design PUE 1.22 competitive for hyperscale", "N+1 chiller redundancy sufficient for Tier III"],
-  "executive_summary": "Location demonstrates strong mechanical and thermal feasibility...",
+  "key_insights": [
+    "Excellent free cooling potential with 3500 annual economizer hours enabling significant energy savings",
+    "Design PUE of 1.22 is highly competitive for hyperscale deployment and exceeds industry benchmarks",
+    "N+1 chiller redundancy configuration meets Tier III requirements with 18-minute thermal ride-through",
+    "Hybrid air/water-cooled strategy optimizes efficiency while managing water consumption in moderate stress region",
+    "Fire suppression system meets NFPA 75/76 with clean agent technology and 30-second detection response"
+  ],
+  "executive_summary": "Location demonstrates excellent mechanical and thermal feasibility for hyperscale data center deployment with 3500 annual free cooling hours enabling a competitive design PUE of 1.22. A hybrid air/water-cooled strategy with N+1 chiller redundancy provides Tier III compliance and 18-minute thermal ride-through capability. The site is highly suitable for 50-100 MW deployment with strong energy efficiency potential and manageable water consumption requirements.",
   "data_gaps": ["Energy modeling study required to validate PUE", "Vendor quotes for chiller lead times"],
   "third_party_verification": ["Mechanical engineer for HVAC design", "Energy modeling consultant (IES VE)", "Chiller vendor for equipment specs"],
   "phase_1_recommendations": {
@@ -517,14 +523,15 @@ Return a VALID JSON object with this structure (matching MechanicalThermalOutput
 }
 ```
 
-**CRITICAL**:
+**CRITICAL - MANDATORY FIELDS**:
+- **executive_summary**: MUST be a complete 2-3 sentence summary (NOT empty string). Example: "Location demonstrates excellent mechanical feasibility with 3500 annual free cooling hours enabling design PUE of 1.22. Hybrid air/water-cooled strategy recommended with N+1 chiller redundancy for Tier III compliance."
+- **key_insights**: MUST contain 3-5 key findings as an array of strings (NOT empty array). Each insight should be a complete sentence highlighting critical mechanical/thermal findings.
 - Use search tool EXTENSIVELY to gather real climate and mechanical data for the specific location
 - Reference ASHRAE, Uptime Institute, and NFPA standards for EVERY metric
-- Document data sources with URLs
+- Document data sources with URLs in the sources array
 - Calculate subsection scores (1.0-5.0) with clear justification
 - Check NO-GO gates and caution flags rigorously
 - Severity and confidence values must be LOWERCASE: "low", "medium", or "high" (NOT "High", "Medium", "Extreme")
-- **EXECUTIVE SUMMARY**: You MUST populate the `executive_summary` field with a concise 2-3 sentence summary of mechanical & thermal infrastructure readiness, highlighting the most critical findings (e.g., "Location demonstrates excellent mechanical feasibility with 3500 annual free cooling hours enabling design PUE of 1.22. Hybrid air/water-cooled strategy recommended with N+1 chiller redundancy for Tier III compliance. Overall highly suitable for hyperscale deployment with competitive energy efficiency potential.")
 - Return ONLY valid JSON matching the Pydantic model structure
 """
 

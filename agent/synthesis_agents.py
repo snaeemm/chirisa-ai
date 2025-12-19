@@ -4821,6 +4821,29 @@ class MechanicalThermalAgentWrapper:
             response_data = normalize_pydantic_response(response_data)
             response_data = sanitize_metrics_data(response_data)
 
+            # Ensure executive_summary and key_insights are populated (LLM sometimes omits these)
+            if not response_data.get("executive_summary") or not response_data.get("executive_summary").strip():
+                # Generate from cooling_strategy content if available
+                cooling = response_data.get("cooling_strategy", {})
+                pue = cooling.get("metrics", {}).get("numerical_values", {}).get("design_pue", "N/A")
+                content = cooling.get("content", "")[:200] if cooling.get("content") else ""
+                score = response_data.get("overall_score", 3.0)
+                response_data["executive_summary"] = f"Mechanical and thermal analysis completed with overall score {score}/5.0. Design PUE target: {pue}. {content}"
+                print(f"⚠️ Mechanical & Thermal: Generated fallback executive_summary")
+
+            if not response_data.get("key_insights") or len(response_data.get("key_insights", [])) == 0:
+                # Extract key_points from sections as fallback
+                fallback_insights = []
+                for section_key in ["cooling_strategy", "hvac_design", "thermal_resilience", "water_consumption", "fire_suppression"]:
+                    section = response_data.get(section_key, {})
+                    if isinstance(section, dict) and section.get("key_points"):
+                        points = section.get("key_points", [])
+                        if points and len(points) > 0:
+                            fallback_insights.append(points[0])
+                if fallback_insights:
+                    response_data["key_insights"] = fallback_insights[:5]
+                    print(f"⚠️ Mechanical & Thermal: Generated {len(fallback_insights)} fallback key_insights from sections")
+
             # Inject grounding sources (ALWAYS ensure sources key exists)
             existing_sources = response_data.get("sources", [])
             if grounding_sources:
