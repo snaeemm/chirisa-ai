@@ -841,6 +841,18 @@ def normalize_pydantic_response(data: dict) -> dict:
                             elif not isinstance(item['routing_buffer'], (int, float, type(None))):
                                 item['routing_buffer'] = None
 
+                # Filter out "Unknown Location" entries - these are LLM fallbacks that provide no value
+                # and clutter reports. This applies to ALL agents (network, site_civil, regulatory_esg, etc.)
+                unknown_targets = ["Unknown", "Unknown Location", "unknown", "unknown location"]
+                original_count = len(normalized[key])
+                normalized[key] = [
+                    item for item in normalized[key]
+                    if item.get('target') not in unknown_targets
+                ]
+                removed_count = original_count - len(normalized[key])
+                if removed_count > 0:
+                    print(f"  🗑️ Removed {removed_count} 'Unknown Location' distance measurement(s)")
+
             # Normalize sections (RichSection models)
             elif key == 'sections' or key.endswith('_sections'):
                 for item in normalized[key]:
@@ -908,6 +920,12 @@ def sanitize_sources(sources: list) -> list:
     ]
     junk_patterns_compiled = [re.compile(p, re.IGNORECASE) for p in JUNK_TITLE_PATTERNS]
 
+    # URL patterns for internal/redirect URLs that should be filtered out
+    JUNK_URL_PATTERNS = [
+        r'^https://vertexaisearch\.cloud\.google\.com/',  # Gemini internal grounding redirects
+    ]
+    junk_url_patterns_compiled = [re.compile(p, re.IGNORECASE) for p in JUNK_URL_PATTERNS]
+
     def is_junk_source(title: str) -> bool:
         """Check if a source title is junk based on patterns"""
         if not title:
@@ -917,8 +935,19 @@ def sanitize_sources(sources: list) -> list:
                 return True
         return False
 
+    def is_junk_url(url: str) -> bool:
+        """Check if a URL is a junk/redirect URL that should be filtered"""
+        if not url:
+            return False
+        for pattern in junk_url_patterns_compiled:
+            if pattern.search(url):
+                return True
+        return False
+
     sanitized = []
     filtered_count = 0
+    redirect_count = 0
+    seen_urls = set()  # For deduplication
 
     for source in sources:
         if isinstance(source, dict):
@@ -931,9 +960,18 @@ def sanitize_sources(sources: list) -> list:
             }
             # Only add if we have at least a URL AND it's not a junk source
             if sanitized_source["url"]:
+                # Filter junk titles
                 if is_junk_source(sanitized_source["title"]):
                     filtered_count += 1
                     continue
+                # Filter junk/redirect URLs (e.g., vertexaisearch redirects)
+                if is_junk_url(sanitized_source["url"]):
+                    redirect_count += 1
+                    continue
+                # Deduplicate by URL
+                if sanitized_source["url"] in seen_urls:
+                    continue
+                seen_urls.add(sanitized_source["url"])
                 sanitized.append(sanitized_source)
         elif isinstance(source, str):
             # If source is just a string, check if it's junk
@@ -949,6 +987,12 @@ def sanitize_sources(sources: list) -> list:
 
     if filtered_count > 0:
         print(f"  🗑️ Filtered {filtered_count} junk sources (time/weather queries)")
+    if redirect_count > 0:
+        print(f"  🗑️ Filtered {redirect_count} redirect/internal URLs")
+    if len(sources) - len(sanitized) - filtered_count - redirect_count > 0:
+        dup_count = len(sources) - len(sanitized) - filtered_count - redirect_count
+        if dup_count > 0:
+            print(f"  🔄 Removed {dup_count} duplicate sources")
 
     return sanitized
 
@@ -3294,6 +3338,12 @@ def enrich_network_output_with_peeringdb(response_data: dict, peeringdb_data: di
 
         if data_quality_flag:
             print(f"  🚩 Facility with quality flags: {fac['name']} -> {data_quality_flag}")
+
+        # Skip facilities with suspect coordinates - these are geographically misplaced entries
+        # (e.g., Cogent Fairfax appearing in South Carolina queries due to bad PeeringDB coords)
+        if "coordinates_suspect" in data_quality_flag:
+            print(f"  🚫 Skipping facility with suspect coordinates: {fac['name']} (would mislead distance analysis)")
+            continue
 
         response_data["distance_measurements"].append({
             "target": f"{fac['name']} (Colo Facility)",
