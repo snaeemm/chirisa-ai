@@ -255,6 +255,8 @@ Sub-Score: X.X/5.0 (Quantitative justification based on infrastructure reuse pot
 
 Ensure all information is based on verifiable facts; if data is approximate or estimated, state it clearly. Provide comprehensive technical details with specific metrics.
 
+**🚨 CRITICAL: EVERY subsection MUST have ALL of these fields: name, content, sub_score, key_points, metrics, verification_metadata. NO EXCEPTIONS. Empty fields will cause report generation to fail.**
+
 Your response must be a valid JSON object matching the PowerInfrastructureOutput schema with the following exact structure:
 
 ```json

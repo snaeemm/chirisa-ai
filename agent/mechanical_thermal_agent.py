@@ -335,6 +335,8 @@ thermal resilience, and mechanical infrastructure requirements for 50-100 MW hyp
 
 ## RESPONSE FORMAT
 
+**🚨 CRITICAL: EVERY subsection MUST have ALL of these fields: name, content, sub_score, key_points, metrics, verification_metadata. NO EXCEPTIONS. Empty fields will cause report generation to fail.**
+
 Return a VALID JSON object with this structure (matching MechanicalThermalOutput model):
 
 ```json

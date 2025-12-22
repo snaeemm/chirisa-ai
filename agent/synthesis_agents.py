@@ -437,28 +437,39 @@ async def call_gemini_with_streaming(
 
         try:
             # PRIMARY: Use STREAMING to reduce RECITATION detection
-            response_chunks = []
-            finish_reason_detected = None
+            # CRITICAL: Wrap sync streaming in asyncio.to_thread() to enable TRUE parallel execution
+            # Without this, the sync iterator blocks the event loop and agents run sequentially
 
-            stream = client.models.generate_content_stream(
-                model=model,
-                contents=current_prompt,
-                config=current_config
-            )
+            def sync_streaming_call():
+                """Run synchronous streaming in thread pool to not block event loop."""
+                chunks = []
+                sources = []
+                finish_reason = None
 
-            # Collect chunks from stream
-            for chunk in stream:
-                if chunk.text:
-                    response_chunks.append(chunk.text)
-                # Capture grounding sources from any chunk
-                chunk_sources = extract_grounding_sources(chunk)
-                if chunk_sources:
-                    grounding_sources.extend(chunk_sources)
-                # Check for finish reason in chunk candidates
-                if hasattr(chunk, 'candidates') and chunk.candidates:
-                    fr = getattr(chunk.candidates[0], 'finish_reason', None)
-                    if fr:
-                        finish_reason_detected = str(fr)
+                stream = client.models.generate_content_stream(
+                    model=model,
+                    contents=current_prompt,
+                    config=current_config
+                )
+
+                for chunk in stream:
+                    if chunk.text:
+                        chunks.append(chunk.text)
+                    # Capture grounding sources from any chunk
+                    chunk_sources = extract_grounding_sources(chunk)
+                    if chunk_sources:
+                        sources.extend(chunk_sources)
+                    # Check for finish reason in chunk candidates
+                    if hasattr(chunk, 'candidates') and chunk.candidates:
+                        fr = getattr(chunk.candidates[0], 'finish_reason', None)
+                        if fr:
+                            finish_reason = str(fr)
+
+                return chunks, sources, finish_reason
+
+            # Run streaming in thread pool - allows other agents to run in parallel
+            response_chunks, chunk_sources, finish_reason_detected = await asyncio.to_thread(sync_streaming_call)
+            grounding_sources.extend(chunk_sources)
 
             response_text = "".join(response_chunks) if response_chunks else None
 
@@ -3832,6 +3843,27 @@ class PowerInfrastructureAgentWrapper:
                     response_data = enrich_power_output_with_osm(response_data, osm_data)
                     response_data = detect_osm_llm_conflicts(response_data, osm_data)
 
+                # FALLBACK: Generate executive_summary if missing
+                if not response_data.get("executive_summary"):
+                    first_section = response_data.get("grid_reliability") or response_data.get("power_capacity") or {}
+                    content = first_section.get("content", "")[:200] if isinstance(first_section, dict) else ""
+                    score = response_data.get("overall_score", 3.0)
+                    response_data["executive_summary"] = f"Power infrastructure analysis completed with score {score}/5.0. {content}"
+                    print(f"⚠️ Power Agent: Generated fallback executive_summary")
+
+                # FALLBACK: Generate key_insights if missing
+                if not response_data.get("key_insights") or len(response_data.get("key_insights", [])) == 0:
+                    fallback_insights = []
+                    for section_key in ["grid_reliability", "power_capacity", "generation_mix", "connection_process", "electricity_costs"]:
+                        section = response_data.get(section_key, {})
+                        if isinstance(section, dict) and section.get("key_points"):
+                            kp = section["key_points"]
+                            if isinstance(kp, list) and len(kp) > 0:
+                                fallback_insights.append(kp[0])
+                    if fallback_insights:
+                        response_data["key_insights"] = fallback_insights[:5]
+                        print(f"⚠️ Power Agent: Generated fallback key_insights ({len(fallback_insights)} items)")
+
                 # Try to create PowerInfrastructureOutput first (new format)
                 try:
                     result = PowerInfrastructureOutput(**response_data)
@@ -4488,6 +4520,28 @@ class RegulatoryESGAgentWrapper:
                 response_data = detect_regulatory_esg_llm_conflicts(response_data, water_data, protected_data)
                 print(f"✅ Regulatory ESG Agent: Completed conflict detection")
 
+                # FALLBACK: Generate executive_summary if missing (matches Power/Network pattern)
+                if not response_data.get("executive_summary"):
+                    # Build summary from first available section
+                    first_section = response_data.get("data_sovereignty_privacy") or response_data.get("government_incentives") or response_data.get("operational_environmental_compliance") or {}
+                    content = first_section.get("content", "")[:200] if isinstance(first_section, dict) else ""
+                    score = response_data.get("overall_score", 3.0)
+                    response_data["executive_summary"] = f"Regulatory & ESG analysis completed with score {score}/5.0. {content}"
+                    print(f"⚠️ Regulatory ESG Agent: Generated fallback executive_summary")
+
+                # FALLBACK: Generate key_insights if missing (matches Power/Network pattern)
+                if not response_data.get("key_insights") or len(response_data.get("key_insights", [])) == 0:
+                    fallback_insights = []
+                    for section_key in ["data_sovereignty_privacy", "government_incentives", "operational_environmental_compliance", "permitting_zoning", "esg_trajectory"]:
+                        section = response_data.get(section_key, {})
+                        if isinstance(section, dict) and section.get("key_points"):
+                            kp = section["key_points"]
+                            if isinstance(kp, list) and len(kp) > 0:
+                                fallback_insights.append(kp[0])
+                    if fallback_insights:
+                        response_data["key_insights"] = fallback_insights[:5]
+                        print(f"⚠️ Regulatory ESG Agent: Generated fallback key_insights ({len(fallback_insights)} items)")
+
                 # Try to create RegulatoryESGOutput first (MERGED format)
                 try:
                     from .domain_models import RegulatoryESGOutput
@@ -5000,6 +5054,27 @@ class MarketCompetitionAgentWrapper:
                 print(f"⚠️ WARNING: Market Competition Agent has NO sources - neither grounding nor agent-provided")
                 response_data["sources"] = []
 
+            # FALLBACK: Generate executive_summary if missing
+            if not response_data.get("executive_summary"):
+                first_section = response_data.get("competitive_landscape") or response_data.get("cloud_ecosystem") or {}
+                content = first_section.get("content", "")[:200] if isinstance(first_section, dict) else ""
+                score = response_data.get("overall_score", 3.0)
+                response_data["executive_summary"] = f"Market & competition analysis completed with score {score}/5.0. {content}"
+                print(f"⚠️ Market Competition Agent: Generated fallback executive_summary")
+
+            # FALLBACK: Generate key_insights if missing
+            if not response_data.get("key_insights") or len(response_data.get("key_insights", [])) == 0:
+                fallback_insights = []
+                for section_key in ["competitive_landscape", "cloud_ecosystem", "peering_opportunities", "proximity_to_demand", "labor_market"]:
+                    section = response_data.get(section_key, {})
+                    if isinstance(section, dict) and section.get("key_points"):
+                        kp = section["key_points"]
+                        if isinstance(kp, list) and len(kp) > 0:
+                            fallback_insights.append(kp[0])
+                if fallback_insights:
+                    response_data["key_insights"] = fallback_insights[:5]
+                    print(f"⚠️ Market Competition Agent: Generated fallback key_insights ({len(fallback_insights)} items)")
+
             from .domain_models import MarketCompetitionOutput
             return MarketCompetitionOutput(**response_data)
 
@@ -5396,6 +5471,15 @@ async def generate_datacenter_report(location_context: LocationContext) -> str:
         try:
             db_result = save_report_to_database(report_schema)
             print(f"✅ Database: {db_result}")
+
+            # Clear sidebar cache so new report appears immediately
+            try:
+                from ui.sidebar import load_reports_list
+                load_reports_list.clear()
+                print("✅ Sidebar cache cleared")
+            except Exception as cache_err:
+                print(f"⚠️ Could not clear sidebar cache: {cache_err}")
+
         except Exception as e:
             print(f"⚠️ Database save failed: {e}")
 

@@ -589,6 +589,8 @@ Example:
 REQUIRED JSON OUTPUT STRUCTURE
 ═══════════════════════════════════════════════════════════════════════════════
 
+**🚨 CRITICAL: EVERY subsection MUST have ALL of these fields: name, content, sub_score, key_points, metrics, verification_metadata. NO EXCEPTIONS. Empty fields will cause report generation to fail.**
+
 You MUST return ONLY valid JSON matching this EXACT structure:
 
 ```json

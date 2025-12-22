@@ -420,6 +420,8 @@ Example: "EPA" + "eGRID" + "2023" = "EPA eGRID 2023"
 
 ## RESPONSE FORMAT
 
+**🚨 CRITICAL: EVERY subsection MUST have ALL of these fields: name, content, sub_score, key_points, metrics, verification_metadata. NO EXCEPTIONS. Empty fields will cause report generation to fail.**
+
 Return a VALID JSON object with this structure (matching RegulatoryESGOutput model):
 
 ```json

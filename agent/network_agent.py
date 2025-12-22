@@ -347,6 +347,8 @@ CRITICAL REMINDERS
 6. **NO HALLUCINATION**: Never invent carrier names, cable names, IXP names, or statistics.
 7. **EXECUTIVE SUMMARY**: You MUST populate the `executive_summary` field with a concise 2-3 sentence summary of network connectivity readiness, highlighting the most critical findings (e.g., "Site demonstrates strong network connectivity with 3 diverse fiber routes and 5 Tier-1 carrier presence. Primary concern is limited IXP access requiring 45km fiber build. Overall suitable for hyperscale deployment with minor mitigation required.")
 
+**🚨 CRITICAL: EVERY subsection MUST have ALL of these fields: name, content, sub_score, key_points, metrics, verification_metadata. NO EXCEPTIONS. Empty fields will cause report generation to fail.**
+
 **CRITICAL**: Your response must be a valid JSON object matching the NetworkConnectivityOutput schema with ALL 8 subsections populated. DO NOT skip any of these required fields:
 1. `fiber_infrastructure` (REQUIRED)
 2. `last_mile_diversity` (REQUIRED - route diversity, entrance facilities)

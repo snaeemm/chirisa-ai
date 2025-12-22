@@ -290,53 +290,81 @@ and go-to-market feasibility for 50-100 MW hyperscale data center deployment.
 
 Return a VALID JSON object with this structure (matching MarketCompetitionOutput model):
 
+**🚨 CRITICAL: EVERY subsection MUST have ALL of these fields: name, content, sub_score, key_points, metrics, verification_metadata. NO EXCEPTIONS.**
+
 ```json
 {
   "overall_score": 3.8,
   "competitive_landscape": {
+    "name": "Competitive Landscape & Supply-Demand",
+    "content": "The metro market shows balanced supply-demand dynamics with 450 MW existing capacity and 8.5% vacancy rate. Pipeline of 220 MW under construction with healthy absorption of 35 MW per quarter. Major operators include Equinix, Digital Realty, and CyrusOne. Wholesale pricing averages $145/kW/month, competitive with regional benchmarks.",
+    "sub_score": 4.0,
+    "key_points": ["Moderate vacancy at 8.5% (verified from CBRE market reports)", "Healthy absorption of 35 MW/quarter indicates strong demand", "Pricing at $145/kW/month competitive with Tier 2 markets", "Major competitors: Equinix (35% share), Digital Realty (25%), CyrusOne (15%)"],
     "metrics": {
-      "numerical_values": {"existing_capacity_mw": 450, "pipeline_mw": 220, "absorption_mw_per_quarter": 35, "pricing_usd_per_kw_month": 145},
-      "percentages": {"vacancy_rate": 8.5},
+      "numerical_values": {"existing_capacity_mw": 450, "pipeline_mw": 220, "absorption_mw_per_quarter": 35, "pricing_usd_per_kw_month": 145, "major_competitors_count": 6},
+      "percentages": {"vacancy_rate": 8.5, "equinix_market_share": 35, "digital_realty_share": 25},
       "units": {"existing_capacity_mw": "MW", "absorption_mw_per_quarter": "MW/qtr", "pricing_usd_per_kw_month": "USD/kW/mo"},
       "ranges": {}
     },
-    "key_points": ["Moderate vacancy at 8.5% (verified from market reports)", "Healthy absorption of 35 MW/quarter", "Pricing: $145/kW/month (model inference)"],
     "tables": [],
-    "sub_score": 4.0,
     "verification_metadata": {
-      "vacancy_rate": "verified_by_public_source",
-      "absorption_rate": "verified_by_public_source",
-      "pricing": "model_inference"
+      "vacancy_rate": {"level": "verified_by_public_source", "source": "CBRE Q4 2024 Data Center Trends"},
+      "absorption_rate": {"level": "verified_by_public_source", "source": "JLL Data Center Outlook 2024"},
+      "pricing": {"level": "model_inference", "source": "Regional benchmark estimate"}
     }
   },
   "cloud_ecosystem_demand": {
     "name": "Cloud Ecosystem & Demand Drivers",
-    "content": "Analysis of hyperscaler presence (AWS/Azure/GCP regions), enterprise demand anchors, regulated sector requirements...",
+    "content": "Strong hyperscaler presence with 3 AWS availability zones, 2 Azure regions, and 1 GCP region within 200km. Enterprise cloud adoption rate estimated at 75%. Government digital transformation initiatives driving public sector demand with $2.5B annual IT spending. Internet penetration exceeds 95% with mobile data consumption at 35 GB per capita monthly.",
     "sub_score": 3.9,
-    "key_points": ["3 AWS availability zones present (verified by AWS website)", "Strong enterprise cloud adoption", "Growing hyperscaler footprint"],
+    "key_points": ["3 AWS availability zones within 200km (verified from AWS website)", "Strong enterprise cloud adoption at 75%", "Government digital spending of $2.5B annually", "Internet penetration >95% with high mobile data usage"],
+    "metrics": {
+      "numerical_values": {"aws_availability_zones": 3, "azure_regions": 2, "gcp_regions": 1, "government_it_spending_usd_billions": 2.5, "mobile_data_gb_per_capita": 35},
+      "percentages": {"cloud_adoption_rate": 75, "internet_penetration": 95},
+      "units": {"government_it_spending_usd_billions": "USD B/year", "mobile_data_gb_per_capita": "GB/month"},
+      "ranges": {}
+    },
+    "tables": [],
     "verification_metadata": {
-      "aws_presence": "verified_by_public_source",
-      "enterprise_demand": "model_inference"
+      "aws_presence": {"level": "verified_by_public_source", "source": "AWS Global Infrastructure website"},
+      "cloud_adoption": {"level": "model_inference", "source": "Gartner Cloud Adoption Trends"},
+      "enterprise_demand": {"level": "model_inference", "source": "Regional enterprise survey estimate"}
     }
   },
   "peering_network_ecosystem": {
     "name": "Peering & Network Ecosystem",
-    "content": "Assessment of IXPs, carrier-neutral hubs, CDN presence, subsea cable proximity...",
+    "content": "Excellent peering ecosystem with 2 major IXPs within 50km handling 850 Gbps peak traffic. 4 carrier-neutral facilities within 25km providing diverse interconnection options. Strong CDN presence (Akamai, Cloudflare, AWS CloudFront). Submarine cable landing station 75km away with 3 international cables. Direct cloud on-ramps available for AWS Direct Connect and Azure ExpressRoute.",
     "sub_score": 3.7,
-    "key_points": ["Major IXP within 25km (verified by PeeringDB)", "Carrier-neutral facilities available", "Strong CDN presence"],
+    "key_points": ["2 major IXPs within 50km with 850 Gbps peak traffic (verified by PeeringDB)", "4 carrier-neutral facilities within 25km", "Submarine cable landing 75km away with international connectivity", "Direct cloud on-ramps available for AWS and Azure"],
+    "metrics": {
+      "numerical_values": {"ixp_count": 2, "peak_ixp_traffic_gbps": 850, "carrier_hotels_within_25km": 4, "submarine_cables": 3, "distance_to_subsea_landing_km": 75},
+      "percentages": {},
+      "units": {"peak_ixp_traffic_gbps": "Gbps", "distance_to_subsea_landing_km": "km"},
+      "ranges": {}
+    },
+    "tables": [],
     "verification_metadata": {
-      "ixp_presence": "verified_by_public_source",
-      "cdn_presence": "model_inference"
+      "ixp_presence": {"level": "verified_by_peeringdb", "source": "PeeringDB API"},
+      "carrier_hotels": {"level": "verified_by_public_source", "source": "DatacenterHawk facility database"},
+      "cdn_presence": {"level": "model_inference", "source": "CDN coverage estimate"}
     }
   },
   "strategic_positioning": {
     "name": "Strategic Positioning & Advantages",
-    "content": "Regional market access, government incentives, time-zone coverage, geopolitical advantages...",
+    "content": "Tier 2 market with strong growth trajectory. Regional gateway position serving 50M population within 500km. Government data center incentives including 10-year tax abatement and expedited permitting. Time-zone coverage optimal for US East Coast and Latin America connectivity. Hyperscaler expansion confirmed with AWS and Microsoft announcing new facilities.",
     "sub_score": 4.1,
-    "key_points": ["Strategic regional hub", "Government data center incentives (verified by government website)", "Favorable regulatory environment"],
+    "key_points": ["Tier 2 market ranked #15 nationally with strong growth", "Government incentives: 10-year tax abatement available", "Strategic gateway to 50M population within 500km", "Confirmed hyperscaler expansion (AWS, Microsoft announcements)"],
+    "metrics": {
+      "numerical_values": {"market_tier_rank": 15, "population_within_500km_millions": 50, "tax_abatement_years": 10},
+      "percentages": {},
+      "units": {"population_within_500km_millions": "M people"},
+      "ranges": {}
+    },
+    "tables": [],
     "verification_metadata": {
-      "market_tier": "model_inference",
-      "government_incentives": "verified_by_public_source"
+      "market_tier": {"level": "verified_by_public_source", "source": "CBRE Tier Rankings 2024"},
+      "government_incentives": {"level": "verified_by_public_source", "source": "State Economic Development website"},
+      "hyperscaler_expansion": {"level": "verified_by_public_source", "source": "AWS/Microsoft press releases"}
     }
   },
   "assumptions": ["Market data from CBRE Q4 2024 report", "Vacancy rate estimated from public sources"],
